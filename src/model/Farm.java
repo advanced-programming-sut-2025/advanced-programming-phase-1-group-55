@@ -1,9 +1,6 @@
 package model;
 
-import plant.Plant;
-
 import java.util.Map;
-
 
 public class Farm {
     private Map<String, Plant> plantedCrops;

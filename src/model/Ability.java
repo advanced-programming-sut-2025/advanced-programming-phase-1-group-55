@@ -27,5 +27,15 @@ public class Ability {
         System.out.println("Activating " + name);
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
 
+    public void setLevelRequierd(int levelRequierd) {
+        this.levelRequierd = levelRequierd;
+    }
+
+    public void setPointsRequiredForNextLevel(int pointsRequiredForNextLevel) {
+        this.pointsRequiredForNextLevel = pointsRequiredForNextLevel;
+    }
 }

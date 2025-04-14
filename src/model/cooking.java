@@ -48,6 +48,43 @@ public class cooking {
 
     }
 
+    public Map<String, Integer> getRecipes() {
+        return recipes;
+    }
 
+    public void setRecipes(Map<String, Integer> recipes) {
+        this.recipes = recipes;
+    }
 
+    public Map<String, Integer> getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(Map<String, Integer> inventory) {
+        this.inventory = inventory;
+    }
+
+    public Map<String, Integer> getRefrigerator() {
+        return refrigerator;
+    }
+
+    public void setRefrigerator(Map<String, Integer> refrigerator) {
+        this.refrigerator = refrigerator;
+    }
+
+    public boolean isInhouse() {
+        return inhouse;
+    }
+
+    public void setInhouse(boolean inhouse) {
+        this.inhouse = inhouse;
+    }
+
+    public int getEnergy() {
+        return energy;
+    }
+
+    public void setEnergy(int energy) {
+        this.energy = energy;
+    }
 }

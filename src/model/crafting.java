@@ -45,4 +45,43 @@ public class crafting {
 
     }
 
+    public Map<String, Recipe> getRecipes() {
+        return recipes;
+    }
+
+    public void setRecipes(Map<String, Recipe> recipes) {
+        this.recipes = recipes;
+    }
+
+    public Map<String, Integer> getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(Map<String, Integer> inventory) {
+        this.inventory = inventory;
+    }
+
+    public boolean isInhouse() {
+        return inhouse;
+    }
+
+    public void setInhouse(boolean inhouse) {
+        this.inhouse = inhouse;
+    }
+
+    public int getEnergy() {
+        return energy;
+    }
+
+    public void setEnergy(int energy) {
+        this.energy = energy;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
 }
