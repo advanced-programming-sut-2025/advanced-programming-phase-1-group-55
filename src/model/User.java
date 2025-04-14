@@ -1,19 +1,26 @@
 package model;
 
+import java.util.ArrayList;
+
 public class User {
     private String username;
     private String password;
     private String nickName;
     private String gender;
     private String email;
-    private int Energy =200;
+    private int energy = 200;
+    private ArrayList<Trade> userTrades;
+
+    public void addTrade(Trade trade) {
+        userTrades.add(trade);
+    }
 
     public int getEnergy() {
-        return Energy;
+        return energy;
     }
 
     public void setEnergy(int energy) {
-        Energy = energy;
+        energy = energy;
     }
 
     public String getNickName() {
