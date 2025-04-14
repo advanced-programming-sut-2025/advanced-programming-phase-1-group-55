@@ -9,6 +9,14 @@ public class Buff {
         this.effectAmount = effectAmount;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEffectAmount(int effectAmount) {
+        this.effectAmount = effectAmount;
+    }
+
     public String getName() {
         return name;
     }

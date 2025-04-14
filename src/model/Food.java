@@ -28,4 +28,20 @@ public class Food {
     public int getBuffDurationHours() {
         return buffDurationHours;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEnergyBoost(int energyBoost) {
+        this.energyBoost = energyBoost;
+    }
+
+    public void setBuff(Buff buff) {
+        this.buff = buff;
+    }
+
+    public void setBuffDurationHours(int buffDurationHours) {
+        this.buffDurationHours = buffDurationHours;
+    }
 }

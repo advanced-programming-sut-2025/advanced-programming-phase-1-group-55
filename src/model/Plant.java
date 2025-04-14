@@ -140,4 +140,67 @@ public class Plant {
 
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
+    }
+
+    public void setGrowthStage(int[] growthStage) {
+        this.growthStage = growthStage;
+    }
+
+    public void setTotalGrowthTime(int totalGrowthTime) {
+        this.totalGrowthTime = totalGrowthTime;
+    }
+
+    public void setGrowthRemaining(int growthRemaining) {
+        this.growthRemaining = growthRemaining;
+    }
+
+    public void setHarvestable(boolean harvestable) {
+        this.harvestable = harvestable;
+    }
+
+    public void setReGrowthTime(int reGrowthTime) {
+        this.reGrowthTime = reGrowthTime;
+    }
+
+    public void setBaseSellPrice(int baseSellPrice) {
+        this.baseSellPrice = baseSellPrice;
+    }
+
+    public void setEatable(boolean eatable) {
+        this.eatable = eatable;
+    }
+
+    public void setBaseEnergy(int baseEnergy) {
+        this.baseEnergy = baseEnergy;
+    }
+
+    public void setSeason(String season) {
+        this.season = season;
+    }
+
+    public void setBecomeGiant(boolean becomeGiant) {
+        isBecomeGiant = becomeGiant;
+    }
+
+    public void setTree(boolean tree) {
+        isTree = tree;
+    }
+
+    public void setBurnt(boolean burnt) {
+        isBurnt = burnt;
+    }
+
+    public void setHasFruits(boolean hasFruits) {
+        this.hasFruits = hasFruits;
+    }
+
+    public void setFullyGrown(boolean fullyGrown) {
+        this.fullyGrown = fullyGrown;
+    }
 }
