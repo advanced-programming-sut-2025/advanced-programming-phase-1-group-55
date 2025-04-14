@@ -1,7 +1,5 @@
 package model;
 
-import enums.FishingPole;
-
 import java.util.List;
 
 public class Fish {
