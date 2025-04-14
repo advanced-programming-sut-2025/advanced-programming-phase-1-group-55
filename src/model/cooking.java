@@ -4,9 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class cooking {
-    private Map<String, Integer> recipes;
-    private Map<String, Integer> inventory;
-    private Map<String, Integer> refrigerator;
+    private Map<String, Recipe> recipes;
+    private Map<String, Item> inventory;
+    private Map<String, Item> refrigerator;
     private boolean inhouse;
     private int energy;
 
@@ -52,7 +52,7 @@ public class cooking {
         return recipes;
     }
 
-    public void setRecipes(Map<String, Integer> recipes) {
+    public void setRecipes(Map<String, Recipe> recipes) {
         this.recipes = recipes;
     }
 
