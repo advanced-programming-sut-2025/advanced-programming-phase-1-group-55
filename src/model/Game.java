@@ -14,7 +14,7 @@ public class Game {
         return AllUsers;
     }
 
-    public void setAllUsers(User user) {
+    public void addUserToUsers(User user) {
         AllUsers.add(user);
     }
 

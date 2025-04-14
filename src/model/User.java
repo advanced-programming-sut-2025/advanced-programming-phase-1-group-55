@@ -6,6 +6,15 @@ public class User {
     private String nickName;
     private String gender;
     private String email;
+    private int Energy =200;
+
+    public int getEnergy() {
+        return Energy;
+    }
+
+    public void setEnergy(int energy) {
+        Energy = energy;
+    }
 
     public String getNickName() {
         return nickName;
