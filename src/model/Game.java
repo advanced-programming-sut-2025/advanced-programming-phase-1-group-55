@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class Game {
     public static User mainUser;
     public static Menu currentMenu = Menu.SignupMenu;
+    public static WeatherType currentWeather;
     private ArrayList<User> AllUsers;
     private static ArrayList<String> questionsList;
 
