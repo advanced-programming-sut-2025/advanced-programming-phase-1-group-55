@@ -10,7 +10,7 @@ public class ExitMenu extends AppView implements AppMenu {
     public void check(Scanner scanner) {
         String input = scanner.nextLine();
         Matcher matcher = null;
-        if (input.matches("\\s*exit\\s*")) {
+        if (input.matches("\\s*menu exit\\s*")) {
 
             currentMenu = Menu.ExitMenu;
 

@@ -1,10 +1,6 @@
 package View;
 
-/*
-Explanation:
-- This is a view class for the App.
-- our app needs a place that handle menus (:
- */
+
 
 import enums.Menu;
 

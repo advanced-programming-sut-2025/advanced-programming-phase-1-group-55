@@ -3,7 +3,25 @@ package model;
 public class User {
     private String username;
     private String password;
+    private String nickName;
+    private String gender;
     private String email;
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
 
     public String getUsername() {
         return username;
