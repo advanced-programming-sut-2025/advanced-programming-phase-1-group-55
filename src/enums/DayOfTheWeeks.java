@@ -2,7 +2,7 @@ package enums;
 
 public enum DayOfTheWeeks implements command {
     saturday(0,"saturday"),sunday(1, "sunday") ,monday(2, "sunday"),tuesday(3, "tuesday"),wednesday(4, "wednesday"),thursday(5, "thursday"),friday(6, "friday");
-    private  final int valueOfDay;
+    private   int valueOfDay;
     private final  String name;
 
     DayOfTheWeeks(int valueOfDay,String name){
@@ -20,7 +20,12 @@ public enum DayOfTheWeeks implements command {
       }
       return null;
     }
-    public DayOfTheWeeks changeday(int value) {
-      return valueOfDay++;
+//    public DayOfTheWeeks changeday(int value) {
+//      return valueOfDay++;
+//    }
+
+    @Override
+    public String getDayOfWeek(int number) {
+        return "";
     }
 }

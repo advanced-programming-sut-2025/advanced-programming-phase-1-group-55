@@ -72,9 +72,9 @@ public class GameTime  {
 
 
     }
-    public String getDayOfWeek() {
-
-    }
+//    public String getDayOfWeek() {
+//
+//    }
 
 
 
