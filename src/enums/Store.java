@@ -1,9 +1,11 @@
 package enums;
 
+import model.Location;
 import model.Npc;
 import model.Product;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,6 +21,7 @@ public enum Store {
     private final LocalTime closingTime;
     private Map<String, Product> productsOfStore=new HashMap<>();
     private final Npc owner;
+    private final ArrayList<Location> location=new ArrayList<>();
     Store(Npc owner,LocalTime openingTime,LocalTime closingTime,Map<String,Product> productsOfStore){
         this.openingTime=openingTime;
         this.closingTime=closingTime;
@@ -48,5 +51,13 @@ public enum Store {
     public  String showAllProducts(){
         String message="";
         return  message;
+    }
+
+    public ArrayList<Location> getLocation() {
+        return location;
+    }
+
+    public void setProductsOfStore(Map<String, Product> productsOfStore) {
+        this.productsOfStore = productsOfStore;
     }
 }

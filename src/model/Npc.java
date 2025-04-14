@@ -9,7 +9,7 @@ public class Npc {
     private  String name;
     private NpcType type;
     //mahal sokunat ezaafe beshe
-    private Map<String,User> friends=new HashMap<>(); // miroonim badan ye shey friendship tarif konim
+    private Map<User,FriendShip> friends=new HashMap<>(); // miroonim badan ye shey friendship tarif konim
     public Npc(String name){
         this.name=name;
     }
@@ -30,11 +30,17 @@ public class Npc {
         this.type = type;
     }
 
-    public Map<String, User> getFriends() {
+    public Map<User,FriendShip> getFriends() {
         return friends;
     }
 
-    public void setFriends(Map<String, User> friends) {
+    public void setFriends(Map<User,FriendShip> friends) {
         this.friends = friends;
+    }
+    public  void receiveGift(){
+
+    }
+    public  void  sendGift(){
+
     }
 }
