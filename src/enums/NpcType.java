@@ -1,61 +1,68 @@
 package enums;
 
+import model.ItemOfMap;
+import model.Quest;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 public enum NpcType {
     SEBASTIAN(
-            "پشم، پای کدو، پیتزا",
-            "تحویل ۵۰ واحد آهن",
-            "۲ عدد الماس"),
+            new HashMap<>(),
+            new HashMap<>(),
+            new HashMap<>()),
 
     ABIGAIL(
-            "سنگ، کان آهن، قهوه",
-            "تحویل ۱۵۰ واحد سنگ",
-            "۵۰ عدد کوارتز"),
+            new HashMap<>(),
+            new HashMap<>(),
+            new HashMap<>()),
 
     HARVEY(
-            "قهوه، ترشی، شراب",
-            "تحویل یک ماهی سالمون",
-            "۱ سطح دوستی"),
+            new HashMap<>(),
+            new HashMap<>(),
+            new HashMap<>()),
 
     LEAH(
-            "سالاد، انگور، شراب",
-            "تحویل یک ماهی سالمون",
-            "۱ دستورالعمل آشپزی dinner(salmon)"),
+            new HashMap<>(),
+            new HashMap<>(),
+            new HashMap<>()),
 
     ROBIN(
-            "اسپاگتی، چوب، شمش آهن",
-            "تحویل ۱۰ شمش آهن",
-            "۳ عدد خانه زنبور عسل");
+            new HashMap<>(),
+            new HashMap<>(),
+            new HashMap<>());
 
-    private final String favorites;
-    private final String request;
-    private final String reward;
-    private String[] dialogs; // taghir be shey dialog va ezafe kardan ertebaat baa fasl
+    private final Map<String,ItemOfMap> favorites;
+    private final Map<String,ItemOfMap> request;
+    private final Map<String,ItemOfMap> reward;
+    private ArrayList<Dialog> dialogs; // taghir be shey dialog va ezafe kardan ertebaat baa fasl
     private  String job;
-    private String[] quests; //shey quest ezaafe beshe
-    NpcType( String favorites, String request, String reward) {
+    private ArrayList<Quest> quests; //shey quest ezaafe beshe
+    NpcType( Map<String,ItemOfMap> favorites, Map<String,ItemOfMap> request, Map<String,ItemOfMap>reward) {
         this.favorites = favorites;
         this.request = request;
         this.reward = reward;
     }
 
 
-    public String getFavorites() {
+    public Map<String,ItemOfMap> getFavorites() {
         return favorites;
     }
 
-    public String getRequest() {
+    public Map<String,ItemOfMap> getRequest() {
         return request;
     }
 
-    public String getReward() {
+    public Map<String,ItemOfMap> getReward() {
         return reward;
     }
 
-    public String[] getDialogs() {
+    public ArrayList<Dialog> getDialogs() {
         return dialogs;
     }
 
-    public void setDialogs(String[] dialogs) {
+    public void setDialogs(ArrayList<Dialog> dialogs) {
         this.dialogs = dialogs;
     }
 
@@ -67,11 +74,11 @@ public enum NpcType {
         this.job = job;
     }
 
-    public String[] getQuests() {
+    public ArrayList<Quest> getQuests() {
         return quests;
     }
 
-    public void setQuests(String[] quests) {
+    public void setQuests(ArrayList<Quest> quests) {
         this.quests = quests;
     }
 }
