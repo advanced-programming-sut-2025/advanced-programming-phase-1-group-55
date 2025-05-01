@@ -10,9 +10,9 @@ public class Building {
         this.capacity = capacity;
         this.cost = cost;
     }
-    public boolean isFully() {
-
-    }
+//    public boolean isFully() {
+//
+//    }
 
     public String getName() {
         return name;

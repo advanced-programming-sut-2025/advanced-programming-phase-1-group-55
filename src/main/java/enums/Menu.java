@@ -3,13 +3,15 @@ package enums;
 import View.*;
 
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public enum Menu {
     ExitMenu(new ExitMenu()),
-    SignupMenu(new Register()),
+    Register(new Register()),
     LoginMenu(new LoginMenu()),
     DashboardMenu(new GameMenu()),
-    ProfileMenu(new ProfileMenu());
+    ProfileMenu(new ProfileMenu()),
+    MainMenu(new MainMenu());
 
 
     private final AppMenu menu;
