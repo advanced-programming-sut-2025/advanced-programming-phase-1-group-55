@@ -3,7 +3,7 @@ package model;
 import enums.FishingPoleType;
 import enums.Store;
 
-public class FishingPole {
+public class FishingPole extends Tools {
     private final FishingPoleType type;
     private  final Store store=Store.fishShop;
     public Store getStore() {
@@ -35,8 +35,4 @@ public class FishingPole {
         return type.canCatchAllFish();
     }
 
-
-    public int getPrice() {
-        return type.getPrice();
-    }
 }

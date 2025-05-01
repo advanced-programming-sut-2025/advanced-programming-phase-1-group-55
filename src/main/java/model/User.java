@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class User {
     private String username;
@@ -8,6 +9,11 @@ public class User {
     private String nickName;
     private String gender;
     private String email;
+    private  BackPack backPack;
+    private User wife=null;
+    private HashMap<String,Npc> friendsNpc=new HashMap<>();
+    private HashMap<String,User> friendsPlayer=new HashMap<>();
+    private int money;
     private int energy = 200;
     private ArrayList<Trade> userTrades;
 
@@ -19,8 +25,8 @@ public class User {
         return energy;
     }
 
-    public void setEnergy(int energy) {
-        energy = energy;
+    public void setEnergy(int energys) {
+        energy = energys;
     }
 
     public String getNickName() {
@@ -61,5 +67,53 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public BackPack getBackPack() {
+        return backPack;
+    }
+
+    public void setBackPack(BackPack backPack) {
+        this.backPack = backPack;
+    }
+
+    public User getWife() {
+        return wife;
+    }
+
+    public void setWife(User wife) {
+        this.wife = wife;
+    }
+
+    public HashMap<String, Npc> getFriendsNpc() {
+        return friendsNpc;
+    }
+
+    public void setFriendsNpc(HashMap<String, Npc> friendsNpc) {
+        this.friendsNpc = friendsNpc;
+    }
+
+    public HashMap<String, User> getFriendsPlayer() {
+        return friendsPlayer;
+    }
+
+    public void setFriendsPlayer(HashMap<String, User> friendsPlayer) {
+        this.friendsPlayer = friendsPlayer;
+    }
+
+    public int getMoney() {
+        return money;
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
+    }
+
+    public ArrayList<Trade> getUserTrades() {
+        return userTrades;
+    }
+
+    public void setUserTrades(ArrayList<Trade> userTrades) {
+        this.userTrades = userTrades;
     }
 }

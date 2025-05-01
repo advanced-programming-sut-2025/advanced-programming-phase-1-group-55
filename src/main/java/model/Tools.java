@@ -1,11 +1,9 @@
 package model;
 
-import enums.ToolType;
-
-public class Tools {
-    private int level=0;
-    private double price;
-    private ToolType type;
+public  abstract class Tools {
+    protected int level=0;
+    protected double price;
+    protected String name;
 
     public int getLevel() {
         return level;
@@ -22,12 +20,15 @@ public class Tools {
     public void setPrice(double price) {
         this.price = price;
     }
-
-    public ToolType getType() {
-        return type;
+    public void increaseLevel(){
+        level++;
     }
 
-    public void setType(ToolType type) {
-        this.type = type;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
