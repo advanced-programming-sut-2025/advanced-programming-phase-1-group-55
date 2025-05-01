@@ -4,6 +4,8 @@
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
+### additional files
+*.pdf
 
 ### Eclipse ###
 .apt_generated
