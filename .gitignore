@@ -6,6 +6,8 @@ out/
 !**/src/test/**/out/
 ### additional files
 *.pdf
+projectDetails/
+*.yaml
 
 ### Eclipse ###
 .apt_generated
