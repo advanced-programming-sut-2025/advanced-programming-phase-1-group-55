@@ -37,6 +37,9 @@ public class BackPack {
     }
     public String showAvailableTools(){
         StringBuilder message=new StringBuilder();
+        for(Tools tools:availableTools.values()){
+            message.append(tools.getName());
+        }
         return  message.toString();
     }
 

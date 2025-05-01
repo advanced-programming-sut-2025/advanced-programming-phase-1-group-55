@@ -3,9 +3,11 @@ package model;
 import enums.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Game {
     public static User mainUser;
+    public static HashMap<String,User> playersInGame=new HashMap<>();
     public static Menu currentMenu = Menu.SignupMenu;
     public static WeatherType currentWeather;
     private ArrayList<User> AllUsers;
