@@ -6,7 +6,6 @@ public enum ToolType {
     HOE("Hoe",5,Store.Blacksmith),
     PICKAXE("Pickaxe",5,Store.Blacksmith),
     AXE("Axe",5,Store.Blacksmith),
-    WATERING_CAN("WateringCan",5,Store.Blacksmith),
     SCYTHE("Scythe",2,null),
     MILK_PAIL("MilkPair",4,Store.marnieRanch),
     SHEARS("Shears",4,Store.marnieRanch);
