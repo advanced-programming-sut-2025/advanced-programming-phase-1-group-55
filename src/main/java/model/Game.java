@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class Game {
     public static User mainUser;
-    public static Menu currentMenu = Menu.Register;
+    public static Menu currentMenu = Menu.LoginMenu;
     public static HashMap<String, User> playersInGame = new HashMap<>();
 
     public static WeatherType currentWeather;

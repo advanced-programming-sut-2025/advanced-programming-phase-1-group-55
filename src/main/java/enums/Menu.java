@@ -11,6 +11,7 @@ public enum Menu {
     LoginMenu(new LoginMenu()),
     DashboardMenu(new GameMenu()),
     ProfileMenu(new ProfileMenu()),
+    MainGameMenu(new MainGameView()),
     MainMenu(new MainMenu());
 
 
@@ -20,7 +21,7 @@ public enum Menu {
         this.menu = menu;
     }
 
-    public void checkCommand(Scanner scanner) {
-        this.menu.check(scanner);
+    public void checkCommand(String input) {
+        this.menu.check(input);
     }
 }
