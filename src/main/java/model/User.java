@@ -18,6 +18,24 @@ public class User {
     private int money;
     private int energy = 200;
     private boolean stayLoggedIn = false;
+    private int mostAchievedMoney = 0;
+    private int matchPlayed = 0;
+
+    public int getMostAchievedMoney() {
+        return mostAchievedMoney;
+    }
+
+    public void setMostAchievedMoney(int mostAchievedMoney) {
+        this.mostAchievedMoney = mostAchievedMoney;
+    }
+
+    public int getMatchPlayed() {
+        return matchPlayed;
+    }
+
+    public void setMatchPlayed(int matchPlayed) {
+        this.matchPlayed = matchPlayed;
+    }
 
     public boolean isStayLoggedIn() {
         return stayLoggedIn;

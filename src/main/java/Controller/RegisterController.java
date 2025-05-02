@@ -1,5 +1,6 @@
 package Controller;
 
+import enums.Menu;
 import enums.Result;
 import model.User;
 
@@ -68,14 +69,15 @@ public class RegisterController {
         String answer = scanner.nextLine();
         User user = new User(username, password, nickname, email, gender, choice, answer);
         AllUsers.put(username, user);
-
+        mainUser = user;
         saveUserToJson(user);
+        currentMenu = Menu.MainMenu;
         return new Result(true, "Registered Successfully :)" + "\nusername:" + username + "\npassword: " + password + "\nnickname: " + nickname + "\nemail: " + email + "\ngender: " + gender + "\nchoice: " + choice + "\nanswer: " + answer);
 
     }
 
     //JSON for saving user
-    private void saveUserToJson(User user) {
+    protected void saveUserToJson(User user) {
         Gson gson = new Gson();
 
         // JSON PATH
@@ -123,7 +125,7 @@ public class RegisterController {
         return newUsername;
     }
 
-    private boolean isUniqueUsername(String username) {
+    protected boolean isUniqueUsername(String username) {
         for (String X : AllUsers.keySet()) {
             if (X.equals(username)) {
                 return false;
@@ -166,7 +168,7 @@ public class RegisterController {
     }
 
 
-    private boolean isValidUsername(String username) {
+    protected boolean isValidUsername(String username) {
         Pattern pattern = Pattern.compile("[a-zA-Z0-9]+");
         return pattern.matcher(username).matches();
     }
@@ -176,7 +178,7 @@ public class RegisterController {
         return pattern.matcher(password).matches();
     }
 
-    private boolean isValidEmail(String email) {
+    protected boolean isValidEmail(String email) {
         Pattern pattern = Pattern.compile("^(?!.*\\.\\.)([a-zA-Z0-9][a-zA-Z0-9._-]{0,62}[a-zA-Z0-9])@([a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9])\\.([a-zA-Z]{2,})$");
         return pattern.matcher(email).matches();
     }
