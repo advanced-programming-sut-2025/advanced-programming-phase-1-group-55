@@ -39,7 +39,7 @@ public class LoginMenuController extends RegisterController {
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
         String pattern = "answer -a (?<answer>\\S+)\\s*";
-        Pattern regex = Pattern.compile(pattern);
+        Pattern regex = Pattern.compile(pattern);;
         Matcher matcher = regex.matcher(input);
         while (true) {
 
