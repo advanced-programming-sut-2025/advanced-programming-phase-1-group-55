@@ -9,13 +9,21 @@ public class User {
     private String nickName;
     private String gender;
     private String email;
-    private  BackPack backPack;
-    private User wife=null;
-    private HashMap<String,Npc> friendsNpc=new HashMap<>();
-    private HashMap<String,User> friendsPlayer=new HashMap<>();
+    private BackPack backPack;
+    private User wife = null;
+    private HashMap<String, Npc> friendsNpc = new HashMap<>();
+    private HashMap<String, User> friendsPlayer = new HashMap<>();
     private int money;
     private int energy = 200;
     private ArrayList<Trade> userTrades;
+
+    public User(String username, String password, String nickName, String gender, String email) {
+        this.username = username;
+        this.password = password;
+        this.nickName = nickName;
+        this.gender = gender;
+        this.email = email;
+    }
 
     public void addTrade(Trade trade) {
         userTrades.add(trade);
