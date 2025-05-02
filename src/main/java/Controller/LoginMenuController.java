@@ -36,12 +36,12 @@ public class LoginMenuController extends RegisterController {
         String question = questionsList.get(indexOfQuestion);
         System.out.println(question);
         System.out.println("enter the answer :");
-        Scanner scanner = new Scanner(System.in);
-        String input = scanner.nextLine();
-        String pattern = "answer -a (?<answer>\\S+)\\s*";
-        Pattern regex = Pattern.compile(pattern);
-        Matcher matcher = regex.matcher(input);
         while (true) {
+            Scanner scanner = new Scanner(System.in);
+            String input = scanner.nextLine();
+            String pattern = "answer -a (?<answer>\\S+)\\s*";
+            Pattern regex = Pattern.compile(pattern);
+            Matcher matcher = regex.matcher(input);
 
 
             if (matcher.matches()) {
