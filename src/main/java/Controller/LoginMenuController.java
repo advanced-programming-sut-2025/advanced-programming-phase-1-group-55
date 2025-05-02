@@ -21,7 +21,7 @@ public class LoginMenuController extends RegisterController {
         }
         if (stayLoggedIn.equals("-stay-logged-in")) {
             AllUsers.get(username).setStayLoggedIn(true);
-            System.out.println("Stay logged in");
+            System.out.println("stay logged in");
         }
         return new Result(true, "logged in");
 

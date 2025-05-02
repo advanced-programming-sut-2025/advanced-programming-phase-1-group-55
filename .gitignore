@@ -8,6 +8,8 @@ out/
 *.pdf
 projectDetails/
 *.yaml
+*.zip
+*.json
 
 ### Eclipse ###
 .apt_generated
