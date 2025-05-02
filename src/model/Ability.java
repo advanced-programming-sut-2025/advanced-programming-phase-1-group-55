@@ -1,14 +1,18 @@
 package model;
 
+import enums.SkillType;
+
 public class Ability {
     private String name;
     private int levelRequierd;
     private int pointsRequiredForNextLevel;
+    private SkillType skillType;
 
-    public Ability(String name, int levelRequierd, int unitsRequiredForNextLevel) {
+    public Ability(String name, int levelRequierd, int pointsRequiredForNextLevel, SkillType skillType) {
         this.name = name;
         this.levelRequierd = levelRequierd;
-        this.pointsRequiredForNextLevel = unitsRequiredForNextLevel;
+        this.pointsRequiredForNextLevel = pointsRequiredForNextLevel;
+        this.skillType = skillType;
     }
 
     public String getName() {
@@ -27,6 +31,10 @@ public class Ability {
         System.out.println("Activating " + name);
     }
 
+    public SkillType getSkillType() {
+        return skillType;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -35,7 +43,5 @@ public class Ability {
         this.levelRequierd = levelRequierd;
     }
 
-    public void setPointsRequiredForNextLevel(int pointsRequiredForNextLevel) {
-        this.pointsRequiredForNextLevel = pointsRequiredForNextLevel;
-    }
+
 }

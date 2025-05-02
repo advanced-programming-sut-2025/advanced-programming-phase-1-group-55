@@ -1,5 +1,7 @@
 package model;
 
+import enums.SkillType;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +11,7 @@ public class Skills {
     private int points;
     private int maxLevel;
     private List<Ability> abilities;
+    private SkillType skillType;
 
     public Skills(String name, int maxLevel) {
         this.name = name;
@@ -23,17 +26,67 @@ public class Skills {
     }
 
     public void levelUp() {
-
+        if(level < maxLevel) {
+            level++;
+            points = 0;
+            System.out.println((name + " level up!"));
+        } else {
+            System.out.println("Maximum level reached for " + name);
+        }
     }
-    public void pointUp() {
-
+    public void gainPoints(int points) {
+        this.points += points;
+        System.out.println(points + " points gained for " + name);
+        if (this.points >= getPointsRequiredForNextLevel()) {
+            levelUp();
+        }
     }
+    public int getPointsRequiredForNextLevel() {
+        return 100 * level + 50;
+    }
+
     public void checkAbilities() {
-
+        for(Ability ability : abilities) {
+            if(level > ability.getLevelRequierd()) {
+                System.out.println(ability.getName() + " has level " + ability.getLevelRequierd());
+            } else {
+                System.out.println(ability.getName() + "is locked");
+            }
+        }
     }
     public void showAbilities() {
-
+        System.out.println(("abilities for " + skillType + ":"));
+        for(Ability ability : abilities) {
+            System.out.println(ability.getName());
+        }
     }
+    public void gainFarmingExperience() {
+        if (skillType == SkillType.FARMING) {
+            gainPoints(5);
+        }
+    }
+    public void gainMiningExperience() {
+        if (skillType == SkillType.MINING) {
+            gainPoints(10);
+            if (level > 2) {
+                System.out.println("you gain extra item");
+            }
+        }
+    }
+    public void gainForagingExperience() {
+        if (skillType == SkillType.FORAGING) {
+            gainPoints(10);
+            if (level > 2) {
+                System.out.println("better fishing");
+            }
+        }
+    }
+    public void gainFishingExperience() {
+        if (skillType == SkillType.FISHING) {
+            gainPoints(10);
+        }
+    }
+
 
     public void setName(String name) {
         this.name = name;
@@ -70,4 +123,9 @@ public class Skills {
     public void setAbilities(List<Ability> abilities) {
         this.abilities = abilities;
     }
+
+    public void addAbility(Ability ability) {
+        abilities.add(ability);
+    }
+
 }

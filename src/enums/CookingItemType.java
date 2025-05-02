@@ -1,6 +1,6 @@
 package enums;
 
-public enum cookingItemType {
+public enum CookingItemType {
 
     Fried_egg("Fried egg", "1 egg", 50, "", "Starter", 35);
 
@@ -16,7 +16,7 @@ public enum cookingItemType {
     private final String source;
     private final int sellPrice;
 
-    cookingItemType(String names, String indredient, int energies, String buff, String source, int sellPrice) {
+    CookingItemType(String names, String indredient, int energies, String buff, String source, int sellPrice) {
         this.names = names;
         this.indredient = indredient;
         this.energies = energies;

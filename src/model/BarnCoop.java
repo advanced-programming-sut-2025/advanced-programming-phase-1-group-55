@@ -1,13 +1,13 @@
 package model;
 
-public class Barn extends Building {
-    public Barn() {
-        super();
+class Barn extends Building {
+    public Barn(String name, int capacity, int cost) {
+        super(name, capacity, cost);
     }
 }
 
-public class Coop extends Building {
-    public Coop() {
-        super();
+class Coop extends Building {
+    public Coop(String name, int capacity, int cost) {
+        super(name, capacity, cost);
     }
 }
