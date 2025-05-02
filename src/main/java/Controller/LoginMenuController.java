@@ -21,7 +21,7 @@ public class LoginMenuController extends RegisterController {
         }
         if (stayLoggedIn.equals("-stay-logged-in")) {
             AllUsers.get(username).setStayLoggedIn(true);
-            System.out.println("Stay logged in");
+            System.out.println("stay logged in");
         }
         return new Result(true, "logged in");
 
@@ -39,7 +39,7 @@ public class LoginMenuController extends RegisterController {
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
         String pattern = "answer -a (?<answer>\\S+)\\s*";
-        Pattern regex = Pattern.compile(pattern);;
+        Pattern regex = Pattern.compile(pattern);
         Matcher matcher = regex.matcher(input);
         while (true) {
 
