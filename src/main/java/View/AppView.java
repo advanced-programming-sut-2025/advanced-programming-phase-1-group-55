@@ -12,11 +12,10 @@ import static model.Game.getCurrentMenu;
 public class AppView {
 
     Scanner scanner = new Scanner(System.in);
-
     public void run() {
-
         do {
-            getCurrentMenu().checkCommand(scanner);
+            String input=scanner.nextLine();
+            getCurrentMenu().checkCommand(input);
         } while (getCurrentMenu() != Menu.ExitMenu);
     }
 }

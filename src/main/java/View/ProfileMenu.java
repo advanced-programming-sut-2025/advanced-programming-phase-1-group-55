@@ -9,11 +9,13 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 
 public class ProfileMenu extends AppView implements AppMenu {
+
     ProfileMenuController controller = new ProfileMenuController();
 
     @Override
-    public void check(Scanner scanner) {
-        String input = scanner.nextLine();
+    public void check(String input) {
+
+         input = scanner.nextLine();
         Matcher changeUsername = ProfileCommands.changeUsername.getMatcher(input);
         Matcher changeNickname = ProfileCommands.changeNickname.getMatcher(input);
         Matcher changeEmail = ProfileCommands.changeEmail.getMatcher(input);
@@ -29,8 +31,7 @@ public class ProfileMenu extends AppView implements AppMenu {
 
         } else if (changePassword != null) {
             System.out.println(changePassword.group("password"));
-        }
-        else if(userInfo != null) {
+        } else if (userInfo != null) {
             System.out.println(controller.userInfo());
         }
 

@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class GameMenu extends AppView implements AppMenu {
     @Override
-    public void check(Scanner scanner) {
+    public void check(String  input) {
 
     }
 }

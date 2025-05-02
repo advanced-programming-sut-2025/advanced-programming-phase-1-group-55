@@ -14,8 +14,7 @@ public class Register extends AppView implements AppMenu {
     RegisterController controller = new RegisterController();
 
     @Override
-    public void check(Scanner scanner) {
-        String input = scanner.nextLine();
+    public void check(String input) {
         Matcher Register = RegisterCommands.Register.getMatcher(input);
         if (Register != null) {
 

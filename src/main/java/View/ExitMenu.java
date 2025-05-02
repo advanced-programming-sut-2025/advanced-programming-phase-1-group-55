@@ -7,8 +7,7 @@ import static model.Game.currentMenu;
 public class ExitMenu extends AppView implements AppMenu {
 
     @Override
-    public void check(Scanner scanner) {
-        String input = scanner.nextLine();
+    public void check(String input) {
         Matcher matcher = null;
         if (input.matches("\\s*menu exit\\s*")) {
 

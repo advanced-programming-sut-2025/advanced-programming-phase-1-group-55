@@ -11,8 +11,7 @@ public class LoginMenu extends AppView implements AppMenu {
     LoginMenuController controller = new LoginMenuController();
 
     @Override
-    public void check(Scanner scanner) {
-        String input = scanner.nextLine();
+    public void check(String input) {
         Matcher Login = LoginCommands.Login.getMatcher(input);
         Matcher forgetPassword = LoginCommands.ForgetPassword.getMatcher(input);
         if (Login != null) {
