@@ -9,20 +9,41 @@ public class User {
     private String nickName;
     private String gender;
     private String email;
+    private int numberOfSecurityQuestion;
+    private String securityQuestion;
     private BackPack backPack;
     private User wife = null;
     private HashMap<String, Npc> friendsNpc = new HashMap<>();
     private HashMap<String, User> friendsPlayer = new HashMap<>();
     private int money;
     private int energy = 200;
+
+    public int getNumberOfSecurityQuestion() {
+        return numberOfSecurityQuestion;
+    }
+
+    public void setNumberOfSecurityQuestion(int numberOfSecurityQuestion) {
+        this.numberOfSecurityQuestion = numberOfSecurityQuestion;
+    }
+
+    public String getSecurityQuestion() {
+        return securityQuestion;
+    }
+
+    public void setSecurityQuestion(String securityQuestion) {
+        this.securityQuestion = securityQuestion;
+    }
+
     private ArrayList<Trade> userTrades;
 
-    public User(String username, String password, String nickName, String gender, String email) {
+    public User(String username, String password, String nickName, String gender, String email,int numberOfSecurityQuestion, String securityQuestion) {
         this.username = username;
         this.password = password;
         this.nickName = nickName;
         this.gender = gender;
         this.email = email;
+        this.numberOfSecurityQuestion = numberOfSecurityQuestion;
+        this.securityQuestion = securityQuestion;
     }
 
     public void addTrade(Trade trade) {

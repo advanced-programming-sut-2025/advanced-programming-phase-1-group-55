@@ -5,6 +5,8 @@ import model.User;
 
 import java.security.SecureRandom;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
@@ -49,9 +51,18 @@ public class RegisterController {
 
             return new Result(false, "Password is not strong");
         }
-        User user = new User(username, password, nickname, email, gender);
+        System.out.println("select one of these questions and answer it");
+        for (Map.Entry<Integer, String> question : questionsList.entrySet()) {
+            System.out.println(question.getKey() + ": " + question.getValue());
+        }
+
+        int choice = scanner.nextInt();
+         scanner.nextLine();
+        System.out.println("answer question number " + choice + " : " + questionsList.get(choice));
+        String answer = scanner.nextLine();
+        User user = new User(username, password, nickname, email, gender, choice, answer);
         AllUsers.add(user);
-        return new Result(true, "Registered Successfully :)" +"\nusername:"+ username + "\npassword: " + password + "\nnickname: " + nickname + "\nemail: " + email);
+        return new Result(true, "Registered Successfully :)" + "\nusername:" + username + "\npassword: " + password + "\nnickname: " + nickname + "\nemail: " + email + "\ngender: " + gender + "\nchoice: " + choice + "\nanswer: " + answer);
 
     }
 
