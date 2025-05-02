@@ -10,6 +10,7 @@ projectDetails/
 *.yaml
 *.zip
 *.json
+target/
 
 ### Eclipse ###
 .apt_generated
