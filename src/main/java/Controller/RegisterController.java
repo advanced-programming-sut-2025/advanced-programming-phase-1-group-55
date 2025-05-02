@@ -4,20 +4,20 @@ import enums.Result;
 import model.User;
 
 import java.security.SecureRandom;
-import java.util.Random;
+
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
 import static model.Game.*;
 
 public class RegisterController {
-    boolean wrongPassword = false;
+
     Scanner scanner = new Scanner(System.in);
 
     public Result Register(String username, String password, String passwordConfirmation, String nickname, String email, String gender) {
         if (!isUniqueUsername(username)) {
             System.out.println("Username is already in use");
-            //todo offer new username
+
             boolean exit = false;
             while (!exit) {
                 String newusername = generateNewUsername(username);
@@ -58,9 +58,7 @@ public class RegisterController {
     private String generateNewUsername(String base) {
         String newUsername;
         final String UPPER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        final String LOWER = "abcdefghijklmnopqrstuvwxyz";
         final String DIGITS = "0123456789";
-        final String SPECIAL = "!@#$%^&*()-_=+<>?/{}[]";
         SecureRandom random = new SecureRandom();
         do {
             newUsername = base + UPPER.charAt(random.nextInt(UPPER.length())) + DIGITS.charAt(random.nextInt(DIGITS.length()));
@@ -115,26 +113,17 @@ public class RegisterController {
 
     private boolean isValidUsername(String username) {
         Pattern pattern = Pattern.compile("[a-zA-Z0-9]+");
-        if (pattern.matcher(username).matches()) {
-            return true;
-        }
-        return false;
+        return pattern.matcher(username).matches();
     }
 
     private boolean isValidPassword(String password) {
         Pattern pattern = Pattern.compile("[a-zA-Z0-9?><,\"';:/|\\]\\[}{+=)(*&^%$#!]+");
-        if (pattern.matcher(password).matches()) {
-            return true;
-        }
-        return false;
+        return pattern.matcher(password).matches();
     }
 
     private boolean isValidEmail(String email) {
         Pattern pattern = Pattern.compile("^(?!.*\\.\\.)([a-zA-Z0-9][a-zA-Z0-9._-]{0,62}[a-zA-Z0-9])@([a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9])\\.([a-zA-Z]{2,})$");
-        if (pattern.matcher(email).matches()) {
-            return true;
-        }
-        return false;
+        return pattern.matcher(email).matches();
     }
 
     private boolean isStrongPassword(String password) {
