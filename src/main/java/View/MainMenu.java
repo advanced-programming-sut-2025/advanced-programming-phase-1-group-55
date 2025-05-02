@@ -17,6 +17,11 @@ public class MainMenu extends AppView implements AppMenu {
             currentMenu = Menu.Register;
             System.out.println("going to Register menu"  );
         }
+        else if (input.matches("\\s*menu\\s+enter\\s+profile")) {
+
+            currentMenu = Menu.ProfileMenu;
+            System.out.println("going to Profile menu"  );
+        }
 
     }
 }
