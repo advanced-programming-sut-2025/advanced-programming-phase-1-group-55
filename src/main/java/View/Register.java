@@ -29,6 +29,9 @@ public class Register extends AppView implements AppMenu {
         } else if (input.matches("\\s*show\\s+current\\s*menu\\s*")) {
 
             System.out.println(currentMenu + " menu");
+        } else if (input.matches("\\s*login\\s*")) {
+            currentMenu = Menu.LoginMenu;
+            System.out.println("you are in login mode");
         }
 
 

@@ -13,7 +13,7 @@ public class Game {
     public static HashMap<String, User> playersInGame = new HashMap<>();
 
     public static WeatherType currentWeather;
-    public static ArrayList<User> AllUsers = new ArrayList<>();
+    public static HashMap<String,User> AllUsers = new HashMap<>();
     public static Map<Integer, String> questionsList = new HashMap<>();
 
     static {
