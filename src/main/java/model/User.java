@@ -17,6 +17,15 @@ public class User {
     private HashMap<String, User> friendsPlayer = new HashMap<>();
     private int money;
     private int energy = 200;
+    private boolean stayLoggedIn = false;
+
+    public boolean isStayLoggedIn() {
+        return stayLoggedIn;
+    }
+
+    public void setStayLoggedIn(boolean stayLoggedIn) {
+        this.stayLoggedIn = stayLoggedIn;
+    }
 
     public int getNumberOfSecurityQuestion() {
         return numberOfSecurityQuestion;
@@ -36,7 +45,7 @@ public class User {
 
     private ArrayList<Trade> userTrades;
 
-    public User(String username, String password, String nickName, String gender, String email,int numberOfSecurityQuestion, String securityQuestion) {
+    public User(String username, String password, String nickName, String gender, String email, int numberOfSecurityQuestion, String securityQuestion) {
         this.username = username;
         this.password = password;
         this.nickName = nickName;
