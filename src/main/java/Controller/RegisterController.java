@@ -10,6 +10,12 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.*;
+import java.util.*;
+
 import static model.Game.*;
 
 public class RegisterController {
@@ -57,13 +63,53 @@ public class RegisterController {
         }
 
         int choice = scanner.nextInt();
-         scanner.nextLine();
+        scanner.nextLine();
         System.out.println("answer question number " + choice + " : " + questionsList.get(choice));
         String answer = scanner.nextLine();
         User user = new User(username, password, nickname, email, gender, choice, answer);
         AllUsers.add(user);
+
+        saveUserToJson(user);
         return new Result(true, "Registered Successfully :)" + "\nusername:" + username + "\npassword: " + password + "\nnickname: " + nickname + "\nemail: " + email + "\ngender: " + gender + "\nchoice: " + choice + "\nanswer: " + answer);
 
+    }
+
+    //JSON for saving user
+    private void saveUserToJson(User user) {
+        Gson gson = new Gson();
+
+        // JSON PATH
+        File file = new File("users.json");
+
+        // if file dosent exist we should make a new one
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        // if file exist read it
+        List<User> userList = new ArrayList<>();
+        if (file.length() > 0) {
+            try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+                userList = gson.fromJson(reader, new TypeToken<List<User>>() {
+                }.getType());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        // add new user to list of users that are in file
+        userList.add(user);
+
+        // write new list in file
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+            gson.toJson(userList, writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private String generateNewUsername(String base) {
