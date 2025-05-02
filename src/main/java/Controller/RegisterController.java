@@ -1,5 +1,6 @@
 package Controller;
 
+import enums.Menu;
 import enums.Result;
 import model.User;
 
@@ -70,6 +71,7 @@ public class RegisterController {
         AllUsers.put(username, user);
 
         saveUserToJson(user);
+        currentMenu= Menu.MainMenu;
         return new Result(true, "Registered Successfully :)" + "\nusername:" + username + "\npassword: " + password + "\nnickname: " + nickname + "\nemail: " + email + "\ngender: " + gender + "\nchoice: " + choice + "\nanswer: " + answer);
 
     }
