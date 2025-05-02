@@ -1,5 +1,6 @@
 package Controller;
 
+import enums.Menu;
 import enums.Result;
 import model.User;
 
@@ -23,6 +24,10 @@ public class LoginMenuController extends RegisterController {
             AllUsers.get(username).setStayLoggedIn(true);
             System.out.println("stay logged in");
         }
+        mainUser = AllUsers.get(username);
+
+        currentMenu = Menu.MainMenu;
+        
         return new Result(true, "logged in");
 
     }
