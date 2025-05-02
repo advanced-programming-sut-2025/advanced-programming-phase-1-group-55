@@ -112,7 +112,7 @@ public class RegisterController {
         }
     }
 
-    private String generateNewUsername(String base) {
+    protected String generateNewUsername(String base) {
         String newUsername;
         final String UPPER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         final String DIGITS = "0123456789";
@@ -132,7 +132,7 @@ public class RegisterController {
         return true;
     }
 
-    private String RandomPasswordGenerator() {
+    protected String RandomPasswordGenerator() {
         final String UPPER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         final String LOWER = "abcdefghijklmnopqrstuvwxyz";
         final String DIGITS = "0123456789";
@@ -152,7 +152,7 @@ public class RegisterController {
 
     }
 
-    private static String shuffleString(String input) {
+    protected String shuffleString(String input) {
         char[] a = input.toCharArray();
         SecureRandom rand = new SecureRandom();
 
@@ -171,7 +171,7 @@ public class RegisterController {
         return pattern.matcher(username).matches();
     }
 
-    private boolean isValidPassword(String password) {
+    protected boolean isValidPassword(String password) {
         Pattern pattern = Pattern.compile("[a-zA-Z0-9?><,\"';:/|\\]\\[}{+=)(*&^%$#!]+");
         return pattern.matcher(password).matches();
     }
@@ -181,7 +181,7 @@ public class RegisterController {
         return pattern.matcher(email).matches();
     }
 
-    private boolean isStrongPassword(String password) {
+    protected boolean isStrongPassword(String password) {
         String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[?><,\"';:/|\\\\\\[\\]{}+=)(*&^%$#!])[A-Za-z\\d?><,\"';:/|\\\\\\[\\]{}+=)(*&^%$#!]{8,}$";
         return Pattern.matches(regex, password);
     }

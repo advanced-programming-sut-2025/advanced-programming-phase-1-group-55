@@ -14,6 +14,7 @@ public class LoginMenu extends AppView implements AppMenu {
     public void check(Scanner scanner) {
         String input = scanner.nextLine();
         Matcher Login = LoginCommands.Login.getMatcher(input);
+        Matcher forgetPassword = LoginCommands.ForgetPassword.getMatcher(input);
         if (Login != null) {
             if (Login.group("stay") != null) {
 
@@ -21,7 +22,13 @@ public class LoginMenu extends AppView implements AppMenu {
             } else {
                 System.out.println(controller.login(Login.group("username").trim(), Login.group("password").trim(), "no"));
             }
+        } else if (forgetPassword != null) {
+            System.out.println(controller.forgetPassword(forgetPassword.group("username").trim()));
+
+        } else {
+            System.out.println("invalid input in login menu");
         }
+
 
     }
 }
