@@ -10,6 +10,14 @@ import java.io.FileReader;
 import java.lang.reflect.Type;
 import java.util.*;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.List;
+
 public class Game {
     public static User mainUser;
     public static Menu currentMenu = Menu.Register;
@@ -28,15 +36,14 @@ public class Game {
             }.getType();
 
             List<User> userList = gson.fromJson(reader, userListType);
+            if (userList != null) {
 
-            for (User user : userList) {
-                AllUsers.put(user.getUsername(), user);
+                for (User user : userList) {
+                    AllUsers.put(user.getUsername(), user);
+                }
+
+              
             }
-
-//            for (Map.Entry<String, User> entry : AllUsers.entrySet()) {
-//                System.out.println("Username: " + entry.getKey());
-//                System.out.println("User: " + entry.getValue().getNickName());
-//            }
 
             reader.close();
 

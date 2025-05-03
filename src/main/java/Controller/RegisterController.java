@@ -68,9 +68,9 @@ public class RegisterController {
         System.out.println("answer question number " + choice + " : " + questionsList.get(choice));
         String answer = scanner.nextLine();
         User user = new User(username, password, nickname, email, gender, choice, answer);
-//        AllUsers.put(username, user);
         mainUser = user;
         saveUserToJson(user);
+        readfile();
         currentMenu = Menu.MainMenu;
         return new Result(true, "Registered Successfully :)" + "\nusername:" + username + "\npassword: " + password + "\nnickname: " + nickname + "\nemail: " + email + "\ngender: " + gender + "\nchoice: " + choice + "\nanswer: " + answer);
 
