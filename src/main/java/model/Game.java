@@ -29,7 +29,7 @@ public class Game {
     public static void readfile() {
 
         try {
-            Gson gson = new Gson();
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
             FileReader reader = new FileReader("users.json");
 
             Type userListType = new TypeToken<List<User>>() {

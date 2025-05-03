@@ -15,7 +15,7 @@ public class ProfileMenu extends AppView implements AppMenu {
     @Override
     public void check(String input) {
 
-         input = scanner.nextLine();
+        input = scanner.nextLine();
         Matcher changeUsername = ProfileCommands.changeUsername.getMatcher(input);
         Matcher changeNickname = ProfileCommands.changeNickname.getMatcher(input);
         Matcher changeEmail = ProfileCommands.changeEmail.getMatcher(input);
@@ -33,8 +33,7 @@ public class ProfileMenu extends AppView implements AppMenu {
             System.out.println(changePassword.group("password"));
         } else if (userInfo != null) {
             System.out.println(controller.userInfo());
-        }
-        else if (input.matches("\\s*show\\s+current\\s+menu\\s*")) {
+        } else if (input.matches("\\s*show\\s+current\\s+menu\\s*")) {
             System.out.println("you are in Profile Menu now!");
         }
 
