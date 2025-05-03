@@ -42,7 +42,7 @@ public class Game {
                     AllUsers.put(user.getUsername(), user);
                 }
 
-              
+
             }
 
             reader.close();

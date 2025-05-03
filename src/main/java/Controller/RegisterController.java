@@ -9,6 +9,7 @@ import java.security.SecureRandom;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.google.gson.Gson;
@@ -62,19 +63,37 @@ public class RegisterController {
         for (Map.Entry<Integer, String> question : questionsList.entrySet()) {
             System.out.println(question.getKey() + ": " + question.getValue());
         }
+//        while (true) {
 
-        int choice = scanner.nextInt();
-        scanner.nextLine();
-        System.out.println("answer question number " + choice + " : " + questionsList.get(choice));
-        String answer = scanner.nextLine();
-        User user = new User(username, password, nickname, email, gender, choice, answer);
+            String input = scanner.nextLine();
+            Pattern pattern = Pattern.compile("pick question -q (?<number>\\S+)\\s+-a(?<answer>\\S+)\\s+-c\\s+(?<confirm>\\S+)\\s*");
+            int number;
+            Matcher matcher = pattern.matcher(input);
+            try {
+                number = Integer.parseInt(matcher.group("number"));
+            } catch (IllegalStateException e) {
+                return new Result(false, "Invalid number");
+            }
+            if (!matcher.matches()) {
+                return new Result(false, "wrong answer type");
+            } else if (matcher.group("confirm") != matcher.group("answer")) {
+                return new Result(false, "wrong confirm answer ");
+
+            } else if (number > 3) {
+                return new Result(false, "wrong number number should be between 1 up to 3");
+            }
+            System.out.println("answer question number " + matcher.group("number") + " : " + questionsList.get(number));
+//        }
+
+        User user = new User(username, password, nickname, email, gender, number, matcher.group("answer"));
         mainUser = user;
         saveUserToJson(user);
         readfile();
         currentMenu = Menu.MainMenu;
-        return new Result(true, "Registered Successfully :)" + "\nusername:" + username + "\npassword: " + password + "\nnickname: " + nickname + "\nemail: " + email + "\ngender: " + gender + "\nchoice: " + choice + "\nanswer: " + answer);
+        return new Result(true, "Registered Successfully :)" + "\nusername:" + username + "\npassword: " + password + "\nnickname: " + nickname + "\nemail: " + email + "\ngender: " + gender + "\nchoice: " + number + "\nanswer: " + matcher.group("answer"));
 
     }
+
 
     //JSON for saving user
     protected void saveUserToJson(User user) {
