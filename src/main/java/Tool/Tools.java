@@ -1,8 +1,8 @@
-package model;
+package Tool;
 
 public  abstract class Tools {
     protected int level=0;
-    protected double price;
+
     protected String name;
 
     public int getLevel() {
@@ -13,22 +13,16 @@ public  abstract class Tools {
         this.level = level;
     }
 
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
     public void increaseLevel(){
         level++;
     }
-
-    public String getName() {
-        return name;
-    }
+    public abstract String getName();
+    public abstract void useTool();
 
     public void setName(String name) {
         this.name = name;
     }
+    public abstract int energyCost();
+    public abstract int getPriceToLevelUp();
+    public  abstract int getPrice();
 }

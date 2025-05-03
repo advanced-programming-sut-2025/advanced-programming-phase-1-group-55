@@ -1,13 +1,23 @@
-package model;
+package Tool;
+
+import model.Game;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class BackPack {
     private  Tools currentTool;
-    private Map<String,Tools > availableTools=new HashMap<>();
-    private int level=0;
-    private int size;
+    private Map<String, Tools> availableTools = new HashMap<>() {{
+        put("Hoe", new Hoe());
+        put("Pickaxe", new Pickaxe());
+        put("Axe", new Axe());
+        put("WateringCan", new WateringCan());
+        put("Scythe", new Scythe());
+        put("FishingPole", new FishingPole(FishingPoleType.TRAINING_ROD));
+        put("Trashcan",new Trashcan());
+    }};
+// to do havij , goosht zoghaal va ... yadet nare , bakhsh inventory moonde !!!!!!!
+    private int level=1;
     public Map<String, Tools> getAvailableTools() {
         return availableTools;
     }
@@ -44,9 +54,14 @@ public class BackPack {
     }
 
     public int getSize() {
-        return level==0?12:level==1?24:10000000;
+        return level==1?12:level==2?24:10000000;
     }
     public void recycleItem(String name){
+        //injaa bayad hame noe item ro recycle koni na faghat tools
+        // TO DO 
+        Game.mainUser.setMoney(Game.mainUser.getMoney()+
+                (int)((availableTools.get(name).getPrice()*availableTools.get("Trashcan").getLevel()*15)/100));
         availableTools.remove(name);
     }
+
 }
