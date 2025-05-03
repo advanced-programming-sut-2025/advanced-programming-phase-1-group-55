@@ -71,6 +71,7 @@ public class User {
         this.email = email;
         this.numberOfSecurityQuestion = numberOfSecurityQuestion;
         this.securityQuestion = securityQuestion;
+
     }
 
     public void addTrade(Trade trade) {

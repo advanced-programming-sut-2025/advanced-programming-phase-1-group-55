@@ -68,7 +68,7 @@ public class RegisterController {
         System.out.println("answer question number " + choice + " : " + questionsList.get(choice));
         String answer = scanner.nextLine();
         User user = new User(username, password, nickname, email, gender, choice, answer);
-        AllUsers.put(username, user);
+//        AllUsers.put(username, user);
         mainUser = user;
         saveUserToJson(user);
         currentMenu = Menu.MainMenu;
@@ -126,6 +126,7 @@ public class RegisterController {
     }
 
     protected boolean isUniqueUsername(String username) {
+        if (AllUsers == null) return true;
         for (String X : AllUsers.keySet()) {
             if (X.equals(username)) {
                 return false;
