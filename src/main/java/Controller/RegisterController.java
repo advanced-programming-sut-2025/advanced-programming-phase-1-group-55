@@ -63,27 +63,29 @@ public class RegisterController {
         for (Map.Entry<Integer, String> question : questionsList.entrySet()) {
             System.out.println(question.getKey() + ": " + question.getValue());
         }
-//        while (true) {
 
-            String input = scanner.nextLine();
-            Pattern pattern = Pattern.compile("pick question -q (?<number>\\S+)\\s+-a(?<answer>\\S+)\\s+-c\\s+(?<confirm>\\S+)\\s*");
-            int number;
-            Matcher matcher = pattern.matcher(input);
-            try {
-                number = Integer.parseInt(matcher.group("number"));
-            } catch (IllegalStateException e) {
-                return new Result(false, "Invalid number");
-            }
-            if (!matcher.matches()) {
-                return new Result(false, "wrong answer type");
-            } else if (matcher.group("confirm") != matcher.group("answer")) {
-                return new Result(false, "wrong confirm answer ");
 
-            } else if (number > 3) {
-                return new Result(false, "wrong number number should be between 1 up to 3");
-            }
-            System.out.println("answer question number " + matcher.group("number") + " : " + questionsList.get(number));
-//        }
+        String input = scanner.nextLine();
+        Pattern pattern = Pattern.compile("pick\\s+question\\s+-q\\s+(?<number>\\S+)\\s+-a\\s+(?<answer>\\S+)\\s+-c\\s+(?<confirm>\\S+)\\s*");
+        int number;
+        Matcher matcher = pattern.matcher(input);
+
+        if (!matcher.matches()) {
+            return new Result(false, "wrong answer type");
+        } else if (!matcher.group("confirm").trim().equals(matcher.group("answer").trim())) {
+
+            return new Result(false, "wrong confirm answer ");
+
+        }
+        try {
+            number = Integer.parseInt(matcher.group("number"));
+        } catch (IllegalStateException e) {
+            return new Result(false, "Invalid number");
+        }
+        if (number > 3) {
+            return new Result(false, "wrong number number should be between 1 up to 3");
+        }
+
 
         User user = new User(username, password, nickname, email, gender, number, matcher.group("answer"));
         mainUser = user;
