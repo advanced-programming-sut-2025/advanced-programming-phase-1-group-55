@@ -26,27 +26,24 @@ public class Game {
 
             Type userListType = new TypeToken<List<User>>() {
             }.getType();
-            AllUsers = gson.fromJson(reader, userListType);
 
-            if (AllUsers != null) {
-                for (String user : AllUsers.keySet()) {
-                    System.out.println(user);
-                }
-            } else {
-                System.out.println("لیست کاربران خالی یا نال است.");
+            List<User> userList = gson.fromJson(reader, userListType);
+
+            for (User user : userList) {
+                AllUsers.put(user.getUsername(), user);
             }
 
+//            for (Map.Entry<String, User> entry : AllUsers.entrySet()) {
+//                System.out.println("Username: " + entry.getKey());
+//                System.out.println("User: " + entry.getValue().getNickName());
+//            }
+
             reader.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("فایل users.json پیدا نشد.");
-            e.printStackTrace();
-        } catch (JsonSyntaxException e) {
-            System.out.println("فرمت JSON اشتباه است.");
-            e.printStackTrace();
+
         } catch (Exception e) {
-            System.out.println("خطای غیرمنتظره:");
             e.printStackTrace();
         }
+
 
     }
 
