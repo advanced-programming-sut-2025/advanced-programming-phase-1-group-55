@@ -1,5 +1,6 @@
 package Controller;
 
+import com.google.gson.GsonBuilder;
 import enums.Menu;
 import enums.Result;
 import model.User;
@@ -99,7 +100,7 @@ public class RegisterController {
 
     //JSON for saving user
     protected void saveUserToJson(User user) {
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
         // JSON PATH
         File file = new File("users.json");

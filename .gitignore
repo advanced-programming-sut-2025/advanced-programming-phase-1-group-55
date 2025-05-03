@@ -9,7 +9,7 @@ out/
 projectDetails/
 *.yaml
 *.zip
-*.json
+
 target/
 
 ### Eclipse ###
