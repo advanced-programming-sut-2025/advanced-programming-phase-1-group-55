@@ -34,6 +34,9 @@ public class ProfileMenu extends AppView implements AppMenu {
         } else if (userInfo != null) {
             System.out.println(controller.userInfo());
         }
+        else if (input.matches("\\s*show\\s+current\\s+menu\\s*")) {
+            System.out.println("you are in Profile Menu now!");
+        }
 
     }
 }

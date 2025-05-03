@@ -24,6 +24,8 @@ public class LoginMenu extends AppView implements AppMenu {
         } else if (forgetPassword != null) {
             System.out.println(controller.forgetPassword(forgetPassword.group("username").trim()));
 
+        } else if (input.matches("\\s*show\\s+current\\s+menu\\s*")) {
+            System.out.println("you are in Login Menu now!");
         } else {
             System.out.println("invalid input in login menu");
         }
