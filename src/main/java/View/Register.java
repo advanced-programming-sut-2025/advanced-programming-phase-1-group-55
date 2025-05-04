@@ -3,9 +3,8 @@ package View;
 import Controller.RegisterController;
 import enums.Menu;
 import enums.RegisterCommands;
-import enums.Result;
+import model.Result;
 
-import java.util.Scanner;
 import java.util.regex.*;
 
 import static model.Game.*;

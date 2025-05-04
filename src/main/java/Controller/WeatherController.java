@@ -1,6 +1,6 @@
 package Controller;
 
-import enums.Result;
+import model.Result;
 import enums.WeatherType;
 
 public class WeatherController {

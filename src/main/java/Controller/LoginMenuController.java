@@ -1,7 +1,7 @@
 package Controller;
 
 import enums.Menu;
-import enums.Result;
+import model.Result;
 import model.User;
 
 import java.util.Scanner;
