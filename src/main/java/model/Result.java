@@ -1,4 +1,4 @@
-package enums;
+package model;
 
 public record Result(boolean IsSuccess, String Message) {
     @Override

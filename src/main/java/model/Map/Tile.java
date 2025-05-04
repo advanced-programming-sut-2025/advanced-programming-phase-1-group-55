@@ -1,6 +1,7 @@
-package model;
+package model.Map;
 
 import enums.TileType;
+import model.ItemOfMap;
 
 public class Tile {
     private Location location;

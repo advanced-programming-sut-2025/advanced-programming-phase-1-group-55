@@ -1,4 +1,4 @@
-package Tool;
+package model.Tool;
 
 public  abstract class Tools {
     protected int level=0;

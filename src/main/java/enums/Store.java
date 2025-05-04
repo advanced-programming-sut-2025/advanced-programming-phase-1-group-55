@@ -1,7 +1,7 @@
 package enums;
 
-import model.Location;
-import model.Npc;
+import model.Map.Location;
+import model.NPC.Npc;
 import model.Product;
 
 import java.time.LocalTime;

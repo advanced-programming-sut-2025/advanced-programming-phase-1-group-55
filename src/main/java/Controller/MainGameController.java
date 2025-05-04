@@ -1,9 +1,9 @@
 package Controller;
 
-import Tool.Tools;
-import Tool.Trashcan;
-import Tool.WateringCan;
-import enums.Result;
+import model.Tool.Tools;
+import model.Tool.Trashcan;
+import model.Tool.WateringCan;
+import model.Result;
 
 import static model.Game.*;
 

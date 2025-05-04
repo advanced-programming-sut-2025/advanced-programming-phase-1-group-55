@@ -1,11 +1,11 @@
-package Tool;
+package model.Tool;
 
 import enums.Store;
 
 import static java.lang.Math.max;
 import static model.Game.mainUser;
 
-public class Pickaxe extends  Tools{
+public class Axe extends  Tools{
     boolean usedSuccessfully=false;
     public int getPriceToLevelUp(){
         if(level==1){
@@ -35,16 +35,15 @@ public class Pickaxe extends  Tools{
     }
 
     public String getName(){
-        return "Pickaxe";
+        return "Axe";
     }
-
     @Override
     public int energyCost() {
         int energy=6-level;
         if(!usedSuccessfully){
             energy--;
         }
-        //TO DO  AGAR MINING MAX BOOD ENERGY --;
+        //TO DO  AGAR FORAGING MAX BOOD ENERGY --;
         return max(energy,0);
     }
     public Store getStore(){
@@ -54,5 +53,4 @@ public class Pickaxe extends  Tools{
     public void useTool() {
         mainUser.setEnergy(max(mainUser.getEnergy()-energyCost(),0));
     }
-
 }

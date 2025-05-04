@@ -1,4 +1,4 @@
-package enums;
+package model.NPC;
 
 public enum Dialog {
 }

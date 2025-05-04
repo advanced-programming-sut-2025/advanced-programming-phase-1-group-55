@@ -1,11 +1,11 @@
-package Tool;
+package model.Tool;
 
 import enums.Store;
 
 import static java.lang.Math.max;
 import static model.Game.mainUser;
 
-public class Hoe extends  Tools{
+public class Scythe extends  Tools{
     public int getPriceToLevelUp(){
         if(level==1){
             return 2000;
@@ -34,12 +34,12 @@ public class Hoe extends  Tools{
     }
 
     public String getName(){
-        return "Hoe";
+        return "Scythe";
     }
 
     @Override
     public int energyCost() {
-        return 6-level;
+        return 2;
     }
     public Store getStore(){
         return Store.Blacksmith;

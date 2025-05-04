@@ -1,11 +1,13 @@
-package model;
+package model.NPC;
+
+import model.ItemOfMap;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class Quest {
     private  int id;
-    private Map<String,ItemOfMap> reward=new HashMap<>();
+    private Map<String, ItemOfMap> reward=new HashMap<>();
     private boolean hasAlreadyFinished;
 
     public int getId() {

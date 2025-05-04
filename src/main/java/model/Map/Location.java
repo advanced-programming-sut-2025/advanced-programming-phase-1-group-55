@@ -1,4 +1,4 @@
-package model;
+package model.Map;
 
 public class Location {
     private  int y;

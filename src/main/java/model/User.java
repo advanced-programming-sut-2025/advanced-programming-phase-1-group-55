@@ -1,6 +1,7 @@
 package model;
 
-import Tool.BackPack;
+import model.NPC.Npc;
+import model.Tool.BackPack;
 
 import java.util.ArrayList;
 import java.util.HashMap;

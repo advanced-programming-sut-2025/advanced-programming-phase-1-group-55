@@ -1,11 +1,11 @@
-package Tool;
+package model.Tool;
 
 import enums.Store;
 
 import static java.lang.Math.max;
 import static model.Game.mainUser;
 
-public class Shears extends  Tools{
+public class Hoe extends  Tools{
     public int getPriceToLevelUp(){
         if(level==1){
             return 2000;
@@ -18,22 +18,9 @@ public class Shears extends  Tools{
         }
         return 0;
     }
-    public Store getStore(){
-        return Store.marnieRanch;
-    }
-    public String getName(){
-        return "shears";
-    }
 
     @Override
-    public int energyCost() {
-        return 4;
-    }
-    @Override
-    public void useTool() {
-        mainUser.setEnergy(max(mainUser.getEnergy()-energyCost(),0));
-    }
-    public int getPrice(){
+    public int getPrice() {
         if(level==2){
             return 2000;
         } else if (level==3) {
@@ -46,4 +33,19 @@ public class Shears extends  Tools{
         return 1000;
     }
 
+    public String getName(){
+        return "Hoe";
+    }
+
+    @Override
+    public int energyCost() {
+        return 6-level;
+    }
+    public Store getStore(){
+        return Store.Blacksmith;
+    }
+    @Override
+    public void useTool() {
+        mainUser.setEnergy(max(mainUser.getEnergy()-energyCost(),0));
+    }
 }

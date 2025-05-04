@@ -1,6 +1,7 @@
-package model;
+package model.NPC;
 
-import enums.NpcType;
+import model.FriendShip;
+import model.User;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,7 +10,7 @@ public class Npc {
     private  String name;
     private NpcType type;
     //mahal sokunat ezaafe beshe
-    private Map<User,FriendShip> friends=new HashMap<>(); // miroonim badan ye shey friendship tarif konim
+    private Map<User, FriendShip> friends=new HashMap<>(); // miroonim badan ye shey friendship tarif konim
     public Npc(String name){
         this.name=name;
     }

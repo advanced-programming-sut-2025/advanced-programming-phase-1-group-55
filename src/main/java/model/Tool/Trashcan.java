@@ -1,4 +1,4 @@
-package Tool;
+package model.Tool;
 
 import static java.lang.Math.max;
 import static model.Game.mainUser;

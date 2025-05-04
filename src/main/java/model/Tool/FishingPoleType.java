@@ -1,4 +1,4 @@
-package Tool;
+package model.Tool;
 
 public enum FishingPoleType {
     TRAINING_ROD(0, 8, 25, false),

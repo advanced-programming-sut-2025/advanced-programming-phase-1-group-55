@@ -1,7 +1,9 @@
-package model;
+package model.Animal;
+
+import model.Map.Location;
 
 public class Cage {
-    private  Animal animalOfCage;
+    private Animal animalOfCage;
     private Location location;
     public void  openCage(){
 

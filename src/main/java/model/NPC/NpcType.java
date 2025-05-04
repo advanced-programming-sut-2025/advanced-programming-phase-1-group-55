@@ -1,7 +1,6 @@
-package enums;
+package model.NPC;
 
 import model.ItemOfMap;
-import model.Quest;
 
 import java.util.ArrayList;
 import java.util.HashMap;

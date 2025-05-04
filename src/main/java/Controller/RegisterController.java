@@ -1,12 +1,11 @@
 package Controller;
 
 import enums.Menu;
-import enums.Result;
+import model.Result;
 import model.User;
 
 import java.security.SecureRandom;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.regex.Matcher;

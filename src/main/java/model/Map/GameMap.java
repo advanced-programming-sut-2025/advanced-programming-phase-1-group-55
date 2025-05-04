@@ -1,10 +1,10 @@
-package model;
+package model.Map;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class GameMap {
-    private Map<Location,Tile> pointsOfTheMap=new HashMap<>();
+    private Map<Location, Tile> pointsOfTheMap=new HashMap<>();
     private Map<Location, Character> MiniMap=new HashMap<>();
     public Map<Location, Character> getMiniMap() {
         return MiniMap;

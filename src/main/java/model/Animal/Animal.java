@@ -1,4 +1,4 @@
-package model;
+package model.Animal;
 
 public class Animal {
     private String name;

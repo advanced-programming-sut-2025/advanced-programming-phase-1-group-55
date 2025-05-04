@@ -1,4 +1,4 @@
-package Tool;
+package model.Tool;
 
 import model.Game;
 
