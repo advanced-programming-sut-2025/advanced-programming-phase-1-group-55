@@ -6,17 +6,17 @@ package model.FarmingProdocts;
 import java.util.List;
 
 public class Crop {
-    private final String name;                  // نام محصول
-    private final String seedSource;            // منبع بذر
-    private final List<Integer> stages;         // مراحل رشد
-    private final int totalHarvestTime;         // زمان کل برداشت
-    private final boolean isOneTime;            // آیا محصول یک‌بار برداشت می‌شود؟
-    private final int regrowthTime;             // زمان رشد مجدد
-    private final int baseSellPrice;            // قیمت فروش پایه
-    private final boolean isEdible;             // آیا قابل خوردن است؟
-    private final int baseEnergy;               // انرژی پایه
-    private final String season;                // فصل کشت
-    private final boolean canBecomeGiant;       // آیا محصول می‌تواند غول‌آسا شود؟
+    private final String name;
+    private final String seedSource;
+    private final List<Integer> stages;
+    private final int totalHarvestTime;
+    private final boolean isOneTime;
+    private final int regrowthTime;
+    private final int baseSellPrice;
+    private final boolean isEdible;
+    private final int baseEnergy;
+    private final String season;
+    private final boolean canBecomeGiant;
 
     // سازنده کلاس
 
