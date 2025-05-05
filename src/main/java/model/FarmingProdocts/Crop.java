@@ -18,7 +18,7 @@ public class Crop {
     private final String season;
     private final boolean canBecomeGiant;
 
-    // سازنده کلاس
+
 
 
     public Crop(String name, String seedSource, List<Integer> stages, int totalHarvestTime, boolean isOneTime, int regrowthTime, int baseSellPrice, boolean isEdible, int baseEnergy, String season, boolean canBecomeGiant) {
@@ -35,7 +35,7 @@ public class Crop {
         this.canBecomeGiant = canBecomeGiant;
     }
 
-    // متدهای گتر (Getters)
+
     public String getName() {
         return name;
     }

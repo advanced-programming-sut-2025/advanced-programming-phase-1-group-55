@@ -2,16 +2,12 @@ package enums;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-public enum CropMenuCommands {
-//    ShowAllCrops("show all crops"),
-    ShowCropByName("craftinfo (?<name>[\\w\\s]+)");
-//    ShowCropsBySeason("show crops in (?<season>[a-zA-Z]+)");
 
+public enum TreesCommands {
+    ShowTreeByName("show tree (?<name>[\\w\\s]+)");
     private final String pattern;
 
-    CropMenuCommands(String pattern) {
+    TreesCommands(String pattern) {
         this.pattern = pattern;
     }
 
