@@ -25,7 +25,7 @@ public class Skills {
     public void levelUp() {
 
     }
-    public void pointUp() {
+    public void pointUp(int i) {
 
     }
     public void checkAbilities() {
