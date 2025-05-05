@@ -29,6 +29,7 @@ public class CropController {
                         .append("One Time: ").append(crop.isOneTime()).append("\n")
                         .append("Regrowth Time: ").append(crop.getRegrowthTime()).append("\n")
                         .append("Base Sell Price: ").append(crop.getBaseSellPrice()).append("\n")
+                        .append("Is Edible:").append(crop.isEdible()).append("\n")
                         .append("Base Energy: ").append(crop.getBaseEnergy()).append("\n")
                         .append("Season: ").append(crop.getSeason()).append("\n")
                         .append("Can become Giant: ").append(crop.canBecomeGiant()).append("\n");
