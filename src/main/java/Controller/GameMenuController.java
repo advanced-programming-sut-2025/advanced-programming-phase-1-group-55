@@ -1,6 +1,6 @@
 package Controller;
 
-import enums.Result;
+import model.Result;
 
 public class GameMenuController {
     public Result newGame(String Username1, String Username2, String Username3) {
