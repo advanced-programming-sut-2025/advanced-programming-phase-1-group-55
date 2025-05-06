@@ -20,7 +20,7 @@ import java.util.List;
 
 public class Game {
     public static User mainUser;
-    public static Menu currentMenu = Menu.MainGameMenu;
+    public static Menu currentMenu = Menu.Register;
     public static HashMap<String, User> playersInGame = new HashMap<>();
 
     public static WeatherType currentWeather;
