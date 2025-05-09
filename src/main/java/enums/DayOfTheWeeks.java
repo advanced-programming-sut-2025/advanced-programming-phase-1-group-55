@@ -23,7 +23,9 @@ public enum DayOfTheWeeks {
         return null;
     }
 
-    public int changeday() {
-        return valueOfDay++;
+    public DayOfTheWeeks nextDay() {
+        return getDayByValue((this.valueOfDay + 1) % 7);
     }
+
+
 }
