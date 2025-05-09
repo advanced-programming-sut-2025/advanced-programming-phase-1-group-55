@@ -14,7 +14,7 @@ public enum mainGameCommands implements Command {
     time("\\s*time\\s*"),
     date("\\s*date\\s*"),
     dateTime("\\s*datetime\\s*"),
-    dayOfWeek("\\s*day of week\\s*"),
+    dayOfWeek("\\s*day of the week\\s*"),
     cheatHour("\\s*cheat advance time\\s+(?<X>\\S+)h\\s*"),
     cheatday("\\s*cheat advance date\\s+(?<X>\\S+)d\\s*");
     private final String pattern;

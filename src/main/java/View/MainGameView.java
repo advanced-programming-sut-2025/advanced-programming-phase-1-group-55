@@ -40,6 +40,16 @@ public class MainGameView implements AppMenu {
         } else if ((matcher = mainGameCommands.time.getMatcher(input)) != null) {
             System.out.println(controller.time());
 
+        } else if ((matcher = mainGameCommands.dateTime.getMatcher(input)) != null) {
+            System.out.println(controller.dateTime());
+
+        } else if ((matcher = mainGameCommands.dayOfWeek.getMatcher(input)) != null) {
+            System.out.println(controller.dayOfWeek());
+
+        } else if ((matcher = mainGameCommands.cheatHour.getMatcher(input)) != null) {
+            System.out.println(controller.cheatHour(matcher.group("X")));
+        } else if ((matcher = mainGameCommands.cheatday.getMatcher(input)) != null) {
+            System.out.println(controller.cheatDay(matcher.group("X")));
         }
     }
 }

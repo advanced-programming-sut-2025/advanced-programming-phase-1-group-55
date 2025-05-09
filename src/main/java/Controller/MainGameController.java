@@ -41,6 +41,39 @@ public class MainGameController {
         return new Result(true, sb.toString());
     }
 
+    public Result dateTime() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("hour : ").append(getHour()).append("\nday : ").append(getDay()).append("\nseason : ").append(getSeason());
+        return new Result(true, sb.toString());
+    }
+
+    public Result dayOfWeek() {
+
+        return new Result(true, getDay().toString());
+    }
+
+    public Result cheatHour(String X) {
+        int hour;
+        try {
+            hour = Integer.parseInt(X);
+        } catch (Exception e) {
+            return new Result(false, "invalid cheat hour");
+        }
+        increaseHour(hour);
+        return new Result(true, "cheat hour " + hour + " confirmed");
+    }
+
+    public Result cheatDay(String X) {
+        int Day;
+        try {
+            Day = Integer.parseInt(X);
+        } catch (Exception e) {
+            return new Result(false, "invalid cheat Day");
+        }
+        increaseDay(Day);
+        return new Result(true, "cheat Day " + Day + " confirmed");
+    }
+
     public Result levelUpTool(String name) {
         Tools tool = mainUser.getBackPack().getAvailableTools().get(name);
         if (tool.getLevel() == 5) {
