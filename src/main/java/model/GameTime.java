@@ -4,15 +4,15 @@ import enums.DayOfTheWeeks;
 
 import java.time.LocalDate;
 
-public class GameTime  {
+public class GameTime {
     private static LocalDate date;
-    private static String time;
+    private static int time = 9;
     private static int hour;
     private static int minute;
     private static boolean isNight = false;
     private static boolean isDay = true;
-    private static int  numberOfWeek;
-    private static DayOfTheWeeks  day= DayOfTheWeeks.saturday;
+    private static int numberOfWeek;
+    private static DayOfTheWeeks day = DayOfTheWeeks.saturday;
     private static int month;
     private static String season;
 
@@ -24,11 +24,11 @@ public class GameTime  {
         GameTime.date = date;
     }
 
-    public static String getTime() {
+    public static int getTime() {
         return time;
     }
 
-    public static void setTime(String time) {
+    public static void setTime(int time) {
         GameTime.time = time;
     }
 
@@ -47,35 +47,36 @@ public class GameTime  {
     public static void setMinute(int minute) {
         GameTime.minute = minute;
     }
-    public static void tick(){
+
+    public static void tick() {
         minute += 10;
-        if(minute > 59){
+        if (minute > 59) {
             minute = 0;
             hour++;
         }
-        if(hour > 12){
+        if (hour > 12) {
             isDay = false;
             isNight = true;
         }
-        if(hour > 23){
+        if (hour > 23) {
             hour = 0;
-            day.getDayByValue(day.getValue()+1) ;
+            day.getDayByValue(day.getValue() + 1);
             date = date.plusDays(1);
         }
-        if(day.getValue()> 6){
-            day=DayOfTheWeeks.saturday;
+        if (day.getValue() > 6) {
+            day = DayOfTheWeeks.saturday;
         }
-        if(hour > 6){
+        if (hour > 6) {
             isNight = false;
             isDay = true;
         }
 
 
     }
-    public String getDayOfWeek() {
-         return "";
-    }
 
+    public String getDayOfWeek() {
+        return "";
+    }
 
 
 }
