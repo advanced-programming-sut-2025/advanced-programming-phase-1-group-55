@@ -50,6 +50,8 @@ public class MainGameView implements AppMenu {
             System.out.println(controller.cheatHour(matcher.group("X")));
         } else if ((matcher = mainGameCommands.cheatday.getMatcher(input)) != null) {
             System.out.println(controller.cheatDay(matcher.group("X")));
+        } else if ((matcher = mainGameCommands.season.getMatcher(input)) !=null){
+            System.out.println(controller.season());
         }
     }
 }

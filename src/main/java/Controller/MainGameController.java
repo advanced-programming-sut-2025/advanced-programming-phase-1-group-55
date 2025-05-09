@@ -73,6 +73,9 @@ public class MainGameController {
         increaseDay(Day);
         return new Result(true, "cheat Day " + Day + " confirmed");
     }
+    public Result season() {
+        return new Result(true, String.valueOf(getSeason()));
+    }
 
     public Result levelUpTool(String name) {
         Tools tool = mainUser.getBackPack().getAvailableTools().get(name);
