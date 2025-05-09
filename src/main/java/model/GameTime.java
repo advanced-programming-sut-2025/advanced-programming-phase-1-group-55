@@ -30,6 +30,25 @@ public class GameTime {
         GameTime.day = day;
     }
 
+    public static int getHour() {
+        return hour;
+    }
+
+    public static Seasons getSeason() {
+        return season;
+    }
+
+    public static void setSeason(Seasons season) {
+        GameTime.season = season;
+    }
+
+    public static int getDayofMonth() {
+        return DayofMonth;
+    }
+
+    public static void setDayofMonth(int dayofMonth) {
+        DayofMonth = dayofMonth;
+    }
 
     // age zaman roo ziyad ezafe kone momkene bug bede
     public static void increaseHour(int hour) {

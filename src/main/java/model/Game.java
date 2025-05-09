@@ -20,12 +20,8 @@ import java.util.List;
 
 public class Game {
     public static User mainUser;
-    public static Menu currentMenu = Menu.Register;
+    public static Menu currentMenu = Menu.MainGameMenu;
     public static HashMap<String, User> playersInGame = new HashMap<>();
-    public static int currentTime = 9;
-    public static int currentDay;
-    public static int currentDate;
-    public static int currentSeason;
 
 
     public static WeatherType currentWeather;

@@ -10,15 +10,23 @@ public enum mainGameCommands implements Command {
     upgradeTool("^\\s*tools\\s+upgrade\\s+(?<name>\\S+)\\s*$"),
     trashItem("^\\s*inventory\\s+trash\\s+-i\\s+(?<name>\\S+)\\s*$"),
     showInventory("^\\s*inventory\\s+show\\s*$"),
-    useTool("^\\s*tools\\s+use\\s+-d\\s+(?<direction>\\S.*)\\s*");
+    useTool("^\\s*tools\\s+use\\s+-d\\s+(?<direction>\\S.*)\\s*"),
+    time("\\s*time\\s*"),
+    date("\\s*date\\s*"),
+    dateTime("\\s*datetime\\s*"),
+    dayOfWeek("\\s*day of week\\s*"),
+    cheatHour("\\s*cheat advance time\\s+(?<X>\\S+)h\\s*"),
+    cheatday("\\s*cheat advance date\\s+(?<X>\\S+)d\\s*");
     private final String pattern;
-    mainGameCommands(String pattern){
-        this.pattern=pattern;
+
+    mainGameCommands(String pattern) {
+        this.pattern = pattern;
     }
+
     @Override
     public Matcher getMatcher(String input) {
-        Matcher matcher= Pattern.compile(this.pattern).matcher((input));
-        if(matcher.matches()){
+        Matcher matcher = Pattern.compile(this.pattern).matcher((input));
+        if (matcher.matches()) {
             return matcher;
         }
         return null;
