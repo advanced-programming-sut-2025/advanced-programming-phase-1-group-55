@@ -92,13 +92,13 @@ public class MainGameController {
 
     public Result weatherCheat(String type) {
         if (type.equals("Sunny")) {
-            setCurrentWeather(WeatherType.Sunny);
+            setTomorrowWeather(WeatherType.Sunny);
         } else if (type.equals("Rain")) {
-            setCurrentWeather(WeatherType.Rain);
+            setTomorrowWeather(WeatherType.Rain);
         } else if (type.equals("Storm")) {
-            setCurrentWeather(WeatherType.Storm);
+            setTomorrowWeather(WeatherType.Storm);
         } else if (type.equals("Snow")) {
-            setCurrentWeather(WeatherType.Snow);
+            setTomorrowWeather(WeatherType.Snow);
         } else {
             return new Result(false, "invalid weather type");
         }
