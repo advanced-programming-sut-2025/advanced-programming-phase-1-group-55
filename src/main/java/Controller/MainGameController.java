@@ -1,10 +1,14 @@
 package Controller;
 
 
+import enums.WeatherType;
 import model.Tool.Tools;
 import model.Tool.Trashcan;
 import model.Tool.WateringCan;
 import model.Result;
+import model.weather.*;
+
+import static model.weather.*;
 
 import static model.Game.*;
 import static model.GameTime.*;
@@ -73,8 +77,32 @@ public class MainGameController {
         increaseDay(Day);
         return new Result(true, "cheat Day " + Day + " confirmed");
     }
+
     public Result season() {
         return new Result(true, String.valueOf(getSeason()));
+    }
+
+    public Result weather() {
+        return new Result(true, getCurrentWeather().name());
+    }
+
+    public Result weatherForecast() {
+        return new Result(true, getTomorrowWeather().name());
+    }
+
+    public Result weathercheat(String type) {
+        if (type.equals("Sunny")) {
+            setCurrentWeather(WeatherType.Sunny);
+        } else if (type.equals("Rain")) {
+            setCurrentWeather(WeatherType.Rain);
+        } else if (type.equals("Storm")) {
+            setCurrentWeather(WeatherType.Storm);
+        } else if (type.equals("Snow")) {
+            setCurrentWeather(WeatherType.Snow);
+        } else {
+            return new Result(false, "invalid weather type");
+        }
+        return new Result(true, "weather successfully changed to : " + getCurrentWeather().name());
     }
 
     public Result levelUpTool(String name) {

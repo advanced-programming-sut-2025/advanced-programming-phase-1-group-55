@@ -40,7 +40,7 @@ public class Game {
 //
 //    }
 
-    public static WeatherType currentWeather;
+  
     public static HashMap<String, User> AllUsers = new HashMap<>();
 
     public static void readfile() {

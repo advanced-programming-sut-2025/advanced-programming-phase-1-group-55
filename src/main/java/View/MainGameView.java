@@ -54,6 +54,10 @@ public class MainGameView implements AppMenu {
             System.out.println(controller.cheatDay(matcher.group("X")));
         } else if ((matcher = mainGameCommands.season.getMatcher(input)) != null) {
             System.out.println(controller.season());
+        } else if ((matcher = mainGameCommands.weather.getMatcher(input)) != null) {
+            System.out.println(controller.weather());
+        } else if ((matcher = mainGameCommands.cheatWeatherSet.getMatcher(input)) != null) {
+            System.out.println(controller.weathercheat(matcher.group("type").trim()));
         } else if (input.matches("exit")) {
             currentMenu = Menu.ExitMenu;
         }
