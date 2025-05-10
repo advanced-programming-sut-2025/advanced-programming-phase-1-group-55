@@ -14,8 +14,8 @@ public class AppView {
     Scanner scanner = new Scanner(System.in);
 
     public void run() {
-        readfile();
         do {
+            readfile();
             String input = scanner.nextLine();
             getCurrentMenu().checkCommand(input);
         } while (getCurrentMenu() != Menu.ExitMenu);
