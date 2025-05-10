@@ -17,7 +17,12 @@ public enum mainGameCommands implements Command {
     dayOfWeek("\\s*day of the week\\s*"),
     cheatHour("\\s*cheat advance time\\s+(?<X>\\S+)h\\s*"),
     cheatday("\\s*cheat advance date\\s+(?<X>\\S+)d\\s*"),
-    season("\\s*season\\s*");
+    season("\\s*season\\s*"),
+    cheatThor("\\s*cheat Thor -l (?<x>\\d+)\\s(?<y>\\d+)\\s*"),
+    weather("\\s*weather\\s*"),
+    weatherForecast("^\\s*weather\\s+forecast\\s*$"),
+    cheatWeatherSet("^\\s*cheat weather set (?<type>\\S+)\\s*$"),
+    greenhouse("^\\s*greenhouse build\\s*");
     private final String pattern;
 
     mainGameCommands(String pattern) {
