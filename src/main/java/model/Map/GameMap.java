@@ -5,14 +5,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class GameMap {
-    private Tile[][] map=new Tile[40][70];
-//    private ArrayList<Farm> farms=new ArrayList<>();
+    private Tile[][] map = new Tile[40][70];
+    //    private ArrayList<Farm> farms=new ArrayList<>();
     private Farm farm1;
     private Farm farm2;
     private Farm farm3;
     private Farm farm4;
 
     public GameMap(Farm farm1, Farm farm2, Farm farm3, Farm farm4) {
+        farm2.setLocation(new Location(farm2.getLocation().getY() + 20, farm2.getLocation().getX()));
+        farm3.setLocation(new Location(farm3.getLocation().getY(), farm3.getLocation().getX() + 50));
+        farm4.setLocation(new Location(farm4.getLocation().getY() + 20, farm4.getLocation().getX() + 50));
         this.farm1 = farm1;
         this.farm2 = farm2;
         this.farm3 = farm3;
@@ -20,10 +23,11 @@ public class GameMap {
 
     }
 
-    private NpcVillage village=new NpcVillage();
-    private  char[][] miniMap=new char[40][70];
-    private Map<Location, Tile> pointsOfTheMap=new HashMap<>();
-    private Map<Location, Character> MiniMap=new HashMap<>();
+    private NpcVillage village = new NpcVillage();
+    private char[][] miniMap = new char[40][70];
+    private Map<Location, Tile> pointsOfTheMap = new HashMap<>();
+    private Map<Location, Character> MiniMap = new HashMap<>();
+
     public Map<Location, Character> getMiniMap() {
         return MiniMap;
     }

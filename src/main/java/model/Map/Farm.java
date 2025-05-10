@@ -8,9 +8,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Farm {
+    private Location location;
     private House house;
     private Lake lake;
     private GreenHouse greenHouse;
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
     private Quarry quarry;
     private Map<Location, Rock> rocks = new HashMap<>();
     private Map<Location, Tree> trees = new HashMap<>();
