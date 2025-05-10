@@ -80,13 +80,13 @@
     "matchPlayed": 0
   },
   {
-    "username": "arshiaX9",
-    "password": "aA123456?w",
-    "nickName": "arshix",
-    "gender": "arshia@gmail.com",
+    "username": "shayan24soley",
+    "password": "shayan24S$85",
+    "nickName": "sh24s",
+    "gender": "shayan@gmail.com",
     "email": "male",
-    "numberOfSecurityQuestion": 1,
-    "securityQuestion": "soltani",
+    "numberOfSecurityQuestion": 3,
+    "securityQuestion": "amirali",
     "friendsNpc": {},
     "friendsPlayer": {},
     "money": 0,
@@ -96,13 +96,76 @@
     "matchPlayed": 0
   },
   {
-    "username": "arshiaF2",
-    "password": "aA123456?w",
-    "nickName": "arshix",
-    "gender": "arshia@gmail.com",
+    "username": "shayan24soleyT1",
+    "password": "shayan24S$85",
+    "nickName": "sh24s",
+    "gender": "shayan@gmail.com",
     "email": "male",
-    "numberOfSecurityQuestion": 1,
-    "securityQuestion": "soltani",
+    "numberOfSecurityQuestion": 3,
+    "securityQuestion": "amirali",
+    "friendsNpc": {},
+    "friendsPlayer": {},
+    "money": 0,
+    "energy": 200,
+    "stayLoggedIn": false,
+    "mostAchievedMoney": 0,
+    "matchPlayed": 0
+  },
+  {
+    "username": "shayan24soleyY8",
+    "password": "shayan24S$85",
+    "nickName": "sh24s",
+    "gender": "shayan@gmail.com",
+    "email": "male",
+    "numberOfSecurityQuestion": 3,
+    "securityQuestion": "amirali",
+    "friendsNpc": {},
+    "friendsPlayer": {},
+    "money": 0,
+    "energy": 200,
+    "stayLoggedIn": false,
+    "mostAchievedMoney": 0,
+    "matchPlayed": 0
+  },
+  {
+    "username": "shayan24soleyT1x",
+    "password": "shayan24S$85",
+    "nickName": "sh24s",
+    "gender": "shayan@gmail.com",
+    "email": "male",
+    "numberOfSecurityQuestion": 3,
+    "securityQuestion": "amirali",
+    "backPack": {
+      "availableTools": {
+        "WateringCan": {
+          "capacityUsed": 0,
+          "level": 0
+        },
+        "Scythe": {
+          "level": 0
+        },
+        "FishingPole": {
+          "type": "TRAINING_ROD",
+          "store": "fishShop",
+          "level": 0
+        },
+        "Pickaxe": {
+          "usedSuccessfully": false,
+          "level": 0
+        },
+        "Trashcan": {
+          "level": 0
+        },
+        "Hoe": {
+          "level": 0
+        },
+        "Axe": {
+          "usedSuccessfully": false,
+          "level": 0
+        }
+      },
+      "level": 1
+    },
     "friendsNpc": {},
     "friendsPlayer": {},
     "money": 0,
