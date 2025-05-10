@@ -1,5 +1,6 @@
 package Controller;
 
+import model.Map.Farm;
 import model.Map.GameMap;
 import model.Map.farmBuilder;
 import model.Result;
@@ -11,7 +12,12 @@ public class GameMenuController {
         //todo error hash ro bezan
         farmBuilder fb = new farmBuilder();
         GameMap Map = fb.mapCreator();
-        fb.fillTiles(Map);
+
+        fb.fillTiles(Map, Map.getFarm1());
+        fb.fillTiles(Map, Map.getFarm2());
+        fb.fillTiles(Map, Map.getFarm3());
+        fb.fillTiles(Map, Map.getFarm4());
+
 
         return new Result(true, "Map selected succesfully!");
     }
