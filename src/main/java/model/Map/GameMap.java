@@ -12,6 +12,7 @@ public class GameMap {
     private Farm farm3;
     private Farm farm4;
 
+    //todo npc village add beshe!!
     public GameMap(Farm farm1, Farm farm2, Farm farm3, Farm farm4) {
         farm2.setLocation(new Location(farm2.getLocation().getY() + 20, farm2.getLocation().getX()));
         farm3.setLocation(new Location(farm3.getLocation().getY(), farm3.getLocation().getX() + 50));
@@ -57,13 +58,6 @@ public class GameMap {
         this.miniMap = miniMap;
     }
 
-    public ArrayList<Farm> getFarms() {
-        return farms;
-    }
-
-    public void setFarms(ArrayList<Farm> farms) {
-        this.farms = farms;
-    }
 
     public NpcVillage getVillage() {
         return village;
