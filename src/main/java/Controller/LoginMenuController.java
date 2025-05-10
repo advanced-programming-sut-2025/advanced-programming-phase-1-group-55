@@ -26,7 +26,7 @@ public class LoginMenuController extends RegisterController {
         }
         mainUser = AllUsers.get(username);
 
-        currentMenu = Menu.MainMenu;
+        currentMenu = Menu.MainGameMenu;
         
         return new Result(true, "logged in");
 

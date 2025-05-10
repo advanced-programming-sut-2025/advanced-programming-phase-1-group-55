@@ -1,134 +1,6 @@
 [
   {
-    "username": "arshia",
-    "password": "aA123456?w",
-    "nickName": "arshix",
-    "gender": "arshia@gmail.com",
-    "email": "male",
-    "numberOfSecurityQuestion": 1,
-    "securityQuestion": "sadf",
-    "friendsNpc": {},
-    "friendsPlayer": {},
-    "money": 0,
-    "energy": 200,
-    "stayLoggedIn": false,
-    "mostAchievedMoney": 0,
-    "matchPlayed": 0
-  },
-  {
-    "username": "arshiaD3",
-    "password": "aA123456?w",
-    "nickName": "arshix",
-    "gender": "arshia@gmail.com",
-    "email": "male",
-    "numberOfSecurityQuestion": 1,
-    "securityQuestion": "ali",
-    "friendsNpc": {},
-    "friendsPlayer": {},
-    "money": 0,
-    "energy": 200,
-    "stayLoggedIn": false,
-    "mostAchievedMoney": 0,
-    "matchPlayed": 0
-  },
-  {
-    "username": "arshiaX1",
-    "password": "aA123456?w",
-    "nickName": "arshix",
-    "gender": "arshia@gmail.com",
-    "email": "male",
-    "numberOfSecurityQuestion": 1,
-    "securityQuestion": "soltani",
-    "friendsNpc": {},
-    "friendsPlayer": {},
-    "money": 0,
-    "energy": 200,
-    "stayLoggedIn": false,
-    "mostAchievedMoney": 0,
-    "matchPlayed": 0
-  },
-  {
-    "username": "arshiaN5",
-    "password": "aA123456?w",
-    "nickName": "arshix",
-    "gender": "arshia@gmail.com",
-    "email": "male",
-    "numberOfSecurityQuestion": 1,
-    "securityQuestion": "soltani",
-    "friendsNpc": {},
-    "friendsPlayer": {},
-    "money": 0,
-    "energy": 200,
-    "stayLoggedIn": false,
-    "mostAchievedMoney": 0,
-    "matchPlayed": 0
-  },
-  {
-    "username": "arshiaY1",
-    "password": "aA123456?w",
-    "nickName": "arshix",
-    "gender": "arshia@gmail.com",
-    "email": "male",
-    "numberOfSecurityQuestion": 1,
-    "securityQuestion": "soltani",
-    "friendsNpc": {},
-    "friendsPlayer": {},
-    "money": 0,
-    "energy": 200,
-    "stayLoggedIn": false,
-    "mostAchievedMoney": 0,
-    "matchPlayed": 0
-  },
-  {
-    "username": "shayan24soley",
-    "password": "shayan24S$85",
-    "nickName": "sh24s",
-    "gender": "shayan@gmail.com",
-    "email": "male",
-    "numberOfSecurityQuestion": 3,
-    "securityQuestion": "amirali",
-    "friendsNpc": {},
-    "friendsPlayer": {},
-    "money": 0,
-    "energy": 200,
-    "stayLoggedIn": false,
-    "mostAchievedMoney": 0,
-    "matchPlayed": 0
-  },
-  {
-    "username": "shayan24soleyT1",
-    "password": "shayan24S$85",
-    "nickName": "sh24s",
-    "gender": "shayan@gmail.com",
-    "email": "male",
-    "numberOfSecurityQuestion": 3,
-    "securityQuestion": "amirali",
-    "friendsNpc": {},
-    "friendsPlayer": {},
-    "money": 0,
-    "energy": 200,
-    "stayLoggedIn": false,
-    "mostAchievedMoney": 0,
-    "matchPlayed": 0
-  },
-  {
-    "username": "shayan24soleyY8",
-    "password": "shayan24S$85",
-    "nickName": "sh24s",
-    "gender": "shayan@gmail.com",
-    "email": "male",
-    "numberOfSecurityQuestion": 3,
-    "securityQuestion": "amirali",
-    "friendsNpc": {},
-    "friendsPlayer": {},
-    "money": 0,
-    "energy": 200,
-    "stayLoggedIn": false,
-    "mostAchievedMoney": 0,
-    "matchPlayed": 0
-  },
-  {
-    "username": "shayan24soleyT1x",
+    "username": "shayan24s",
     "password": "shayan24S$85",
     "nickName": "sh24s",
     "gender": "shayan@gmail.com",
@@ -136,6 +8,10 @@
     "numberOfSecurityQuestion": 3,
     "securityQuestion": "amirali",
     "backPack": {
+      "currentTool": {
+        "names": "Hoe",
+        "level": 0
+      },
       "availableTools": {
         "WateringCan": {
           "capacityUsed": 0,
@@ -151,12 +27,14 @@
         },
         "Pickaxe": {
           "usedSuccessfully": false,
+          "names": "Pickaxe",
           "level": 0
         },
         "Trashcan": {
           "level": 0
         },
         "Hoe": {
+          "names": "Hoe",
           "level": 0
         },
         "Axe": {
@@ -168,7 +46,7 @@
     },
     "friendsNpc": {},
     "friendsPlayer": {},
-    "money": 0,
+    "money": 1000000,
     "energy": 200,
     "stayLoggedIn": false,
     "mostAchievedMoney": 0,

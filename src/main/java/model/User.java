@@ -14,11 +14,11 @@ public class User {
     private String email;
     private int numberOfSecurityQuestion;
     private String securityQuestion;
-    private BackPack backPack;
+    private BackPack backPack=new BackPack();
     private User wife = null;
     private HashMap<String, Npc> friendsNpc = new HashMap<>();
     private HashMap<String, User> friendsPlayer = new HashMap<>();
-    private int money;
+    private int money=1000000;
     private int energy = 200;
     private boolean stayLoggedIn = false;
     private int mostAchievedMoney = 0;

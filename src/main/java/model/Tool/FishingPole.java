@@ -25,7 +25,6 @@ public class FishingPole extends Tools {
         return fishingLevel >= type.getRequiredLevel();
     }
 
-    @Override
     public String getName() {
         return "FishingPole";
     }
@@ -33,7 +32,7 @@ public class FishingPole extends Tools {
     @Override
     public int energyCost() {
         int energy=type.getEnergyPerUse();
-        // TO DO  AGAR FISHING MAX BOOD ENERGY--;
+        // TODO  AGAR FISHING MAX BOOD ENERGY--;
         return energy;
     }
 

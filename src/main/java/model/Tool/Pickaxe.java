@@ -7,6 +7,7 @@ import static model.Game.mainUser;
 
 public class Pickaxe extends  Tools{
     boolean usedSuccessfully=false;
+    private final String names="Pickaxe";
     public int getPriceToLevelUp(){
         if(level==1){
             return 2000;
