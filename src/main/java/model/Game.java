@@ -1,27 +1,44 @@
 package model;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonSyntaxException;
+
 import com.google.gson.reflect.TypeToken;
 import enums.*;
 
-import java.io.FileNotFoundException;
+
 import java.io.FileReader;
 import java.lang.reflect.Type;
 import java.util.*;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
 
-import java.io.FileWriter;
-import java.io.IOException;
+import com.google.gson.GsonBuilder;
+
+import enums.Menu;
+
+
 import java.util.List;
 
 public class Game {
     public static User mainUser;
-    public static Menu currentMenu = Menu.Register;
+    public static Menu currentMenu = Menu.MainGameMenu;
     public static HashMap<String, User> playersInGame = new HashMap<>();
+
+//    static {
+//
+//        JFrame frame = new JFrame("Test");
+//        frame.setSize(400, 300);
+//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        frame.setVisible(true);
+//
+//
+//        try {
+//            Thread.sleep(500);
+//        } catch (Exception e) {
+//        }
+//
+//        System.out.println("Actual window size: " + frame.getWidth() + "x" + frame.getHeight());
+//
+//    }
 
     public static WeatherType currentWeather;
     public static HashMap<String, User> AllUsers = new HashMap<>();
