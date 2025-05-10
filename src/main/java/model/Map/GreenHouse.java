@@ -1,9 +1,7 @@
 package model.Map;
 
-public class GreenHouse {
+public class GreenHouse extends place {
     private Boolean isRepaired = false;
-    private final int width = 5;
-    private final int height = 6;
     private final int woodForGreenHouse = 500;
     private final int goldForGreenHouse = 1000;
     private int waterSupply;

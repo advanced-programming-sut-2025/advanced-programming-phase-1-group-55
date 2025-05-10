@@ -1,4 +1,4 @@
 package model.Map;
 
-public class house {
+public class house extends place{
 }
