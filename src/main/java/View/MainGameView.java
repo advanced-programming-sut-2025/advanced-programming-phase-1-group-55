@@ -8,6 +8,8 @@ import java.util.regex.Matcher;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 
+import static model.Game.*;
+
 public class MainGameView implements AppMenu {
     private final MainGameController controller = new MainGameController();
     private final CropController controller2 = new CropController();
@@ -52,6 +54,8 @@ public class MainGameView implements AppMenu {
             System.out.println(controller.cheatDay(matcher.group("X")));
         } else if ((matcher = mainGameCommands.season.getMatcher(input)) != null) {
             System.out.println(controller.season());
+        } else if (input.matches("exit")) {
+            currentMenu = Menu.ExitMenu;
         }
     }
 }
