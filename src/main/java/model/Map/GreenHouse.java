@@ -6,6 +6,10 @@ public class GreenHouse extends place {
     private final int goldForGreenHouse = 1000;
     private int waterSupply;
 
+    public GreenHouse(int height, int width, Location point) {
+        super(height, width, point);
+    }
+
     public void setRepaired(Boolean repaired) {
         isRepaired = repaired;
     }

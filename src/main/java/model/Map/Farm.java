@@ -8,13 +8,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Farm {
-    private  House house=new House();
-    private Lake lake=new Lake();
-    private GreenHouse greenHouse=new GreenHouse();
-    private Quarry quarry=new Quarry();
-    private Map<Location, Rock> rocks=new HashMap<>();
-    private  Map<Location, Tree> trees=new HashMap<>();
-    private  Map<Location, ForagingCrops> crobs=new HashMap<>();
+    private House house;
+    private Lake lake;
+    private GreenHouse greenHouse;
+    private Quarry quarry;
+    private Map<Location, Rock> rocks = new HashMap<>();
+    private Map<Location, Tree> trees = new HashMap<>();
+    private Map<Location, ForagingCrops> crobs = new HashMap<>();
+
+    public Farm(House house, Lake lake, GreenHouse greenHouse, Quarry quarry) {
+        this.house = house;
+        this.lake = lake;
+        this.greenHouse = greenHouse;
+        this.quarry = quarry;
+    }
+    //todo random gozashtan sang mang
     //todo map az foraging seeds
 
     public House getHouse() {
