@@ -78,5 +78,53 @@
     "stayLoggedIn": false,
     "mostAchievedMoney": 0,
     "matchPlayed": 0
+  },
+  {
+    "username": "arshiaX9",
+    "password": "aA123456?w",
+    "nickName": "arshix",
+    "gender": "arshia@gmail.com",
+    "email": "male",
+    "numberOfSecurityQuestion": 1,
+    "securityQuestion": "soltani",
+    "friendsNpc": {},
+    "friendsPlayer": {},
+    "money": 0,
+    "energy": 200,
+    "stayLoggedIn": false,
+    "mostAchievedMoney": 0,
+    "matchPlayed": 0
+  },
+  {
+    "username": "arshiaF2",
+    "password": "aA123456?w",
+    "nickName": "arshix",
+    "gender": "arshia@gmail.com",
+    "email": "male",
+    "numberOfSecurityQuestion": 1,
+    "securityQuestion": "soltani",
+    "friendsNpc": {},
+    "friendsPlayer": {},
+    "money": 0,
+    "energy": 200,
+    "stayLoggedIn": false,
+    "mostAchievedMoney": 0,
+    "matchPlayed": 0
+  },
+  {
+    "username": "arshiaJ2",
+    "password": "aA123456?w",
+    "nickName": "arshix",
+    "gender": "arshia@gmail.com",
+    "email": "male",
+    "numberOfSecurityQuestion": 1,
+    "securityQuestion": "soltani",
+    "friendsNpc": {},
+    "friendsPlayer": {},
+    "money": 0,
+    "energy": 200,
+    "stayLoggedIn": false,
+    "mostAchievedMoney": 0,
+    "matchPlayed": 0
   }
 ]
