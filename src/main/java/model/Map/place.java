@@ -27,7 +27,7 @@ public class place {
         this.width = width;
     }
 
-    public Location getPoint() {
+    public Location getLocation() {
         return point;
     }
 

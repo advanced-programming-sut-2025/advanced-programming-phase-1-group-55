@@ -21,30 +21,32 @@ public class farmBuilder {
 
     public void fillTiles(GameMap Map) {
         //todo bad taghir dadan tartib farm ha eslah beshe
-        Farm x1 = farm1;
-        Farm x2 = farm2;
-        Farm x3 = farm2;
-        Farm x4 = farm2;
-        for (int i = 0; i < x1.getQuarry().getHeight(); i++) {
-            for (int j = 0; j < x1.getQuarry().getWidth(); j++) {
+        Farm f1 = farm1;
+        Farm f2 = farm2;
+        Farm f3 = farm2;
+        Farm f4 = farm2;
+
+        for (int i = f1.getQuarry().getLocation().getY(); i < f1.getQuarry().getLocation().getY() + f1.getQuarry().getHeight(); i++) {
+            for (int j = f1.getQuarry().getLocation().getX(); j < f1.getQuarry().getLocation().getX() + f1.getQuarry().getWidth(); j++) {
                 Map.tiles[i][j] = new Tile(new Location(i, j), "Q", true, false);
             }
         }
-        for (int i = 0; i < x1.getLake().getHeight(); i++) {
-            for (int j = 0; j < x1.getLake().getWidth(); j++) {
+        for (int i = f1.getLake().getLocation().getY(); i < f1.getLake().getLocation().getY() + f1.getLake().getHeight(); i++) {
+            for (int j = f1.getLake().getLocation().getX(); j < f1.getLake().getLocation().getX() + f1.getLake().getWidth(); j++) {
                 Map.tiles[i][j] = new Tile(new Location(i, j), "L", false, false);
             }
         }
-        for (int i = 0; i < x1.getHouse().getHeight(); i++) {
-            for (int j = 0; j < x1.getHouse().getWidth(); j++) {
-                Map.tiles[i][j] = new Tile(new Location(i, j), "Q", true, false);
+        for (int i = f1.getHouse().getLocation().getY(); i < f1.getHouse().getLocation().getY() + f1.getHouse().getHeight(); i++) {
+            for (int j = f1.getHouse().getLocation().getX(); j < f1.getHouse().getLocation().getX() + f1.getHouse().getWidth(); j++) {
+                Map.tiles[i][j] = new Tile(new Location(i, j), "H", true, false);
             }
         }
-        for (int i = 0; i < x1.getQuarry().getHeight(); i++) {
-            for (int j = 0; j < x1.getQuarry().getWidth(); j++) {
-                Map.tiles[i][j] = new Tile(new Location(i, j), "Q", true, false);
+        for (int i = f1.getGreenHouse().getLocation().getY(); i < f1.getGreenHouse().getLocation().getY() + f1.getGreenHouse().getHeight(); i++) {
+            for (int j = f1.getGreenHouse().getLocation().getX(); j < f1.getGreenHouse().getLocation().getX() + f1.getGreenHouse().getWidth(); j++) {
+                Map.tiles[i][j] = new Tile(new Location(i, j), "G", true, false);
             }
         }
+
 
     }
 
