@@ -30,6 +30,21 @@ public class farmBuilder {
                 Map.tiles[i][j] = new Tile(new Location(i, j), "Q", true, false);
             }
         }
+        for (int i = 0; i < x1.getLake().getHeight(); i++) {
+            for (int j = 0; j < x1.getLake().getWidth(); j++) {
+                Map.tiles[i][j] = new Tile(new Location(i, j), "L", false, false);
+            }
+        }
+        for (int i = 0; i < x1.getHouse().getHeight(); i++) {
+            for (int j = 0; j < x1.getHouse().getWidth(); j++) {
+                Map.tiles[i][j] = new Tile(new Location(i, j), "Q", true, false);
+            }
+        }
+        for (int i = 0; i < x1.getQuarry().getHeight(); i++) {
+            for (int j = 0; j < x1.getQuarry().getWidth(); j++) {
+                Map.tiles[i][j] = new Tile(new Location(i, j), "Q", true, false);
+            }
+        }
 
     }
 
