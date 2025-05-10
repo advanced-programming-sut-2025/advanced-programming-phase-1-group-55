@@ -1,6 +1,7 @@
 package model;
 
 import enums.RecipeType;
+import model.Item.Item;
 
 import java.util.List;
 import java.util.Map;

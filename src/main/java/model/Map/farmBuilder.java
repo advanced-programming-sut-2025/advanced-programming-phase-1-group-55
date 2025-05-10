@@ -9,8 +9,8 @@ public class farmBuilder {
     private Lake lake2 = new Lake(4, 4, new Location(16, 0));
     private GreenHouse greenHouse2 = new GreenHouse(6, 5, new Location(0, 0));
     private House house2 = new House(4, 4, new Location(0, 16));
-    public Farm farm1 = new Farm(house1, lake1, greenHouse1, quarry1);
-    public Farm farm2 = new Farm(house2, lake2, greenHouse2, quarry2);
+    public Farm farm1 = new Farm(house1, lake1, greenHouse1, quarry1, new Location(0, 0));
+    public Farm farm2 = new Farm(house2, lake2, greenHouse2, quarry2, new Location(0, 0));
 
     public GameMap mapCreator() {
         //todo memeber ha select konan map haro masalan map selcetive 1 ,2 ,3 ,4 dashte bashim
@@ -21,10 +21,7 @@ public class farmBuilder {
 
     public void fillTiles(GameMap Map, Farm farm) {
         //todo bad taghir dadan tartib farm ha eslah beshe
-        Farm f1 = farm1;
-        Farm f2 = farm2;
-        Farm f3 = farm2;
-        Farm f4 = farm2;
+
 
         for (int i = farm.getQuarry().getLocation().getY(); i < farm.getQuarry().getLocation().getY() + farm.getQuarry().getHeight(); i++) {
             for (int j = farm.getQuarry().getLocation().getX(); j < farm.getQuarry().getLocation().getX() + farm.getQuarry().getWidth(); j++) {

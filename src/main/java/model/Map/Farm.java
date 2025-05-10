@@ -45,11 +45,12 @@ public class Farm {
     private Map<Location, Tree> trees = new HashMap<>();
     private Map<Location, ForagingCrops> crobs = new HashMap<>();
 
-    public Farm(House house, Lake lake, GreenHouse greenHouse, Quarry quarry) {
+    public Farm(House house, Lake lake, GreenHouse greenHouse, Quarry quarry,Location location) {
         this.house = house;
         this.lake = lake;
         this.greenHouse = greenHouse;
         this.quarry = quarry;
+        this.location = location;
     }
     //todo random gozashtan sang mang
     //todo map az foraging seeds
