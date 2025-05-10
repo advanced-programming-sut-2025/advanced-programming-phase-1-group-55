@@ -6,8 +6,9 @@ import java.util.Map;
 
 public class GameMap {
     private Tile[][] map = new Tile[40][70];
+
     //    private ArrayList<Farm> farms=new ArrayList<>();
-    private Farm farm1;
+    private Farm farm1;//baray nafar aval
     private Farm farm2;
     private Farm farm3;
     private Farm farm4;
@@ -23,6 +24,7 @@ public class GameMap {
         this.farm4 = farm4;
 
     }
+
 
     private NpcVillage village = new NpcVillage();
     private char[][] miniMap = new char[40][70];

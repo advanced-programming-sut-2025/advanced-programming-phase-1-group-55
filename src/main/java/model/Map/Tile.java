@@ -5,6 +5,7 @@ import model.ItemOfMap;
 
 public class Tile {
     private Location location;
+    private String mohtaviat;
 
     public boolean isEmpty() {
         return isEmpty;
@@ -18,6 +19,14 @@ public class Tile {
     private boolean walkable;
     private boolean isEmpty;
     private ItemOfMap itemInThisTile;
+
+    public String getMohtaviat() {
+        return mohtaviat;
+    }
+
+    public void setMohtaviat(String mohtaviat) {
+        this.mohtaviat = mohtaviat;
+    }
 
     public Location getLocation() {
         return location;

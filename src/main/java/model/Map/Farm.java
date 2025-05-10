@@ -12,6 +12,25 @@ public class Farm {
     private House house;
     private Lake lake;
     private GreenHouse greenHouse;
+    private int height = 20;
+    private int width = 20;
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
 
     public Location getLocation() {
         return location;

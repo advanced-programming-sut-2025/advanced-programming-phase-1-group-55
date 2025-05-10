@@ -12,10 +12,17 @@ public class farmBuilder {
     public Farm farm1 = new Farm(house1, lake1, greenHouse1, quarry1);
     public Farm farm2 = new Farm(house2, lake2, greenHouse2, quarry2);
 
-    public GameMap mapCreator(int random) {
-        //todo memeber ha select konan map haro
+    public GameMap mapCreator() {
+        //todo memeber ha select konan map haro masalan map selcetive 1 ,2 ,3 ,4 dashte bashim
+        //todo npc add beshe
         return new GameMap(farm1, farm1, farm2, farm2);
 
     }
+
+    public void fillTiles() {
+
+
+    }
+
 
 }
