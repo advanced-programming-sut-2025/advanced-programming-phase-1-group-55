@@ -16,7 +16,7 @@ public class BackPack {
         put("FishingPole", new FishingPole(FishingPoleType.TRAINING_ROD));
         put("Trashcan",new Trashcan());
     }};
-// to do havij , goosht zoghaal va ... yadet nare , bakhsh inventory moonde !!!!!!!
+// todo havij , goosht zoghaal va ... yadet nare , bakhsh inventory moonde !!!!!!!
     private int level=1;
     public Map<String, Tools> getAvailableTools() {
         return availableTools;
