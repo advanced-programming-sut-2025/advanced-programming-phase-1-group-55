@@ -90,7 +90,7 @@ public class MainGameController {
         return new Result(true, getTomorrowWeather().name());
     }
 
-    public Result weathercheat(String type) {
+    public Result weatherCheat(String type) {
         if (type.equals("Sunny")) {
             setCurrentWeather(WeatherType.Sunny);
         } else if (type.equals("Rain")) {
