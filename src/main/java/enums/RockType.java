@@ -1,6 +1,6 @@
 package enums;
 
-public enum ForagingType {
+public enum RockType {
 
     Quartz("Quartz",	"A clear crystal commonly found in caves and mines.",	25),
     Earth_Crystal("Earth Crystal",	"A resinous substance found near the surface.",	50),
@@ -28,7 +28,7 @@ public enum ForagingType {
     private final int SellPrice;
     private final String names;
 
-    ForagingType(String names, String description, int sellPrice) {
+    RockType(String names, String description, int sellPrice) {
         this.names = names;
         this.description = description;
         SellPrice = sellPrice;

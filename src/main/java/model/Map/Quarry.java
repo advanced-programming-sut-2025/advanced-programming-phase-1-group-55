@@ -1,4 +1,4 @@
 package model.Map;
 
-public class quarry {
+public class Quarry {
 }
