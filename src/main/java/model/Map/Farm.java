@@ -15,6 +15,7 @@ public class Farm {
     private int height = 20;
     private int width = 20;
 
+ 
     public int getHeight() {
         return height;
     }
@@ -45,7 +46,7 @@ public class Farm {
     private Map<Location, Tree> trees = new HashMap<>();
     private Map<Location, ForagingCrops> crobs = new HashMap<>();
 
-    public Farm(House house, Lake lake, GreenHouse greenHouse, Quarry quarry,Location location) {
+    public Farm(House house, Lake lake, GreenHouse greenHouse, Quarry quarry, Location location) {
         this.house = house;
         this.lake = lake;
         this.greenHouse = greenHouse;

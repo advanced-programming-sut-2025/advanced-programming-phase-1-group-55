@@ -3,12 +3,12 @@ package model.Map;
 public class place {
     private int height;
     private int width;
-    private Location point;
+    private Location location;
 
-    public place(int height, int width, Location point) {
+    public place(int height, int width, Location location) {
         this.height = height;
         this.width = width;
-        this.point = point;
+        this.location = location;
     }
 
     public int getHeight() {
@@ -28,10 +28,16 @@ public class place {
     }
 
     public Location getLocation() {
-        return point;
+        return location;
     }
 
-    public void setPoint(Location point) {
-        this.point = point;
+
+    public void setLocation(Location location) {
+        this.location = place.this.location;
+    }
+
+    public void changeLocation(int dy, int dx) {
+        this.location = new Location(this.location.getY() + dy, this.location.getX() + dx);
+
     }
 }
