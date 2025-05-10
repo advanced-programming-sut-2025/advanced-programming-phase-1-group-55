@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class GameMap {
-    private Tile[][] map = new Tile[40][70];
+    public Tile[][] tiles = new Tile[40][70];
 
     //    private ArrayList<Farm> farms=new ArrayList<>();
     private Farm farm1;//baray nafar aval
@@ -25,6 +25,38 @@ public class GameMap {
 
     }
 
+
+    public Farm getFarm1() {
+        return farm1;
+    }
+
+    public void setFarm1(Farm farm1) {
+        this.farm1 = farm1;
+    }
+
+    public Farm getFarm2() {
+        return farm2;
+    }
+
+    public void setFarm2(Farm farm2) {
+        this.farm2 = farm2;
+    }
+
+    public Farm getFarm3() {
+        return farm3;
+    }
+
+    public void setFarm3(Farm farm3) {
+        this.farm3 = farm3;
+    }
+
+    public Farm getFarm4() {
+        return farm4;
+    }
+
+    public void setFarm4(Farm farm4) {
+        this.farm4 = farm4;
+    }
 
     private NpcVillage village = new NpcVillage();
     private char[][] miniMap = new char[40][70];
@@ -47,14 +79,6 @@ public class GameMap {
         this.pointsOfTheMap = pointsOfTheMap;
     }
 
-
-    public Tile[][] getMap() {
-        return map;
-    }
-
-    public void setMap(Tile[][] map) {
-        this.map = map;
-    }
 
     public void setMiniMap(char[][] miniMap) {
         this.miniMap = miniMap;

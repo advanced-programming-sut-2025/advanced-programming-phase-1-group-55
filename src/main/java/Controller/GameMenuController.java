@@ -11,7 +11,8 @@ public class GameMenuController {
         //todo error hash ro bezan
         farmBuilder fb = new farmBuilder();
         GameMap Map = fb.mapCreator();
-        Map.setMap();
+        fb.fillTiles(Map);
+
         return new Result(true, "Map selected succesfully!");
     }
 

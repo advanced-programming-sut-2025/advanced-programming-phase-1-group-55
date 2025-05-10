@@ -19,8 +19,17 @@ public class farmBuilder {
 
     }
 
-    public void fillTiles() {
-
+    public void fillTiles(GameMap Map) {
+        //todo bad taghir dadan tartib farm ha eslah beshe
+        Farm x1 = farm1;
+        Farm x2 = farm2;
+        Farm x3 = farm2;
+        Farm x4 = farm2;
+        for (int i = 0; i < x1.getQuarry().getHeight(); i++) {
+            for (int j = 0; j < x1.getQuarry().getWidth(); j++) {
+                Map.tiles[i][j] = new Tile(new Location(i, j), "Q", true, false);
+            }
+        }
 
     }
 

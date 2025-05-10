@@ -7,6 +7,13 @@ public class Tile {
     private Location location;
     private String mohtaviat;
 
+    public Tile(Location location, String mohtaviat, boolean walkable, boolean isEmpty) {
+        this.location = location;
+        this.mohtaviat = mohtaviat;
+        this.walkable = walkable;
+        this.isEmpty = isEmpty;
+    }
+
     public boolean isEmpty() {
         return isEmpty;
     }
