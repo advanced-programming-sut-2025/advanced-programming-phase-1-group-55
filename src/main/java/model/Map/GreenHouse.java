@@ -1,4 +1,4 @@
-package model;
+package model.Map;
 
 public class GreenHouse {
     private Boolean isRepaired = false;
