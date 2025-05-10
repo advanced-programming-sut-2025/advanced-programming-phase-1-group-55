@@ -1,8 +1,13 @@
 package model.Map;
 
 public class Location {
-    private  int y;
+    private int y;
     private int x;
+
+    public Location(int y, int x) {
+        this.y = y;
+        this.x = x;
+    }
 
     public int getY() {
         return y;
