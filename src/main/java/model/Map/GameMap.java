@@ -6,7 +6,20 @@ import java.util.Map;
 
 public class GameMap {
     private Tile[][] map=new Tile[40][70];
-    private ArrayList<Farm> farms=new ArrayList<>();
+//    private ArrayList<Farm> farms=new ArrayList<>();
+    private Farm farm1;
+    private Farm farm2;
+    private Farm farm3;
+    private Farm farm4;
+
+    public GameMap(Farm farm1, Farm farm2, Farm farm3, Farm farm4) {
+        this.farm1 = farm1;
+        this.farm2 = farm2;
+        this.farm3 = farm3;
+        this.farm4 = farm4;
+
+    }
+
     private NpcVillage village=new NpcVillage();
     private  char[][] miniMap=new char[40][70];
     private Map<Location, Tile> pointsOfTheMap=new HashMap<>();

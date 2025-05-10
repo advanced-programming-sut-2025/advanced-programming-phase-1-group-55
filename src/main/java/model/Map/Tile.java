@@ -5,9 +5,20 @@ import model.ItemOfMap;
 
 public class Tile {
     private Location location;
+
+    public boolean isEmpty() {
+        return isEmpty;
+    }
+
+    public void setEmpty(boolean empty) {
+        isEmpty = empty;
+    }
+
     private TileType type;
-    private  boolean isAccessible;
+    private boolean walkable;
+    private boolean isEmpty;
     private ItemOfMap itemInThisTile;
+
     public Location getLocation() {
         return location;
     }
@@ -25,11 +36,11 @@ public class Tile {
     }
 
     public boolean isAccessible() {
-        return isAccessible;
+        return walkable;
     }
 
     public void setAccessible(boolean accessible) {
-        isAccessible = accessible;
+        walkable = accessible;
     }
 
     public ItemOfMap getItemInThisTile() {
