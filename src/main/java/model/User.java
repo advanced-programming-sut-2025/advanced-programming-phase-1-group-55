@@ -1,10 +1,13 @@
 package model;
 
+import model.Map.Location;
+import model.Map.Tile;
 import model.NPC.Npc;
 import model.Tool.BackPack;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
+
+import static model.Game.mainUser;
 
 public class User {
     private String username;
@@ -18,11 +21,22 @@ public class User {
     private User wife = null;
     private HashMap<String, Npc> friendsNpc = new HashMap<>();
     private HashMap<String, User> friendsPlayer = new HashMap<>();
-    private int money;
+    private int gold;
+    private int wood;
+    private int Money;
     private int energy = 200;
     private boolean stayLoggedIn = false;
     private int mostAchievedMoney = 0;
     private int matchPlayed = 0;
+    private Location location;
+
+    public int getMoney() {
+        return Money;
+    }
+
+    public void setMoney(int money) {
+        Money = money;
+    }
 
     public boolean isFainted(int amount) {
         return this.energy - amount <= 0;
@@ -36,6 +50,14 @@ public class User {
     public void increaseEnergy(int amount) {
         this.energy += amount;
         this.energy = Math.min(200, energy);
+    }
+
+    public int getWood() {
+        return wood;
+    }
+
+    public void setWood(int wood) {
+        this.wood = wood;
     }
 
     public int getMostAchievedMoney() {
@@ -175,12 +197,20 @@ public class User {
         this.friendsPlayer = friendsPlayer;
     }
 
-    public int getMoney() {
-        return money;
+    public int getGold() {
+        return gold;
     }
 
-    public void setMoney(int money) {
-        this.money = money;
+    public void setGold(int gold) {
+        this.gold = gold;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
     }
 
     public ArrayList<Trade> getUserTrades() {
@@ -190,4 +220,88 @@ public class User {
     public void setUserTrades(ArrayList<Trade> userTrades) {
         this.userTrades = userTrades;
     }
+
+    public void moveTo(int targetX, int targetY, Tile[][] map) {
+        int startX = mainUser.getLocation().getX();
+        int startY = mainUser.getLocation().getY();
+
+        List<Tile> path = bfs(startX, startY, targetX, targetY, map);
+
+        if (path == null || path.isEmpty()) {
+            System.out.println("there is no path");
+            return;
+        }
+
+        int distance = path.size() - 1;
+        int energyNeeded = (int) Math.ceil(distance / 20.0);
+
+        System.out.println("path found :)   distance : " + distance + " needed energy :  " + energyNeeded);
+        if (mainUser.getEnergy() >= energyNeeded) {
+            System.out.println("are you sure you want to move");
+            Scanner scanner = new Scanner(System.in);
+            String confirm = scanner.nextLine().trim().toLowerCase();
+
+            if (confirm.equals("yes")) {
+                mainUser.setEnergy(mainUser.getEnergy() - energyNeeded);
+                mainUser.getLocation().setX(targetX);
+                mainUser.getLocation().setY(targetY);
+                System.out.println("you moved successfully remained energy : " + mainUser.getEnergy());
+            } else {
+                System.out.println("move canceled! ");
+            }
+        } else {
+            System.out.println("you dont have enough energy needed energy : " + energyNeeded + "current energy : " + mainUser.getEnergy());
+        }
+    }
+
+    public List<Tile> bfs(int startX, int startY, int endX, int endY, Tile[][] map) {
+        int n = map.length;
+        int m = map[0].length;
+
+        boolean[][] visited = new boolean[n][m];
+        Tile[][] parent = new Tile[n][m];
+
+        Queue<int[]> queue = new LinkedList<>();
+        queue.add(new int[]{startX, startY});
+        visited[startX][startY] = true;
+
+        int[][] directions = {
+                {-1, 0}, {1, 0}, {0, -1}, {0, 1},
+                {-1, -1}, {-1, 1}, {1, -1}, {1, 1}
+        };
+
+        while (!queue.isEmpty()) {
+            int[] current = queue.poll();
+            int x = current[0];
+            int y = current[1];
+
+            if (x == endX && y == endY) {
+                List<Tile> path = new ArrayList<>();
+                Tile step = map[x][y];
+                while (step != null) {
+                    path.add(0, step);
+                    int px = step.getLocation().getX();
+                    int py = step.getLocation().getY();
+                    step = parent[px][py];
+                }
+                return path;
+            }
+
+            for (int[] dir : directions) {
+                int nx = x + dir[0];
+                int ny = y + dir[1];
+
+                if (nx >= 0 && ny >= 0 && nx < n && ny < m &&
+                        !visited[nx][ny] && map[nx][ny].isWalkable()) {
+                    visited[nx][ny] = true;
+                    parent[nx][ny] = map[x][y];
+                    queue.add(new int[]{nx, ny});
+                }
+            }
+        }
+
+        return null;
+    }
+
+
 }
