@@ -28,7 +28,7 @@ public class User {
     private boolean stayLoggedIn = false;
     private int mostAchievedMoney = 0;
     private int matchPlayed = 0;
-    private Location location;
+    private Location location = new Location(0, 0);
 
     public int getMoney() {
         return Money;
@@ -222,8 +222,8 @@ public class User {
     }
 
     public void moveTo(int targetX, int targetY, Tile[][] map) {
-        int startX = mainUser.getLocation().getX();
-        int startY = mainUser.getLocation().getY();
+        int startX =0;
+        int startY = 0;
 
         List<Tile> path = bfs(startX, startY, targetX, targetY, map);
 
