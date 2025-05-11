@@ -24,11 +24,11 @@ public class User {
     private int gold;
     private int wood;
     private int Money;
-    private int energy = 200;
+    private double energy = 200;
     private boolean stayLoggedIn = false;
     private int mostAchievedMoney = 0;
     private int matchPlayed = 0;
-    private Location location = new Location(0, 0);
+    private Location location = new Location(0, 0);//todo ino bayad bokonm location aval farmesh
     private boolean fainted = false;
 
     public boolean isFainted() {
@@ -123,11 +123,11 @@ public class User {
         userTrades.add(trade);
     }
 
-    public int getEnergy() {
+    public double getEnergy() {
         return energy;
     }
 
-    public void setEnergy(int energys) {
+    public void setEnergy(double energys) {
         energy = energys;
     }
 
