@@ -2,8 +2,7 @@ package model;
 
 import enums.Seasons;
 import enums.WeatherType;
-import model.GameTime;
-import sun.security.tools.keytool.Main;
+
 
 import java.util.Random;
 
@@ -11,7 +10,7 @@ import static enums.WeatherType.*;
 
 public class weather {
     private static WeatherType CurrentWeather = Sunny;
-    private static WeatherType tomorrowWeather;
+    private static WeatherType tomorrowWeather = RandomWeatherForTommorow();
 
     public static WeatherType RandomWeatherForTommorow() {
         Random random = new Random();
@@ -27,8 +26,26 @@ public class weather {
             } else {
                 tomorrowWeather = Storm;
             }
+        } else if (GameTime.getSeason() == Seasons.fall) {
+
+            if (randomValue % 3 == 0) {
+                tomorrowWeather = Storm;
+            } else if (randomValue % 3 == 1) {
+                tomorrowWeather = Rain;
+            } else {
+                tomorrowWeather = Sunny;
+            }
+        } else {
+            if (randomValue % 3 == 0) {
+                tomorrowWeather = Rain;
+            } else if (randomValue % 3 == 1) {
+                tomorrowWeather = Storm;
+            } else {
+                tomorrowWeather = Sunny;
+            }
         }
         return tomorrowWeather;
+
     }
 
     ;

@@ -20,7 +20,7 @@ public enum mainGameCommands implements Command {
     season("\\s*season\\s*"),
     cheatThor("\\s*cheat Thor -l (?<x>\\d+)\\s(?<y>\\d+)\\s*"),
     weather("\\s*weather\\s*"),
-    weatherForecast("^\\s*weather\\s+forecast\\s*$"),
+    weatherForecast("\\s*weather\\s+forecast\\s*"),
     cheatWeatherSet("^\\s*cheat weather set (?<type>\\S+)\\s*$"),
     greenhouse("^\\s*greenhouse build\\s*");
     private final String pattern;

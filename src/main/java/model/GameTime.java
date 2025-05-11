@@ -51,11 +51,14 @@ public class GameTime {
         DayofMonth = dayofMonth;
     }
 
-    // age zaman roo ziyad ezafe kone momkene bug bede
+    //todo age zaman roo ziyad ezafe kone momkene bug bede
+    //todo mitooni ye tabe bezani be esm rooz bad va karayy ke dar rooz bad bayad bokoni ro too on bezani
     public static void increaseHour(int hour) {
         GameTime.hour += hour;
         if (GameTime.hour >= 22) {
             GameTime.hour = 9;
+            weather.setCurrentWeather(weather.getTomorrowWeather());
+            weather.RandomWeatherForTommorow();
             day = day.nextDay();
             DayofMonth += 1;
             if (DayofMonth > 28) {
@@ -71,6 +74,12 @@ public class GameTime {
 
     public static void increaseDay(int number) {
         DayofMonth += number % 28;
+        for (int i = 0; i < number; i++) {
+
+            weather.setCurrentWeather(weather.getTomorrowWeather());
+            weather.RandomWeatherForTommorow();
+        }
+
         if (DayofMonth + number > 28) {
             currentSeason = currentSeason.nextSeason();
         } else if (DayofMonth + number > 56) {
