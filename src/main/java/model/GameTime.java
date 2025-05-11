@@ -14,7 +14,7 @@ public class GameTime {
 
     private static int hour = 9;
     private static DayOfTheWeeks day = saturday;
-    private static Seasons season = fall;
+    private static Seasons currentSeason = fall;
     private static int DayofMonth = 1;
 
 
@@ -36,11 +36,11 @@ public class GameTime {
     }
 
     public static Seasons getSeason() {
-        return season;
+        return currentSeason;
     }
 
     public static void setSeason(Seasons season) {
-        GameTime.season = season;
+        GameTime.currentSeason = season;
     }
 
     public static int getDayofMonth() {
@@ -60,7 +60,7 @@ public class GameTime {
             DayofMonth += 1;
             if (DayofMonth > 28) {
                 DayofMonth = 1;
-                season = season.nextSeason();
+                currentSeason = currentSeason.nextSeason();
             }
 
 
@@ -72,12 +72,12 @@ public class GameTime {
     public static void increaseDay(int number) {
         DayofMonth += number % 28;
         if (DayofMonth + number > 28) {
-            season = season.nextSeason();
+            currentSeason = currentSeason.nextSeason();
         } else if (DayofMonth + number > 56) {
-            season = season.nextSeason().nextSeason();
+            currentSeason = currentSeason.nextSeason().nextSeason();
 
         } else if (DayofMonth + number > 84) {
-            season = season.nextSeason().nextSeason().nextSeason();
+            currentSeason = currentSeason.nextSeason().nextSeason().nextSeason();
         }
 
 
