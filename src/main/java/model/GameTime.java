@@ -10,6 +10,8 @@ import static enums.Seasons.*;
 import java.awt.*;
 import java.time.LocalDate;
 
+import static model.Game.*;
+
 public class GameTime {
 
     private static int hour = 9;
@@ -56,6 +58,7 @@ public class GameTime {
         GameTime.hour += hour;
         if (GameTime.hour >= 22) {
             GameTime.hour = 9;
+            mainUser.setLocation(mainUser.getPlayerTommorowLocation());
             day = day.nextDay();
             DayofMonth += 1;
             if (DayofMonth > 28) {

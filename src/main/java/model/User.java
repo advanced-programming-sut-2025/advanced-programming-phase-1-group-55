@@ -30,6 +30,15 @@ public class User {
     private int matchPlayed = 0;
     private Location location = new Location(0, 0);//todo ino bayad bokonm location aval farmesh
     private boolean fainted = false;
+    private Location playerTommorowLocation;
+
+    public Location getPlayerTommorowLocation() {
+        return playerTommorowLocation;
+    }
+
+    public void setPlayerTommorowLocation(Location playerTommorowLocation) {
+        this.playerTommorowLocation = playerTommorowLocation;
+    }
 
     public boolean isFainted() {
         return fainted;
@@ -273,8 +282,8 @@ public class User {
 
             if (confirm.equals("yes")) {
                 mainUser.setEnergy(mainUser.getEnergy() - energyNeeded);
-                mainUser.getLocation().setX(targetX);
-                mainUser.getLocation().setY(targetY);
+                playerTommorowLocation = new Location(targetY, targetX);
+
                 System.out.println("you moved successfully remained energy : " + mainUser.getEnergy());
             } else {
                 System.out.println("move canceled! ");
