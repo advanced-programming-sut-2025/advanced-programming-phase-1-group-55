@@ -27,7 +27,7 @@ public class GameMenu extends AppView implements AppMenu {
             System.out.println(Map.printMap());
             readfile();
             mainUser = AllUsers.get("arshiaF2");
-            mainUser.moveTo(10, 10, Map.tiles);
+            mainUser.moveTo(13, 3, Map.tiles);
         }
 
     }
