@@ -15,6 +15,7 @@ public class GameMenu extends AppView implements AppMenu {
     @Override
     public void check(String input) {
         if (input.equals("1")) {
+            //todo inaro az inja bardarim
             farmBuilder fb = new farmBuilder();
             mapBuilder mb = new mapBuilder();
             GameMap Map = fb.mapCreator();
@@ -26,7 +27,7 @@ public class GameMenu extends AppView implements AppMenu {
             mb.initializeMapTiles(Map);
             System.out.println(Map.printMap());
             readfile();
-            mainUser = AllUsers.get("arshiaF2");
+            mainUser = AllUsers.get("arshia");
             mainUser.moveTo(13, 3, Map.tiles);
         }
 

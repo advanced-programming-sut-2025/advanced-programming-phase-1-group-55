@@ -251,8 +251,8 @@ public class User {
 
 
     public void moveTo(int targetX, int targetY, Tile[][] map) {
-        int startX = 0;//todo baray user bayad ye location avalie dar nazar begiram
-        int startY = 0;
+        int startX = mainUser.getLocation().getX();
+        int startY = mainUser.getLocation().getY();
 
         List<Tile> path = bfs(startX, startY, targetX, targetY, map);
 
