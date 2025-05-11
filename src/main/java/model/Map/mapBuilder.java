@@ -31,6 +31,83 @@ public class mapBuilder {
         }
         villageBuilder(map);
     }
+    public void insideOfStore(GameMap map){
+        for(int i=13;i<16;i++){
+            for (int j=38;j<44;j++){
+                //todo daakhel maghaaze
+            }
+        }
+    }
+    public void placeStore(GameMap map){
+        //place stores and npc
+        for(int i=12;i<17;i++){
+            map.tiles[i][37]=new Tile(new Location(i,37),"#",false,false,TileType.building);
+            map.tiles[i][44]=new Tile(new Location(i,44),"#",false,false,TileType.building);
+            map.tiles[i+12][37]=new Tile(new Location(i+12,37),"#",false,false,TileType.building);
+            map.tiles[i+12][44]=new Tile(new Location(i+12,44),"#",false,false,TileType.building);
+            map.tiles[i][49]=new Tile(new Location(i,49),"#",false,false,TileType.building);
+            map.tiles[i][56]=new Tile(new Location(i,56),"#",false,false,TileType.building);
+            map.tiles[i+12][49]=new Tile(new Location(i+12,49),"#",false,false,TileType.building);
+            map.tiles[i+12][56]=new Tile(new Location(i+12,56),"#",false,false,TileType.building);
+            map.tiles[i][61]=new Tile(new Location(i,61),"#",false,false,TileType.building);
+            map.tiles[i][68]=new Tile(new Location(i,68),"#",false,false,TileType.building);
+            map.tiles[i+12][61]=new Tile(new Location(i+12,61),"#",false,false,TileType.building);
+            map.tiles[i+12][68]=new Tile(new Location(i+12,68),"#",false,false,TileType.building);
+            map.tiles[i][81]=new Tile(new Location(i,81),"#",false,false,TileType.building);
+            map.tiles[i][88]=new Tile(new Location(i,88),"#",false,false,TileType.building);
+            map.tiles[i+12][81]=new Tile(new Location(i+12,81),"#",false,false,TileType.building);
+            map.tiles[i+12][88]=new Tile(new Location(i+12,88),"#",false,false,TileType.building);
+            map.tiles[i][94]=new Tile(new Location(i,94),"#",false,false,TileType.building);
+            map.tiles[i][101]=new Tile(new Location(i,101),"#",false,false,TileType.building);
+            map.tiles[i+12][94]=new Tile(new Location(i+12,94),"#",false,false,TileType.building);
+            map.tiles[i+12][101]=new Tile(new Location(i+12,101),"#",false,false,TileType.building);
+            map.tiles[i][110]=new Tile(new Location(i,110),"#",false,false,TileType.building);
+            map.tiles[i][117]=new Tile(new Location(i,117),"#",false,false,TileType.building);
+            map.tiles[i+12][110]=new Tile(new Location(i+12,110),"#",false,false,TileType.building);
+            map.tiles[i+12][117]=new Tile(new Location(i+12,117),"#",false,false,TileType.building);
+        }
+        for(int j=37;j<45;j++){
+            map.tiles[12][j]=new Tile(new Location(12,j),"#",false,false,TileType.building);
+            map.tiles[16][j]=new Tile(new Location(16,j),"#",false,false,TileType.building);
+            map.tiles[24][j]=new Tile(new Location(14,j),"#",false,false,TileType.building);
+            map.tiles[28][j]=new Tile(new Location(28,j),"#",false,false,TileType.building);
+            map.tiles[12][j+12]=new Tile(new Location(12,j+12),"#",false,false,TileType.building);
+            map.tiles[16][j+12]=new Tile(new Location(16,j+12),"#",false,false,TileType.building);
+            map.tiles[24][j+12]=new Tile(new Location(14,j+12),"#",false,false,TileType.building);
+            map.tiles[28][j+12]=new Tile(new Location(28,j+12),"#",false,false,TileType.building);
+            map.tiles[12][j+24]=new Tile(new Location(12,j+24),"#",false,false,TileType.building);
+            map.tiles[16][j+24]=new Tile(new Location(16,j+24),"#",false,false,TileType.building);
+            map.tiles[24][j+24]=new Tile(new Location(14,j+24),"#",false,false,TileType.building);
+            map.tiles[28][j+24]=new Tile(new Location(28,j+24),"#",false,false,TileType.building);
+            map.tiles[12][j+44]=new Tile(new Location(12,j+44),"#",false,false,TileType.building);
+            map.tiles[16][j+44]=new Tile(new Location(16,j+44),"#",false,false,TileType.building);
+            map.tiles[24][j+44]=new Tile(new Location(14,j+44),"#",false,false,TileType.building);
+            map.tiles[28][j+44]=new Tile(new Location(28,j+44),"#",false,false,TileType.building);
+            map.tiles[12][j+57]=new Tile(new Location(12,j+57),"#",false,false,TileType.building);
+            map.tiles[16][j+57]=new Tile(new Location(16,j+57),"#",false,false,TileType.building);
+            map.tiles[24][j+57]=new Tile(new Location(14,j+57),"#",false,false,TileType.building);
+            map.tiles[28][j+57]=new Tile(new Location(28,j+57),"#",false,false,TileType.building);
+            map.tiles[12][j+73]=new Tile(new Location(12,j+73),"#",false,false,TileType.building);
+            map.tiles[16][j+73]=new Tile(new Location(16,j+73),"#",false,false,TileType.building);
+            map.tiles[24][j+73]=new Tile(new Location(14,j+73),"#",false,false,TileType.building);
+            map.tiles[28][j+73]=new Tile(new Location(28,j+73),"#",false,false,TileType.building);
+            if(j==41||j==42){
+                map.tiles[16][j]=new Tile(new Location(16,j),"=",true,false,TileType.building);
+                map.tiles[28][j]=new Tile(new Location(28,j),"=",true,false,TileType.building);
+                map.tiles[16][j+12]=new Tile(new Location(16,j+12),"=",true,false,TileType.building);
+                map.tiles[28][j+12]=new Tile(new Location(28,j+12),"=",true,false,TileType.building);
+                map.tiles[16][j+24]=new Tile(new Location(16,j+24),"=",true,false,TileType.building);
+                map.tiles[28][j+24]=new Tile(new Location(28,j+24),"=",true,false,TileType.building);
+                map.tiles[16][j+44]=new Tile(new Location(16,j+44),"=",true,false,TileType.building);
+                map.tiles[28][j+44]=new Tile(new Location(28,j+44),"=",true,false,TileType.building);
+                map.tiles[16][j+57]=new Tile(new Location(16,j+57),"=",true,false,TileType.building);
+                map.tiles[28][j+57]=new Tile(new Location(28,j+57),"=",true,false,TileType.building);
+                map.tiles[16][j+73]=new Tile(new Location(16,j+73),"=",true,false,TileType.building);
+                map.tiles[28][j+73]=new Tile(new Location(28,j+73),"=",true,false,TileType.building);
+            }
+        }
+
+    }
     public  void villageBuilder(GameMap map){
          for(int i=10;i<31;i++){
              map.tiles[i][35]=new Tile(new Location(i,35),"#",false,false,TileType.building);
@@ -48,5 +125,7 @@ public class mapBuilder {
                  map.tiles[31][j]=new Tile(new Location(31,j),"=",true,false,TileType.building);
              }
          }
+         placeStore(map);
+
     }
 }
