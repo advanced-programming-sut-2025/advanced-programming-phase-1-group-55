@@ -103,11 +103,11 @@ public class GameMap {
     public AnsiColor colorOfTile(String item){
         AnsiColor color=AnsiColor.RESET;
         color = switch (item) {
-            case "L" -> AnsiColor.BLUE;
-            case "Q" -> AnsiColor.BRIGHT_BLACK;
-            case "H" -> AnsiColor.BRIGHT_CYAN;
-            case "G" -> AnsiColor.YELLOW;
-            case "#" -> AnsiColor.WHITE;
+            case "W" -> AnsiColor.BLUE;
+            case "^" -> AnsiColor.BRIGHT_BLACK;
+            case "h" -> AnsiColor.BRIGHT_CYAN;
+            case "g" -> AnsiColor.OLIVE_GREEN;
+            case "#" -> AnsiColor.ORANGE;
             case "=" -> AnsiColor.RED;
             default -> color;
         };
@@ -123,7 +123,7 @@ public class GameMap {
                     map.append(color).append(t.getMohtaviat()).append(AnsiColor.RESET);
                 }
                 else {
-                    map.append(AnsiColor.GREEN).append(".").append(AnsiColor.RESET);
+                    map.append(AnsiColor.PINK).append(".").append(AnsiColor.RESET);
                 }
             }
             map.append("\n");

@@ -3,6 +3,7 @@ package enums;
 public enum AnsiColor {
     RESET("\u001B[0m"),
 
+    // Text colors
     BLACK("\u001B[30m"),
     RED("\u001B[31m"),
     GREEN("\u001B[32m"),
@@ -11,6 +12,16 @@ public enum AnsiColor {
     PURPLE("\u001B[35m"),
     CYAN("\u001B[36m"),
     WHITE("\u001B[37m"),
+    BROWN("\u001B[38;2;139;69;19m"),
+    RICH_GREEN("\u001B[38;2;0;128;0m"),
+    BG_RICH_GREEN("\u001B[48;2;0;128;0m"),
+    OLIVE_GREEN("\u001B[38;2;85;107;47m"),
+    BG_OLIVE_GREEN("\u001B[48;2;85;107;47m"),
+    PINK("\u001B[38;2;255;192;203m"),
+    BG_PINK("\u001B[48;2;255;192;203m"),
+    // رنگ پس‌زمینه قهوه‌ای
+    BG_BROWN("\u001B[48;2;139;69;19m"),
+    // Bright text colors
     BRIGHT_BLACK("\u001B[90m"),
     BRIGHT_RED("\u001B[91m"),
     BRIGHT_GREEN("\u001B[92m"),
@@ -19,6 +30,7 @@ public enum AnsiColor {
     BRIGHT_PURPLE("\u001B[95m"),
     BRIGHT_CYAN("\u001B[96m"),
     BRIGHT_WHITE("\u001B[97m"),
+
     // Background colors
     BG_BLACK("\u001B[40m"),
     BG_RED("\u001B[41m"),
@@ -38,6 +50,11 @@ public enum AnsiColor {
     BG_BRIGHT_PURPLE("\u001B[105m"),
     BG_BRIGHT_CYAN("\u001B[106m"),
     BG_BRIGHT_WHITE("\u001B[107m"),
+
+    // Simulated Orange
+    ORANGE("\u001B[38;2;255;165;0m"),
+    BG_ORANGE("\u001B[48;2;255;165;0m"),
+
 
     // Styles
     BOLD("\u001B[1m"),

@@ -39,22 +39,22 @@ public class farmBuilder {
 
         for (int i = farm.getQuarry().getLocation().getY(); i < farm.getQuarry().getLocation().getY() + farm.getQuarry().getWidth(); i++) {
             for (int j = farm.getQuarry().getLocation().getX(); j < farm.getQuarry().getLocation().getX() + farm.getQuarry().getHeight(); j++) {
-                Map.tiles[i][j] = new Tile(new Location(i, j), "Q", true, false,TileType.building);
+                Map.tiles[i][j] = new Tile(new Location(i, j), "^", true, false,TileType.building);
             }
         }
         for (int i = farm.getLake().getLocation().getY(); i < farm.getLake().getLocation().getY() + farm.getLake().getWidth(); i++) {
             for (int j = farm.getLake().getLocation().getX(); j < farm.getLake().getLocation().getX() + farm.getLake().getHeight(); j++) {
-                Map.tiles[i][j] = new Tile(new Location(i, j), "L", false, false,TileType.water);
+                Map.tiles[i][j] = new Tile(new Location(i, j), "W", false, false,TileType.water);
             }
         }
         for (int i = farm.getHouse().getLocation().getY(); i < farm.getHouse().getLocation().getY() + farm.getHouse().getWidth(); i++) {
             for (int j = farm.getHouse().getLocation().getX(); j < farm.getHouse().getLocation().getX() + farm.getHouse().getHeight(); j++) {
-                Map.tiles[i][j] = new Tile(new Location(i, j), "H", true, false,TileType.building);
+                Map.tiles[i][j] = new Tile(new Location(i, j), "h", true, false,TileType.building);
             }
         }
         for (int i = farm.getGreenHouse().getLocation().getY(); i < farm.getGreenHouse().getLocation().getY() + farm.getGreenHouse().getWidth(); i++) {
             for (int j = farm.getGreenHouse().getLocation().getX(); j < farm.getGreenHouse().getLocation().getX() + farm.getGreenHouse().getHeight(); j++) {
-                Map.tiles[i][j] = new Tile(new Location(i, j), "G", true, false,TileType.building);
+                Map.tiles[i][j] = new Tile(new Location(i, j), "g", true, false,TileType.building);
             }
         }
 

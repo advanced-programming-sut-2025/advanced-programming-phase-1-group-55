@@ -34,7 +34,19 @@ public class mapBuilder {
     public void insideOfStore(GameMap map){
         for(int i=13;i<16;i++){
             for (int j=38;j<44;j++){
-                //todo daakhel maghaaze
+                map.tiles[i][j]=new Tile(new Location(i,j),"$",true,false,TileType.building);
+                map.tiles[i][j+12]=new Tile(new Location(i,j+12),"B",true,false,TileType.building);
+                map.tiles[i][j+24]=new Tile(new Location(i,j+24),"O",true,false,TileType.building);
+                map.tiles[i][j+44]=new Tile(new Location(i,j+44),"S",true,false,TileType.building);
+                map.tiles[i][j+57]=new Tile(new Location(i,j+57),"G",true,false,TileType.building);
+                map.tiles[i][j+73]=new Tile(new Location(i,j+73),"C",true,false,TileType.building);
+                map.tiles[i+12][j]=new Tile(new Location(i+12,j),"F",true,false,TileType.building);
+                map.tiles[i+12][j+12]=new Tile(new Location(i+12,j+12),"M",true,false,TileType.building);
+                map.tiles[i+12][j+24]=new Tile(new Location(i+12,j+24),"A",true,false,TileType.building);
+                map.tiles[i+12][j+44]=new Tile(new Location(i+12,j+44),"H",true,false,TileType.building);
+                map.tiles[i+12][j+57]=new Tile(new Location(i+12,j+57),"L",true,false,TileType.building);
+                map.tiles[i+12][j+73]=new Tile(new Location(i+12,j+73),"R",true,false,TileType.building);
+
             }
         }
     }
@@ -106,6 +118,7 @@ public class mapBuilder {
                 map.tiles[28][j+73]=new Tile(new Location(28,j+73),"=",true,false,TileType.building);
             }
         }
+        insideOfStore(map);
 
     }
     public  void villageBuilder(GameMap map){
