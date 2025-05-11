@@ -14,9 +14,9 @@ public class GameMap {
     private Farm farm2;
     private Farm farm3;
     private Farm farm4;
-
+    private  NpcVillage village;
     //todo npc village add beshe!!
-    public GameMap(Farm farm1, Farm farm2, Farm farm3, Farm farm4) {
+    public GameMap(Farm farm1, Farm farm2, Farm farm3, Farm farm4,NpcVillage village) {
 
         farm2.setLocation(new Location(farm2.getLocation().getY() + 21, farm2.getLocation().getX()));
         farm2.getQuarry().changeLocation(21, 0);
@@ -37,6 +37,7 @@ public class GameMap {
         this.farm2 = farm2;
         this.farm3 = farm3;
         this.farm4 = farm4;
+        this.village=village;
 
     }
 
@@ -73,7 +74,6 @@ public class GameMap {
         this.farm4 = farm4;
     }
 
-    private NpcVillage village = new NpcVillage();
     private Map<Location, Tile> pointsOfTheMap = new HashMap<>();
     private Map<Location, Character> MiniMap = new HashMap<>();
 

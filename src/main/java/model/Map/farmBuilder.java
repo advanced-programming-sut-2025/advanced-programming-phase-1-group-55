@@ -29,7 +29,7 @@ public class farmBuilder {
         House house2_copy = new House(4, 4, new Location(house2.getLocation().getY(), house2.getLocation().getX()));
         farm2_copy = new Farm(house2_copy, lake2_copy, greenHouse2_copy, quarry2_copy, new Location(0, 0));
 
-        return new GameMap(farm1, farm1_copy, farm2, farm2_copy);
+        return new GameMap(farm1, farm1_copy, farm2, farm2_copy,new NpcVillage());
     }
 
 
