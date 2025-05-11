@@ -22,8 +22,8 @@ public class GameMenu extends AppView implements AppMenu {
             fb.fillTiles(Map, Map.getFarm2());
             fb.fillTiles(Map, Map.getFarm3());
             fb.fillTiles(Map, Map.getFarm4());
-            for (int i = 0; i < Map.tiles.length; i++) {          // پیمایش ردیف‌ها
-                for (int j = 0; j < Map.tiles[i].length; j++) {   // پیمایش ستون‌ها
+            for (int i = 0; i < 40; i++) {          // پیمایش ردیف‌ها
+                for (int j = 0; j < 70; j++) {   // پیمایش ستون‌ها
                     Tile t = Map.tiles[i][j];
                     if (t != null) {
 
