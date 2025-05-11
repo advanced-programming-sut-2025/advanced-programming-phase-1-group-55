@@ -1,5 +1,7 @@
 package model.Map;
 
+import enums.AnsiColor;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -98,16 +100,30 @@ public class GameMap {
     public void setVillage(NpcVillage village) {
         this.village = village;
     }
+    public AnsiColor colorOfTile(String item){
+        AnsiColor color=AnsiColor.RESET;
+        color = switch (item) {
+            case "L" -> AnsiColor.BLUE;
+            case "Q" -> AnsiColor.BRIGHT_BLACK;
+            case "H" -> AnsiColor.BRIGHT_CYAN;
+            case "G" -> AnsiColor.YELLOW;
+            case "#" -> AnsiColor.WHITE;
+            case "=" -> AnsiColor.RED;
+            default -> color;
+        };
+        return color;
+    }
     public String printMap(){
         StringBuilder map=new StringBuilder();
         for (int i = 0; i < 41; i++) {
             for (int j = 0; j < 160; j++) {
                 Tile t = tiles[i][j];
                 if (t != null) {
-                    map.append(t.getMohtaviat());
+                    AnsiColor color=colorOfTile(t.getMohtaviat());
+                    map.append(color).append(t.getMohtaviat()).append(AnsiColor.RESET);
                 }
                 else {
-                    map.append(".");
+                    map.append(AnsiColor.GREEN).append(".").append(AnsiColor.RESET);
                 }
             }
             map.append("\n");
