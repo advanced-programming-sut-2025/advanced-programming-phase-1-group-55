@@ -1,13 +1,9 @@
 package model.FarmingProdocts;
-
-
-
-
 import java.util.List;
 
 public class Crop {
     private final String name;
-    private final String seedSource;
+    private final Seed seed;
     private final List<Integer> stages;
     private final int totalHarvestTime;
     private final boolean isOneTime;
@@ -15,15 +11,14 @@ public class Crop {
     private final int baseSellPrice;
     private final boolean isEdible;
     private final int baseEnergy;
-    private final String season;
     private final boolean canBecomeGiant;
 
 
-
-
-    public Crop(String name, String seedSource, List<Integer> stages, int totalHarvestTime, boolean isOneTime, int regrowthTime, int baseSellPrice, boolean isEdible, int baseEnergy, String season, boolean canBecomeGiant) {
+    public Crop(String name, Seed seed, List<Integer> stages, int totalHarvestTime, boolean isOneTime,
+                int regrowthTime, int baseSellPrice, boolean isEdible, int baseEnergy,
+                boolean canBecomeGiant) {
         this.name = name;
-        this.seedSource = seedSource;
+        this.seed = seed;
         this.stages = stages;
         this.totalHarvestTime = totalHarvestTime;
         this.isOneTime = isOneTime;
@@ -31,17 +26,16 @@ public class Crop {
         this.baseSellPrice = baseSellPrice;
         this.isEdible = isEdible;
         this.baseEnergy = baseEnergy;
-        this.season = season;
         this.canBecomeGiant = canBecomeGiant;
     }
 
-
+    // متدهای getter
     public String getName() {
         return name;
     }
 
-    public String getSeedSource() {
-        return seedSource;
+    public Seed getSeed() {
+        return seed;
     }
 
     public List<Integer> getStages() {
@@ -73,7 +67,7 @@ public class Crop {
     }
 
     public String getSeason() {
-        return season;
+        return seed.getSeason();
     }
 
     public boolean canBecomeGiant() {
@@ -84,17 +78,18 @@ public class Crop {
     public String toString() {
         return "Crop{" +
                 "name='" + name + '\'' +
-                ", seedSource='" + seedSource + '\'' +
+                ", seedSource='" + seed.getName() + '\'' +
                 ", stages=" + stages +
                 ", totalHarvestTime=" + totalHarvestTime +
                 ", regrowthTime=" + regrowthTime +
                 ", baseSellPrice=" + baseSellPrice +
                 ", isEdible=" + isEdible +
                 ", baseEnergy=" + baseEnergy +
-                ", season='" + season + '\'' +
+                ", season='" + seed.getSeason() + '\'' +
                 ", canBecomeGiant=" + canBecomeGiant +
                 '}';
     }
 }
+
 
 

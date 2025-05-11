@@ -2,7 +2,7 @@ package model.FarmingProdocts;
 import java.util.List;
 public class Tree {
     private final String name;
-    private final String seedSource;
+    private final Seed seedSource;  // تغییر نوع به Seed
     private final List<Integer> stages;
     private final int totalHarvestTime;
     private final String fruits;
@@ -10,9 +10,8 @@ public class Tree {
     private final int fruitBaseSellPrice;
     private final boolean isFruitEdible;
     private final int fruitEnergy;
-    private final String season;
 
-    public Tree(String name, String seedSource, List<Integer> stages, int totalHarvestTime, String fruits, int fruitHarvestCycle, int fruitBaseSellPrice, boolean isFruitEdible, int fruitEnergy, String season) {
+    public Tree(String name, Seed seedSource, List<Integer> stages, int totalHarvestTime, String fruits, int fruitHarvestCycle, int fruitBaseSellPrice, boolean isFruitEdible, int fruitEnergy) {
         this.name = name;
         this.seedSource = seedSource;
         this.stages = stages;
@@ -22,14 +21,14 @@ public class Tree {
         this.fruitBaseSellPrice = fruitBaseSellPrice;
         this.isFruitEdible = isFruitEdible;
         this.fruitEnergy = fruitEnergy;
-        this.season = season;
     }
 
+    // متدهای getter
     public String getName() {
         return name;
     }
 
-    public String getSeedSource() {
+    public Seed getSeedSource() {
         return seedSource;
     }
 
@@ -62,23 +61,25 @@ public class Tree {
     }
 
     public String getSeason() {
-        return season;
+        return seedSource.getSeason();  // استفاده از getSeason از Seed
     }
+
 
 
     @Override
     public String toString() {
-        return "Crop{" +
+        return "Tree{" +
                 "name='" + name + '\'' +
-                ", seedSource='" + seedSource + '\'' +
+                ", seedSource='" + seedSource.getName() + '\'' +
                 ", stages=" + stages +
                 ", totalHarvestTime=" + totalHarvestTime +
-                ", fruits=" + fruits +
+                ", fruits='" + fruits + '\'' +
                 ", fruitHarvestCycle=" + fruitHarvestCycle +
                 ", fruitBaseSellPrice=" + fruitBaseSellPrice +
                 ", isFruitEdible=" + isFruitEdible +
-                ", fruitEnergy='" + fruitEnergy + '\'' +
-                ", season=" + season +
+                ", fruitEnergy=" + fruitEnergy +
+                ", season='" + seedSource.getSeason() + '\'' +
                 '}';
     }
 }
+

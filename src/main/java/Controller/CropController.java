@@ -23,7 +23,7 @@ public class CropController {
             if (crop.getName().equalsIgnoreCase(name)) {
                 StringBuilder sb = new StringBuilder("Crop found:\n");
                 sb.append("Name: ").append(crop.getName()).append("\n")
-                        .append("Source: ").append(crop.getSeedSource()).append("\n")
+                        .append("Source: ").append(crop.getSeed().getName()).append("\n")
                         .append("Stages: ").append(crop.getStages()).append("\n")
                         .append("Total Harvest Time: ").append(crop.getTotalHarvestTime()).append("\n")
                         .append("One Time: ").append(crop.isOneTime()).append("\n")
@@ -31,7 +31,7 @@ public class CropController {
                         .append("Base Sell Price: ").append(crop.getBaseSellPrice()).append("\n")
                         .append("Is Edible:").append(crop.isEdible()).append("\n")
                         .append("Base Energy: ").append(crop.getBaseEnergy()).append("\n")
-                        .append("Season: ").append(crop.getSeason()).append("\n")
+                        .append("Season: ").append(crop.getSeed().getSeason()).append("\n")
                         .append("Can become Giant: ").append(crop.canBecomeGiant()).append("\n");
                 return new Result(true, sb.toString());
             }

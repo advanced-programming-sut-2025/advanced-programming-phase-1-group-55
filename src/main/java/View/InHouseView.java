@@ -16,20 +16,11 @@ public class InHouseView implements AppMenu {
 
         Matcher matcher = null;
 
-        // 🏡 دستورات خاص خانه
-        if ((matcher = InHouseCommands.sleep.getMatcher(input)) != null) {
-            System.out.println("شما به رختخواب رفتید... روز جدید آغاز شد!");
-            // مثلاً می‌تونه روز را در مدل جلو ببرد
-
-        } else if ((matcher = InHouseCommands.changeClothes.getMatcher(input)) != null) {
-            System.out.println("لباس شما با موفقیت تغییر کرد.");
-
-        } else if ((matcher = InHouseCommands.saveGame.getMatcher(input)) != null) {
-            System.out.println("بازی ذخیره شد.");
-
-        } else {
-            // اگر دستور خاص خانه نبود، بفرست به MainGameView برای بررسی دستورات عمومی
-            mainGameView.check(input);
-        }
+//        if() {
+//
+//        } else {
+//
+//            mainGameView.check(input);
+//        }
     }
 }
