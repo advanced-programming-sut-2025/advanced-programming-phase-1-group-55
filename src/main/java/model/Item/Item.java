@@ -1,4 +1,5 @@
 package model.Item;
 
-public class Item {
+public abstract class Item {
+    private int number;
 }

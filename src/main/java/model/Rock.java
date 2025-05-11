@@ -7,6 +7,11 @@ public class Rock {
     private Location location;
     private RockType rockType;
 
+    public Rock(Location location, RockType rockType) {
+        this.location = location;
+        this.rockType = rockType;
+    }
+
     public Location getLocation() {
         return location;
     }

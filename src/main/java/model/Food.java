@@ -1,6 +1,8 @@
 package model;
 
-public class Food {
+import model.Item.Item;
+
+public class Food  {
     private String name;
     private int energyBoost;
     private Buff buff;

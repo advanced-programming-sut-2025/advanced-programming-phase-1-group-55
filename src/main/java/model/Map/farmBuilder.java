@@ -1,5 +1,10 @@
 package model.Map;
 
+import enums.RockType;
+import model.Rock;
+
+import java.util.Random;
+
 public class farmBuilder {
     private Farm farm1, farm1_copy, farm2, farm2_copy;
 
@@ -34,6 +39,7 @@ public class farmBuilder {
 
 
     public void fillFarmTiles(GameMap Map, Farm farm) {
+        Random rand=new Random();
         //todo bad taghir dadan tartib farm ha eslah beshe
 
 
@@ -57,6 +63,23 @@ public class farmBuilder {
                 Map.tiles[i][j] = new Tile(new Location(i, j), "g", true, false,TileType.building);
             }
         }
+        //random items
+            //rocks
+        int numberOfRocks=0;
+        do {
+            int x = rand.nextInt(3);
+            int y = rand.nextInt(3);
+            Tile tile = Map.tiles[y + farm.getQuarry().getLocation().getY()][x + farm.getQuarry().getLocation().getX()];
+            if (tile.getMohtaviat() .equals("^")) {
+                tile.setMohtaviat("0");
+                tile.setEmpty(false);
+                tile.setAccessible(true);
+                tile.setWalkable(true);
+                numberOfRocks++;
+                int rockType=rand.nextInt(17);
+                farm.getRocks().put(tile.getLocation(),new Rock(tile.getLocation(), RockType.getTypeByInt(rockType)));
+            }
+        } while (numberOfRocks != 3);
 
 
     }

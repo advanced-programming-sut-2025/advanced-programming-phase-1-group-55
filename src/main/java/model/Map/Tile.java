@@ -65,4 +65,12 @@ public class Tile {
     public void setItemInThisTile(ItemOfMap itemInThisTile) {
         this.itemInThisTile = itemInThisTile;
     }
+
+    public boolean isWalkable() {
+        return walkable;
+    }
+
+    public void setWalkable(boolean walkable) {
+        this.walkable = walkable;
+    }
 }

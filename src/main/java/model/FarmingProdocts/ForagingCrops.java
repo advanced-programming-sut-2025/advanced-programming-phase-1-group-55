@@ -1,6 +1,8 @@
 package model.FarmingProdocts;
 
-public class ForagingCrops {
+import model.Item.Item;
+
+public class ForagingCrops  {
     private String name;
     private final String season;
     private final int baseSellPrice;

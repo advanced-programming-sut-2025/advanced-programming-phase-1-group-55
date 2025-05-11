@@ -42,7 +42,28 @@ public enum RockType {
         return SellPrice;
     }
 
-    public String getNames() {
+    public  String getNames() {
         return names;
+    }
+    public  static RockType getTypeByInt(int x){
+        return switch (x) {
+            case 0 -> Topa;
+            case 1 -> Quartz;
+            case 2 -> Fire_Quartz;
+            case 3 -> Frozen_Tear;
+            case 4 -> Emerald;
+            case 5 -> Earth_Crystal;
+            case 6 -> Iron;
+            case 7 -> Diamond;
+            case 8 -> Iriduim;
+            case 9 -> Aquamarine;
+            case 10 -> Prismatic_Shard;
+            case 11 -> Amethyst;
+            case 12 -> Coal;
+            case 13 -> Copper;
+            case 14 -> Gold;
+            case 15 -> Ruby;
+            default -> Jade;
+        };
     }
 }

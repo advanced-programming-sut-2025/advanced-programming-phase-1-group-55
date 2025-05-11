@@ -15,7 +15,6 @@ public class GameMap {
     private Farm farm3;
     private Farm farm4;
     private  NpcVillage village;
-    //todo npc village add beshe!!
     public GameMap(Farm farm1, Farm farm2, Farm farm3, Farm farm4,NpcVillage village) {
 
         farm2.setLocation(new Location(farm2.getLocation().getY() + 21, farm2.getLocation().getX()));
