@@ -1,25 +1,35 @@
 package model.Map;
 
 public class farmBuilder {
-    private Quarry quarry1 = new Quarry(4, 4, new Location(0, 0));
-    private Lake lake1 = new Lake(4, 4, new Location(16, 0));
-    private GreenHouse greenHouse1 = new GreenHouse(6, 5, new Location(15, 14));
-    private House house1 = new House(4, 4, new Location(0, 16));
-    private Quarry quarry2 = new Quarry(4, 4, new Location(16, 16));
-    private Lake lake2 = new Lake(4, 4, new Location(16, 0));
-    private GreenHouse greenHouse2 = new GreenHouse(6, 5, new Location(0, 0));
-    private House house2 = new House(4, 4, new Location(0, 16));
-    public Farm farm1 = new Farm(house1, lake1, greenHouse1, quarry1, new Location(0, 0));
-    public Farm farm1_copy = new Farm(house1, lake1, greenHouse1, quarry1, new Location(0, 0));
-    public Farm farm2 = new Farm(house2, lake2, greenHouse2, quarry2, new Location(0, 0));
-    public Farm farm2_copy = new Farm(house2, lake2, greenHouse2, quarry2, new Location(0, 0));
+    private Farm farm1, farm1_copy, farm2, farm2_copy;
 
     public GameMap mapCreator() {
-        //todo memeber ha select konan map haro masalan map selcetive 1 ,2 ,3 ,4 dashte bashim
-        //todo npc add beshe
+
+        Quarry quarry1 = new Quarry(4, 4, new Location(0, 0));
+        Lake lake1 = new Lake(4, 4, new Location(16, 0));
+        GreenHouse greenHouse1 = new GreenHouse(6, 5, new Location(15, 14));
+        House house1 = new House(4, 4, new Location(0, 16));
+        farm1 = new Farm(house1, lake1, greenHouse1, quarry1, new Location(0, 0));
+
+        Quarry quarry1_copy = new Quarry(4, 4, new Location(quarry1.getLocation().getY(), quarry1.getLocation().getX()));
+        Lake lake1_copy = new Lake(4, 4, new Location(lake1.getLocation().getY(), lake1.getLocation().getX()));
+        GreenHouse greenHouse1_copy = new GreenHouse(6, 5, new Location(greenHouse1.getLocation().getY(), greenHouse1.getLocation().getX()));
+        House house1_copy = new House(4, 4, new Location(house1.getLocation().getY(), house1.getLocation().getX()));
+        farm1_copy = new Farm(house1_copy, lake1_copy, greenHouse1_copy, quarry1_copy, new Location(0, 0));
+
+        Quarry quarry2 = new Quarry(4, 4, new Location(16, 16));
+        Lake lake2 = new Lake(4, 4, new Location(16, 0));
+        GreenHouse greenHouse2 = new GreenHouse(6, 5, new Location(0, 0));
+        House house2 = new House(4, 4, new Location(0, 16));
+        farm2 = new Farm(house2, lake2, greenHouse2, quarry2, new Location(0, 0));
+
+        Quarry quarry2_copy = new Quarry(4, 4, new Location(quarry2.getLocation().getY(), quarry2.getLocation().getX()));
+        Lake lake2_copy = new Lake(4, 4, new Location(lake2.getLocation().getY(), lake2.getLocation().getX()));
+        GreenHouse greenHouse2_copy = new GreenHouse(6, 5, new Location(greenHouse2.getLocation().getY(), greenHouse2.getLocation().getX()));
+        House house2_copy = new House(4, 4, new Location(house2.getLocation().getY(), house2.getLocation().getX()));
+        farm2_copy = new Farm(house2_copy, lake2_copy, greenHouse2_copy, quarry2_copy, new Location(0, 0));
 
         return new GameMap(farm1, farm1_copy, farm2, farm2_copy);
-
     }
 
 
