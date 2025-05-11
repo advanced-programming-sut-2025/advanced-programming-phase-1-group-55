@@ -24,6 +24,20 @@ public class User {
     private int mostAchievedMoney = 0;
     private int matchPlayed = 0;
 
+    public boolean isFainted(int amount) {
+        return this.energy - amount <= 0;
+    }
+
+    public void decreaseEnergy(int amount) {
+        this.energy -= amount;
+        this.energy = Math.max(0, this.energy - amount);
+    }
+
+    public void increaseEnergy(int amount) {
+        this.energy += amount;
+        this.energy = Math.min(200, energy);
+    }
+
     public int getMostAchievedMoney() {
         return mostAchievedMoney;
     }
