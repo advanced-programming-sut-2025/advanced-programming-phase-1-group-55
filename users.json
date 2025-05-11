@@ -126,5 +126,21 @@
     "stayLoggedIn": false,
     "mostAchievedMoney": 0,
     "matchPlayed": 0
+  },
+  {
+    "username": "arshiaU2",
+    "password": "1efb4ef0da0b46701287a19814214eee4518e892f954d4c2d71fd5e89b411b18",
+    "nickName": "arshix",
+    "gender": "arshia@gmail.com",
+    "email": "male",
+    "numberOfSecurityQuestion": 1,
+    "securityQuestion": "soltani",
+    "friendsNpc": {},
+    "friendsPlayer": {},
+    "money": 0,
+    "energy": 200,
+    "stayLoggedIn": false,
+    "mostAchievedMoney": 0,
+    "matchPlayed": 0
   }
 ]
