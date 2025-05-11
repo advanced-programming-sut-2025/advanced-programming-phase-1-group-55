@@ -4,10 +4,7 @@ import Controller.GameMenuController;
 import model.Map.GameMap;
 import model.Map.Tile;
 import model.Map.farmBuilder;
-
-import java.util.Scanner;
-
-import static model.Map.GameMap.*;
+import model.Map.mapBuilder;
 
 
 public class GameMenu extends AppView implements AppMenu {
@@ -17,24 +14,14 @@ public class GameMenu extends AppView implements AppMenu {
     public void check(String input) {
         if (input.equals("1")) {
             farmBuilder fb = new farmBuilder();
+            mapBuilder mb=new mapBuilder();
             GameMap Map = fb.mapCreator();
-            fb.fillTiles(Map, Map.getFarm1());
-            fb.fillTiles(Map, Map.getFarm2());
-            fb.fillTiles(Map, Map.getFarm3());
-            fb.fillTiles(Map, Map.getFarm4());
-            for (int i = 0; i < 40; i++) {          // پیمایش ردیف‌ها
-                for (int j = 0; j < 70; j++) {   // پیمایش ستون‌ها
-                    Tile t = Map.tiles[i][j];
-                    if (t != null) {
-
-                        System.out.print(t.getMohtaviat());
-                    }
-                    else {
-                        System.out.print(".");
-                    }
-                }
-                System.out.println();                         // بعد از هر ردیف یک خط جدید
-            }
+            fb.fillFarmTiles(Map, Map.getFarm1());
+            fb.fillFarmTiles(Map, Map.getFarm2());
+            fb.fillFarmTiles(Map, Map.getFarm3());
+            fb.fillFarmTiles(Map, Map.getFarm4());
+            mb.fillOtherTiles(Map);
+            System.out.println(Map.printMap());
         }
 
     }

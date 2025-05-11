@@ -1,13 +1,12 @@
 package model.Map;
 
-import enums.TileType;
 import model.ItemOfMap;
 
 public class Tile {
     private Location location;
     private String mohtaviat;
 
-    public Tile(Location location, String mohtaviat, boolean walkable, boolean isEmpty) {
+    public Tile(Location location, String mohtaviat, boolean walkable, boolean isEmpty,TileType tileType) {
         this.location = location;
         this.mohtaviat = mohtaviat;
         this.walkable = walkable;

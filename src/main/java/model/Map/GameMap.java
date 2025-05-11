@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class GameMap {
-    public Tile[][] tiles = new Tile[40][70];
+    public Tile[][] tiles = new Tile[41][160];
 
     //    private ArrayList<Farm> farms=new ArrayList<>();
     private Farm farm1;//baray nafar aval
@@ -16,21 +16,21 @@ public class GameMap {
     //todo npc village add beshe!!
     public GameMap(Farm farm1, Farm farm2, Farm farm3, Farm farm4) {
 
-        farm2.setLocation(new Location(farm2.getLocation().getY() + 20, farm2.getLocation().getX()));
-        farm2.getQuarry().changeLocation(20, 0);
-        farm2.getLake().changeLocation(20, 0);
-        farm2.getGreenHouse().changeLocation(20, 0);
-        farm2.getHouse().changeLocation(20, 0);
-        farm3.setLocation(new Location(farm3.getLocation().getY(), farm3.getLocation().getX() + 50));
-        farm3.getQuarry().changeLocation(0, 50);
-        farm3.getLake().changeLocation(0, 50);
-        farm3.getGreenHouse().changeLocation(0, 50);
-        farm3.getHouse().changeLocation(0, 50);
-        farm4.setLocation(new Location(farm4.getLocation().getY() + 20, farm4.getLocation().getX() + 50));
-        farm4.getQuarry().changeLocation(20, 50);
-        farm4.getLake().changeLocation(20, 50);
-        farm4.getGreenHouse().changeLocation(20, 50);
-        farm4.getHouse().changeLocation(20, 50);
+        farm2.setLocation(new Location(farm2.getLocation().getY() + 21, farm2.getLocation().getX()));
+        farm2.getQuarry().changeLocation(21, 0);
+        farm2.getLake().changeLocation(21, 0);
+        farm2.getGreenHouse().changeLocation(21, 0);
+        farm2.getHouse().changeLocation(21, 0);
+        farm3.setLocation(new Location(farm3.getLocation().getY(), farm3.getLocation().getX() + 140));
+        farm3.getQuarry().changeLocation(0, 140);
+        farm3.getLake().changeLocation(0, 140);
+        farm3.getGreenHouse().changeLocation(0, 140);
+        farm3.getHouse().changeLocation(0, 140);
+        farm4.setLocation(new Location(farm4.getLocation().getY() + 21, farm4.getLocation().getX() + 140));
+        farm4.getQuarry().changeLocation(21, 140);
+        farm4.getLake().changeLocation(21, 140);
+        farm4.getGreenHouse().changeLocation(21, 140);
+        farm4.getHouse().changeLocation(21, 140);
         this.farm1 = farm1;
         this.farm2 = farm2;
         this.farm3 = farm3;
@@ -72,7 +72,6 @@ public class GameMap {
     }
 
     private NpcVillage village = new NpcVillage();
-    private char[][] miniMap = new char[40][70];
     private Map<Location, Tile> pointsOfTheMap = new HashMap<>();
     private Map<Location, Character> MiniMap = new HashMap<>();
 
@@ -92,17 +91,27 @@ public class GameMap {
         this.pointsOfTheMap = pointsOfTheMap;
     }
 
-
-    public void setMiniMap(char[][] miniMap) {
-        this.miniMap = miniMap;
-    }
-
-
     public NpcVillage getVillage() {
         return village;
     }
 
     public void setVillage(NpcVillage village) {
         this.village = village;
+    }
+    public String printMap(){
+        StringBuilder map=new StringBuilder();
+        for (int i = 0; i < 41; i++) {
+            for (int j = 0; j < 160; j++) {
+                Tile t = tiles[i][j];
+                if (t != null) {
+                    map.append(t.getMohtaviat());
+                }
+                else {
+                    map.append(".");
+                }
+            }
+            map.append("\n");
+        }
+        return map.toString();
     }
 }
