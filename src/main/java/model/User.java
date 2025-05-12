@@ -31,6 +31,7 @@ public class User {
     private Location location = new Location(0, 0);//todo ino bayad bokonm location aval farmesh
     private boolean fainted = false;
     private Location playerTommorowLocation;
+    private HashMap<Integer, Trade> trades = new HashMap<>();
 
     public Location getPlayerTommorowLocation() {
         return playerTommorowLocation;
@@ -340,4 +341,11 @@ public class User {
     }
 
 
+    public HashMap<Integer, Trade> getTrades() {
+        return trades;
+    }
+
+    public void setTrades(HashMap<Integer, Trade> trades) {
+        this.trades = trades;
+    }
 }
