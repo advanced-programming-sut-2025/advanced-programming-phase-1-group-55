@@ -66,8 +66,8 @@ public class GameMenuController {
 
                 try {
                     mapNumber = Integer.parseInt(chooseMap.group("X"));
-                    if(mapNumber>2||mapNumber<1){
-                        return new Result(false,"Invalid map number");
+                    if (mapNumber > 2 || mapNumber < 1) {
+                        return new Result(false, "Invalid map number");
                     }
                 } catch (Exception e) {
                     return new Result(false, "Invalid map number");
@@ -77,42 +77,48 @@ public class GameMenuController {
             if (i == 0 && mapNumber == 1) {
 
                 Player0.setFarm(fb.getFarm1());
-                Player0.setLocation(Player0.getFarm().getLocation().changeLocation(1,1));
+                Player0.setLocation(Player0.getFarm().getLocation().changeLocation(1, 1));
             } else if (i == 1 && mapNumber == 2) {
                 Player0.setFarm(fb.getFarm2());
+                Player0.setLocation(Player0.getFarm().getLocation().changeLocation(1, 1));
             }
             if (i == 1 && mapNumber == 1) {
 
 
                 Player1.setFarm(fb.getFarm1());
+                Player1.setLocation(Player0.getFarm().getLocation().changeLocation(1, 1));
+
             } else if (i == 1) {
                 Player1.setFarm(fb.getFarm2());
+                Player1.setLocation(Player0.getFarm().getLocation().changeLocation(1, 1));
             }
             if (i == 2 && mapNumber == 1) {
 
                 assert Player2 != null;
                 Player2.setFarm(fb.getFarm1());
+                Player2.setLocation(Player0.getFarm().getLocation().changeLocation(1, 1));
             } else if (i == 2) {
                 assert Player2 != null;
                 Player2.setFarm(fb.getFarm2());
+                Player2.setLocation(Player0.getFarm().getLocation().changeLocation(1, 1));
             }
             if (i == 3 && mapNumber == 1) {
 
                 assert Player3 != null;
                 Player3.setFarm(fb.getFarm1());
+                Player3.setLocation(Player0.getFarm().getLocation().changeLocation(1, 1));
             } else if (i == 3) {
                 assert Player3 != null;
                 Player3.setFarm(fb.getFarm2());
+                Player3.setLocation(Player0.getFarm().getLocation().changeLocation(1, 1));
             }
 
 
         }
 
 
-
-
         currentGame = new Game(mainUser, playersInGame, Map);
-        currentMenu= Menu.MainGameMenu;
+        currentMenu = Menu.MainGameMenu;
         return new Result(true, "game has created successfully !");
     }
 
