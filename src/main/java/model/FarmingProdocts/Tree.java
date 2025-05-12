@@ -1,8 +1,18 @@
 package model.FarmingProdocts;
+import model.Map.Location;
+
 import java.util.List;
 public class Tree {
     private AllTrees treeType;
+    private Location location;
 
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
 
     public AllTrees getTreeType() {
         return treeType;

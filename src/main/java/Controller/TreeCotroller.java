@@ -6,7 +6,7 @@ import model.FarmingProdocts.Tree;
 import model.Result;
 
 public class TreeCotroller {
-    public Result getCropByName(String name) {
+    public Result getTreeByName(String name) {
         for (AllTrees tree : AllTrees.values()) {
             if (tree.getName().equalsIgnoreCase(name)) {
                 StringBuilder sb = new StringBuilder("Tree found:\n");

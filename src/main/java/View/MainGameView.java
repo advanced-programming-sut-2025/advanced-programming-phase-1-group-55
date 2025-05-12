@@ -30,12 +30,15 @@ public class MainGameView implements AppMenu {
             System.out.println(controller.equipToolFromBackPack(matcher.group("name")));
         } else if ((matcher = CropMenuCommands.ShowCropByName.getMatcher(input)) != null) {
             System.out.println(controller2.getCropByName(matcher.group("name")));
-        } else if ((matcher = TreesCommands.ShowTreeByName.getMatcher(input)) != null) {
-            System.out.println(controller3.getCropByName(matcher.group("name")));
-        } else if ((matcher = ForagingCropsCommands.showForagingCropsByName.getMatcher(input)) != null) {
-            System.out.println(controller4.getForagingCropsByName(matcher.group("name")));
-        } else if ((matcher = ForagingTreesCommands.showForagingTreesByName.getMatcher(input)) != null) {
-            System.out.println(controller5.getForagingTreesByName(matcher.group("name")));
+            System.out.println(controller2.getTreeByName(matcher.group("name")));
+            System.out.println(controller2.getForagingCropsByName(matcher.group("name")));
+            System.out.println(controller2.getForagingTreesByName(matcher.group("name")));
+//        } else if ((matcher = TreesCommands.ShowTreeByName.getMatcher(input)) != null) {
+//            System.out.println(controller3.getTreeByName(matcher.group("name")));
+//        } else if ((matcher = ForagingCropsCommands.showForagingCropsByName.getMatcher(input)) != null) {
+//            System.out.println(controller4.getForagingCropsByName(matcher.group("name")));
+//        } else if ((matcher = ForagingTreesCommands.showForagingTreesByName.getMatcher(input)) != null) {
+//            System.out.println(controller5.getForagingTreesByName(matcher.group("name")));
         } else if ((matcher = mainGameCommands.date.getMatcher(input)) != null) {
             System.out.println(controller.date());
 

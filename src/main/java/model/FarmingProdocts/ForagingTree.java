@@ -1,7 +1,18 @@
 package model.FarmingProdocts;
 
+import model.Map.Location;
+
 public class ForagingTree {
     private AllForagingTrees foragingTreeType;
+    private Location location;
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
 
     public AllForagingTrees getForagingTreeType() {
         return foragingTreeType;

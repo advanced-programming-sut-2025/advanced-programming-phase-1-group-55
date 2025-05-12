@@ -1,8 +1,19 @@
 package model.FarmingProdocts;
+import model.Map.Location;
+
 import java.util.List;
 
 public class Crop {
     private AllCrops cropType;
+    private Location location;
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
 
     public AllCrops getCropType() {
         return cropType;
