@@ -17,13 +17,6 @@ public class Tile {
         this.isEmpty = isEmpty;
     }
 
-    public boolean isWalkable() {
-        return walkable;
-    }
-
-    public void setWalkable(boolean walkable) {
-        this.walkable = walkable;
-    }
 
     public boolean isEmpty() {
         return isEmpty;

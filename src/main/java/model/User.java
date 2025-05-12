@@ -335,7 +335,6 @@ public class User {
                 }
             }
         }
-
         return null;
     }
 
