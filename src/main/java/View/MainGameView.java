@@ -30,12 +30,15 @@ public class MainGameView implements AppMenu {
             System.out.println(controller.equipToolFromBackPack(matcher.group("name")));
         } else if ((matcher = CropMenuCommands.ShowCropByName.getMatcher(input)) != null) {
             System.out.println(controller2.getCropByName(matcher.group("name")));
-        } else if ((matcher = TreesCommands.ShowTreeByName.getMatcher(input)) != null) {
-            System.out.println(controller3.getCropByName(matcher.group("name")));
-        } else if ((matcher = ForagingCropsCommands.showForagingCropsByName.getMatcher(input)) != null) {
-            System.out.println(controller4.getForagingCropsByName(matcher.group("name")));
-        } else if ((matcher = ForagingTreesCommands.showForagingTreesByName.getMatcher(input)) != null) {
-            System.out.println(controller5.getForagingTreesByName(matcher.group("name")));
+            System.out.println(controller2.getTreeByName(matcher.group("name")));
+            System.out.println(controller2.getForagingCropsByName(matcher.group("name")));
+            System.out.println(controller2.getForagingTreesByName(matcher.group("name")));
+//        } else if ((matcher = TreesCommands.ShowTreeByName.getMatcher(input)) != null) {
+//            System.out.println(controller3.getTreeByName(matcher.group("name")));
+//        } else if ((matcher = ForagingCropsCommands.showForagingCropsByName.getMatcher(input)) != null) {
+//            System.out.println(controller4.getForagingCropsByName(matcher.group("name")));
+//        } else if ((matcher = ForagingTreesCommands.showForagingTreesByName.getMatcher(input)) != null) {
+//            System.out.println(controller5.getForagingTreesByName(matcher.group("name")));
         } else if ((matcher = mainGameCommands.date.getMatcher(input)) != null) {
             System.out.println(controller.date());
 
@@ -52,8 +55,21 @@ public class MainGameView implements AppMenu {
             System.out.println(controller.cheatHour(matcher.group("X")));
         } else if ((matcher = mainGameCommands.cheatday.getMatcher(input)) != null) {
             System.out.println(controller.cheatDay(matcher.group("X")));
+        } else if (mainGameCommands.helpReadMap.getMatcher(input)!=null) {
+            System.out.println(controller.helpReadMap());
+        } else if ((matcher=mainGameCommands.printMap.getMatcher(input))!=null) {
+            System.out.println(controller.showMap(Integer.parseInt(matcher.group("x"))
+                    ,Integer.parseInt(matcher.group("y")),Integer.parseInt(matcher.group("size"))));
+        } else if ((mainGameCommands.printFullMap.getMatcher(input))!=null) {
+            System.out.println(controller.showFullMap());
         } else if ((matcher = mainGameCommands.season.getMatcher(input)) != null) {
             System.out.println(controller.season());
+        } else if ((matcher = mainGameCommands.energyShow.getMatcher(input)) != null) {
+            System.out.println(controller.showEnergy());
+        } else if ((matcher = mainGameCommands.energySet.getMatcher(input)) != null) {
+            System.out.println(controller.setEnergy(matcher.group("V")));
+        } else if ((matcher = mainGameCommands.UnlimitedEnergy.getMatcher(input)) != null) {
+            System.out.println(controller.unlimitedEnergy());
         } else if (input.matches("exit")) {
             currentMenu = Menu.ExitMenu;
         }

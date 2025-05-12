@@ -1,41 +1,39 @@
 package model.FarmingProdocts;
 
+import model.Map.Location;
+
 public class ForagingCrops {
-    private String name;
-    private final String season;
-    private final int baseSellPrice;
-    private final int energy;
+    private AllForagingCrops foragingCropsType;
+    private Location location;
 
-    public ForagingCrops(String name, String season, int baseSellPrice, int energy) {
-        this.name = name;
-        this.season = season;
-        this.baseSellPrice = baseSellPrice;
-        this.energy = energy;
+    public ForagingCrops(Location location, AllForagingCrops foragingCropsType) {
+        this.location = location;
+        this.foragingCropsType = foragingCropsType;
     }
 
-    public String getName() {
-        return name;
+    public Location getLocation() {
+        return location;
     }
 
-    public String getSeason() {
-        return season;
+    public void setLocation(Location location) {
+        this.location = location;
     }
 
-    public int getBaseSellPrice() {
-        return baseSellPrice;
+    public AllForagingCrops getForagingCropsType() {
+        return foragingCropsType;
     }
 
-    public int getEnergy() {
-        return energy;
+    public void setForagingCropsType(AllForagingCrops foragingCropsType) {
+        this.foragingCropsType = foragingCropsType;
     }
 
     @Override
     public String toString() {
         return "Crop{" +
-                "name='" + name + '\'' +
-                ", season='" + season + '\'' +
-                ", base sell price=" + baseSellPrice +
-                ", energy=" + energy +
+                "name='" + foragingCropsType.getName() + '\'' +
+                ", season='" + foragingCropsType.getSeason() + '\'' +
+                ", base sell price=" + foragingCropsType.getBaseSellPrice() +
+                ", energy=" + foragingCropsType.getEnergy() +
                 '}';
     }
 }

@@ -6,8 +6,7 @@ import model.Result;
 
 public class ForagingCropController {
     public Result getForagingCropsByName(String name) {
-        for (AllForagingCrops foragingCropEnum : AllForagingCrops.values()) {
-            ForagingCrops foragingCrop = foragingCropEnum.getForagingCrop();
+        for (AllForagingCrops foragingCrop : AllForagingCrops.values()) {
             if (foragingCrop.getName().equals(name)) {
                 StringBuilder ab = new StringBuilder("Foraging crop found:\n");
                 ab.append("Name: ").append(foragingCrop.getName()).append("\n")

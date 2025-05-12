@@ -4,29 +4,95 @@ import java.util.Arrays;
 import java.util.List;
 
 public enum AllTrees {
-    APRICOT_TREE(new Tree("Apricot Tree", "Apricot Sapling", Arrays.asList(7, 7, 7, 7), 28, "Apricot", 1, 59, true, 38, "Spring")),
-    CHERRY_TREE(new Tree("Cherry Tree", "Cherry Sapling", Arrays.asList(7, 7, 7, 7), 28, "Cherry", 1, 80, true, 38, "Spring")),
-    BANANA_TREE(new Tree("Banana Tree", "Banana Sapling", Arrays.asList(7, 7, 7, 7), 28, "Banana", 1, 150, true, 75, "Summer")),
-    MANGO_TREE(new Tree("Mango Tree", "Mango Sapling", Arrays.asList(7, 7, 7, 7), 28, "Mango", 1, 130, true, 100, "Summer")),
-    ORANGE_TREE(new Tree("Orange Tree", "Orange Sapling", Arrays.asList(7, 7, 7, 7), 28, "Orange", 1, 100, true, 38, "Summer")),
-    PEACH_TREE(new Tree("Peach Tree", "Peach Sapling", Arrays.asList(7, 7, 7, 7), 28, "Peach", 1, 140, true, 38, "Summer")),
-    APPLE_TREE(new Tree("Apple Tree", "Apple Sapling", Arrays.asList(7, 7, 7, 7), 28, "Apple", 1, 100, true, 38, "Fall")),
-    POMEGRANATE_TREE(new Tree("Pomegranate Tree", "Pomegranate Sapling", Arrays.asList(7, 7, 7, 7), 28, "Pomegranate", 1, 140, true, 38, "Fall")),
-    OAK_TREE(new Tree("Oak Tree", "Acorns", Arrays.asList(7, 7, 7, 7), 28, "Oak Resin", 7, 150, false, 0, "Special")),
-    MAPLE_TREE(new Tree("Maple Tree", "Maple Seeds", Arrays.asList(7, 7, 7, 7), 28, "Maple Syrup", 9, 200, false, 0, "Special")),
-    PINE_TREE(new Tree("Pine Tree", "Pine Cones", Arrays.asList(7, 7, 7, 7), 28, "Pine Tar", 5, 100, false, 0, "Special")),
-    MAHOGANY_TREE(new Tree("Mahogany Tree", "Mahogany Seeds", Arrays.asList(7, 7, 7, 7), 28, "Sap", 1, 2, true, -2, "Special")),
-    MUSHROOM_TREE(new Tree("Mushroom Tree", "Mushroom Tree Seeds", Arrays.asList(7, 7, 7, 7), 28, "Common Mushroom", 1, 40, true, 38, "Special")),
-    MYSTIC_TREE(new Tree("Mystic Tree", "Mystic Tree Seeds", Arrays.asList(7, 7, 7, 7), 28, "Mystic Syrup", 7, 1000, true, 500, "Special"));
+    APRICOT_TREE("Apricot Tree", TreeSapling.Apricot_Sapling, Arrays.asList(7, 7, 7, 7), 28, "Apricot", 1, 59, true, 38),
+    CHERRY_TREE("Cherry Tree", TreeSapling.Cherry_Sapling, Arrays.asList(7, 7, 7, 7), 28, "Cherry", 1, 80, true, 38),
+    BANANA_TREE("Banana Tree", TreeSapling.Banana_Sapling, Arrays.asList(7, 7, 7, 7), 28, "Banana", 1, 150, true, 75),
+    MANGO_TREE("Mango Tree", TreeSapling.Mango_Sapling, Arrays.asList(7, 7, 7, 7), 28, "Mango", 1, 130, true, 100),
+    ORANGE_TREE("Orange Tree", TreeSapling.Orange_Sapling, Arrays.asList(7, 7, 7, 7), 28, "Orange", 1, 100, true, 38),
+    PEACH_TREE("Peach Tree", TreeSapling.Peach_Sapling, Arrays.asList(7, 7, 7, 7), 28, "Peach", 1, 140, true, 38),
+    APPLE_TREE("Apple Tree", TreeSapling.Apple_Sapling, Arrays.asList(7, 7, 7, 7), 28, "Apple", 1, 100, true, 38),
+    POMEGRANATE_TREE("Pomegranate Tree", TreeSapling.Pomegranate_Sapling, Arrays.asList(7, 7, 7, 7), 28, "Pomegranate", 1, 140, true, 38),
+    OAK_TREE("Oak Tree", TreeSapling.Acorns, Arrays.asList(7, 7, 7, 7), 28, "Oak Resin", 7, 150, false, 0),
+    MAPLE_TREE("Maple Tree", TreeSapling.Maple_Seeds, Arrays.asList(7, 7, 7, 7), 28, "Maple Syrup", 9, 200, false, 0),
+    PINE_TREE("Pine Tree", TreeSapling.Pine_Cones, Arrays.asList(7, 7, 7, 7), 28, "Pine Tar", 5, 100, false, 0),
+    MAHOGANY_TREE("Mahogany Tree", TreeSapling.Mahogany_Seeds, Arrays.asList(7, 7, 7, 7), 28, "Sap", 1, 2, true, -2),
+    MUSHROOM_TREE("Mushroom Tree", TreeSapling.Mushroom_Tree_Seeds, Arrays.asList(7, 7, 7, 7), 28, "Common Mushroom", 1, 40, true, 38),
+    MYSTIC_TREE("Mystic Tree", TreeSapling.Mystic_Tree_Seeds, Arrays.asList(7, 7, 7, 7), 28, "Mystic Syrup", 7, 1000, true, 500);
 
-    private final Tree tree;
+    private final String name;
+    private final Seed seedSource;
+    private final List<Integer> stages;
+    private final int totalHarvestTime;
+    private final String fruits;
+    private final int fruitHarvestCycle;
+    private final int fruitBaseSellPrice;
+    private final boolean isFruitEdible;
+    private final int fruitEnergy;
 
-    AllTrees(Tree tree) {
-        this.tree = tree;
+    AllTrees(String name, Seed seedSource, List<Integer> stages, int totalHarvestTime, String fruits, int fruitHarvestCycle, int fruitBaseSellPrice, boolean isFruitEdible, int fruitEnergy) {
+        this.name = name;
+        this.seedSource = seedSource;
+        this.stages = stages;
+        this.totalHarvestTime = totalHarvestTime;
+        this.fruits = fruits;
+        this.fruitHarvestCycle = fruitHarvestCycle;
+        this.fruitBaseSellPrice = fruitBaseSellPrice;
+        this.isFruitEdible = isFruitEdible;
+        this.fruitEnergy = fruitEnergy;
     }
 
-    public Tree getTree() {
-        return tree;
+    public String getName() {
+        return name;
+    }
+
+    public Seed getSeedSource() {
+        return seedSource;
+    }
+
+    public List<Integer> getStages() {
+        return stages;
+    }
+
+    public int getTotalHarvestTime() {
+        return totalHarvestTime;
+    }
+
+    public String getFruits() {
+        return fruits;
+    }
+
+    public int getFruitHarvestCycle() {
+        return fruitHarvestCycle;
+    }
+
+    public int getFruitBaseSellPrice() {
+        return fruitBaseSellPrice;
+    }
+
+    public boolean isFruitEdible() {
+        return isFruitEdible;
+    }
+
+    public int getFruitEnergy() {
+        return fruitEnergy;
+    }
+    public  static AllTrees getTypeByInt(int x){
+        return switch (x) {
+            case 0 -> APRICOT_TREE;
+            case 1 -> CHERRY_TREE;
+            case 2 -> BANANA_TREE;
+            case 3 -> MANGO_TREE;
+            case 4 -> ORANGE_TREE;
+            case 5 -> PEACH_TREE;
+            case 6 -> APPLE_TREE;
+            case 7 -> POMEGRANATE_TREE;
+            case 8 -> OAK_TREE;
+            case 9 -> MAPLE_TREE;
+            case 10 -> PINE_TREE;
+            case 11 -> MAHOGANY_TREE;
+            case 12 -> MUSHROOM_TREE;
+            default -> MYSTIC_TREE;
+        };
     }
 }
 

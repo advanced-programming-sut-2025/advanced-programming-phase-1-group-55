@@ -35,9 +35,9 @@ public enum NpcType {
     private final Map<String,ItemOfMap> favorites;
     private final Map<String,ItemOfMap> request;
     private final Map<String,ItemOfMap> reward;
-    private ArrayList<Dialog> dialogs; // taghir be shey dialog va ezafe kardan ertebaat baa fasl
+    private ArrayList<Dialog> dialogs; //todo taghir be shey dialog va ezafe kardan ertebaat baa fasl
     private  String job;
-    private ArrayList<Quest> quests; //shey quest ezaafe beshe
+    private ArrayList<Quest> quests; //todo shey quest ezaafe beshe
     NpcType( Map<String,ItemOfMap> favorites, Map<String,ItemOfMap> request, Map<String,ItemOfMap>reward) {
         this.favorites = favorites;
         this.request = request;

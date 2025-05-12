@@ -17,7 +17,13 @@ public enum mainGameCommands implements Command {
     dayOfWeek("\\s*day of the week\\s*"),
     cheatHour("\\s*cheat advance time\\s+(?<X>\\S+)h\\s*"),
     cheatday("\\s*cheat advance date\\s+(?<X>\\S+)d\\s*"),
-    season("\\s*season\\s*");
+    season("\\s*season\\s*"),
+    energyShow("\\s*energy\\s+show\\s*"),
+    energySet("\\s*energy\\s+set\\s+-v\\s+(?<V>\\S+)\\s*"),
+    UnlimitedEnergy("\\s*energy\\s+unlimited\\s*"),
+    helpReadMap("^\\s*help\\s+reading\\s+map\\s*$"),
+    printMap("^\\s*print\\s+map\\s+-l\\s+(?<x>\\d+)\\s+(?<y>\\d+)\\s+-s\\s+(?<size>\\d+)\\s*$"),
+    printFullMap("^\\s*print\\s+map\\s*$");
     private final String pattern;
 
     mainGameCommands(String pattern) {
