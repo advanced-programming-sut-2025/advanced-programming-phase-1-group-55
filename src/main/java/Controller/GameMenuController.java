@@ -31,7 +31,7 @@ public class GameMenuController {
         HashMap<String, User> playersInGame = new HashMap<>();
 
         User player0 = mainUser;
-        User Player1 = AllUsers.get(Username1);
+        User player1 = AllUsers.get(Username1);
 
         int numberOFPlayers = 2;
         numberOFPlayers++;
