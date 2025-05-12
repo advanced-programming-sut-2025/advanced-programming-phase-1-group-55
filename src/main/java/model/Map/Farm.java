@@ -56,8 +56,7 @@ public class Farm {
         this.quarry = quarry;
         this.location = location;
     }
-    //todo random gozashtan sang mang
-    //todo map az foraging seeds
+
 
     public House getHouse() {
         return house;
