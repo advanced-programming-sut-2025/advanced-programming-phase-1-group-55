@@ -1,5 +1,6 @@
 package Controller;
 
+import enums.Menu;
 import enums.mainGameCommands;
 import model.App;
 import model.Game;
@@ -35,7 +36,7 @@ public class GameMenuController {
         User Player1 = AllUsers.get(Username1);
         User Player2 = null;
         User Player3 = null;
-        int numberOFPlayers = 2;
+        int numberOFPlayers = 1;
         numberOFPlayers++;
         if (Username2 != null) {
             numberOFPlayers++;
@@ -51,9 +52,7 @@ public class GameMenuController {
         System.out.println("choose number of map for players : ");
         int mapNumber;
         for (int i = 0; i < numberOFPlayers; i++) {
-
-            Scanner sc = new Scanner(System.in);
-            String input = sc.nextLine();
+            String input = scanner.nextLine();
             Matcher chooseMap = mainGameCommands.chooseMap.getMatcher(input);
             if (chooseMap == null) {
                 return new Result(false, "incorrect format for map selecting ");
@@ -61,7 +60,10 @@ public class GameMenuController {
 
                 try {
                     mapNumber = Integer.parseInt(chooseMap.group("X"));
-                } catch (NumberFormatException e) {
+                    if(mapNumber>2||mapNumber<1){
+                        return new Result(false,"Invalid map number");
+                    }
+                } catch (Exception e) {
                     return new Result(false, "Invalid map number");
 
                 }
@@ -110,6 +112,7 @@ public class GameMenuController {
 
 
         currentGame = new Game(mainUser, playersInGame, Map);
+        currentMenu= Menu.MainGameMenu;
         return new Result(true, "game has created successfully !");
     }
 

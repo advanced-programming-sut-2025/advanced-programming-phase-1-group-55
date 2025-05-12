@@ -10,9 +10,11 @@ import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 public class App {
     public static User mainUser;
+    public  static Scanner scanner=new Scanner(System.in);
     public static Menu currentMenu = Menu.Register;
     public static HashMap<String, User> AllUsers = new HashMap<>();
     public static Game currentGame;
