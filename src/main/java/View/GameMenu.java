@@ -36,10 +36,11 @@ public class GameMenu extends AppView implements AppMenu {
 //            mainUser = AllUsers.get("arshia");
 //            mainUser.moveTo(13, 3, map.tiles);
 //            currentMenu = Menu.MainGameMenu;
+            System.out.println(controller.newGame(gameNew.group("user1"), gameNew.group("user2"), gameNew.group("user3")));
 
-        } else if (chooseMap != null) {
-
-
+        }
+        else {
+            System.out.println("invalid command in Game menu");
         }
 
     }

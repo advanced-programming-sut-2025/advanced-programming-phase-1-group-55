@@ -159,5 +159,97 @@
       "x": 0
     },
     "fainted": false
+  },
+  {
+    "username": "arshiaN1",
+    "password": "1efb4ef0da0b46701287a19814214eee4518e892f954d4c2d71fd5e89b411b18",
+    "nickName": "arshix",
+    "gender": "arshia@gmail.com",
+    "email": "male",
+    "numberOfSecurityQuestion": 1,
+    "securityQuestion": "soltani",
+    "friendsNpc": {},
+    "friendsPlayer": {},
+    "gold": 0,
+    "wood": 0,
+    "Money": 0,
+    "energy": 200.0,
+    "stayLoggedIn": false,
+    "mostAchievedMoney": 0,
+    "matchPlayed": 0,
+    "location": {
+      "y": 0,
+      "x": 0
+    },
+    "fainted": false
+  },
+  {
+    "username": "arshiaV8",
+    "password": "1efb4ef0da0b46701287a19814214eee4518e892f954d4c2d71fd5e89b411b18",
+    "nickName": "arshix",
+    "gender": "arshia@gmail.com",
+    "email": "male",
+    "numberOfSecurityQuestion": 1,
+    "securityQuestion": "soltani",
+    "friendsNpc": {},
+    "friendsPlayer": {},
+    "gold": 0,
+    "wood": 0,
+    "Money": 0,
+    "energy": 200.0,
+    "stayLoggedIn": false,
+    "mostAchievedMoney": 0,
+    "matchPlayed": 0,
+    "location": {
+      "y": 0,
+      "x": 0
+    },
+    "fainted": false
+  },
+  {
+    "username": "arshiaT7",
+    "password": "1efb4ef0da0b46701287a19814214eee4518e892f954d4c2d71fd5e89b411b18",
+    "nickName": "arshix",
+    "gender": "arshia@gmail.com",
+    "email": "male",
+    "numberOfSecurityQuestion": 1,
+    "securityQuestion": "soltani",
+    "friendsNpc": {},
+    "friendsPlayer": {},
+    "gold": 0,
+    "wood": 0,
+    "Money": 0,
+    "energy": 200.0,
+    "stayLoggedIn": false,
+    "mostAchievedMoney": 0,
+    "matchPlayed": 0,
+    "location": {
+      "y": 0,
+      "x": 0
+    },
+    "fainted": false
+  },
+  {
+    "username": "arshiaS3",
+    "password": "1efb4ef0da0b46701287a19814214eee4518e892f954d4c2d71fd5e89b411b18",
+    "nickName": "arshix",
+    "gender": "arshia@gmail.com",
+    "email": "male",
+    "numberOfSecurityQuestion": 1,
+    "securityQuestion": "soltani",
+    "friendsNpc": {},
+    "friendsPlayer": {},
+    "gold": 0,
+    "wood": 0,
+    "Money": 0,
+    "energy": 200.0,
+    "stayLoggedIn": false,
+    "mostAchievedMoney": 0,
+    "matchPlayed": 0,
+    "location": {
+      "y": 0,
+      "x": 0
+    },
+    "fainted": false
   }
 ]
