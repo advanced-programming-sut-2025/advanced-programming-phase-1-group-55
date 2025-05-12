@@ -7,8 +7,7 @@ import model.Result;
 
 public class TreeCotroller {
     public Result getCropByName(String name) {
-        for (AllTrees TreeEnum : AllTrees.values()) {
-            Tree tree = TreeEnum.getTree();
+        for (AllTrees tree : AllTrees.values()) {
             if (tree.getName().equalsIgnoreCase(name)) {
                 StringBuilder sb = new StringBuilder("Tree found:\n");
                 sb.append("Name: ").append(tree.getName()).append("\n")

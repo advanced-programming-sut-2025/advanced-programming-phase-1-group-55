@@ -1,41 +1,23 @@
 package model.FarmingProdocts;
 
 public class ForagingCrops {
-    private String name;
-    private final String season;
-    private final int baseSellPrice;
-    private final int energy;
+    private AllForagingCrops foragingCropsType;
 
-    public ForagingCrops(String name, String season, int baseSellPrice, int energy) {
-        this.name = name;
-        this.season = season;
-        this.baseSellPrice = baseSellPrice;
-        this.energy = energy;
+    public AllForagingCrops getForagingCropsType() {
+        return foragingCropsType;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getSeason() {
-        return season;
-    }
-
-    public int getBaseSellPrice() {
-        return baseSellPrice;
-    }
-
-    public int getEnergy() {
-        return energy;
+    public void setForagingCropsType(AllForagingCrops foragingCropsType) {
+        this.foragingCropsType = foragingCropsType;
     }
 
     @Override
     public String toString() {
         return "Crop{" +
-                "name='" + name + '\'' +
-                ", season='" + season + '\'' +
-                ", base sell price=" + baseSellPrice +
-                ", energy=" + energy +
+                "name='" + foragingCropsType.getName() + '\'' +
+                ", season='" + foragingCropsType.getSeason() + '\'' +
+                ", base sell price=" + foragingCropsType.getBaseSellPrice() +
+                ", energy=" + foragingCropsType.getEnergy() +
                 '}';
     }
 }

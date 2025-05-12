@@ -18,8 +18,7 @@ public class CropController {
 //    }
 
     public Result getCropByName(String name) {
-        for (AllCrops cropEnum : AllCrops.values()) {
-            Crop crop = cropEnum.getCrop();
+        for (AllCrops crop : AllCrops.values()) {
             if (crop.getName().equalsIgnoreCase(name)) {
                 StringBuilder sb = new StringBuilder("Crop found:\n");
                 sb.append("Name: ").append(crop.getName()).append("\n")
@@ -32,7 +31,7 @@ public class CropController {
                         .append("Is Edible:").append(crop.isEdible()).append("\n")
                         .append("Base Energy: ").append(crop.getBaseEnergy()).append("\n")
                         .append("Season: ").append(crop.getSeed().getSeason()).append("\n")
-                        .append("Can become Giant: ").append(crop.canBecomeGiant()).append("\n");
+                        .append("Can become Giant: ").append(crop.isCanBecomeGiant()).append("\n");
                 return new Result(true, sb.toString());
             }
         }

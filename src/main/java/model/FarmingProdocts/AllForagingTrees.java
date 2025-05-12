@@ -1,19 +1,25 @@
 package model.FarmingProdocts;
 
 public enum AllForagingTrees {
-    ACORNS(new ForagingTree("Acorns", "Special")),
-    MAPLE_SEEDS(new ForagingTree("Maple Seeds", "Special")),
-    PINE_CONES(new ForagingTree("Pine Cones", "Special")),
-    MAHOGANY_SEEDS(new ForagingTree("Mahogany Seeds", "Special")),
-    MUSHROOM_TREE_SEEDS(new ForagingTree("Mushroom Tree Seeds", "Special"));
+    ACORNS("Acorns", "Special"),
+    MAPLE_SEEDS("Maple Seeds", "Special"),
+    PINE_CONES("Pine Cones", "Special"),
+    MAHOGANY_SEEDS("Mahogany Seeds", "Special"),
+    MUSHROOM_TREE_SEEDS("Mushroom Tree Seeds", "Special");
 
-    private final ForagingTree tree;
+    private final String name;
+    private final String season;
 
-    AllForagingTrees(ForagingTree tree) {
-        this.tree = tree;
+    AllForagingTrees(String name, String season) {
+        this.name = name;
+        this.season = season;
     }
 
-    public ForagingTree getForagingTree() {
-        return tree;
+    public String getName() {
+        return name;
+    }
+
+    public String getSeason() {
+        return season;
     }
 }
