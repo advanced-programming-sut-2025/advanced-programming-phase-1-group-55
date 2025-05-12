@@ -1,42 +1,33 @@
 package Controller;
 
 import View.ForagingView;
+import enums.CraftingItemType;
 import model.Skills;
 import View.MiningView;
+import model.User;
+
 public class ForagingController extends SkillController {
-    private ForagingView view;
-    public ForagingController(Skills foragingSkill) {
-        super(foragingSkill);
-        this.view = new ForagingView();
+    private User user;
+
+    public ForagingController(Skills skill, User user) {
+        super(skill);
+        this.user = user;
     }
 
     @Override
     protected void onLevelUp(int newLevel) {
-
-    }
-
-
-
-    public void collectItem() {
-        skill.pointUp(10);
-        view.displayCollectMessage();
-        handleLevelUp();
-    }
-    private void handleLevelUp() {
-        int oldLevel = skill.getLevel();
-        skill.levelUp();
-        if (skill.getLevel() > oldLevel) {
-            view.displayLevelUpMessage(skill.getLevel());
-            skill.getAbilities().stream()
-                    .filter(ability -> ability.getLevelRequierd() == skill.getLevel())
-                    .forEach(ability -> view.displayAbilityUnlocked(ability.getName()));
+        if (newLevel == 1) {
+            user.learnRecipe(CraftingItemType.CHARCOAL_KILN);
+        } else if (newLevel == 2) {
+//            skill.addAbility(new Ability("Gathering Expert", "Chance to find double items."));
+        } else if (newLevel == 3) {
+//            skill.addAbility(new Ability("Wild Seeds", "Unlock crafting wild seeds."));
+        } else if (newLevel == 4) {
+            user.learnRecipe(CraftingItemType.MYSTIC_TREE_SEED);
         }
     }
-    public void showStatus() {
-        view.displayStatus(skill);
-    }
 
-    public void showAbilities() {
-        view.displayAbilities(skill);
-    }
+
+
+
 }

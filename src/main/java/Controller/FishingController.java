@@ -1,44 +1,30 @@
 package Controller;
 
 import View.FishingView;
+import model.Ability;
 import model.Skills;
+import model.User;
+
 
 public class FishingController extends SkillController {
-    private FishingView view;
-    public FishingController(Skills fishingSkill) {
-        super(fishingSkill);
-//        this.view = view;
-        this.view = new FishingView();
+    private User user;
+
+    public FishingController(Skills skill, User user) {
+        super(skill);
+        this.user = user;
     }
 
     @Override
     protected void onLevelUp(int newLevel) {
-
-    }
-
-
-
-    public void catchFish() {
-        skill.pointUp(5);
-        view.displayCatchMessage();
-        handleLevelUp();
-    }
-    private void handleLevelUp() {
-        int oldLevel = skill.getLevel();
-        skill.levelUp();
-        if (skill.getLevel() > oldLevel) {
-            view.displayLevelUpMessage(skill.getLevel());
-            skill.getAbilities().stream()
-                    .filter(ability -> ability.getLevelRequierd() == skill.getLevel())
-                    .forEach(ability -> view.displayAbilityUnlocked(ability.getName()));
-        }
-    }
-    public void showStatus() {
-        view.displayStatus(skill);
-    }
-
-    public void showAbilities() {
-        view.displayAbilities(skill);
+//        if (newLevel == 1) {
+//
+//        } else if (newLevel == 2) {
+//            skill.addAbility(new Ability("Cast Mastery", "Longer casting range."));
+//        } else if (newLevel == 3) {
+//            skill.addAbility(new Ability("Quick Catch", "Faster fish catching."));
+//        } else if (newLevel == 4) {
+//            skill.addAbility(new Ability("Rare Fish Finder", "Higher chance for rare fish."));
+//        }
     }
 
 

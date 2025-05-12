@@ -136,5 +136,89 @@
       "x": 0
     },
     "fainted": false
+  },
+  {
+    "username": "shayan24s",
+    "password": "shayan24S$85",
+    "nickName": "sh24s",
+    "gender": "shayan@gmail.com",
+    "email": "male",
+    "numberOfSecurityQuestion": 3,
+    "securityQuestion": "amirali",
+    "friendsNpc": {},
+    "friendsPlayer": {},
+    "gold": 0,
+    "wood": 0,
+    "Money": 0,
+    "energy": 200.0,
+    "stayLoggedIn": false,
+    "mostAchievedMoney": 0,
+    "matchPlayed": 0,
+    "location": {
+      "y": 0,
+      "x": 0
+    },
+    "fainted": false,
+    "learnedCraftingRecipes": [
+      "SCARECROW",
+      "FURNACE",
+      "MAYONNAISE_MACHINE"
+    ]
+  },
+  {
+    "username": "shayan24sA5",
+    "password": "shayan24S$85",
+    "nickName": "sh24s",
+    "gender": "shayan@gmail.com",
+    "email": "male",
+    "numberOfSecurityQuestion": 3,
+    "securityQuestion": "amirali",
+    "friendsNpc": {},
+    "friendsPlayer": {},
+    "gold": 0,
+    "wood": 0,
+    "Money": 0,
+    "energy": 200.0,
+    "stayLoggedIn": false,
+    "mostAchievedMoney": 0,
+    "matchPlayed": 0,
+    "location": {
+      "y": 0,
+      "x": 0
+    },
+    "fainted": false,
+    "learnedCraftingRecipes": [
+      "SCARECROW",
+      "FURNACE",
+      "MAYONNAISE_MACHINE"
+    ]
+  },
+  {
+    "username": "shayan24sZ0",
+    "password": "shayan24S$85",
+    "nickName": "sh24s",
+    "gender": "shayan@gmail.com",
+    "email": "male",
+    "numberOfSecurityQuestion": 3,
+    "securityQuestion": "amirali",
+    "friendsNpc": {},
+    "friendsPlayer": {},
+    "gold": 0,
+    "wood": 0,
+    "Money": 0,
+    "energy": 200.0,
+    "stayLoggedIn": false,
+    "mostAchievedMoney": 0,
+    "matchPlayed": 0,
+    "location": {
+      "y": 0,
+      "x": 0
+    },
+    "fainted": false,
+    "learnedCraftingRecipes": [
+      "SCARECROW",
+      "FURNACE",
+      "MAYONNAISE_MACHINE"
+    ]
   }
 ]

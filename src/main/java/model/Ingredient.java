@@ -17,8 +17,5 @@ public class Ingredient {
         return quantity;
     }
 
-    @Override
-    public String toString() {
-        return quantity + " " + name;
-    }
+
 }

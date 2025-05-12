@@ -1,5 +1,6 @@
 package model;
 
+import enums.CraftingItemType;
 import model.Map.Location;
 import model.Map.Tile;
 import model.NPC.Npc;
@@ -31,6 +32,8 @@ public class User {
     private Location location = new Location(0, 0);//todo ino bayad bokonm location aval farmesh
     private boolean fainted = false;
     private Location playerTommorowLocation;
+    private Set<CraftingItemType> learnedCraftingRecipes = new HashSet<>();
+
 
     public Location getPlayerTommorowLocation() {
         return playerTommorowLocation;
@@ -125,7 +128,9 @@ public class User {
         this.email = email;
         this.numberOfSecurityQuestion = numberOfSecurityQuestion;
         this.securityQuestion = securityQuestion;
-
+        learnRecipe(CraftingItemType.FURNACE);
+        learnRecipe(CraftingItemType.SCARECROW);
+        learnRecipe(CraftingItemType.MAYONNAISE_MACHINE);
     }
 
     public void addTrade(Trade trade) {
@@ -337,6 +342,18 @@ public class User {
         }
         return null;
     }
+    public void learnRecipe(CraftingItemType recipe) {
+        learnedCraftingRecipes.add(recipe);
+    }
+
+    public boolean hasLearnedRecipe(CraftingItemType recipe) {
+        return learnedCraftingRecipes.contains(recipe);
+    }
+
+    public Set<CraftingItemType> getLearnedCraftingRecipes() {
+        return Collections.unmodifiableSet(learnedCraftingRecipes);
+    }
+
 
 
 }
