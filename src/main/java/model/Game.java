@@ -25,7 +25,7 @@ public class Game {
     public static HashMap<String, User> playersInGame = new HashMap<>();
     private static GameMap map;
 
-    public static WeatherType currentWeather;
+  
     public static HashMap<String, User> AllUsers = new HashMap<>();
 
     public static void readfile() {

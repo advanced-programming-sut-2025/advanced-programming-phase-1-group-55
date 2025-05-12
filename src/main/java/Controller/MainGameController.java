@@ -4,10 +4,16 @@ package Controller;
 import model.Game;
 import model.Map.GameMap;
 import model.Map.Location;
+import enums.WeatherType;
 import model.Tool.Tools;
 import model.Tool.Trashcan;
 import model.Tool.WateringCan;
 import model.Result;
+
+import model.weather.*;
+
+import static model.weather.*;
+
 
 import static model.Game.*;
 import static model.GameTime.*;
@@ -100,13 +106,36 @@ public class MainGameController {
         return new Result(true, "your energy unlimited");
     }
 
+    public Result weather() {
+        return new Result(true, getCurrentWeather().name());
+    }
+
+    public Result weatherForecast() {
+        return new Result(true, getTomorrowWeather().name());
+    }
+
+    public Result weatherCheat(String type) {
+        if (type.equals("Sunny")) {
+            setTomorrowWeather(WeatherType.Sunny);
+        } else if (type.equals("Rain")) {
+            setTomorrowWeather(WeatherType.Rain);
+        } else if (type.equals("Storm")) {
+            setTomorrowWeather(WeatherType.Storm);
+        } else if (type.equals("Snow")) {
+            setTomorrowWeather(WeatherType.Snow);
+        } else {
+            return new Result(false, "invalid weather type");
+        }
+        return new Result(true, "weather successfully changed to : " + getCurrentWeather().name());
+    }
+
     public Result levelUpTool(String name) {
         Tools tool = mainUser.getBackPack().getAvailableTools().get(name);
         if (tool.getLevel() == 5) {
             return new Result(false, "level of your tool is max , you can't upgrade it !");
         }
         /*
-        todo
+        to do
         baayad shart boodn dar ahan gari ro emaal knm , bad zadan map;
         */
         if (tool instanceof Trashcan can) {
@@ -133,19 +162,22 @@ public class MainGameController {
         }
         return new Result(true, name + " upgraded successfully");
     }
-    public Result helpReadMap(){
-        String message="";
-        message+="T: trees\n&: Foraging Crobs\n*: Foraging Seeds\nh: house area\n#: walls\n" +
+
+    public Result helpReadMap() {
+        String message = "";
+        message += "T: trees\n&: Foraging Crobs\n*: Foraging Seeds\nh: house area\n#: walls\n" +
                 "=: doors\ng: greenhouse area\n" + "W: water area(lake)\n^: quarry area\n" +
                 "0: rocks\n$: starDropSaloon\ns: SEBASTIAN's house\n" + "B: blacksmith store\n" +
                 "O: ojaMart store\nA: ABIGAIL's house\nH: HARVEY's house\n" + "L: LEAH's house\n" +
                 "R: ROBIN's house\n" + "G: General store\nC: Carpenter Shop\nF: fish store\nM: marnieRanch store";
-        return  new Result(true,message);
+        return new Result(true, message);
     }
-    public Result showFullMap(){
-        return  new Result(true, Game.getMap().printMap(new Location(0,0),160,41));
+
+    public Result showFullMap() {
+        return new Result(true, Game.getMap().printMap(new Location(0, 0), 160, 41));
     }
-    public Result showMap(int x, int y , int size){
-        return new Result(true,Game.getMap().printMap(new Location(y,x),size,size));
+
+    public Result showMap(int x, int y, int size) {
+        return new Result(true, Game.getMap().printMap(new Location(y, x), size, size));
     }
 }
