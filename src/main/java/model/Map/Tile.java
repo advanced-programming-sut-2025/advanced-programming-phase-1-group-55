@@ -5,12 +5,24 @@ import model.ItemOfMap;
 public class Tile {
     private Location location;
     private String mohtaviat;
+    private TileType type;
+    private boolean walkable;
+    private boolean isEmpty;
+    private ItemOfMap itemInThisTile;
 
-    public Tile(Location location, String mohtaviat, boolean walkable, boolean isEmpty,TileType tileType) {
+    public Tile(Location location, String mohtaviat, boolean walkable, boolean isEmpty, TileType tileType) {
         this.location = location;
         this.mohtaviat = mohtaviat;
         this.walkable = walkable;
         this.isEmpty = isEmpty;
+    }
+
+    public boolean isWalkable() {
+        return walkable;
+    }
+
+    public void setWalkable(boolean walkable) {
+        this.walkable = walkable;
     }
 
     public boolean isEmpty() {
@@ -21,10 +33,6 @@ public class Tile {
         isEmpty = empty;
     }
 
-    private TileType type;
-    private boolean walkable;
-    private boolean isEmpty;
-    private ItemOfMap itemInThisTile;
 
     public String getMohtaviat() {
         return mohtaviat;

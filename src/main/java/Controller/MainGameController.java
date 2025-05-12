@@ -73,8 +73,28 @@ public class MainGameController {
         increaseDay(Day);
         return new Result(true, "cheat Day " + Day + " confirmed");
     }
+
     public Result season() {
         return new Result(true, String.valueOf(getSeason()));
+    }
+
+    public Result showEnergy() {
+        return new Result(true, "your energy : " + mainUser.getEnergy());
+    }
+
+    public Result setEnergy(String energy) {
+        try {
+            mainUser.setEnergy(Integer.parseInt(energy));
+        } catch (Exception e) {
+            return new Result(false, "invalid energy");
+        }
+        return new Result(true, "your energy set to " + energy);
+
+    }
+
+    public Result unlimitedEnergy() {
+        mainUser.setEnergy(Double.MAX_VALUE * 2);
+        return new Result(true, "your energy unlimited");
     }
 
     public Result levelUpTool(String name) {

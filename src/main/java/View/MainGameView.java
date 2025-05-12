@@ -56,6 +56,12 @@ public class MainGameView implements AppMenu {
             System.out.println(controller.helpReadMap());
         } else if ((matcher = mainGameCommands.season.getMatcher(input)) != null) {
             System.out.println(controller.season());
+        } else if ((matcher = mainGameCommands.energyShow.getMatcher(input)) != null) {
+            System.out.println(controller.showEnergy());
+        } else if ((matcher = mainGameCommands.energySet.getMatcher(input)) != null) {
+            System.out.println(controller.setEnergy(matcher.group("V")));
+        } else if ((matcher = mainGameCommands.UnlimitedEnergy.getMatcher(input)) != null) {
+            System.out.println(controller.unlimitedEnergy());
         } else if (input.matches("exit")) {
             currentMenu = Menu.ExitMenu;
         }

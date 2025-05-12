@@ -20,25 +20,9 @@ import java.util.List;
 
 public class Game {
     public static User mainUser;
-    public static Menu currentMenu = Menu.GameMenu;
+    public static Menu currentMenu = Menu.Register;
     public static HashMap<String, User> playersInGame = new HashMap<>();
 
-//    static {
-//
-//        JFrame frame = new JFrame("Test");
-//        frame.setSize(400, 300);
-//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        frame.setVisible(true);
-//
-//
-//        try {
-//            Thread.sleep(500);
-//        } catch (Exception e) {
-//        }
-//
-//        System.out.println("Actual window size: " + frame.getWidth() + "x" + frame.getHeight());
-//
-//    }
 
     public static WeatherType currentWeather;
     public static HashMap<String, User> AllUsers = new HashMap<>();

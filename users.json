@@ -6,33 +6,24 @@
     "gender": "arshia@gmail.com",
     "email": "male",
     "numberOfSecurityQuestion": 1,
-    "securityQuestion": "sadf",
+    "securityQuestion": "soltani",
     "friendsNpc": {},
     "friendsPlayer": {},
-    "money": 0,
-    "energy": 200,
+    "gold": 0,
+    "wood": 0,
+    "Money": 0,
+    "energy": 200.0,
     "stayLoggedIn": false,
     "mostAchievedMoney": 0,
-    "matchPlayed": 0
+    "matchPlayed": 0,
+    "location": {
+      "y": 0,
+      "x": 0
+    },
+    "fainted": false
   },
   {
-    "username": "arshiaD3",
-    "password": "aA123456?w",
-    "nickName": "arshix",
-    "gender": "arshia@gmail.com",
-    "email": "male",
-    "numberOfSecurityQuestion": 1,
-    "securityQuestion": "ali",
-    "friendsNpc": {},
-    "friendsPlayer": {},
-    "money": 0,
-    "energy": 200,
-    "stayLoggedIn": false,
-    "mostAchievedMoney": 0,
-    "matchPlayed": 0
-  },
-  {
-    "username": "arshiaX1",
+    "username": "arshiaH5",
     "password": "aA123456?w",
     "nickName": "arshix",
     "gender": "arshia@gmail.com",
@@ -41,14 +32,21 @@
     "securityQuestion": "soltani",
     "friendsNpc": {},
     "friendsPlayer": {},
-    "money": 0,
-    "energy": 200,
+    "gold": 0,
+    "wood": 0,
+    "Money": 0,
+    "energy": 200.0,
     "stayLoggedIn": false,
     "mostAchievedMoney": 0,
-    "matchPlayed": 0
+    "matchPlayed": 0,
+    "location": {
+      "y": 0,
+      "x": 0
+    },
+    "fainted": false
   },
   {
-    "username": "arshiaN5",
+    "username": "arshiaQ1",
     "password": "aA123456?w",
     "nickName": "arshix",
     "gender": "arshia@gmail.com",
@@ -57,14 +55,21 @@
     "securityQuestion": "soltani",
     "friendsNpc": {},
     "friendsPlayer": {},
-    "money": 0,
-    "energy": 200,
+    "gold": 0,
+    "wood": 0,
+    "Money": 0,
+    "energy": 200.0,
     "stayLoggedIn": false,
     "mostAchievedMoney": 0,
-    "matchPlayed": 0
+    "matchPlayed": 0,
+    "location": {
+      "y": 0,
+      "x": 0
+    },
+    "fainted": false
   },
   {
-    "username": "arshiaY1",
+    "username": "arshiaJ0",
     "password": "aA123456?w",
     "nickName": "arshix",
     "gender": "arshia@gmail.com",
@@ -73,14 +78,21 @@
     "securityQuestion": "soltani",
     "friendsNpc": {},
     "friendsPlayer": {},
-    "money": 0,
-    "energy": 200,
+    "gold": 0,
+    "wood": 0,
+    "Money": 0,
+    "energy": 200.0,
     "stayLoggedIn": false,
     "mostAchievedMoney": 0,
-    "matchPlayed": 0
+    "matchPlayed": 0,
+    "location": {
+      "y": 0,
+      "x": 0
+    },
+    "fainted": false
   },
   {
-    "username": "arshiaX9",
+    "username": "arshiaV6",
     "password": "aA123456?w",
     "nickName": "arshix",
     "gender": "arshia@gmail.com",
@@ -89,14 +101,21 @@
     "securityQuestion": "soltani",
     "friendsNpc": {},
     "friendsPlayer": {},
-    "money": 0,
-    "energy": 200,
+    "gold": 0,
+    "wood": 0,
+    "Money": 0,
+    "energy": 200.0,
     "stayLoggedIn": false,
     "mostAchievedMoney": 0,
-    "matchPlayed": 0
+    "matchPlayed": 0,
+    "location": {
+      "y": 0,
+      "x": 0
+    },
+    "fainted": false
   },
   {
-    "username": "arshiaF2",
+    "username": "arshiaR0",
     "password": "aA123456?w",
     "nickName": "arshix",
     "gender": "arshia@gmail.com",
@@ -105,10 +124,17 @@
     "securityQuestion": "soltani",
     "friendsNpc": {},
     "friendsPlayer": {},
-    "money": 0,
-    "energy": 200,
+    "gold": 0,
+    "wood": 0,
+    "Money": 0,
+    "energy": 200.0,
     "stayLoggedIn": false,
     "mostAchievedMoney": 0,
-    "matchPlayed": 0
+    "matchPlayed": 0,
+    "location": {
+      "y": 0,
+      "x": 0
+    },
+    "fainted": false
   }
 ]
