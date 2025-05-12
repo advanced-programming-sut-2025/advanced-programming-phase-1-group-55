@@ -7,6 +7,7 @@ import model.Tool.BackPack;
 
 import java.util.*;
 
+import static model.App.currentGame;
 import static model.App.mainUser;
 
 public class User {
@@ -260,8 +261,8 @@ public class User {
 
 
     public void moveTo(int targetX, int targetY, Tile[][] map) {
-        int startX = mainUser.getLocation().getX();
-        int startY = mainUser.getLocation().getY();
+        int startX = currentGame.currentUser.getLocation().getX();
+        int startY = currentGame.currentUser.getLocation().getY();
 
         List<Tile> path = bfs(startX, startY, targetX, targetY, map);
 
@@ -275,22 +276,22 @@ public class User {
         int energyNeeded = (int) Math.ceil((distance + 10 * countTurns(path)) / 20.0);
 
         System.out.println("path found :)   distance : " + distance + " needed energy :  " + energyNeeded);
-        if (mainUser.getEnergy() >= energyNeeded) {
+        if (currentGame.currentUser.getEnergy() >= energyNeeded) {
             System.out.println("are you sure you want to move (yes/no)");
             Scanner scanner = new Scanner(System.in);
             String confirm = scanner.nextLine().trim().toLowerCase();
 
             if (confirm.equals("yes")) {
-                mainUser.setEnergy(mainUser.getEnergy() - energyNeeded);
+                currentGame.currentUser.setEnergy(currentGame.currentUser.getEnergy() - energyNeeded);
                 playerTommorowLocation = new Location(targetY, targetX);
 
-                System.out.println("you moved successfully remained energy : " + mainUser.getEnergy());
+                System.out.println("you moved successfully remained energy : " + currentGame.currentUser.getEnergy());
             } else {
                 System.out.println("move canceled! ");
             }
         } else {
-            mainUser.setFainted(true);
-            System.out.println("you dont have enough energy needed energy : " + energyNeeded + "current energy : " + mainUser.getEnergy());
+            currentGame.currentUser.setFainted(true);
+            System.out.println("you dont have enough energy needed energy : " + energyNeeded + "current energy : " + currentGame.currentUser.getEnergy());
         }
     }
 

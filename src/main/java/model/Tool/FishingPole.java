@@ -1,6 +1,7 @@
 package model.Tool;
 
 import enums.Store;
+import model.App;
 
 import static java.lang.Math.max;
 
@@ -60,7 +61,7 @@ public class FishingPole extends Tools {
 
     @Override
     public void useTool() {
-        mainUser.setEnergy(max(mainUser.getEnergy() - energyCost(), 0));
+        App.currentGame.currentUser.setEnergy(max(App.currentGame.currentUser.getEnergy() - energyCost(), 0));
     }
     //todo current user bezar
 

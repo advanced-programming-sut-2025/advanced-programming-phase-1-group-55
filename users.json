@@ -136,5 +136,28 @@
       "x": 0
     },
     "fainted": false
+  },
+  {
+    "username": "shayan2cc4s",
+    "password": "b244a2e356453bf8c3c7c2abc27be709e1eef74dd27ae768b3dafaa54ac6bb42",
+    "nickName": "sh24s",
+    "gender": "shayan@gmail.com",
+    "email": "male",
+    "numberOfSecurityQuestion": 3,
+    "securityQuestion": "amirali",
+    "friendsNpc": {},
+    "friendsPlayer": {},
+    "gold": 0,
+    "wood": 0,
+    "Money": 0,
+    "energy": 200.0,
+    "stayLoggedIn": false,
+    "mostAchievedMoney": 0,
+    "matchPlayed": 0,
+    "location": {
+      "y": 0,
+      "x": 0
+    },
+    "fainted": false
   }
 ]

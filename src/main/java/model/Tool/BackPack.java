@@ -1,5 +1,6 @@
 package model.Tool;
 
+import model.App;
 import model.Game;
 
 import java.util.HashMap;
@@ -59,7 +60,7 @@ public class BackPack {
     public void recycleItem(String name){
         //injaa bayad hame noe item ro recycle koni na faghat tools
         // TO DO 
-        Game.mainUser.setMoney(Game.mainUser.getMoney()+
+        App.currentGame.currentUser.setMoney(App.currentGame.currentUser.getMoney()+
                 (int)((availableTools.get(name).getPrice()*availableTools.get("Trashcan").getLevel()*15)/100));
         availableTools.remove(name);
     }

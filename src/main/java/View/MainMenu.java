@@ -5,7 +5,7 @@ import enums.Menu;
 
 import java.util.Scanner;
 
-import static model.Game.*;
+import static model.App.*;
 
 public class MainMenu extends AppView implements AppMenu {
 

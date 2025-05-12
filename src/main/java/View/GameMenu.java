@@ -2,10 +2,11 @@ package View;
 
 import Controller.GameMenuController;
 import enums.Menu;
+import model.App;
 import model.Game;
 import model.Map.*;
 
-import static model.Game.*;
+import static model.App.*;
 
 
 public class GameMenu extends AppView implements AppMenu {
@@ -17,8 +18,8 @@ public class GameMenu extends AppView implements AppMenu {
             //todo inaro az inja bardarim
             farmBuilder fb = new farmBuilder();
             mapBuilder mb = new mapBuilder();
-            Game.setMap(fb.mapCreator());
-            GameMap map=Game.getMap();
+            currentGame.setMap(fb.mapCreator());
+            GameMap map= currentGame.getMap();
             fb.fillFarmTiles(map, map.getFarm1());
             fb.fillFarmTiles(map, map.getFarm2());
             fb.fillFarmTiles(map, map.getFarm3());

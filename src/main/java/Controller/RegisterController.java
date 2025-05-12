@@ -19,7 +19,7 @@ import com.google.gson.reflect.TypeToken;
 import java.io.*;
 import java.util.*;
 
-import static model.Game.*;
+import static model.App.*;
 
 public class RegisterController {
 
@@ -92,7 +92,7 @@ public class RegisterController {
         mainUser = user;
         saveUserToJson(user);
         readfile();
-        currentMenu = Menu.MainMenu;
+        currentMenu = Menu.MainGameMenu;
         return new Result(true, "Registered Successfully :)" + "\nusername:" + username + "\npassword: " + password + "\nnickname: " + nickname + "\nemail: " + email + "\ngender: " + gender + "\nchoice: " + number + "\nanswer: " + matcher.group("answer"));
 
     }

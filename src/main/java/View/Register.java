@@ -7,7 +7,7 @@ import model.Result;
 
 import java.util.regex.*;
 
-import static model.Game.*;
+import static model.App.*;
 
 public class Register extends AppView implements AppMenu {
     RegisterController controller = new RegisterController();
