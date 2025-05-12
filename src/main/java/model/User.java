@@ -1,5 +1,6 @@
 package model;
 
+import model.Map.Farm;
 import model.Map.Location;
 import model.Map.Tile;
 import model.NPC.Npc;
@@ -33,6 +34,15 @@ public class User {
     private boolean fainted = false;
     private Location playerTommorowLocation;
     private Game playedGame;
+    private Farm farm;
+
+    public Farm getFarm() {
+        return farm;
+    }
+
+    public void setFarm(Farm farm) {
+        this.farm = farm;
+    }
 
     public Game getPlayedGame() {
         return playedGame;
