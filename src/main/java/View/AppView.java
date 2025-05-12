@@ -5,8 +5,8 @@ import enums.Menu;
 
 import java.util.Scanner;
 
-import static model.Game.getCurrentMenu;
-import static model.Game.readfile;
+import static model.App.getCurrentMenu;
+import static model.App.readfile;
 
 
 public class AppView {

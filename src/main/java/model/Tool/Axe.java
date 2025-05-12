@@ -3,7 +3,7 @@ package model.Tool;
 import enums.Store;
 
 import static java.lang.Math.max;
-import static model.Game.mainUser;
+import static model.App.mainUser;
 
 public class Axe extends  Tools{
     boolean usedSuccessfully=false;

@@ -7,7 +7,7 @@ import model.Tool.BackPack;
 
 import java.util.*;
 
-import static model.Game.mainUser;
+import static model.App.mainUser;
 
 public class User {
     private String username;

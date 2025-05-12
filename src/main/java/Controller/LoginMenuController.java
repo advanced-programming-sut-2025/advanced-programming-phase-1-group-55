@@ -9,7 +9,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-import static model.Game.*;
+import static model.App.*;
 
 public class LoginMenuController extends RegisterController {
     public Result login(String username, String password, String stayLoggedIn) {

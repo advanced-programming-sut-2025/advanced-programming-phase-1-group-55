@@ -28,7 +28,7 @@ public class GameMenuController {
         fb.fillFarmTiles(Map, Map.getFarm4());
         mb.fillOtherTiles(Map);
         HashMap<String, User> playersInGame = new HashMap<>();
-        Game game = new Game(mainUser, playersInGame, Map);
+        currentGame = new Game(mainUser, playersInGame, Map);
         return new Result(true, "Map selected succesfully!");
     }
 

@@ -8,7 +8,7 @@ import java.util.regex.Matcher;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 
-import static model.Game.*;
+import static model.App.*;
 
 public class MainGameView implements AppMenu {
     private final MainGameController controller = new MainGameController();
