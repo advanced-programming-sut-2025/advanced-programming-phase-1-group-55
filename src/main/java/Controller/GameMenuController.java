@@ -29,25 +29,26 @@ public class GameMenuController {
 
         //todo agar bishtar az se nam karbari dashtim
         HashMap<String, User> playersInGame = new HashMap<>();
+        farmBuilder fb = new farmBuilder();
 
-        User player0 = mainUser;
+        User Player0 = mainUser;
         User Player1 = AllUsers.get(Username1);
-
+        User Player2 = null;
+        User Player3 = null;
         int numberOFPlayers = 2;
         numberOFPlayers++;
         if (Username2 != null) {
             numberOFPlayers++;
-            User Player2 = AllUsers.get(Username2);
+            Player2 = AllUsers.get(Username2);
 
 
         }
         if (Username3 != null) {
             numberOFPlayers++;
-            User Player3 = AllUsers.get(Username3);
+            Player3 = AllUsers.get(Username3);
 
         }
         System.out.println("choose number of map for players : ");
-        farmBuilder fb = new farmBuilder();
         int mapNumber;
         for (int i = 0; i < numberOFPlayers; i++) {
 
@@ -67,28 +68,33 @@ public class GameMenuController {
             }
             if (i == 0 && mapNumber == 1) {
 
-                player0.setFarm(fb.getFarm1());
+                Player0.setFarm(fb.getFarm1());
             } else if (i == 1 && mapNumber == 2) {
-                player0.setFarm(fb.getFarm2());
-            } if (i == 1 && mapNumber == 1) {
-
-
-                player1.setFarm(fb.getFarm1());
-            } else if (i == 1 && mapNumber == 2) {
-                player0.setFarm(fb.getFarm2());
-            } if (i == 0 && mapNumber == 1) {
-
-                player0.setFarm(fb.getFarm1());
-            } else if (i == 1 && mapNumber == 2) {
-                player0.setFarm(fb.getFarm2());
+                Player0.setFarm(fb.getFarm2());
             }
-            if (i == 0 && mapNumber == 1) {
+            if (i == 1 && mapNumber == 1) {
 
-                player0.setFarm(fb.getFarm1());
+
+                Player1.setFarm(fb.getFarm1());
             } else if (i == 1 && mapNumber == 2) {
-                player0.setFarm(fb.getFarm2());
+                Player1.setFarm(fb.getFarm2());
             }
+            if (i == 2 && mapNumber == 1) {
 
+                assert Player2 != null;
+                Player2.setFarm(fb.getFarm1());
+            } else if (i == 2 && mapNumber == 2) {
+                assert Player2 != null;
+                Player2.setFarm(fb.getFarm2());
+            }
+            if (i == 3 && mapNumber == 1) {
+
+                assert Player3 != null;
+                Player3.setFarm(fb.getFarm1());
+            } else if (i == 3 && mapNumber == 2) {
+                assert Player3 != null;
+                Player3.setFarm(fb.getFarm2());
+            }
 
 
         }
