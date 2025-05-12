@@ -21,20 +21,20 @@ public class GameMap {
     public GameMap(Farm farm1, Farm farm2, Farm farm3, Farm farm4,NpcVillage village) {
 
         farm2.setLocation(new Location(farm2.getLocation().getY() + 21, farm2.getLocation().getX()));
-        farm2.getQuarry().changeLocation(21, 0);
-        farm2.getLake().changeLocation(21, 0);
-        farm2.getGreenHouse().changeLocation(21, 0);
-        farm2.getHouse().changeLocation(21, 0);
+        farm2.getQuarry().getLocation().changeLocation(21, 0);
+        farm2.getLake().getLocation().changeLocation(21, 0);
+        farm2.getGreenHouse().getLocation().changeLocation(21, 0);
+        farm2.getHouse().getLocation().changeLocation(21, 0);
         farm3.setLocation(new Location(farm3.getLocation().getY(), farm3.getLocation().getX() + 140));
-        farm3.getQuarry().changeLocation(0, 140);
-        farm3.getLake().changeLocation(0, 140);
-        farm3.getGreenHouse().changeLocation(0, 140);
-        farm3.getHouse().changeLocation(0, 140);
+        farm3.getQuarry().getLocation().changeLocation(0, 140);
+        farm3.getLake().getLocation().changeLocation(0, 140);
+        farm3.getGreenHouse().getLocation().changeLocation(0, 140);
+        farm3.getHouse().getLocation().changeLocation(0, 140);
         farm4.setLocation(new Location(farm4.getLocation().getY() + 21, farm4.getLocation().getX() + 140));
-        farm4.getQuarry().changeLocation(21, 140);
-        farm4.getLake().changeLocation(21, 140);
-        farm4.getGreenHouse().changeLocation(21, 140);
-        farm4.getHouse().changeLocation(21, 140);
+        farm4.getQuarry().getLocation().changeLocation(21, 140);
+        farm4.getLake().getLocation().changeLocation(21, 140);
+        farm4.getGreenHouse().getLocation().changeLocation(21, 140);
+        farm4.getHouse().getLocation().changeLocation(21, 140);
         this.farm1 = farm1;
         this.farm2 = farm2;
         this.farm3 = farm3;

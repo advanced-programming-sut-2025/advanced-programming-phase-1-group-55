@@ -29,8 +29,8 @@ public enum mainGameCommands implements Command {
     helpReadMap("^\\s*help\\s+reading\\s+map\\s*$"),
     printMap("^\\s*print\\s+map\\s+-l\\s+(?<x>\\d+)\\s+(?<y>\\d+)\\s+-s\\s+(?<size>\\d+)\\s*$"),
     printFullMap("^\\s*print\\s+map\\s*$"),
-    gameNew("^\\s*game\\s+new\\s+-u\\s+(?<user1>\\S+)(?:\\s+(?<user2>\\S+))?(?:\\s+(?<user3>\\S+))?\\s*$"),
-    chooseMap("^\\s*game\\s+map\\s+(?<X>\\S+)\\s*$");
+    gameNew("\\s*game\\s+new\\s+-u\\s+(?<user1>\\S+)(?:\\s+(?<user2>\\S+))?(?:\\s+(?<user3>\\S+))?\\s*"),
+    chooseMap("\\s*game\\s+map\\s+(?<X>\\S+)\\s*");
     private final String pattern;
 
     mainGameCommands(String pattern) {

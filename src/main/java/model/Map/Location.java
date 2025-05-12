@@ -24,7 +24,11 @@ public class Location {
     public void setX(int x) {
         this.x = x;
     }
-
+    public Location changeLocation(int dy,int dx){
+        y+=dy;
+        x+=dx;
+        return new Location(y,x);
+    }
     @Override
     public String toString() {
         return "Location{" +

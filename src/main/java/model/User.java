@@ -19,7 +19,7 @@ public class User {
     private String email;
     private int numberOfSecurityQuestion;
     private String securityQuestion;
-    private BackPack backPack;
+    private BackPack backPack=new BackPack();
     private User wife = null;
     private HashMap<String, Npc> friendsNpc = new HashMap<>();
     private HashMap<String, User> friendsPlayer = new HashMap<>();
@@ -35,7 +35,6 @@ public class User {
     private Location playerTommorowLocation;
     private Game playedGame;
     private Farm farm;
-
     public Farm getFarm() {
         return farm;
     }

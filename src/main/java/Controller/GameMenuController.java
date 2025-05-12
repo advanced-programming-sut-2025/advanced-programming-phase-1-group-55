@@ -31,7 +31,13 @@ public class GameMenuController {
         //todo agar bishtar az se nam karbari dashtim
         HashMap<String, User> playersInGame = new HashMap<>();
         farmBuilder fb = new farmBuilder();
-
+        mapBuilder mb = new mapBuilder();
+        GameMap Map = fb.mapCreator();
+        fb.fillFarmTiles(Map, Map.getFarm1());
+        fb.fillFarmTiles(Map, Map.getFarm2());
+        fb.fillFarmTiles(Map, Map.getFarm3());
+        fb.fillFarmTiles(Map, Map.getFarm4());
+        mb.fillOtherTiles(Map);
         User Player0 = mainUser;
         User Player1 = AllUsers.get(Username1);
         User Player2 = null;
@@ -71,6 +77,7 @@ public class GameMenuController {
             if (i == 0 && mapNumber == 1) {
 
                 Player0.setFarm(fb.getFarm1());
+                Player0.setLocation(Player0.getFarm().getLocation().changeLocation(1,1));
             } else if (i == 1 && mapNumber == 2) {
                 Player0.setFarm(fb.getFarm2());
             }
@@ -78,14 +85,14 @@ public class GameMenuController {
 
 
                 Player1.setFarm(fb.getFarm1());
-            } else if (i == 1 && mapNumber == 2) {
+            } else if (i == 1) {
                 Player1.setFarm(fb.getFarm2());
             }
             if (i == 2 && mapNumber == 1) {
 
                 assert Player2 != null;
                 Player2.setFarm(fb.getFarm1());
-            } else if (i == 2 && mapNumber == 2) {
+            } else if (i == 2) {
                 assert Player2 != null;
                 Player2.setFarm(fb.getFarm2());
             }
@@ -93,7 +100,7 @@ public class GameMenuController {
 
                 assert Player3 != null;
                 Player3.setFarm(fb.getFarm1());
-            } else if (i == 3 && mapNumber == 2) {
+            } else if (i == 3) {
                 assert Player3 != null;
                 Player3.setFarm(fb.getFarm2());
             }
@@ -102,13 +109,6 @@ public class GameMenuController {
         }
 
 
-        mapBuilder mb = new mapBuilder();
-        GameMap Map = fb.mapCreator();
-        fb.fillFarmTiles(Map, Map.getFarm1());
-        fb.fillFarmTiles(Map, Map.getFarm2());
-        fb.fillFarmTiles(Map, Map.getFarm3());
-        fb.fillFarmTiles(Map, Map.getFarm4());
-        mb.fillOtherTiles(Map);
 
 
         currentGame = new Game(mainUser, playersInGame, Map);
