@@ -6,6 +6,11 @@ public class Tree {
     private AllTrees treeType;
     private Location location;
 
+    public Tree( Location location,AllTrees treeType) {
+        this.treeType = treeType;
+        this.location = location;
+    }
+
     public Location getLocation() {
         return location;
     }
