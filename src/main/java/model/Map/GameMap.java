@@ -105,12 +105,15 @@ public class GameMap {
     public AnsiColor colorOfTile(String item){
         AnsiColor color=AnsiColor.RESET;
         color = switch (item) {
-            case "W" -> AnsiColor.BLUE;
-            case "^" -> AnsiColor.BRIGHT_BLACK;
-            case "h" -> AnsiColor.BRIGHT_CYAN;
-            case "g" -> AnsiColor.OLIVE_GREEN;
-            case "#" -> AnsiColor.ORANGE;
-            case "=" -> AnsiColor.RED;
+            case "W" -> AnsiColor.BG_BLUE;
+            case "^" -> AnsiColor.BG_BRIGHT_BLACK;
+            case "h" -> AnsiColor.BG_BRIGHT_PURPLE;
+            case "g" -> AnsiColor.BG_OLIVE_GREEN;
+            case "#" -> AnsiColor.BG_ORANGE;
+            case "=" -> AnsiColor.BG_RED;
+            case  "T"-> AnsiColor.BG_BROWN;
+            case "0"-> AnsiColor.BG_BRIGHT_WHITE;
+            case "&"-> AnsiColor.BG_BRIGHT_GREEN;
             default -> color;
         };
         return color;
