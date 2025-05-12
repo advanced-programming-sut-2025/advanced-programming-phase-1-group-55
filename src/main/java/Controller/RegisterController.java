@@ -19,7 +19,7 @@ import com.google.gson.reflect.TypeToken;
 import java.io.*;
 import java.util.*;
 
-import static model.Game.*;
+import static model.App.*;
 
 public class RegisterController {
 

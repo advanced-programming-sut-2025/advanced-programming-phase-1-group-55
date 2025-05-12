@@ -1,18 +1,17 @@
 package model.Tool;
 
 import static java.lang.Math.max;
-import static model.Game.mainUser;
+import static model.App.*;
 
 public class Trashcan extends Tools{
 
-    @Override
     public String getName() {
         return "Trashcan";
     }
 
     @Override
     public void useTool() {
-        mainUser.setEnergy(max(mainUser.getEnergy()-energyCost(),0));
+        currentGame.currentUser.setEnergy(max(currentGame.currentUser.getEnergy()-energyCost(),0));
     }
 
     @Override

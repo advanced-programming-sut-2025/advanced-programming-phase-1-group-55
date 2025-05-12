@@ -2,7 +2,7 @@ package Controller;
 
 import model.Result;
 
-import static model.Game.*;
+import static model.App.*;
 
 public class ProfileMenuController extends RegisterController {
     public Result changeUsername(String Username) {

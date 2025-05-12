@@ -1,13 +1,15 @@
 package model.Tool;
 
 import enums.Store;
+import model.App;
 
 import static java.lang.Math.max;
-import static model.Game.mainUser;
+
 
 public class FishingPole extends Tools {
     private final FishingPoleType type;
-    private  final Store store=Store.fishShop;
+    private final Store store = Store.fishShop;
+
     public Store getStore() {
         return store;
     }
@@ -32,14 +34,14 @@ public class FishingPole extends Tools {
 
     @Override
     public int energyCost() {
-        int energy=type.getEnergyPerUse();
+        int energy = type.getEnergyPerUse();
         // TODO  AGAR FISHING MAX BOOD ENERGY--;
         return energy;
     }
 
     @Override
     public int getPriceToLevelUp() {
-        if(type.equals(FishingPoleType.TRAINING_ROD)){
+        if (type.equals(FishingPoleType.TRAINING_ROD)) {
             return FishingPoleType.BAMBOO_ROD.getPrice();
         } else if (type.equals(FishingPoleType.BAMBOO_ROD)) {
             return FishingPoleType.FIBERGLASS_ROD.getPrice();
@@ -50,15 +52,17 @@ public class FishingPole extends Tools {
 
     @Override
     public int getPrice() {
-        return  type.getPrice();
+        return type.getPrice();
     }
 
     public boolean canCatchAllFish() {
         return type.canCatchAllFish();
     }
+
     @Override
     public void useTool() {
-        mainUser.setEnergy(max(mainUser.getEnergy()-energyCost(),0));
+        App.currentGame.currentUser.setEnergy(max(App.currentGame.currentUser.getEnergy() - energyCost(), 0));
     }
+    //todo current user bezar
 
 }

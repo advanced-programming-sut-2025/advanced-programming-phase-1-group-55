@@ -15,7 +15,6 @@ public class ProfileMenu extends AppView implements AppMenu {
     @Override
     public void check(String input) {
 
-        input = scanner.nextLine();
         Matcher changeUsername = ProfileCommands.changeUsername.getMatcher(input);
         Matcher changeNickname = ProfileCommands.changeNickname.getMatcher(input);
         Matcher changeEmail = ProfileCommands.changeEmail.getMatcher(input);

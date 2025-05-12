@@ -5,7 +5,7 @@ import enums.Menu;
 
 import java.util.Scanner;
 
-import static model.Game.*;
+import static model.App.*;
 
 public class MainMenu extends AppView implements AppMenu {
 
@@ -28,7 +28,7 @@ public class MainMenu extends AppView implements AppMenu {
             System.out.println("going to Avatar menu");
         } else if (input.matches("\\s*menu\\s+enter\\s+game\\s*")) {
 
-            currentMenu = Menu.MainGameMenu;
+            currentMenu = Menu.GameMenu;
             System.out.println("going to Game menu");
         } else if (input.matches("\\s*show\\s+current\\s+menu\\s*")) {
             System.out.println("you are in Main Menu now!");

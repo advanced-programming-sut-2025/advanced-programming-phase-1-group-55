@@ -3,9 +3,10 @@ package model.Tool;
 import enums.Store;
 
 import static java.lang.Math.max;
-import static model.Game.mainUser;
+import static model.App.*;
 
 public class MilkPair extends  Tools{
+    private final String names="MilkPair";
     public int getPriceToLevelUp(){
         if(level==1){
             return 2000;
@@ -42,6 +43,6 @@ public class MilkPair extends  Tools{
     }
     @Override
     public void useTool() {
-        mainUser.setEnergy(max(mainUser.getEnergy()-energyCost(),0));
+        currentGame.currentUser.setEnergy(max(currentGame.currentUser.getEnergy()-energyCost(),0));
     }
 }

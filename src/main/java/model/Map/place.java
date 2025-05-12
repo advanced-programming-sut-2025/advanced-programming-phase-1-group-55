@@ -36,8 +36,5 @@ public class place {
         this.location = place.this.location;
     }
 
-    public void changeLocation(int dy, int dx) {
-        this.location = new Location(this.location.getY() + dy, this.location.getX() + dx);
 
-    }
 }
