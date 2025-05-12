@@ -1,6 +1,9 @@
 package Controller;
 
 
+import model.Game;
+import model.Map.GameMap;
+import model.Map.Location;
 import model.Tool.Tools;
 import model.Tool.Trashcan;
 import model.Tool.WateringCan;
@@ -138,5 +141,11 @@ public class MainGameController {
                 "L: LEAH's house\nR: ROBIN's house\n" +
                 "G: General store\nC: Carpenter Shop\nF: fish store\nM: marnieRanch store";
         return  new Result(true,message);
+    }
+    public Result showFullMap(){
+        return  new Result(true, Game.getMap().printMap(new Location(0,0),160,41));
+    }
+    public Result showMap(int x, int y , int size){
+        return new Result(true,Game.getMap().printMap(new Location(y,x),size,size));
     }
 }

@@ -21,7 +21,9 @@ public enum mainGameCommands implements Command {
     energyShow("\\s*energy\\s+show\\s*"),
     energySet("\\s*energy\\s+set\\s+-v\\s+(?<V>\\S+)\\s*"),
     UnlimitedEnergy("\\s*energy\\s+unlimited\\s*"),
-    helpReadMap("^\\s*help\\s+reading\\s+map\\s*$");
+    helpReadMap("^\\s*help\\s+reading\\s+map\\s*$"),
+    printMap("^\\s*print\\s+map\\s+-l\\s+(?<x>\\d+)\\s+(?<y>\\d+)\\s+-s\\s+(?<size>\\d+)\\s*$"),
+    printFullMap("^\\s*print\\s+map\\s*$");
     private final String pattern;
 
     mainGameCommands(String pattern) {

@@ -1,10 +1,9 @@
 package View;
 
 import Controller.GameMenuController;
-import model.Map.GameMap;
-import model.Map.Tile;
-import model.Map.farmBuilder;
-import model.Map.mapBuilder;
+import enums.Menu;
+import model.Game;
+import model.Map.*;
 
 import static model.Game.*;
 
@@ -18,17 +17,19 @@ public class GameMenu extends AppView implements AppMenu {
             //todo inaro az inja bardarim
             farmBuilder fb = new farmBuilder();
             mapBuilder mb = new mapBuilder();
-            GameMap Map = fb.mapCreator();
-            fb.fillFarmTiles(Map, Map.getFarm1());
-            fb.fillFarmTiles(Map, Map.getFarm2());
-            fb.fillFarmTiles(Map, Map.getFarm3());
-            fb.fillFarmTiles(Map, Map.getFarm4());
-            mb.fillOtherTiles(Map);
-            mb.initializeMapTiles(Map);
-            System.out.println(Map.printMap());
+            Game.setMap(fb.mapCreator());
+            GameMap map=Game.getMap();
+            fb.fillFarmTiles(map, map.getFarm1());
+            fb.fillFarmTiles(map, map.getFarm2());
+            fb.fillFarmTiles(map, map.getFarm3());
+            fb.fillFarmTiles(map, map.getFarm4());
+            mb.fillOtherTiles(map);
+            mb.initializeMapTiles(map);
+            System.out.println(map.printMap(new Location(0,0),160,41));
             readfile();
             mainUser = AllUsers.get("arshia");
-            mainUser.moveTo(13, 3, Map.tiles);
+            mainUser.moveTo(13, 3, map.tiles);
+            currentMenu= Menu.MainGameMenu;
         }
 
     }

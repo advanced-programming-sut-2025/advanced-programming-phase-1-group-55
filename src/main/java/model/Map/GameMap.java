@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import static java.lang.Math.max;
+import static java.lang.Math.min;
+
 public class GameMap {
     public Tile[][] tiles = new Tile[41][160];
 
@@ -112,10 +115,10 @@ public class GameMap {
         };
         return color;
     }
-    public String printMap(){
+    public String printMap(Location start,int sizex,int sizey){
         StringBuilder map=new StringBuilder();
-        for (int i = 0; i < 41; i++) {
-            for (int j = 0; j < 160; j++) {
+        for (int i = max(start.getY(),0); i < min(sizey+max(start.getY(),0),41); i++) {
+            for (int j = max(start.getX(),0); j < min(sizex+max(start.getX(),0),160); j++) {
                 Tile t = tiles[i][j];
                 if (t != null) {
                     AnsiColor color=colorOfTile(t.getMohtaviat());
