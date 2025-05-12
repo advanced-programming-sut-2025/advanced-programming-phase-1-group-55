@@ -1,6 +1,6 @@
 package model.Tool;
 
-public  abstract class Tools {
+public   class Tools {
     protected int level=0;
 
     protected String name;
@@ -16,13 +16,28 @@ public  abstract class Tools {
     public void increaseLevel(){
         level++;
     }
-    public abstract String getName();
-    public abstract void useTool();
+
+    public String getName() {
+        return null;
+    }
+
+    public void useTool() {
+
+    }
 
     public void setName(String name) {
         this.name = name;
     }
-    public abstract int energyCost();
-    public abstract int getPriceToLevelUp();
-    public  abstract int getPrice();
+
+    public int energyCost() {
+        return 0;
+    }
+
+    public int getPriceToLevelUp() {
+        return 0;
+    }
+
+    public int getPrice() {
+        return 0;
+    }
 }

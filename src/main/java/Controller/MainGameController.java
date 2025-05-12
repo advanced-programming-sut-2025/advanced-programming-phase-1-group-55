@@ -135,7 +135,7 @@ public class MainGameController {
             return new Result(false, "level of your tool is max , you can't upgrade it !");
         }
         /*
-        to do
+        todo
         baayad shart boodn dar ahan gari ro emaal knm , bad zadan map;
         */
         if (tool instanceof Trashcan can) {

@@ -6,6 +6,7 @@ import static java.lang.Math.max;
 import static model.App.*;
 
 public class MilkPair extends  Tools{
+    private final String names="MilkPair";
     public int getPriceToLevelUp(){
         if(level==1){
             return 2000;

@@ -5,7 +5,6 @@ import static model.App.*;
 
 public class Trashcan extends Tools{
 
-    @Override
     public String getName() {
         return "Trashcan";
     }

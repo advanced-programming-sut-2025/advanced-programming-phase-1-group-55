@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class BackPack {
-    private  Tools currentTool;
+    private  Tools currentTool=new Hoe();
     private Map<String, Tools> availableTools = new HashMap<>() {{
         put("Hoe", new Hoe());
         put("Pickaxe", new Pickaxe());
@@ -44,12 +44,12 @@ public class BackPack {
     }
 
     public String showCurrentTool(){
-        return currentTool.toString();
+        return currentTool.getName();
     }
     public String showAvailableTools(){
         StringBuilder message=new StringBuilder();
         for(Tools tools:availableTools.values()){
-            message.append(tools.getName());
+            message.append(tools.getName()).append("\n");
         }
         return  message.toString();
     }
