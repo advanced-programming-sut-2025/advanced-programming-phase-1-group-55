@@ -76,5 +76,23 @@ public enum AllTrees {
     public int getFruitEnergy() {
         return fruitEnergy;
     }
+    public  static AllTrees getTypeByInt(int x){
+        return switch (x) {
+            case 0 -> APRICOT_TREE;
+            case 1 -> CHERRY_TREE;
+            case 2 -> BANANA_TREE;
+            case 3 -> MANGO_TREE;
+            case 4 -> ORANGE_TREE;
+            case 5 -> PEACH_TREE;
+            case 6 -> APPLE_TREE;
+            case 7 -> POMEGRANATE_TREE;
+            case 8 -> OAK_TREE;
+            case 9 -> MAPLE_TREE;
+            case 10 -> PINE_TREE;
+            case 11 -> MAHOGANY_TREE;
+            case 12 -> MUSHROOM_TREE;
+            default -> MYSTIC_TREE;
+        };
+    }
 }
 
