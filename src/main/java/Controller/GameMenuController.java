@@ -51,8 +51,19 @@ public class GameMenuController {
         return new Result(true, "game has created successfully !");
     }
 
-    public Result gameMap(int MapNumber) {
-        return null;
+    public Result gameMap(String MapNumber) {
+        int mapNumber;
+        try {
+            mapNumber = Integer.parseInt(MapNumber);
+        } catch (NumberFormatException e) {
+            return new Result(false, "Invalid map number");
+
+        }
+        if (mapNumber != 1 && mapNumber != 2) {
+            return new Result(false, "Invalid map number choose 1 or 2");
+        }
+
+
     }
 
     public Result loadGame(String Username1, String Username2, String Username3) {

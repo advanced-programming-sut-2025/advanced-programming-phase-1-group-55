@@ -17,8 +17,9 @@ public class GameMenu extends AppView implements AppMenu {
 
     @Override
     public void check(String input) {
-        Matcher newGame = mainGameCommands.gameNew.getMatcher(input);
-        if (newGame != null) {
+        Matcher gameNew = mainGameCommands.gameNew.getMatcher(input);
+        Matcher chooseMap = mainGameCommands.chooseMap.getMatcher(input);
+        if (gameNew != null) {
             //todo inaro az inja bardarim
 //            farmBuilder fb = new farmBuilder();
 //            mapBuilder mb = new mapBuilder();
@@ -35,7 +36,10 @@ public class GameMenu extends AppView implements AppMenu {
 //            mainUser = AllUsers.get("arshia");
 //            mainUser.moveTo(13, 3, map.tiles);
 //            currentMenu = Menu.MainGameMenu;
-            System.out.println();
+
+        } else if (chooseMap != null) {
+
+
         }
 
     }
