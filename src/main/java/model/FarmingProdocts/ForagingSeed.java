@@ -6,7 +6,7 @@ public class ForagingSeed {
     private AllForagingSeeds type;
     private Location location;
 
-    public ForagingSeed(AllForagingSeeds type, Location location) {
+    public ForagingSeed( Location location,AllForagingSeeds type) {
         this.type = type;
         this.location = location;
     }

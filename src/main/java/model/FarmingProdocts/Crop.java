@@ -9,6 +9,11 @@ public class Crop {
     private AllCrops cropType;
     private Location location;
 
+    public Crop(AllCrops cropType, Location location) {
+        this.cropType = cropType;
+        this.location = location;
+    }
+
     public Location getLocation() {
         return location;
     }
