@@ -32,6 +32,15 @@ public class User {
     private Location location = new Location(0, 0);//todo ino bayad bokonm location aval farmesh
     private boolean fainted = false;
     private Location playerTommorowLocation;
+    private Game playedGame;
+
+    public Game getPlayedGame() {
+        return playedGame;
+    }
+
+    public void setPlayedGame(Game playedGame) {
+        this.playedGame = playedGame;
+    }
 
     public Location getPlayerTommorowLocation() {
         return playerTommorowLocation;
