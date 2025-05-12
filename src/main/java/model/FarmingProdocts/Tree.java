@@ -1,84 +1,41 @@
 package model.FarmingProdocts;
+import model.Map.Location;
+
 import java.util.List;
 public class Tree {
-    private final String name;
-    private final String seedSource;
-    private final List<Integer> stages;
-    private final int totalHarvestTime;
-    private final String fruits;
-    private final int fruitHarvestCycle;
-    private final int fruitBaseSellPrice;
-    private final boolean isFruitEdible;
-    private final int fruitEnergy;
-    private final String season;
+    private AllTrees treeType;
+    private Location location;
 
-    public Tree(String name, String seedSource, List<Integer> stages, int totalHarvestTime, String fruits, int fruitHarvestCycle, int fruitBaseSellPrice, boolean isFruitEdible, int fruitEnergy, String season) {
-        this.name = name;
-        this.seedSource = seedSource;
-        this.stages = stages;
-        this.totalHarvestTime = totalHarvestTime;
-        this.fruits = fruits;
-        this.fruitHarvestCycle = fruitHarvestCycle;
-        this.fruitBaseSellPrice = fruitBaseSellPrice;
-        this.isFruitEdible = isFruitEdible;
-        this.fruitEnergy = fruitEnergy;
-        this.season = season;
+    public Location getLocation() {
+        return location;
     }
 
-    public String getName() {
-        return name;
+    public void setLocation(Location location) {
+        this.location = location;
     }
 
-    public String getSeedSource() {
-        return seedSource;
+    public AllTrees getTreeType() {
+        return treeType;
     }
 
-    public List<Integer> getStages() {
-        return stages;
+    public void setTreeType(AllTrees treeType) {
+        this.treeType = treeType;
     }
-
-    public int getTotalHarvestTime() {
-        return totalHarvestTime;
-    }
-
-    public String getFruits() {
-        return fruits;
-    }
-
-    public int getFruitHarvestCycle() {
-        return fruitHarvestCycle;
-    }
-
-    public int getFruitBaseSellPrice() {
-        return fruitBaseSellPrice;
-    }
-
-    public boolean isFruitEdible() {
-        return isFruitEdible;
-    }
-
-    public int getFruitEnergy() {
-        return fruitEnergy;
-    }
-
-    public String getSeason() {
-        return season;
-    }
-
 
     @Override
     public String toString() {
-        return "Crop{" +
-                "name='" + name + '\'' +
-                ", seedSource='" + seedSource + '\'' +
-                ", stages=" + stages +
-                ", totalHarvestTime=" + totalHarvestTime +
-                ", fruits=" + fruits +
-                ", fruitHarvestCycle=" + fruitHarvestCycle +
-                ", fruitBaseSellPrice=" + fruitBaseSellPrice +
-                ", isFruitEdible=" + isFruitEdible +
-                ", fruitEnergy='" + fruitEnergy + '\'' +
-                ", season=" + season +
+        return "Tree{" +
+                "name='" + treeType.getName() + '\'' +
+                ", seedSource='" + treeType.getSeedSource().getName() + '\'' +
+                ", stages=" + treeType.getStages() +
+                ", totalHarvestTime=" + treeType.getTotalHarvestTime() +
+                ", fruits='" + treeType.getFruits() + '\'' +
+                ", fruitHarvestCycle=" + treeType.getFruitHarvestCycle() +
+                ", fruitBaseSellPrice=" + treeType.getFruitBaseSellPrice() +
+                ", isFruitEdible=" + treeType.isFruitEdible() +
+                ", fruitEnergy=" + treeType.getFruitEnergy() +
+                ", season='" + treeType.getSeedSource().getSeason() + '\'' +
                 '}';
     }
 }
+

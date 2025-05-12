@@ -6,13 +6,12 @@ import model.FarmingProdocts.Tree;
 import model.Result;
 
 public class TreeCotroller {
-    public Result getCropByName(String name) {
-        for (AllTrees TreeEnum : AllTrees.values()) {
-            Tree tree = TreeEnum.getTree();
+    public Result getTreeByName(String name) {
+        for (AllTrees tree : AllTrees.values()) {
             if (tree.getName().equalsIgnoreCase(name)) {
                 StringBuilder sb = new StringBuilder("Tree found:\n");
                 sb.append("Name: ").append(tree.getName()).append("\n")
-                        .append("Source: ").append(tree.getSeedSource()).append("\n")
+                        .append("Source: ").append(tree.getSeedSource().getName()).append("\n")
                         .append("Stages: ").append(tree.getStages()).append("\n")
                         .append("Total Harvest Time: ").append(tree.getTotalHarvestTime()).append("\n")
                         .append("Fruits: ").append(tree.getFruits()).append("\n")
@@ -20,7 +19,7 @@ public class TreeCotroller {
                         .append("Fruit Base Sell Price: ").append(tree.getFruitBaseSellPrice()).append("\n")
                         .append("Is Fruit Edible:").append(tree.isFruitEdible()).append("\n")
                         .append("Fruit Energy: ").append(tree.getFruitEnergy()).append("\n")
-                        .append("Season: ").append(tree.getSeason()).append("\n");
+                        .append("Season: ").append(tree.getSeedSource().getSeason()).append("\n");
                 return new Result(true, sb.toString());
             }
         }
