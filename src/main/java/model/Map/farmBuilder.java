@@ -1,8 +1,7 @@
 package model.Map;
 
 import enums.RockType;
-import model.FarmingProdocts.AllTrees;
-import model.FarmingProdocts.Tree;
+import model.FarmingProdocts.*;
 import model.Rock;
 
 import java.util.Random;
@@ -96,7 +95,37 @@ public class farmBuilder {
                 int treeType = rand.nextInt(14);
                 farm.getTrees().put(tile.getLocation(), new Tree(tile.getLocation(), AllTrees.getTypeByInt(treeType)));
             }
-        } while (numberOfTrees != 20);
+        } while (numberOfTrees != 15);
+           //foraging seeds
+        int numberOfForagingSeeds=0;
+        do {
+            int x = rand.nextInt(20);
+            int y = rand.nextInt(20);
+            Tile tile = Map.tiles[y + farm.getLocation().getY()][x + farm.getLocation().getX()];
+            if (tile==null) {
+                tile=new Tile(new Location(y + farm.getLocation().getY(),x + farm.getLocation().getX())
+                        ,"*",true,false,TileType.grass);
+                Map.tiles[tile.getLocation().getY()][tile.getLocation().getX()]=tile;
+                numberOfForagingSeeds++;
+                int seedType = rand.nextInt(42);
+                farm.getSeeds().put(tile.getLocation(), new ForagingSeed(tile.getLocation(), AllForagingSeeds.fromId(seedType)));
+            }
+        } while (numberOfForagingSeeds != 10);
+           //foraging crobs
+        int numberOfForagingCrobs=0;
+        do {
+            int x = rand.nextInt(20);
+            int y = rand.nextInt(20);
+            Tile tile = Map.tiles[y + farm.getLocation().getY()][x + farm.getLocation().getX()];
+            if (tile==null) {
+                tile=new Tile(new Location(y + farm.getLocation().getY(),x + farm.getLocation().getX())
+                        ,"&",true,false,TileType.grass);
+                Map.tiles[tile.getLocation().getY()][tile.getLocation().getX()]=tile;
+                numberOfForagingCrobs++;
+                int seedType = rand.nextInt(23);
+                farm.getCrobs().put(tile.getLocation(), new ForagingCrops(tile.getLocation(), AllForagingCrops.fromId(seedType)));
+            }
+        } while (numberOfForagingCrobs != 10);
 
 
     }

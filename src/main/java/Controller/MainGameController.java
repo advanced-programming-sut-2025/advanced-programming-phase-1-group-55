@@ -135,11 +135,11 @@ public class MainGameController {
     }
     public Result helpReadMap(){
         String message="";
-        message+="T: trees\n&: plants and seeds\nh: house area\n#: walls\n=: doors\ng: greenhouse area\n" +
-                "W: water area(lake)\n^: quarry area\n0: rocks\n$: starDropSaloon\ns: SEBASTIAN's house\n" +
-                "B: blacksmith store\nO: ojaMart store\nA: ABIGAIL's house\nH: HARVEY's house\n" +
-                "L: LEAH's house\nR: ROBIN's house\n" +
-                "G: General store\nC: Carpenter Shop\nF: fish store\nM: marnieRanch store";
+        message+="T: trees\n&: Foraging Crobs\n*: Foraging Seeds\nh: house area\n#: walls\n" +
+                "=: doors\ng: greenhouse area\n" + "W: water area(lake)\n^: quarry area\n" +
+                "0: rocks\n$: starDropSaloon\ns: SEBASTIAN's house\n" + "B: blacksmith store\n" +
+                "O: ojaMart store\nA: ABIGAIL's house\nH: HARVEY's house\n" + "L: LEAH's house\n" +
+                "R: ROBIN's house\n" + "G: General store\nC: Carpenter Shop\nF: fish store\nM: marnieRanch store";
         return  new Result(true,message);
     }
     public Result showFullMap(){
