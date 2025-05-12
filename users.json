@@ -1,173 +1,41 @@
 [
   {
     "username": "arshia",
-    "password": "aA123456?w",
-    "nickName": "arshix",
-    "gender": "arshia@gmail.com",
-    "email": "male",
-    "numberOfSecurityQuestion": 1,
-    "securityQuestion": "soltani",
-    "friendsNpc": {},
-    "friendsPlayer": {},
-    "gold": 0,
-    "wood": 0,
-    "Money": 0,
-    "energy": 200.0,
-    "stayLoggedIn": false,
-    "mostAchievedMoney": 0,
-    "matchPlayed": 0,
-    "location": {
-      "y": 0,
-      "x": 0
-    },
-    "fainted": false
-  },
-  {
-    "username": "arshiaH5",
-    "password": "aA123456?w",
-    "nickName": "arshix",
-    "gender": "arshia@gmail.com",
-    "email": "male",
-    "numberOfSecurityQuestion": 1,
-    "securityQuestion": "soltani",
-    "friendsNpc": {},
-    "friendsPlayer": {},
-    "gold": 0,
-    "wood": 0,
-    "Money": 0,
-    "energy": 200.0,
-    "stayLoggedIn": false,
-    "mostAchievedMoney": 0,
-    "matchPlayed": 0,
-    "location": {
-      "y": 0,
-      "x": 0
-    },
-    "fainted": false
-  },
-  {
-    "username": "arshiaQ1",
-    "password": "aA123456?w",
-    "nickName": "arshix",
-    "gender": "arshia@gmail.com",
-    "email": "male",
-    "numberOfSecurityQuestion": 1,
-    "securityQuestion": "soltani",
-    "friendsNpc": {},
-    "friendsPlayer": {},
-    "gold": 0,
-    "wood": 0,
-    "Money": 0,
-    "energy": 200.0,
-    "stayLoggedIn": false,
-    "mostAchievedMoney": 0,
-    "matchPlayed": 0,
-    "location": {
-      "y": 0,
-      "x": 0
-    },
-    "fainted": false
-  },
-  {
-    "username": "arshiaJ0",
-    "password": "aA123456?w",
-    "nickName": "arshix",
-    "gender": "arshia@gmail.com",
-    "email": "male",
-    "numberOfSecurityQuestion": 1,
-    "securityQuestion": "soltani",
-    "friendsNpc": {},
-    "friendsPlayer": {},
-    "gold": 0,
-    "wood": 0,
-    "Money": 0,
-    "energy": 200.0,
-    "stayLoggedIn": false,
-    "mostAchievedMoney": 0,
-    "matchPlayed": 0,
-    "location": {
-      "y": 0,
-      "x": 0
-    },
-    "fainted": false
-  },
-  {
-    "username": "arshiaV6",
-    "password": "aA123456?w",
-    "nickName": "arshix",
-    "gender": "arshia@gmail.com",
-    "email": "male",
-    "numberOfSecurityQuestion": 1,
-    "securityQuestion": "soltani",
-    "friendsNpc": {},
-    "friendsPlayer": {},
-    "gold": 0,
-    "wood": 0,
-    "Money": 0,
-    "energy": 200.0,
-    "stayLoggedIn": false,
-    "mostAchievedMoney": 0,
-    "matchPlayed": 0,
-    "location": {
-      "y": 0,
-      "x": 0
-    },
-    "fainted": false
-  },
-  {
-    "username": "arshiaR0",
-    "password": "aA123456?w",
-    "nickName": "arshix",
-    "gender": "arshia@gmail.com",
-    "email": "male",
-    "numberOfSecurityQuestion": 1,
-    "securityQuestion": "soltani",
-    "friendsNpc": {},
-    "friendsPlayer": {},
-    "gold": 0,
-    "wood": 0,
-    "Money": 0,
-    "energy": 200.0,
-    "stayLoggedIn": false,
-    "mostAchievedMoney": 0,
-    "matchPlayed": 0,
-    "location": {
-      "y": 0,
-      "x": 0
-    },
-    "fainted": false
-  },
-  {
-    "username": "shayan2cc4s",
-    "password": "b244a2e356453bf8c3c7c2abc27be709e1eef74dd27ae768b3dafaa54ac6bb42",
-    "nickName": "sh24s",
-    "gender": "shayan@gmail.com",
-    "email": "male",
-    "numberOfSecurityQuestion": 3,
-    "securityQuestion": "amirali",
-    "friendsNpc": {},
-    "friendsPlayer": {},
-    "gold": 0,
-    "wood": 0,
-    "Money": 0,
-    "energy": 200.0,
-    "stayLoggedIn": false,
-    "mostAchievedMoney": 0,
-    "matchPlayed": 0,
-    "location": {
-      "y": 0,
-      "x": 0
-    },
-    "fainted": false
-  },
-  {
-    "username": "arshiaN1",
     "password": "1efb4ef0da0b46701287a19814214eee4518e892f954d4c2d71fd5e89b411b18",
     "nickName": "arshix",
     "gender": "arshia@gmail.com",
     "email": "male",
     "numberOfSecurityQuestion": 1,
     "securityQuestion": "soltani",
+    "backPack": {
+      "currentTool": {
+        "level": 0
+      },
+      "availableTools": {
+        "WateringCan": {
+          "level": 0
+        },
+        "Scythe": {
+          "level": 0
+        },
+        "FishingPole": {
+          "level": 0
+        },
+        "Pickaxe": {
+          "level": 0
+        },
+        "Trashcan": {
+          "level": 0
+        },
+        "Hoe": {
+          "level": 0
+        },
+        "Axe": {
+          "level": 0
+        }
+      },
+      "level": 1
+    },
     "friendsNpc": {},
     "friendsPlayer": {},
     "gold": 0,
@@ -184,59 +52,49 @@
     "fainted": false
   },
   {
-    "username": "arshiaV8",
+    "username": "arshiaW5",
     "password": "1efb4ef0da0b46701287a19814214eee4518e892f954d4c2d71fd5e89b411b18",
     "nickName": "arshix",
     "gender": "arshia@gmail.com",
     "email": "male",
     "numberOfSecurityQuestion": 1,
     "securityQuestion": "soltani",
-    "friendsNpc": {},
-    "friendsPlayer": {},
-    "gold": 0,
-    "wood": 0,
-    "Money": 0,
-    "energy": 200.0,
-    "stayLoggedIn": false,
-    "mostAchievedMoney": 0,
-    "matchPlayed": 0,
-    "location": {
-      "y": 0,
-      "x": 0
+    "backPack": {
+      "currentTool": {
+        "names": "Hoe",
+        "level": 0
+      },
+      "availableTools": {
+        "WateringCan": {
+          "capacityUsed": 0,
+          "level": 0
+        },
+        "Scythe": {
+          "level": 0
+        },
+        "FishingPole": {
+          "type": "TRAINING_ROD",
+          "store": "fishShop",
+          "level": 0
+        },
+        "Pickaxe": {
+          "usedSuccessfully": false,
+          "level": 0
+        },
+        "Trashcan": {
+          "level": 0
+        },
+        "Hoe": {
+          "names": "Hoe",
+          "level": 0
+        },
+        "Axe": {
+          "usedSuccessfully": false,
+          "level": 0
+        }
+      },
+      "level": 1
     },
-    "fainted": false
-  },
-  {
-    "username": "arshiaT7",
-    "password": "1efb4ef0da0b46701287a19814214eee4518e892f954d4c2d71fd5e89b411b18",
-    "nickName": "arshix",
-    "gender": "arshia@gmail.com",
-    "email": "male",
-    "numberOfSecurityQuestion": 1,
-    "securityQuestion": "soltani",
-    "friendsNpc": {},
-    "friendsPlayer": {},
-    "gold": 0,
-    "wood": 0,
-    "Money": 0,
-    "energy": 200.0,
-    "stayLoggedIn": false,
-    "mostAchievedMoney": 0,
-    "matchPlayed": 0,
-    "location": {
-      "y": 0,
-      "x": 0
-    },
-    "fainted": false
-  },
-  {
-    "username": "arshiaS3",
-    "password": "1efb4ef0da0b46701287a19814214eee4518e892f954d4c2d71fd5e89b411b18",
-    "nickName": "arshix",
-    "gender": "arshia@gmail.com",
-    "email": "male",
-    "numberOfSecurityQuestion": 1,
-    "securityQuestion": "soltani",
     "friendsNpc": {},
     "friendsPlayer": {},
     "gold": 0,
