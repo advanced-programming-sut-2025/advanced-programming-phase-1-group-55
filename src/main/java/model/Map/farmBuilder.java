@@ -9,6 +9,38 @@ import java.util.Random;
 public class farmBuilder {
     private Farm farm1, farm1_copy, farm2, farm2_copy;
 
+    public Farm getFarm1() {
+        return farm1;
+    }
+
+    public void setFarm1(Farm farm1) {
+        this.farm1 = farm1;
+    }
+
+    public Farm getFarm1_copy() {
+        return farm1_copy;
+    }
+
+    public void setFarm1_copy(Farm farm1_copy) {
+        this.farm1_copy = farm1_copy;
+    }
+
+    public Farm getFarm2() {
+        return farm2;
+    }
+
+    public void setFarm2(Farm farm2) {
+        this.farm2 = farm2;
+    }
+
+    public Farm getFarm2_copy() {
+        return farm2_copy;
+    }
+
+    public void setFarm2_copy(Farm farm2_copy) {
+        this.farm2_copy = farm2_copy;
+    }
+
     public GameMap mapCreator() {
 
         Quarry quarry1 = new Quarry(4, 4, new Location(0, 0));
