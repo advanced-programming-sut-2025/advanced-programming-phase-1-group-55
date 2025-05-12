@@ -25,7 +25,7 @@ public class Game {
     public static HashMap<String, User> playersInGame = new HashMap<>();
     private static GameMap map;
 
-  
+
     public static HashMap<String, User> AllUsers = new HashMap<>();
 
     public static void readfile() {
@@ -92,13 +92,6 @@ public class Game {
         Game.map = map;
     }
 
-    public static WeatherType getCurrentWeather() {
-        return currentWeather;
-    }
-
-    public static void setCurrentWeather(WeatherType currentWeather) {
-        Game.currentWeather = currentWeather;
-    }
 
     public static HashMap<String, User> getAllUsers() {
         return AllUsers;
