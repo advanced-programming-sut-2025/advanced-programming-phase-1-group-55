@@ -1,6 +1,8 @@
 package model.Map;
 
 import enums.RockType;
+import model.FarmingProdocts.AllTrees;
+import model.FarmingProdocts.Tree;
 import model.Rock;
 
 import java.util.Random;
@@ -80,6 +82,21 @@ public class farmBuilder {
                 farm.getRocks().put(tile.getLocation(),new Rock(tile.getLocation(), RockType.getTypeByInt(rockType)));
             }
         } while (numberOfRocks != 3);
+           //TREES
+        int numberOfTrees=0;
+        do {
+            int x = rand.nextInt(20);
+            int y = rand.nextInt(20);
+            Tile tile = Map.tiles[y + farm.getLocation().getY()][x + farm.getLocation().getX()];
+            if (tile==null) {
+                tile=new Tile(new Location(y + farm.getLocation().getY(),x + farm.getLocation().getX())
+                        ,"T",true,false,TileType.grass);
+                Map.tiles[tile.getLocation().getY()][tile.getLocation().getX()]=tile;
+                numberOfTrees++;
+                int treeType = rand.nextInt(14);
+                farm.getTrees().put(tile.getLocation(), new Tree(tile.getLocation(), AllTrees.getTypeByInt(treeType)));
+            }
+        } while (numberOfTrees != 20);
 
 
     }
