@@ -1,6 +1,8 @@
 package model.FarmingProdocts;
 import model.Map.Location;
 
+import model.Item.Item;
+
 import java.util.List;
 
 public class Crop {

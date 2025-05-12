@@ -1,13 +1,40 @@
 package model.Map;
 
-import enums.TileType;
 import model.ItemOfMap;
 
 public class Tile {
     private Location location;
+    private String mohtaviat;
     private TileType type;
-    private  boolean isAccessible;
+    private boolean walkable;
+    private boolean isEmpty;
     private ItemOfMap itemInThisTile;
+
+    public Tile(Location location, String mohtaviat, boolean walkable, boolean isEmpty, TileType tileType) {
+        this.location = location;
+        this.mohtaviat = mohtaviat;
+        this.walkable = walkable;
+        this.isEmpty = isEmpty;
+    }
+
+
+    public boolean isEmpty() {
+        return isEmpty;
+    }
+
+    public void setEmpty(boolean empty) {
+        isEmpty = empty;
+    }
+
+
+    public String getMohtaviat() {
+        return mohtaviat;
+    }
+
+    public void setMohtaviat(String mohtaviat) {
+        this.mohtaviat = mohtaviat;
+    }
+
     public Location getLocation() {
         return location;
     }
@@ -25,11 +52,11 @@ public class Tile {
     }
 
     public boolean isAccessible() {
-        return isAccessible;
+        return walkable;
     }
 
     public void setAccessible(boolean accessible) {
-        isAccessible = accessible;
+        walkable = accessible;
     }
 
     public ItemOfMap getItemInThisTile() {
@@ -38,5 +65,13 @@ public class Tile {
 
     public void setItemInThisTile(ItemOfMap itemInThisTile) {
         this.itemInThisTile = itemInThisTile;
+    }
+
+    public boolean isWalkable() {
+        return walkable;
+    }
+
+    public void setWalkable(boolean walkable) {
+        this.walkable = walkable;
     }
 }

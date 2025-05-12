@@ -1,6 +1,9 @@
 package Controller;
 
 
+import model.Game;
+import model.Map.GameMap;
+import model.Map.Location;
 import model.Tool.Tools;
 import model.Tool.Trashcan;
 import model.Tool.WateringCan;
@@ -73,8 +76,28 @@ public class MainGameController {
         increaseDay(Day);
         return new Result(true, "cheat Day " + Day + " confirmed");
     }
+
     public Result season() {
         return new Result(true, String.valueOf(getSeason()));
+    }
+
+    public Result showEnergy() {
+        return new Result(true, "your energy : " + mainUser.getEnergy());
+    }
+
+    public Result setEnergy(String energy) {
+        try {
+            mainUser.setEnergy(Integer.parseInt(energy));
+        } catch (Exception e) {
+            return new Result(false, "invalid energy");
+        }
+        return new Result(true, "your energy set to " + energy);
+
+    }
+
+    public Result unlimitedEnergy() {
+        mainUser.setEnergy(Double.MAX_VALUE * 2);
+        return new Result(true, "your energy unlimited");
     }
 
     public Result levelUpTool(String name) {
@@ -83,7 +106,7 @@ public class MainGameController {
             return new Result(false, "level of your tool is max , you can't upgrade it !");
         }
         /*
-        to do
+        todo
         baayad shart boodn dar ahan gari ro emaal knm , bad zadan map;
         */
         if (tool instanceof Trashcan can) {
@@ -109,5 +132,20 @@ public class MainGameController {
             }
         }
         return new Result(true, name + " upgraded successfully");
+    }
+    public Result helpReadMap(){
+        String message="";
+        message+="T: trees\n&: plants and seeds\nh: house area\n#: walls\n=: doors\ng: greenhouse area\n" +
+                "W: water area(lake)\n^: quarry area\n0: rocks\n$: starDropSaloon\ns: SEBASTIAN's house\n" +
+                "B: blacksmith store\nO: ojaMart store\nA: ABIGAIL's house\nH: HARVEY's house\n" +
+                "L: LEAH's house\nR: ROBIN's house\n" +
+                "G: General store\nC: Carpenter Shop\nF: fish store\nM: marnieRanch store";
+        return  new Result(true,message);
+    }
+    public Result showFullMap(){
+        return  new Result(true, Game.getMap().printMap(new Location(0,0),160,41));
+    }
+    public Result showMap(int x, int y , int size){
+        return new Result(true,Game.getMap().printMap(new Location(y,x),size,size));
     }
 }

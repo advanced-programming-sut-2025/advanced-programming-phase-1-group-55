@@ -1,8 +1,13 @@
 package model.Map;
 
 public class Location {
-    private  int y;
+    private int y;
     private int x;
+
+    public Location(int y, int x) {
+        this.y = y;
+        this.x = x;
+    }
 
     public int getY() {
         return y;
@@ -18,5 +23,13 @@ public class Location {
 
     public void setX(int x) {
         this.x = x;
+    }
+
+    @Override
+    public String toString() {
+        return "Location{" +
+                "y=" + y +
+                ", x=" + x +
+                '}';
     }
 }
