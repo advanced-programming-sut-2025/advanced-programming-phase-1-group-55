@@ -1,7 +1,8 @@
 package model.Tool;
 
-import enums.Store;
-import model.App;
+import model.Store.BlackSmithStore;
+import model.Store.MarineRanchStore;
+import model.Store.Store;
 
 import static java.lang.Math.max;
 import static model.App.*;
@@ -20,7 +21,7 @@ public class Shears extends  Tools{
         return 0;
     }
     public Store getStore(){
-        return Store.marnieRanch;
+        return new MarineRanchStore();
     }
     public String getName(){
         return "shears";

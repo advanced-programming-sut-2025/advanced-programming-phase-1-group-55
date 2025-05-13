@@ -15,6 +15,7 @@ public class Tile {
         this.mohtaviat = mohtaviat;
         this.walkable = walkable;
         this.isEmpty = isEmpty;
+        this.type=tileType;
     }
 
 

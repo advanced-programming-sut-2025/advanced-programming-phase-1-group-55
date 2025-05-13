@@ -35,10 +35,10 @@ public class Tree {
                 ", stages=" + treeType.getStages() +
                 ", totalHarvestTime=" + treeType.getTotalHarvestTime() +
                 ", fruits='" + treeType.getFruits() + '\'' +
-                ", fruitHarvestCycle=" + treeType.getFruitHarvestCycle() +
-                ", fruitBaseSellPrice=" + treeType.getFruitBaseSellPrice() +
-                ", isFruitEdible=" + treeType.isFruitEdible() +
-                ", fruitEnergy=" + treeType.getFruitEnergy() +
+                ", fruitHarvestCycle=" + treeType.getFruits().getType().getFruitHarvestCycle() +
+                ", fruitBaseSellPrice=" + treeType.getFruits().getType().getFruitBaseSellPrice() +
+                ", isFruitEdible=" + treeType.getFruits().getType().isFruitEdible() +
+                ", fruitEnergy=" + treeType.getFruits().getType().getFruitEnergy() +
                 ", season='" + treeType.getSeedSource().getSeason() + '\'' +
                 '}';
     }

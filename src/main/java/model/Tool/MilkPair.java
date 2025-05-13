@@ -1,6 +1,8 @@
 package model.Tool;
 
-import enums.Store;
+import model.Store.BlackSmithStore;
+import model.Store.MarineRanchStore;
+import model.Store.Store;
 
 import static java.lang.Math.max;
 import static model.App.*;
@@ -39,7 +41,7 @@ public class MilkPair extends  Tools{
         return 4;
     }
     public Store getStore(){
-        return Store.marnieRanch;
+        return new MarineRanchStore();
     }
     @Override
     public void useTool() {

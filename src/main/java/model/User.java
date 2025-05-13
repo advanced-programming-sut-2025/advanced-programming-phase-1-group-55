@@ -2,6 +2,7 @@ package model;
 
 import model.Map.Farm;
 import model.Map.Location;
+import model.Map.MainLocation;
 import model.Map.Tile;
 import model.NPC.Npc;
 import model.Tool.BackPack;
@@ -35,6 +36,7 @@ public class User {
     private Location playerTommorowLocation;
     private Game playedGame;
     private Farm farm;
+    private MainLocation mainLocation=MainLocation.House;
     public Farm getFarm() {
         return farm;
     }
@@ -253,6 +255,15 @@ public class User {
 
     public void setUserTrades(ArrayList<Trade> userTrades) {
         this.userTrades = userTrades;
+    }
+
+    public MainLocation getMainLocation() {
+        mainLocation=MainLocation.findLocation(location);
+        return mainLocation;
+    }
+
+    public void setMainLocation(MainLocation mainLocation) {
+        this.mainLocation = mainLocation;
     }
 
     private int countTurns(List<Tile> path) {

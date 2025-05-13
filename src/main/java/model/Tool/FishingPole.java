@@ -1,17 +1,18 @@
 package model.Tool;
 
-import enums.Store;
 import model.App;
+import model.Store.BlackSmithStore;
+import model.Store.FishingStore;
+import model.Store.Store;
 
 import static java.lang.Math.max;
 
 
 public class FishingPole extends Tools {
     private final FishingPoleType type;
-    private final Store store = Store.fishShop;
 
     public Store getStore() {
-        return store;
+        return  new FishingStore();
     }
 
     public FishingPoleType getType() {
