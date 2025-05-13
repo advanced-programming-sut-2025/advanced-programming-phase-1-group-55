@@ -1,5 +1,8 @@
 package model.Item;
 
+import model.App;
+import model.Map.Tile;
+
 public enum ItemType {
     CHERRY_BOMB("Cherry Bomb"),
     BOMB("Bomb"),
@@ -61,26 +64,30 @@ public enum ItemType {
 
 
 
-    private final String name;
+    private final String DisplayName;
 
-    ItemType(String name) {
-        this.name = name;
+    ItemType(String DisplayName) {
+        this.DisplayName = DisplayName;
     }
 
     @Override
     public String toString()
     {
-        return name;
+        return DisplayName;
     }
-    public static ItemType getItemType(String name)
+    public static ItemType getItemType(String DisplayName)
     {
         for (ItemType itemType : ItemType.values())
         {
-            if (itemType.name().equalsIgnoreCase(name))
+            if (itemType.DisplayName.equalsIgnoreCase(DisplayName))
             {
                 return itemType;
             }
         }
         return null;
+    }
+
+    public String getDisplayName() {
+        return DisplayName;
     }
 }

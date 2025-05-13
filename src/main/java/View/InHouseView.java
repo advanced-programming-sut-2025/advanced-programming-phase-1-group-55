@@ -23,6 +23,14 @@ public class InHouseView implements AppMenu {
         } else if((matcher = inHouseGameMenuCommands.CraftItem.getMatcher(input)) != null) {
             String itemName = matcher.group("itemName");
             System.out.println(inHouseControllers.CraftItem(itemName));
+        } else if ((matcher = inHouseGameMenuCommands.CheatAddItem.getMatcher(input)) != null) {
+            String itemName = matcher.group("itemName");
+            String count = matcher.group("count");
+            System.out.println(inHouseControllers.CheatAddItem(itemName, count));
+        } else if ((matcher = inHouseGameMenuCommands.PlaceItem.getMatcher(input)) != null) {
+            String itemName = matcher.group("itemName");
+            String direction = matcher.group("direction");
+            System.out.println(inHouseControllers.PlaceItem(itemName, direction));
         } else {
 
             mainGameView.check(input);

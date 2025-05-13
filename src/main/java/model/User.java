@@ -388,6 +388,18 @@ public class User {
 
     private ArrayList<CraftingItemType> craftingRecipes = new ArrayList<>();
 
+    public void setCraftingRecipes(ArrayList<CraftingItemType> craftingRecipes) {
+        this.craftingRecipes = craftingRecipes;
+    }
+
+    public Set<CraftingItemType> getLearnedCraftingRecipes() {
+        return learnedCraftingRecipes;
+    }
+
+    public void setLearnedCraftingRecipes(Set<CraftingItemType> learnedCraftingRecipes) {
+        this.learnedCraftingRecipes = learnedCraftingRecipes;
+    }
+
     public ArrayList<CraftingItemType> getCraftingRecipes() {
         return craftingRecipes;
     }
@@ -398,12 +410,12 @@ public class User {
         }
     }
 
-    public ArrayList<Item> getInventory() {
+    public Map<String,Item> getInventory() {
         return backPack.getInventory();
     }
 
     public Item getItemInInventory(ItemType itemType) {
-        for (Item item : this.backPack.getInventory()) {
+        for (Item item : this.backPack.getInventory().values()) {
             if (item.getItemType().equals(itemType)) {
                 return item;
             }
@@ -413,17 +425,13 @@ public class User {
 
     public boolean inventoryHasCapacity() {
         int capacity = backPack.getSize();
-        if (capacity == -1) {
-            return true;
-        }
-        if (capacity > backPack.getSize()) {
-            return true;
-        }
-        return false;
+        int currentSize = backPack.getInventory().size();
+
+        return currentSize < capacity;
     }
 
     public void addToInventory(Item item) {
-        backPack.getInventory().add(item);
+        backPack.getInventory().put(item.getItemType().getDisplayName(),item);
     }
 
     public void addItemToInventory(ItemType itemType, int quantity) {
@@ -433,7 +441,7 @@ public class User {
         } else {
             if (inventoryHasCapacity()) {
                 Item newItem = new Item(itemType, quantity);
-                backPack.getInventory().add(newItem);
+                backPack.getInventory().put(newItem.getItemType().getDisplayName(),newItem);
             }
         }
     }
@@ -447,7 +455,7 @@ public class User {
     }
 
     public boolean hasEnoughInInventory(ItemType itemType, int quantity) {
-        for (Item item : backPack.getInventory()) {
+        for (Item item : backPack.getInventory().values()) {
             if (item.getItemType().equals(itemType) && item.getNumber() >= quantity) {
                 return true;
             }
@@ -456,7 +464,7 @@ public class User {
     }
 
     public int howManyInInventory(ItemType itemType) {
-        for (Item item : backPack.getInventory()) {
+        for (Item item : backPack.getInventory().values()) {
             if (item.getItemType().equals(itemType)) {
                 return item.getNumber();
             }
@@ -465,13 +473,21 @@ public class User {
     }
 
     public void removeAmountFromInventory(ItemType itemType, int quantity) {
-        for (Item item : backPack.getInventory()) {
+        for (Item item : backPack.getInventory().values()) {
             if (item.getItemType().equals(itemType)) {
                 item.addNumber(-quantity);
                 if (item.getNumber() <= 0) {
-                    this.backPack.getInventory().remove(item);
+                    this.backPack.getInventory().remove(item.getItemType().getDisplayName());
                 }
                 break;
+            }
+        }
+    }
+    public void removeItemFromInventory(Item item) {
+        if (this.backPack.getInventory().containsKey(item.getItemType().getDisplayName())) {
+            item.addNumber(-1);
+            if (item.getNumber() == 0) {
+                this.backPack.getInventory().remove(item.getItemType().getDisplayName());
             }
         }
     }

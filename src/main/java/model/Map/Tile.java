@@ -1,5 +1,6 @@
 package model.Map;
 
+import model.Item.Item;
 import model.ItemOfMap;
 
 public class Tile {
@@ -8,7 +9,7 @@ public class Tile {
     private TileType type;
     private boolean walkable;
     private boolean isEmpty;
-    private ItemOfMap itemInThisTile;
+    private Item itemInThisTile;
 
     public Tile(Location location, String mohtaviat, boolean walkable, boolean isEmpty, TileType tileType) {
         this.location = location;
@@ -60,12 +61,12 @@ public class Tile {
         walkable = accessible;
     }
 
-    public ItemOfMap getItemInThisTile() {
+    public Item getItemInThisTile() {
         return itemInThisTile;
     }
 
-    public void setItemInThisTile(ItemOfMap itemInThisTile) {
-        this.itemInThisTile = itemInThisTile;
+    public void setItemInThisTile(Item item) {
+        this.itemInThisTile = item;
     }
 
     public boolean isWalkable() {
