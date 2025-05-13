@@ -8,7 +8,7 @@ public enum ProfileCommands {
     changeNickname("\\s*change\\s+nickname\\s+-u\\s+(?<nickname>\\S+)\\s*"),
     changeEmail("\\s*change\\s+email\\s+-e\\s+(?<email>\\S+)\\s*"),
     changePassword("\\s*change\\s+password\\s+-p\\s+(?<newPassword>\\S+)\\s+-o\\s+(?<oldPassword>\\S+)\\s*"),
-    userInfo("\\s*user info\\s*"),
+    userInfo("\\s*user\\s+info\\s*"),
     ;
     private String pattern;
 
