@@ -6,9 +6,6 @@ import model.App;
 
 import java.util.regex.Matcher;
 
-import java.util.Scanner;
-import java.util.regex.Matcher;
-
 import static model.App.*;
 
 public class MainGameView implements AppMenu {
@@ -17,7 +14,7 @@ public class MainGameView implements AppMenu {
     private final TreeCotroller controller3 = new TreeCotroller();
     private final ForagingCropController controller4 = new ForagingCropController();
     private final ForagingTreeController controller5 = new ForagingTreeController();
-
+    private final inHouseController inHouseController = new inHouseController();
     @Override
     public void check(String input) {
         Matcher matcher = null;
@@ -40,6 +37,11 @@ public class MainGameView implements AppMenu {
 //            System.out.println(controller4.getForagingCropsByName(matcher.group("name")));
 //        } else if ((matcher = ForagingTreesCommands.showForagingTreesByName.getMatcher(input)) != null) {
 //            System.out.println(controller5.getForagingTreesByName(matcher.group("name")));
+//        } else if ((matcher = inHouseGameMenuCommands.ShowLearnedRecipes.getMatcher(input)) != null) {
+//            System.out.println(inHouseController.getLearnedRecipes(currentGame.currentUser));
+            // یادت نره این باید بره تو inHouseView برای تست لینجا گذاشتم
+        } else if((matcher = mainGameCommands.ShowCraftingRecipe.getMatcher(input)) != null) {
+            System.out.println(inHouseController.ShowCraftingRecipe());
         } else if ((matcher = mainGameCommands.date.getMatcher(input)) != null) {
             System.out.println(controller.date());
 

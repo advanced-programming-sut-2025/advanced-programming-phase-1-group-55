@@ -1,44 +1,36 @@
 package Controller;
 
 import View.FishingView;
+import enums.CraftingItemType;
+import model.Ability;
 import model.Skills;
+import model.User;
+
 
 public class FishingController extends SkillController {
-    private FishingView view;
-    public FishingController(Skills fishingSkill) {
-        super(fishingSkill);
-//        this.view = view;
-        this.view = new FishingView();
+    private User user;
+
+    public FishingController(Skills skill, User user) {
+        super(skill);
+        this.user = user;
     }
 
     @Override
     protected void onLevelUp(int newLevel) {
+        switch (newLevel) {
+            case 1 -> {
 
-    }
+            }
+            case 2 -> {
 
+            }
+            case 3 -> {
 
+            }
+            case 4 -> {
 
-    public void catchFish() {
-        skill.pointUp(5);
-        view.displayCatchMessage();
-        handleLevelUp();
-    }
-    private void handleLevelUp() {
-        int oldLevel = skill.getLevel();
-        skill.levelUp();
-        if (skill.getLevel() > oldLevel) {
-            view.displayLevelUpMessage(skill.getLevel());
-            skill.getAbilities().stream()
-                    .filter(ability -> ability.getLevelRequierd() == skill.getLevel())
-                    .forEach(ability -> view.displayAbilityUnlocked(ability.getName()));
+            }
         }
-    }
-    public void showStatus() {
-        view.displayStatus(skill);
-    }
-
-    public void showAbilities() {
-        view.displayAbilities(skill);
     }
 
 

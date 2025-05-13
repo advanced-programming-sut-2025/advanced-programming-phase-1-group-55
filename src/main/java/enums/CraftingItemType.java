@@ -1,43 +1,150 @@
 package enums;
 
 import model.Ingredient;
+import model.Item.ItemType;
 
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 public enum CraftingItemType {
-    CHERRY_BOMB(List.of(new Ingredient("copper ore", 4), new Ingredient("coal", 1)), "Mining Level 1", 50),
-    BOMB(List.of(new Ingredient("iron ore", 4), new Ingredient("coal", 1)), "Mining Level 2", 50),
-    MEGA_BOMB(List.of(new Ingredient("gold ore", 4), new Ingredient("coal", 1)), "Mining Level 3", 50),
-    SPRINKLER(List.of(new Ingredient("copper bar", 1), new Ingredient("iron bar", 1)), "Farming Level 1", -1),
-    QUALITY_SPRINKLER(List.of(new Ingredient("Iron bar", 1), new Ingredient("Gold bar", 1)), "Farming Level 2", -1),
-    IRIDIUM_SPRINKLER(List.of(new Ingredient("gold bar", 1), new Ingredient("iridium bar", 1)), "Farming Level 3", -1),
-    CHARCOAL_KILN(List.of(new Ingredient("wood", 20), new Ingredient("Copper bar", 2)), "Foraging Level 1", -1),
-    FURNACE(List.of(new Ingredient("Copper ore", 20), new Ingredient("Stone", 25)), "-", -1),
-    SCARECROW(List.of(new Ingredient("wood", 50), new Ingredient("coal", 1), new Ingredient("Fiber", 20)), "-", -1),
-    DELUXE_SCARECROW(List.of(new Ingredient("wood", 50), new Ingredient("coal", 1), new Ingredient("Fiber", 20), new Ingredient("iridium ore", 1)), "Farming Level 2", -1),
-    BEE_HOUSE(List.of(new Ingredient("wood", 40), new Ingredient("coal", 8), new Ingredient("iron bar", 1)), "Farming Level 1", -1),
-    CHEESE_PRESS(List.of(new Ingredient("wood", 45), new Ingredient("stone", 45), new Ingredient("copper bar", 1)), "Farming Level 2", -1),
-    KEG(List.of(new Ingredient("wood", 30), new Ingredient("copper bar", 1), new Ingredient("iron bar", 1)), "Farming Level 3", -1),
-    LOOM(List.of(new Ingredient("wood", 60), new Ingredient("fiber", 30)), "Farming Level 3", -1),
-    MAYONNAISE_MACHINE(List.of(new Ingredient("wood", 15), new Ingredient("stone", 15), new Ingredient("copper bar", 1)), "-", -1),
-    OIL_MAKER(List.of(new Ingredient("wood", 100), new Ingredient("gold bar", 1), new Ingredient("iron bar", 1)), "Farming Level 3", -1),
-    PRESERVES_JAR(List.of(new Ingredient("wood", 50), new Ingredient("stone", 40), new Ingredient("coal", 8)), "Farming Level 2", -1),
-    DEHYDRATOR(List.of(new Ingredient("wood", 30), new Ingredient("stone", 20), new Ingredient("fiber", 30)), "Pierre's General Store", -1),
-    GRASS_STARTER(List.of(new Ingredient("wood", 1), new Ingredient("fiber", 1)), "Pierre's General Store", -1),
-    FISH_SMOKER(List.of(new Ingredient("wood", 50), new Ingredient("iron bar", 3), new Ingredient("coal", 10)), "Fish Shop", -1),
-    MYSTIC_TREE_SEED(List.of(new Ingredient("acorn", 5), new Ingredient("maple seed", 5), new Ingredient("pine cone", 5), new Ingredient("mahogany seed", 5)), "Foraging Level 4", 100);
+    CHERRY_BOMB(ItemType.CHERRY_BOMB, new HashMap<>() {{
+        put(ItemType.COPPER_ORE, 4);
+        put(ItemType.COAL, 1);
+    }}, "Mining Level 1", 50),
 
-    private final List<Ingredient> ingredients;
+    BOMB(ItemType.BOMB, new HashMap<>() {{
+        put(ItemType.IRON_ORE, 4);
+        put(ItemType.COAL, 1);
+    }}, "Mining Level 2", 50),
+
+    MEGA_BOMB(ItemType.MEGA_BOMB, new HashMap<>() {{
+        put(ItemType.GOLD_ORE, 4);
+        put(ItemType.COAL, 1);
+    }}, "Mining Level 3", 50),
+
+    SPRINKLER(ItemType.SPRINKLER, new HashMap<>() {{
+        put(ItemType.COPPER_BAR, 1);
+        put(ItemType.IRON_BAR, 1);
+    }}, "Farming Level 1", 0),
+
+    QUALITY_SPRINKLER(ItemType.QUALITY_SPRINKLER, new HashMap<>() {{
+        put(ItemType.IRON_BAR, 1);
+        put(ItemType.GOLD_BAR, 1);
+    }}, "Farming Level 2", 0),
+
+    IRIDIUM_SPRINKLER(ItemType.IRIDIUM_SPRINKLER, new HashMap<>() {{
+        put(ItemType.GOLD_BAR, 1);
+        put(ItemType.IRIDIUM_BAR, 1);
+    }}, "Farming Level 3", 0),
+
+    CHARCOAL_KILN(ItemType.CHARCOAL_KILN, new HashMap<>() {{
+        put(ItemType.WOOD, 20);
+        put(ItemType.COPPER_BAR, 2);
+    }}, "Foraging Level 1", 0),
+
+    FURNACE(ItemType.FURNACE, new HashMap<>() {{
+        put(ItemType.COPPER_ORE, 20);
+        put(ItemType.STONE, 25);
+    }}, "-", 0),
+
+    SCARECROW(ItemType.SCARECROW, new HashMap<>() {{
+        put(ItemType.WOOD, 50);
+        put(ItemType.COAL, 1);
+        put(ItemType.FIBER, 20);
+    }}, "-", 0),
+
+    DELUXE_SCARECROW(ItemType.DELUXE_SCARECROW, new HashMap<>() {{
+        put(ItemType.WOOD, 50);
+        put(ItemType.COAL, 1);
+        put(ItemType.FIBER, 20);
+        put(ItemType.IRIDIUM_ORE, 1);
+    }}, "Farming Level 2", 0),
+
+    BEE_HOUSE(ItemType.BEE_HOUSE, new HashMap<>() {{
+        put(ItemType.WOOD, 40);
+        put(ItemType.COAL, 8);
+        put(ItemType.IRON_BAR, 1);
+    }}, "Farming Level 1", 0),
+
+    CHEESE_PRESS(ItemType.CHEESE_PRESS, new HashMap<>() {{
+        put(ItemType.WOOD, 45);
+        put(ItemType.STONE, 45);
+        put(ItemType.COPPER_BAR, 1);
+    }}, "Farming Level 2", 0),
+
+    KEG(ItemType.KEG, new HashMap<>() {{
+        put(ItemType.WOOD, 30);
+        put(ItemType.COPPER_BAR, 1);
+        put(ItemType.IRON_BAR, 1);
+    }}, "Farming Level 3", 0),
+
+    LOOM(ItemType.LOOM, new HashMap<>() {{
+        put(ItemType.WOOD, 60);
+        put(ItemType.FIBER, 30);
+    }}, "Farming Level 3", 0),
+
+    MAYONNAISE_MACHINE(ItemType.MAYONNAISE_MACHINE, new HashMap<>() {{
+        put(ItemType.WOOD, 15);
+        put(ItemType.STONE, 15);
+        put(ItemType.COPPER_BAR, 1);
+    }}, "-", 0),
+
+    OIL_MAKER(ItemType.OIL_MAKER, new HashMap<>() {{
+        put(ItemType.WOOD, 100);
+        put(ItemType.GOLD_BAR, 1);
+        put(ItemType.IRON_BAR, 1);
+    }}, "Farming Level 3", 0),
+
+    PRESERVES_JAR(ItemType.PRESERVES_JAR, new HashMap<>() {{
+        put(ItemType.WOOD, 50);
+        put(ItemType.STONE, 40);
+        put(ItemType.COAL, 8);
+    }}, "Farming Level 2", 0),
+
+    DEHYDRATOR(ItemType.DEHYDRATOR, new HashMap<>() {{
+        put(ItemType.WOOD, 30);
+        put(ItemType.STONE, 20);
+        put(ItemType.FIBER, 30);
+    }}, "Pierre's General Store", 0),
+
+    GRASS_STARTER(ItemType.GRASS_STARTER, new HashMap<>() {{
+        put(ItemType.WOOD, 1);
+        put(ItemType.FIBER, 1);
+    }}, "Pierre's General Store", 0),
+
+    FISH_SMOKER(ItemType.FISH_SMOKER, new HashMap<>() {{
+        put(ItemType.WOOD, 50);
+        put(ItemType.IRON_BAR, 3);
+        put(ItemType.COAL, 10);
+    }}, "Fish Shop", 0),
+
+    MYSTIC_TREE_SEED(ItemType.MYSTIC_TREE_SEED, new HashMap<>() {{
+        put(ItemType.ACORN, 5);
+        put(ItemType.MAPLE_SEED, 5);
+        put(ItemType.PINE_CONE, 5);
+        put(ItemType.MAHOGANY_SEED, 5);
+    }}, "Foraging Level 4", 100);
+
+
+
+    private final ItemType productName;
+    private final HashMap<ItemType, Integer> ingredients;
     private final String source;
     private final int sellPrice;
 
-    CraftingItemType(List<Ingredient> ingredients, String source, int sellPrice) {
+    CraftingItemType(ItemType productName, HashMap<ItemType, Integer> ingredients, String source, int sellPrice) {
+        this.productName = productName;
         this.ingredients = ingredients;
         this.source = source;
         this.sellPrice = sellPrice;
     }
 
-    public List<Ingredient> getIngredients() {
+    public ItemType getProductName() {
+        return productName;
+    }
+
+    public HashMap<ItemType, Integer> getIngredients() {
         return ingredients;
     }
 
@@ -48,9 +155,14 @@ public enum CraftingItemType {
     public int getSellPrice() {
         return sellPrice;
     }
-
-    @Override
-    public String toString() {
-        return name() + ": " + ingredients + ", Source: " + source + ", Sell Price: " + (sellPrice > 0 ? sellPrice + "g" : "Not available");
+    public static CraftingItemType getCraftingItemType(String name) {
+        for (CraftingItemType recipe : CraftingItemType.values()) {
+            if (name.equalsIgnoreCase(recipe.getProductName().toString())) {
+                return recipe;
+            }
+        }
+        return null;
     }
+
 }
+
