@@ -3,9 +3,15 @@ package Controller;
 import enums.CraftingItemType;
 import model.App;
 import model.App.*;
+import model.CraftingItems.CraftingItem;
+import model.CraftingItems.CraftingItemCreator;
+import model.Ingredient;
+import model.Item.ItemType;
 import model.Result;
+import model.User;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class inHouseController {
     public Result ShowCraftingRecipe() {
@@ -21,6 +27,39 @@ public class inHouseController {
         }
         return new Result(true, result.toString().trim());
     }
+    public Result CraftItem(String itemName) {
+        User user = App.currentGame.currentUser;
+        CraftingItemType recipe = CraftingItemType.getCraftingItemType(itemName);
+        if (recipe == null) {
+            return new Result(false, "No recipe found");
+        }
+        ArrayList<CraftingItemType> recipes = user.getCraftingRecipes();
+        if (!recipes.contains(recipe)) {
+            return new Result(false, "you dont have access to this recipe");
+        }
+        HashMap<ItemType, Integer> ingredient = recipe.getIngredients();
+        boolean canCraft = true;
+        for (ItemType itemType : ingredient.keySet()) {
+            if (!user.hasEnoughInInventory(itemType, ingredient.get(itemType))) {
+                canCraft = false;
+            }
+        }
+        if (!canCraft) {
+            return new Result(false, "you dont have enough ingredients");
+        }
+        if (!user.inventoryHasCapacity()) {
+            return new Result(false, "you dont have enough inventory");
+        }
+        for (ItemType itemType : ingredient.keySet()) {
+            user.removeAmountFromInventory(itemType, ingredient.get(itemType));
+        }
+        user.decreaseEnergy(2);
+        CraftingItem product = CraftingItemCreator.create(recipe);
+        user.addToInventory(product);
+        return new Result(true, recipe.getProductName() + " has been crafted");
+    }
+
+
 
 
 

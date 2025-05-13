@@ -31,4 +31,7 @@ public class Item   {
     {
         return null;
     }
+    public void addNumber(int number) {
+        this.number += number;
+    }
 }

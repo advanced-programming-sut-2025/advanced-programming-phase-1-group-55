@@ -155,5 +155,14 @@ public enum CraftingItemType {
     public int getSellPrice() {
         return sellPrice;
     }
+    public static CraftingItemType getCraftingItemType(String name) {
+        for (CraftingItemType recipe : CraftingItemType.values()) {
+            if (name.equalsIgnoreCase(recipe.getProductName().toString())) {
+                return recipe;
+            }
+        }
+        return null;
+    }
+
 }
 

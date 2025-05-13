@@ -5,8 +5,8 @@ import java.util.regex.Pattern;
 
 public enum inHouseGameMenuCommands {
 
-    ShowLearnedRecipes("crafting show recipes");
-
+    ShowLearnedRecipes("crafting show recipes"),
+    CraftItem("crafting\\s+craft\\s+(?<itemName>.*)");
     private final String pattern;
 
     inHouseGameMenuCommands(String pattern) {

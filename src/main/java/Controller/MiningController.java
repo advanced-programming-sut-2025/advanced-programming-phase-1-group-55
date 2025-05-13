@@ -18,14 +18,19 @@ public class MiningController extends SkillController {
 
     @Override
     protected void onLevelUp(int newLevel) {
-        if (newLevel == 1) {
-//            user.learnRecipe(CraftingItemType.CHERRY_BOMB);
-        } else if (newLevel == 2) {
-//            user.learnRecipe(CraftingItemType.BOMB);
-        } else if (newLevel == 3) {
-//            user.learnRecipe(CraftingItemType.MEGA_BOMB);
-        } else if (newLevel == 4) {
+        switch (newLevel) {
+            case 1 -> {
+                user.learnRecipe(CraftingItemType.CHERRY_BOMB);
+            }
+            case 2 -> {
+                user.learnRecipe(CraftingItemType.BOMB);
+            }
+            case 3 -> {
+                user.learnRecipe(CraftingItemType.MEGA_BOMB);
+            }
+            case 4 -> {
 
+            }
         }
     }
 

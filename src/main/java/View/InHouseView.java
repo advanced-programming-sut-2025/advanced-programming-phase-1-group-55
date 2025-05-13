@@ -20,10 +20,11 @@ public class InHouseView implements AppMenu {
 
         Matcher matcher = null;
 
-        if((matcher = mainGameCommands.ShowCraftingRecipe.getMatcher(input)) != null) {
+        if((matcher = inHouseGameMenuCommands.ShowLearnedRecipes.getMatcher(input)) != null) {
             System.out.println(inHouseController.ShowCraftingRecipe());
-//        } else if(){
-
+        } else if((matcher = inHouseGameMenuCommands.CraftItem.getMatcher(input)) != null) {
+            String itemName = matcher.group("itemName");
+            System.out.println(inHouseController.CraftItem(itemName));
         } else {
 
             mainGameView.check(input);

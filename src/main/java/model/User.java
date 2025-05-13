@@ -1,6 +1,8 @@
 package model;
 
 import enums.CraftingItemType;
+import model.Item.Item;
+import model.Item.ItemType;
 import model.Map.Farm;
 import model.Map.Location;
 import model.Map.Tile;
@@ -36,6 +38,7 @@ public class User {
     private Location playerTommorowLocation;
     private Game playedGame;
     private Farm farm;
+    BackPack currentBackPack = new BackPack();
     public Farm getFarm() {
         return farm;
     }
@@ -365,6 +368,85 @@ public class User {
 
     public ArrayList<CraftingItemType> getCraftingRecipes() {
         return craftingRecipes;
+    }
+    public void learnRecipe(CraftingItemType recipe) {
+        if (!craftingRecipes.contains(recipe)) {
+            craftingRecipes.add(recipe);
+        }
+    }
+
+    public BackPack getCurrentBackPack() {
+        return currentBackPack;
+    }
+    public ArrayList<Item> getInventory() {
+        return currentBackPack.getInventory();
+    }
+    public Item getItemInInventory(ItemType itemType) {
+        for (Item item : this.currentBackPack.getInventory()) {
+            if (item.getItemType().equals(itemType)) {
+                return item;
+            }
+        }
+        return null;
+    }
+
+    public boolean inventoryHasCapacity() {
+        int capacity = currentBackPack.getSize();
+        if (capacity == -1) {
+            return true;
+        }
+        if (capacity > currentBackPack.getSize()) {
+            return true;
+        }
+        return false;
+    }
+    public void addToInventory(Item item) {
+        currentBackPack.getInventory().add(item);
+    }
+    public void addItemToInventory(ItemType itemType, int quantity) {
+        Item item = getItemInInventory(itemType);
+        if (item != null) {
+            item.addNumber(quantity);
+        } else {
+            if (inventoryHasCapacity()) {
+                Item newItem = new Item(itemType, quantity);
+                currentBackPack.getInventory().add(newItem);
+            }
+        }
+    }
+    public int getInventoryCapacity() {
+        int capacity = currentBackPack.getSize();
+        if (capacity == -1) {
+            return -1;
+        }
+        return capacity - currentBackPack.getInventorySize();
+    }
+    public boolean hasEnoughInInventory(ItemType itemType, int quantity) {
+        for (Item item : currentBackPack.getInventory()) {
+            if (item.getItemType().equals(itemType) && item.getNumber() >= quantity) {
+                return true;
+            }
+        }
+        return false;
+    }
+    public int howManyInInventory(ItemType itemType) {
+        for (Item item : currentBackPack.getInventory()) {
+            if (item.getItemType().equals(itemType)) {
+                return item.getNumber();
+            }
+        }
+        return 0;
+    }
+    public void removeAmountFromInventory(ItemType itemType, int quantity) {
+        for (Item item : currentBackPack.getInventory()) {
+            if (item.getItemType().equals(itemType)) {
+                item.addNumber(-quantity);
+                if (item.getNumber() <= 0) {
+                    this.currentBackPack.getInventory().remove(item);
+                }
+                break;
+            }
+        }
     }
     //    public void learnRecipe(CraftingItemType recipe) {
 //        learnedCraftingRecipes.add(recipe);

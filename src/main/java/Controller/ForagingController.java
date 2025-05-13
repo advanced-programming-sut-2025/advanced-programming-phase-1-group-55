@@ -16,14 +16,19 @@ public class ForagingController extends SkillController {
 
     @Override
     protected void onLevelUp(int newLevel) {
-        if (newLevel == 1) {
-//            user.learnRecipe(CraftingItemType.CHARCOAL_KILN);
-        } else if (newLevel == 2) {
+        switch (newLevel) {
+            case 1 -> {
+                user.learnRecipe(CraftingItemType.CHARCOAL_KILN);
+            }
+            case 2 -> {
 
-        } else if (newLevel == 3) {
+            }
+            case 3 -> {
 
-        } else if (newLevel == 4) {
-//            user.learnRecipe(CraftingItemType.MYSTIC_TREE_SEED);
+            }
+            case 4 -> {
+                user.learnRecipe(CraftingItemType.MYSTIC_TREE_SEED);
+            }
         }
     }
 
