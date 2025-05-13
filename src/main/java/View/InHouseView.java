@@ -13,10 +13,10 @@ public class InHouseView implements AppMenu {
     @Override
     public void check(String input) {
 
-        if (!MainLocationController.isIn(MainLocation.House)) {
-            System.out.println("you are not in a house !");
-            return;
-        }
+//        if ()) {
+//            System.out.println("you are not in a house !");
+//            return;
+//        }
 
         Matcher matcher = null;
 
@@ -25,7 +25,11 @@ public class InHouseView implements AppMenu {
         } else if((matcher = inHouseGameMenuCommands.CraftItem.getMatcher(input)) != null) {
             String itemName = matcher.group("itemName");
             System.out.println(inHouseController.CraftItem(itemName));
-        } else {
+        } else if ((matcher = inHouseGameMenuCommands.CheatAddItem.getMatcher(input)) != null) {
+            String itemName = matcher.group("itemName");
+            String count = matcher.group("count");
+            System.out.println(inHouseController.CheatAddItem(itemName, count));
+        }else {
 
             mainGameView.check(input);
         }

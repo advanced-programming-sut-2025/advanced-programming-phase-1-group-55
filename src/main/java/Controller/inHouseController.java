@@ -6,6 +6,7 @@ import model.App.*;
 import model.CraftingItems.CraftingItem;
 import model.CraftingItems.CraftingItemCreator;
 import model.Ingredient;
+import model.Item.Item;
 import model.Item.ItemType;
 import model.Result;
 import model.User;
@@ -57,6 +58,20 @@ public class inHouseController {
         CraftingItem product = CraftingItemCreator.create(recipe);
         user.addToInventory(product);
         return new Result(true, recipe.getProductName() + " has been crafted");
+    }
+    public Result CheatAddItem(String itemName, String amount) {
+        User user = App.currentGame.currentUser;
+        ItemType type = ItemType.getItemType(itemName);
+        if (type == null) {
+            return new Result(false, "No item found");
+        }
+        if (!user.inventoryHasCapacity()) {
+            return new Result(false, "you dont have enough inventory");
+        }
+        int count = Integer.parseInt(amount);
+        Item item = new Item(type, count);
+        user.addToInventory(item);
+        return new Result(true, itemName + " has been cheated");
     }
 
 
