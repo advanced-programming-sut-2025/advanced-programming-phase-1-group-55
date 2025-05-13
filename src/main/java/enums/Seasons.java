@@ -2,7 +2,7 @@ package enums;
 
 public enum Seasons {
 
-    spring(0, "spring"), summer(1, "summer"), fall(2, "fall"), winter(3, "winter");
+    spring(0, "spring"), summer(1, "summer"), fall(2, "fall"), winter(3, "winter"),special(5,"special");
     private int value;
     private String name;
 
