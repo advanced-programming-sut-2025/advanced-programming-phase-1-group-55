@@ -17,13 +17,13 @@ public class ForagingController extends SkillController {
     @Override
     protected void onLevelUp(int newLevel) {
         if (newLevel == 1) {
-            user.learnRecipe(CraftingItemType.CHARCOAL_KILN);
+//            user.learnRecipe(CraftingItemType.CHARCOAL_KILN);
         } else if (newLevel == 2) {
-//            skill.addAbility(new Ability("Gathering Expert", "Chance to find double items."));
+
         } else if (newLevel == 3) {
-//            skill.addAbility(new Ability("Wild Seeds", "Unlock crafting wild seeds."));
+
         } else if (newLevel == 4) {
-            user.learnRecipe(CraftingItemType.MYSTIC_TREE_SEED);
+//            user.learnRecipe(CraftingItemType.MYSTIC_TREE_SEED);
         }
     }
 

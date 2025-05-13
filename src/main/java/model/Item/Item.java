@@ -1,5 +1,34 @@
 package model.Item;
 
-public abstract class Item {
-    private int number;
+public class Item   {
+    protected ItemType itemType;
+    protected int number = 0;
+
+    public Item(ItemType itemtype, int number) {
+        itemType = itemtype;
+        this.number = number;
+    }
+    public Item(){
+
+    }
+
+    public ItemType getItemType() {
+        return itemType;
+    }
+
+    public void setItemType(ItemType itemType) {
+        this.itemType = itemType;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+    public Enum<?> getType()
+    {
+        return null;
+    }
 }

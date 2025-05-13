@@ -1,17 +1,15 @@
 package View;
-import Controller.*;
 import enums.*;
-import Controller.CraftingController;
+import Controller.inHouseController;
 import Controller.MainLocationController;
 import enums.MainLocation;
-import model.Game;
-import model.User;
+import model.App;
 
 import java.util.regex.Matcher;
 
 public class InHouseView implements AppMenu {
     private final MainGameView mainGameView = new MainGameView();
-    private final CraftingController craftingController = new CraftingController();
+    private final inHouseController inHouseController = new inHouseController();
     @Override
     public void check(String input) {
 
@@ -22,11 +20,14 @@ public class InHouseView implements AppMenu {
 
         Matcher matcher = null;
 
-        if((matcher = inHouseGameMenuCommands.ShowLearnedRecipes.getMatcher(input)) != null) {
-            System.out.println(craftingController.getLearnedRecipes(Game.getMainUser()));
+        if((matcher = mainGameCommands.ShowCraftingRecipe.getMatcher(input)) != null) {
+            System.out.println(inHouseController.ShowCraftingRecipe());
+//        } else if(){
+
         } else {
 
             mainGameView.check(input);
         }
+
     }
 }

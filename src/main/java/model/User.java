@@ -147,9 +147,9 @@ public class User {
         this.email = email;
         this.numberOfSecurityQuestion = numberOfSecurityQuestion;
         this.securityQuestion = securityQuestion;
-        learnRecipe(CraftingItemType.FURNACE);
-        learnRecipe(CraftingItemType.SCARECROW);
-        learnRecipe(CraftingItemType.MAYONNAISE_MACHINE);
+//        learnRecipe(CraftingItemType.FURNACE);
+//        learnRecipe(CraftingItemType.SCARECROW);
+//        learnRecipe(CraftingItemType.MAYONNAISE_MACHINE);
     }
 
     public void addTrade(Trade trade) {
@@ -361,17 +361,22 @@ public class User {
         }
         return null;
     }
-    public void learnRecipe(CraftingItemType recipe) {
-        learnedCraftingRecipes.add(recipe);
-    }
+    private ArrayList<CraftingItemType> craftingRecipes = new ArrayList<>();
 
-    public boolean hasLearnedRecipe(CraftingItemType recipe) {
-        return learnedCraftingRecipes.contains(recipe);
+    public ArrayList<CraftingItemType> getCraftingRecipes() {
+        return craftingRecipes;
     }
-
-    public Set<CraftingItemType> getLearnedCraftingRecipes() {
-        return Collections.unmodifiableSet(learnedCraftingRecipes);
-    }
+    //    public void learnRecipe(CraftingItemType recipe) {
+//        learnedCraftingRecipes.add(recipe);
+//    }
+//
+//    public boolean hasLearnedRecipe(CraftingItemType recipe) {
+//        return learnedCraftingRecipes.contains(recipe);
+//    }
+//
+//    public Set<CraftingItemType> getLearnedCraftingRecipes() {
+//        return Collections.unmodifiableSet(learnedCraftingRecipes);
+//    }
 
 
 
