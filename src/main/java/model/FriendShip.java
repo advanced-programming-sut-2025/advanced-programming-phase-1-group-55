@@ -1,6 +1,6 @@
 package model;
 
-public class FriendShip {
+public abstract class FriendShip {
     private  int level;
 
     public int getLevel() {
