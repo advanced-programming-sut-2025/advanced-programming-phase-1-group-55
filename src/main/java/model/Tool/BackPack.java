@@ -1,12 +1,13 @@
 package model.Tool;
 
+import model.App;
 import model.Game;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class BackPack {
-    private  Tools currentTool;
+    private  Tools currentTool=new Hoe();
     private Map<String, Tools> availableTools = new HashMap<>() {{
         put("Hoe", new Hoe());
         put("Pickaxe", new Pickaxe());
@@ -43,12 +44,12 @@ public class BackPack {
     }
 
     public String showCurrentTool(){
-        return currentTool.toString();
+        return currentTool.getName();
     }
     public String showAvailableTools(){
         StringBuilder message=new StringBuilder();
         for(Tools tools:availableTools.values()){
-            message.append(tools.getName());
+            message.append(tools.getName()).append("\n");
         }
         return  message.toString();
     }
@@ -59,7 +60,7 @@ public class BackPack {
     public void recycleItem(String name){
         //injaa bayad hame noe item ro recycle koni na faghat tools
         // TO DO 
-        Game.mainUser.setMoney(Game.mainUser.getMoney()+
+        App.currentGame.currentUser.setMoney(App.currentGame.currentUser.getMoney()+
                 (int)((availableTools.get(name).getPrice()*availableTools.get("Trashcan").getLevel()*15)/100));
         availableTools.remove(name);
     }

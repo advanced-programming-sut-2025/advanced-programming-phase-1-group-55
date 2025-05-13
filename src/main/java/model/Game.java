@@ -20,103 +20,39 @@ import model.Map.GameMap;
 import java.util.List;
 
 public class Game {
-    public static User mainUser;
-    public static Menu currentMenu = Menu.Register;
-    public static HashMap<String, User> playersInGame = new HashMap<>();
-    private static GameMap map;
+    public User currentUser;
+    public HashMap<String, User> playersInGame = new HashMap<>();
+    private GameMap map;
 
-    public static WeatherType currentWeather;
-    public static HashMap<String, User> AllUsers = new HashMap<>();
-
-    public static void readfile() {
-
-        try {
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            FileReader reader = new FileReader("users.json");
-
-            Type userListType = new TypeToken<List<User>>() {
-            }.getType();
-
-            List<User> userList = gson.fromJson(reader, userListType);
-            if (userList != null) {
-
-                for (User user : userList) {
-                    AllUsers.put(user.getUsername(), user);
-                }
-
-
-            }
-
-            reader.close();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
+    public Game(User currentUser, HashMap<String, User> playersInGame, GameMap map) {
+        this.currentUser = currentUser;
+        this.playersInGame = playersInGame;
+        this.map = map;
     }
 
-    public static Map<Integer, String> questionsList = new HashMap<>();
-
-    static {
-        questionsList.put(1, "What was the name of your first-grade teacher?");
-        questionsList.put(2, "What was the first phone number you ever memorized?");
-        questionsList.put(3, "What is the name of your childhood best friend?");
+    public User getCurrentUser() {
+        return currentUser;
     }
 
-    public static User getMainUser() {
-        return mainUser;
+    public void setCurrentUser(User currentUser) {
+        this.currentUser = currentUser;
     }
 
-    public static void setMainUser(User mainUser) {
-        Game.mainUser = mainUser;
-    }
-
-    public static void setCurrentMenu(Menu currentMenu) {
-        Game.currentMenu = currentMenu;
-    }
-
-    public static HashMap<String, User> getPlayersInGame() {
+    public HashMap<String, User> getPlayersInGame() {
         return playersInGame;
     }
 
-    public static void setPlayersInGame(HashMap<String, User> playersInGame) {
-        Game.playersInGame = playersInGame;
+    public void setPlayersInGame(HashMap<String, User> playersInGame) {
+        this.playersInGame = playersInGame;
     }
 
-    public static GameMap getMap() {
+    public GameMap getMap() {
         return map;
     }
 
-    public static void setMap(GameMap map) {
-        Game.map = map;
+    public void setMap(GameMap map) {
+        this.map = map;
     }
 
-    public static WeatherType getCurrentWeather() {
-        return currentWeather;
-    }
 
-    public static void setCurrentWeather(WeatherType currentWeather) {
-        Game.currentWeather = currentWeather;
-    }
-
-    public static HashMap<String, User> getAllUsers() {
-        return AllUsers;
-    }
-
-    public static void setAllUsers(HashMap<String, User> allUsers) {
-        AllUsers = allUsers;
-    }
-
-    public static Map<Integer, String> getQuestionsList() {
-        return questionsList;
-    }
-
-    public static void setQuestionsList(Map<Integer, String> questionsList) {
-        Game.questionsList = questionsList;
-    }
-
-    public static Menu getCurrentMenu() {
-        return currentMenu;
-    }
 }

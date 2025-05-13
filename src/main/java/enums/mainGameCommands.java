@@ -18,12 +18,19 @@ public enum mainGameCommands implements Command {
     cheatHour("\\s*cheat advance time\\s+(?<X>\\S+)h\\s*"),
     cheatday("\\s*cheat advance date\\s+(?<X>\\S+)d\\s*"),
     season("\\s*season\\s*"),
+    cheatThor("\\s*cheat Thor -l (?<x>\\d+)\\s(?<y>\\d+)\\s*"),
+    weather("\\s*weather\\s*"),
+    weatherForecast("\\s*weather\\s+forecast\\s*"),
+    cheatWeatherSet("^\\s*cheat weather set (?<type>\\S+)\\s*$"),
+    greenhouse("^\\s*greenhouse build\\s*"),
     energyShow("\\s*energy\\s+show\\s*"),
     energySet("\\s*energy\\s+set\\s+-v\\s+(?<V>\\S+)\\s*"),
     UnlimitedEnergy("\\s*energy\\s+unlimited\\s*"),
     helpReadMap("^\\s*help\\s+reading\\s+map\\s*$"),
     printMap("^\\s*print\\s+map\\s+-l\\s+(?<x>\\d+)\\s+(?<y>\\d+)\\s+-s\\s+(?<size>\\d+)\\s*$"),
-    printFullMap("^\\s*print\\s+map\\s*$");
+    printFullMap("^\\s*print\\s+map\\s*$"),
+    gameNew("\\s*game\\s+new\\s+-u\\s+(?<user1>\\S+)(?:\\s+(?<user2>\\S+))?(?:\\s+(?<user3>\\S+))?\\s*"),
+    chooseMap("\\s*game\\s+map\\s+(?<X>\\S+)\\s*");
     private final String pattern;
 
     mainGameCommands(String pattern) {
@@ -38,4 +45,4 @@ public enum mainGameCommands implements Command {
         }
         return null;
     }
-}
+    }

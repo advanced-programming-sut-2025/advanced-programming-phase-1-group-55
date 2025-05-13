@@ -1,12 +1,45 @@
 package model.Map;
 
 import enums.RockType;
+import model.FarmingProdocts.*;
 import model.Rock;
 
 import java.util.Random;
 
 public class farmBuilder {
     private Farm farm1, farm1_copy, farm2, farm2_copy;
+
+    public Farm getFarm1() {
+        return farm1;
+    }
+
+    public void setFarm1(Farm farm1) {
+        this.farm1 = farm1;
+    }
+
+    public Farm getFarm1_copy() {
+        return farm1_copy;
+    }
+
+    public void setFarm1_copy(Farm farm1_copy) {
+        this.farm1_copy = farm1_copy;
+    }
+
+    public Farm getFarm2() {
+        return farm2;
+    }
+
+    public void setFarm2(Farm farm2) {
+        this.farm2 = farm2;
+    }
+
+    public Farm getFarm2_copy() {
+        return farm2_copy;
+    }
+
+    public void setFarm2_copy(Farm farm2_copy) {
+        this.farm2_copy = farm2_copy;
+    }
 
     public GameMap mapCreator() {
 
@@ -80,6 +113,51 @@ public class farmBuilder {
                 farm.getRocks().put(tile.getLocation(),new Rock(tile.getLocation(), RockType.getTypeByInt(rockType)));
             }
         } while (numberOfRocks != 3);
+           //TREES
+        int numberOfTrees=0;
+        do {
+            int x = rand.nextInt(20);
+            int y = rand.nextInt(20);
+            Tile tile = Map.tiles[y + farm.getLocation().getY()][x + farm.getLocation().getX()];
+            if (tile==null) {
+                tile=new Tile(new Location(y + farm.getLocation().getY(),x + farm.getLocation().getX())
+                        ,"T",true,false,TileType.grass);
+                Map.tiles[tile.getLocation().getY()][tile.getLocation().getX()]=tile;
+                numberOfTrees++;
+                int treeType = rand.nextInt(14);
+                farm.getTrees().put(tile.getLocation(), new Tree(tile.getLocation(), AllTrees.getTypeByInt(treeType)));
+            }
+        } while (numberOfTrees != 15);
+           //foraging seeds
+        int numberOfForagingSeeds=0;
+        do {
+            int x = rand.nextInt(20);
+            int y = rand.nextInt(20);
+            Tile tile = Map.tiles[y + farm.getLocation().getY()][x + farm.getLocation().getX()];
+            if (tile==null) {
+                tile=new Tile(new Location(y + farm.getLocation().getY(),x + farm.getLocation().getX())
+                        ,"*",true,false,TileType.grass);
+                Map.tiles[tile.getLocation().getY()][tile.getLocation().getX()]=tile;
+                numberOfForagingSeeds++;
+                int seedType = rand.nextInt(42);
+                farm.getSeeds().put(tile.getLocation(), new ForagingSeed(tile.getLocation(), AllForagingSeeds.fromId(seedType)));
+            }
+        } while (numberOfForagingSeeds != 10);
+           //foraging crobs
+        int numberOfForagingCrobs=0;
+        do {
+            int x = rand.nextInt(20);
+            int y = rand.nextInt(20);
+            Tile tile = Map.tiles[y + farm.getLocation().getY()][x + farm.getLocation().getX()];
+            if (tile==null) {
+                tile=new Tile(new Location(y + farm.getLocation().getY(),x + farm.getLocation().getX())
+                        ,"&",true,false,TileType.grass);
+                Map.tiles[tile.getLocation().getY()][tile.getLocation().getX()]=tile;
+                numberOfForagingCrobs++;
+                int seedType = rand.nextInt(23);
+                farm.getCrobs().put(tile.getLocation(), new ForagingCrops(tile.getLocation(), AllForagingCrops.fromId(seedType)));
+            }
+        } while (numberOfForagingCrobs != 10);
 
 
     }

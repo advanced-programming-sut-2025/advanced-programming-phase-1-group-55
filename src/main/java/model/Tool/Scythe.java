@@ -3,7 +3,7 @@ package model.Tool;
 import enums.Store;
 
 import static java.lang.Math.max;
-import static model.Game.mainUser;
+import static model.App.*;
 
 public class Scythe extends  Tools{
     public int getPriceToLevelUp(){
@@ -46,6 +46,6 @@ public class Scythe extends  Tools{
     }
     @Override
     public void useTool() {
-        mainUser.setEnergy(max(mainUser.getEnergy()-energyCost(),0));
+        currentGame.currentUser.setEnergy(max(currentGame.currentUser.getEnergy()-energyCost(),0));
     }
 }

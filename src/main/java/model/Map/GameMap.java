@@ -21,20 +21,20 @@ public class GameMap {
     public GameMap(Farm farm1, Farm farm2, Farm farm3, Farm farm4,NpcVillage village) {
 
         farm2.setLocation(new Location(farm2.getLocation().getY() + 21, farm2.getLocation().getX()));
-        farm2.getQuarry().changeLocation(21, 0);
-        farm2.getLake().changeLocation(21, 0);
-        farm2.getGreenHouse().changeLocation(21, 0);
-        farm2.getHouse().changeLocation(21, 0);
+        farm2.getQuarry().getLocation().changeLocation(21, 0);
+        farm2.getLake().getLocation().changeLocation(21, 0);
+        farm2.getGreenHouse().getLocation().changeLocation(21, 0);
+        farm2.getHouse().getLocation().changeLocation(21, 0);
         farm3.setLocation(new Location(farm3.getLocation().getY(), farm3.getLocation().getX() + 140));
-        farm3.getQuarry().changeLocation(0, 140);
-        farm3.getLake().changeLocation(0, 140);
-        farm3.getGreenHouse().changeLocation(0, 140);
-        farm3.getHouse().changeLocation(0, 140);
+        farm3.getQuarry().getLocation().changeLocation(0, 140);
+        farm3.getLake().getLocation().changeLocation(0, 140);
+        farm3.getGreenHouse().getLocation().changeLocation(0, 140);
+        farm3.getHouse().getLocation().changeLocation(0, 140);
         farm4.setLocation(new Location(farm4.getLocation().getY() + 21, farm4.getLocation().getX() + 140));
-        farm4.getQuarry().changeLocation(21, 140);
-        farm4.getLake().changeLocation(21, 140);
-        farm4.getGreenHouse().changeLocation(21, 140);
-        farm4.getHouse().changeLocation(21, 140);
+        farm4.getQuarry().getLocation().changeLocation(21, 140);
+        farm4.getLake().getLocation().changeLocation(21, 140);
+        farm4.getGreenHouse().getLocation().changeLocation(21, 140);
+        farm4.getHouse().getLocation().changeLocation(21, 140);
         this.farm1 = farm1;
         this.farm2 = farm2;
         this.farm3 = farm3;
@@ -105,12 +105,16 @@ public class GameMap {
     public AnsiColor colorOfTile(String item){
         AnsiColor color=AnsiColor.RESET;
         color = switch (item) {
-            case "W" -> AnsiColor.BLUE;
-            case "^" -> AnsiColor.BRIGHT_BLACK;
-            case "h" -> AnsiColor.BRIGHT_CYAN;
-            case "g" -> AnsiColor.OLIVE_GREEN;
-            case "#" -> AnsiColor.ORANGE;
-            case "=" -> AnsiColor.RED;
+            case "W" -> AnsiColor.BG_BLUE;
+            case "^" -> AnsiColor.BG_BRIGHT_BLACK;
+            case "h" -> AnsiColor.BG_BRIGHT_PURPLE;
+            case "g" -> AnsiColor.BG_OLIVE_GREEN;
+            case "#" -> AnsiColor.BG_ORANGE;
+            case "=" -> AnsiColor.BG_RED;
+            case  "T"-> AnsiColor.BG_BROWN;
+            case "0"-> AnsiColor.BG_BRIGHT_WHITE;
+            case "&" -> AnsiColor.BRIGHT_GREEN;
+            case "*" ->AnsiColor.GREEN;
             default -> color;
         };
         return color;

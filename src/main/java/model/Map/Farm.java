@@ -1,6 +1,8 @@
 package model.Map;
 
+import model.FarmingProdocts.Crop;
 import model.FarmingProdocts.ForagingCrops;
+import model.FarmingProdocts.ForagingSeed;
 import model.FarmingProdocts.Tree;
 import model.Rock;
 
@@ -45,6 +47,7 @@ public class Farm {
     private Map<Location, Rock> rocks = new HashMap<>();
     private Map<Location, Tree> trees = new HashMap<>();
     private Map<Location, ForagingCrops> crobs = new HashMap<>();
+    private Map<Location, ForagingSeed> seeds=new HashMap<>();
 
     public Farm(House house, Lake lake, GreenHouse greenHouse, Quarry quarry, Location location) {
         this.house = house;
@@ -53,8 +56,7 @@ public class Farm {
         this.quarry = quarry;
         this.location = location;
     }
-    //todo random gozashtan sang mang
-    //todo map az foraging seeds
+
 
     public House getHouse() {
         return house;
@@ -110,5 +112,13 @@ public class Farm {
 
     public void setCrobs(Map<Location, ForagingCrops> crobs) {
         this.crobs = crobs;
+    }
+
+    public Map<Location, ForagingSeed> getSeeds() {
+        return seeds;
+    }
+
+    public void setSeeds(Map<Location, ForagingSeed> seeds) {
+        this.seeds = seeds;
     }
 }

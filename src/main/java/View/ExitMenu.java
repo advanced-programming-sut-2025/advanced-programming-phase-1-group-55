@@ -3,7 +3,7 @@ import enums.*;
 
 import java.util.Scanner;
 import java.util.regex.Matcher;
-import static model.Game.currentMenu;
+import static model.App.currentMenu;
 public class ExitMenu extends AppView implements AppMenu {
 
     @Override

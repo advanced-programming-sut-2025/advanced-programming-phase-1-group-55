@@ -5,6 +5,7 @@ import enums.Menu;
 import model.Result;
 import model.User;
 
+import java.security.MessageDigest;
 import java.security.SecureRandom;
 
 import java.util.Map;
@@ -18,13 +19,13 @@ import com.google.gson.reflect.TypeToken;
 import java.io.*;
 import java.util.*;
 
-import static model.Game.*;
+import static model.App.*;
 
 public class RegisterController {
 
     Scanner scanner = new Scanner(System.in);
 
-    public Result Register(String username, String password, String passwordConfirmation, String nickname, String email, String gender) {
+    public Result Register(String username, String password, String passwordConfirmation, String nickname, String email, String gender)  {
         if (!isUniqueUsername(username)) {
             System.out.println("Username is already in use");
 
@@ -87,12 +88,31 @@ public class RegisterController {
         }
 
 
-        User user = new User(username, password, nickname, email, gender, number, matcher.group("answer"));
+        User user = new User(username, convertToSHA(password), nickname, email, gender, number, matcher.group("answer"));
         mainUser = user;
         saveUserToJson(user);
         readfile();
         currentMenu = Menu.MainMenu;
         return new Result(true, "Registered Successfully :)" + "\nusername:" + username + "\npassword: " + password + "\nnickname: " + nickname + "\nemail: " + email + "\ngender: " + gender + "\nchoice: " + number + "\nanswer: " + matcher.group("answer"));
+
+    }
+
+    protected String convertToSHA(String input) {
+        try {
+
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] hash = digest.digest(input.getBytes());
+
+            StringBuilder hex = new StringBuilder();
+            for (byte b : hash) {
+                hex.append(String.format("%02x", b));
+
+            }
+            return hex.toString();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
 
     }
 

@@ -1,12 +1,41 @@
 [
   {
     "username": "arshia",
-    "password": "aA123456?w",
+    "password": "1efb4ef0da0b46701287a19814214eee4518e892f954d4c2d71fd5e89b411b18",
     "nickName": "arshix",
     "gender": "arshia@gmail.com",
     "email": "male",
     "numberOfSecurityQuestion": 1,
     "securityQuestion": "soltani",
+    "backPack": {
+      "currentTool": {
+        "level": 0
+      },
+      "availableTools": {
+        "WateringCan": {
+          "level": 0
+        },
+        "Scythe": {
+          "level": 0
+        },
+        "FishingPole": {
+          "level": 0
+        },
+        "Pickaxe": {
+          "level": 0
+        },
+        "Trashcan": {
+          "level": 0
+        },
+        "Hoe": {
+          "level": 0
+        },
+        "Axe": {
+          "level": 0
+        }
+      },
+      "level": 1
+    },
     "friendsNpc": {},
     "friendsPlayer": {},
     "gold": 0,
@@ -23,13 +52,42 @@
     "fainted": false
   },
   {
-    "username": "arshiaH5",
-    "password": "aA123456?w",
+    "username": "arshiaW5",
+    "password": "1efb4ef0da0b46701287a19814214eee4518e892f954d4c2d71fd5e89b411b18",
     "nickName": "arshix",
     "gender": "arshia@gmail.com",
     "email": "male",
     "numberOfSecurityQuestion": 1,
     "securityQuestion": "soltani",
+    "backPack": {
+      "currentTool": {
+        "level": 0
+      },
+      "availableTools": {
+        "WateringCan": {
+          "level": 0
+        },
+        "Scythe": {
+          "level": 0
+        },
+        "FishingPole": {
+          "level": 0
+        },
+        "Pickaxe": {
+          "level": 0
+        },
+        "Trashcan": {
+          "level": 0
+        },
+        "Hoe": {
+          "level": 0
+        },
+        "Axe": {
+          "level": 0
+        }
+      },
+      "level": 1
+    },
     "friendsNpc": {},
     "friendsPlayer": {},
     "gold": 0,
@@ -46,13 +104,42 @@
     "fainted": false
   },
   {
-    "username": "arshiaQ1",
-    "password": "aA123456?w",
+    "username": "arshiaQ7",
+    "password": "1efb4ef0da0b46701287a19814214eee4518e892f954d4c2d71fd5e89b411b18",
     "nickName": "arshix",
     "gender": "arshia@gmail.com",
     "email": "male",
     "numberOfSecurityQuestion": 1,
     "securityQuestion": "soltani",
+    "backPack": {
+      "currentTool": {
+        "level": 0
+      },
+      "availableTools": {
+        "WateringCan": {
+          "level": 0
+        },
+        "Scythe": {
+          "level": 0
+        },
+        "FishingPole": {
+          "level": 0
+        },
+        "Pickaxe": {
+          "level": 0
+        },
+        "Trashcan": {
+          "level": 0
+        },
+        "Hoe": {
+          "level": 0
+        },
+        "Axe": {
+          "level": 0
+        }
+      },
+      "level": 1
+    },
     "friendsNpc": {},
     "friendsPlayer": {},
     "gold": 0,
@@ -69,13 +156,42 @@
     "fainted": false
   },
   {
-    "username": "arshiaJ0",
-    "password": "aA123456?w",
+    "username": "arshiaY8",
+    "password": "1efb4ef0da0b46701287a19814214eee4518e892f954d4c2d71fd5e89b411b18",
     "nickName": "arshix",
     "gender": "arshia@gmail.com",
     "email": "male",
     "numberOfSecurityQuestion": 1,
     "securityQuestion": "soltani",
+    "backPack": {
+      "currentTool": {
+        "level": 0
+      },
+      "availableTools": {
+        "WateringCan": {
+          "level": 0
+        },
+        "Scythe": {
+          "level": 0
+        },
+        "FishingPole": {
+          "level": 0
+        },
+        "Pickaxe": {
+          "level": 0
+        },
+        "Trashcan": {
+          "level": 0
+        },
+        "Hoe": {
+          "level": 0
+        },
+        "Axe": {
+          "level": 0
+        }
+      },
+      "level": 1
+    },
     "friendsNpc": {},
     "friendsPlayer": {},
     "gold": 0,
@@ -92,20 +208,49 @@
     "fainted": false
   },
   {
-    "username": "arshiaV6",
-    "password": "aA123456?w",
+    "username": "arshiaQ7",
+    "password": "1efb4ef0da0b46701287a19814214eee4518e892f954d4c2d71fd5e89b411b18",
     "nickName": "arshix",
     "gender": "arshia@gmail.com",
     "email": "male",
     "numberOfSecurityQuestion": 1,
     "securityQuestion": "soltani",
+    "backPack": {
+      "currentTool": {
+        "level": 0
+      },
+      "availableTools": {
+        "WateringCan": {
+          "level": 0
+        },
+        "Scythe": {
+          "level": 0
+        },
+        "FishingPole": {
+          "level": 0
+        },
+        "Pickaxe": {
+          "level": 0
+        },
+        "Trashcan": {
+          "level": 0
+        },
+        "Hoe": {
+          "level": 0
+        },
+        "Axe": {
+          "level": 0
+        }
+      },
+      "level": 1
+    },
     "friendsNpc": {},
     "friendsPlayer": {},
     "gold": 0,
     "wood": 0,
     "Money": 0,
     "energy": 200.0,
-    "stayLoggedIn": false,
+    "stayLoggedIn": true,
     "mostAchievedMoney": 0,
     "matchPlayed": 0,
     "location": {
@@ -115,20 +260,49 @@
     "fainted": false
   },
   {
-    "username": "arshiaR0",
-    "password": "aA123456?w",
+    "username": "arshiaQ7",
+    "password": "1efb4ef0da0b46701287a19814214eee4518e892f954d4c2d71fd5e89b411b18",
     "nickName": "arshix",
     "gender": "arshia@gmail.com",
     "email": "male",
     "numberOfSecurityQuestion": 1,
     "securityQuestion": "soltani",
+    "backPack": {
+      "currentTool": {
+        "level": 0
+      },
+      "availableTools": {
+        "WateringCan": {
+          "level": 0
+        },
+        "Scythe": {
+          "level": 0
+        },
+        "FishingPole": {
+          "level": 0
+        },
+        "Pickaxe": {
+          "level": 0
+        },
+        "Trashcan": {
+          "level": 0
+        },
+        "Hoe": {
+          "level": 0
+        },
+        "Axe": {
+          "level": 0
+        }
+      },
+      "level": 1
+    },
     "friendsNpc": {},
     "friendsPlayer": {},
     "gold": 0,
     "wood": 0,
     "Money": 0,
     "energy": 200.0,
-    "stayLoggedIn": false,
+    "stayLoggedIn": true,
     "mostAchievedMoney": 0,
     "matchPlayed": 0,
     "location": {

@@ -10,13 +10,11 @@ import static enums.Seasons.*;
 import java.awt.*;
 import java.time.LocalDate;
 
-import static model.Game.*;
-
 public class GameTime {
 
     private static int hour = 9;
     private static DayOfTheWeeks day = saturday;
-    private static Seasons season = fall;
+    private static Seasons currentSeason = fall;
     private static int DayofMonth = 1;
 
 
@@ -38,11 +36,11 @@ public class GameTime {
     }
 
     public static Seasons getSeason() {
-        return season;
+        return currentSeason;
     }
 
     public static void setSeason(Seasons season) {
-        GameTime.season = season;
+        GameTime.currentSeason = season;
     }
 
     public static int getDayofMonth() {
@@ -53,17 +51,19 @@ public class GameTime {
         DayofMonth = dayofMonth;
     }
 
-    // age zaman roo ziyad ezafe kone momkene bug bede
+    //todo age zaman roo ziyad ezafe kone momkene bug bede
+    //todo mitooni ye tabe bezani be esm rooz bad va karayy ke dar rooz bad bayad bokoni ro too on bezani
     public static void increaseHour(int hour) {
         GameTime.hour += hour;
         if (GameTime.hour >= 22) {
             GameTime.hour = 9;
-            mainUser.setLocation(mainUser.getPlayerTommorowLocation());
+            weather.setCurrentWeather(weather.getTomorrowWeather());
+            weather.RandomWeatherForTommorow();
             day = day.nextDay();
             DayofMonth += 1;
             if (DayofMonth > 28) {
                 DayofMonth = 1;
-                season = season.nextSeason();
+                currentSeason = currentSeason.nextSeason();
             }
 
 
@@ -74,13 +74,19 @@ public class GameTime {
 
     public static void increaseDay(int number) {
         DayofMonth += number % 28;
+        for (int i = 0; i < number; i++) {
+
+            weather.setCurrentWeather(weather.getTomorrowWeather());
+            weather.RandomWeatherForTommorow();
+        }
+
         if (DayofMonth + number > 28) {
-            season = season.nextSeason();
+            currentSeason = currentSeason.nextSeason();
         } else if (DayofMonth + number > 56) {
-            season = season.nextSeason().nextSeason();
+            currentSeason = currentSeason.nextSeason().nextSeason();
 
         } else if (DayofMonth + number > 84) {
-            season = season.nextSeason().nextSeason().nextSeason();
+            currentSeason = currentSeason.nextSeason().nextSeason().nextSeason();
         }
 
 

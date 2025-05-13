@@ -6,6 +6,11 @@ public class ForagingCrops {
     private AllForagingCrops foragingCropsType;
     private Location location;
 
+    public ForagingCrops(Location location, AllForagingCrops foragingCropsType) {
+        this.location = location;
+        this.foragingCropsType = foragingCropsType;
+    }
+
     public Location getLocation() {
         return location;
     }

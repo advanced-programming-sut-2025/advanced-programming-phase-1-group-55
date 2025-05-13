@@ -9,14 +9,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-import static model.Game.*;
+import static model.App.*;
 
 public class LoginMenuController extends RegisterController {
     public Result login(String username, String password, String stayLoggedIn) {
         if (!AllUsers.containsKey(username)) {
             return new Result(false, "username doesnt exists");
         }
-        if (!AllUsers.get(username).getPassword().equals(password)) {
+        if (!AllUsers.get(username).getPassword().equals(convertToSHA(password))) {
 
             return new Result(false, "password doesnt match");
         }
@@ -24,10 +24,11 @@ public class LoginMenuController extends RegisterController {
             AllUsers.get(username).setStayLoggedIn(true);
             System.out.println("stay logged in");
         }
+        saveUserToJson(AllUsers.get(username));
         mainUser = AllUsers.get(username);
 
         currentMenu = Menu.MainMenu;
-        
+
         return new Result(true, "logged in");
 
     }
