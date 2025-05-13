@@ -1,48 +1,46 @@
 package Controller;
 import Controller.SkillController;
-
+import enums.CraftingItemType;
+import model.User;
+import model.Ability;
 import model.Skills;
 import View.MiningView;
+import model.User;
+
+
 public class MiningController extends SkillController {
-    private MiningView view;
-    public MiningController(Skills miningSkill) {
-        super(miningSkill);
-        this.view = new MiningView();
+    private User user;
+
+    public MiningController(Skills skill, User user) {
+        super(skill);
+        this.user = user;
     }
 
     @Override
     protected void onLevelUp(int newLevel) {
+        switch (newLevel) {
+            case 1 -> {
+                user.learnRecipe(CraftingItemType.CHERRY_BOMB);
+            }
+            case 2 -> {
+                user.learnRecipe(CraftingItemType.BOMB);
+            }
+            case 3 -> {
+                user.learnRecipe(CraftingItemType.MEGA_BOMB);
+            }
+            case 4 -> {
 
-    }
-
-
-
-    public void mineRock() {
-        skill.pointUp(10);
-        view.displayMiningMessage();
-        handleLevelUp();
-}
-    private void handleLevelUp() {
-        int oldLevel = skill.getLevel();
-        skill.levelUp();
-        if (skill.getLevel() > oldLevel) {
-            view.displayLevelUpMessage(skill.getLevel());
-            skill.getAbilities().stream()
-                    .filter(ability -> ability.getLevelRequierd() == skill.getLevel())
-                    .forEach(ability -> view.displayAbilityUnlocked(ability.getName()));
-
+            }
         }
     }
-    public void showStatus() {
-        view.displayStatus(skill);
-    }
-    public void showAbilities() {
-        view.displayAbilities(skill);
-    }
 
 
-    public boolean hasExtraDropChance() {
-        return skill.getLevel() >= 2;
-    }
+
+
+
+
+//    public boolean hasExtraDropChance() {
+//        return skill.getLevel() >= 2;
+//    }
 
 }

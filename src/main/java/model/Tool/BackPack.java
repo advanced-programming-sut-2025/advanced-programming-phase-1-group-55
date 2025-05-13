@@ -2,7 +2,9 @@ package model.Tool;
 
 import model.App;
 import model.Game;
+import model.Item.Item;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,7 +20,8 @@ public class BackPack {
         put("Trashcan",new Trashcan());
     }};
 // todo havij , goosht zoghaal va ... yadet nare , bakhsh inventory moonde !!!!!!!
-    private int level=1;
+    private ArrayList<Item> inventory = new ArrayList<>();
+    private int level = 1;
     public Map<String, Tools> getAvailableTools() {
         return availableTools;
     }
@@ -59,10 +62,40 @@ public class BackPack {
     }
     public void recycleItem(String name){
         //injaa bayad hame noe item ro recycle koni na faghat tools
-        // TO DO 
+        // TODO
         App.currentGame.currentUser.setMoney(App.currentGame.currentUser.getMoney()+
                 (int)((availableTools.get(name).getPrice()*availableTools.get("Trashcan").getLevel()*15)/100));
         availableTools.remove(name);
     }
+
+
+    public boolean addToInventory(Item item){
+        if (inventory.size() < getSize()) {
+            inventory.add(item);
+            return true;
+        }
+        return false;
+    }
+    public boolean removeFromInventory(Item item){
+        return inventory.remove(item);
+    }
+    public String ShowInventory(){
+        if (inventory.isEmpty()) {
+            return "inventory is empty";
+        }
+        StringBuilder message = new StringBuilder("Inventory:\n");
+        for(Item item:inventory){
+            message.append("- ").append(item.getItemType()).append("\n");
+        }
+        return message.toString().trim();
+    }
+    public int getInventorySize() {
+        return inventory.size();
+    }
+    public ArrayList<Item> getInventory()
+    {
+        return inventory;
+    }
+
 
 }

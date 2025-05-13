@@ -32,6 +32,10 @@ public class MainMenu extends AppView implements AppMenu {
             System.out.println("going to Game menu");
         } else if (input.matches("\\s*show\\s+current\\s+menu\\s*")) {
             System.out.println("you are in Main Menu now!");
+        } else if (input.matches("\\s*menu\\s+enter\\s+maingame")) {
+
+            currentMenu = Menu.MainGameMenu;
+            System.out.println("you are in Main Game Menu now!");
         } else {
             System.out.println("invalid input in MAIN MENU");
         }

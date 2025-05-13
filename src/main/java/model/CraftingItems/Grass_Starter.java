@@ -1,0 +1,14 @@
+package model.CraftingItems;
+
+import enums.CraftingItemType;
+
+public class Grass_Starter extends CraftingItem {
+    public Grass_Starter() {
+        super(CraftingItemType.GRASS_STARTER);
+    }
+
+    @Override
+    public void whatItDoes() {
+
+    }
+}
