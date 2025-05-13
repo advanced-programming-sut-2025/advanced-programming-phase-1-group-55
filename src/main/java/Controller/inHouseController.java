@@ -8,6 +8,7 @@ import model.CraftingItems.CraftingItemCreator;
 import model.Ingredient;
 import model.Item.Item;
 import model.Item.ItemType;
+import model.Map.Tile;
 import model.Result;
 import model.User;
 
@@ -72,6 +73,18 @@ public class inHouseController {
         Item item = new Item(type, count);
         user.addToInventory(item);
         return new Result(true, itemName + " has been cheated");
+    }
+    public Result PlaceItem(String itemName, String direction) {
+        User user = App.currentGame.currentUser;
+        ItemType type = ItemType.getItemType(itemName);
+        if (type == null) {
+            return new Result(false, "No item found");
+        }
+        Item item = user.getItemInInventory(type);
+        if (item == null) {
+            return new Result(false, "you dont have dis item now!");
+        }
+
     }
 
 

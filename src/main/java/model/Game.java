@@ -15,6 +15,7 @@ import com.google.gson.GsonBuilder;
 
 import enums.Menu;
 import model.Map.GameMap;
+import model.Map.Tile;
 
 
 import java.util.List;
@@ -53,6 +54,57 @@ public class Game {
     public void setMap(GameMap map) {
         this.map = map;
     }
+
+
+    public Tile getTileFromDirection(String direction) {
+        User user = App.currentGame.currentUser;
+        int currentX = user.getLocation().getX();
+        int currentY = user.getLocation().getY();
+
+        int dx = 0;
+        int dy = 0;
+
+        direction = direction.toLowerCase();
+
+        switch (direction) {
+            case "up":
+                dy = 1;
+                break;
+            case "down":
+                dy = -1;
+                break;
+            case "left":
+                dx = -1;
+                break;
+            case "right":
+                dx = 1;
+                break;
+            case "up-left":
+                dx = -1;
+                dy = 1;
+                break;
+            case "up-right":
+                dx = 1;
+                dy = 1;
+                break;
+            case "down-left":
+                dx = -1;
+                dy = -1;
+                break;
+            case "down-right":
+                dx = 1;
+                dy = -1;
+                break;
+            default:
+                return null;
+        }
+
+        int newX = currentX + dx;
+        int newY = currentY + dy;
+
+        return App.currentGame.getMap().tiles[newX][newY];
+    }
+
 
 
 }
