@@ -1,6 +1,8 @@
 package model.Map;
 
 
+import model.App;
+
 public class mapBuilder {
     public void fillOtherTiles(GameMap map) {
         //hesaar haaye mazrae
@@ -30,6 +32,14 @@ public class mapBuilder {
             map.tiles[i + 21][146] = new Tile(new Location(i + 21, 146), "#", false, false, TileType.building);
         }
         villageBuilder(map);
+        // baaghi tile haa ke khaali an
+        for(int i=0;i<41;i++){
+            for ( int j=0;j<160;j++){
+                if(map.tiles[i][j]==null){
+                    map.tiles[i][j]=new Tile(new Location(i,j),".",true,true,TileType.grass);
+                }
+            }
+        }
     }
     public void insideOfStore(GameMap map){
         for(int i=13;i<16;i++){

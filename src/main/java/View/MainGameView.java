@@ -2,6 +2,7 @@ package View;
 
 import Controller.*;
 import enums.*;
+import model.App;
 
 import java.util.regex.Matcher;
 
@@ -70,6 +71,10 @@ public class MainGameView implements AppMenu {
             System.out.println(controller.weatherForecast());
         } else if ((matcher = mainGameCommands.cheatWeatherSet.getMatcher(input)) != null) {
             System.out.println(controller.weatherCheat(matcher.group("type").trim()));
+        } else if ((matcher=mainGameCommands.teleport.getMatcher(input))!=null) {
+            System.out.println(controller.teleport(Integer.parseInt(matcher.group("x")),
+                    Integer.parseInt(matcher.group("y"))));
+            System.out.println(currentGame.currentUser.getMainLocation());
         } else if (input.matches("exit")) {
             currentMenu = Menu.ExitMenu;
         }

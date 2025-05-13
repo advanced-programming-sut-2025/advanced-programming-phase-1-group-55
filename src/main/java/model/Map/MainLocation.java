@@ -1,0 +1,90 @@
+package model.Map;
+
+import model.App;
+
+public enum MainLocation {
+    House,
+    NearTheWater,
+    GreenHouse,
+    Quarry,
+    Default,
+    BlackSmithStore,
+    CarpenterShop,
+    FishingStore,
+    GeneralStore,
+    MarineRanchStore,
+    OjaMartStore,
+    StarDropSaloon,
+    nearSEBASTIAN,
+    nearABIGAIL
+    ,nearHARVEY
+    ,nearLEAH
+    , nearROBIN;
+    public static boolean isNearTheWater(Location location){
+        GameMap map=App.currentGame.getMap();
+        if(map.tiles[location.getY()+1][location.getX()+1].getType().equals(TileType.water)){
+            return true;
+        }else if(map.tiles[location.getY()][location.getX()+1].getType().equals(TileType.water)){
+            return true;
+        }else if(map.tiles[location.getY()+1][location.getX()].getType().equals(TileType.water)){
+            return true;
+        }else if(map.tiles[location.getY()-1][location.getX()+1].getType().equals(TileType.water)){
+            return true;
+        }else if(map.tiles[location.getY()+1][location.getX()-1].getType().equals(TileType.water)){
+            return true;
+        }else if(map.tiles[location.getY()-1][location.getX()-1].getType().equals(TileType.water)){
+            return true;
+        }else if(map.tiles[location.getY()][location.getX()-1].getType().equals(TileType.water)){
+            return true;
+        }else return map.tiles[location.getY() - 1][location.getX()].getType().equals(TileType.water);
+    }
+    public static MainLocation findLocation(Location location){
+        Farm farm=App.currentGame.currentUser.getFarm();
+        if (location.isBetween(farm.getHouse().getLocation(),farm.getHouse().getWidth(),farm.getHouse().getHeight())){
+            return House;
+        } else if (location.isBetween(farm.getQuarry().getLocation(),farm.getQuarry().getWidth(),farm.getQuarry().getHeight())) {
+            return Quarry;
+        }else if (location.isBetween(farm.getGreenHouse().getLocation(),farm.getGreenHouse().getWidth(),farm.getGreenHouse().getHeight())) {
+            return GreenHouse;
+        }else if (isNearTheWater(location)) {
+            return NearTheWater;
+        } else if (location.isBetween(new Location(23,36),5,7)) {
+            return FishingStore;
+        }else if (location.isBetween(new Location(11,36),5,7)) {
+            return StarDropSaloon;
+        }else if (location.isBetween(new Location(23,48),5,7)) {
+            return MarineRanchStore;
+        }else if (location.isBetween(new Location(11,48),5,7)) {
+            return BlackSmithStore;
+        }else if (location.isBetween(new Location(23,60),5,7)) {
+            return nearABIGAIL;
+        }else if (location.isBetween(new Location(11,60),5,7)) {
+            return OjaMartStore;
+        }else if (location.isBetween(new Location(23,80),5,7)) {
+            return nearHARVEY;
+        }else if (location.isBetween(new Location(11,80),5,7)) {
+            return nearSEBASTIAN;
+        }else if (location.isBetween(new Location(23,93),5,7)) {
+            return nearLEAH;
+        }else if (location.isBetween(new Location(11,93),5,7)) {
+            return GeneralStore;
+        }else if (location.isBetween(new Location(23,109),5,7)) {
+            return nearROBIN;
+        }else if (location.isBetween(new Location(11,109),5,7)) {
+            return CarpenterShop;
+        }
+//        System.out.println(farm.getHouse().getLocation().toString());
+//        System.out.println(farm.getHouse().getWidth());
+//        System.out.println(farm.getHouse().getHeight());
+//        System.out.println(farm.getQuarry().getLocation().toString());
+//        System.out.println(farm.getQuarry().getWidth());
+//        System.out.println(farm.getQuarry().getHeight());
+//        System.out.println(farm.getGreenHouse().getLocation().toString());
+//        System.out.println(farm.getGreenHouse().getWidth());
+//        System.out.println(farm.getGreenHouse().getHeight());
+//        System.out.println(farm.getLake().getLocation().toString());
+//        System.out.println(farm.getLake().getWidth());
+//        System.out.println(farm.getLake().getHeight());
+        return Default;
+    }
+}

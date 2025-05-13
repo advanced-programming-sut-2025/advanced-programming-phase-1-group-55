@@ -1,7 +1,7 @@
 package View;
 
-import Controller.MainLocationController;
-import enums.MainLocation;
+import model.App;
+import model.Map.MainLocation;
 import java.util.regex.Matcher;
 
 public class InHouseView implements AppMenu {
@@ -9,7 +9,7 @@ public class InHouseView implements AppMenu {
 
     @Override
     public void check(String input) {
-        if (!MainLocationController.isIn(MainLocation.House)) {
+        if (!App.currentGame.currentUser.getMainLocation().equals(MainLocation.House)) {
             System.out.println("you are not in a house !");
             return;
         }

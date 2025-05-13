@@ -1,6 +1,7 @@
 package Controller;
 
 
+import model.App;
 import model.Game;
 import model.Map.GameMap;
 import model.Map.Location;
@@ -179,5 +180,10 @@ public class MainGameController {
 
     public Result showMap(int x, int y, int size) {
         return new Result(true, currentGame.getMap().printMap(new Location(y, x), size, size));
+    }
+    //cheat code baraye test map hamintori zadam trlrport kone;
+    public Result teleport(int x,int y){
+        currentGame.currentUser.setLocation(new Location(y,x));
+        return new Result(true," you teleported to "+"y:"+y+" x:"+x);
     }
 }

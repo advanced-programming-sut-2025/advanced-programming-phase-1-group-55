@@ -8,7 +8,9 @@ public class Location {
         this.y = y;
         this.x = x;
     }
-
+    public boolean isBetween(Location location,int width,int height){
+        return y < location.getY() + width && y > location.getY() && x < location.getX() + height && x > location.getX();
+    }
     public int getY() {
         return y;
     }
