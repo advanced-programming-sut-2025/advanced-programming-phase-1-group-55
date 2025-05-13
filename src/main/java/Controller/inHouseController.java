@@ -84,6 +84,16 @@ public class inHouseController {
         if (item == null) {
             return new Result(false, "you dont have dis item now!");
         }
+        Tile tile = App.currentGame.getTileFromDirection(direction);
+        if (tile == null) {
+            return new Result(false, "this tile does not exist");
+        }
+        if (tile.getMohtaviat() != null) {
+            return new Result(false, "this tile has something ");
+        }
+        user.removeItemFromInventory(item);
+        tile.setItemInThisTile(item);
+        return new Result(true, itemName + " has been placed");
 
     }
 

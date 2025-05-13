@@ -27,7 +27,11 @@ public class InHouseView implements AppMenu {
             String itemName = matcher.group("itemName");
             String count = matcher.group("count");
             System.out.println(inHouseControllers.CheatAddItem(itemName, count));
-        }else {
+        } else if ((matcher = inHouseGameMenuCommands.PlaceItem.getMatcher(input)) != null) {
+            String itemName = matcher.group("itemName");
+            String direction = matcher.group("direction");
+            System.out.println(inHouseControllers.PlaceItem(itemName, direction));
+        } else {
 
             mainGameView.check(input);
         }

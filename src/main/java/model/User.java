@@ -399,13 +399,9 @@ public class User {
 
     public boolean inventoryHasCapacity() {
         int capacity = backPack.getSize();
-        if (capacity == -1) {
-            return true;
-        }
-        if (capacity > backPack.getSize()) {
-            return true;
-        }
-        return false;
+        int currentSize = backPack.getInventory().size();
+
+        return currentSize < capacity;
     }
     public void addToInventory(Item item) {
         backPack.getInventory().add(item);
@@ -452,6 +448,14 @@ public class User {
                     this.backPack.getInventory().remove(item);
                 }
                 break;
+            }
+        }
+    }
+    public void removeItemFromInventory(Item item) {
+        if (this.backPack.getInventory().contains(item)) {
+            item.addNumber(-1);
+            if (item.getNumber() == 0) {
+                this.backPack.getInventory().remove(item);
             }
         }
     }
