@@ -5,6 +5,7 @@ import model.Item.Item;
 import model.Item.ItemType;
 import model.Map.Farm;
 import model.Map.Location;
+import model.Map.MainLocation;
 import model.Map.Tile;
 import model.NPC.Npc;
 import model.Tool.BackPack;
@@ -38,7 +39,7 @@ public class User {
     private Location playerTommorowLocation;
     private Game playedGame;
     private Farm farm;
-    BackPack currentBackPack = new BackPack();
+    private MainLocation mainLocation=MainLocation.House;
     public Farm getFarm() {
         return farm;
     }
@@ -263,6 +264,15 @@ public class User {
         this.userTrades = userTrades;
     }
 
+    public MainLocation getMainLocation() {
+        mainLocation=MainLocation.findLocation(location);
+        return mainLocation;
+    }
+
+    public void setMainLocation(MainLocation mainLocation) {
+        this.mainLocation = mainLocation;
+    }
+
     private int countTurns(List<Tile> path) {
         if (path == null || path.size() < 3) return 0;
 
@@ -375,14 +385,11 @@ public class User {
         }
     }
 
-    public BackPack getCurrentBackPack() {
-        return currentBackPack;
-    }
     public ArrayList<Item> getInventory() {
-        return currentBackPack.getInventory();
+        return backPack.getInventory();
     }
     public Item getItemInInventory(ItemType itemType) {
-        for (Item item : this.currentBackPack.getInventory()) {
+        for (Item item : this.backPack.getInventory()) {
             if (item.getItemType().equals(itemType)) {
                 return item;
             }
@@ -391,17 +398,17 @@ public class User {
     }
 
     public boolean inventoryHasCapacity() {
-        int capacity = currentBackPack.getSize();
+        int capacity = backPack.getSize();
         if (capacity == -1) {
             return true;
         }
-        if (capacity > currentBackPack.getSize()) {
+        if (capacity > backPack.getSize()) {
             return true;
         }
         return false;
     }
     public void addToInventory(Item item) {
-        currentBackPack.getInventory().add(item);
+        backPack.getInventory().add(item);
     }
     public void addItemToInventory(ItemType itemType, int quantity) {
         Item item = getItemInInventory(itemType);
@@ -410,19 +417,19 @@ public class User {
         } else {
             if (inventoryHasCapacity()) {
                 Item newItem = new Item(itemType, quantity);
-                currentBackPack.getInventory().add(newItem);
+                backPack.getInventory().add(newItem);
             }
         }
     }
     public int getInventoryCapacity() {
-        int capacity = currentBackPack.getSize();
+        int capacity = backPack.getSize();
         if (capacity == -1) {
             return -1;
         }
-        return capacity - currentBackPack.getInventorySize();
+        return capacity - backPack.getInventorySize();
     }
     public boolean hasEnoughInInventory(ItemType itemType, int quantity) {
-        for (Item item : currentBackPack.getInventory()) {
+        for (Item item : backPack.getInventory()) {
             if (item.getItemType().equals(itemType) && item.getNumber() >= quantity) {
                 return true;
             }
@@ -430,7 +437,7 @@ public class User {
         return false;
     }
     public int howManyInInventory(ItemType itemType) {
-        for (Item item : currentBackPack.getInventory()) {
+        for (Item item : backPack.getInventory()) {
             if (item.getItemType().equals(itemType)) {
                 return item.getNumber();
             }
@@ -438,11 +445,11 @@ public class User {
         return 0;
     }
     public void removeAmountFromInventory(ItemType itemType, int quantity) {
-        for (Item item : currentBackPack.getInventory()) {
+        for (Item item : backPack.getInventory()) {
             if (item.getItemType().equals(itemType)) {
                 item.addNumber(-quantity);
                 if (item.getNumber() <= 0) {
-                    this.currentBackPack.getInventory().remove(item);
+                    this.backPack.getInventory().remove(item);
                 }
                 break;
             }

@@ -62,7 +62,7 @@ public class BackPack {
     }
     public void recycleItem(String name){
         //injaa bayad hame noe item ro recycle koni na faghat tools
-        // TO DO
+        // TODO
         App.currentGame.currentUser.setMoney(App.currentGame.currentUser.getMoney()+
                 (int)((availableTools.get(name).getPrice()*availableTools.get("Trashcan").getLevel()*15)/100));
         availableTools.remove(name);
@@ -96,12 +96,6 @@ public class BackPack {
     {
         return inventory;
     }
-//    public int getCapicity() {
-//        return level == 1 ? 12 : level == 2 ? 24 : 10000000;
-//    }
-//    public int getSize() {
-//        return inventory.size();
-//    }
 
 
 }

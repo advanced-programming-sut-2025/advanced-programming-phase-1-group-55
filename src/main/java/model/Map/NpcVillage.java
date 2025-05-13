@@ -1,19 +1,19 @@
 package model.Map;
 
-import enums.Store;
+import model.Store.*;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class NpcVillage {
     private final Map<String, Store> stores=new HashMap<>(){{
-        put(Store.Blacksmith.getDisplayName(),Store.Blacksmith);
-        put(Store.marnieRanch.getDisplayName(),Store.marnieRanch);
-        put(Store.ojaMart.getDisplayName(),Store.ojaMart);
-        put(Store.fishShop.getDisplayName(),Store.fishShop);
-        put(Store.CarpenterShop.getDisplayName(),Store.CarpenterShop);
-        put(Store.starDropSaloon.getDisplayName(),Store.starDropSaloon);
-        put(Store.Generalstore.getDisplayName(),Store.Generalstore);
+        put("Blacksmith",new BlackSmithStore());
+        put("marnieRanch",new MarineRanchStore());
+        put("OjaMart",new OjaMartStore());
+        put("FishShop",new FishingStore());
+        put("CarpenterShop",new CarpenterShop());
+        put("starDropSaloon",new StarDropSaloon());
+        put("Generalstore",new GeneralStore());
     }};
     private final Location location=new Location(10,35);
     private final int width=20;

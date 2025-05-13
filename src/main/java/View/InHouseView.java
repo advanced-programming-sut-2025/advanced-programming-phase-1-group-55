@@ -1,34 +1,32 @@
 package View;
-import enums.*;
-import Controller.inHouseController;
-import Controller.MainLocationController;
-import enums.MainLocation;
-import model.App;
 
+import Controller.inHouseController;
+import enums.inHouseGameMenuCommands;
+import model.App;
+import model.Map.MainLocation;
 import java.util.regex.Matcher;
 
 public class InHouseView implements AppMenu {
     private final MainGameView mainGameView = new MainGameView();
-    private final inHouseController inHouseController = new inHouseController();
+    private final inHouseController inHouseControllers = new inHouseController();
     @Override
     public void check(String input) {
-
-//        if ()) {
-//            System.out.println("you are not in a house !");
-//            return;
-//        }
+        if (!App.currentGame.currentUser.getMainLocation().equals(MainLocation.House)) {
+            System.out.println("you are not in a house !");
+            return;
+        }
 
         Matcher matcher = null;
 
         if((matcher = inHouseGameMenuCommands.ShowLearnedRecipes.getMatcher(input)) != null) {
-            System.out.println(inHouseController.ShowCraftingRecipe());
+            System.out.println(inHouseControllers.ShowCraftingRecipe());
         } else if((matcher = inHouseGameMenuCommands.CraftItem.getMatcher(input)) != null) {
             String itemName = matcher.group("itemName");
-            System.out.println(inHouseController.CraftItem(itemName));
+            System.out.println(inHouseControllers.CraftItem(itemName));
         } else if ((matcher = inHouseGameMenuCommands.CheatAddItem.getMatcher(input)) != null) {
             String itemName = matcher.group("itemName");
             String count = matcher.group("count");
-            System.out.println(inHouseController.CheatAddItem(itemName, count));
+            System.out.println(inHouseControllers.CheatAddItem(itemName, count));
         }else {
 
             mainGameView.check(input);
