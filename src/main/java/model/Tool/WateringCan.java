@@ -1,6 +1,7 @@
 package model.Tool;
 
-import enums.Store;
+import model.Store.BlackSmithStore;
+import model.Store.Store;
 
 import static java.lang.Math.max;
 import static model.App.*;
@@ -89,6 +90,6 @@ public class WateringCan extends Tools {
         return 0;
     }
     public Store getStore(){
-        return Store.Blacksmith;
+        return new BlackSmithStore();
     }
 }

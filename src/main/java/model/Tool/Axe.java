@@ -1,6 +1,7 @@
 package model.Tool;
 
-import enums.Store;
+import model.Store.BlackSmithStore;
+import model.Store.Store;
 
 import static java.lang.Math.max;
 import static model.App.*;
@@ -47,7 +48,7 @@ public class Axe extends  Tools{
         return max(energy,0);
     }
     public Store getStore(){
-        return Store.Blacksmith;
+        return new BlackSmithStore();
     }
     @Override
     public void useTool() {
