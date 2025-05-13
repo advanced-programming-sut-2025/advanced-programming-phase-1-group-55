@@ -1,12 +1,15 @@
 package View;
 
 import Controller.ProfileMenuController;
+import enums.Menu;
 import enums.ProfileCommands;
 
 import static enums.ProfileCommands.*;
 
 import java.util.Scanner;
 import java.util.regex.Matcher;
+
+import static model.App.*;
 
 public class ProfileMenu extends AppView implements AppMenu {
 
@@ -34,6 +37,9 @@ public class ProfileMenu extends AppView implements AppMenu {
             System.out.println(controller.userInfo());
         } else if (input.matches("\\s*show\\s+current\\s+menu\\s*")) {
             System.out.println("you are in Profile Menu now!");
+        } else if (input.matches("\\s*back\\s*")) {
+            System.out.println("Redirecting to main menu !");
+            currentMenu = Menu.MainMenu;
         }
 
     }
