@@ -20,7 +20,7 @@ public class BackPack {
         put("Trashcan",new Trashcan());
     }};
 // todo havij , goosht zoghaal va ... yadet nare , bakhsh inventory moonde !!!!!!!
-    private ArrayList<Item> inventory = new ArrayList<>();
+    private Map<String,Item> inventory = new HashMap<>();
     private int level = 1;
     public Map<String, Tools> getAvailableTools() {
         return availableTools;
@@ -71,20 +71,20 @@ public class BackPack {
 
     public boolean addToInventory(Item item){
         if (inventory.size() < getSize()) {
-            inventory.add(item);
+            inventory.put(item.getItemType().name(),item);
             return true;
         }
         return false;
     }
-    public boolean removeFromInventory(Item item){
-        return inventory.remove(item);
+    public void removeFromInventory(Item item){
+         inventory.remove(item.getItemType().getDisplayName());
     }
     public String ShowInventory(){
         if (inventory.isEmpty()) {
             return "inventory is empty";
         }
         StringBuilder message = new StringBuilder("Inventory:\n");
-        for(Item item:inventory){
+        for(Item item:inventory.values()){
             message.append("- ").append(item.getItemType()).append("\n");
         }
         return message.toString().trim();
@@ -92,10 +92,12 @@ public class BackPack {
     public int getInventorySize() {
         return inventory.size();
     }
-    public ArrayList<Item> getInventory()
+    public Map<String,Item> getInventory()
     {
         return inventory;
     }
 
-
+    public void setInventory(Map<String,Item> inventory) {
+        this.inventory = inventory;
+    }
 }
