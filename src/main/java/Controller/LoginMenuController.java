@@ -24,6 +24,7 @@ public class LoginMenuController extends RegisterController {
             AllUsers.get(username).setStayLoggedIn(true);
             System.out.println("stay logged in");
         }
+        saveUserToJson(AllUsers.get(username));
         mainUser = AllUsers.get(username);
 
         currentMenu = Menu.MainMenu;

@@ -14,7 +14,7 @@ import java.util.Scanner;
 
 public class App {
     public static User mainUser;
-    public  static Scanner scanner=new Scanner(System.in);
+    public static Scanner scanner = new Scanner(System.in);
     public static Menu currentMenu = Menu.Register;
     public static HashMap<String, User> AllUsers = new HashMap<>();
     public static Game currentGame;
@@ -41,7 +41,12 @@ public class App {
 
 
             }
-
+            for (User user : AllUsers.values()) {
+                if (user.isStayLoggedIn()) {
+                    mainUser = user;
+                    currentMenu = Menu.MainMenu;
+                }
+            }
             reader.close();
 
         } catch (Exception e) {
