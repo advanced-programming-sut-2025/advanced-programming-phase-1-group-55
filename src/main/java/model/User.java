@@ -23,7 +23,7 @@ public class User {
     private String email;
     private int numberOfSecurityQuestion;
     private String securityQuestion;
-    private BackPack backPack=new BackPack();
+    private BackPack backPack = new BackPack();
     private User wife = null;
     private HashMap<String, Npc> friendsNpc = new HashMap<>();
     private HashMap<String, User> friendsPlayer = new HashMap<>();
@@ -39,7 +39,17 @@ public class User {
     private Location playerTommorowLocation;
     private Game playedGame;
     private Farm farm;
-    private MainLocation mainLocation=MainLocation.House;
+    private MainLocation mainLocation = MainLocation.House;
+    private HashMap<Integer, Trade> trades = new HashMap<>();
+
+    public HashMap<Integer, Trade> getTrades() {
+        return trades;
+    }
+
+    public void setTrades(HashMap<Integer, Trade> trades) {
+        this.trades = trades;
+    }
+
     public Farm getFarm() {
         return farm;
     }
@@ -55,6 +65,7 @@ public class User {
     public void setPlayedGame(Game playedGame) {
         this.playedGame = playedGame;
     }
+
     private Set<CraftingItemType> learnedCraftingRecipes = new HashSet<>();
 
 
@@ -265,7 +276,7 @@ public class User {
     }
 
     public MainLocation getMainLocation() {
-        mainLocation=MainLocation.findLocation(location);
+        mainLocation = MainLocation.findLocation(location);
         return mainLocation;
     }
 
@@ -374,11 +385,13 @@ public class User {
         }
         return null;
     }
+
     private ArrayList<CraftingItemType> craftingRecipes = new ArrayList<>();
 
     public ArrayList<CraftingItemType> getCraftingRecipes() {
         return craftingRecipes;
     }
+
     public void learnRecipe(CraftingItemType recipe) {
         if (!craftingRecipes.contains(recipe)) {
             craftingRecipes.add(recipe);
@@ -388,6 +401,7 @@ public class User {
     public ArrayList<Item> getInventory() {
         return backPack.getInventory();
     }
+
     public Item getItemInInventory(ItemType itemType) {
         for (Item item : this.backPack.getInventory()) {
             if (item.getItemType().equals(itemType)) {
@@ -407,9 +421,11 @@ public class User {
         }
         return false;
     }
+
     public void addToInventory(Item item) {
         backPack.getInventory().add(item);
     }
+
     public void addItemToInventory(ItemType itemType, int quantity) {
         Item item = getItemInInventory(itemType);
         if (item != null) {
@@ -421,6 +437,7 @@ public class User {
             }
         }
     }
+
     public int getInventoryCapacity() {
         int capacity = backPack.getSize();
         if (capacity == -1) {
@@ -428,6 +445,7 @@ public class User {
         }
         return capacity - backPack.getInventorySize();
     }
+
     public boolean hasEnoughInInventory(ItemType itemType, int quantity) {
         for (Item item : backPack.getInventory()) {
             if (item.getItemType().equals(itemType) && item.getNumber() >= quantity) {
@@ -436,6 +454,7 @@ public class User {
         }
         return false;
     }
+
     public int howManyInInventory(ItemType itemType) {
         for (Item item : backPack.getInventory()) {
             if (item.getItemType().equals(itemType)) {
@@ -444,6 +463,7 @@ public class User {
         }
         return 0;
     }
+
     public void removeAmountFromInventory(ItemType itemType, int quantity) {
         for (Item item : backPack.getInventory()) {
             if (item.getItemType().equals(itemType)) {
@@ -466,7 +486,6 @@ public class User {
 //    public Set<CraftingItemType> getLearnedCraftingRecipes() {
 //        return Collections.unmodifiableSet(learnedCraftingRecipes);
 //    }
-
 
 
 }
