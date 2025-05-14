@@ -17,7 +17,7 @@ import java.util.HashMap;
 
 public class inHouseController {
     public Result ShowCraftingRecipe() {
-        ArrayList<CraftingItemType> recipes = App.currentGame.currentUser.getCraftingRecipes();
+        ArrayList<CraftingItemType> recipes = App.currentGame.currentUser.getBackPack().getCraftingRecipes();
         if (recipes == null || recipes.isEmpty()) {
             return new Result(false, "No recipe found");
         }
@@ -35,29 +35,29 @@ public class inHouseController {
         if (recipe == null) {
             return new Result(false, "No recipe found");
         }
-        ArrayList<CraftingItemType> recipes = user.getCraftingRecipes();
+        ArrayList<CraftingItemType> recipes = user.getBackPack().getCraftingRecipes();
         if (!recipes.contains(recipe)) {
             return new Result(false, "you dont have access to this recipe");
         }
         HashMap<ItemType, Integer> ingredient = recipe.getIngredients();
         boolean canCraft = true;
         for (ItemType itemType : ingredient.keySet()) {
-            if (!user.hasEnoughInInventory(itemType, ingredient.get(itemType))) {
+            if (!user.getBackPack().hasEnoughInInventory(itemType, ingredient.get(itemType))) {
                 canCraft = false;
             }
         }
         if (!canCraft) {
             return new Result(false, "you dont have enough ingredients");
         }
-        if (!user.inventoryHasCapacity()) {
+        if (!user.getBackPack().inventoryHasCapacity()) {
             return new Result(false, "you dont have enough inventory");
         }
         for (ItemType itemType : ingredient.keySet()) {
-            user.removeAmountFromInventory(itemType, ingredient.get(itemType));
+            user.getBackPack().removeAmountFromInventory(itemType, ingredient.get(itemType));
         }
         user.decreaseEnergy(2);
         CraftingItem product = CraftingItemCreator.create(recipe);
-        user.addToInventory(product);
+        user.getBackPack().addToInventory(product);
         return new Result(true, recipe.getProductName() + " has been crafted");
     }
     public Result CheatAddItem(String itemName, String amount) {
@@ -66,12 +66,12 @@ public class inHouseController {
         if (type == null) {
             return new Result(false, "No item found");
         }
-        if (!user.inventoryHasCapacity()) {
+        if (!user.getBackPack().inventoryHasCapacity()) {
             return new Result(false, "you dont have enough inventory");
         }
         int count = Integer.parseInt(amount);
         Item item = new Item(type, count);
-        user.addToInventory(item);
+        user.getBackPack().addToInventory(item);
         return new Result(true, itemName + " has been cheated");
     }
     public Result PlaceItem(String itemName, String direction) {
@@ -80,7 +80,7 @@ public class inHouseController {
         if (type == null) {
             return new Result(false, "No item found");
         }
-        Item item = user.getItemInInventory(type);
+        Item item = user.getBackPack().getItemInInventory(type);
         if (item == null) {
             return new Result(false, "you dont have dis item now!");
         }
@@ -91,7 +91,7 @@ public class inHouseController {
         if (tile.getMohtaviat() != null) {
             return new Result(false, "this tile has something ");
         }
-        user.removeItemFromInventory(item);
+        user.getBackPack().removeItemFromInventory(item);
         tile.setItemInThisTile(item);
         return new Result(true, itemName + " has been placed");
 

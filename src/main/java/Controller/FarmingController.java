@@ -21,19 +21,19 @@ public class FarmingController extends SkillController {
     protected void onLevelUp(int newLevel) {
         switch (newLevel) {
             case 1 -> {
-                user.learnRecipe(CraftingItemType.SPRINKLER);
-                user.learnRecipe(CraftingItemType.BEE_HOUSE);
+                user.getBackPack().learnRecipe(CraftingItemType.SPRINKLER);
+                user.getBackPack().learnRecipe(CraftingItemType.BEE_HOUSE);
             }
             case 2 -> {
-                user.learnRecipe(CraftingItemType.QUALITY_SPRINKLER);
-                user.learnRecipe(CraftingItemType.DELUXE_SCARECROW);
-                user.learnRecipe(CraftingItemType.CHEESE_PRESS);
-                user.learnRecipe(CraftingItemType.PRESERVES_JAR);
+                user.getBackPack().learnRecipe(CraftingItemType.QUALITY_SPRINKLER);
+                user.getBackPack().learnRecipe(CraftingItemType.DELUXE_SCARECROW);
+                user.getBackPack().learnRecipe(CraftingItemType.CHEESE_PRESS);
+                user.getBackPack().learnRecipe(CraftingItemType.PRESERVES_JAR);
             }
             case 3 -> {
-                user.learnRecipe(CraftingItemType.IRIDIUM_SPRINKLER);
-                user.learnRecipe(CraftingItemType.KEG);
-                user.learnRecipe(CraftingItemType.OIL_MAKER);
+                user.getBackPack().learnRecipe(CraftingItemType.IRIDIUM_SPRINKLER);
+                user.getBackPack().learnRecipe(CraftingItemType.KEG);
+                user.getBackPack().learnRecipe(CraftingItemType.OIL_MAKER);
             }
             case 4 -> {
 

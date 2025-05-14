@@ -20,13 +20,13 @@ public class MiningController extends SkillController {
     protected void onLevelUp(int newLevel) {
         switch (newLevel) {
             case 1 -> {
-                user.learnRecipe(CraftingItemType.CHERRY_BOMB);
+                user.getBackPack().learnRecipe(CraftingItemType.CHERRY_BOMB);
             }
             case 2 -> {
-                user.learnRecipe(CraftingItemType.BOMB);
+                user.getBackPack().learnRecipe(CraftingItemType.BOMB);
             }
             case 3 -> {
-                user.learnRecipe(CraftingItemType.MEGA_BOMB);
+                user.getBackPack().learnRecipe(CraftingItemType.MEGA_BOMB);
             }
             case 4 -> {
 
