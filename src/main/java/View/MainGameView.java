@@ -121,7 +121,7 @@ public class MainGameView implements AppMenu {
         }else if((matcher= StoreCommands.cheatMoney.getMatcher(input))!=null){
             System.out.println(controller3.cheatAddMoney(Integer.parseInt(matcher.group("count").trim())));
         } else if (StoreCommands.showAllAvailableProducts.getMatcher(input)!=null) {
-            System.out.println();
+            System.out.println(controller3.showAvailableProducts());
         } else if (StoreCommands.showAllProducts.getMatcher(input)!=null) {
             System.out.println(controller3.showAllProducts());
         }

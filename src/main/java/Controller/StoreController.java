@@ -38,7 +38,22 @@ public class StoreController {
         }
         return new Result(true,message.toString());
     }
-//    public Result showAvailableProducts(){}
+    public Result showAvailableProducts(){
+        Store store=findStore();
+        if(store==null){
+            return new Result(false,"you are not in the store!");
+        }
+        StringBuilder message=new StringBuilder();
+        //baraye test bood in
+        //App.currentGame.getMap().getVillage().getStores().get("CarpenterShop").getProductsOfStore().get("barn").setTodaySell(1);
+        for(Product product:store.getProductsOfStore().values()){
+            if(product.getDailyLimit()> product.getTodaySell()){
+                message.append("name:").append(product.getItem().getItemType().getDisplayName())
+                        .append(" price:").append(product.getGoldCost()).append("\n");
+            }
+        }
+        return new Result(true,message.toString());
+    }
 //    public Result sellItem(int amount,String name){}
 //    public Result purchaseItem(int amount , String name){}
     public Result cheatAddMoney(int amount){
