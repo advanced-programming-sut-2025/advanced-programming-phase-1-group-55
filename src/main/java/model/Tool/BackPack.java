@@ -1,8 +1,8 @@
 package model.Tool;
 
+import enums.CookingItemType;
 import enums.CraftingItemType;
 import model.App;
-import model.Game;
 import model.Item.Item;
 import model.Item.ItemType;
 
@@ -31,6 +31,7 @@ public class BackPack {
         this.availableTools = availableTools;
     }
     private Set<CraftingItemType> learnedCraftingRecipes = new HashSet<>();
+    private Set<CookingItemType> learnedCookingRecipes = new HashSet<>();
 
     public Tools getCurrentTool() {
         return currentTool;
@@ -103,9 +104,13 @@ public class BackPack {
         this.inventory = inventory;
     }
     private ArrayList<CraftingItemType> craftingRecipes = new ArrayList<>();
+    private ArrayList<CookingItemType> cookingRecipes = new ArrayList<>();
 
     public void setCraftingRecipes(ArrayList<CraftingItemType> craftingRecipes) {
         this.craftingRecipes = craftingRecipes;
+    }
+    public void setCookingRecipes(ArrayList<CookingItemType> cookingRecipes) {
+        this.cookingRecipes = cookingRecipes;
     }
 
     public Set<CraftingItemType> getLearnedCraftingRecipes() {
@@ -120,11 +125,26 @@ public class BackPack {
         return craftingRecipes;
     }
 
-    public void learnRecipe(CraftingItemType recipe) {
+    public void learnCraftingRecipe(CraftingItemType recipe) {
         if (!craftingRecipes.contains(recipe)) {
             craftingRecipes.add(recipe);
         }
     }
+    public Set<CookingItemType> getLearnedCookingRecipes() {
+        return getLearnedCookingRecipes();
+    }
+    public void setLearnedCookingRecipes(Set<CookingItemType> learnedCookingRecipes) {
+        this.learnedCookingRecipes = learnedCookingRecipes;
+    }
+    public ArrayList<CookingItemType> getCookingRecipes() {
+        return cookingRecipes;
+    }
+    public void learnCookingRecipe(CookingItemType recipe) {
+        if (!cookingRecipes.contains(recipe)) {
+            cookingRecipes.add(recipe);
+        }
+    }
+
 
 
     public Item getItemInInventory(ItemType itemType) {
@@ -149,7 +169,7 @@ public class BackPack {
             item.addNumber(quantity);
         } else {
             if (inventoryHasCapacity()) {
-                Item newItem = new Item(itemType);
+                Item newItem = new Item(itemType, quantity);
                 newItem.setNumber(quantity);
                 inventory.put(newItem.getItemType().getDisplayName(),newItem);
             }

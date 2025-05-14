@@ -173,11 +173,28 @@ public enum CookingItemType {
     public int getSellPrice() {
         return sellPrice;
     }
-    public static CookingItemType getCookingItemType(String name) {
-        for (CookingItemType recipe : CookingItemType.values()) {
-            if (name.equalsIgnoreCase(recipe.productName.toString()))
-                return recipe;
+//    public static CookingItemType getCookingItemType(String name) {
+//        for (CookingItemType recipe : CookingItemType.values()) {
+//            if (name.equalsIgnoreCase(recipe.productName.toString()))
+//                return recipe;
+//        }
+//        return null;
+//    }
+    public static CookingItemType getCookingRecipe(String recipeName) {
+        for (CookingItemType cookingItemType : CookingItemType.values()) {
+            if (cookingItemType.name().equals(recipeName)) {
+                return cookingItemType;
+            }
         }
         return null;
     }
+    public static CookingItemType isEdible(ItemType itemType) {
+        for (CookingItemType cookingItemType : CookingItemType.values()) {
+            if (cookingItemType.productName.equals(itemType)) {
+                return cookingItemType;
+            }
+        }
+        return null;
+    }
+
 }

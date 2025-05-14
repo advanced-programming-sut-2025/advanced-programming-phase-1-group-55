@@ -1,9 +1,7 @@
 package Controller;
 
-import View.ForagingView;
 import enums.CraftingItemType;
 import model.Skills;
-import View.MiningView;
 import model.User;
 
 public class ForagingController extends SkillController {
@@ -18,7 +16,7 @@ public class ForagingController extends SkillController {
     protected void onLevelUp(int newLevel) {
         switch (newLevel) {
             case 1 -> {
-                user.getBackPack().learnRecipe(CraftingItemType.CHARCOAL_KILN);
+                user.getBackPack().learnCraftingRecipe(CraftingItemType.CHARCOAL_KILN);
             }
             case 2 -> {
 
@@ -27,7 +25,7 @@ public class ForagingController extends SkillController {
 
             }
             case 4 -> {
-                user.getBackPack().learnRecipe(CraftingItemType.MYSTIC_TREE_SEED);
+                user.getBackPack().learnCraftingRecipe(CraftingItemType.MYSTIC_TREE_SEED);
             }
         }
     }

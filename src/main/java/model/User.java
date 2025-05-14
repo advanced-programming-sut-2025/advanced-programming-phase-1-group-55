@@ -1,6 +1,7 @@
 package model;
 
 import enums.CraftingItemType;
+import model.CookingItems.CookingItem;
 import model.Item.Item;
 import model.Item.ItemType;
 import model.Map.Farm;
@@ -40,6 +41,7 @@ public class User {
     private Farm farm;
     private MainLocation mainLocation = MainLocation.House;
     private HashMap<Integer, Trade> trades = new HashMap<>();
+    private CookingItem cookingItem;
 
     public HashMap<Integer, Trade> getTrades() {
         return trades;
@@ -262,6 +264,14 @@ public class User {
 
     public void setUserTrades(ArrayList<Trade> userTrades) {
         this.userTrades = userTrades;
+    }
+
+    public CookingItem getCookingItem() {
+        return cookingItem;
+    }
+
+    public void setCookingItem(CookingItem cookingItem) {
+        this.cookingItem = cookingItem;
     }
 
     public MainLocation getMainLocation() {
