@@ -1,5 +1,6 @@
 package model.Map;
 
+import enums.Menu;
 import model.App;
 
 public enum MainLocation {
@@ -49,6 +50,7 @@ public enum MainLocation {
         }else if (isNearTheWater(location)) {
             return NearTheWater;
         } else if (location.isBetween(new Location(23,36),5,7)) {
+
             return FishingStore;
         }else if (location.isBetween(new Location(11,36),5,7)) {
             return StarDropSaloon;
@@ -73,18 +75,6 @@ public enum MainLocation {
         }else if (location.isBetween(new Location(11,109),5,7)) {
             return CarpenterShop;
         }
-//        System.out.println(farm.getHouse().getLocation().toString());
-//        System.out.println(farm.getHouse().getWidth());
-//        System.out.println(farm.getHouse().getHeight());
-//        System.out.println(farm.getQuarry().getLocation().toString());
-//        System.out.println(farm.getQuarry().getWidth());
-//        System.out.println(farm.getQuarry().getHeight());
-//        System.out.println(farm.getGreenHouse().getLocation().toString());
-//        System.out.println(farm.getGreenHouse().getWidth());
-//        System.out.println(farm.getGreenHouse().getHeight());
-//        System.out.println(farm.getLake().getLocation().toString());
-//        System.out.println(farm.getLake().getWidth());
-//        System.out.println(farm.getLake().getHeight());
         return Default;
     }
 }
