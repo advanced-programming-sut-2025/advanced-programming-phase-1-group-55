@@ -66,7 +66,7 @@ public class User {
         this.playedGame = playedGame;
     }
 
-    private Set<CraftingItemType> learnedCraftingRecipes = new HashSet<>();
+
 
 
     public Location getPlayerTommorowLocation() {
@@ -386,111 +386,7 @@ public class User {
         return null;
     }
 
-    private ArrayList<CraftingItemType> craftingRecipes = new ArrayList<>();
 
-    public void setCraftingRecipes(ArrayList<CraftingItemType> craftingRecipes) {
-        this.craftingRecipes = craftingRecipes;
-    }
-
-    public Set<CraftingItemType> getLearnedCraftingRecipes() {
-        return learnedCraftingRecipes;
-    }
-
-    public void setLearnedCraftingRecipes(Set<CraftingItemType> learnedCraftingRecipes) {
-        this.learnedCraftingRecipes = learnedCraftingRecipes;
-    }
-
-    public ArrayList<CraftingItemType> getCraftingRecipes() {
-        return craftingRecipes;
-    }
-
-    public void learnRecipe(CraftingItemType recipe) {
-        if (!craftingRecipes.contains(recipe)) {
-            craftingRecipes.add(recipe);
-        }
-    }
-
-    public Map<String,Item> getInventory() {
-        return backPack.getInventory();
-    }
-
-    public Item getItemInInventory(ItemType itemType) {
-        for (Item item : this.backPack.getInventory().values()) {
-            if (item.getItemType().equals(itemType)) {
-                return item;
-            }
-        }
-        return null;
-    }
-
-    public boolean inventoryHasCapacity() {
-        int capacity = backPack.getSize();
-        int currentSize = backPack.getInventory().size();
-
-        return currentSize < capacity;
-    }
-
-    public void addToInventory(Item item) {
-        backPack.getInventory().put(item.getItemType().getDisplayName(),item);
-    }
-
-    public void addItemToInventory(ItemType itemType, int quantity) {
-        Item item = getItemInInventory(itemType);
-        if (item != null) {
-            item.addNumber(quantity);
-        } else {
-            if (inventoryHasCapacity()) {
-                Item newItem = new Item(itemType, quantity);
-                backPack.getInventory().put(newItem.getItemType().getDisplayName(),newItem);
-            }
-        }
-    }
-
-    public int getInventoryCapacity() {
-        int capacity = backPack.getSize();
-        if (capacity == -1) {
-            return -1;
-        }
-        return capacity - backPack.getInventorySize();
-    }
-
-    public boolean hasEnoughInInventory(ItemType itemType, int quantity) {
-        for (Item item : backPack.getInventory().values()) {
-            if (item.getItemType().equals(itemType) && item.getNumber() >= quantity) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public int howManyInInventory(ItemType itemType) {
-        for (Item item : backPack.getInventory().values()) {
-            if (item.getItemType().equals(itemType)) {
-                return item.getNumber();
-            }
-        }
-        return 0;
-    }
-
-    public void removeAmountFromInventory(ItemType itemType, int quantity) {
-        for (Item item : backPack.getInventory().values()) {
-            if (item.getItemType().equals(itemType)) {
-                item.addNumber(-quantity);
-                if (item.getNumber() <= 0) {
-                    this.backPack.getInventory().remove(item.getItemType().getDisplayName());
-                }
-                break;
-            }
-        }
-    }
-    public void removeItemFromInventory(Item item) {
-        if (this.backPack.getInventory().containsKey(item.getItemType().getDisplayName())) {
-            item.addNumber(-1);
-            if (item.getNumber() == 0) {
-                this.backPack.getInventory().remove(item.getItemType().getDisplayName());
-            }
-        }
-    }
     //    public void learnRecipe(CraftingItemType recipe) {
 //        learnedCraftingRecipes.add(recipe);
 //    }

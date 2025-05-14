@@ -1,12 +1,13 @@
 package model.Tool;
 
+import enums.CraftingItemType;
 import model.App;
 import model.Game;
 import model.Item.Item;
+import model.Item.ItemType;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+
+import java.util.*;
 
 public class BackPack {
     private  Tools currentTool=new Hoe();
@@ -29,6 +30,7 @@ public class BackPack {
     public void setAvailableTools(Map<String, Tools> availableTools) {
         this.availableTools = availableTools;
     }
+    private Set<CraftingItemType> learnedCraftingRecipes = new HashSet<>();
 
     public Tools getCurrentTool() {
         return currentTool;
@@ -99,5 +101,103 @@ public class BackPack {
 
     public void setInventory(Map<String,Item> inventory) {
         this.inventory = inventory;
+    }
+    private ArrayList<CraftingItemType> craftingRecipes = new ArrayList<>();
+
+    public void setCraftingRecipes(ArrayList<CraftingItemType> craftingRecipes) {
+        this.craftingRecipes = craftingRecipes;
+    }
+
+    public Set<CraftingItemType> getLearnedCraftingRecipes() {
+        return learnedCraftingRecipes;
+    }
+
+    public void setLearnedCraftingRecipes(Set<CraftingItemType> learnedCraftingRecipes) {
+        this.learnedCraftingRecipes = learnedCraftingRecipes;
+    }
+
+    public ArrayList<CraftingItemType> getCraftingRecipes() {
+        return craftingRecipes;
+    }
+
+    public void learnRecipe(CraftingItemType recipe) {
+        if (!craftingRecipes.contains(recipe)) {
+            craftingRecipes.add(recipe);
+        }
+    }
+
+
+    public Item getItemInInventory(ItemType itemType) {
+        for (Item item : inventory.values()) {
+            if (item.getItemType().equals(itemType)) {
+                return item;
+            }
+        }
+        return null;
+    }
+
+    public boolean inventoryHasCapacity() {
+        int capacity = getSize();
+        int currentSize = inventory.size();
+        return currentSize < capacity;
+    }
+
+
+    public void addItemToInventory(ItemType itemType, int quantity) {
+        Item item = getItemInInventory(itemType);
+        if (item != null) {
+            item.addNumber(quantity);
+        } else {
+            if (inventoryHasCapacity()) {
+                Item newItem = new Item(itemType, quantity);
+                inventory.put(newItem.getItemType().getDisplayName(),newItem);
+            }
+        }
+    }
+
+    public int getInventoryCapacity() {
+        int capacity = getSize();
+        if (capacity == -1) {
+            return -1;
+        }
+        return capacity - getInventorySize();
+    }
+
+    public boolean hasEnoughInInventory(ItemType itemType, int quantity) {
+        for (Item item : inventory.values()) {
+            if (item.getItemType().equals(itemType) && item.getNumber() >= quantity) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public int howManyInInventory(ItemType itemType) {
+        for (Item item : inventory.values()) {
+            if (item.getItemType().equals(itemType)) {
+                return item.getNumber();
+            }
+        }
+        return 0;
+    }
+
+    public void removeAmountFromInventory(ItemType itemType, int quantity) {
+        for (Item item : inventory.values()) {
+            if (item.getItemType().equals(itemType)) {
+                item.addNumber(-quantity);
+                if (item.getNumber() <= 0) {
+                    this.inventory.remove(item.getItemType().getDisplayName());
+                }
+                break;
+            }
+        }
+    }
+    public void removeItemFromInventory(Item item) {
+        if (this.inventory.containsKey(item.getItemType().getDisplayName())) {
+            item.addNumber(-1);
+            if (item.getNumber() == 0) {
+                this.inventory.remove(item.getItemType().getDisplayName());
+            }
+        }
     }
 }

@@ -18,7 +18,7 @@ public class ForagingController extends SkillController {
     protected void onLevelUp(int newLevel) {
         switch (newLevel) {
             case 1 -> {
-                user.learnRecipe(CraftingItemType.CHARCOAL_KILN);
+                user.getBackPack().learnRecipe(CraftingItemType.CHARCOAL_KILN);
             }
             case 2 -> {
 
@@ -27,7 +27,7 @@ public class ForagingController extends SkillController {
 
             }
             case 4 -> {
-                user.learnRecipe(CraftingItemType.MYSTIC_TREE_SEED);
+                user.getBackPack().learnRecipe(CraftingItemType.MYSTIC_TREE_SEED);
             }
         }
     }
