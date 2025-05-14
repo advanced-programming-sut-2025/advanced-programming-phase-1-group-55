@@ -1,10 +1,11 @@
 package model.CraftingItems;
 
 import enums.CraftingItemType;
+import model.Item.ItemType;
 
 public class Oil_Maker extends CraftingItem {
     public Oil_Maker() {
-        super(CraftingItemType.OIL_MAKER);
+        super(CraftingItemType.OIL_MAKER, ItemType.OIL_MAKER);
     }
 
     @Override

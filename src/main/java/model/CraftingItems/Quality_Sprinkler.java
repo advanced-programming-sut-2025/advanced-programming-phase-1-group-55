@@ -1,10 +1,11 @@
 package model.CraftingItems;
 
 import enums.CraftingItemType;
+import model.Item.ItemType;
 
 public class Quality_Sprinkler extends CraftingItem {
     public Quality_Sprinkler() {
-        super(CraftingItemType.QUALITY_SPRINKLER);
+        super(CraftingItemType.QUALITY_SPRINKLER, ItemType.SPRINKLER);
     }
 
     @Override
