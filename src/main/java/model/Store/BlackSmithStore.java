@@ -1,11 +1,9 @@
 package model.Store;
 
 import model.NPC.Npc;
-import model.Product;
 
 import java.time.LocalTime;
 import java.util.HashMap;
-import java.util.Map;
 
 public class BlackSmithStore extends Store {
 

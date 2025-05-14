@@ -70,7 +70,8 @@ public class inHouseController {
             return new Result(false, "you dont have enough inventory");
         }
         int count = Integer.parseInt(amount);
-        Item item = new Item(type, count);
+        Item item = new Item(type);
+        item.setNumber(count);
         user.getBackPack().addToInventory(item);
         return new Result(true, itemName + " has been cheated");
     }

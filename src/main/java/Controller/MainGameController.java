@@ -140,24 +140,24 @@ public class MainGameController {
         baayad shart boodn dar ahan gari ro emaal knm , bad zadan map;
         */
         if (tool instanceof Trashcan can) {
-            if (can.getPriceToLevelUp() > currentGame.currentUser.getMoney()) {
+            if (can.getPriceToLevelUp() > currentGame.currentUser.getGold()) {
                 return new Result(false, "you don't have enough money to levelUp your tool");
             } else {
-                currentGame.currentUser.setMoney(currentGame.currentUser.getMoney() - can.getPriceToLevelUp());
+                currentGame.currentUser.setGold(currentGame.currentUser.getGold() - can.getPriceToLevelUp());
                 can.increaseLevel();
             }
         } else if (tool instanceof WateringCan can) {
-            if (can.getPriceToLevelUp() > currentGame.currentUser.getMoney()) {
+            if (can.getPriceToLevelUp() > currentGame.currentUser.getGold()) {
                 return new Result(false, "you don't have enough money to levelUp your tool");
             } else {
-                currentGame.currentUser.setMoney(currentGame.currentUser.getMoney() - can.getPriceToLevelUp());
+                currentGame.currentUser.setGold(currentGame.currentUser.getGold() - can.getPriceToLevelUp());
                 can.increaseLevel();
             }
         } else {
-            if (tool.getPriceToLevelUp() > currentGame.currentUser.getMoney()) {
+            if (tool.getPriceToLevelUp() > currentGame.currentUser.getGold()) {
                 return new Result(false, "you don't have enough money to levelUp your tool");
             } else {
-                currentGame.currentUser.setMoney(currentGame.currentUser.getMoney() - tool.getPriceToLevelUp());
+                currentGame.currentUser.setGold(currentGame.currentUser.getGold() - tool.getPriceToLevelUp());
                 tool.increaseLevel();
             }
         }

@@ -29,7 +29,6 @@ public class User {
     private HashMap<String, User> friendsPlayer = new HashMap<>();
     private int gold;
     private int wood;
-    private int Money;
     private double energy = 200;
     private boolean stayLoggedIn = false;
     private int mostAchievedMoney = 0;
@@ -84,16 +83,6 @@ public class User {
     public void setFainted(boolean fainted) {
         this.fainted = fainted;
     }
-
-    public int getMoney() {
-        return Money;
-    }
-
-    public void setMoney(int money) {
-        Money = money;
-    }
-
-
     public void decreaseEnergy(int amount) {
         this.energy -= amount;
         this.energy = Math.max(0, this.energy - amount);

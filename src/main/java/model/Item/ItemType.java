@@ -60,6 +60,16 @@ public enum ItemType {
     MAHOGANY_SEED("mahogany seed"),
 
     FIBER("fiber"),
+    BARN("barn"),
+    BIG_BARN("big barn"),
+    DELUXE_BARN("deluxe barn"),
+    COOP("coop"),
+    BIG_COOP("big coop"),
+    DELUXE_COOP("deluxe coop"),
+    WELL("well"),
+    SHIPPING_BIN("shipping bin")
+    ,
+
 
     FRIED_EGG("fried egg"),
     BAKED_FISH("baked fish"),
