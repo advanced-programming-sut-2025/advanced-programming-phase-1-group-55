@@ -198,7 +198,24 @@ public class inHouseController {
         user.getBackPack().addToInventory(food);
         return new Result(true, food + " was cooked and added to inventory.");
     }
-
+    public Result Eat(String itemName) {
+        User user = App.currentGame.currentUser;
+        ItemType type = ItemType.getItemType(itemName);
+        if (type == null) {
+            return new Result(false, "No item found");
+        }
+        CookingItemType feed = CookingItemType.isEdible(type);
+        if (feed == null) {
+            return new Result(false, "this item isnt edible");
+        }
+        int quantity = user.getBackPack().howManyInInventory(type);
+        if (quantity == 0) {
+            return new Result(false, "you dont have this item for eat!");
+        }
+        user.getBackPack().removeAmountFromInventory(type, 1);
+        user.increaseEnergy(feed.getEnergy());
+        return new Result(true, itemName + " has been eaten");
+    }
 
 
 
