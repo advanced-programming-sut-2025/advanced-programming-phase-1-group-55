@@ -65,7 +65,7 @@ public class BackPack {
     public void recycleItem(String name){
         //injaa bayad hame noe item ro recycle koni na faghat tools
         // TODO
-        App.currentGame.currentUser.setMoney(App.currentGame.currentUser.getMoney()+
+        App.currentGame.currentUser.setGold(App.currentGame.currentUser.getGold()+
                 (int)((availableTools.get(name).getPrice()*availableTools.get("Trashcan").getLevel()*15)/100));
         availableTools.remove(name);
     }
@@ -149,7 +149,8 @@ public class BackPack {
             item.addNumber(quantity);
         } else {
             if (inventoryHasCapacity()) {
-                Item newItem = new Item(itemType, quantity);
+                Item newItem = new Item(itemType);
+                newItem.setNumber(quantity);
                 inventory.put(newItem.getItemType().getDisplayName(),newItem);
             }
         }

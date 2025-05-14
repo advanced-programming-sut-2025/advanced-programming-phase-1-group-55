@@ -1,8 +1,9 @@
 package model.Store;
 
 
+import model.Item.Item;
 import model.NPC.Npc;
-import model.Product;
+
 import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.Map;

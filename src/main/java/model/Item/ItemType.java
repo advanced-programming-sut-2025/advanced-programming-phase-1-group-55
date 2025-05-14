@@ -59,7 +59,17 @@ public enum ItemType {
     PINE_CONE("pine cone"),
     MAHOGANY_SEED("mahogany seed"),
 
-    FIBER("fiber");
+    FIBER("fiber"),
+    BARN("barn"),
+    BIG_BARN("big barn"),
+    DELUXE_BARN("deluxe barn"),
+    COOP("coop"),
+    BIG_COOP("big coop"),
+    DELUXE_COOP("deluxe coop"),
+    WELL("well"),
+    SHIPPING_BIN("shipping bin")
+    ;
+
 
 
 
