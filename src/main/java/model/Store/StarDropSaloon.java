@@ -1,9 +1,11 @@
 package model.Store;
 
 import enums.Seasons;
+import model.App;
 import model.Item.Item;
 import model.Item.ItemType;
 import model.NPC.Npc;
+import model.Result;
 
 import java.time.LocalTime;
 import java.util.HashMap;
@@ -42,5 +44,17 @@ public class StarDropSaloon extends Store{
             put("cookie recipe", new Product(new Item(ItemType.COOKIE_RECIPE),
                     1, 300, 0, 1, Seasons.special));
         }}, new Npc("Gus"), "starDropSaloon");
+    }
+    public Result purchase(int amount , Product product){
+       if(true){
+           //todo  add recipes
+       }else {
+           Result x= App.currentGame.currentUser.getBackPack().addItemToInventory(product.getItem(),amount);
+           if (x.IsSuccess()){
+               product.increaseDailySold(1);
+           }
+           return x;
+       }
+       return new Result(true,"you purchased this item successfully");
     }
 }

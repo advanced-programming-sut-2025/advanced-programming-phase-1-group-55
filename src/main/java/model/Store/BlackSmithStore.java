@@ -1,9 +1,11 @@
 package model.Store;
 
 import enums.Seasons;
+import model.App;
 import model.Item.Item;
 import model.Item.ItemType;
 import model.NPC.Npc;
+import model.Result;
 
 import java.time.LocalTime;
 import java.util.HashMap;
@@ -38,5 +40,8 @@ public class BlackSmithStore extends Store {
                     put("iridium trashcan",new Product(new Item(ItemType.IRIDIUM_TRASHCAN),
                             100000,12500,0,0, Seasons.special));
                 }}, new Npc("Clint"), "Blacksmith");
+    }
+    public Result purchase(int amount , Product product){
+            return App.currentGame.currentUser.getBackPack().addItemToInventory(product.getItem(),amount);
     }
 }

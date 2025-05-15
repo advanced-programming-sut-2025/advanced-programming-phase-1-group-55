@@ -168,21 +168,21 @@ public class MainGameController {
                 return new Result(false, "you don't have enough money to levelUp your tool");
             } else {
                 currentGame.currentUser.setGold(currentGame.currentUser.getGold() - can.getPriceToLevelUp());
-                can.increaseLevel();
+                can.increaseLevel(1);
             }
         } else if (tool instanceof WateringCan can) {
             if (can.getPriceToLevelUp() > currentGame.currentUser.getGold()) {
                 return new Result(false, "you don't have enough money to levelUp your tool");
             } else {
                 currentGame.currentUser.setGold(currentGame.currentUser.getGold() - can.getPriceToLevelUp());
-                can.increaseLevel();
+                can.increaseLevel(1);
             }
         } else {
             if (tool.getPriceToLevelUp() > currentGame.currentUser.getGold()) {
                 return new Result(false, "you don't have enough money to levelUp your tool");
             } else {
                 currentGame.currentUser.setGold(currentGame.currentUser.getGold() - tool.getPriceToLevelUp());
-                tool.increaseLevel();
+                tool.increaseLevel(1);
             }
         }
         return new Result(true, name + " upgraded successfully");

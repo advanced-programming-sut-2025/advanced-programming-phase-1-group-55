@@ -9,12 +9,15 @@ import static enums.Seasons.*;
 
 import java.awt.*;
 import java.time.LocalDate;
+import java.util.regex.Pattern;
 
 import enums.WeatherType;
 
 import static model.weather.*;
 
 import model.Game;
+import model.Store.Product;
+import model.Store.Store;
 
 import static model.App.*;
 
@@ -50,8 +53,13 @@ public class GameTime {
         }
         for(User user: currentGame.playersInGame){
             user.increaseGold(user.getDailyMoney());
+            user.setDailyMoney(0);
         }
-    }
+        for (Store store: currentGame.getMap().getVillage().getStores().values())
+            for(Product product:store.getProductsOfStore().values()){
+                product.setTodaySell(0);
+            }
+       }
 
     public static DayOfTheWeeks getDay() {
         return day;

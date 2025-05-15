@@ -1,9 +1,14 @@
 package model.Store;
 
 import enums.Seasons;
+import model.App;
 import model.Item.Item;
 import model.Item.ItemType;
 import model.NPC.Npc;
+import model.Result;
+import model.Tool.BackPack;
+import model.Tool.MilkPair;
+import model.Tool.Shears;
 
 import java.time.LocalTime;
 import java.util.HashMap;
@@ -45,5 +50,30 @@ public class MarineRanchStore extends Store{
 
 
         }}, new Npc("Marnie"), "marnieRanch");
+    }
+    public Result purchase(int amount , Product product){
+        BackPack backPack= App.currentGame.currentUser.getBackPack();
+       if(product.getItem().getItemType().equals(ItemType.SHEARS)){
+           if(backPack.getAvailableTools().containsKey("Shears")){
+               return  new Result(false,"you have already owned this item");
+           }
+           backPack.getAvailableTools().put("Shears",new Shears());
+       } else if (product.getItem().getItemType().equals(ItemType.MILK_PAIR)) {
+           if(backPack.getAvailableTools().containsKey("MilkPair")){
+               return  new Result(false,"you have already owned this item");
+           }
+           backPack.getAvailableTools().put("MilkPair",new MilkPair());
+       }else if (product.getItem().getItemType().equals("g")){
+           //todo  animals
+       }else{
+           Result x=backPack.addItemToInventory(product.getItem(),amount);
+           if (x.IsSuccess()){
+               product.increaseDailySold(amount);
+           }
+           return x;
+        }
+        product.increaseDailySold(1);
+        App.currentGame.currentUser.increaseGold(-amount* product.getGoldCost());
+        return new Result(true,"you successfully purchased :"+product.getItem().getItemType().getDisplayName());
     }
 }

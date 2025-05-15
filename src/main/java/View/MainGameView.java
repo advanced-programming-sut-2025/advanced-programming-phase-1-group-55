@@ -179,6 +179,12 @@ public class MainGameView implements AppMenu {
             }else {
                 System.out.println(controller3.sellItem(1,matcher.group("name")));
             }
+        } else if ((matcher=StoreCommands.purchaseItem.getMatcher(input))!=null) {
+            if(matcher.group("count")!=null){
+                System.out.println(controller3.purchaseItem(Integer.parseInt(matcher.group("count")),matcher.group("name")));
+            }else {
+                System.out.println(controller3.purchaseItem(1,matcher.group("name")));
+            }
         }
     }
 }
