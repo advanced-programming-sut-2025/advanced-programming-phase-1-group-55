@@ -4,10 +4,7 @@ import enums.Menu;
 import enums.mainGameCommands;
 import model.App;
 import model.Game;
-import model.Map.Farm;
-import model.Map.GameMap;
-import model.Map.farmBuilder;
-import model.Map.mapBuilder;
+import model.Map.*;
 import model.Result;
 import model.User;
 
@@ -24,8 +21,8 @@ public class GameMenuController {
         System.out.println(farm.getLocation().toString());
         System.out.println(farm.getHeight());
         System.out.println(farm.getWidth());
-        for(int i=farm.getLocation().getY()-1;i<farm.getWidth()+farm.getLocation().getY()-2;i++){
-            for (int j=farm.getLocation().getX()-1;j< farm.getHeight()+farm.getLocation().getX()-2;j++){
+        for(int i=farm.getLocation().getY();i<farm.getWidth()+farm.getLocation().getY();i++){
+            for (int j=farm.getLocation().getX();j< farm.getHeight()+farm.getLocation().getX();j++){
                 System.out.println(i+"  "+j);
                 map.tiles[i][j].setOwner(user);
             }
@@ -88,47 +85,46 @@ public class GameMenuController {
             }
             if (i == 0 && mapNumber == 1) {
                 Player0.setFarm(fb.getFarm1());
-                Player0.setLocation(Player0.getFarm().getLocation().changeLocation(1, 1));
+                Player0.setLocation(new Location(Player0.getFarm().getLocation().getY()+1,Player0.getFarm().getLocation().getX()+1));
                 setTileOwner(Player0,Player0.getFarm(),Map);
             } else if (i == 0) {
                 Player0.setFarm(fb.getFarm2());
-                Player0.setLocation(Player0.getFarm().getLocation().changeLocation(1, 1));
+                Player0.setLocation(new Location(Player0.getFarm().getLocation().getY()+1,Player0.getFarm().getLocation().getX()+1));
                 setTileOwner(Player0,Player0.getFarm(),Map);
             }
             if (i == 1 && mapNumber == 1) {
 
                 Player1.setFarm(fb.getFarm1());
-                Player1.setLocation(Player1.getFarm().getLocation().changeLocation(1, 1));
+                Player1.setLocation(new Location(Player1.getFarm().getLocation().getY()+1,Player1.getFarm().getLocation().getX()+1));
                 setTileOwner(Player1,Player1.getFarm(),Map);
 
             } else if (i == 1) {
-                System.out.println("ooooooookkkkkk");
                 Player1.setFarm(fb.getFarm2());
-                Player1.setLocation(Player1.getFarm().getLocation().changeLocation(1, 1));
+                Player1.setLocation(new Location(Player1.getFarm().getLocation().getY()+1,Player1.getFarm().getLocation().getX()+1));
                 setTileOwner(Player1,Player1.getFarm(),Map);
             }
             if (i == 2 && mapNumber == 1) {
 
                 assert Player2 != null;
                 Player2.setFarm(fb.getFarm1());
-                Player2.setLocation(Player2.getFarm().getLocation().changeLocation(1, 1));
+                Player2.setLocation(new Location(Player2.getFarm().getLocation().getY()+1,Player2.getFarm().getLocation().getX()+1));
                 setTileOwner(Player2,Player2.getFarm(),Map);
             } else if (i == 2) {
                 assert Player2 != null;
                 Player2.setFarm(fb.getFarm2());
-                Player2.setLocation(Player2.getFarm().getLocation().changeLocation(1, 1));
+                Player2.setLocation(new Location(Player2.getFarm().getLocation().getY()+1,Player2.getFarm().getLocation().getX()+1));
                 setTileOwner(Player2,Player2.getFarm(),Map);
             }
             if (i == 3 && mapNumber == 1) {
 
                 assert Player3 != null;
                 Player3.setFarm(fb.getFarm1());
-                Player3.setLocation(Player3.getFarm().getLocation().changeLocation(1, 1));
+                Player3.setLocation(new Location(Player3.getFarm().getLocation().getY()+1,Player3.getFarm().getLocation().getX()+1));
                 setTileOwner(Player3,Player3.getFarm(),Map);
             } else if (i == 3) {
                 assert Player3 != null;
                 Player3.setFarm(fb.getFarm2());
-                Player3.setLocation(Player3.getFarm().getLocation().changeLocation(1, 1));
+                Player3.setLocation(new Location(Player3.getFarm().getLocation().getY()+1,Player3.getFarm().getLocation().getX()+1));
                 setTileOwner(Player3,Player3.getFarm(),Map);
             }
 
