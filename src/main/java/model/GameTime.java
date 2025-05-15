@@ -10,6 +10,10 @@ import static enums.Seasons.*;
 import java.awt.*;
 import java.time.LocalDate;
 
+import enums.WeatherType;
+
+import static model.weather.*;
+
 import model.Game;
 
 import static model.App.*;
@@ -30,6 +34,11 @@ public class GameTime {
         GameTime.hour = 9;
         weather.setCurrentWeather(weather.getTomorrowWeather());
         weather.RandomWeatherForTommorow();
+        if (weather.getCurrentWeather().equals(WeatherType.Storm)) {
+            System.out.println(RandomThor());
+            System.out.println("Current Weather is " + weather.getCurrentWeather());
+
+        }
         for (User player : currentGame.playersInGame) {
             player.setLocation(player.getPlayerTommorowLocation());
         }
@@ -88,9 +97,8 @@ public class GameTime {
     public static void increaseDay(int number) {
         DayofMonth += number % 28;
         for (int i = 0; i < number; i++) {
+            roozbad();
 
-            weather.setCurrentWeather(weather.getTomorrowWeather());
-            weather.RandomWeatherForTommorow();
         }
 
         if (DayofMonth + number > 28) {
