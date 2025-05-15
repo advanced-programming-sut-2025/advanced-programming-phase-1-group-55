@@ -31,5 +31,13 @@ public enum Seasons {
     public Seasons nextSeason() {
         return getSeasonByValue((this.value + 1) % 4);
     }
+    public Seasons update(int number) {
+        return values()[(this.value + number) % values().length];
+    }
+//    @Override
+//    public String toString()
+//    {
+//        return name;
+//    }
 
 }

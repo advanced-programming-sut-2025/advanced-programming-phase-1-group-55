@@ -118,6 +118,26 @@ public enum AllCrops {
     public boolean isCanBecomeGiant() {
         return canBecomeGiant;
     }
+
+
+
+    public static AllCrops getCropType(String name) {
+        for (AllCrops cropType : AllCrops.values()) {
+            if (cropType.getName().equalsIgnoreCase(name)) {
+                return cropType;
+            }
+        }
+        return null;
+    }
+
+
+
+
+
+
+
+
+
 }
 
 
