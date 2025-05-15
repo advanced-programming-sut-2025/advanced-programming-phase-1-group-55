@@ -40,7 +40,7 @@ public class GameMenuController {
         }
 
         //todo agar bishtar az se nam karbari dashtim
-        HashMap<String, User> playersInGame = new HashMap<>();
+        ArrayList<User> playersInGame = new ArrayList<>();
         farmBuilder fb = new farmBuilder();
         mapBuilder mb = new mapBuilder();
         GameMap Map = fb.mapCreator();
@@ -51,6 +51,8 @@ public class GameMenuController {
         mb.fillOtherTiles(Map);
         User Player0 = mainUser;
         User Player1 = AllUsers.get(Username1);
+        playersInGame.add(Player0);
+        playersInGame.add(Player1);
         User Player2 = null;
         User Player3 = null;
         int numberOFPlayers = 1;
@@ -58,12 +60,15 @@ public class GameMenuController {
         if (Username2 != null) {
             numberOFPlayers++;
             Player2 = AllUsers.get(Username2);
+            playersInGame.add(Player2);
 
 
         }
         if (Username3 != null) {
             numberOFPlayers++;
             Player3 = AllUsers.get(Username3);
+            playersInGame.add(Player3);
+
 
         }
         boolean farm1IsOwned = false;
@@ -171,7 +176,7 @@ public class GameMenuController {
 
         }
 
-
+        
         currentGame = new Game(mainUser, playersInGame, Map);
         currentMenu = Menu.MainGameMenu;
         return new Result(true, "game has created successfully !");

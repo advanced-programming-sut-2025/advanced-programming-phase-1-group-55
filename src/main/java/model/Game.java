@@ -17,18 +17,40 @@ import enums.Menu;
 import model.Map.GameMap;
 import model.Map.Tile;
 
+import static model.GameTime.*;
+
 
 import java.util.List;
 
 public class Game {
     public User currentUser;
-    public HashMap<String, User> playersInGame = new HashMap<>();
+    public ArrayList<User> playersInGame = new ArrayList<>();
     private GameMap map;
 
-    public Game(User currentUser, HashMap<String, User> playersInGame, GameMap map) {
+    public Game(User currentUser, ArrayList<User> playersInGame, GameMap map) {
         this.currentUser = currentUser;
         this.playersInGame = playersInGame;
         this.map = map;
+    }
+
+    private int turnCounter = 0;
+
+    public int getTurnCounter() {
+        return turnCounter;
+    }
+
+    public void setTurnCounter(int turnCounter) {
+        this.turnCounter = turnCounter;
+    }
+
+    public void nextTurn() {
+        currentUser = playersInGame.get((++turnCounter) % playersInGame.size());
+        System.out.println("player " + turnCounter % playersInGame.size() + " : " + currentUser.getUsername());
+
+        if ((turnCounter) % playersInGame.size() == 0) {
+            increaseHour(1);
+        }
+
     }
 
     public User getCurrentUser() {
@@ -39,11 +61,11 @@ public class Game {
         this.currentUser = currentUser;
     }
 
-    public HashMap<String, User> getPlayersInGame() {
+    public ArrayList<User> getPlayersInGame() {
         return playersInGame;
     }
 
-    public void setPlayersInGame(HashMap<String, User> playersInGame) {
+    public void setPlayersInGame(ArrayList<User> playersInGame) {
         this.playersInGame = playersInGame;
     }
 
@@ -104,7 +126,6 @@ public class Game {
 
         return App.currentGame.getMap().tiles[newX][newY];
     }
-
 
 
 }
