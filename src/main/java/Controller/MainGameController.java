@@ -1,8 +1,10 @@
 package Controller;
 
 
+import enums.AnsiColor;
 import model.App;
 import model.Game;
+import model.Item.Item;
 import model.Map.GameMap;
 import model.Map.Location;
 import enums.WeatherType;
@@ -11,6 +13,8 @@ import model.Tool.Tools;
 import model.Tool.Trashcan;
 import model.Tool.WateringCan;
 import model.Result;
+import enums.AnsiColor;
+import static model.Item.ItemType.*;
 
 import model.weather.*;
 
@@ -85,6 +89,24 @@ public class MainGameController {
         return new Result(true, "cheat Day " + Day + " confirmed");
     }
 
+    public Result cheatThor(String X, String Y) {
+        int x, y;
+
+        try {
+            x = Integer.parseInt(X);
+            y = Integer.parseInt(Y);
+        } catch (Exception e) {
+            return new Result(false, "invalid cheat Thor");
+        }
+        if (currentGame.getMap().tiles[y][x].getMohtaviat().equals("T")) {
+            currentGame.getMap().tiles[y][x].setMohtaviat("Z");
+            currentGame.getMap().tiles[y][x].setItemInThisTile(new Item(COAL));
+
+        }
+        return new Result(true, "cheat Thor " + x + " " + y + " confirmed");
+
+    }
+
     public Result season() {
         return new Result(true, String.valueOf(getSeason()));
     }
@@ -133,8 +155,8 @@ public class MainGameController {
 
     public Result levelUpTool(String name) {
         Tools tool = currentGame.currentUser.getBackPack().getAvailableTools().get(name);
-        if(!currentGame.currentUser.getMainLocation().equals(MainLocation.BlackSmithStore)){
-            return  new Result(false,"you should go to blacksmith store to upgrade your tool!");
+        if (!currentGame.currentUser.getMainLocation().equals(MainLocation.BlackSmithStore)) {
+            return new Result(false, "you should go to blacksmith store to upgrade your tool!");
         }
         if (tool.getLevel() == 5) {
             return new Result(false, "level of your tool is max , you can't upgrade it !");
@@ -182,15 +204,17 @@ public class MainGameController {
     public Result showMap(int x, int y, int size) {
         return new Result(true, currentGame.getMap().printMap(new Location(y, x), size, size));
     }
+
     //cheat code baraye test map hamintori zadam trlrport kone;
-    public Result teleport(int x,int y){
-        currentGame.currentUser.setLocation(new Location(y,x));
-        return new Result(true," you teleported to "+"y:"+y+" x:"+x);
+    public Result teleport(int x, int y) {
+        currentGame.currentUser.setLocation(new Location(y, x));
+        return new Result(true, " you teleported to " + "y:" + y + " x:" + x);
     }
-    public Result showOwner(int x, int y){
-        if(currentGame.getMap().tiles[y][x].getOwner()==null){
-            return  new Result(false,"Default tile");
+
+    public Result showOwner(int x, int y) {
+        if (currentGame.getMap().tiles[y][x].getOwner() == null) {
+            return new Result(false, "Default tile");
         }
-        return  new Result(true,"this tile is in"+currentGame.getMap().tiles[y][x].getOwner().getUsername()+"'s farm");
+        return new Result(true, "this tile is in " + currentGame.getMap().tiles[y][x].getOwner().getUsername() + "'s farm"+ "Mohtaviat :"+currentGame.getMap().tiles[y][x].getMohtaviat());
     }
 }

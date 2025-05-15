@@ -168,6 +168,9 @@ public class MainGameView implements AppMenu {
             System.out.println(controller3.showAllProducts());
         } else if ((matcher = mainGameCommands.walk.getMatcher(input)) != null) {
             System.out.println(controller4.walk(matcher.group("x"), matcher.group("y"), currentGame.getMap().tiles));
+        } else if ((matcher = mainGameCommands.cheatThor.getMatcher(input)) != null) {
+            System.out.println(controller.cheatThor(matcher.group("X"), matcher.group("Y")));
+
         } else if ((matcher = mainGameCommands.showOwner.getMatcher(input)) != null) {
             System.out.println(controller.showOwner(Integer.parseInt(matcher.group("x")), Integer.parseInt(matcher.group("y"))));
         }
