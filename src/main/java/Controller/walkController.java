@@ -88,7 +88,11 @@ public class walkController {
         int startY = currentGame.currentUser.getLocation().getY();
         System.out.println(startX + " x   y " + startY);
         System.out.println(currentGame.currentUser.getLocation().getX() + " x   " + currentGame.currentUser.getLocation().getY());
-        System.out.println(currentGame.currentUser.getUsername() + "   =  " + map[4][3].getOwner().getUsername());
+        try{
+            System.out.println(currentGame.currentUser.getUsername() + "   =  " + map[4][3].getOwner().getUsername());
+        }catch (Exception e){
+            System.out.println(currentGame.currentUser.getUsername() + "   =  " + "Default");
+        }
         System.out.println("mainuser : " + mainUser.getUsername());
 
 
