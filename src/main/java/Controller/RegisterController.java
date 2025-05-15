@@ -25,7 +25,7 @@ public class RegisterController {
 
     Scanner scanner = new Scanner(System.in);
 
-    public Result Register(String username, String password, String passwordConfirmation, String nickname, String email, String gender)  {
+    public Result Register(String username, String password, String passwordConfirmation, String nickname, String email, String gender) {
         if (!isUniqueUsername(username)) {
             System.out.println("Username is already in use");
 
@@ -97,7 +97,7 @@ public class RegisterController {
 
     }
 
-    protected String convertToSHA(String input) {
+    public String convertToSHA(String input) {
         try {
 
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
@@ -143,9 +143,11 @@ public class RegisterController {
                 e.printStackTrace();
             }
         }
-
+        //check if user exist overwrite it
+        userList.removeIf(existingUser -> existingUser.getUsername().equals(user.getUsername()));
         // add new user to list of users that are in file
         userList.add(user);
+
 
         // write new list in file
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {

@@ -13,6 +13,7 @@ import static model.App.*;
 
 public class LoginMenuController extends RegisterController {
     public Result login(String username, String password, String stayLoggedIn) {
+
         if (!AllUsers.containsKey(username)) {
             return new Result(false, "username doesnt exists");
         }
