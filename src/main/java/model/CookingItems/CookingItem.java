@@ -8,9 +8,12 @@ import java.util.ArrayList;
 
 public class CookingItem extends Item {
     private final CookingItemType cookItem;
-    public CookingItem(CookingItemType cookItem, int number) {
+//    public CookingItem(CookingItemType cookItem, int number) {
+//        super(cookItem.getProductName(), number);
+//        this.cookItem = cookItem;
+//    }
+    public CookingItem(CookingItemType cookItem) {
         super(cookItem.getProductName());
-        super.setNumber(number);
         this.cookItem = cookItem;
     }
 

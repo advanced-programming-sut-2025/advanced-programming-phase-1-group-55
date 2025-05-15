@@ -5,7 +5,7 @@ import model.Item.ItemType;
 
 public class Mystic_Tree_Seed extends CraftingItem {
     public Mystic_Tree_Seed() {
-        super(CraftingItemType.MYSTIC_TREE_SEED, ItemType.MYSTIC_TREE_SEED);
+        super(CraftingItemType.MYSTIC_TREE_SEED);
     }
 
     @Override

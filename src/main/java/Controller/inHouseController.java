@@ -72,7 +72,8 @@ public class inHouseController {
             return new Result(false, "you dont have enough inventory");
         }
         int count = Integer.parseInt(amount);
-        Item item = new Item(type, count);
+        Item item = new Item(type);
+        item.setNumber(count);
         item.setNumber(count);
         user.getBackPack().addToInventory(item);
         return new Result(true, itemName + " has been cheated");
@@ -114,7 +115,7 @@ public class inHouseController {
         if (cookingItemType == null) {
             return new Result(false, "you cant put non-edible item in refrigerator");
         }
-        CookingItem thing = new CookingItem(cookingItemType, item.getNumber());
+        CookingItem thing = new CookingItem(cookingItemType);
         user.getCookingItem().getRefrigerator().add(thing);
         user.getBackPack().removeItemFromInventory(item);
         return new Result(true, itemName + " has been put into refrigerator");
@@ -136,7 +137,8 @@ public class inHouseController {
         if (!user.getBackPack().inventoryHasCapacity()) {
             return new Result(false, "you dont have enough inventory");
         }
-        Item item = new Item(type, thing.getNumber());
+        Item item = new Item(type);
+        item.setNumber(thing.getNumber());
         user.getBackPack().addToInventory(item);
         user.getCookingItem().getRefrigerator().remove(thing);
         return new Result(true, itemName + " has been picked from refrigerator");
@@ -194,7 +196,7 @@ public class inHouseController {
             }
         }
         user.decreaseEnergy(3);
-        CookingItem food = new CookingItem(recipe, 5);
+        CookingItem food = new CookingItem(recipe);
         user.getBackPack().addToInventory(food);
         return new Result(true, food + " was cooked and added to inventory.");
     }

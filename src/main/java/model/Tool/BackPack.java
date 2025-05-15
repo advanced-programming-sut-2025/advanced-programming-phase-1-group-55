@@ -169,7 +169,8 @@ public class BackPack {
             item.addNumber(quantity);
         } else {
             if (inventoryHasCapacity()) {
-                Item newItem = new Item(itemType, quantity);
+                Item newItem = new Item(itemType);
+                newItem.setNumber(quantity);
                 newItem.setNumber(quantity);
                 inventory.put(newItem.getItemType().getDisplayName(),newItem);
             }
