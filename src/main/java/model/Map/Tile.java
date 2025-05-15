@@ -2,6 +2,7 @@ package model.Map;
 
 import model.Item.Item;
 import model.ItemOfMap;
+import model.User;
 
 public class Tile {
     private Location location;
@@ -10,6 +11,16 @@ public class Tile {
     private boolean walkable;
     private boolean isEmpty;
     private Item itemInThisTile;
+    private User owner;
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
+    }
+
+
 
     public Tile(Location location, String mohtaviat, boolean walkable, boolean isEmpty, TileType tileType) {
         this.location = location;

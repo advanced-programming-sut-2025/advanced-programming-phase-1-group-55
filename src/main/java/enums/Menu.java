@@ -13,7 +13,6 @@ public enum Menu {
     ProfileMenu(new ProfileMenu()),
     MainGameMenu(new MainGameView()),
     MainMenu(new MainMenu()),
-
     AvatarMenu(new AvatarMenu());
 
 

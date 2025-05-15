@@ -2,6 +2,7 @@ package View;
 
 import Controller.*;
 import enums.*;
+import model.App;
 import model.Map.MainLocation;
 
 import java.util.regex.Matcher;
@@ -11,6 +12,7 @@ import static model.App.*;
 public class MainGameView implements AppMenu {
     private final MainGameController controller = new MainGameController();
     private final CropController controller2 = new CropController();
+    private final StoreController controller3=new StoreController();
 //    private final TreeCotroller controller3 = new TreeCotroller();
 //    private final ForagingCropController controller4 = new ForagingCropController();
 //    private final ForagingTreeController controller5 = new ForagingTreeController();
@@ -83,7 +85,7 @@ public class MainGameView implements AppMenu {
         } else if ((matcher=mainGameCommands.teleport.getMatcher(input))!=null) {
             System.out.println(controller.teleport(Integer.parseInt(matcher.group("x")),
                     Integer.parseInt(matcher.group("y"))));
-            System.out.println(currentGame.currentUser.getMainLocation());
+            System.out.println("you are now in: "+currentGame.currentUser.getMainLocation());
         }else if ((matcher = inHouseGameMenuCommands.ShowLearnedCratingRecipes.getMatcher(input)) != null) {
             if (MainLocation.House.equals(currentGame.currentUser.getMainLocation())) {
                 System.out.println(inHouseController.ShowCraftingRecipe());
@@ -150,6 +152,14 @@ public class MainGameView implements AppMenu {
         }
             else if (input.matches("exit")) {
             currentMenu = Menu.ExitMenu;
+        }else if((matcher= StoreCommands.cheatMoney.getMatcher(input))!=null){
+            System.out.println(controller3.cheatAddMoney(Integer.parseInt(matcher.group("count").trim())));
+        } else if (StoreCommands.showAllAvailableProducts.getMatcher(input)!=null) {
+            System.out.println(controller3.showAvailableProducts());
+        } else if (StoreCommands.showAllProducts.getMatcher(input)!=null) {
+            System.out.println(controller3.showAllProducts());
+        } else if ((matcher=mainGameCommands.showOwner.getMatcher(input))!=null) {
+            System.out.println(controller.showOwner(Integer.parseInt(matcher.group("x")),Integer.parseInt(matcher.group("y"))));
         }
     }
 }

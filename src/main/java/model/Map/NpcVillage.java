@@ -7,12 +7,17 @@ import java.util.Map;
 
 public class NpcVillage {
     private final Map<String, Store> stores=new HashMap<>(){{
-        put("Blacksmith",new BlackSmithStore());
-        put("marnieRanch",new MarineRanchStore());
+        put("BlackSmith",new BlackSmithStore());
+        put("MarnieRanch",new MarineRanchStore());
         put("OjaMart",new OjaMartStore());
         put("FishShop",new FishingStore());
+<<<<<<< HEAD
 //        put("CarpenterShop",new CarpenterShop());
         put("starDropSaloon",new StarDropSaloon());
+=======
+        put("CarpenterShop",new CarpenterShop());
+        put("StarDropSaloon",new StarDropSaloon());
+>>>>>>> 8d138e353235d79a1e42c69942ab1287af212d92
         put("Generalstore",new GeneralStore());
     }};
     private final Location location=new Location(10,35);

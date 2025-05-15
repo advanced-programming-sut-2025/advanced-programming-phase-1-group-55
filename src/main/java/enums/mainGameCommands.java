@@ -32,7 +32,8 @@ public enum mainGameCommands implements Command {
     ShowCraftingRecipe("crafting\\s+show\\s+recipes"),
     gameNew("\\s*game\\s+new\\s+-u\\s+(?<user1>\\S+)(?:\\s+(?<user2>\\S+))?(?:\\s+(?<user3>\\S+))?\\s*"),
     chooseMap("\\s*game\\s+map\\s+(?<X>\\S+)\\s*"),
-    teleport("^teleport\\s+(?<x>\\d+)\\s+(?<y>\\d+)\\s*$");
+    teleport("^teleport\\s+(?<x>\\d+)\\s+(?<y>\\d+)\\s*$"),
+    showOwner("^\\s*show\\s+owner\\s+(?<x>\\d+)\\s+(?<y>\\d+)\\s*$");
     private final String pattern;
 
     mainGameCommands(String pattern) {
