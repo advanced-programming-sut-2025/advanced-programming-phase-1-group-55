@@ -17,6 +17,8 @@ import enums.Menu;
 import model.Map.GameMap;
 import model.Map.Tile;
 
+import static model.GameTime.*;
+
 
 import java.util.List;
 
@@ -43,6 +45,11 @@ public class Game {
 
     public void nextTurn() {
         currentUser = playersInGame.get((++turnCounter) % playersInGame.size());
+        System.out.println("player " + turnCounter % playersInGame.size() + " : " + currentUser.getUsername());
+
+        if ((turnCounter) % playersInGame.size() == 0) {
+            increaseHour(1);
+        }
 
     }
 

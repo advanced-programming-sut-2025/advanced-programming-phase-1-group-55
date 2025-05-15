@@ -51,6 +51,8 @@ public class GameMenuController {
         mb.fillOtherTiles(Map);
         User Player0 = mainUser;
         User Player1 = AllUsers.get(Username1);
+        playersInGame.add(Player0);
+        playersInGame.add(Player1);
         User Player2 = null;
         User Player3 = null;
         int numberOFPlayers = 1;
@@ -66,6 +68,7 @@ public class GameMenuController {
             numberOFPlayers++;
             Player3 = AllUsers.get(Username3);
             playersInGame.add(Player3);
+
 
         }
         boolean farm1IsOwned = false;
@@ -173,7 +176,7 @@ public class GameMenuController {
 
         }
 
-
+        
         currentGame = new Game(mainUser, playersInGame, Map);
         currentMenu = Menu.MainGameMenu;
         return new Result(true, "game has created successfully !");
