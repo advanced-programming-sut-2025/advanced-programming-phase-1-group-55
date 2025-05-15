@@ -43,6 +43,15 @@ public class User {
     private MainLocation mainLocation = MainLocation.House;
     private HashMap<Integer, Trade> trades = new HashMap<>();
     private CookingItem cookingItem;
+    private int stone;
+
+    public int getStone() {
+        return stone;
+    }
+
+    public void setStone(int stone) {
+        this.stone = stone;
+    }
 
     public HashMap<Integer, Trade> getTrades() {
         return trades;

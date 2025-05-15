@@ -5,6 +5,7 @@ import enums.CraftingItemType;
 import model.App;
 import model.Item.Item;
 import model.Item.ItemType;
+import model.Result;
 
 
 import java.util.*;
@@ -161,18 +162,20 @@ public class BackPack {
     }
 
 
-    public void addItemToInventory(ItemType itemType, int quantity) {
-        Item item = getItemInInventory(itemType);
-        if (item != null) {
-            item.addNumber(quantity);
+    public Result addItemToInventory(Item item, int quantity) {
+        Item itemx = getItemInInventory(item.getItemType());
+        if (itemx != null) {
+            itemx.addNumber(quantity);
         } else {
             if (inventoryHasCapacity()) {
-                Item newItem = new Item(itemType);
-                newItem.setNumber(quantity);
-                newItem.setNumber(quantity);
-                inventory.put(newItem.getItemType().getDisplayName(),newItem);
+                item.setNumber(quantity);
+                inventory.put(item.getItemType().getDisplayName(),item);
+            }else {
+                return new Result(false,"you don,t have capacity to add more item");
             }
         }
+        App.currentGame.currentUser.increaseGold(-quantity*item.getPrice());
+        return new Result(true,"you purchased item successfully");
     }
 
     public int getInventoryCapacity() {

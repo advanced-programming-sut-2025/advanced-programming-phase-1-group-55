@@ -82,4 +82,7 @@ public class Product {
     public void setSeason(Seasons season) {
         this.season = season;
     }
+    public void increaseDailySold(int amount){
+        todaySell+=amount;
+    }
 }
