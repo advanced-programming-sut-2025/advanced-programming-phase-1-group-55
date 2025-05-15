@@ -11,6 +11,7 @@ public class NpcVillage {
         put("MarnieRanch",new MarineRanchStore());
         put("OjaMart",new OjaMartStore());
         put("FishShop",new FishingStore());
+        put("starDropSaloon",new StarDropSaloon());
         put("CarpenterShop",new CarpenterShop());
         put("StarDropSaloon",new StarDropSaloon());
         put("Generalstore",new GeneralStore());

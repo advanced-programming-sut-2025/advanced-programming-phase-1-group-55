@@ -5,7 +5,7 @@ import model.Item.ItemType;
 
 public class Dehydrator extends CraftingItem {
     public Dehydrator() {
-        super(CraftingItemType.DEHYDRATOR, ItemType.DEHYDRATOR);
+        super(CraftingItemType.DEHYDRATOR);
     }
 
     @Override

@@ -5,10 +5,15 @@ import java.util.regex.Pattern;
 
 public enum inHouseGameMenuCommands {
 
-    ShowLearnedRecipes("crafting show recipes"),
+    ShowLearnedCratingRecipes("^\\s*crafting\\s+show\\s+recipes\\s*$"),
     CraftItem("crafting\\s+craft\\s+(?<itemName>.*)"),
     PlaceItem("place\\s+item\\s+" + "-n\\s+(?<itemName>.*)\\s+" + "-d\\s+(?<direction>\\S+)"),
-    CheatAddItem("cheat\\s+add\\s+item\\s+" + "-n\\s+(?<itemName>.*)\\s+" + "-c\\s+(?<count>\\d+)");
+    CheatAddItem("cheat\\s+add\\s+item\\s+" + "-n\\s+(?<itemName>.*)\\s+" + "-c\\s+(?<count>\\d+)"),
+    PutInRefrigerator("cooking\\s+refrigerator\\s+put\\s+(?<item>.*)"),
+    PickFromRefrigerator("cooking\\s+refrigerator\\s+pick\\s+(?<item>.*)"),
+    ShowLearnedCookingRecipes("cooking\\s+show\\s+recipes"),
+    CookItem("cooking\\s+prepare\\s+(?<recipeName>.*)"),
+    Eat("eat\\s+(?<foodName>.*)");
 
     private final String pattern;
 

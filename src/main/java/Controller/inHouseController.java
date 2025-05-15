@@ -1,8 +1,10 @@
 package Controller;
 
+import enums.CookingItemType;
 import enums.CraftingItemType;
 import model.App;
 import model.App.*;
+import model.CookingItems.CookingItem;
 import model.CraftingItems.CraftingItem;
 import model.CraftingItems.CraftingItemCreator;
 import model.Ingredient;
@@ -72,6 +74,7 @@ public class inHouseController {
         int count = Integer.parseInt(amount);
         Item item = new Item(type);
         item.setNumber(count);
+        item.setNumber(count);
         user.getBackPack().addToInventory(item);
         return new Result(true, itemName + " has been cheated");
     }
@@ -97,6 +100,125 @@ public class inHouseController {
         return new Result(true, itemName + " has been placed");
 
     }
+
+    public Result PutInRefrigerator(String itemName) {
+        User user = App.currentGame.currentUser;
+        ItemType type = ItemType.getItemType(itemName);
+        if (type == null) {
+            return new Result(false, "No item found");
+        }
+        Item item = user.getBackPack().getItemInInventory(type);
+        if (item == null) {
+            return new Result(false, "you dont have dis item now!");
+        }
+        CookingItemType cookingItemType = CookingItemType.isEdible(type);
+        if (cookingItemType == null) {
+            return new Result(false, "you cant put non-edible item in refrigerator");
+        }
+        CookingItem thing = new CookingItem(cookingItemType);
+        user.getCookingItem().getRefrigerator().add(thing);
+        user.getBackPack().removeItemFromInventory(item);
+        return new Result(true, itemName + " has been put into refrigerator");
+    }
+    public Result PickFromRefrigerator(String itemName) {
+        User user = App.currentGame.currentUser;
+        ItemType type = ItemType.getItemType(itemName);
+        if (type == null) {
+            return new Result(false, "No item found");
+        }
+        CookingItemType cookingItemType = CookingItemType.isEdible(type);
+        if (cookingItemType == null) {
+            return new Result(false, "this item not edible so cant pick from refrigerator");
+        }
+        CookingItem thing = user.getCookingItem().getFromRefrigerator(type);
+        if (thing == null) {
+            return new Result(false, "this item isnt in refrigerator");
+        }
+        if (!user.getBackPack().inventoryHasCapacity()) {
+            return new Result(false, "you dont have enough inventory");
+        }
+        Item item = new Item(type);
+        item.setNumber(thing.getNumber());
+        user.getBackPack().addToInventory(item);
+        user.getCookingItem().getRefrigerator().remove(thing);
+        return new Result(true, itemName + " has been picked from refrigerator");
+    }
+    public Result ShowCookingRecipe() {
+        ArrayList<CookingItemType> recipes = App.currentGame.currentUser.getBackPack().getCookingRecipes();
+        if (recipes == null || recipes.isEmpty()) {
+            return new Result(false, "No recipe found");
+        }
+        StringBuilder result = new StringBuilder();
+        for (CookingItemType recipe : recipes) {
+            result.append(recipe.getProductName()).append(": ")
+                    .append("ingredient: ").append(recipe.getIngredients()).append("\n")
+                    .append("Sell Price: ").append(recipe.getSellPrice()).append("\n");
+        }
+        return new Result(true, result.toString().trim());
+    }
+    public Result CookItem(String itemName) {
+        User user = App.currentGame.currentUser;
+        ItemType type = ItemType.getItemType(itemName);
+        if (type == null) {
+            return new Result(false, "No item found");
+        }
+        CookingItemType recipe = CookingItemType.getCookingRecipe(itemName);
+        if (recipe == null) {
+            return new Result(false, "this item does not have cooking recipe");
+        }
+        ArrayList<CookingItemType> recipes = App.currentGame.currentUser.getBackPack().getCookingRecipes();
+        if (!recipes.contains(recipe)) {
+            return new Result(false, "you dont have dis item recipe");
+        }
+        if (!user.getBackPack().inventoryHasCapacity()) {
+            return new Result(false, "you dont have enough inventory");
+        }
+        ArrayList<CookingItem> refrigerator = user.getCookingItem().getRefrigerator();
+        HashMap<ItemType, Integer> ingredients = recipe.getIngredients();
+        boolean canCook = true;
+        for (ItemType itemType : ingredients.keySet()) {
+            int AllWeHave = user.getBackPack().howManyInInventory(itemType) + user.getCookingItem().howManyInRefrigerator(itemType);
+            if (AllWeHave < ingredients.get(itemType)) {
+                canCook = false;
+            }
+        }
+        if (!canCook) {
+            return new Result(false, "you dont have enough ingredients for this recipe");
+        }
+        for (ItemType itemType : ingredients.keySet()) {
+            int removedFromInventory = Math.min(user.getBackPack().howManyInInventory(itemType), ingredients.get(itemType));
+            if (removedFromInventory > 0) {
+                user.getBackPack().removeAmountFromInventory(itemType, removedFromInventory);
+            }
+            int removedFromRefrigerator = ingredients.get(itemType) - removedFromInventory;
+            if (removedFromRefrigerator > 0) {
+                user.getCookingItem().removeFromRefrigerator(itemType, removedFromRefrigerator);
+            }
+        }
+        user.decreaseEnergy(3);
+        CookingItem food = new CookingItem(recipe);
+        user.getBackPack().addToInventory(food);
+        return new Result(true, food + " was cooked and added to inventory.");
+    }
+    public Result Eat(String itemName) {
+        User user = App.currentGame.currentUser;
+        ItemType type = ItemType.getItemType(itemName);
+        if (type == null) {
+            return new Result(false, "No item found");
+        }
+        CookingItemType feed = CookingItemType.isEdible(type);
+        if (feed == null) {
+            return new Result(false, "this item isnt edible");
+        }
+        int quantity = user.getBackPack().howManyInInventory(type);
+        if (quantity == 0) {
+            return new Result(false, "you dont have this item for eat!");
+        }
+        user.getBackPack().removeAmountFromInventory(type, 1);
+        user.increaseEnergy(feed.getEnergy());
+        return new Result(true, itemName + " has been eaten");
+    }
+
 
 
 

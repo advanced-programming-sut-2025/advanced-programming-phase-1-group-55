@@ -45,7 +45,7 @@ public class CropController {
                         .append("Source: ").append(tree.getSeedSource().getName()).append("\n")
                         .append("Stages: ").append(tree.getStages()).append("\n")
                         .append("Total Harvest Time: ").append(tree.getTotalHarvestTime()).append("\n")
-                        .append("Fruits: ").append(tree.getFruits()).append("\n")
+                        .append("Fruits: ").append(tree.getFruits().getType().getName()).append("\n")
                         .append("Fruit Harvest Cycle: ").append(tree.getFruits().getType().getFruitHarvestCycle()).append("\n")
                         .append("Fruit Base Sell Price: ").append(tree.getFruits().getType().getFruitBaseSellPrice()).append("\n")
                         .append("Is Fruit Edible:").append(tree.getFruits().getType().isFruitEdible()).append("\n")

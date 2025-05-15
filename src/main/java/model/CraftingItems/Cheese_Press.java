@@ -5,7 +5,7 @@ import model.Item.ItemType;
 
 public class Cheese_Press extends CraftingItem {
     public Cheese_Press() {
-        super(CraftingItemType.CHEESE_PRESS, ItemType.CHEESE_PRESS);
+        super(CraftingItemType.CHEESE_PRESS);
     }
 
     @Override

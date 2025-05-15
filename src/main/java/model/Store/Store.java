@@ -9,14 +9,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Store {
-    private final LocalTime openingTime;
-    private final LocalTime closingTime;
+    private final int openingTime;
+    private final int closingTime;
     private Map<String, Product> productsOfStore=new HashMap<>();
     private final Npc owner;
     private final String DisplayName;
 
 
-    public Store(LocalTime openingTime, LocalTime closingTime, Map<String,
+    public Store(int openingTime, int closingTime, Map<String,
             Product> productsOfStore, Npc owner, String displayName) {
         this.openingTime = openingTime;
         this.closingTime = closingTime;
@@ -25,11 +25,11 @@ public class Store {
         DisplayName = displayName;
     }
 
-    public LocalTime getOpeningTime() {
+    public int getOpeningTime() {
         return openingTime;
     }
 
-    public LocalTime getClosingTime() {
+    public int getClosingTime() {
         return closingTime;
     }
 

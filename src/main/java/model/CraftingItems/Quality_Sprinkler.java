@@ -5,7 +5,7 @@ import model.Item.ItemType;
 
 public class Quality_Sprinkler extends CraftingItem {
     public Quality_Sprinkler() {
-        super(CraftingItemType.QUALITY_SPRINKLER, ItemType.SPRINKLER);
+        super(CraftingItemType.QUALITY_SPRINKLER);
     }
 
     @Override

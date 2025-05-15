@@ -6,7 +6,9 @@ public class Item   {
 
     public Item(ItemType itemtype) {
         itemType = itemtype;
+//        this.number = number;
     }
+
     public ItemType getItemType() {
         return itemType;
     }

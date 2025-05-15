@@ -5,7 +5,7 @@ import model.Item.ItemType;
 
 public class Scarecrow extends CraftingItem {
     public Scarecrow() {
-        super(CraftingItemType.SCARECROW, ItemType.SCARECROW);
+        super(CraftingItemType.SCARECROW);
     }
 
     @Override
