@@ -187,7 +187,7 @@ public class walkController {
                 int nx = x + dir[0];
                 int ny = y + dir[1];
 
-                if (nx >= 0 && ny >= 0 && nx < n && ny < m && !visited[nx][ny] && map[nx][ny].isWalkable() && map[nx][ny].getOwner() == currentGame.currentUser) {
+                if (nx >= 0 && ny >= 0 && nx < n && ny < m && !visited[nx][ny] && map[nx][ny].isWalkable() && (map[nx][ny].getOwner() == currentGame.currentUser || map[nx][ny].getOwner() == null)) {
                     visited[nx][ny] = true;
                     parent[nx][ny] = map[x][y];
                     queue.add(new int[]{nx, ny});
