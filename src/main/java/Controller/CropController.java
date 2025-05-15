@@ -18,7 +18,7 @@ public class CropController {
 
     public Result getCropByName(String name) {
         for (AllCrops crop : AllCrops.values()) {
-            if (crop.getName().equalsIgnoreCase(name)) {
+            if (crop.getName().equals(name)) {
                 StringBuilder sb = new StringBuilder("Crop found:\n");
                 sb.append("Name: ").append(crop.getName()).append("\n")
                         .append("Source: ").append(crop.getSeed().getName()).append("\n")

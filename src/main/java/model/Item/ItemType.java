@@ -177,7 +177,7 @@ public enum ItemType {
     ANCIENT_SEED("ancient seed"),
     PARSNIP_SEEDS("parsnip seeds"),
     BEAN_STARTER("bean starter"),
-    CAULI_FLOWER_SEEDS("cauli flower seeds"),
+//    CAULI_FLOWER_SEEDS("cauli flower seeds"),
     POTATO_SEEDS("potato seeds"),
     STRAWBERRY_SEEDS("strawberry seeds"),
     CALE_SEEDS("cale seeds"),
@@ -249,7 +249,52 @@ public enum ItemType {
     PIG("pig"),
 
     LARGE_PACK("large backpack"),
-    DELUXE_PACK("deluxe backpack");
+    DELUXE_PACK("deluxe backpack"),
+
+    BLUE_JAZZ_CROP("Blue Jazz crop"),
+    CARROT_CROP("Carrot crop"),
+    CAULIFLOWER_CROP("Cauliflower crop"),
+    COFFEE_BEAN_CROP("Coffee Bean crop"),
+    GARLIC_CROP("Garlic crop"),
+    GREEN_BEAN_CROP("Green Bean corp"),
+    KALE_CROP("Kale crop"),
+    PARSNIP_CROP("Parsnip corp"),
+    POTATO_CROP("Potato crop"),
+    RHUBARB_CROP("Rhubarb crop"),
+    STRAWBERRY_CROP("Strawberry crop"),
+    TULIP_CROP("Tulip crop"),
+    UNMILLED_RICE_CROP("Unmilled Rice crop"),
+    BLUEBERRY_CROP("Blueberry corp"),
+    CORN_CROP("Corn crop"),
+    HOPS_CROP("Hops crop"),
+    HOT_PEPPER_CROP("Hot Pepper crop"),
+    MELON_CROP("Melon crop"),
+    POPPY_CROP("Poppy crop"),
+    RADISH_CROP("Radish crop"),
+    RED_CABBAGE_CROP("Red Cabbage crop"),
+    STARFRUIT_CROP("Starfruit crop"),
+    SUMMER_SPANGLE_CROP("Summer Spangle crop"),
+    SUMMER_SQUASH_CROP("Summer Squash crop"),
+    SUNFLOWER_CROP("Sunflower crop"),
+    TOMATO_CROP("Tomato crop"),
+    WHEAT_CROP("Wheat crop"),
+    AMARANTH_CROP("Amaranth crop"),
+    ARTICHOKE_CROP("Artichoke crop"),
+    BEET_CROP("Beet crop"),
+    BOK_CHOY_CROP("Bok Choy crop"),
+    BROCCOLI_CROP("Broccoli crop"),
+    CRANBERRIES_CROP("Cranberries crop"),
+    EGGPLANT_CROP("Eggplant crop"),
+    FAIRY_ROSE_CROP("Fairy Rose crop"),
+    GRAPE_CROP("Grape corp"),
+    PUMPKIN_CROP("Pumpkin crop"),
+    YAM_CROP("Yam crop"),
+    SWEET_GEM_BERRY_CROP("Sweet Gem Berry crop"),
+    POWDERMELON_CROP("Powdermelon crop"),
+    ANCIENT_FRUIT_CROP("Ancient Fruit corp");
+
+
+
 
 
 
