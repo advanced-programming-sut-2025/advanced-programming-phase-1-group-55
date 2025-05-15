@@ -12,7 +12,6 @@ import static java.lang.Math.min;
 public class GameMap {
     public Tile[][] tiles = new Tile[41][160];
 
-    //    private ArrayList<Farm> farms=new ArrayList<>();
     private Farm farm1;//baray nafar aval
     private Farm farm2;
     private Farm farm3;
@@ -115,6 +114,7 @@ public class GameMap {
             case "0"-> AnsiColor.BG_BRIGHT_WHITE;
             case "&" -> AnsiColor.BRIGHT_GREEN;
             case "*" ->AnsiColor.GREEN;
+            case "@" ->AnsiColor.BG_BRIGHT_YELLOW;
             default -> color;
         };
         return color;

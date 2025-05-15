@@ -20,7 +20,8 @@ public enum MainLocation {
     nearABIGAIL
     ,nearHARVEY
     ,nearLEAH
-    , nearROBIN;
+    , nearROBIN
+    ,nearTheBin;
     public static boolean isNearTheWater(Location location){
         GameMap map=App.currentGame.getMap();
         if(map.tiles[location.getY()+1][location.getX()+1].getType().equals(TileType.water)){
@@ -39,6 +40,24 @@ public enum MainLocation {
             return true;
         }else return map.tiles[location.getY() - 1][location.getX()].getType().equals(TileType.water);
     }
+    public static Boolean isNearTheShippingBin(Location location){
+        GameMap map=App.currentGame.getMap();
+        if(map.tiles[location.getY()+1][location.getX()+1].getMohtaviat().equals("@")){
+            return true;
+        }else if(map.tiles[location.getY()][location.getX()+1].getMohtaviat().equals("@")){
+            return true;
+        }else if(map.tiles[location.getY()+1][location.getX()].getMohtaviat().equals("@")){
+            return true;
+        }else if(map.tiles[location.getY()-1][location.getX()+1].getMohtaviat().equals("@")){
+            return true;
+        }else if(map.tiles[location.getY()+1][location.getX()-1].getMohtaviat().equals("@")){
+            return true;
+        }else if(map.tiles[location.getY()-1][location.getX()-1].getMohtaviat().equals("@")){
+            return true;
+        }else if(map.tiles[location.getY()][location.getX()-1].getMohtaviat().equals("@")){
+            return true;
+        }else return map.tiles[location.getY() - 1][location.getX()].getMohtaviat().equals("@");
+    }
     public static MainLocation findLocation(Location location){
         Farm farm=App.currentGame.currentUser.getFarm();
         if (location.isBetween(farm.getHouse().getLocation(),farm.getHouse().getWidth(),farm.getHouse().getHeight())){
@@ -49,6 +68,8 @@ public enum MainLocation {
             return GreenHouse;
         }else if (isNearTheWater(location)) {
             return NearTheWater;
+        } else if (isNearTheShippingBin(location)) {
+            return nearTheBin;
         } else if (location.isBetween(new Location(23,36),5,7)) {
 
             return FishingStore;
