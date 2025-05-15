@@ -75,49 +75,82 @@ public class walkController {
 
 
     public Result walk(String x, String y, Tile[][] map) {
-        int targetX;
-        int targetY;
+        int targetX, targetY;
         try {
             targetX = Integer.parseInt(x);
             targetY = Integer.parseInt(y);
         } catch (Exception e) {
             return new Result(false, "Invalid coordinates");
         }
+
         int startX = currentGame.currentUser.getLocation().getX();
         int startY = currentGame.currentUser.getLocation().getY();
+      
 
-        List<Tile> path = bfs(startX, startY, targetX, targetY, map);
+        List<Tile> path = bfs(startY, startX, targetY, targetX, map);
 
         if (path == null || path.isEmpty()) {
-            return new Result(false, "there is no path");
+            return new Result(false, "No path to the target.");
         }
 
+        int turns = countTurns(path);
         int distance = path.size() - 1;
-        System.out.println("turns :" + countTurns(path));
-        int energyNeeded = (int) Math.ceil((distance + 10 * countTurns(path)) / 20.0);
+        int totalEnergyNeeded = (int) Math.ceil((distance + 10 * turns) / 20.0);
 
-        System.out.println("path found :)   distance : " + distance + " needed energy :  " + energyNeeded);
-        System.out.println("are you sure you want to move (yes/no)");
+        System.out.println("Path found! Distance: " + distance + ", Turns: " + turns);
+        System.out.println("Energy required: " + totalEnergyNeeded);
+        System.out.println("You currently have: " + currentGame.currentUser.getEnergy() + " energy.");
+        System.out.println("Do you want to proceed? (yes/no)");
+
         Scanner scanner = new Scanner(System.in);
         String confirm = scanner.nextLine().trim().toLowerCase();
 
-        if (confirm.equals("yes")) {
-            if (currentGame.currentUser.getEnergy() >= energyNeeded) {
-                currentGame.currentUser.decreaseEnergy(energyNeeded);
-                Location playerTommorowLocation = new Location(targetY, targetX);
-                currentGame.currentUser.setPlayerTommorowLocation(playerTommorowLocation);
-                return new Result(true, "you are now moving to " + playerTommorowLocation + " remained energy : " + currentGame.currentUser.getEnergy());
-            } else {
-                currentGame.currentUser.setFainted(true);
-                //todo shayd nyaz beshe energysh ro sefr konam
-                return new Result(false, "you dont have enough energy (Fainted !)");
-
-            }
-        } else {
-            return new Result(false, "move failed");
+        if (!confirm.equals("yes")) {
+            return new Result(false, "Move cancelled by user.");
         }
 
+        double availableEnergy = currentGame.currentUser.getEnergy();
+        double usedEnergy = 0;
+        int stepsCanMove = 1;
+
+        for (int i = 1; i < path.size(); i++) {
+            boolean isTurn = false;
+
+            if (i >= 2) {
+                int dx1 = path.get(i - 1).getLocation().getX() - path.get(i - 2).getLocation().getX();
+                int dy1 = path.get(i - 1).getLocation().getY() - path.get(i - 2).getLocation().getY();
+                int dx2 = path.get(i).getLocation().getX() - path.get(i - 1).getLocation().getX();
+                int dy2 = path.get(i).getLocation().getY() - path.get(i - 1).getLocation().getY();
+                if (dx1 != dx2 || dy1 != dy2) isTurn = true;
+            }
+
+            double stepCost = ((1 + (isTurn ? 10 : 0)) / 20.0);
+            if (usedEnergy + stepCost <= availableEnergy) {
+                usedEnergy += stepCost;
+                stepsCanMove++;
+            } else {
+                break;
+            }
+        }
+
+        Tile finalTile = path.get(stepsCanMove - 1);
+        Location newLocation = new Location(finalTile.getLocation().getY(), finalTile.getLocation().getX());
+        currentGame.currentUser.setPlayerTommorowLocation(newLocation);
+        currentGame.currentUser.decreaseEnergy((int) Math.ceil(usedEnergy));
+
+        boolean fullMove = stepsCanMove == path.size();
+
+        if (!fullMove) {
+            currentGame.currentUser.setFainted(true);
+            return new Result(true, "Not enough energy to reach the destination. You fainted.\n" +
+                    "You reached: " + newLocation +
+                    "\nRemaining energy: " + currentGame.currentUser.getEnergy());
+        } else {
+            return new Result(true, "Move successful! You will reach: " + newLocation +
+                    "\nRemaining energy: " + currentGame.currentUser.getEnergy());
+        }
     }
+
 
     private List<Tile> bfs(int startX, int startY, int endX, int endY, Tile[][] map) {
         int n = map.length;
