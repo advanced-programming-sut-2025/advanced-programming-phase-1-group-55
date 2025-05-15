@@ -6,6 +6,7 @@ import model.Game;
 import model.Map.GameMap;
 import model.Map.Location;
 import enums.WeatherType;
+import model.Map.MainLocation;
 import model.Tool.Tools;
 import model.Tool.Trashcan;
 import model.Tool.WateringCan;
@@ -132,13 +133,13 @@ public class MainGameController {
 
     public Result levelUpTool(String name) {
         Tools tool = currentGame.currentUser.getBackPack().getAvailableTools().get(name);
+        if(!currentGame.currentUser.getMainLocation().equals(MainLocation.BlackSmithStore)){
+            return  new Result(false,"you should go to blacksmith store to upgrade your tool!");
+        }
         if (tool.getLevel() == 5) {
             return new Result(false, "level of your tool is max , you can't upgrade it !");
         }
-        /*
-        todo
-        baayad shart boodn dar ahan gari ro emaal knm , bad zadan map;
-        */
+
         if (tool instanceof Trashcan can) {
             if (can.getPriceToLevelUp() > currentGame.currentUser.getGold()) {
                 return new Result(false, "you don't have enough money to levelUp your tool");
