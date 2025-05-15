@@ -17,17 +17,19 @@ import static model.App.*;
 
 
 public class GameMenuController {
-    public void setTileOwner(User user, Farm farm,GameMap map){
-        System.out.println(farm.getLocation().toString());
-        System.out.println(farm.getHeight());
-        System.out.println(farm.getWidth());
-        for(int i=farm.getLocation().getY();i<farm.getWidth()+farm.getLocation().getY();i++){
-            for (int j=farm.getLocation().getX();j< farm.getHeight()+farm.getLocation().getX();j++){
-                System.out.println(i+"  "+j);
+    public void setTileOwner(User user, Farm farm, GameMap map) {
+//        System.out.println(user.getUsername() + mainUser.getUsername());
+//        System.out.println(farm.getLocation().toString());
+//        System.out.println(farm.getHeight());
+//        System.out.println(farm.getWidth());
+        for (int i = farm.getLocation().getY(); i < farm.getWidth() + farm.getLocation().getY(); i++) {
+            for (int j = farm.getLocation().getX(); j < farm.getHeight() + farm.getLocation().getX(); j++) {
+//                System.out.println(i + "  " + j);
                 map.tiles[i][j].setOwner(user);
             }
         }
     }
+
     //todo gereftan mazrae va map az player haa va pass dadn be mapbuilder
     public Result newGame(String Username1, String Username2, String Username3) {
         //todo error hash ro bezan
@@ -64,6 +66,8 @@ public class GameMenuController {
             Player3 = AllUsers.get(Username3);
 
         }
+        boolean farm1IsOwned = false;
+        boolean farm2IsOwned = false;
         System.out.println("choose number of map for players : ");
         int mapNumber;
         for (int i = 0; i < numberOFPlayers; i++) {
@@ -85,47 +89,83 @@ public class GameMenuController {
             }
             if (i == 0 && mapNumber == 1) {
                 Player0.setFarm(fb.getFarm1());
-                Player0.setLocation(new Location(Player0.getFarm().getLocation().getY()+1,Player0.getFarm().getLocation().getX()+1));
-                setTileOwner(Player0,Player0.getFarm(),Map);
+                farm1IsOwned = true;
+                Player0.setLocation(new Location(Player0.getFarm().getLocation().getY() + 1, Player0.getFarm().getLocation().getX() + 1));
+                setTileOwner(Player0, Player0.getFarm(), Map);
             } else if (i == 0) {
                 Player0.setFarm(fb.getFarm2());
-                Player0.setLocation(new Location(Player0.getFarm().getLocation().getY()+1,Player0.getFarm().getLocation().getX()+1));
-                setTileOwner(Player0,Player0.getFarm(),Map);
+                farm2IsOwned = true;
+                Player0.setLocation(new Location(Player0.getFarm().getLocation().getY() + 1, Player0.getFarm().getLocation().getX() + 1));
+                setTileOwner(Player0, Player0.getFarm(), Map);
             }
             if (i == 1 && mapNumber == 1) {
+                if (!farm1IsOwned) {
+                    Player1.setFarm(fb.getFarm1());
+                } else {
 
-                Player1.setFarm(fb.getFarm1());
-                Player1.setLocation(new Location(Player1.getFarm().getLocation().getY()+1,Player1.getFarm().getLocation().getX()+1));
-                setTileOwner(Player1,Player1.getFarm(),Map);
+                    Player1.setFarm(fb.getFarm1_copy());
+                }
+
+                Player1.setLocation(new Location(Player1.getFarm().getLocation().getY() + 1, Player1.getFarm().getLocation().getX() + 1));
+                setTileOwner(Player1, Player1.getFarm(), Map);
 
             } else if (i == 1) {
-                Player1.setFarm(fb.getFarm2());
-                Player1.setLocation(new Location(Player1.getFarm().getLocation().getY()+1,Player1.getFarm().getLocation().getX()+1));
-                setTileOwner(Player1,Player1.getFarm(),Map);
+                if (!farm2IsOwned) {
+                    Player1.setFarm(fb.getFarm2());
+                } else {
+
+                    Player1.setFarm(fb.getFarm2_copy());
+                }
+
+                Player1.setLocation(new Location(Player1.getFarm().getLocation().getY() + 1, Player1.getFarm().getLocation().getX() + 1));
+                setTileOwner(Player1, Player1.getFarm(), Map);
             }
             if (i == 2 && mapNumber == 1) {
-
                 assert Player2 != null;
-                Player2.setFarm(fb.getFarm1());
-                Player2.setLocation(new Location(Player2.getFarm().getLocation().getY()+1,Player2.getFarm().getLocation().getX()+1));
-                setTileOwner(Player2,Player2.getFarm(),Map);
+                if (!farm1IsOwned) {
+                    Player2.setFarm(fb.getFarm1());
+                } else {
+
+                    Player2.setFarm(fb.getFarm1_copy());
+                }
+
+                Player2.setLocation(new Location(Player2.getFarm().getLocation().getY() + 1, Player2.getFarm().getLocation().getX() + 1));
+                setTileOwner(Player2, Player2.getFarm(), Map);
             } else if (i == 2) {
                 assert Player2 != null;
-                Player2.setFarm(fb.getFarm2());
-                Player2.setLocation(new Location(Player2.getFarm().getLocation().getY()+1,Player2.getFarm().getLocation().getX()+1));
-                setTileOwner(Player2,Player2.getFarm(),Map);
+                if (!farm2IsOwned) {
+                    Player2.setFarm(fb.getFarm2());
+                } else {
+
+                    Player2.setFarm(fb.getFarm2_copy());
+                }
+
+                Player2.setLocation(new Location(Player2.getFarm().getLocation().getY() + 1, Player2.getFarm().getLocation().getX() + 1));
+                setTileOwner(Player2, Player2.getFarm(), Map);
             }
             if (i == 3 && mapNumber == 1) {
 
                 assert Player3 != null;
-                Player3.setFarm(fb.getFarm1());
-                Player3.setLocation(new Location(Player3.getFarm().getLocation().getY()+1,Player3.getFarm().getLocation().getX()+1));
-                setTileOwner(Player3,Player3.getFarm(),Map);
+                if (!farm1IsOwned) {
+                    Player3.setFarm(fb.getFarm1());
+                } else {
+
+                    Player3.setFarm(fb.getFarm1_copy());
+                }
+
+                Player3.setLocation(new Location(Player3.getFarm().getLocation().getY() + 1, Player3.getFarm().getLocation().getX() + 1));
+                setTileOwner(Player3, Player3.getFarm(), Map);
             } else if (i == 3) {
                 assert Player3 != null;
-                Player3.setFarm(fb.getFarm2());
-                Player3.setLocation(new Location(Player3.getFarm().getLocation().getY()+1,Player3.getFarm().getLocation().getX()+1));
-                setTileOwner(Player3,Player3.getFarm(),Map);
+                if (!farm1IsOwned) {
+                    Player3.setFarm(fb.getFarm2());
+                } else {
+
+                    Player3.setFarm(fb.getFarm2_copy());
+                }
+
+                Player3.setLocation(new Location(Player3.getFarm().getLocation().getY() + 1, Player3.getFarm().getLocation().getX() + 1));
+                setTileOwner(Player3, Player3.getFarm(), Map);
             }
 
 

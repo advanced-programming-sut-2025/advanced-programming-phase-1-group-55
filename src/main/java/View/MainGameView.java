@@ -87,9 +87,11 @@ public class MainGameView implements AppMenu {
             System.out.println(controller.teleport(Integer.parseInt(matcher.group("x")),
                     Integer.parseInt(matcher.group("y"))));
             System.out.println("you are now in: " + currentGame.currentUser.getMainLocation());
-        } else if ((matcher = inHouseGameMenuCommands.ShowLearnedRecipes.getMatcher(input)) != null) {
-            System.out.println("you are now in: "+currentGame.currentUser.getMainLocation());
-        }else if ((matcher = inHouseGameMenuCommands.ShowLearnedCratingRecipes.getMatcher(input)) != null) {
+        }
+//        else if ((matcher = inHouseGameMenuCommands.ShowLearnedRecipes.getMatcher(input)) != null) {
+//            System.out.println("you are now in: "+currentGame.currentUser.getMainLocation());
+//        }
+        else if ((matcher = inHouseGameMenuCommands.ShowLearnedCratingRecipes.getMatcher(input)) != null) {
             if (MainLocation.House.equals(currentGame.currentUser.getMainLocation())) {
                 System.out.println(inHouseController.ShowCraftingRecipe());
             } else {

@@ -9,6 +9,7 @@ import model.User;
 import java.util.*;
 
 import static model.App.currentGame;
+import static model.App.mainUser;
 
 
 public class walkController {
@@ -85,7 +86,11 @@ public class walkController {
 
         int startX = currentGame.currentUser.getLocation().getX();
         int startY = currentGame.currentUser.getLocation().getY();
-      
+        System.out.println(startX + " x   y " + startY);
+        System.out.println(currentGame.currentUser.getLocation().getX() + " x   " + currentGame.currentUser.getLocation().getY());
+        System.out.println(currentGame.currentUser.getUsername() + "   =  " + map[4][3].getOwner().getUsername());
+        System.out.println("mainuser : " + mainUser.getUsername());
+
 
         List<Tile> path = bfs(startY, startX, targetY, targetX, map);
 
@@ -186,7 +191,7 @@ public class walkController {
                 int nx = x + dir[0];
                 int ny = y + dir[1];
 
-                if (nx >= 0 && ny >= 0 && nx < n && ny < m && !visited[nx][ny] && map[nx][ny].isWalkable()) {
+                if (nx >= 0 && ny >= 0 && nx < n && ny < m && !visited[nx][ny] && map[nx][ny].isWalkable() && map[nx][ny].getOwner() == currentGame.currentUser) {
                     visited[nx][ny] = true;
                     parent[nx][ny] = map[x][y];
                     queue.add(new int[]{nx, ny});
