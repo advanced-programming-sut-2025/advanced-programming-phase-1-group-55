@@ -124,6 +124,8 @@ public class MainGameView implements AppMenu {
             System.out.println(controller3.showAvailableProducts());
         } else if (StoreCommands.showAllProducts.getMatcher(input)!=null) {
             System.out.println(controller3.showAllProducts());
+        } else if ((matcher=mainGameCommands.showOwner.getMatcher(input))!=null) {
+            System.out.println(controller.showOwner(Integer.parseInt(matcher.group("x")),Integer.parseInt(matcher.group("y"))));
         }
     }
 }
