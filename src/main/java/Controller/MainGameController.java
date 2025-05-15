@@ -145,12 +145,13 @@ public class MainGameController {
             setTomorrowWeather(WeatherType.Rain);
         } else if (type.equals("Storm")) {
             setTomorrowWeather(WeatherType.Storm);
+            System.out.println(RandomThor());
         } else if (type.equals("Snow")) {
             setTomorrowWeather(WeatherType.Snow);
         } else {
             return new Result(false, "invalid weather type");
         }
-        return new Result(true, "weather successfully changed to : " + getCurrentWeather().name());
+        return new Result(true, "weather successfully changed to : " + getTomorrowWeather().name());
     }
 
     public Result levelUpTool(String name) {
