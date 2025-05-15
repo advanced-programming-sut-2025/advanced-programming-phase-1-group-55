@@ -1,5 +1,6 @@
 package Controller;
 
+import enums.Seasons;
 import model.App;
 import model.GameTime;
 import model.Map.MainLocation;
@@ -55,8 +56,12 @@ public class StoreController {
         StringBuilder message=new StringBuilder();
         for(Product product:store.getProductsOfStore().values()){
             if(product.getDailyLimit()> product.getTodaySell()){
-                message.append("name:").append(product.getItem().getItemType().getDisplayName())
-                        .append(" price:").append(product.getGoldCost()).append("\n");
+                if(!store.getDisplayName().equals("OjaMart") ||
+                        product.getSeason().equals(GameTime.getSeason())
+                        ||product.getSeason().equals(Seasons.special)){
+                    message.append("name:").append(product.getItem().getItemType().getDisplayName())
+                            .append(" price:").append(product.getGoldCost()).append("\n");
+                }
             }
         }
         return new Result(true,message.toString());
