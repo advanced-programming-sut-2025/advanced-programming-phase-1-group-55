@@ -12,8 +12,9 @@ import static model.App.*;
 public class MainGameView implements AppMenu {
     private final MainGameController controller = new MainGameController();
     private final CropController controller2 = new CropController();
-    private final StoreController controller3=new StoreController();
-//    private final TreeCotroller controller3 = new TreeCotroller();
+    private final StoreController controller3 = new StoreController();
+    private final walkController controller4 = new walkController();
+    //    private final TreeCotroller controller3 = new TreeCotroller();
 //    private final ForagingCropController controller4 = new ForagingCropController();
 //    private final ForagingTreeController controller5 = new ForagingTreeController();
     private final inHouseController inHouseController = new inHouseController();
@@ -43,6 +44,8 @@ public class MainGameView implements AppMenu {
 //        } else if ((matcher = inHouseGameMenuCommands.ShowLearnedRecipes.getMatcher(input)) != null) {
 //            System.out.println(inHouseController.getLearnedRecipes(currentGame.currentUser));
             // یادت نره این باید بره تو inHouseView برای تست لینجا گذاشتم
+        } else if ((matcher = mainGameCommands.ShowCraftingRecipe.getMatcher(input)) != null) {
+            System.out.println(inHouseController.ShowCraftingRecipe());
         } else if ((matcher = mainGameCommands.date.getMatcher(input)) != null) {
             System.out.println(controller.date());
 
@@ -59,12 +62,12 @@ public class MainGameView implements AppMenu {
             System.out.println(controller.cheatHour(matcher.group("X")));
         } else if ((matcher = mainGameCommands.cheatday.getMatcher(input)) != null) {
             System.out.println(controller.cheatDay(matcher.group("X")));
-        } else if (mainGameCommands.helpReadMap.getMatcher(input)!=null) {
+        } else if (mainGameCommands.helpReadMap.getMatcher(input) != null) {
             System.out.println(controller.helpReadMap());
-        } else if ((matcher=mainGameCommands.printMap.getMatcher(input))!=null) {
+        } else if ((matcher = mainGameCommands.printMap.getMatcher(input)) != null) {
             System.out.println(controller.showMap(Integer.parseInt(matcher.group("x"))
-                    ,Integer.parseInt(matcher.group("y")),Integer.parseInt(matcher.group("size"))));
-        } else if ((mainGameCommands.printFullMap.getMatcher(input))!=null) {
+                    , Integer.parseInt(matcher.group("y")), Integer.parseInt(matcher.group("size"))));
+        } else if ((mainGameCommands.printFullMap.getMatcher(input)) != null) {
             System.out.println(controller.showFullMap());
         } else if ((matcher = mainGameCommands.season.getMatcher(input)) != null) {
             System.out.println(controller.season());
@@ -80,17 +83,21 @@ public class MainGameView implements AppMenu {
             System.out.println(controller.weatherForecast());
         } else if ((matcher = mainGameCommands.cheatWeatherSet.getMatcher(input)) != null) {
             System.out.println(controller.weatherCheat(matcher.group("type").trim()));
-        } else if ((matcher=mainGameCommands.teleport.getMatcher(input))!=null) {
+        } else if ((matcher = mainGameCommands.teleport.getMatcher(input)) != null) {
             System.out.println(controller.teleport(Integer.parseInt(matcher.group("x")),
                     Integer.parseInt(matcher.group("y"))));
-            System.out.println("you are now in: "+currentGame.currentUser.getMainLocation());
-        }else if ((matcher = inHouseGameMenuCommands.ShowLearnedCratingRecipes.getMatcher(input)) != null) {
+            System.out.println("you are now in: " + currentGame.currentUser.getMainLocation());
+        }
+//        else if ((matcher = inHouseGameMenuCommands.ShowLearnedRecipes.getMatcher(input)) != null) {
+//            System.out.println("you are now in: "+currentGame.currentUser.getMainLocation());
+//        }
+        else if ((matcher = inHouseGameMenuCommands.ShowLearnedCratingRecipes.getMatcher(input)) != null) {
             if (MainLocation.House.equals(currentGame.currentUser.getMainLocation())) {
                 System.out.println(inHouseController.ShowCraftingRecipe());
             } else {
                 System.out.println("You must be at home for this.");
             }
-        } else if((matcher = inHouseGameMenuCommands.CraftItem.getMatcher(input)) != null) {
+        } else if ((matcher = inHouseGameMenuCommands.CraftItem.getMatcher(input)) != null) {
             if (MainLocation.House.equals(currentGame.currentUser.getMainLocation())) {
                 String itemName = matcher.group("itemName");
                 System.out.println(inHouseController.CraftItem(itemName));
@@ -150,12 +157,14 @@ public class MainGameView implements AppMenu {
         }
             else if (input.matches("exit")) {
             currentMenu = Menu.ExitMenu;
-        }else if((matcher= StoreCommands.cheatMoney.getMatcher(input))!=null){
+        } else if ((matcher = StoreCommands.cheatMoney.getMatcher(input)) != null) {
             System.out.println(controller3.cheatAddMoney(Integer.parseInt(matcher.group("count").trim())));
-        } else if (StoreCommands.showAllAvailableProducts.getMatcher(input)!=null) {
+        } else if (StoreCommands.showAllAvailableProducts.getMatcher(input) != null) {
             System.out.println(controller3.showAvailableProducts());
-        } else if (StoreCommands.showAllProducts.getMatcher(input)!=null) {
+        } else if (StoreCommands.showAllProducts.getMatcher(input) != null) {
             System.out.println(controller3.showAllProducts());
+        } else if ((matcher = mainGameCommands.walk.getMatcher(input)) != null) {
+            System.out.println(controller4.walk(matcher.group("x"), matcher.group("y"), currentGame.getMap().tiles));
         } else if ((matcher=mainGameCommands.showOwner.getMatcher(input))!=null) {
             System.out.println(controller.showOwner(Integer.parseInt(matcher.group("x")),Integer.parseInt(matcher.group("y"))));
         }
