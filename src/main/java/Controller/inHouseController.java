@@ -114,7 +114,7 @@ public class inHouseController {
         if (cookingItemType == null) {
             return new Result(false, "you cant put non-edible item in refrigerator");
         }
-        CookingItem thing = new CookingItem(cookingItemType, item.getNumber());
+        CookingItem thing = new CookingItem(cookingItemType);
         user.getCookingItem().getRefrigerator().add(thing);
         user.getBackPack().removeItemFromInventory(item);
         return new Result(true, itemName + " has been put into refrigerator");
@@ -194,7 +194,7 @@ public class inHouseController {
             }
         }
         user.decreaseEnergy(3);
-        CookingItem food = new CookingItem(recipe, 5);
+        CookingItem food = new CookingItem(recipe);
         user.getBackPack().addToInventory(food);
         return new Result(true, food + " was cooked and added to inventory.");
     }

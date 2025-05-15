@@ -11,7 +11,7 @@ public class NpcVillage {
         put("marnieRanch",new MarineRanchStore());
         put("OjaMart",new OjaMartStore());
         put("FishShop",new FishingStore());
-        put("CarpenterShop",new CarpenterShop());
+//        put("CarpenterShop",new CarpenterShop());
         put("starDropSaloon",new StarDropSaloon());
         put("Generalstore",new GeneralStore());
     }};

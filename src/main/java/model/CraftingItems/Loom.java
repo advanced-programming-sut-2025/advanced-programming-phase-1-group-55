@@ -5,7 +5,7 @@ import model.Item.ItemType;
 
 public class Loom extends CraftingItem {
     public Loom() {
-        super(CraftingItemType.LOOM, ItemType.LOOM);
+        super(CraftingItemType.LOOM);
     }
 
     @Override
