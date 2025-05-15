@@ -291,7 +291,25 @@ public enum ItemType {
     YAM_CROP("Yam crop"),
     SWEET_GEM_BERRY_CROP("Sweet Gem Berry crop"),
     POWDERMELON_CROP("Powdermelon crop"),
-    ANCIENT_FRUIT_CROP("Ancient Fruit corp");
+    ANCIENT_FRUIT_CROP("Ancient Fruit corp"),
+
+    APRICOT_TREE("Apricot Tree"),
+    CHERRY_TREE("Cherry Tree"),
+    BANANA_TREE("Banana Tree"),
+    MANGO_TREE("Mango Tree"),
+    ORANGE_TREE("Orange Tree"),
+    PEACH_TREE("Peach Tree"),
+    APPLE_TREE("Apple Tree"),
+    POMEGRANATE_TREE("Pomegranate Tree"),
+    OAK_TREE("Oak Tree"),
+    MAPLE_TREE("Maple Tree"),
+    PINE_TREE("Pine Tree"),
+    MAHOGANY_TREE("Mahogany Tree"),
+    MUSHROOM_TREE("Mushroom Tree"),
+    MYSTIC_TREE("Mystic Tree"),
+    ACORNS_TREE("Acorns");
+
+
 
 
 
