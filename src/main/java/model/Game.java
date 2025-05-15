@@ -26,6 +26,7 @@ public class Game {
     public User currentUser;
     public ArrayList<User> playersInGame = new ArrayList<>();
     private GameMap map;
+    private GameTime gameTime;
 
     public Game(User currentUser, ArrayList<User> playersInGame, GameMap map) {
         this.currentUser = currentUser;
@@ -37,6 +38,10 @@ public class Game {
 
     public int getTurnCounter() {
         return turnCounter;
+    }
+
+    public GameTime getGameTime() {
+        return gameTime;
     }
 
     public void setTurnCounter(int turnCounter) {
