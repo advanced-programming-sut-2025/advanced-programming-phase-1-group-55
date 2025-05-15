@@ -7,6 +7,6 @@ import java.util.HashMap;
 
 public class FishingStore extends Store{
     public FishingStore() {
-        super(LocalTime.of(9,0), LocalTime.of(17,0), new HashMap<>(), new Npc("Willy"), "FishShop");
+        super(9, 17, new HashMap<>(), new Npc("Willy"), "FishShop");
     }
 }

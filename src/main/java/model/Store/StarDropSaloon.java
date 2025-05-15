@@ -7,7 +7,6 @@ import java.util.HashMap;
 
 public class StarDropSaloon extends Store{
     public StarDropSaloon() {
-        super(LocalTime.of(12,0), LocalTime.of(0,0)
-                , new HashMap<>(), new Npc("Gus"), "starDropSaloon");
+        super(12, 24, new HashMap<>(), new Npc("Gus"), "starDropSaloon");
     }
 }

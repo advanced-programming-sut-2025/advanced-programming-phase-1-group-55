@@ -1,6 +1,8 @@
 package model.Store;
 
+import enums.RecipeType;
 import enums.Seasons;
+import model.GameTime;
 import model.Item.Item;
 
 public class Product {
@@ -38,6 +40,9 @@ public class Product {
     }
 
     public int getGoldCost() {
+        if(!(GameTime.getSeason().equals(season)||season.equals(Seasons.special))){
+            return  (int)(goldCost*1.5);
+        }
         return goldCost;
     }
 

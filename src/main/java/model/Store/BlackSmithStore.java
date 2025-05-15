@@ -11,7 +11,7 @@ import java.util.HashMap;
 public class BlackSmithStore extends Store {
 
     public BlackSmithStore() {
-        super(LocalTime.of(9,0), LocalTime.of(16,0),
+        super(9, 16,
                 new HashMap<>(){{
                     put("cooper ore",new Product(new Item(ItemType.COPPER_ORE),
                             100000,75,0,0, Seasons.special));

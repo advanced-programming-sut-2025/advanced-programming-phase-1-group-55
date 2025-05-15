@@ -8,8 +8,7 @@ import java.util.HashMap;
 public class OjaMartStore extends Store{
 
     public OjaMartStore() {
-        super(LocalTime.of(9,0), LocalTime.of(17,0), new HashMap<>(),
-                new Npc("Morris"), "OjaMart");
+        super(9, 17, new HashMap<>(), new Npc("Morris"), "OjaMart");
     }
 }
 

@@ -12,8 +12,7 @@ import java.util.HashMap;
 
 public class CarpenterShop extends Store{
     public CarpenterShop() {
-        super(LocalTime.of(9, 0),
-                LocalTime.of(20, 0),
+        super(9, 20,
                 new HashMap<>() {{
                     put("wood",new Product(new Item(ItemType.WOOD),100000,10,0,0, Seasons.special));
                     put("stone",new Product(new Item(ItemType.STONE),100000,20,0,0, Seasons.special));
