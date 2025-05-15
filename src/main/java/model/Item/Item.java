@@ -3,6 +3,15 @@ package model.Item;
 public class Item   {
     protected ItemType itemType;
     protected int number = 0;
+    protected int price;
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
 
     public Item(ItemType itemtype) {
         itemType = itemtype;

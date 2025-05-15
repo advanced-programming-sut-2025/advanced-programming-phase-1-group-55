@@ -3,6 +3,7 @@ package Controller;
 import enums.Seasons;
 import model.App;
 import model.GameTime;
+import model.Item.Item;
 import model.Map.MainLocation;
 import model.Result;
 import model.Store.Product;
@@ -68,6 +69,18 @@ public class StoreController {
     }
     public Result sellItem(int amount,String name){
         //todo add shipping bin in the map,error for not being near shipping bin
+        if(!App.currentGame.currentUser.getMainLocation().equals(MainLocation.nearTheBin)){
+            return  new Result(false,"you must be near a shipping bin to sell your items");
+        }
+        if(!App.currentGame.currentUser.getBackPack().getInventory().containsKey(name)){
+            return  new Result(false,"you don't have this item");
+        }
+        Item item=App.currentGame.currentUser.getBackPack().getInventory().get(name);
+        if(item.getNumber()<amount){
+            return new Result(false,"you dont have enough item to sell");
+        }
+        App.currentGame.currentUser.getBackPack().removeAmountFromInventory(item.getItemType(),amount);
+        App.currentGame.currentUser.setGold(App.currentGame.currentUser.getGold()+ item.getPrice()*amount);
         return new Result(true,"you sold "+name+"successfully!");
     }
 
