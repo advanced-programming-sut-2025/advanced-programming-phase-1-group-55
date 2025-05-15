@@ -34,7 +34,7 @@ public class Tree {
                 ", seedSource='" + treeType.getSeedSource().getName() + '\'' +
                 ", stages=" + treeType.getStages() +
                 ", totalHarvestTime=" + treeType.getTotalHarvestTime() +
-                ", fruits='" + treeType.getFruits() + '\'' +
+                ", fruits='" + treeType.getFruits().getType().getName() + '\'' +
                 ", fruitHarvestCycle=" + treeType.getFruits().getType().getFruitHarvestCycle() +
                 ", fruitBaseSellPrice=" + treeType.getFruits().getType().getFruitBaseSellPrice() +
                 ", isFruitEdible=" + treeType.getFruits().getType().isFruitEdible() +
