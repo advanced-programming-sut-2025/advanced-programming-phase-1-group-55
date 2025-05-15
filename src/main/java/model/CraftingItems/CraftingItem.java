@@ -8,7 +8,7 @@ public abstract class CraftingItem extends Item {
     protected final CraftingItemType craftType;
 
     public CraftingItem(CraftingItemType craftType) {
-        super(craftType.getProductName(), 1);
+        super(craftType.getProductName());
         this.craftType = craftType;
 //        this.itemType = craftType.getProductName();
     }

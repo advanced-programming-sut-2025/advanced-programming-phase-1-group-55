@@ -13,7 +13,7 @@ public class CookingItem extends Item {
 //        this.cookItem = cookItem;
 //    }
     public CookingItem(CookingItemType cookItem) {
-        super(cookItem.getProductName(), 1);
+        super(cookItem.getProductName());
         this.cookItem = cookItem;
     }
 
