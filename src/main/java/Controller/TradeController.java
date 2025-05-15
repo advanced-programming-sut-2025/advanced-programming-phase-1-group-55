@@ -33,16 +33,16 @@ public class TradeController {
         int Amount, Price = 0, TargetAmount = 0;
         try {
             Amount = Integer.parseInt(amount);
-            if (price!=null){
+            if (price != null) {
 
-            Price = Integer.parseInt(price);
+                Price = Integer.parseInt(price);
             }
-            if (targetItem!=null){
+            if (targetItem != null) {
 
-            TargetAmount = Integer.parseInt(targetAmount);
+                TargetAmount = Integer.parseInt(targetAmount);
             }
-            if (targetAmount!=null && price != null) {
-                return new Result(false,"you can use request or offer");
+            if (targetAmount != null && price != null) {
+                return new Result(false, "you can use request or offer");
             }
         } catch (Exception e) {
             return new Result(false, "Invalid amount " + amount);
@@ -56,7 +56,7 @@ public class TradeController {
             if (Price > currentGame.currentUser.getGold()) {
                 return new Result(false, "You dont have enough Gold");
             }
-            if (currentGame.currentUser.getBackPack().getInventory().get(targetItem)==null||currentGame.currentUser.getBackPack().getInventory().get(targetItem).getNumber()<TargetAmount){
+            if (currentGame.currentUser.getBackPack().getInventory().get(targetItem) == null || currentGame.currentUser.getBackPack().getInventory().get(targetItem).getNumber() < TargetAmount) {
                 return new Result(false, "You dont have enough item");
             }
             if (targetUser.getBackPack().getInventory().get(item) == null || targetUser.getBackPack().getInventory().get(item).getNumber() < Amount) {
@@ -65,14 +65,16 @@ public class TradeController {
             }
 
             Trade trade = new Trade(currentGame.currentUser, targetUser, new Item(getItemType(item)), "request", Amount, Price, new Item(getItemType(targetItem)), TargetAmount, id++);
+            currentGame.currentUser.addTrade(trade);
+            targetUser.addTrade(trade);
             currentGame.addToAllTrade(trade);
 
-        }else if (type.equals("offer")) {
+        } else if (type.equals("offer")) {
 
             if (Price > targetUser.getGold()) {
                 return new Result(false, "You dont have enough Gold");
             }
-            if (currentGame.currentUser.getBackPack().getInventory().get(item)==null||currentGame.currentUser.getBackPack().getInventory().get(item).getNumber()<Amount){
+            if (currentGame.currentUser.getBackPack().getInventory().get(item) == null || currentGame.currentUser.getBackPack().getInventory().get(item).getNumber() < Amount) {
                 return new Result(false, "You dont have enough item");
             }
             if (targetUser.getBackPack().getInventory().get(targetItem) == null || targetUser.getBackPack().getInventory().get(item).getNumber() < TargetAmount) {
@@ -81,6 +83,8 @@ public class TradeController {
             }
 
             Trade trade = new Trade(currentGame.currentUser, targetUser, new Item(getItemType(item)), "offer", Amount, Price, new Item(getItemType(targetItem)), TargetAmount, id++);
+            currentGame.currentUser.addTrade(trade);
+            targetUser.addTrade(trade);
             currentGame.addToAllTrade(trade);
 
         }
