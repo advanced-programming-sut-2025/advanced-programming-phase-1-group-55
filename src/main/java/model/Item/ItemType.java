@@ -70,7 +70,9 @@ public enum ItemType {
     SHIPPING_BIN("shipping bin")
     ,
 
-
+    HAY("hay"),
+    SHEARS("shears"),
+    MILK_PAIR("milk pair"),
     FRIED_EGG("fried egg"),
     BAKED_FISH("baked fish"),
     SALAD("salad"),
@@ -235,7 +237,19 @@ public enum ItemType {
     BAMBOO_POLE("bamboo pole"),
     TRAINING_ROD("training rod"),
     FIBERGLASS_ROD("fiberglass rod"),
-    IRIDIUM_ROD("iridium rod");
+    IRIDIUM_ROD("iridium rod"),
+
+    CHICKEN("chicken"),
+    COW("cow"),
+    DUCK("duck"),
+    SHEEP("sheep"),
+    GOAT("goat"),
+    RABBIT("rabbit"),
+    DINOSAUR("dinosaur"),
+    PIG("pig"),
+
+    LARGE_PACK("large backpack"),
+    DELUXE_PACK("deluxe backpack");
 
 
 
