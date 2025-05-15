@@ -1,5 +1,6 @@
 package model.Store;
 
+import enums.Seasons;
 import model.Item.Item;
 
 public class Product {
@@ -9,13 +10,15 @@ public class Product {
     private int woodCost;
     private int stoneCost;
     private int todaySell=0;
+    private Seasons season=Seasons.special;
 
-    public Product(Item item, int dailyLimit, int goldCost, int woodCost, int stoneCost) {
+    public Product(Item item, int dailyLimit, int goldCost, int woodCost, int stoneCost,Seasons season) {
         this.item = item;
         this.dailyLimit = dailyLimit;
         this.goldCost = goldCost;
         this.woodCost = woodCost;
         this.stoneCost = stoneCost;
+        this.season=season;
     }
 
     public Item getItem() {
@@ -64,5 +67,13 @@ public class Product {
 
     public void setTodaySell(int todaySell) {
         this.todaySell = todaySell;
+    }
+
+    public Seasons getSeason() {
+        return season;
+    }
+
+    public void setSeason(Seasons season) {
+        this.season = season;
     }
 }
