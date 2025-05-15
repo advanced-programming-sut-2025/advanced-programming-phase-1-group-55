@@ -1,11 +1,7 @@
 package Controller;
-import Controller.SkillController;
 import enums.CraftingItemType;
 import model.User;
-import model.Ability;
 import model.Skills;
-import View.MiningView;
-import model.User;
 
 
 public class MiningController extends SkillController {
@@ -20,13 +16,13 @@ public class MiningController extends SkillController {
     protected void onLevelUp(int newLevel) {
         switch (newLevel) {
             case 1 -> {
-                user.getBackPack().learnRecipe(CraftingItemType.CHERRY_BOMB);
+                user.getBackPack().learnCraftingRecipe(CraftingItemType.CHERRY_BOMB);
             }
             case 2 -> {
-                user.getBackPack().learnRecipe(CraftingItemType.BOMB);
+                user.getBackPack().learnCraftingRecipe(CraftingItemType.BOMB);
             }
             case 3 -> {
-                user.getBackPack().learnRecipe(CraftingItemType.MEGA_BOMB);
+                user.getBackPack().learnCraftingRecipe(CraftingItemType.MEGA_BOMB);
             }
             case 4 -> {
 
