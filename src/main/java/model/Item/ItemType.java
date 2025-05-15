@@ -101,6 +101,7 @@ public enum ItemType {
 
 
     EGG("egg"),
+    BIG_EGG("big egg"),
     SARDINE("sardine"),
     SALMON("salmon"),
     WHEAT("wheat"),
@@ -146,8 +147,17 @@ public enum ItemType {
     FLOUNDER("flounder"),
     WHEAT_FLOUR("wheat flour"),
     ANY_FISH("any fish"),
-    MIDNIGHT_CARP("midnight carp");
-
+    MIDNIGHT_CARP("midnight carp"),
+    COOPER_TRASHCAN("cooper trashcan"),
+    STEEL_TRASHCAN("steel trashcan"),
+    GOLD_TRASHCAN("gold trashcan"),
+    IRIDIUM_TRASHCAN("iridium trashcan"),
+    COOPER_TOOL("cooper tool"),
+    STEEL_TOOL("steel tool"),
+    GOLD_TOOL("gold tool"),
+    IRIDIUM_TOOL("iridium tool"),
+    CHICKEN("chicken"),
+    GOAT("");
 
 
 

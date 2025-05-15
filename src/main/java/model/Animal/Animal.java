@@ -2,7 +2,7 @@ package model.Animal;
 
 public class Animal {
     private String name;
-    private String type;
+    private AnimalType type;
     private int friendshipPoints;
     private String producedItem;
     private int productQuality;
@@ -75,11 +75,11 @@ public class Animal {
         this.friendshipPoints = friendshipPoints;
     }
 
-    public String getType() {
+    public AnimalType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(AnimalType type) {
         this.type = type;
     }
 
@@ -93,7 +93,7 @@ public class Animal {
 
     private  Cage cage;
 
-    public Animal(String name, String type) {
+    public Animal(String name, AnimalType type) {
         this.name = name;
         this.type = type;
         this.friendshipPoints = 0;

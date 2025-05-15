@@ -1,24 +1,27 @@
 package model.Animal;
 
+import model.Item.Item;
+import model.Item.ItemType;
+
 public enum AnimalType {
 
-    Chicken("chicken", 800, "egg", 50, "big egg", 95);
+    Chicken("chicken", 800, new Item(ItemType.EGG), 50, new Item(ItemType.BIG_EGG), 95);
 
 
     private final String name;
     private final int buyPrice;
-    private final String firstProduct;
+    private final Item firstProduct;
     private final int firstProductPrice;
-    private final String secondProduct;
-    private final int seconfProductPrice;
+    private final Item secondProduct;
+    private final int secondProductPrice;
 
-    AnimalType(String name, int buyPrice, String firstProduct, int firstProductPrice, String secondProduct, int seconfProductPrice) {
+    AnimalType(String name, int buyPrice, Item firstProduct, int firstProductPrice, Item secondProduct, int secondProductPrice) {
         this.name = name;
         this.buyPrice = buyPrice;
         this.firstProduct = firstProduct;
         this.firstProductPrice = firstProductPrice;
         this.secondProduct = secondProduct;
-        this.seconfProductPrice = seconfProductPrice;
+        this.secondProductPrice = secondProductPrice;
     }
 
     public String getName() {
@@ -29,7 +32,7 @@ public enum AnimalType {
         return buyPrice;
     }
 
-    public String getFirstProduct() {
+    public Item getFirstProduct() {
         return firstProduct;
     }
 
@@ -37,11 +40,11 @@ public enum AnimalType {
         return firstProductPrice;
     }
 
-    public String getSecondProduct() {
+    public Item getSecondProduct() {
         return secondProduct;
     }
 
-    public int getSeconfProductPrice() {
-        return seconfProductPrice;
+    public int getSecondProductPrice() {
+        return secondProductPrice;
     }
 }
