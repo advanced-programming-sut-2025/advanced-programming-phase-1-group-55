@@ -88,6 +88,7 @@ public class walkController {
         int startY = currentGame.currentUser.getLocation().getY();
 
 
+
         List<Tile> path = bfs(startY, startX, targetY, targetX, map);
 
         if (path == null || path.isEmpty()) {
