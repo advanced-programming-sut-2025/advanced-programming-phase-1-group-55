@@ -187,4 +187,10 @@ public class MainGameController {
         currentGame.currentUser.setLocation(new Location(y,x));
         return new Result(true," you teleported to "+"y:"+y+" x:"+x);
     }
+    public Result showOwner(int x, int y){
+        if(currentGame.getMap().tiles[y][x].getOwner()==null){
+            return  new Result(false,"Default tile");
+        }
+        return  new Result(true,"this tile is in"+currentGame.getMap().tiles[y][x].getOwner().getUsername()+"'s farm");
+    }
 }
