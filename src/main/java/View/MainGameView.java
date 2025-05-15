@@ -154,8 +154,11 @@ public class MainGameView implements AppMenu {
             } else {
                 System.out.println("You must be at home for this.");
             }
-        }
-            else if (input.matches("exit")) {
+        } else if (input.matches("\\s*next\\s+turn\\s*")) {
+            currentGame.nextTurn();
+
+
+        } else if (input.matches("exit")) {
             currentMenu = Menu.ExitMenu;
         } else if ((matcher = StoreCommands.cheatMoney.getMatcher(input)) != null) {
             System.out.println(controller3.cheatAddMoney(Integer.parseInt(matcher.group("count").trim())));
@@ -165,8 +168,8 @@ public class MainGameView implements AppMenu {
             System.out.println(controller3.showAllProducts());
         } else if ((matcher = mainGameCommands.walk.getMatcher(input)) != null) {
             System.out.println(controller4.walk(matcher.group("x"), matcher.group("y"), currentGame.getMap().tiles));
-        } else if ((matcher=mainGameCommands.showOwner.getMatcher(input))!=null) {
-            System.out.println(controller.showOwner(Integer.parseInt(matcher.group("x")),Integer.parseInt(matcher.group("y"))));
+        } else if ((matcher = mainGameCommands.showOwner.getMatcher(input)) != null) {
+            System.out.println(controller.showOwner(Integer.parseInt(matcher.group("x")), Integer.parseInt(matcher.group("y"))));
         }
     }
 }
