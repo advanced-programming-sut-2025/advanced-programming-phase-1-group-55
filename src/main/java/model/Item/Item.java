@@ -4,8 +4,9 @@ public class Item   {
     protected ItemType itemType;
     protected int number = 0;
 
-    public Item(ItemType itemtype) {
+    public Item(ItemType itemtype, int number) {
         itemType = itemtype;
+        this.number = number;
     }
     public ItemType getItemType() {
         return itemType;
