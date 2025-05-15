@@ -2,7 +2,6 @@ package View;
 
 import Controller.*;
 import enums.*;
-import model.App;
 import model.Map.MainLocation;
 
 import java.util.regex.Matcher;
@@ -85,7 +84,7 @@ public class MainGameView implements AppMenu {
             System.out.println(controller.teleport(Integer.parseInt(matcher.group("x")),
                     Integer.parseInt(matcher.group("y"))));
             System.out.println(currentGame.currentUser.getMainLocation());
-        }else if ((matcher = inHouseGameMenuCommands.ShowLearnedRecipes.getMatcher(input)) != null) {
+        }else if ((matcher = inHouseGameMenuCommands.ShowLearnedCratingRecipes.getMatcher(input)) != null) {
             if (MainLocation.House.equals(currentGame.currentUser.getMainLocation())) {
                 System.out.println(inHouseController.ShowCraftingRecipe());
             } else {
@@ -114,8 +113,42 @@ public class MainGameView implements AppMenu {
             } else {
                 System.out.println("You must be at home for this.");
             }
-
-        } else if (input.matches("exit")) {
+        } else if ((matcher = inHouseGameMenuCommands.PutInRefrigerator.getMatcher(input)) != null) {
+            if (MainLocation.House.equals(currentGame.currentUser.getMainLocation())) {
+                String item = matcher.group("item");
+                System.out.println(inHouseController.PutInRefrigerator(item));
+            } else {
+                System.out.println("You must be at home for this.");
+            }
+        } else if ((matcher = inHouseGameMenuCommands.PickFromRefrigerator.getMatcher(input)) != null) {
+            if (MainLocation.House.equals(currentGame.currentUser.getMainLocation())) {
+                String item = matcher.group("item");
+                System.out.println(inHouseController.PickFromRefrigerator(item));
+            } else {
+                System.out.println("You must be at home for this.");
+            }
+        } else if ((matcher = inHouseGameMenuCommands.ShowLearnedCookingRecipes.getMatcher(input)) != null) {
+            if (MainLocation.House.equals(currentGame.currentUser.getMainLocation())) {
+                System.out.println(inHouseController.ShowCookingRecipe());
+            } else {
+                System.out.println("You must be at home for this.");
+            }
+        } else if ((matcher = inHouseGameMenuCommands.CookItem.getMatcher(input)) != null) {
+            if (MainLocation.House.equals(currentGame.currentUser.getMainLocation())) {
+                String recipeName = matcher.group("recipeName");
+                System.out.println(inHouseController.CookItem(recipeName));
+            } else {
+                System.out.println("You must be at home for this.");
+            }
+        } else if ((matcher = inHouseGameMenuCommands.Eat.getMatcher(input)) != null) {
+            if (MainLocation.House.equals(currentGame.currentUser.getMainLocation())) {
+                String feed = matcher.group("feed");
+                System.out.println(inHouseController.Eat(feed));
+            } else {
+                System.out.println("You must be at home for this.");
+            }
+        }
+            else if (input.matches("exit")) {
             currentMenu = Menu.ExitMenu;
         }
     }

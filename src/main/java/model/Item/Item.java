@@ -8,6 +8,7 @@ public class Item   {
         itemType = itemtype;
         this.number = number;
     }
+
     public ItemType getItemType() {
         return itemType;
     }
