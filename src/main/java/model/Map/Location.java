@@ -8,9 +8,11 @@ public class Location {
         this.y = y;
         this.x = x;
     }
-    public boolean isBetween(Location location,int width,int height){
+
+    public boolean isBetween(Location location, int width, int height) {
         return y < location.getY() + width && y > location.getY() && x < location.getX() + height && x > location.getX();
     }
+
     public int getY() {
         return y;
     }
@@ -26,16 +28,18 @@ public class Location {
     public void setX(int x) {
         this.x = x;
     }
-    public Location changeLocation(int dy,int dx){
-        y+=dy;
-        x+=dx;
-        return new Location(y,x);
+
+    public Location changeLocation(int dy, int dx) {
+        y += dy;
+        x += dx;
+        return new Location(y, x);
     }
+
     @Override
     public String toString() {
-        return "Location{" +
-                "y=" + y +
-                ", x=" + x +
-                '}';
+        return "Location { " +
+                " x = " + x +
+                " , y = " + y +
+                " }";
     }
 }
