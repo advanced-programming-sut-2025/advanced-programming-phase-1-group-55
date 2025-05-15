@@ -18,7 +18,6 @@ public enum mainGameCommands implements Command {
     cheatHour("\\s*cheat advance time\\s+(?<X>\\S+)h\\s*"),
     cheatday("\\s*cheat advance date\\s+(?<X>\\S+)d\\s*"),
     season("\\s*season\\s*"),
-    cheatThor("\\s*cheat Thor -l (?<x>\\d+)\\s(?<y>\\d+)\\s*"),
     weather("\\s*weather\\s*"),
     weatherForecast("\\s*weather\\s+forecast\\s*"),
     cheatWeatherSet("^\\s*cheat weather set (?<type>\\S+)\\s*$"),
@@ -34,7 +33,8 @@ public enum mainGameCommands implements Command {
     chooseMap("\\s*game\\s+map\\s+(?<X>\\S+)\\s*"),
     teleport("^teleport\\s+(?<x>\\d+)\\s+(?<y>\\d+)\\s*$"),
     showOwner("^\\s*show\\s+owner\\s+(?<x>\\d+)\\s+(?<y>\\d+)\\s*$"),
-    walk("\\s*walk\\s+-l\\s+(?<x>\\d+)\\s+(?<y>\\d+)\\s*");
+    walk("\\s*walk\\s+-l\\s+(?<x>\\d+)\\s+(?<y>\\d+)\\s*"),
+    cheatThor("\\s*cheat\\s+Thor\\s+-l\\s+(?<X>\\d+)\\s+(?<Y>\\d+)\\s*");
     private final String pattern;
 
     mainGameCommands(String pattern) {
@@ -49,4 +49,4 @@ public enum mainGameCommands implements Command {
         }
         return null;
     }
-    }
+}

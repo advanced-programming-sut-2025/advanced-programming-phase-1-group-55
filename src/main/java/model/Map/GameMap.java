@@ -115,6 +115,7 @@ public class GameMap {
             case "0"-> AnsiColor.BG_BRIGHT_WHITE;
             case "&" -> AnsiColor.BRIGHT_GREEN;
             case "*" ->AnsiColor.GREEN;
+            case "Z" ->AnsiColor.BROWN;
             default -> color;
         };
         return color;
