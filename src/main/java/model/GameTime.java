@@ -10,6 +10,10 @@ import static enums.Seasons.*;
 import java.awt.*;
 import java.time.LocalDate;
 
+import model.Game;
+
+import static model.App.*;
+
 public class GameTime {
 
     private static int hour = 9;
@@ -22,6 +26,20 @@ public class GameTime {
         GameTime.hour = hour;
     }
 
+    public static void roozbad() {
+        GameTime.hour = 9;
+        weather.setCurrentWeather(weather.getTomorrowWeather());
+        weather.RandomWeatherForTommorow();
+        for (User player : currentGame.playersInGame) {
+            player.setLocation(player.getPlayerTommorowLocation());
+        }
+        day = day.nextDay();
+        DayofMonth += 1;
+        if (DayofMonth > 28) {
+            DayofMonth = 1;
+            currentSeason = currentSeason.nextSeason();
+        }
+    }
 
     public static DayOfTheWeeks getDay() {
         return day;
@@ -56,15 +74,7 @@ public class GameTime {
     public static void increaseHour(int hour) {
         GameTime.hour += hour;
         if (GameTime.hour >= 22) {
-            GameTime.hour = 9;
-            weather.setCurrentWeather(weather.getTomorrowWeather());
-            weather.RandomWeatherForTommorow();
-            day = day.nextDay();
-            DayofMonth += 1;
-            if (DayofMonth > 28) {
-                DayofMonth = 1;
-                currentSeason = currentSeason.nextSeason();
-            }
+            roozbad();
 
 
         }

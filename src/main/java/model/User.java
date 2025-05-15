@@ -68,8 +68,6 @@ public class User {
     }
 
 
-
-
     public Location getPlayerTommorowLocation() {
         return playerTommorowLocation;
     }
@@ -85,8 +83,9 @@ public class User {
     public void setFainted(boolean fainted) {
         this.fainted = fainted;
     }
+
     public void decreaseEnergy(int amount) {
-        this.energy -= amount;
+
         this.energy = Math.max(0, this.energy - amount);
     }
 
@@ -281,108 +280,6 @@ public class User {
 
     public void setMainLocation(MainLocation mainLocation) {
         this.mainLocation = mainLocation;
-    }
-
-    private int countTurns(List<Tile> path) {
-        if (path == null || path.size() < 3) return 0;
-
-        int turns = 0;
-        int prevDx = path.get(1).getLocation().getX() - path.get(0).getLocation().getX();
-        int prevDy = path.get(1).getLocation().getY() - path.get(0).getLocation().getY();
-
-        for (int i = 2; i < path.size(); i++) {
-            int currDx = path.get(i).getLocation().getX() - path.get(i - 1).getLocation().getX();
-            int currDy = path.get(i).getLocation().getY() - path.get(i - 1).getLocation().getY();
-
-            if (currDx != prevDx || currDy != prevDy) {
-                turns++;
-            }
-
-            prevDx = currDx;
-            prevDy = currDy;
-        }
-
-        return turns / 10;
-    }
-
-
-    public void moveTo(int targetX, int targetY, Tile[][] map) {
-        int startX = currentGame.currentUser.getLocation().getX();
-        int startY = currentGame.currentUser.getLocation().getY();
-
-        List<Tile> path = bfs(startX, startY, targetX, targetY, map);
-
-        if (path == null || path.isEmpty()) {
-            System.out.println("there is no path");
-            return;
-        }
-
-        int distance = path.size() - 1;
-        System.out.println("turns :" + countTurns(path));
-        int energyNeeded = (int) Math.ceil((distance + 10 * countTurns(path)) / 20.0);
-
-        System.out.println("path found :)   distance : " + distance + " needed energy :  " + energyNeeded);
-        if (currentGame.currentUser.getEnergy() >= energyNeeded) {
-            System.out.println("are you sure you want to move (yes/no)");
-            Scanner scanner = new Scanner(System.in);
-            String confirm = scanner.nextLine().trim().toLowerCase();
-
-            if (confirm.equals("yes")) {
-                currentGame.currentUser.setEnergy(currentGame.currentUser.getEnergy() - energyNeeded);
-                playerTommorowLocation = new Location(targetY, targetX);
-
-                System.out.println("you moved successfully remained energy : " + currentGame.currentUser.getEnergy());
-            } else {
-                System.out.println("move canceled! ");
-            }
-        } else {
-            currentGame.currentUser.setFainted(true);
-            System.out.println("you dont have enough energy needed energy : " + energyNeeded + "current energy : " + currentGame.currentUser.getEnergy());
-        }
-    }
-
-    private List<Tile> bfs(int startX, int startY, int endX, int endY, Tile[][] map) {
-        int n = map.length;
-        int m = map[0].length;
-
-        boolean[][] visited = new boolean[n][m];
-        Tile[][] parent = new Tile[n][m];
-
-        Queue<int[]> queue = new LinkedList<>();
-        queue.add(new int[]{startX, startY});
-        visited[startX][startY] = true;
-
-        int[][] directions = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}, {-1, -1}, {-1, 1}, {1, -1}, {1, 1}};
-
-        while (!queue.isEmpty()) {
-            int[] current = queue.poll();
-            int x = current[0];
-            int y = current[1];
-
-            if (x == endX && y == endY) {
-                List<Tile> path = new ArrayList<>();
-                Tile step = map[x][y];
-                while (step != null) {
-                    path.add(0, step);
-                    int px = step.getLocation().getX();
-                    int py = step.getLocation().getY();
-                    step = parent[px][py];
-                }
-                return path;
-            }
-
-            for (int[] dir : directions) {
-                int nx = x + dir[0];
-                int ny = y + dir[1];
-
-                if (nx >= 0 && ny >= 0 && nx < n && ny < m && !visited[nx][ny] && map[nx][ny].isWalkable()) {
-                    visited[nx][ny] = true;
-                    parent[nx][ny] = map[x][y];
-                    queue.add(new int[]{nx, ny});
-                }
-            }
-        }
-        return null;
     }
 
 
