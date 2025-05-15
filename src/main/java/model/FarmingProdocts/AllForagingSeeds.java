@@ -4,7 +4,7 @@ import enums.Seasons;
 import model.Item.ItemType;
 
 public enum AllForagingSeeds implements Seed {
-    BLUE_JAZZ_SEEDS(ItemType.JAZZ_SEEDS, Seasons.spring, 0),
+    JAZZ_SEED(ItemType.JAZZ_SEEDS, Seasons.spring, 0),
     CARROT_SEEDS(ItemType.CARROT_SEEDS, Seasons.spring, 1),
     CAULIFLOWER_SEEDS(ItemType.CAULIFLOWER_SEEDS, Seasons.spring, 2),
     COFFEE_BEAN(ItemType.COFFEE_BEANS, Seasons.spring, 3),

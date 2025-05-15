@@ -7,7 +7,7 @@ import model.Item.ItemType;
 import java.util.List;
 
 public enum AllCrops {
-    BLUE_JAZZ("Blue Jazz" , ItemType.BLUE_JAZZ_CROP, AllForagingSeeds.BLUE_JAZZ_SEEDS, List.of(1, 2, 2, 2), 7, true, 0, 50, true, 45, false),
+    BLUE_JAZZ("Blue Jazz" , ItemType.BLUE_JAZZ_CROP, AllForagingSeeds.JAZZ_SEED, List.of(1, 2, 2, 2), 7, true, 0, 50, true, 45, false),
     CARROT("Carrot",ItemType.CARROT_CROP, AllForagingSeeds.CARROT_SEEDS, List.of(1, 1, 1), 3, true, 0, 35, true, 25, false),
     CAULIFLOWER( "Cauliflower",ItemType.CAULIFLOWER_CROP, AllForagingSeeds.CAULIFLOWER_SEEDS, List.of(1, 2, 4, 4, 1), 12, true, 0, 175, true, 75, true),
     COFFEE_BEAN( "Coffee Bean",ItemType.COFFEE_BEAN_CROP, AllForagingSeeds.COFFEE_BEAN, List.of(1, 2, 2, 3, 2), 10, false, 2, 15, false, 0, false),
