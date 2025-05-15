@@ -75,71 +75,49 @@ public class walkController {
 
 
     public Result walk(String x, String y, Tile[][] map) {
-        int targetX, targetY;
+        int targetX;
+        int targetY;
         try {
             targetX = Integer.parseInt(x);
             targetY = Integer.parseInt(y);
         } catch (Exception e) {
             return new Result(false, "Invalid coordinates");
         }
-
         int startX = currentGame.currentUser.getLocation().getX();
         int startY = currentGame.currentUser.getLocation().getY();
 
-        List<Tile> path = bfs(startX, startY, targetX, targetY, map);  // یا dfs
+        List<Tile> path = bfs(startX, startY, targetX, targetY, map);
 
         if (path == null || path.isEmpty()) {
-            return new Result(false, "There is no path");
+            return new Result(false, "there is no path");
         }
 
-        double energy = currentGame.currentUser.getEnergy();
-        int usedEnergy = 0;
-        int stepsCanMove = 1;
+        int distance = path.size() - 1;
+        System.out.println("turns :" + countTurns(path));
+        int energyNeeded = (int) Math.ceil((distance + 10 * countTurns(path)) / 20.0);
 
-        for (int i = 1; i < path.size(); i++) {
-            Tile prev = path.get(i - 1);
-            Tile curr = path.get(i);
+        System.out.println("path found :)   distance : " + distance + " needed energy :  " + energyNeeded);
+        System.out.println("are you sure you want to move (yes/no)");
+        Scanner scanner = new Scanner(System.in);
+        String confirm = scanner.nextLine().trim().toLowerCase();
 
-            int dx = curr.getLocation().getX() - prev.getLocation().getX();
-            int dy = curr.getLocation().getY() - prev.getLocation().getY();
-
-            boolean isTurn = false;
-            if (i >= 2) {
-                Tile beforePrev = path.get(i - 2);
-                int pdx = prev.getLocation().getX() - beforePrev.getLocation().getX();
-                int pdy = prev.getLocation().getY() - beforePrev.getLocation().getY();
-                if (pdx != dx || pdy != dy) isTurn = true;
-            }
-
-            int energyNeeded = (int) Math.ceil((1 + (isTurn ? 10 : 0)) / 20.0);
-
-            if (usedEnergy + energyNeeded <= energy) {
-                usedEnergy += energyNeeded;
-                stepsCanMove++;
+        if (confirm.equals("yes")) {
+            if (currentGame.currentUser.getEnergy() >= energyNeeded) {
+                currentGame.currentUser.decreaseEnergy(energyNeeded);
+                Location playerTommorowLocation = new Location(targetY, targetX);
+                currentGame.currentUser.setPlayerTommorowLocation(playerTommorowLocation);
+                return new Result(true, "you are now moving to " + playerTommorowLocation + " remained energy : " + currentGame.currentUser.getEnergy());
             } else {
-                break;
+                currentGame.currentUser.setFainted(true);
+                //todo shayd nyaz beshe energysh ro sefr konam
+                return new Result(false, "you dont have enough energy (Fainted !)");
+
             }
+        } else {
+            return new Result(false, "move failed");
         }
 
-        if (stepsCanMove == 1) {
-            currentGame.currentUser.setFainted(true);
-            currentGame.currentUser.setEnergy(0);
-            return new Result(false, "You don’t have enough energy to move even one step. (Fainted!)");
-        }
-
-        Tile finalTile = path.get(stepsCanMove - 1);
-        Location newLocation = new Location(finalTile.getLocation().getY(), finalTile.getLocation().getX());
-        currentGame.currentUser.setPlayerTommorowLocation(newLocation);
-        currentGame.currentUser.decreaseEnergy(usedEnergy);
-
-        boolean partial = stepsCanMove < path.size();
-
-        return new Result(true,
-                (partial ? "You didn’t have enough energy to reach the full destination.\n" : "") +
-                        "You will move to: " + newLocation +
-                        "\nRemaining energy: " + currentGame.currentUser.getEnergy());
     }
-
 
     private List<Tile> bfs(int startX, int startY, int endX, int endY, Tile[][] map) {
         int n = map.length;

@@ -66,8 +66,6 @@ public class User {
     }
 
 
-
-
     public Location getPlayerTommorowLocation() {
         return playerTommorowLocation;
     }
@@ -83,8 +81,9 @@ public class User {
     public void setFainted(boolean fainted) {
         this.fainted = fainted;
     }
+
     public void decreaseEnergy(int amount) {
-        this.energy -= amount;
+
         this.energy = Math.max(0, this.energy - amount);
     }
 
