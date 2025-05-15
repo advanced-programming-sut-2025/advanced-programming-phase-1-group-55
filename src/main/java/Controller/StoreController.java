@@ -1,6 +1,7 @@
 package Controller;
 
 import model.App;
+import model.GameTime;
 import model.Map.MainLocation;
 import model.Result;
 import model.Store.Product;
@@ -31,6 +32,10 @@ public class StoreController {
         if(store==null){
             return new Result(false,"you are not in the store!");
         }
+        if(!(GameTime.getHour()>store.getOpeningTime()&&GameTime.getHour()< store.getClosingTime())){
+            return  new Result(false,"Sorry , the store is not open;\nworking hours: "
+                    +store.getOpeningTime()+"-"+store.getClosingTime()+" current time: "+GameTime.getHour());
+        }
         StringBuilder message=new StringBuilder();
         for(Product product:store.getProductsOfStore().values()){
             message.append("name:").append(product.getItem().getItemType().getDisplayName())
@@ -43,6 +48,10 @@ public class StoreController {
         if(store==null){
             return new Result(false,"you are not in the store!");
         }
+        if(!(GameTime.getHour()>store.getOpeningTime()&&GameTime.getHour()< store.getClosingTime())){
+            return  new Result(false,"Sorry , the store is not open;\nworking hours: "
+                    +store.getOpeningTime()+"-"+store.getClosingTime()+" current time: "+GameTime.getHour());
+        }
         StringBuilder message=new StringBuilder();
         for(Product product:store.getProductsOfStore().values()){
             if(product.getDailyLimit()> product.getTodaySell()){
@@ -52,8 +61,23 @@ public class StoreController {
         }
         return new Result(true,message.toString());
     }
-//    public Result sellItem(int amount,String name){}
-//    public Result purchaseItem(int amount , String name){}
+    public Result sellItem(int amount,String name){
+        //todo add shipping bin in the map,error for not being near shipping bin
+        return new Result(true,"you sold "+name+"successfully!");
+    }
+
+    public Result purchaseItem(int amount , String name){
+        Store store=findStore();
+        if(store==null){
+            return new Result(false,"you are not in the store!");
+        }
+        if(!(GameTime.getHour()>store.getOpeningTime()&&GameTime.getHour()< store.getClosingTime())){
+            return  new Result(false,"Sorry , the store is not open;\nworking hours: "
+                    +store.getOpeningTime()+"-"+store.getClosingTime()+" current time: "+GameTime.getHour());
+        }
+        //todo purchase item
+        return new Result(true,"you purchased "+name+" successfully!");
+    }
     public Result cheatAddMoney(int amount){
         App.currentGame.currentUser.setGold(App.currentGame.currentUser.getGold()+amount);
         return  new Result(true,amount +" added to your account:)");
