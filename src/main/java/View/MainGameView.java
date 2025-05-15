@@ -98,13 +98,13 @@ public class MainGameView implements AppMenu {
                 System.out.println("You must be at home for this.");
             }
         } else if ((matcher = inHouseGameMenuCommands.CheatAddItem.getMatcher(input)) != null) {
-//            if (MainLocation.House.equals(currentGame.currentUser.getMainLocation())) {
+            if (MainLocation.House.equals(currentGame.currentUser.getMainLocation())) {
                 String itemName = matcher.group("itemName");
                 String count = matcher.group("count");
                 System.out.println(inHouseController.CheatAddItem(itemName, count));
-//            } else {
-//                System.out.println("You must be at home for this.");
-//            }
+            } else {
+                System.out.println("You must be at home for this.");
+            }
         } else if ((matcher = inHouseGameMenuCommands.PlaceItem.getMatcher(input)) != null) {
             if (MainLocation.House.equals(currentGame.currentUser.getMainLocation())) {
                 String itemName = matcher.group("itemName");
