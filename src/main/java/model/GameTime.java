@@ -39,6 +39,9 @@ public class GameTime {
             DayofMonth = 1;
             currentSeason = currentSeason.nextSeason();
         }
+        for(User user: currentGame.playersInGame){
+            user.increaseGold(user.getDailyMoney());
+        }
     }
 
     public static DayOfTheWeeks getDay() {

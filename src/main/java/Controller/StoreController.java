@@ -80,7 +80,7 @@ public class StoreController {
             return new Result(false,"you dont have enough item to sell");
         }
         App.currentGame.currentUser.getBackPack().removeAmountFromInventory(item.getItemType(),amount);
-        App.currentGame.currentUser.setGold(App.currentGame.currentUser.getGold()+ item.getPrice()*amount);
+        App.currentGame.currentUser.increaseDailyMoney(amount* item.getPrice());
         return new Result(true,"you sold "+name+"successfully!");
     }
 
