@@ -8,7 +8,7 @@ import java.util.HashMap;
 public class OjaMartStore extends Store{
 
     public OjaMartStore() {
-        super(9, 17, new HashMap<>(), new Npc("Morris"), "OjaMart");
+        super(9, 23, new HashMap<>(), new Npc("Morris"), "OjaMart");
     }
 }
 

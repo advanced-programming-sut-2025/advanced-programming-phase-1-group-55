@@ -32,7 +32,7 @@ public class StoreController {
         if(store==null){
             return new Result(false,"you are not in the store!");
         }
-        if(!(GameTime.getHour()>store.getOpeningTime()&&GameTime.getHour()< store.getClosingTime())){
+        if(!(GameTime.getHour()>=store.getOpeningTime()&&GameTime.getHour()< store.getClosingTime())){
             return  new Result(false,"Sorry , the store is not open;\nworking hours: "
                     +store.getOpeningTime()+"-"+store.getClosingTime()+" current time: "+GameTime.getHour());
         }
@@ -48,7 +48,7 @@ public class StoreController {
         if(store==null){
             return new Result(false,"you are not in the store!");
         }
-        if(!(GameTime.getHour()>store.getOpeningTime()&&GameTime.getHour()< store.getClosingTime())){
+        if(!(GameTime.getHour()>=store.getOpeningTime()&&GameTime.getHour()< store.getClosingTime())){
             return  new Result(false,"Sorry , the store is not open;\nworking hours: "
                     +store.getOpeningTime()+"-"+store.getClosingTime()+" current time: "+GameTime.getHour());
         }
@@ -71,7 +71,7 @@ public class StoreController {
         if(store==null){
             return new Result(false,"you are not in the store!");
         }
-        if(!(GameTime.getHour()>store.getOpeningTime()&&GameTime.getHour()< store.getClosingTime())){
+        if(!(GameTime.getHour()>=store.getOpeningTime()&&GameTime.getHour()< store.getClosingTime())){
             return  new Result(false,"Sorry , the store is not open;\nworking hours: "
                     +store.getOpeningTime()+"-"+store.getClosingTime()+" current time: "+GameTime.getHour());
         }
