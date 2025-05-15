@@ -20,6 +20,7 @@ public class Product {
         this.goldCost = goldCost;
         this.woodCost = woodCost;
         this.stoneCost = stoneCost;
+        item.setPrice(goldCost);
         this.season=season;
     }
 

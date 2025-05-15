@@ -72,12 +72,10 @@ public class BackPack {
     }
 
 
-    public boolean addToInventory(Item item){
+    public void addToInventory(Item item){
         if (inventory.size() < getSize()) {
             inventory.put(item.getItemType().name(),item);
-            return true;
         }
-        return false;
     }
     public void removeFromInventory(Item item){
          inventory.remove(item.getItemType().getDisplayName());

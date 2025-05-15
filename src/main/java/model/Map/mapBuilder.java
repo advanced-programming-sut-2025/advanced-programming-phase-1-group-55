@@ -159,6 +159,12 @@ public class mapBuilder {
                 map.tiles[31][j] = new Tile(new Location(31, j), "=", true, false, TileType.building);
             }
         }
+        map.tiles[20][44]=new Tile(new Location(20,44),"@",true,false,TileType.building);
+        map.tiles[20][57]=new Tile(new Location(20,57),"@",true,false,TileType.building);
+        map.tiles[20][72]=new Tile(new Location(20,72),"@",true,false,TileType.building);
+        map.tiles[20][89]=new Tile(new Location(20,89),"@",true,false,TileType.building);
+        map.tiles[20][104]=new Tile(new Location(20,104),"@",true,false,TileType.building);
+        map.tiles[20][115]=new Tile(new Location(20,115),"@",true,false,TileType.building);
         placeStore(map);
 
     }
