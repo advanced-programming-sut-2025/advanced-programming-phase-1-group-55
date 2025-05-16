@@ -56,11 +56,7 @@ public class GameTime {
 
         }
         for (User player : currentGame.playersInGame) {
-            if (player.getPlayerTommorowLocation() != null) {
-
-
-                player.setLocation(player.getPlayerTommorowLocation());
-            }
+        
             if (player.isFainted()) {
                 player.setFainted(false);
                 player.setEnergy(150);

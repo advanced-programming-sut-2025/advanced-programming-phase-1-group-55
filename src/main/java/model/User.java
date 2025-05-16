@@ -1,6 +1,7 @@
 package model;
 
 //import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
+
 import enums.CookingItemType;
 import enums.CraftingItemType;
 import enums.SkillType;
@@ -42,7 +43,7 @@ public class User {
     private int matchPlayed = 0;
     private Location location = new Location(0, 0);//todo ino bayad bokonm location aval farmesh
     private boolean fainted = false;
-    private Location playerTommorowLocation;
+
     private Game playedGame;
     private Farm farm;
     private MainLocation mainLocation = MainLocation.House;
@@ -94,14 +95,6 @@ public class User {
         this.playedGame = playedGame;
     }
 
-
-    public Location getPlayerTommorowLocation() {
-        return playerTommorowLocation;
-    }
-
-    public void setPlayerTommorowLocation(Location playerTommorowLocation) {
-        this.playerTommorowLocation = playerTommorowLocation;
-    }
 
     public boolean isFainted() {
         return fainted;

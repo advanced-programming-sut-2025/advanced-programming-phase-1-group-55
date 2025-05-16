@@ -181,7 +181,7 @@ public class walkController {
 
         Tile finalTile = path.get(stepsCanMove - 1);
         Location newLocation = new Location(finalTile.getLocation().getY(), finalTile.getLocation().getX());
-        currentGame.currentUser.setPlayerTommorowLocation(newLocation);
+        currentGame.currentUser.setLocation(newLocation);
         currentGame.currentUser.decreaseEnergy((int) Math.ceil(usedEnergy));
 
         boolean fullMove = stepsCanMove == path.size();
