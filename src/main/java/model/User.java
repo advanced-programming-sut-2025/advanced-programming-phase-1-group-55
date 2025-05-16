@@ -49,6 +49,8 @@ public class User {
     private Skill miningSkill = new Skill(SkillType.Mining);
     private Skill foragingSkill = new Skill(SkillType.Foraging);
     private Skill fishingSkill = new Skill(SkillType.Fishing);
+    private ArrayList<CookingItem> refrigerator = new ArrayList<>();
+
 
     public HashMap<Integer, Trade> getTrades() {
         return trades;
@@ -159,12 +161,16 @@ public class User {
         this.email = email;
         this.numberOfSecurityQuestion = numberOfSecurityQuestion;
         this.securityQuestion = securityQuestion;
-        this.cookingItem = new CookingItem(CookingItemType.DISH_O_THE_SEA);
+//        this.cookingItem = new CookingItem(CookingItemType.DISH_O_THE_SEA);
+        this.refrigerator = new ArrayList<>();
 
 //        learnRecipe(CraftingItemType.FURNACE);
 //        learnRecipe(CraftingItemType.SCARECROW);
 //        learnRecipe(CraftingItemType.MAYONNAISE_MACHINE);
     }
+//    public ArrayList<Item> getRefrigerator() {
+//        return refrigerator;
+//    }
 
     public void addTrade(Trade trade) {
         userTrades.add(trade);
@@ -319,6 +325,37 @@ public class User {
 
     public Skill getFishingSkill() {
         return fishingSkill;
+    }
+    public ArrayList<CookingItem> getRefrigerator() {
+        return refrigerator;
+    }
+
+    public CookingItem getFromRefrigerator(ItemType itemType) {
+        for (CookingItem refrigeratorItem : refrigerator) {
+            if (refrigeratorItem.getItemType().equals(itemType)) {
+                return refrigeratorItem;
+            }
+        }
+        return null;
+    }
+    public int howManyInRefrigerator(ItemType itemType) {
+        for (CookingItem refrigeratorItem : refrigerator) {
+            if (refrigeratorItem.getItemType().equals(itemType)) {
+                return refrigeratorItem.getNumber();
+            }
+        }
+        return 0;
+    }
+    public void removeFromRefrigerator(ItemType itemType, int number) {
+        for (CookingItem refrigeratorItem : refrigerator) {
+            if (refrigeratorItem.getItemType().equals(itemType)) {
+                refrigeratorItem.addNumber(-1 * number);
+                if (refrigeratorItem.getNumber() <= 0) {
+                    refrigerator.remove(refrigeratorItem);
+                }
+                break;
+            }
+        }
     }
     //    public void learnRecipe(CraftingItemType recipe) {
 //        learnedCraftingRecipes.add(recipe);
