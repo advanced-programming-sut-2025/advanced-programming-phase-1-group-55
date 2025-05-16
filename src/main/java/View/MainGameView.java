@@ -183,12 +183,9 @@ public class MainGameView implements AppMenu {
         } else if (input.matches("\\s*start\\s+trade\\s*")) {
             System.out.println(controller5.TradeMenu());
 
-        } else if ((matcher=mainGameCommands.TradeRequest.getMatcher(input))!=null) {
-            System.out.println(controller5.TradeRequest(matcher.group("username"),matcher.group("type"),matcher.group("item"),matcher.group("amount"),matcher.group("price"),matcher.group("targetItem"),matcher.group("targetAmount") ));
+        } else if ((matcher = mainGameCommands.TradeRequest.getMatcher(input)) != null) {
+            System.out.println(controller5.TradeRequest(matcher.group("username"), matcher.group("type"), matcher.group("item"), matcher.group("amount"), matcher.group("price"), matcher.group("targetItem"), matcher.group("targetAmount")));
 
-        }
-        else {
-            System.out.println("Unknown command");
         } else if ((matcher = StoreCommands.purchaseItem.getMatcher(input)) != null) {
             if (matcher.group("count") != null) {
                 System.out.println(controller3.purchaseItem(Integer.parseInt(matcher.group("count")), matcher.group("name")));
@@ -196,7 +193,9 @@ public class MainGameView implements AppMenu {
                 System.out.println(controller3.purchaseItem(1, matcher.group("name")));
             }
         } else if (input.matches("\\s*player\\s*")) {
-           currentGame.getMap().tiles[currentGame.currentUser.getLocation().getY()][currentGame.currentUser.getLocation().getX()].setMohtaviat("P");
+            currentGame.getMap().tiles[currentGame.currentUser.getLocation().getY()][currentGame.currentUser.getLocation().getX()].setMohtaviat("P");
+        } else {
+            System.out.println("Unknown command");
         }
     }
 }
