@@ -3,6 +3,7 @@ package View;
 import Controller.*;
 import enums.*;
 import model.App;
+import model.Item.Item;
 import model.Map.MainLocation;
 
 import java.util.regex.Matcher;
@@ -186,13 +187,9 @@ public class MainGameView implements AppMenu {
         } else if ((matcher = mainGameCommands.TradeRequest.getMatcher(input)) != null) {
             System.out.println(controller5.TradeRequest(matcher.group("username"), matcher.group("type"), matcher.group("item"), matcher.group("amount"), matcher.group("price"), matcher.group("targetItem"), matcher.group("targetAmount")));
 
-        }
-        else if(input.matches("\\s*trade\\s+list\\s*")){
+        } else if (input.matches("\\s*trade\\s+list\\s*")) {
             System.out.println(controller5.tradeList());
-        }
-
-
-        else if ((matcher = StoreCommands.purchaseItem.getMatcher(input)) != null) {
+        } else if ((matcher = StoreCommands.purchaseItem.getMatcher(input)) != null) {
             if (matcher.group("count") != null) {
                 System.out.println(controller3.purchaseItem(Integer.parseInt(matcher.group("count")), matcher.group("name")));
             } else {
@@ -200,8 +197,13 @@ public class MainGameView implements AppMenu {
             }
         } else if (input.matches("\\s*player\\s*")) {
             currentGame.getMap().tiles[currentGame.currentUser.getLocation().getY()][currentGame.currentUser.getLocation().getX()].setMohtaviat("P");
-        } else if ((matcher=mainGameCommands.TradeResponse.getMatcher(input)) != null) {
-            System.out.println(controller5.TradeRequest());
+        } else if ((matcher = mainGameCommands.TradeResponse.getMatcher(input)) != null) {
+            System.out.println(controller5.tradeResponse(matcher.group("answer"), matcher.group("id")));
+
+        } else if (input.matches("\\s*inv\\s*")) {
+            for (Item item : currentGame.currentUser.getBackPack().getInventory().values()) {
+                System.out.println(item.getItemType() + "  " + item.getNumber());
+            }
 
         } else {
             System.out.println("Unknown command");

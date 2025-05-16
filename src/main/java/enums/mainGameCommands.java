@@ -36,7 +36,7 @@ public enum mainGameCommands implements Command {
     walk("\\s*walk\\s+-l\\s+(?<x>\\d+)\\s+(?<y>\\d+)\\s*"),
     cheatThor("\\s*cheat\\s+Thor\\s+-l\\s+(?<X>\\d+)\\s+(?<Y>\\d+)\\s*"),
     TradeRequest("trade\\s+-u\\s+(?<username>\\w+)\\s+-t\\s+(?<type>offer|request)\\s+-i\\s+(?<item>\\w+)\\s+-a\\s+(?<amount>\\d+)(?:\\s+-p\\s+(?<price>\\d+))?(?:\\s+-ti\\s+(?<targetItem>\\w+)\\s+-ta\\s+(?<targetAmount>\\d+))?\\s*"),
-    ,TradeResponse("\\s*trade\\s+response\\s+-(accept|reject)\\s+-i\\s+(?<id>\\d+)\\s*");
+    TradeResponse("\\s*trade\\s+response\\s+-(?<answer>accept|reject)\\s+-i\\s+(?<id>\\d+)\\s*");
     private final String pattern;
 
     mainGameCommands(String pattern) {

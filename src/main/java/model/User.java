@@ -46,13 +46,6 @@ public class User {
     private CookingItem cookingItem;
     private int stone;
 
-    public void decreaseGold(int amount) {
-        gold -= amount;
-        if (gold <= 0) {
-            gold = 0;
-        }
-    }
-
 
     public int getStone() {
         return stone;

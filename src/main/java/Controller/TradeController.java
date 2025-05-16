@@ -67,10 +67,12 @@ public class TradeController {
 
             }
 
-            Trade trade = new Trade(currentGame.currentUser, targetUser, new Item(getItemType(item)), "request", Amount, Price, new Item(getItemType(targetItem)), TargetAmount, id++);
+            Trade trade = new Trade(currentGame.currentUser, targetUser, new Item(getItemType(item)), "request", Amount, Price, new Item(getItemType(targetItem)), TargetAmount, id);
             currentGame.currentUser.getTrades().put(id, trade);
             targetUser.getTrades().put(id, trade);
             currentGame.addToAllTrade(trade);
+            id++;
+
 
         } else if (type.equals("offer")) {
 
@@ -85,10 +87,11 @@ public class TradeController {
 
             }
 
-            Trade trade = new Trade(currentGame.currentUser, targetUser, new Item(getItemType(item)), "offer", Amount, Price, new Item(getItemType(targetItem)), TargetAmount, id++);
+            Trade trade = new Trade(currentGame.currentUser, targetUser, new Item(getItemType(item)), "offer", Amount, Price, new Item(getItemType(targetItem)), TargetAmount, id);
             currentGame.currentUser.getTrades().put(id, trade);
             targetUser.getTrades().put(id, trade);
             currentGame.addToAllTrade(trade);
+            id++;
 
         }
         return new Result(true, "trade registered successfully!");
@@ -107,7 +110,14 @@ public class TradeController {
 
     }
 
-    public Result tradeResponse(String response, int id) {
+    public Result tradeResponse(String response, String ID) {
+        int id;
+        try {
+            id = Integer.parseInt(ID);
+        } catch (Exception e) {
+            return new Result(false, "Invalid ID");
+        }
+
         Trade trade = currentGame.currentUser.getTrades().get(id);
         if (trade == null) {
             return new Result(false, "Trade not found");
@@ -117,23 +127,44 @@ public class TradeController {
 
                 currentGame.currentUser.getBackPack().addItemToInventory(trade.getItem(), trade.getAmount());
                 if (trade.getPrice() != 0) {
-                    currentGame.currentUser.decreaseGold(trade.getPrice());
+                    currentGame.currentUser.increaseGold(-1 * trade.getPrice());
                 } else {
                     currentGame.currentUser.getBackPack().removeAmountFromInventory(trade.getTargetItem().getItemType(), trade.getTargetAmount());
                 }
                 trade.setAccepted(true);
                 trade.setPrinted(true);
-                return new Result(true, "Trade " + id + " accepted");
+                return new Result(true, "Trade " + id + " accepted(request)");
             } else if (response.equals("reject")) {
 
                 trade.setAccepted(false);
                 trade.setPrinted(true);
-                return new Result(true, "Trade " + id + " rejected");
+                return new Result(true, "Trade " + id + " rejected(request)");
+
+            } else {
+                return new Result(false, "invalid response");
+            }
+        } else if (trade.getType().equals("offer")) {
+            if (response.equals("accept")) {
+                currentGame.currentUser.getBackPack().removeAmountFromInventory(trade.getTargetItem().getItemType(), trade.getAmount());
+                if (trade.getPrice() != 0) {
+                    currentGame.currentUser.increaseGold(trade.getPrice());
+                } else {
+                    currentGame.currentUser.getBackPack().addItemToInventory(trade.getTargetItem(), trade.getTargetAmount());
+                }
+                trade.setAccepted(true);
+                trade.setPrinted(true);
+                return new Result(true, "Trade " + id + " accepted (offer)");
+            } else if (response.equals("reject")) {
+
+                trade.setAccepted(false);
+                trade.setPrinted(true);
+                return new Result(true, "Trade " + id + " rejected(offer)");
 
             } else {
                 return new Result(false, "invalid response");
             }
         }
+        return new Result(true, "aslan nabayd be inja berese");
     }
 
 }
