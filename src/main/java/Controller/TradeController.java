@@ -82,16 +82,20 @@ public class TradeController {
 
 
         } else if (type.equals("offer")) {
+            if (price != null) {
 
-            if (Price > targetUser.getGold()) {
-                return new Result(false, "You dont have enough Gold");
-            }
-            if (currentGame.currentUser.getBackPack().getInventory().get(item) == null || currentGame.currentUser.getBackPack().getInventory().get(item).getNumber() < Amount) {
-                return new Result(false, "You dont have enough item");
-            }
-            if (targetUser.getBackPack().getInventory().get(targetItem) == null || targetUser.getBackPack().getInventory().get(item).getNumber() < TargetAmount) {
-                return new Result(false, "Item " + item + " is out of stock! Remained : " + targetUser.getBackPack().getInventory().get(item).getNumber());
+                if (Price > targetUser.getGold()) {
+                    return new Result(false, "You dont have enough Gold");
+                }
+            } else {
 
+                if (currentGame.currentUser.getBackPack().getInventory().get(item) == null || currentGame.currentUser.getBackPack().getInventory().get(item).getNumber() < Amount) {
+                    return new Result(false, "You dont have enough item");
+                }
+                if (targetUser.getBackPack().getInventory().get(targetItem) == null || targetUser.getBackPack().getInventory().get(item).getNumber() < TargetAmount) {
+                    return new Result(false, "Item " + item + " is out of stock! Remained : " + targetUser.getBackPack().getInventory().get(item).getNumber());
+
+                }
             }
 
             Trade trade = new Trade(currentGame.currentUser, targetUser, new Item(getItemType(item)), "offer", Amount, Price, new Item(getItemType(targetItem)), TargetAmount, id);
@@ -129,14 +133,19 @@ public class TradeController {
         if (trade == null) {
             return new Result(false, "Trade not found");
         }
+        if (!currentGame.currentUser.getUsername().equals(trade.getReciver().getUsername())) {
+            return new Result(false, "You should be receiver to response the trade");
+        }
         if (trade.getType().equals("request")) {
             if (response.equals("accept")) {
 
-                currentGame.currentUser.getBackPack().addItemToInventory(trade.getItem(), trade.getAmount());
+                trade.getSender().getBackPack().addItemToInventory(trade.getItem(), trade.getAmount());
                 if (trade.getPrice() != 0) {
-                    currentGame.currentUser.increaseGold(-1 * trade.getPrice());
+                    trade.getSender().increaseGold(-1 * trade.getPrice());
+                    trade.getReciver().increaseGold(trade.getPrice());
                 } else {
-                    currentGame.currentUser.getBackPack().removeAmountFromInventory(trade.getTargetItem().getItemType(), trade.getTargetAmount());
+                    trade.getSender().getBackPack().removeAmountFromInventory(trade.getTargetItem().getItemType(), trade.getTargetAmount());
+                    trade.getSender().getBackPack().addItemToInventory(trade.getTargetItem(), trade.getTargetAmount());
                 }
                 trade.setAccepted(true);
                 trade.setPrinted(true);
@@ -155,11 +164,16 @@ public class TradeController {
             }
         } else if (trade.getType().equals("offer")) {
             if (response.equals("accept")) {
-                currentGame.currentUser.getBackPack().removeAmountFromInventory(trade.getTargetItem().getItemType(), trade.getAmount());
+                
+                trade.getSender().getBackPack().removeAmountFromInventory(trade.getItem().getItemType(), trade.getAmount());
+                trade.getReciver().getBackPack().addItemToInventory(trade.getItem(), trade.getAmount());
+
                 if (trade.getPrice() != 0) {
-                    currentGame.currentUser.increaseGold(trade.getPrice());
+                    trade.getReciver().increaseGold(-1 * trade.getPrice());
+                    trade.getSender().increaseGold(trade.getPrice());
                 } else {
-                    currentGame.currentUser.getBackPack().addItemToInventory(trade.getTargetItem(), trade.getTargetAmount());
+                    trade.getSender().getBackPack().addItemToInventory(trade.getTargetItem(), trade.getTargetAmount());
+                    trade.getReciver().getBackPack().removeAmountFromInventory(trade.getTargetItem().getItemType(), trade.getTargetAmount());
                 }
                 trade.setAccepted(true);
                 trade.setPrinted(true);

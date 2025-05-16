@@ -181,10 +181,10 @@ public class GameMenuController {
 
         currentGame = new Game(mainUser, playersInGame, Map);
         currentMenu = Menu.MainGameMenu;
-        Item item = new Item(ItemType.getItemType("coal"));
-        item.setNumber(100);
+
         for (User player : playersInGame) {
-            player.getBackPack().getInventory().put("coal", item);
+            player.getBackPack().getInventory().put("coal", new Item(ItemType.getItemType("coal")));
+            player.getBackPack().getInventory().get("coal").setNumber(100);
         }
         return new Result(true, "game has created successfully !");
     }

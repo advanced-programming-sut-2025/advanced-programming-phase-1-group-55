@@ -195,8 +195,6 @@ public class MainGameView implements AppMenu {
             } else {
                 System.out.println(controller3.purchaseItem(1, matcher.group("name")));
             }
-        } else if (input.matches("\\s*player\\s*")) {
-            currentGame.getMap().tiles[currentGame.currentUser.getLocation().getY()][currentGame.currentUser.getLocation().getX()].setMohtaviat("P");
         } else if ((matcher = mainGameCommands.TradeResponse.getMatcher(input)) != null) {
             System.out.println(controller5.tradeResponse(matcher.group("answer"), matcher.group("id")));
 
@@ -209,6 +207,8 @@ public class MainGameView implements AppMenu {
             System.out.println(controller5.TradeHistory());
         } else if (input.matches("\\s*remained\\s+trades\\s*")) {
             System.out.println(controller5.NotAnswerdTrades());
+        } else if (input.matches("\\s*gold\\s*")) {
+            
         } else {
             System.out.println("Unknown command");
         }
