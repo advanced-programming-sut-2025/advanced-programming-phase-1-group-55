@@ -205,6 +205,8 @@ public class MainGameView implements AppMenu {
                 System.out.println(item.getItemType() + "  " + item.getNumber());
             }
 
+        } else if (input.matches("\\s*trade\\s+history\\s*")) {
+            System.out.println(controller5.TradeHistory());
         } else {
             System.out.println("Unknown command");
         }

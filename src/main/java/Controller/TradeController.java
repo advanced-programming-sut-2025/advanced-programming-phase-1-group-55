@@ -19,6 +19,13 @@ public class TradeController {
         sb.append("players username : \n");
         for (User user : players) {
             sb.append(user.getUsername()).append("\n");
+            for (Trade trade : user.getTrades().values()) {
+                if (!trade.isPrinted()) {
+
+                    sb.append(trade.toString()).append("\n");
+                    trade.setPrinted(true);
+                }
+            }
         }
         return new Result(true, sb.toString());
     }
@@ -165,6 +172,15 @@ public class TradeController {
             }
         }
         return new Result(true, "aslan nabayd be inja berese");
+    }
+
+    public Result TradeHistory() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("trade history : \n");
+        for (Trade trade : currentGame.currentUser.getTrades().values()) {
+            stringBuilder.append(trade.toString()).append("\n");
+        }
+        return new Result(true, stringBuilder.toString());
     }
 
 }
