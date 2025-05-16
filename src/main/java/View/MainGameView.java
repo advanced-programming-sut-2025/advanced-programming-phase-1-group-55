@@ -90,30 +90,27 @@ public class MainGameView implements AppMenu {
                     Integer.parseInt(matcher.group("y"))));
             System.out.println("you are now in: " + currentGame.currentUser.getMainLocation());
         }
-//        else if ((matcher = inHouseGameMenuCommands.ShowLearnedRecipes.getMatcher(input)) != null) {
-//            System.out.println("you are now in: "+currentGame.currentUser.getMainLocation());
-//        }
         else if ((matcher = inHouseGameMenuCommands.ShowLearnedCratingRecipes.getMatcher(input)) != null) {
-//            if (MainLocation.House.equals(currentGame.currentUser.getMainLocation())) {
+            if (MainLocation.House.equals(currentGame.currentUser.getMainLocation())) {
                 System.out.println(inHouseController.ShowCraftingRecipe());
-//            } else {
-//                System.out.println("You must be at home for this.");
-//            }
+            } else {
+                System.out.println("You must be at home for this.");
+            }
         } else if ((matcher = inHouseGameMenuCommands.CraftItem.getMatcher(input)) != null) {
-//            if (MainLocation.House.equals(currentGame.currentUser.getMainLocation())) {
+            if (MainLocation.House.equals(currentGame.currentUser.getMainLocation())) {
                 String itemName = matcher.group("itemName");
                 System.out.println(inHouseController.CraftItem(itemName));
-//            } else {
-//                System.out.println("You must be at home for this.");
-//            }
+            } else {
+                System.out.println("You must be at home for this.");
+            }
         } else if ((matcher = inHouseGameMenuCommands.CheatAddItem.getMatcher(input)) != null) {
-//            if (MainLocation.House.equals(currentGame.currentUser.getMainLocation())) {
+            if (MainLocation.House.equals(currentGame.currentUser.getMainLocation())) {
                 String itemName = matcher.group("itemName");
                 String count = matcher.group("count");
                 System.out.println(inHouseController.CheatAddItem(itemName, count));
-//            } else {
-//                System.out.println("You must be at home for this.");
-//            }
+            } else {
+                System.out.println("You must be at home for this.");
+            }
         } else if ((matcher = inHouseGameMenuCommands.PlaceItem.getMatcher(input)) != null) {
             if (MainLocation.House.equals(currentGame.currentUser.getMainLocation())) {
                 String itemName = matcher.group("itemName");
@@ -137,32 +134,32 @@ public class MainGameView implements AppMenu {
                 System.out.println("You must be at home for this.");
             }
         } else if ((matcher = inHouseGameMenuCommands.ShowLearnedCookingRecipes.getMatcher(input)) != null) {
-//            if (MainLocation.House.equals(currentGame.currentUser.getMainLocation())) {
+            if (MainLocation.House.equals(currentGame.currentUser.getMainLocation())) {
                 System.out.println(inHouseController.ShowCookingRecipe());
-//            } else {
-//                System.out.println("You must be at home for this.");
-//            }
+            } else {
+                System.out.println("You must be at home for this.");
+           }
         } else if ((matcher = inHouseGameMenuCommands.CookItem.getMatcher(input)) != null) {
-//            if (MainLocation.House.equals(currentGame.currentUser.getMainLocation())) {
+            if (MainLocation.House.equals(currentGame.currentUser.getMainLocation())) {
                 String recipeName = matcher.group("recipeName");
                 System.out.println(inHouseController.CookItem(recipeName));
-//            } else {
-//                System.out.println("You must be at home for this.");
-//            }
+            } else {
+               System.out.println("You must be at home for this.");
+            }
         } else if ((matcher = inHouseGameMenuCommands.Eat.getMatcher(input)) != null) {
-//            if (MainLocation.House.equals(currentGame.currentUser.getMainLocation())) {
+           if (MainLocation.House.equals(currentGame.currentUser.getMainLocation())) {
                 String feed = matcher.group("feed");
                 System.out.println(inHouseController.Eat(feed));
-//            } else {
-//                System.out.println("You must be at home for this.");
-//            }
+            } else {
+               System.out.println("You must be at home for this.");
+           }
         } else if ((matcher = inHouseGameMenuCommands.CHEAT_ADD_CRAFTING_RECIPE.getMatcher(input)) != null) {
-//            if (MainLocation.House.equals(currentGame.currentUser.getMainLocation())) {
+           if (MainLocation.House.equals(currentGame.currentUser.getMainLocation())) {
             String recipeName = matcher.group("recipeName");
             System.out.println(inHouseController.cheatAddCraftingRecipe(recipeName));
-//            } else {
-//                System.out.println("You must be at home for this.");
-//            }
+            } else {
+                System.out.println("You must be at home for this.");
+            }
         }
         else if (input.matches("\\s*next\\s+turn\\s*")) {
             currentGame.nextTurn();

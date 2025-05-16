@@ -160,7 +160,7 @@ public class inHouseController {
 //            return new Result(false, "No recipe found");
 //        }
         StringBuilder result = new StringBuilder();
-        if (recipes.size() > 0) {
+        if (!recipes.isEmpty()) {
         for (CookingItemType recipe : recipes) {
             result.append(recipe.getProductName()).append(": ")
                     .append("ingredient: ").append(recipe.getIngredients()).append("\n")
@@ -210,7 +210,7 @@ public class inHouseController {
         user.decreaseEnergy(3);
         CookingItem food = new CookingItem(recipe);
         user.getBackPack().addToInventory(food);
-        return new Result(true, food + " was cooked and added to inventory.");
+        return new Result(true, food.getItemType().getDisplayName() + " was cooked and added to inventory.");
     }
     public Result Eat(String itemName) {
         User user = App.currentGame.currentUser;
@@ -230,28 +230,4 @@ public class inHouseController {
         user.increaseEnergy(feed.getEnergy());
         return new Result(true, itemName + " has been eaten");
     }
-
-
-
-
-
-
-
-
-
-
-
-//    public Result getLearnedRecipes(User user) {
-//        Set<CraftingItemType> recipes = user.getLearnedCraftingRecipes();
-//        if (recipes.isEmpty()) {
-//            return new Result(false, "You haven't learned any crafting recipes yet.");
-//        }
-//        StringBuilder message = new StringBuilder("Crafting Recipes You Have Learned:\n");
-//        for (CraftingItemType recipe : recipes) {
-//            message.append("- ").append().append("\n");
-//        }
-//
-//        return new Result(true, message.toString());
-//
-//    }
 }

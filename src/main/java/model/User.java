@@ -376,6 +376,9 @@ public class User {
         return fishingSkill;
     }
     public ArrayList<CookingItem> getRefrigerator() {
+        if(refrigerator==null){
+            refrigerator=new ArrayList<>();
+        }
         return refrigerator;
     }
 
