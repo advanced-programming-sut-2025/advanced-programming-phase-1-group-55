@@ -27,7 +27,7 @@ public class Game {
     public User currentUser;
     public ArrayList<User> playersInGame = new ArrayList<>();
     private GameMap map;
-    private ArrayList<PlayerFriendship> allFriendships=new ArrayList<>();
+    private ArrayList<PlayerFriendship> allFriendships = new ArrayList<>();
     private HashMap<Integer, Trade> AllTrades = new HashMap<>();
 
     public Game(User currentUser, ArrayList<User> playersInGame, GameMap map) {
@@ -47,7 +47,11 @@ public class Game {
     }
 
     public void nextTurn() {
+
         currentUser = playersInGame.get((++turnCounter) % playersInGame.size());
+        if (currentUser.isFainted()) {
+            nextTurn();
+        }
         System.out.println("player " + turnCounter % playersInGame.size() + " : " + currentUser.getUsername());
 
         if ((turnCounter) % playersInGame.size() == 0) {
@@ -145,6 +149,7 @@ public class Game {
     public void setAllTrades(HashMap<Integer, Trade> allTrades) {
         AllTrades = allTrades;
     }
+
     public void addToAllTrade(Trade trade) {
         AllTrades.put(trade.getId(), trade);
     }

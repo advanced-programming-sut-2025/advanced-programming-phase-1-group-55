@@ -33,17 +33,19 @@ public class GameTime {
     public static void setHour(int hour) {
         GameTime.hour = hour;
     }
-    public  static void friendshipWorks(){
-       for(User user:currentGame.playersInGame){
-           for (PlayerFriendship friendship:user.getFriendsPlayer().values()){
-               friendship.setTodayTalked(false);
-               friendship.setTodayGotFlower(false);
-               friendship.setTodayGotGift(false);
-               friendship.setTodayHugged(false);
-               friendship.setTodayTraded(false);
-           }
-       }
+
+    public static void friendshipWorks() {
+        for (User user : currentGame.playersInGame) {
+            for (PlayerFriendship friendship : user.getFriendsPlayer().values()) {
+                friendship.setTodayTalked(false);
+                friendship.setTodayGotFlower(false);
+                friendship.setTodayGotGift(false);
+                friendship.setTodayHugged(false);
+                friendship.setTodayTraded(false);
+            }
+        }
     }
+
     public static void roozbad() {
         GameTime.hour = 9;
         weather.setCurrentWeather(weather.getTomorrowWeather());
@@ -56,8 +58,12 @@ public class GameTime {
         for (User player : currentGame.playersInGame) {
             if (player.getPlayerTommorowLocation() != null) {
 
-                System.out.println("ok shod");
+
                 player.setLocation(player.getPlayerTommorowLocation());
+            }
+            if (player.isFainted()) {
+                player.setFainted(false);
+                player.setEnergy(150);
             }
         }
         day = day.nextDay();
