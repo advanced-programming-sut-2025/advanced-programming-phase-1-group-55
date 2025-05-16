@@ -191,7 +191,7 @@ public class User {
 
     private ArrayList<Trade> userTrades;
 
-    public User(String username, String password, String nickName, String gender, String email, int numberOfSecurityQuestion, String securityQuestion) {
+    public User(String username, String password, String nickName, String email, String gender, int numberOfSecurityQuestion, String securityQuestion) {
         this.username = username;
         this.password = password;
         this.nickName = nickName;

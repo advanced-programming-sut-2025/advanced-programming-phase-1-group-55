@@ -60,8 +60,10 @@ public class LoginMenuController extends RegisterController {
                     System.out.println("for random password enter 1 else press enter to continue");
                     String voroudi = scanner.nextLine();
                     if (voroudi.equals("1")) {
-                        user.setPassword(controller.RandomPasswordGenerator());
-                        return new Result(true, "random password generated" + "\nyour password : " + user.getPassword());
+                        String password = controller.RandomPasswordGenerator();
+                        user.setPassword(convertToSHA(password));
+                        saveUserToJson(user);
+                        return new Result(true, "random password generated" + "\nyour password : " + password);
                     } else {
                         System.out.println("enter your password :");
                         String newPassword = scanner.nextLine();
@@ -71,12 +73,16 @@ public class LoginMenuController extends RegisterController {
                                 System.out.println("for random password enter 1 else press enter another password");
                                 String A = scanner.nextLine();
                                 if (A.equals("1")) {
-                                    user.setPassword(controller.RandomPasswordGenerator());
-                                    return new Result(true, "random password generated" + "\nyour password : " + user.getPassword());
+                                    String password = controller.RandomPasswordGenerator();
+                                    user.setPassword(convertToSHA(password));
+                                    saveUserToJson(user);
+                                    return new Result(true, "random password generated" + "\nyour password : " + password);
                                 }
                             } else {
-                                user.setPassword(newPassword);
-                                return new Result(true, "your password changed" + "\nyour password : " + user.getPassword());
+                                String password = controller.RandomPasswordGenerator();
+                                user.setPassword(convertToSHA(password));
+                                saveUserToJson(user);
+                                return new Result(true, "your password changed" + "\nyour password : " + password);
                             }
 
                         }
