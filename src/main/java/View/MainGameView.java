@@ -203,6 +203,11 @@ public class MainGameView implements AppMenu {
             System.out.println(controller6.showTalkHistory(matcher.group("username")));
         } else if ((matcher=FriendshipCommands.talk.getMatcher(input))!=null) {
             System.out.println(controller6.talk(matcher.group("username"),matcher.group("message")));
+        } else if ((matcher=FriendshipCommands.hug.getMatcher(input))!=null) {
+            System.out.println(controller6.hug(matcher.group("username")));
+
+        } else if ((matcher=FriendshipCommands.flower.getMatcher(input))!=null) {
+            System.out.println(controller6.hug(matcher.group("username")));
         }
     }
 }

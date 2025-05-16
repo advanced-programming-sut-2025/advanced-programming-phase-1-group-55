@@ -1,6 +1,8 @@
 package Controller;
 
 import model.Friendship.PlayerFriendship;
+import model.Item.Item;
+import model.Item.ItemType;
 import model.Map.Location;
 import model.Result;
 import model.User;
@@ -24,7 +26,7 @@ public class FriendshipController {
             User friend=friendship.getUser1().equals(currentGame.currentUser)?friendship.getUser2():friendship.getUser1();
             message.append("Friend name: ").append(friend.getUsername())
             .append("  level: ").append(friendship.getLevel())
-                    .append("xp: ").append(friendship.getXp());
+                    .append(" xp: ").append(friendship.getXp());
             message.append("\n----------------------------------\n");
         }
         return new Result(true,message.toString());
@@ -62,5 +64,35 @@ public class FriendshipController {
             conversation.append(message).append("\n");
         }
         return new Result(true,conversation.toString());
+    }
+    public Result hug(String username){
+        User user=findUser(username);
+        if(user==null){
+            return  new Result(false,"user not found!");
+        }
+        if(!locationsAreNear(user.getLocation(),currentGame.currentUser.getLocation())){
+            return  new Result(false,"you must be near the other player to talk!");
+        }
+        if(user.getFriendsPlayer().get(currentGame.currentUser).getLevel()<2){
+            return new Result(false,"your friendship level must be more than 2 , to hug each other");
+        }
+        user.getFriendsPlayer().get(currentGame.currentUser).increaseXp(60);
+        return new Result(true,"you huged each other :>");
+    }public Result sendFlower(String username){
+        User user=findUser(username);
+        if(user==null){
+            return  new Result(false,"user not found!");
+        }
+        if(!locationsAreNear(user.getLocation(),currentGame.currentUser.getLocation())){
+            return  new Result(false,"you must be near the other player to talk!");
+        }
+        if(!currentGame.currentUser.getBackPack().getInventory().containsKey("bouquet")){
+            return new Result(false,"you don't have flower in your inventory");
+        }
+        user.getBackPack().addItemToInventory(new Item(ItemType.BOUQUET),1);
+        currentGame.currentUser.getBackPack().removeAmountFromInventory(ItemType.BOUQUET,1);
+        user.getFriendsPlayer().get(currentGame.currentUser).setHasReceivedFlower(true);
+        user.getFriendsPlayer().get(currentGame.currentUser).increaseXp(0);
+        return new Result(true,"you successfully send flower to your friend");
     }
 }

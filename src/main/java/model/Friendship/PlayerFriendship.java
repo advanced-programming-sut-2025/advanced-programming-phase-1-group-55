@@ -12,6 +12,8 @@ public class PlayerFriendship extends FriendShip {
     private boolean todayGotFlower=false;
     private  boolean todayTalked=false;
     private boolean todayGotGift=false;
+    private boolean hasReceivedFlower=false;
+    private boolean hasMarriage=false;
     private ArrayList<String> conversation=new ArrayList<>();
     private ArrayList<Gift> gifts=new ArrayList<>();
 
@@ -89,5 +91,41 @@ public class PlayerFriendship extends FriendShip {
 
     public void setConversation(ArrayList<String> conversation) {
         this.conversation = conversation;
+    }
+    public void increaseXp(int amount){
+        xp+=amount;
+        if(level==0){
+            if(xp>=100){
+                level++;
+            }
+        } else if (level==1) {
+            if(xp>=300){
+                level++;
+            }
+        } else if (level==2) {
+            if(xp>=600&&hasReceivedFlower){
+                level++;
+            }
+        } else if (level==3) {
+            if(xp>=1000&&hasMarriage){
+                level++;
+            }
+        }
+    }
+
+    public boolean isHasReceivedFlower() {
+        return hasReceivedFlower;
+    }
+
+    public void setHasReceivedFlower(boolean hasReceivedFlower) {
+        this.hasReceivedFlower = hasReceivedFlower;
+    }
+
+    public boolean isHasMarriage() {
+        return hasMarriage;
+    }
+
+    public void setHasMarriage(boolean hasMarriage) {
+        this.hasMarriage = hasMarriage;
     }
 }
