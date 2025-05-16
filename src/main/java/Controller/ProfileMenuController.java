@@ -50,8 +50,8 @@ public class ProfileMenuController extends RegisterController {
         StringBuilder userInfo = new StringBuilder();
         userInfo.append("username : " + mainUser.getUsername()).append("\n");
         userInfo.append("nickname : " + mainUser.getNickName()).append("\n");
-        userInfo.append("most achieved money : " + mainUser.getMostAchievedMoney()).append("\n");
-        userInfo.append("email : " + mainUser.getMatchPlayed()).append("\n");
+        userInfo.append("most achieved gold : " + mainUser.getMostAchievedMoney()).append("\n");
+        userInfo.append("email : " + mainUser.getEmail()).append("\n");
         return new Result(true, userInfo.toString());
     }
 
