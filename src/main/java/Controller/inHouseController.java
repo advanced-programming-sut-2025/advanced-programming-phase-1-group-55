@@ -69,6 +69,9 @@ public class inHouseController {
             user.getBackPack().removeAmountFromInventory(itemType, ingredient.get(itemType));
         }
         user.decreaseEnergy(2);
+        if (user.isFainted()) {
+            return new Result(false, "you ran out of energy and fainted");
+        }
         CraftingItem product = CraftingItemCreator.create(recipe);
         user.getBackPack().addToInventory(product);
         return new Result(true, recipe.getProductName() + " has been crafted");
@@ -208,6 +211,9 @@ public class inHouseController {
             }
         }
         user.decreaseEnergy(3);
+        if (user.isFainted()) {
+            return new Result(false, "you ran out of energy and fainted");
+        }
         CookingItem food = new CookingItem(recipe);
         user.getBackPack().addToInventory(food);
         return new Result(true, food.getItemType().getDisplayName() + " was cooked and added to inventory.");
