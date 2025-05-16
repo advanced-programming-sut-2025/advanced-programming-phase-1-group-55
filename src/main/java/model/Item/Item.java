@@ -5,6 +5,9 @@ public class Item   {
     protected int number = 0;
     protected int price;
 
+    public Item() {
+    }
+
     public int getPrice() {
         return price;
     }
