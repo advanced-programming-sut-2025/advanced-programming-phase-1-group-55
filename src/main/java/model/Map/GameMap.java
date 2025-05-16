@@ -6,8 +6,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import static model.App.*;
+
 import static java.lang.Math.max;
 import static java.lang.Math.min;
+import static model.App.currentGame;
 
 public class GameMap {
     public Tile[][] tiles = new Tile[41][160];
@@ -16,8 +19,9 @@ public class GameMap {
     private Farm farm2;
     private Farm farm3;
     private Farm farm4;
-    private  NpcVillage village;
-    public GameMap(Farm farm1, Farm farm2, Farm farm3, Farm farm4,NpcVillage village) {
+    private NpcVillage village;
+
+    public GameMap(Farm farm1, Farm farm2, Farm farm3, Farm farm4, NpcVillage village) {
 
         farm2.setLocation(new Location(farm2.getLocation().getY() + 21, farm2.getLocation().getX()));
         farm2.getQuarry().getLocation().changeLocation(21, 0);
@@ -38,7 +42,7 @@ public class GameMap {
         this.farm2 = farm2;
         this.farm3 = farm3;
         this.farm4 = farm4;
-        this.village=village;
+        this.village = village;
 
     }
 
@@ -101,8 +105,9 @@ public class GameMap {
     public void setVillage(NpcVillage village) {
         this.village = village;
     }
-    public AnsiColor colorOfTile(String item){
-        AnsiColor color=AnsiColor.RESET;
+
+    public AnsiColor colorOfTile(String item) {
+        AnsiColor color = AnsiColor.RESET;
         color = switch (item) {
             case "W" -> AnsiColor.BG_BLUE;
             case "^" -> AnsiColor.BG_BRIGHT_BLACK;
@@ -110,28 +115,34 @@ public class GameMap {
             case "g" -> AnsiColor.BG_OLIVE_GREEN;
             case "#" -> AnsiColor.BG_ORANGE;
             case "=" -> AnsiColor.BG_RED;
-            case  "T"-> AnsiColor.BG_BROWN;
-            case "0"-> AnsiColor.BG_BRIGHT_WHITE;
+            case "T" -> AnsiColor.BG_BROWN;
+            case "0" -> AnsiColor.BG_BRIGHT_WHITE;
             case "&" -> AnsiColor.BRIGHT_GREEN;
-            case "*" ->AnsiColor.GREEN;
-            case "Z" ->AnsiColor.BROWN;
-            case "@" ->AnsiColor.BG_BRIGHT_YELLOW;
+            case "*" -> AnsiColor.GREEN;
+            case "Z" -> AnsiColor.BROWN;
+            case "@" -> AnsiColor.BG_BRIGHT_YELLOW;
             default -> color;
         };
         return color;
     }
-    public String printMap(Location start,int sizex,int sizey){
-        StringBuilder map=new StringBuilder();
-        for (int i = max(start.getY(),0); i < min(sizey+max(start.getY(),0),41); i++) {
-            for (int j = max(start.getX(),0); j < min(sizex+max(start.getX(),0),160); j++) {
+
+    public String printMap(Location start, int sizex, int sizey) {
+        StringBuilder map = new StringBuilder();
+        for (int i = max(start.getY(), 0); i < min(sizey + max(start.getY(), 0), 41); i++) {
+            for (int j = max(start.getX(), 0); j < min(sizex + max(start.getX(), 0), 160); j++) {
                 Tile t = tiles[i][j];
-                if (t != null) {
-                    AnsiColor color=colorOfTile(t.getMohtaviat());
-                    map.append(color).append(t.getMohtaviat()).append(AnsiColor.RESET);
+                if (j == currentGame.currentUser.getLocation().getX() && i == currentGame.currentUser.getLocation().getY()) {
+                    map.append(AnsiColor.RED).append("P").append(AnsiColor.RESET);
+                    continue;
+
                 }
-                else {
+                if (t != null) {
+                    AnsiColor color = colorOfTile(t.getMohtaviat());
+                    map.append(color).append(t.getMohtaviat()).append(AnsiColor.RESET);
+                } else {
                     map.append(AnsiColor.PINK).append(".").append(AnsiColor.RESET);
                 }
+
             }
             map.append("\n");
         }

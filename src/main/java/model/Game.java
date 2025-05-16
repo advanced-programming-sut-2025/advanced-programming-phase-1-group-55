@@ -26,6 +26,7 @@ public class Game {
     public User currentUser;
     public ArrayList<User> playersInGame = new ArrayList<>();
     private GameMap map;
+    private HashMap<Integer, Trade> AllTrades = new HashMap<>();
 
     public Game(User currentUser, ArrayList<User> playersInGame, GameMap map) {
         this.currentUser = currentUser;
@@ -128,4 +129,11 @@ public class Game {
     }
 
 
+    public HashMap<Integer, Trade> getAllTrades() {
+        return AllTrades;
+    }
+
+    public void addToAllTrade(Trade trade) {
+        AllTrades.put(trade.getId(), trade);
+    }
 }

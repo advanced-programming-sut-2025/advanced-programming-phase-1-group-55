@@ -1,9 +1,11 @@
 package model.Store;
 
 import enums.Seasons;
+import model.App;
 import model.Item.Item;
 import model.Item.ItemType;
 import model.NPC.Npc;
+import model.Result;
 
 import java.time.LocalTime;
 import java.util.HashMap;
@@ -128,6 +130,13 @@ public class OjaMartStore extends Store{
 
 
         }}, new Npc("Morris"), "OjaMart");
+    }
+    public Result purchase(int amount , Product product){
+      Result x=App.currentGame.currentUser.getBackPack().addItemToInventory(product.getItem(),amount);
+      if (x.IsSuccess()){
+         product.increaseDailySold(amount);
+      }
+      return x;
     }
 }
 

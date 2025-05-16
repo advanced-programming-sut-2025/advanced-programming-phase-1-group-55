@@ -14,6 +14,7 @@ public class MainGameView implements AppMenu {
     private final CropController controller2 = new CropController();
     private final StoreController controller3 = new StoreController();
     private final walkController controller4 = new walkController();
+    private final TradeController controller5 = new TradeController();
     //    private final TreeCotroller controller3 = new TreeCotroller();
 //    private final ForagingCropController controller4 = new ForagingCropController();
 //    private final ForagingTreeController controller5 = new ForagingTreeController();
@@ -181,12 +182,28 @@ public class MainGameView implements AppMenu {
 
         } else if ((matcher = mainGameCommands.showOwner.getMatcher(input)) != null) {
             System.out.println(controller.showOwner(Integer.parseInt(matcher.group("x")), Integer.parseInt(matcher.group("y"))));
-        } else if ((matcher=StoreCommands.sellItem.getMatcher(input))!=null) {
-            if(matcher.group("count")!=null){
-                System.out.println(controller3.sellItem(Integer.parseInt(matcher.group("count")),matcher.group("name")));
-            }else {
-                System.out.println(controller3.sellItem(1,matcher.group("name")));
+        } else if ((matcher = StoreCommands.sellItem.getMatcher(input)) != null) {
+            if (matcher.group("count") != null) {
+                System.out.println(controller3.sellItem(Integer.parseInt(matcher.group("count")), matcher.group("name")));
+            } else {
+                System.out.println(controller3.sellItem(1, matcher.group("name")));
             }
+        } else if (input.matches("\\s*start\\s+trade\\s*")) {
+            System.out.println(controller5.TradeMenu());
+
+        } else if ((matcher = mainGameCommands.TradeRequest.getMatcher(input)) != null) {
+            System.out.println(controller5.TradeRequest(matcher.group("username"), matcher.group("type"), matcher.group("item"), matcher.group("amount"), matcher.group("price"), matcher.group("targetItem"), matcher.group("targetAmount")));
+
+        } else if ((matcher = StoreCommands.purchaseItem.getMatcher(input)) != null) {
+            if (matcher.group("count") != null) {
+                System.out.println(controller3.purchaseItem(Integer.parseInt(matcher.group("count")), matcher.group("name")));
+            } else {
+                System.out.println(controller3.purchaseItem(1, matcher.group("name")));
+            }
+        } else if (input.matches("\\s*player\\s*")) {
+            currentGame.getMap().tiles[currentGame.currentUser.getLocation().getY()][currentGame.currentUser.getLocation().getX()].setMohtaviat("P");
+        } else {
+            System.out.println("Unknown command");
         }
     }
 }

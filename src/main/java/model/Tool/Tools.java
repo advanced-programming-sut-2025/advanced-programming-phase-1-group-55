@@ -13,8 +13,8 @@ public   class Tools {
         this.level = level;
     }
 
-    public void increaseLevel(){
-        level++;
+    public void increaseLevel(int amount){
+        level+=amount;
     }
 
     public String getName() {

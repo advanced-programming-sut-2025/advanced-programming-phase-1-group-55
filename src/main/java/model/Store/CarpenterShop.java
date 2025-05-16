@@ -1,9 +1,11 @@
 package model.Store;
 
 import enums.Seasons;
+import model.App;
 import model.Item.Item;
 import model.Item.ItemType;
 import model.NPC.Npc;
+import model.Result;
 
 
 import java.time.LocalTime;
@@ -29,7 +31,24 @@ public class CarpenterShop extends Store{
                 "CarpenterShop");
 
     }
+    public Result purchase(int amount , Product product){
+          if(product.getItem().getItemType().equals(ItemType.WOOD)){
+              App.currentGame.currentUser.setWood(App.currentGame.currentUser.getWood()+amount);
+          } else if (product.getItem().getItemType().equals(ItemType.STONE)) {
+              App.currentGame.currentUser.setStone(App.currentGame.currentUser.getStone()+amount);
+          } else  {
+              Result x=App.currentGame.currentUser.getBackPack().addItemToInventory(product.getItem(),amount);
+            if(x.IsSuccess()){
+                product.increaseDailySold(amount);
+            }
+            return x;
+          }
+        product.increaseDailySold(amount);
+          App.currentGame.currentUser.increaseGold(-amount* product.getGoldCost());
+        return  new Result(true,"you purchased this item successfully");
+    }
 }
+
 
 
 
