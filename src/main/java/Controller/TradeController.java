@@ -130,6 +130,7 @@ public class TradeController {
         }
 
         Trade trade = currentGame.currentUser.getTrades().get(id);
+
         if (trade == null) {
             return new Result(false, "Trade not found");
         }
@@ -141,6 +142,7 @@ public class TradeController {
 
                 trade.getSender().getBackPack().addItemToInventory(trade.getItem(), trade.getAmount());
                 if (trade.getPrice() != 0) {
+
                     trade.getSender().increaseGold(-1 * trade.getPrice());
                     trade.getReciver().increaseGold(trade.getPrice());
                 } else {
@@ -164,11 +166,12 @@ public class TradeController {
             }
         } else if (trade.getType().equals("offer")) {
             if (response.equals("accept")) {
-                
+
                 trade.getSender().getBackPack().removeAmountFromInventory(trade.getItem().getItemType(), trade.getAmount());
                 trade.getReciver().getBackPack().addItemToInventory(trade.getItem(), trade.getAmount());
 
                 if (trade.getPrice() != 0) {
+                    System.out.println("price : "+trade.getPrice());
                     trade.getReciver().increaseGold(-1 * trade.getPrice());
                     trade.getSender().increaseGold(trade.getPrice());
                 } else {

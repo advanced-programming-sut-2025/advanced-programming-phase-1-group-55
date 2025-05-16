@@ -29,7 +29,7 @@ public class User {
     private User wife = null;
     private HashMap<String, Npc> friendsNpc = new HashMap<>();
     private HashMap<String, User> friendsPlayer = new HashMap<>();
-    private static int gold = 10000;
+    private int gold = 10000;
     private int dailyMoney = 0;
     private int wood;
     private double energy = 200;
@@ -163,6 +163,7 @@ public class User {
         this.email = email;
         this.numberOfSecurityQuestion = numberOfSecurityQuestion;
         this.securityQuestion = securityQuestion;
+        this.gold = 10000;
 //        learnRecipe(CraftingItemType.FURNACE);
 //        learnRecipe(CraftingItemType.SCARECROW);
 //        learnRecipe(CraftingItemType.MAYONNAISE_MACHINE);
@@ -296,7 +297,7 @@ public class User {
     }
 
     public void increaseGold(int amount) {
-        gold += amount;
+        this.gold += amount;
     }
     //    public void learnRecipe(CraftingItemType recipe) {
 //        learnedCraftingRecipes.add(recipe);
