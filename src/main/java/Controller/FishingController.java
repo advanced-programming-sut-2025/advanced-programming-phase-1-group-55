@@ -1,37 +1,31 @@
-//package Controller;
-//
-//import View.FishingView;
-//import enums.CraftingItemType;
-//import model.Ability;
-//import model.Skills;
-//import model.User;
-//
-//
-//public class FishingController extends SkillController {
-//    private User user;
-//
-//    public FishingController(Skills skill, User user) {
-//        super(skill);
-//        this.user = user;
-//    }
-//
-//    @Override
-//    protected void onLevelUp(int newLevel) {
-//        switch (newLevel) {
-//            case 1 -> {
-//
-//            }
-//            case 2 -> {
-//
-//            }
-//            case 3 -> {
-//
-//            }
-//            case 4 -> {
-//
-//            }
-//        }
-//    }
-//
-//
-//}
+package Controller;
+
+import model.App;
+import model.Skill;
+
+public class FishingController extends SkillController {
+
+    public FishingController() {
+        super(App.currentGame.currentUser.getFishingSkill());
+    }
+
+
+    public void onCatchFish() {
+        skill.changePoints(5);
+    }
+
+
+    public int getCurrentLevel() {
+        return skill.getLevel();
+    }
+
+
+    public int getCurrentPoints() {
+        return skill.getPoints();
+    }
+
+
+    public Skill getFishingSkill() {
+        return skill;
+    }
+}
