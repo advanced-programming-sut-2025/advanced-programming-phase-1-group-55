@@ -1,5 +1,6 @@
 package model;
 
+import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
 import enums.CraftingItemType;
 import model.CookingItems.CookingItem;
 import model.Item.Item;
@@ -44,6 +45,13 @@ public class User {
     private HashMap<Integer, Trade> trades = new HashMap<>();
     private CookingItem cookingItem;
     private int stone;
+
+    public void decreaseGold(int amount) {
+        gold -= amount;
+        if (gold <= 0) {
+            gold = 0;
+        }
+    }
 
 
     public int getStone() {

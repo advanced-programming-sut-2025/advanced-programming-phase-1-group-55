@@ -42,7 +42,7 @@ public class TradeController {
                 TargetAmount = Integer.parseInt(targetAmount);
             }
             if (targetAmount != null && price != null) {
-                return new Result(false, "you can use request or offer");
+                return new Result(false, "you can use request or offer not both!");
             }
         } catch (Exception e) {
             return new Result(false, "Invalid amount " + amount);
@@ -105,6 +105,35 @@ public class TradeController {
         }
         return new Result(true, "all of you trades : )");
 
+    }
+
+    public Result tradeResponse(String response, int id) {
+        Trade trade = currentGame.currentUser.getTrades().get(id);
+        if (trade == null) {
+            return new Result(false, "Trade not found");
+        }
+        if (trade.getType().equals("request")) {
+            if (response.equals("accept")) {
+
+                currentGame.currentUser.getBackPack().addItemToInventory(trade.getItem(), trade.getAmount());
+                if (trade.getPrice() != 0) {
+                    currentGame.currentUser.decreaseGold(trade.getPrice());
+                } else {
+                    currentGame.currentUser.getBackPack().removeAmountFromInventory(trade.getTargetItem().getItemType(), trade.getTargetAmount());
+                }
+                trade.setAccepted(true);
+                trade.setPrinted(true);
+                return new Result(true, "Trade " + id + " accepted");
+            } else if (response.equals("reject")) {
+
+                trade.setAccepted(false);
+                trade.setPrinted(true);
+                return new Result(true, "Trade " + id + " rejected");
+
+            } else {
+                return new Result(false, "invalid response");
+            }
+        }
     }
 
 }

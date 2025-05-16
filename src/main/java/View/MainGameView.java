@@ -200,6 +200,9 @@ public class MainGameView implements AppMenu {
             }
         } else if (input.matches("\\s*player\\s*")) {
             currentGame.getMap().tiles[currentGame.currentUser.getLocation().getY()][currentGame.currentUser.getLocation().getX()].setMohtaviat("P");
+        } else if ((matcher=mainGameCommands.TradeResponse.getMatcher(input)) != null) {
+            System.out.println(controller5.TradeRequest());
+
         } else {
             System.out.println("Unknown command");
         }

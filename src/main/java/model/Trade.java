@@ -16,6 +16,7 @@ public class Trade {
     private boolean Printed = false;
     private boolean Accepted = false;
 
+
     public Trade(User sender, User reciver, Item item, String type, int amount, int price, Item targetItem, int targetAmount, int id) {
         Sender = sender;
         Reciver = reciver;
@@ -120,12 +121,12 @@ public class Trade {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Trade info {").append(" id : ").append(getId()).append(" sender : ").append(getSender().getUsername()).append(" reciver : ").append(getReciver().getUsername()).append("\nitem : ").append(getItem().getItemType().getDisplayName()).append(" amount :").append(getAmount()).append(" type : ").append(getType());
-        if (getTargetItem() != null &&getTargetItem().getItemType() != null) {
+        if (price == 0 ) {
             sb.append("\ntarget item : ").append(getTargetItem().getItemType().getDisplayName()).append("target amount : ").append(getTargetAmount());
         } else {
             sb.append(" price : ").append(getPrice());
         }
-        sb.append(" }");
+        sb.append(" accepted : ").append(isAccepted()).append(" }");
         return sb.toString();
     }
 }
