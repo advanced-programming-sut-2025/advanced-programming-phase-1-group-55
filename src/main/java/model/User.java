@@ -30,8 +30,8 @@ public class User {
     private User wife = null;
     private HashMap<String, Npc> friendsNpc = new HashMap<>();
     private HashMap<User, PlayerFriendship> friendsPlayer = new HashMap<>();
-    private int gold;
-    private int dailyMoney=0;
+    private static int gold = 10000;
+    private int dailyMoney = 0;
     private int wood;
     private double energy = 200;
     private boolean stayLoggedIn = false;
@@ -303,10 +303,12 @@ public class User {
         this.dailyMoney = dailyMoney;
     }
 
-    public void increaseDailyMoney(int amount){
-        dailyMoney+=amount;
-    }public  void  increaseGold(int amount ){
-        gold+=amount;
+    public void increaseDailyMoney(int amount) {
+        dailyMoney += amount;
+    }
+
+    public void increaseGold(int amount) {
+        gold += amount;
     }
 
 

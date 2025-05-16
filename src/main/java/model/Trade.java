@@ -16,6 +16,18 @@ public class Trade {
     private boolean Printed = false;
     private boolean Accepted = false;
 
+    public Trade(User sender, User reciver, Item item, String type, int amount, int price, Item targetItem, int targetAmount, int id) {
+        Sender = sender;
+        Reciver = reciver;
+        Item = item;
+        this.type = type;
+        this.amount = amount;
+        this.price = price;
+        TargetItem = targetItem;
+        TargetAmount = targetAmount;
+        this.id = id;
+    }
+
     public User getSender() {
         return Sender;
     }

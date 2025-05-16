@@ -28,6 +28,8 @@ public class Game {
     public ArrayList<User> playersInGame = new ArrayList<>();
     private GameMap map;
     private ArrayList<PlayerFriendship> allFriendships=new ArrayList<>();
+    private HashMap<Integer, Trade> AllTrades = new HashMap<>();
+
     public Game(User currentUser, ArrayList<User> playersInGame, GameMap map) {
         this.currentUser = currentUser;
         this.playersInGame = playersInGame;
@@ -128,12 +130,19 @@ public class Game {
         return App.currentGame.getMap().tiles[newX][newY];
     }
 
-
     public ArrayList<PlayerFriendship> getAllFriendships() {
         return allFriendships;
     }
 
     public void setAllFriendships(ArrayList<PlayerFriendship> allFriendships) {
         this.allFriendships = allFriendships;
+    }
+
+    public HashMap<Integer, Trade> getAllTrades() {
+        return AllTrades;
+    }
+
+    public void setAllTrades(HashMap<Integer, Trade> allTrades) {
+        AllTrades = allTrades;
     }
 }

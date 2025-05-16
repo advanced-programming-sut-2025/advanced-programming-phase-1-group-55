@@ -14,7 +14,8 @@ public class MainGameView implements AppMenu {
     private final CropController controller2 = new CropController();
     private final StoreController controller3 = new StoreController();
     private final walkController controller4 = new walkController();
-    private final FriendshipController controller5=new FriendshipController();
+    private final FriendshipController controller6=new FriendshipController();
+    private final TradeController controller5 = new TradeController();
     //    private final TreeCotroller controller3 = new TreeCotroller();
 //    private final ForagingCropController controller4 = new ForagingCropController();
 //    private final ForagingTreeController controller5 = new ForagingTreeController();
@@ -174,28 +175,34 @@ public class MainGameView implements AppMenu {
 
         } else if ((matcher = mainGameCommands.showOwner.getMatcher(input)) != null) {
             System.out.println(controller.showOwner(Integer.parseInt(matcher.group("x")), Integer.parseInt(matcher.group("y"))));
-        } else if ((matcher=StoreCommands.sellItem.getMatcher(input))!=null) {
-            if(matcher.group("count")!=null){
-                System.out.println(controller3.sellItem(Integer.parseInt(matcher.group("count")),matcher.group("name")));
-            }else {
-                System.out.println(controller3.sellItem(1,matcher.group("name")));
+        } else if ((matcher = StoreCommands.sellItem.getMatcher(input)) != null) {
+            if (matcher.group("count") != null) {
+                System.out.println(controller3.sellItem(Integer.parseInt(matcher.group("count")), matcher.group("name")));
+            } else {
+                System.out.println(controller3.sellItem(1, matcher.group("name")));
             }
-        } else if ((matcher=StoreCommands.purchaseItem.getMatcher(input))!=null) {
-            if(matcher.group("count")!=null){
-                System.out.println(controller3.purchaseItem(Integer.parseInt(matcher.group("count")),matcher.group("name")));
-            }else {
-                System.out.println(controller3.purchaseItem(1,matcher.group("name")));
+        } else if (input.matches("\\s*start\\s+trade\\s*")) {
+            System.out.println(controller5.TradeMenu());
+
+        } else if ((matcher = mainGameCommands.TradeRequest.getMatcher(input)) != null) {
+            System.out.println(controller5.TradeRequest(matcher.group("username"), matcher.group("type"), matcher.group("item"), matcher.group("amount"), matcher.group("price"), matcher.group("targetItem"), matcher.group("targetAmount")));
+
+        } else if ((matcher = StoreCommands.purchaseItem.getMatcher(input)) != null) {
+            if (matcher.group("count") != null) {
+                System.out.println(controller3.purchaseItem(Integer.parseInt(matcher.group("count")), matcher.group("name")));
+            } else {
+                System.out.println(controller3.purchaseItem(1, matcher.group("name")));
             }
         }else if ((matcher=FriendshipCommands.showFriends.getMatcher(input))!=null){
-            System.out.println(controller5.showFriends());
+            System.out.println(controller6.showFriends());
         } else if (input.matches("^\\s*show\\s+money\\s*$")) {
             System.out.println(currentGame.currentUser.getGold());
         } else if ((matcher=mainGameCommands.changePlayer.getMatcher(input))!=null) {
             System.out.println(controller.changePlayer(matcher.group("username")));
         } else if ((matcher=FriendshipCommands.talkHistory.getMatcher(input))!=null) {
-            System.out.println(controller5.showTalkHistory(matcher.group("username")));
+            System.out.println(controller6.showTalkHistory(matcher.group("username")));
         } else if ((matcher=FriendshipCommands.talk.getMatcher(input))!=null) {
-            System.out.println(controller5.talk(matcher.group("username"),matcher.group("message")));
+            System.out.println(controller6.talk(matcher.group("username"),matcher.group("message")));
         }
     }
 }
