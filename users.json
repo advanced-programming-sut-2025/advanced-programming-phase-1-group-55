@@ -37,11 +37,13 @@
       "inventory": {},
       "level": 1,
       "learnedCraftingRecipes": [],
-      "craftingRecipes": []
+      "learnedCookingRecipes": [],
+      "craftingRecipes": [],
+      "cookingRecipes": []
     },
     "friendsNpc": {},
     "friendsPlayer": {},
-    "gold": 0,
+    "dailyMoney": 0,
     "wood": 0,
     "energy": 200.0,
     "stayLoggedIn": false,
@@ -93,11 +95,13 @@
       "inventory": {},
       "level": 1,
       "learnedCraftingRecipes": [],
-      "craftingRecipes": []
+      "learnedCookingRecipes": [],
+      "craftingRecipes": [],
+      "cookingRecipes": []
     },
     "friendsNpc": {},
     "friendsPlayer": {},
-    "gold": 0,
+    "dailyMoney": 0,
     "wood": 0,
     "energy": 200.0,
     "stayLoggedIn": false,
@@ -149,11 +153,13 @@
       "inventory": {},
       "level": 1,
       "learnedCraftingRecipes": [],
-      "craftingRecipes": []
+      "learnedCookingRecipes": [],
+      "craftingRecipes": [],
+      "cookingRecipes": []
     },
     "friendsNpc": {},
     "friendsPlayer": {},
-    "gold": 0,
+    "dailyMoney": 0,
     "wood": 0,
     "energy": 200.0,
     "stayLoggedIn": false,
@@ -205,14 +211,80 @@
       "inventory": {},
       "level": 1,
       "learnedCraftingRecipes": [],
-      "craftingRecipes": []
+      "learnedCookingRecipes": [],
+      "craftingRecipes": [],
+      "cookingRecipes": []
     },
     "friendsNpc": {},
     "friendsPlayer": {},
-    "gold": 0,
+    "dailyMoney": 0,
     "wood": 0,
     "energy": 200.0,
     "stayLoggedIn": true,
+    "mostAchievedMoney": 0,
+    "matchPlayed": 0,
+    "location": {
+      "y": 0,
+      "x": 0
+    },
+    "fainted": false,
+    "mainLocation": "House",
+    "trades": {}
+  },
+  {
+    "username": "arshiaG7",
+    "password": "1efb4ef0da0b46701287a19814214eee4518e892f954d4c2d71fd5e89b411b18",
+    "nickName": "arshix",
+    "gender": "arshia@gmail.com",
+    "email": "male",
+    "numberOfSecurityQuestion": 1,
+    "securityQuestion": "soltani",
+    "backPack": {
+      "currentTool": {
+        "names": "Hoe",
+        "level": 0
+      },
+      "availableTools": {
+        "WateringCan": {
+          "capacityUsed": 0,
+          "level": 0
+        },
+        "Scythe": {
+          "level": 0
+        },
+        "FishingPole": {
+          "type": "TRAINING_ROD",
+          "level": 0
+        },
+        "Pickaxe": {
+          "usedSuccessfully": false,
+          "level": 0
+        },
+        "Trashcan": {
+          "level": 0
+        },
+        "Hoe": {
+          "names": "Hoe",
+          "level": 0
+        },
+        "Axe": {
+          "usedSuccessfully": false,
+          "level": 0
+        }
+      },
+      "inventory": {},
+      "level": 1,
+      "learnedCraftingRecipes": [],
+      "learnedCookingRecipes": [],
+      "craftingRecipes": [],
+      "cookingRecipes": []
+    },
+    "friendsNpc": {},
+    "friendsPlayer": {},
+    "dailyMoney": 0,
+    "wood": 0,
+    "energy": 200.0,
+    "stayLoggedIn": false,
     "mostAchievedMoney": 0,
     "matchPlayed": 0,
     "location": {

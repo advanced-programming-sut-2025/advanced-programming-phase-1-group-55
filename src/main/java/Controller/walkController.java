@@ -51,7 +51,7 @@ public class walkController {
         int n = map.length;
         int m = map[0].length;
 
-        if (x < 0 || y < 0 || x >= n || y >= m || visited[x][y] || !map[x][y].isWalkable()) {
+        if (x < 0 || y < 0 || x >= n || y >= m || visited[x][y] || !map[x][y].isWalkable() || !map[x][y].getOwner().equals(currentGame.currentUser) || map[x][y].getOwner() != null) {
             return false;
         }
 
@@ -83,6 +83,7 @@ public class walkController {
         } catch (Exception e) {
             return new Result(false, "Invalid coordinates");
         }
+
 
         int startX = currentGame.currentUser.getLocation().getX();
         int startY = currentGame.currentUser.getLocation().getY();
@@ -154,8 +155,8 @@ public class walkController {
 
 
     private List<Tile> bfs(int startX, int startY, int endX, int endY, Tile[][] map) {
-        int n = map.length;
-        int m = map[0].length;
+        int n = map.length;//41
+        int m = map[0].length;//160
 
         boolean[][] visited = new boolean[n][m];
         Tile[][] parent = new Tile[n][m];
@@ -173,12 +174,12 @@ public class walkController {
 
             if (x == endX && y == endY) {
                 List<Tile> path = new ArrayList<>();
-                Tile step = map[x][y];
+                Tile step = map[y][x];
                 while (step != null) {
                     path.add(0, step);
                     int px = step.getLocation().getX();
                     int py = step.getLocation().getY();
-                    step = parent[px][py];
+                    step = parent[py][px];
                 }
                 return path;
             }
@@ -187,9 +188,9 @@ public class walkController {
                 int nx = x + dir[0];
                 int ny = y + dir[1];
 
-                if (nx >= 0 && ny >= 0 && nx < n && ny < m && !visited[nx][ny] && map[nx][ny].isWalkable() && map[nx][ny].getOwner() == currentGame.currentUser) {
-                    visited[nx][ny] = true;
-                    parent[nx][ny] = map[x][y];
+                if (nx >= 0 && ny >= 0 && nx < m && ny < n && !visited[ny][nx] && map[ny][nx].isWalkable() && (map[ny][nx].getOwner() == currentGame.currentUser || map[ny][nx].getOwner() == null)) {
+                    visited[ny][nx] = true;
+                    parent[ny][nx] = map[y][x];
                     queue.add(new int[]{nx, ny});
                 }
             }

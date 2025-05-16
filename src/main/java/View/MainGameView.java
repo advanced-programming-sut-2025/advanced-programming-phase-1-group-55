@@ -173,18 +173,20 @@ public class MainGameView implements AppMenu {
 
         } else if ((matcher = mainGameCommands.showOwner.getMatcher(input)) != null) {
             System.out.println(controller.showOwner(Integer.parseInt(matcher.group("x")), Integer.parseInt(matcher.group("y"))));
-        } else if ((matcher=StoreCommands.sellItem.getMatcher(input))!=null) {
-            if(matcher.group("count")!=null){
-                System.out.println(controller3.sellItem(Integer.parseInt(matcher.group("count")),matcher.group("name")));
-            }else {
-                System.out.println(controller3.sellItem(1,matcher.group("name")));
+        } else if ((matcher = StoreCommands.sellItem.getMatcher(input)) != null) {
+            if (matcher.group("count") != null) {
+                System.out.println(controller3.sellItem(Integer.parseInt(matcher.group("count")), matcher.group("name")));
+            } else {
+                System.out.println(controller3.sellItem(1, matcher.group("name")));
             }
-        } else if ((matcher=StoreCommands.purchaseItem.getMatcher(input))!=null) {
-            if(matcher.group("count")!=null){
-                System.out.println(controller3.purchaseItem(Integer.parseInt(matcher.group("count")),matcher.group("name")));
-            }else {
-                System.out.println(controller3.purchaseItem(1,matcher.group("name")));
+        } else if ((matcher = StoreCommands.purchaseItem.getMatcher(input)) != null) {
+            if (matcher.group("count") != null) {
+                System.out.println(controller3.purchaseItem(Integer.parseInt(matcher.group("count")), matcher.group("name")));
+            } else {
+                System.out.println(controller3.purchaseItem(1, matcher.group("name")));
             }
+        } else if (input.matches("\\s*player\\s*")) {
+           currentGame.getMap().tiles[currentGame.currentUser.getLocation().getY()][currentGame.currentUser.getLocation().getX()].setMohtaviat("P");
         }
     }
 }

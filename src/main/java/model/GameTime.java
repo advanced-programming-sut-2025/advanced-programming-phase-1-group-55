@@ -43,7 +43,11 @@ public class GameTime {
 
         }
         for (User player : currentGame.playersInGame) {
-            player.setLocation(player.getPlayerTommorowLocation());
+            if (player.getPlayerTommorowLocation() != null) {
+
+                System.out.println("ok shod");
+                player.setLocation(player.getPlayerTommorowLocation());
+            }
         }
         day = day.nextDay();
         DayofMonth += 1;
@@ -51,15 +55,15 @@ public class GameTime {
             DayofMonth = 1;
             currentSeason = currentSeason.nextSeason();
         }
-        for(User user: currentGame.playersInGame){
+        for (User user : currentGame.playersInGame) {
             user.increaseGold(user.getDailyMoney());
             user.setDailyMoney(0);
         }
-        for (Store store: currentGame.getMap().getVillage().getStores().values())
-            for(Product product:store.getProductsOfStore().values()){
+        for (Store store : currentGame.getMap().getVillage().getStores().values())
+            for (Product product : store.getProductsOfStore().values()) {
                 product.setTodaySell(0);
             }
-       }
+    }
 
     public static DayOfTheWeeks getDay() {
         return day;
