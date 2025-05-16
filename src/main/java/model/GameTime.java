@@ -32,7 +32,9 @@ public class GameTime {
     public static void setHour(int hour) {
         GameTime.hour = hour;
     }
+    public  static void friendshipWorks(){
 
+    }
     public static void roozbad() {
         GameTime.hour = 9;
         weather.setCurrentWeather(weather.getTomorrowWeather());

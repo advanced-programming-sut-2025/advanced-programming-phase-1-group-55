@@ -185,6 +185,8 @@ public class MainGameView implements AppMenu {
             }else {
                 System.out.println(controller3.purchaseItem(1,matcher.group("name")));
             }
+        }else if ((matcher=FriendshipCommands.showFriends.getMatcher(input))!=null){
+
         }
     }
 }

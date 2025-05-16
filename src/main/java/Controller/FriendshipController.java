@@ -1,0 +1,51 @@
+package Controller;
+
+import model.Friendship.PlayerFriendship;
+import model.Result;
+import model.User;
+
+import static model.App.*;
+
+public class FriendshipController {
+    private User findUser(String username){
+        for(User user:currentGame.playersInGame){
+            if (username.equals(user.getUsername())){
+                return user;
+            }
+        }
+        return null;
+    }
+    public Result showFriends(){
+        StringBuilder message=new StringBuilder();
+        for (PlayerFriendship friendship:currentGame.currentUser.getFriendsPlayer().values()){
+            User friend=friendship.getUser1().equals(currentGame.currentUser)?friendship.getUser2():friendship.getUser1();
+            message.append("Friend name: ").append(friend.getUsername())
+            .append("  level: ").append(friendship.getLevel())
+                    .append("xp: ").append(friendship.getXp());
+            message.append("\n----------------------------------\n");
+        }
+        return new Result(true,message.toString());
+    }
+    public Result talk(String username,String message){
+        User user=findUser(username);
+        if(user==null){
+            return  new Result(false,"user not found!");
+        }
+        user.getConversations().get(currentGame.currentUser).add(message);
+        currentGame.currentUser.getConversations().get(user).add(message);
+        user.getFriendsPlayer().get(currentGame.currentUser).increaseXp(20);
+        user.getFriendsPlayer().get(currentGame.currentUser).setTodayTalked(true);
+        return new Result(true,"message successfully sent to : "+username);
+    }
+    public Result showTalkHistory(String username){
+        User user=findUser(username);
+        StringBuilder conversation=new StringBuilder();
+        if(user==null){
+            return  new Result(false,"user not found!");
+        }
+        for (String message:currentGame.currentUser.getConversations().get(user)){
+            conversation.append(message).append("\n");
+        }
+        return new Result(true,conversation.toString());
+    }
+}
