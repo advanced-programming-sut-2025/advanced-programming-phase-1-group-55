@@ -34,7 +34,8 @@ public enum mainGameCommands implements Command {
     teleport("^teleport\\s+(?<x>\\d+)\\s+(?<y>\\d+)\\s*$"),
     showOwner("^\\s*show\\s+owner\\s+(?<x>\\d+)\\s+(?<y>\\d+)\\s*$"),
     walk("\\s*walk\\s+-l\\s+(?<x>\\d+)\\s+(?<y>\\d+)\\s*"),
-    cheatThor("\\s*cheat\\s+Thor\\s+-l\\s+(?<X>\\d+)\\s+(?<Y>\\d+)\\s*");
+    cheatThor("\\s*cheat\\s+Thor\\s+-l\\s+(?<X>\\d+)\\s+(?<Y>\\d+)\\s*"),
+    changePlayer("^\\s*switch\\s+(?<username>\\S+)\\s*$");
     private final String pattern;
 
     mainGameCommands(String pattern) {

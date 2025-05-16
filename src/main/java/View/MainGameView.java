@@ -188,6 +188,14 @@ public class MainGameView implements AppMenu {
             }
         }else if ((matcher=FriendshipCommands.showFriends.getMatcher(input))!=null){
             System.out.println(controller5.showFriends());
+        } else if (input.matches("^\\s*show\\s+money\\s*$")) {
+            System.out.println(currentGame.currentUser.getGold());
+        } else if ((matcher=mainGameCommands.changePlayer.getMatcher(input))!=null) {
+            System.out.println(controller.changePlayer(matcher.group("username")));
+        } else if ((matcher=FriendshipCommands.talkHistory.getMatcher(input))!=null) {
+            System.out.println(controller5.showTalkHistory(matcher.group("username")));
+        } else if ((matcher=FriendshipCommands.talk.getMatcher(input))!=null) {
+            System.out.println(controller5.talk(matcher.group("username"),matcher.group("message")));
         }
     }
 }

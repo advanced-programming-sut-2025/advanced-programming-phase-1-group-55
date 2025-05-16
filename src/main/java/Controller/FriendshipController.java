@@ -1,13 +1,16 @@
 package Controller;
 
 import model.Friendship.PlayerFriendship;
+import model.Map.Location;
 import model.Result;
 import model.User;
+
+import java.util.ArrayList;
 
 import static model.App.*;
 
 public class FriendshipController {
-    private User findUser(String username){
+    public static User findUser(String username){
         for(User user:currentGame.playersInGame){
             if (username.equals(user.getUsername())){
                 return user;
@@ -26,15 +29,26 @@ public class FriendshipController {
         }
         return new Result(true,message.toString());
     }
+    public boolean locationsAreNear(Location location1, Location location2) {
+        int dx = Math.abs(location1.getX() - location2.getX());
+        int dy = Math.abs(location1.getY() - location2.getY());
+
+        return (dx <= 1 && dy <= 1) ;
+    }
+
     public Result talk(String username,String message){
         User user=findUser(username);
         if(user==null){
             return  new Result(false,"user not found!");
         }
-        user.getConversations().get(currentGame.currentUser).add(message);
-        currentGame.currentUser.getConversations().get(user).add(message);
-        user.getFriendsPlayer().get(currentGame.currentUser).increaseXp(20);
-        user.getFriendsPlayer().get(currentGame.currentUser).setTodayTalked(true);
+        if(!locationsAreNear(user.getLocation(),currentGame.currentUser.getLocation())){
+            return  new Result(false,"you must be near the other player to talk!");
+        }
+        currentGame.currentUser.getFriendsPlayer().get(user).getConversation().add(message);
+        if(!user.getFriendsPlayer().get(currentGame.currentUser).isTodayTalked()){
+            user.getFriendsPlayer().get(currentGame.currentUser).increaseXp(20);
+            user.getFriendsPlayer().get(currentGame.currentUser).setTodayTalked(true);
+        }
         return new Result(true,"message successfully sent to : "+username);
     }
     public Result showTalkHistory(String username){
@@ -43,7 +57,7 @@ public class FriendshipController {
         if(user==null){
             return  new Result(false,"user not found!");
         }
-        for (String message:currentGame.currentUser.getConversations().get(user)){
+        for (String message:currentGame.currentUser.getFriendsPlayer().get(user).getConversation()){
             conversation.append(message).append("\n");
         }
         return new Result(true,conversation.toString());

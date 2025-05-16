@@ -12,6 +12,7 @@ public class PlayerFriendship extends FriendShip {
     private boolean todayGotFlower=false;
     private  boolean todayTalked=false;
     private boolean todayGotGift=false;
+    private ArrayList<String> conversation=new ArrayList<>();
     private ArrayList<Gift> gifts=new ArrayList<>();
 
     public PlayerFriendship(User user1, User user2) {
@@ -80,5 +81,13 @@ public class PlayerFriendship extends FriendShip {
 
     public void setTodayGotGift(boolean todayGotGift) {
         this.todayGotGift = todayGotGift;
+    }
+
+    public ArrayList<String> getConversation() {
+        return conversation;
+    }
+
+    public void setConversation(ArrayList<String> conversation) {
+        this.conversation = conversation;
     }
 }

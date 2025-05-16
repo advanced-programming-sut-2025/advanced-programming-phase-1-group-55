@@ -45,7 +45,6 @@ public class User {
     private MainLocation mainLocation = MainLocation.House;
     private HashMap<Integer, Trade> trades = new HashMap<>();
     private CookingItem cookingItem;
-    private Map<User,ArrayList<String>> conversations=new HashMap<>();
     private int stone;
     private Map<User,List<Gift>> receivedGifts=new HashMap<>();
     private Map<User,List<Gift>> sentGifts=new HashMap<>();
@@ -310,13 +309,6 @@ public class User {
         gold+=amount;
     }
 
-    public Map<User, ArrayList<String>> getConversations() {
-        return conversations;
-    }
-
-    public void setConversations(Map<User, ArrayList<String>> conversations) {
-        this.conversations = conversations;
-    }
 
     public Map<User, List<Gift>> getReceivedGifts() {
         return receivedGifts;

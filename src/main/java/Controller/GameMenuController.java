@@ -42,24 +42,18 @@ public class GameMenuController {
         currentGame.playersInGame.get(3).getFriendsPlayer().put(currentGame.playersInGame.get(1),friendship5);
         currentGame.playersInGame.get(2).getFriendsPlayer().put(currentGame.playersInGame.get(3),friendship6);
         currentGame.playersInGame.get(3).getFriendsPlayer().put(currentGame.playersInGame.get(2),friendship6);
-        for(User user:currentGame.playersInGame){
-            user.setBackPack(new BackPack());
-            user.setConversations(new HashMap<>());
-        }
-        for(int i=0;i<currentGame.playersInGame.size();i++){
-            for (int j=i;j<currentGame.playersInGame.size();j++){
-                if(j!=1){
-                    currentGame.playersInGame.get(i).getConversations().put(currentGame.playersInGame.get(j),new ArrayList<>());
-                    currentGame.playersInGame.get(j).getConversations().put(currentGame.playersInGame.get(i),new ArrayList<>());
-                }
-            }
-        }
         currentGame.getAllFriendships().add(friendship1);
         currentGame.getAllFriendships().add(friendship2);
         currentGame.getAllFriendships().add(friendship3);
         currentGame.getAllFriendships().add(friendship4);
         currentGame.getAllFriendships().add(friendship5);
         currentGame.getAllFriendships().add(friendship6);
+        friendship1.setConversation(new ArrayList<>());
+        friendship2.setConversation(new ArrayList<>());
+        friendship3.setConversation(new ArrayList<>());
+        friendship4.setConversation(new ArrayList<>());
+        friendship5.setConversation(new ArrayList<>());
+        friendship6.setConversation(new ArrayList<>());
     }
     public void setTileOwner(User user, Farm farm, GameMap map) {
 //        System.out.println(user.getUsername() + mainUser.getUsername());
