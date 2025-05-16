@@ -59,6 +59,29 @@ public enum ItemType {
     PINE_CONE("pine cone"),
     MAHOGANY_SEED("mahogany seed"),
 
+    CHERRY_BOMB_RECIPE("Cherry Bomb"),
+    BOMB_RECIPE("Bomb"),
+    MEGA_BOMB_RECIPE("Mega Bomb"),
+    SPRINKLER_RECIPE("Sprinkler"),
+    QUALITY_SPRINKLER_RECIPE("Quality Sprinkler"),
+    IRIDIUM_SPRINKLER_RECIPE("Iridium Sprinkler"),
+    CHARCOAL_KILN_RECIPE("Charcoal Klin"),
+    FURNACE_RECIPE("Furnace"),
+    SCARECROW_RECIPE("Scarecrow"),
+    DELUXE_SCARECROW_RECIPE("Deluxe Scarecrow"),
+    BEE_HOUSE_RECIPE("Bee House"),
+    CHEESE_PRESS_RECIPE("Cheese Press"),
+    KEG_RECIPE("Keg"),
+    LOOM_RECIPE("Loom"),
+    MAYONNAISE_MACHINE_RECIPE("Mayonnaise Machine"),
+    OIL_MAKER_RECIPE("Oil Maker"),
+    PRESERVES_JAR_RECIPE("Preserves Jar"),
+    DEHYDRATOR_RECIPE("Dehydrator"),
+    GRASS_STARTER_RECIPE("Grass Starter"),
+    FISH_SMOKER_RECIPE("Fish Smoker"),
+    MYSTIC_TREE_SEED_RECIPE("Mystic Tree Seed"),
+
+
     FIBER("fiber"),
     BARN("barn"),
     BIG_BARN("big barn"),
@@ -212,8 +235,6 @@ public enum ItemType {
     POWDERMELON_SEEDS("powdermelon seeds"),
     BOUQUET("bouquet"),
     WEDDING_RING("wedding ring"),
-    DEHYDRATOR_RECIPE("dehydrator recipe"),
-    GRASS_STARTER_RECIPE("grass starter recipe"),
     VINEGAR("vinegar"),
     DELUXE_RETAINING_SOIL("deluxe retaining soil"),
     SPEED_GRO("speed-gro"),
@@ -232,7 +253,6 @@ public enum ItemType {
     BLUEBERRY_SEEDS("blueberry seeds"),
     RED_CABBAGE_SEEDS("red cabbage seeds"),
     ARTICHOKE_SEEDS("artichoke seeds"),
-    FISH_SMOKER_RECIPE("fish smoker recipe"),
     TROUT_SOUP("trout soup"),
     BAMBOO_POLE("bamboo pole"),
     TRAINING_ROD("training rod"),
@@ -248,6 +268,8 @@ public enum ItemType {
     DINOSAUR("dinosaur"),
     PIG("pig"),
 
+    DUMMY("dummy"),
+
     LARGE_PACK("large backpack"),
     DELUXE_PACK("deluxe backpack");
 
@@ -258,22 +280,23 @@ public enum ItemType {
 
 
 
-    private final String DisplayName;
+    private final String name;
 
     ItemType(String DisplayName) {
-        this.DisplayName = DisplayName;
+        this.name = name();
     }
 
     @Override
     public String toString()
     {
-        return DisplayName;
+        return name();
     }
-    public static ItemType getItemType(String DisplayName)
+
+    public static ItemType getItemType(String name)
     {
         for (ItemType itemType : ItemType.values())
         {
-            if (itemType.DisplayName.equalsIgnoreCase(DisplayName))
+            if (itemType.toString().equalsIgnoreCase(name))
             {
                 return itemType;
             }
@@ -282,6 +305,6 @@ public enum ItemType {
     }
 
     public String getDisplayName() {
-        return DisplayName;
+        return name;
     }
 }

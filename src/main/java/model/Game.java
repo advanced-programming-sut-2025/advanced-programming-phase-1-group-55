@@ -14,6 +14,7 @@ import java.util.*;
 import com.google.gson.GsonBuilder;
 
 import enums.Menu;
+import model.Friendship.PlayerFriendship;
 import model.Map.GameMap;
 import model.Map.Tile;
 
@@ -26,6 +27,7 @@ public class Game {
     public User currentUser;
     public ArrayList<User> playersInGame = new ArrayList<>();
     private GameMap map;
+    private ArrayList<PlayerFriendship> allFriendships=new ArrayList<>();
     private HashMap<Integer, Trade> AllTrades = new HashMap<>();
 
     public Game(User currentUser, ArrayList<User> playersInGame, GameMap map) {
@@ -128,11 +130,21 @@ public class Game {
         return App.currentGame.getMap().tiles[newX][newY];
     }
 
+    public ArrayList<PlayerFriendship> getAllFriendships() {
+        return allFriendships;
+    }
+
+    public void setAllFriendships(ArrayList<PlayerFriendship> allFriendships) {
+        this.allFriendships = allFriendships;
+    }
 
     public HashMap<Integer, Trade> getAllTrades() {
         return AllTrades;
     }
 
+    public void setAllTrades(HashMap<Integer, Trade> allTrades) {
+        AllTrades = allTrades;
+    }
     public void addToAllTrade(Trade trade) {
         AllTrades.put(trade.getId(), trade);
     }

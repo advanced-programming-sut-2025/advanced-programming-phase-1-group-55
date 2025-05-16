@@ -16,6 +16,7 @@ import model.Result;
 import enums.AnsiColor;
 import static model.Item.ItemType.*;
 
+import model.User;
 import model.weather.*;
 
 import static model.weather.*;
@@ -217,5 +218,21 @@ public class MainGameController {
             return new Result(false, "Default tile");
         }
         return new Result(true, "this tile is in " + currentGame.getMap().tiles[y][x].getOwner().getUsername() + "'s farm"+ "Mohtaviat :"+currentGame.getMap().tiles[y][x].getMohtaviat());
+    }public Result changePlayer(String username){
+        User user=FriendshipController.findUser(username);
+        if (user==null){
+            return new Result(false,"user not found!");
+        }
+        currentGame.currentUser=user;
+        StringBuilder message=new StringBuilder();
+        if (currentGame.currentUser.isHasGiftToday()){
+            message.append("you received new gift!\n");
+            currentGame.currentUser.setHasGiftToday(false);
+        }
+        if (currentGame.currentUser.isHasMessageToday()){
+            message.append("you received new message!");
+            currentGame.currentUser.setHasMessageToday(false);
+        }
+        return  new Result(true,username +" is now the main player\n"+message);
     }
 }

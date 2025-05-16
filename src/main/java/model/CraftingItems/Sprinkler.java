@@ -5,7 +5,7 @@ import model.Item.ItemType;
 
 public class Sprinkler extends CraftingItem {
     public Sprinkler() {
-        super(CraftingItemType.SPRINKLER);
+        super(CraftingItemType.SPRINKLER_RECIPE);
     }
 
     @Override

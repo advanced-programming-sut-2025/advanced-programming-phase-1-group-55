@@ -5,7 +5,7 @@ import model.Item.ItemType;
 
 public class Furnace extends CraftingItem {
     public Furnace() {
-        super(CraftingItemType.FURNACE);
+        super(CraftingItemType.FURNACE_RECIPE);
     }
 
     @Override

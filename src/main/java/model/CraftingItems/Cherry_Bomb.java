@@ -5,7 +5,7 @@ import model.Item.ItemType;
 
 public class Cherry_Bomb extends CraftingItem{
     public Cherry_Bomb() {
-        super(CraftingItemType.CHERRY_BOMB);
+        super(CraftingItemType.CHERRY_BOMB_RECIPE);
     }
 
     @Override

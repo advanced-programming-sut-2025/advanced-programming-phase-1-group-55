@@ -3,11 +3,14 @@ package Controller;
 import enums.Menu;
 import enums.mainGameCommands;
 import model.App;
+import model.Friendship.FriendShip;
+import model.Friendship.PlayerFriendship;
 import model.Game;
 import model.Item.Item;
 import model.Item.ItemType;
 import model.Map.*;
 import model.Result;
+import model.Tool.BackPack;
 import model.User;
 
 import java.util.ArrayList;
@@ -15,10 +18,43 @@ import java.util.HashMap;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 
+import static javax.swing.UIManager.put;
 import static model.App.*;
 
 
 public class GameMenuController {
+    private void setFriendships(){
+        PlayerFriendship friendship1=new PlayerFriendship(currentGame.playersInGame.get(0),currentGame.playersInGame.get(1));
+        PlayerFriendship friendship2=new PlayerFriendship(currentGame.playersInGame.get(0),currentGame.playersInGame.get(2));
+        PlayerFriendship friendship3=new PlayerFriendship(currentGame.playersInGame.get(0),currentGame.playersInGame.get(3));
+        PlayerFriendship friendship4=new PlayerFriendship(currentGame.playersInGame.get(1),currentGame.playersInGame.get(2));
+        PlayerFriendship friendship5=new PlayerFriendship(currentGame.playersInGame.get(1),currentGame.playersInGame.get(3));
+        PlayerFriendship friendship6=new PlayerFriendship(currentGame.playersInGame.get(2),currentGame.playersInGame.get(3));
+        currentGame.playersInGame.get(0).getFriendsPlayer().put(currentGame.playersInGame.get(1),friendship1);
+        currentGame.playersInGame.get(1).getFriendsPlayer().put(currentGame.playersInGame.get(0),friendship1);
+        currentGame.playersInGame.get(0).getFriendsPlayer().put(currentGame.playersInGame.get(2),friendship2);
+        currentGame.playersInGame.get(2).getFriendsPlayer().put(currentGame.playersInGame.get(0),friendship2);
+        currentGame.playersInGame.get(0).getFriendsPlayer().put(currentGame.playersInGame.get(3),friendship3);
+        currentGame.playersInGame.get(3).getFriendsPlayer().put(currentGame.playersInGame.get(0),friendship3);
+        currentGame.playersInGame.get(1).getFriendsPlayer().put(currentGame.playersInGame.get(2),friendship4);
+        currentGame.playersInGame.get(2).getFriendsPlayer().put(currentGame.playersInGame.get(1),friendship4);
+        currentGame.playersInGame.get(1).getFriendsPlayer().put(currentGame.playersInGame.get(3),friendship5);
+        currentGame.playersInGame.get(3).getFriendsPlayer().put(currentGame.playersInGame.get(1),friendship5);
+        currentGame.playersInGame.get(2).getFriendsPlayer().put(currentGame.playersInGame.get(3),friendship6);
+        currentGame.playersInGame.get(3).getFriendsPlayer().put(currentGame.playersInGame.get(2),friendship6);
+        currentGame.getAllFriendships().add(friendship1);
+        currentGame.getAllFriendships().add(friendship2);
+        currentGame.getAllFriendships().add(friendship3);
+        currentGame.getAllFriendships().add(friendship4);
+        currentGame.getAllFriendships().add(friendship5);
+        currentGame.getAllFriendships().add(friendship6);
+        friendship1.setConversation(new ArrayList<>());
+        friendship2.setConversation(new ArrayList<>());
+        friendship3.setConversation(new ArrayList<>());
+        friendship4.setConversation(new ArrayList<>());
+        friendship5.setConversation(new ArrayList<>());
+        friendship6.setConversation(new ArrayList<>());
+    }
     public void setTileOwner(User user, Farm farm, GameMap map) {
 //        System.out.println(user.getUsername() + mainUser.getUsername());
 //        System.out.println(farm.getLocation().toString());
@@ -185,7 +221,10 @@ public class GameMenuController {
         for (User player : playersInGame) {
             player.getBackPack().getInventory().put("coal", new Item(ItemType.getItemType("coal")));
             player.getBackPack().getInventory().get("coal").setNumber(100);
+            player.setBackPack(new BackPack());
         }
+
+        setFriendships();
         return new Result(true, "game has created successfully !");
     }
 

@@ -1,46 +1,27 @@
 package Controller;
 
-import model.Skills;
-import model.Ability;
+import model.Skill;
 
-import java.util.List;
+public class SkillController {
+    protected final Skill skill;
 
-public abstract class SkillController {
-    protected Skills skill;
-    private static final int MAX_LEVEL = 4;
-
-    public SkillController(Skills skill) {
+    public SkillController(Skill skill) {
         this.skill = skill;
     }
 
-
     public void addPoints(int amount) {
-        if (skill.getLevel() >= MAX_LEVEL) return;
-
-        int currentPoints = skill.getPoints();
-        currentPoints += amount;
-
-        while (skill.getLevel() < MAX_LEVEL && currentPoints >= requiredPointsForNextLevel()) {
-            currentPoints -= requiredPointsForNextLevel();
-            skill.setLevel(skill.getLevel() + 1);
-            onLevelUp(skill.getLevel());
-        }
-
-        skill.setPoints(currentPoints);
+        skill.changePoints(amount);
     }
 
-    private int requiredPointsForNextLevel() {
-        int level = skill.getLevel();
-        return level * 100 + 50;
+    public int getLevel() {
+        return skill.getLevel();
     }
 
-    protected abstract void onLevelUp(int newLevel);
+    public int getPoints() {
+        return skill.getPoints();
+    }
 
-    public Skills getSkill() {
+    public Skill getSkill() {
         return skill;
-    }
-
-    public List<Ability> getAbilities() {
-        return skill.getAbilities();
     }
 }

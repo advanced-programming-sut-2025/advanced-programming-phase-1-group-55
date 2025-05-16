@@ -1,42 +1,32 @@
 package Controller;
-import enums.CraftingItemType;
-import model.User;
-import model.Skills;
 
+import model.App;
+import model.Skill;
 
 public class MiningController extends SkillController {
-    private User user;
 
-    public MiningController(Skills skill, User user) {
-        super(skill);
-        this.user = user;
-    }
-
-    @Override
-    protected void onLevelUp(int newLevel) {
-        switch (newLevel) {
-            case 1 -> {
-                user.getBackPack().learnCraftingRecipe(CraftingItemType.CHERRY_BOMB);
-            }
-            case 2 -> {
-                user.getBackPack().learnCraftingRecipe(CraftingItemType.BOMB);
-            }
-            case 3 -> {
-                user.getBackPack().learnCraftingRecipe(CraftingItemType.MEGA_BOMB);
-            }
-            case 4 -> {
-
-            }
-        }
+    public MiningController() {
+        super(App.currentGame.currentUser.getMiningSkill());
     }
 
 
-
-
-
-
-//    public boolean hasExtraDropChance() {
+    public void onBreakStone() {
+        skill.changePoints(10);
 //        return skill.getLevel() >= 2;
-//    }
+    }
 
+
+    public int getCurrentLevel() {
+        return skill.getLevel();
+    }
+
+
+    public int getCurrentPoints() {
+        return skill.getPoints();
+    }
+
+
+    public Skill getMiningSkill() {
+        return skill;
+    }
 }

@@ -15,6 +15,7 @@ import enums.WeatherType;
 
 import static model.weather.*;
 
+import model.Friendship.PlayerFriendship;
 import model.Game;
 import model.Store.Product;
 import model.Store.Store;
@@ -32,7 +33,17 @@ public class GameTime {
     public static void setHour(int hour) {
         GameTime.hour = hour;
     }
-
+    public  static void friendshipWorks(){
+       for(User user:currentGame.playersInGame){
+           for (PlayerFriendship friendship:user.getFriendsPlayer().values()){
+               friendship.setTodayTalked(false);
+               friendship.setTodayGotFlower(false);
+               friendship.setTodayGotGift(false);
+               friendship.setTodayHugged(false);
+               friendship.setTodayTraded(false);
+           }
+       }
+    }
     public static void roozbad() {
         GameTime.hour = 9;
         weather.setCurrentWeather(weather.getTomorrowWeather());
@@ -59,10 +70,12 @@ public class GameTime {
             user.increaseGold(user.getDailyMoney());
             user.setDailyMoney(0);
         }
-        for (Store store : currentGame.getMap().getVillage().getStores().values())
+        for (Store store : currentGame.getMap().getVillage().getStores().values()) {
             for (Product product : store.getProductsOfStore().values()) {
                 product.setTodaySell(0);
             }
+        }
+        friendshipWorks();
     }
 
     public static DayOfTheWeeks getDay() {
