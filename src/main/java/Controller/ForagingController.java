@@ -1,36 +1,31 @@
 package Controller;
 
-import enums.CraftingItemType;
-import model.Skills;
-import model.User;
+import model.App;
+import model.Skill;
 
 public class ForagingController extends SkillController {
-    private User user;
 
-    public ForagingController(Skills skill, User user) {
-        super(skill);
-        this.user = user;
-    }
-
-    @Override
-    protected void onLevelUp(int newLevel) {
-        switch (newLevel) {
-            case 1 -> {
-                user.getBackPack().learnCraftingRecipe(CraftingItemType.CHARCOAL_KILN);
-            }
-            case 2 -> {
-
-            }
-            case 3 -> {
-
-            }
-            case 4 -> {
-                user.getBackPack().learnCraftingRecipe(CraftingItemType.MYSTIC_TREE_SEED);
-            }
-        }
+    public ForagingController() {
+        super(App.currentGame.currentUser.getForagingSkill());
     }
 
 
+    public void onCollectNaturalItem() {
+        skill.changePoints(10);
+    }
 
 
+    public int getCurrentLevel() {
+        return skill.getLevel();
+    }
+
+
+    public int getCurrentPoints() {
+        return skill.getPoints();
+    }
+
+
+    public Skill getForagingSkill() {
+        return skill;
+    }
 }

@@ -20,37 +20,6 @@ public class CookingItem extends Item {
     public CookingItemType getCraftType() {
         return cookItem;
     }
-    private ArrayList<CookingItem> refrigerator = new ArrayList<>();
 
-    public ArrayList<CookingItem> getRefrigerator() {
-        return refrigerator;
-    }
 
-    public CookingItem getFromRefrigerator(ItemType itemType) {
-        for (CookingItem refrigeratorItem : refrigerator) {
-            if (refrigeratorItem.getItemType().equals(itemType)) {
-                return refrigeratorItem;
-            }
-        }
-        return null;
-    }
-    public int howManyInRefrigerator(ItemType itemType) {
-        for (CookingItem refrigeratorItem : refrigerator) {
-            if (refrigeratorItem.getItemType().equals(itemType)) {
-                return refrigeratorItem.getNumber();
-            }
-        }
-        return 0;
-    }
-    public void removeFromRefrigerator(ItemType itemType, int number) {
-        for (CookingItem refrigeratorItem : refrigerator) {
-            if (refrigeratorItem.getItemType().equals(itemType)) {
-                refrigeratorItem.addNumber(-1 * number);
-                if (refrigeratorItem.getNumber() <= 0) {
-                    refrigerator.remove(refrigeratorItem);
-                }
-                break;
-            }
-        }
-    }
 }

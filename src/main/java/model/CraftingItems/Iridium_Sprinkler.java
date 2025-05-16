@@ -5,7 +5,7 @@ import model.Item.ItemType;
 
 public class Iridium_Sprinkler extends CraftingItem {
     public Iridium_Sprinkler() {
-        super(CraftingItemType.IRIDIUM_SPRINKLER);
+        super(CraftingItemType.IRIDIUM_SPRINKLER_RECIPE);
     }
 
     @Override

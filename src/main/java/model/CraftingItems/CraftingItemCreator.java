@@ -7,27 +7,27 @@ public class CraftingItemCreator {
         if (type == null) return null;
 
         return switch (type) {
-            case CraftingItemType.CHERRY_BOMB -> new Cherry_Bomb();
-            case CraftingItemType.BOMB -> new Bomb();
-            case CraftingItemType.MEGA_BOMB -> new Mega_Bomb();
-            case CraftingItemType.SPRINKLER -> new Sprinkler();
-            case CraftingItemType.QUALITY_SPRINKLER -> new Quality_Sprinkler();
-            case CraftingItemType.IRIDIUM_SPRINKLER -> new Iridium_Sprinkler();
-            case CraftingItemType.CHARCOAL_KILN -> new Charcoal_Klin();
-            case CraftingItemType.FURNACE -> new Furnace();
-            case CraftingItemType.SCARECROW -> new Scarecrow();
-            case CraftingItemType.DELUXE_SCARECROW -> new Deluxe_Scarecrow();
-            case CraftingItemType.BEE_HOUSE -> new Bee_House();
-            case CraftingItemType.CHEESE_PRESS -> new Cheese_Press();
-            case CraftingItemType.KEG -> new Keg();
-            case CraftingItemType.LOOM -> new Loom();
-            case CraftingItemType.MAYONNAISE_MACHINE -> new Mayonnaise_Machine();
-            case CraftingItemType.OIL_MAKER -> new Oil_Maker();
-            case CraftingItemType.PRESERVES_JAR -> new Preserves_Jar();
-            case CraftingItemType.DEHYDRATOR -> new Dehydrator();
-            case CraftingItemType.GRASS_STARTER -> new Grass_Starter();
-            case CraftingItemType.FISH_SMOKER -> new Fish_Smoker();
-            case CraftingItemType.MYSTIC_TREE_SEED -> new Mystic_Tree_Seed();
+            case CraftingItemType.CHERRY_BOMB_RECIPE -> new Cherry_Bomb();
+            case CraftingItemType.BOMB_RECIPE -> new Bomb();
+            case CraftingItemType.MEGA_BOMB_RECIPE -> new Mega_Bomb();
+            case CraftingItemType.SPRINKLER_RECIPE -> new Sprinkler();
+            case CraftingItemType.QUALITY_SPRINKLER_RECIPE -> new Quality_Sprinkler();
+            case CraftingItemType.IRIDIUM_SPRINKLER_RECIPE -> new Iridium_Sprinkler();
+            case CraftingItemType.CHARCOAL_KILN_RECIPE -> new Charcoal_Klin();
+            case CraftingItemType.FURNACE_RECIPE -> new Furnace();
+            case CraftingItemType.SCARECROW_RECIPE -> new Scarecrow();
+            case CraftingItemType.DELUXE_SCARECROW_RECIPE -> new Deluxe_Scarecrow();
+            case CraftingItemType.BEE_HOUSE_RECIPE -> new Bee_House();
+            case CraftingItemType.CHEESE_PRESS_RECIPE -> new Cheese_Press();
+            case CraftingItemType.KEG_RECIPE -> new Keg();
+            case CraftingItemType.LOOM_RECIPE -> new Loom();
+            case CraftingItemType.MAYONNAISE_MACHINE_RECIPE -> new Mayonnaise_Machine();
+            case CraftingItemType.OIL_MAKER_RECIPE -> new Oil_Maker();
+            case CraftingItemType.PRESERVES_JAR_RECIPE -> new Preserves_Jar();
+            case CraftingItemType.DEHYDRATOR_RECIPE -> new Dehydrator();
+            case CraftingItemType.GRASS_STARTER_RECIPE -> new Grass_Starter();
+            case CraftingItemType.FISH_SMOKER_RECIPE -> new Fish_Smoker();
+            case CraftingItemType.MYSTIC_TREE_SEED_RECIPE -> new Mystic_Tree_Seed();
         };
     }
 }

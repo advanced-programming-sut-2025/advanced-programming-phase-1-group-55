@@ -3,11 +3,9 @@ package Controller;
 import enums.CookingItemType;
 import enums.CraftingItemType;
 import model.App;
-import model.App.*;
 import model.CookingItems.CookingItem;
 import model.CraftingItems.CraftingItem;
 import model.CraftingItems.CraftingItemCreator;
-import model.Ingredient;
 import model.Item.Item;
 import model.Item.ItemType;
 import model.Map.Tile;
@@ -31,9 +29,22 @@ public class inHouseController {
         }
         return new Result(true, result.toString().trim());
     }
+    public Result cheatAddCraftingRecipe(String itemName) {
+        User user = App.currentGame.currentUser;
+        CraftingItemType recipe = CraftingItemType.getRecipeFromItemName(itemName);
+        if (recipe == null) {
+            return new Result(false, "Recipe not found");
+        }
+        ArrayList<CraftingItemType> recipes = App.currentGame.currentUser.getBackPack().getCraftingRecipes();
+        if (recipes.contains(recipe)) {
+            return new Result(false, "there is no crafting recipe with this name");
+        }
+        recipes.add(recipe);
+        return new Result(true, "Added crafting recipe with this name");
+    }
     public Result CraftItem(String itemName) {
         User user = App.currentGame.currentUser;
-        CraftingItemType recipe = CraftingItemType.getCraftingItemType(itemName);
+        CraftingItemType recipe = CraftingItemType.getRecipeFromItemName(itemName);
         if (recipe == null) {
             return new Result(false, "No recipe found");
         }
@@ -116,7 +127,7 @@ public class inHouseController {
             return new Result(false, "you cant put non-edible item in refrigerator");
         }
         CookingItem thing = new CookingItem(cookingItemType);
-        user.getCookingItem().getRefrigerator().add(thing);
+        user.getRefrigerator().add(thing);
         user.getBackPack().removeItemFromInventory(item);
         return new Result(true, itemName + " has been put into refrigerator");
     }
@@ -130,7 +141,7 @@ public class inHouseController {
         if (cookingItemType == null) {
             return new Result(false, "this item not edible so cant pick from refrigerator");
         }
-        CookingItem thing = user.getCookingItem().getFromRefrigerator(type);
+        CookingItem thing = user.getFromRefrigerator(type);
         if (thing == null) {
             return new Result(false, "this item isnt in refrigerator");
         }
@@ -140,20 +151,21 @@ public class inHouseController {
         Item item = new Item(type);
         item.setNumber(thing.getNumber());
         user.getBackPack().addToInventory(item);
-        user.getCookingItem().getRefrigerator().remove(thing);
+        user.getRefrigerator().remove(thing);
         return new Result(true, itemName + " has been picked from refrigerator");
     }
     public Result ShowCookingRecipe() {
         ArrayList<CookingItemType> recipes = App.currentGame.currentUser.getBackPack().getCookingRecipes();
-        if (recipes == null || recipes.isEmpty()) {
-            return new Result(false, "No recipe found");
-        }
+//        if (recipes == null || recipes.isEmpty()) {
+//            return new Result(false, "No recipe found");
+//        }
         StringBuilder result = new StringBuilder();
+        if (recipes.size() > 0) {
         for (CookingItemType recipe : recipes) {
             result.append(recipe.getProductName()).append(": ")
                     .append("ingredient: ").append(recipe.getIngredients()).append("\n")
                     .append("Sell Price: ").append(recipe.getSellPrice()).append("\n");
-        }
+        }}
         return new Result(true, result.toString().trim());
     }
     public Result CookItem(String itemName) {
@@ -162,22 +174,22 @@ public class inHouseController {
         if (type == null) {
             return new Result(false, "No item found");
         }
-        CookingItemType recipe = CookingItemType.getCookingRecipe(itemName);
+        CookingItemType recipe = CookingItemType.getKitchenRecipe(itemName);
         if (recipe == null) {
             return new Result(false, "this item does not have cooking recipe");
         }
         ArrayList<CookingItemType> recipes = App.currentGame.currentUser.getBackPack().getCookingRecipes();
         if (!recipes.contains(recipe)) {
-            return new Result(false, "you dont have dis item recipe");
+            return new Result(false, "you dont have this item recipe");
         }
         if (!user.getBackPack().inventoryHasCapacity()) {
             return new Result(false, "you dont have enough inventory");
         }
-        ArrayList<CookingItem> refrigerator = user.getCookingItem().getRefrigerator();
+        ArrayList<CookingItem> refrigerator = user.getRefrigerator();
         HashMap<ItemType, Integer> ingredients = recipe.getIngredients();
         boolean canCook = true;
         for (ItemType itemType : ingredients.keySet()) {
-            int AllWeHave = user.getBackPack().howManyInInventory(itemType) + user.getCookingItem().howManyInRefrigerator(itemType);
+            int AllWeHave = user.getBackPack().howManyInInventory(itemType) + user.howManyInRefrigerator(itemType);
             if (AllWeHave < ingredients.get(itemType)) {
                 canCook = false;
             }
@@ -192,7 +204,7 @@ public class inHouseController {
             }
             int removedFromRefrigerator = ingredients.get(itemType) - removedFromInventory;
             if (removedFromRefrigerator > 0) {
-                user.getCookingItem().removeFromRefrigerator(itemType, removedFromRefrigerator);
+                user.removeFromRefrigerator(itemType, removedFromRefrigerator);
             }
         }
         user.decreaseEnergy(3);

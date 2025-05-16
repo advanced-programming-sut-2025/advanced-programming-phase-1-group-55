@@ -1,6 +1,8 @@
 package model;
 
+import enums.CookingItemType;
 import enums.CraftingItemType;
+import enums.SkillType;
 import model.CookingItems.CookingItem;
 import model.Friendship.Gift;
 import model.Friendship.PlayerFriendship;
@@ -57,6 +59,12 @@ public class User {
     public void setStone(int stone) {
         this.stone = stone;
     }
+    private Skill farmingSkill = new Skill(SkillType.Farming);
+    private Skill miningSkill = new Skill(SkillType.Mining);
+    private Skill foragingSkill = new Skill(SkillType.Foraging);
+    private Skill fishingSkill = new Skill(SkillType.Fishing);
+    private ArrayList<CookingItem> refrigerator = new ArrayList<>();
+
 
     public HashMap<Integer, Trade> getTrades() {
         return trades;
@@ -183,10 +191,16 @@ public class User {
         this.email = email;
         this.numberOfSecurityQuestion = numberOfSecurityQuestion;
         this.securityQuestion = securityQuestion;
+//        this.cookingItem = new CookingItem(CookingItemType.DISH_O_THE_SEA);
+        this.refrigerator = new ArrayList<>();
+
 //        learnRecipe(CraftingItemType.FURNACE);
 //        learnRecipe(CraftingItemType.SCARECROW);
 //        learnRecipe(CraftingItemType.MAYONNAISE_MACHINE);
     }
+//    public ArrayList<Item> getRefrigerator() {
+//        return refrigerator;
+//    }
 
     public void addTrade(Trade trade) {
         userTrades.add(trade);
@@ -344,6 +358,53 @@ public class User {
 
     public void setSentGifts(Map<User, List<Gift>> sentGifts) {
         this.sentGifts = sentGifts;
+    }
+
+    public Skill getFarmingSkill() {
+        return farmingSkill;
+    }
+
+    public Skill getMiningSkill() {
+        return miningSkill;
+    }
+
+    public Skill getForagingSkill() {
+        return foragingSkill;
+    }
+
+    public Skill getFishingSkill() {
+        return fishingSkill;
+    }
+    public ArrayList<CookingItem> getRefrigerator() {
+        return refrigerator;
+    }
+
+    public CookingItem getFromRefrigerator(ItemType itemType) {
+        for (CookingItem refrigeratorItem : refrigerator) {
+            if (refrigeratorItem.getItemType().equals(itemType)) {
+                return refrigeratorItem;
+            }
+        }
+        return null;
+    }
+    public int howManyInRefrigerator(ItemType itemType) {
+        for (CookingItem refrigeratorItem : refrigerator) {
+            if (refrigeratorItem.getItemType().equals(itemType)) {
+                return refrigeratorItem.getNumber();
+            }
+        }
+        return 0;
+    }
+    public void removeFromRefrigerator(ItemType itemType, int number) {
+        for (CookingItem refrigeratorItem : refrigerator) {
+            if (refrigeratorItem.getItemType().equals(itemType)) {
+                refrigeratorItem.addNumber(-1 * number);
+                if (refrigeratorItem.getNumber() <= 0) {
+                    refrigerator.remove(refrigeratorItem);
+                }
+                break;
+            }
+        }
     }
     //    public void learnRecipe(CraftingItemType recipe) {
 //        learnedCraftingRecipes.add(recipe);

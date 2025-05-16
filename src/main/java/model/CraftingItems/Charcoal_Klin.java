@@ -5,7 +5,7 @@ import model.Item.ItemType;
 
 public class Charcoal_Klin extends CraftingItem {
     public Charcoal_Klin() {
-        super(CraftingItemType.CHARCOAL_KILN);
+        super(CraftingItemType.CHARCOAL_KILN_RECIPE);
     }
 
     @Override

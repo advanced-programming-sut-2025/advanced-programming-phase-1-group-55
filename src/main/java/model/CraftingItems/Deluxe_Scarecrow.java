@@ -5,7 +5,7 @@ import model.Item.ItemType;
 
 public class Deluxe_Scarecrow extends CraftingItem {
     public Deluxe_Scarecrow() {
-        super(CraftingItemType.DELUXE_SCARECROW);
+        super(CraftingItemType.DELUXE_SCARECROW_RECIPE);
     }
 
     @Override
