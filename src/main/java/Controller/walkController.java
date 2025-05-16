@@ -36,8 +36,8 @@ public class walkController {
     }
 
     private List<Tile> dfs(int startX, int startY, int endX, int endY, Tile[][] map) {
-        int n = map.length;
-        int m = map[0].length;
+        int n = map.length; // Y size
+        int m = map[0].length; // X size
         boolean[][] visited = new boolean[n][m];
         List<Tile> path = new ArrayList<>();
         List<Tile> result = new ArrayList<>();
@@ -48,15 +48,15 @@ public class walkController {
     }
 
     private boolean dfsHelper(int x, int y, int endX, int endY, Tile[][] map, boolean[][] visited, List<Tile> path, List<Tile> result) {
-        int n = map.length;
-        int m = map[0].length;
+        int n = map.length; // Y
+        int m = map[0].length; // X
 
-        if (x < 0 || y < 0 || x >= n || y >= m || visited[x][y] || !map[x][y].isWalkable() || !map[x][y].getOwner().equals(currentGame.currentUser) || map[x][y].getOwner() != null) {
+        if (y < 0 || x < 0 || y >= n || x >= m || visited[y][x] || !map[y][x].isWalkable()) {
             return false;
         }
 
-        visited[x][y] = true;
-        path.add(map[x][y]);
+        visited[y][x] = true;
+        path.add(map[y][x]);
 
         if (x == endX && y == endY) {
             result.addAll(new ArrayList<>(path));
@@ -74,6 +74,50 @@ public class walkController {
         return false;
     }
 
+    private List<Tile> bfs(int startX, int startY, int endX, int endY, Tile[][] map) {
+        int n = map.length; // Y
+        int m = map[0].length; // X
+
+        boolean[][] visited = new boolean[n][m];
+        Tile[][] parent = new Tile[n][m];
+
+        Queue<int[]> queue = new LinkedList<>();
+        queue.add(new int[]{startY, startX}); // y, x
+        visited[startY][startX] = true;
+
+        int[][] directions = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}, {-1, -1}, {-1, 1}, {1, -1}, {1, 1}};
+
+        while (!queue.isEmpty()) {
+            int[] current = queue.poll();
+            int y = current[0];
+            int x = current[1];
+
+            if (x == endX && y == endY) {
+                List<Tile> path = new ArrayList<>();
+                Tile step = map[y][x];
+                while (step != null) {
+                    path.add(0, step);
+                    int px = step.getLocation().getX();
+                    int py = step.getLocation().getY();
+                    step = parent[py][px];
+                }
+                return path;
+            }
+
+            for (int[] dir : directions) {
+                int ny = y + dir[0];
+                int nx = x + dir[1];
+
+                if (ny >= 0 && nx >= 0 && ny < n && nx < m && !visited[ny][nx] && map[ny][nx].isWalkable() && (map[ny][nx].getOwner() == currentGame.currentUser||map[ny][nx].getOwner() == null)) {
+                    visited[ny][nx] = true;
+                    parent[ny][nx] = map[y][x];
+                    queue.add(new int[]{ny, nx});
+                }
+            }
+        }
+        return null;
+    }
+
 
     public Result walk(String x, String y, Tile[][] map) {
         int targetX, targetY;
@@ -84,12 +128,12 @@ public class walkController {
             return new Result(false, "Invalid coordinates");
         }
 
-
         int startX = currentGame.currentUser.getLocation().getX();
         int startY = currentGame.currentUser.getLocation().getY();
 
 
-        List<Tile> path = bfs(startY, startX, targetY, targetX, map);
+        List<Tile> path = bfs(startX, startY, targetX, targetY, map);
+
 
         if (path == null || path.isEmpty()) {
             return new Result(false, "No path to the target.");
@@ -154,47 +198,4 @@ public class walkController {
     }
 
 
-    private List<Tile> bfs(int startX, int startY, int endX, int endY, Tile[][] map) {
-        int n = map.length;//41
-        int m = map[0].length;//160
-
-        boolean[][] visited = new boolean[n][m];
-        Tile[][] parent = new Tile[n][m];
-
-        Queue<int[]> queue = new LinkedList<>();
-        queue.add(new int[]{startX, startY});
-        visited[startX][startY] = true;
-
-        int[][] directions = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}, {-1, -1}, {-1, 1}, {1, -1}, {1, 1}};
-
-        while (!queue.isEmpty()) {
-            int[] current = queue.poll();
-            int x = current[0];
-            int y = current[1];
-
-            if (x == endX && y == endY) {
-                List<Tile> path = new ArrayList<>();
-                Tile step = map[y][x];
-                while (step != null) {
-                    path.add(0, step);
-                    int px = step.getLocation().getX();
-                    int py = step.getLocation().getY();
-                    step = parent[py][px];
-                }
-                return path;
-            }
-
-            for (int[] dir : directions) {
-                int nx = x + dir[0];
-                int ny = y + dir[1];
-
-                if (nx >= 0 && ny >= 0 && nx < m && ny < n && !visited[ny][nx] && map[ny][nx].isWalkable() && (map[ny][nx].getOwner() == currentGame.currentUser || map[ny][nx].getOwner() == null)) {
-                    visited[ny][nx] = true;
-                    parent[ny][nx] = map[y][x];
-                    queue.add(new int[]{nx, ny});
-                }
-            }
-        }
-        return null;
-    }
 }

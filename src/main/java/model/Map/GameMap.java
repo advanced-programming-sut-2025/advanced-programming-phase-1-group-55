@@ -10,6 +10,7 @@ import static model.App.*;
 
 import static java.lang.Math.max;
 import static java.lang.Math.min;
+import static model.App.currentGame;
 
 public class GameMap {
     public Tile[][] tiles = new Tile[41][160];
