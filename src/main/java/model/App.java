@@ -34,8 +34,10 @@ public class App {
 
             List<User> userList = gson.fromJson(reader, userListType);
             if (userList != null) {
-
                 for (User user : userList) {
+                    if (user.getGold() == 0) {
+                        user.setGold(10000);
+                    }
                     AllUsers.put(user.getUsername(), user);
                 }
 
