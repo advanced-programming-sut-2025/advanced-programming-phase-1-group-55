@@ -214,9 +214,11 @@ public class GameMenuController {
 
         }
 
-        
         currentGame = new Game(mainUser, playersInGame, Map);
         currentMenu = Menu.MainGameMenu;
+        for(User user:currentGame.playersInGame){
+            user.setBackPack(new BackPack());
+        }
         setFriendships();
         return new Result(true, "game has created successfully !");
     }

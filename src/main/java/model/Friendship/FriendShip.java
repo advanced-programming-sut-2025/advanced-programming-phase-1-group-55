@@ -1,8 +1,8 @@
 package model.Friendship;
 
 public abstract class FriendShip {
-    private  int level=0;
-    private int xp;
+    protected   int level=0;
+    protected int xp;
     public int getLevel() {
         return level;
     }
@@ -21,24 +21,5 @@ public abstract class FriendShip {
     public void setXp(int xp) {
         this.xp = xp;
     }
-    public void increaseXp(int amount){
-        xp+=amount;
-        if(level==0){
-            if(xp>=100){
-                level++;
-            }
-        } else if (level==1) {
-            if(xp>=300){
-                level++;
-            }
-        } else if (level==2) {
-            if(xp>=600){
-                level++;
-            }
-        } else if (level==3) {
-            if(xp>=1000){
-                level++;
-            }
-        }
-    }
+
 }
