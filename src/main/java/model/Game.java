@@ -145,4 +145,7 @@ public class Game {
     public void setAllTrades(HashMap<Integer, Trade> allTrades) {
         AllTrades = allTrades;
     }
+    public void addToAllTrade(Trade trade) {
+        AllTrades.put(trade.getId(), trade);
+    }
 }
