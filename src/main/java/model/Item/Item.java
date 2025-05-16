@@ -17,6 +17,11 @@ public class Item   {
         itemType = itemtype;
 //        this.number = number;
     }
+    public Item(ItemType itemtype, int number) {
+        itemType = itemtype;
+        this.number = number;
+    }
+
 
     public ItemType getItemType() {
         return itemType;

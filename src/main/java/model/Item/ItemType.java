@@ -123,6 +123,15 @@ public enum ItemType {
     SEAFOAM_PUDDING("seafoam pudding"),
     MINERS_TREAT("miners treat"),
 
+    ANIMAL_BUILDING("animal building"),
+    CHICKEN("Chicken"),
+    DUCK("Duck"),
+    RABBIT("Rabbit"),
+    DINOSAUR("Dinosaur"),
+    COW("Cow"),
+    GOAT("Goat"),
+    SHEEP("Sheep"),
+    PIG("Pig"),
 
 
     EGG("egg"),
@@ -259,19 +268,23 @@ public enum ItemType {
     FIBERGLASS_ROD("fiberglass rod"),
     IRIDIUM_ROD("iridium rod"),
 
-    CHICKEN("chicken"),
-    COW("cow"),
-    DUCK("duck"),
-    SHEEP("sheep"),
-    GOAT("goat"),
-    RABBIT("rabbit"),
-    DINOSAUR("dinosaur"),
-    PIG("pig"),
+
 
     DUMMY("dummy"),
 
     LARGE_PACK("large backpack"),
-    DELUXE_PACK("deluxe backpack");
+    DELUXE_PACK("deluxe backpack"),
+    LARGE_MILK("large milk"),
+    LARGE_EGG("large egg"),
+    DUCK_EGG("duck egg"),
+    DUCK_FEATHER("duck feather"),
+    WOOL("wool"),
+    RABBITS_FOOT("rabbit foot"),
+    DINOSAUR_EGG("dinosaur egg"),
+    GOAT_MILK("goat milk"),
+    LARGE_GOAT_MILK("large goat milk"),
+    TRUFFLE("truffle");
+
 
 
 
