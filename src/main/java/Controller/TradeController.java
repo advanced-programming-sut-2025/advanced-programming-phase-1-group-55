@@ -152,13 +152,20 @@ public class TradeController {
                 trade.setAccepted(true);
                 trade.setPrinted(true);
                 trade.setAnswered(true);
+                if(!trade.getSender().getFriendsPlayer().get(trade.getReciver()).isTodayTraded()){
+                    trade.getSender().getFriendsPlayer().get(trade.getReciver()).increaseXp(50);
+                    trade.getSender().getFriendsPlayer().get(trade.getReciver()).setTodayTraded(true);
+                }
                 return new Result(true, "Trade " + id + " accepted(request)");
             } else if (response.equals("reject")) {
 
                 trade.setAccepted(false);
                 trade.setPrinted(true);
                 trade.setAnswered(true);
-
+                if(!trade.getSender().getFriendsPlayer().get(trade.getReciver()).isTodayTraded()){
+                    trade.getSender().getFriendsPlayer().get(trade.getReciver()).increaseXp(-30);
+                    trade.getSender().getFriendsPlayer().get(trade.getReciver()).setTodayTraded(true);
+                }
                 return new Result(true, "Trade " + id + " rejected(request)");
 
             } else {
