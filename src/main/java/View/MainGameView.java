@@ -44,8 +44,8 @@ public class MainGameView implements AppMenu {
 //        } else if ((matcher = inHouseGameMenuCommands.ShowLearnedRecipes.getMatcher(input)) != null) {
 //            System.out.println(inHouseController.getLearnedRecipes(currentGame.currentUser));
             // یادت نره این باید بره تو inHouseView برای تست لینجا گذاشتم
-        } else if ((matcher = mainGameCommands.ShowCraftingRecipe.getMatcher(input)) != null) {
-            System.out.println(inHouseController.ShowCraftingRecipe());
+//        } else if ((matcher = mainGameCommands.ShowCraftingRecipe.getMatcher(input)) != null) {
+//            System.out.println(inHouseController.ShowCraftingRecipe());
         } else if ((matcher = mainGameCommands.date.getMatcher(input)) != null) {
             System.out.println(controller.date());
 
