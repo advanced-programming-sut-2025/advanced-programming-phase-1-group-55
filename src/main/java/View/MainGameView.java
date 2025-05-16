@@ -186,7 +186,13 @@ public class MainGameView implements AppMenu {
         } else if ((matcher = mainGameCommands.TradeRequest.getMatcher(input)) != null) {
             System.out.println(controller5.TradeRequest(matcher.group("username"), matcher.group("type"), matcher.group("item"), matcher.group("amount"), matcher.group("price"), matcher.group("targetItem"), matcher.group("targetAmount")));
 
-        } else if ((matcher = StoreCommands.purchaseItem.getMatcher(input)) != null) {
+        }
+        else if(input.matches("\\s*trade\\s+list\\s*")){
+            System.out.println(controller5.tradeList());
+        }
+
+
+        else if ((matcher = StoreCommands.purchaseItem.getMatcher(input)) != null) {
             if (matcher.group("count") != null) {
                 System.out.println(controller3.purchaseItem(Integer.parseInt(matcher.group("count")), matcher.group("name")));
             } else {

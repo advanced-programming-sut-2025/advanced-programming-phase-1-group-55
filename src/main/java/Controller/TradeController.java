@@ -94,4 +94,17 @@ public class TradeController {
         return new Result(true, "trade registered successfully!");
     }
 
+    public Result tradeList() {
+        if (currentGame.currentUser.getTrades().isEmpty()) {
+            return new Result(false, "You don't have trades");
+        }
+        for (Trade trade : currentGame.currentUser.getTrades().values()) {
+            System.out.println(trade);
+            System.out.println("-----------------------------------------");
+
+        }
+        return new Result(true, "all of you trades : )");
+
+    }
+
 }

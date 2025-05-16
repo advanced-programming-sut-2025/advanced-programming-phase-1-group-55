@@ -115,4 +115,17 @@ public class Trade {
     public void setAccepted(boolean accepted) {
         Accepted = accepted;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Trade info {").append(" id : ").append(getId()).append(" sender : ").append(getSender().getUsername()).append(" reciver : ").append(getReciver().getUsername()).append("\nitem : ").append(getItem().getItemType().getDisplayName()).append(" amount :").append(getAmount()).append(" type : ").append(getType());
+        if (getTargetItem() != null &&getTargetItem().getItemType() != null) {
+            sb.append("\ntarget item : ").append(getTargetItem().getItemType().getDisplayName()).append("target amount : ").append(getTargetAmount());
+        } else {
+            sb.append(" price : ").append(getPrice());
+        }
+        sb.append(" }");
+        return sb.toString();
+    }
 }
