@@ -49,10 +49,10 @@ public class User {
     private HashMap<Integer, Trade> trades = new HashMap<>();
     private CookingItem cookingItem;
     private int stone;
-    private Map<User,List<Gift>> receivedGifts=new HashMap<>();
-    private Map<User,List<Gift>> sentGifts=new HashMap<>();
-    private boolean hasGiftToday=false;
-    private  boolean hasMessageToday=false;
+    private Map<User, List<Gift>> receivedGifts = new HashMap<>();
+    private Map<User, List<Gift>> sentGifts = new HashMap<>();
+    private boolean hasGiftToday = false;
+    private boolean hasMessageToday = false;
 
 
     public int getStone() {
@@ -62,6 +62,7 @@ public class User {
     public void setStone(int stone) {
         this.stone = stone;
     }
+
     private Skill farmingSkill = new Skill(SkillType.Farming);
     private Skill miningSkill = new Skill(SkillType.Mining);
     private Skill foragingSkill = new Skill(SkillType.Foraging);
@@ -113,6 +114,10 @@ public class User {
     public void decreaseEnergy(int amount) {
 
         this.energy = Math.max(0, this.energy - amount);
+        if (this.energy <= 0) {
+            this.energy = 0;
+            setFainted(true);
+        }
     }
 
     public void increaseEnergy(int amount) {
@@ -369,9 +374,10 @@ public class User {
     public Skill getFishingSkill() {
         return fishingSkill;
     }
+
     public ArrayList<CookingItem> getRefrigerator() {
-        if(refrigerator==null){
-            refrigerator=new ArrayList<>();
+        if (refrigerator == null) {
+            refrigerator = new ArrayList<>();
         }
         return refrigerator;
     }
@@ -384,6 +390,7 @@ public class User {
         }
         return null;
     }
+
     public int howManyInRefrigerator(ItemType itemType) {
         for (CookingItem refrigeratorItem : refrigerator) {
             if (refrigeratorItem.getItemType().equals(itemType)) {
@@ -392,6 +399,7 @@ public class User {
         }
         return 0;
     }
+
     public void removeFromRefrigerator(ItemType itemType, int number) {
         for (CookingItem refrigeratorItem : refrigerator) {
             if (refrigeratorItem.getItemType().equals(itemType)) {
