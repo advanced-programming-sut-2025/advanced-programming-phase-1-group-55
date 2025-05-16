@@ -17,6 +17,7 @@ import static model.weather.*;
 
 import model.Friendship.PlayerFriendship;
 import model.Game;
+import model.Map.Location;
 import model.Store.Product;
 import model.Store.Store;
 
@@ -55,8 +56,10 @@ public class GameTime {
             System.out.println("Current Weather is " + weather.getCurrentWeather());
 
         }
+
         for (User player : currentGame.playersInGame) {
-        
+            player.setLocation(new Location(player.getFarm().getLocation().getY() + 1, player.getFarm().getLocation().getX() + 1));
+
             if (player.isFainted()) {
                 player.setFainted(false);
                 player.setEnergy(150);
