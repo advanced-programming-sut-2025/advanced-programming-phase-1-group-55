@@ -2,6 +2,8 @@ package model;
 
 import enums.CraftingItemType;
 import model.CookingItems.CookingItem;
+import model.Friendship.Gift;
+import model.Friendship.PlayerFriendship;
 import model.Item.Item;
 import model.Item.ItemType;
 import model.Map.Farm;
@@ -27,7 +29,7 @@ public class User {
     private BackPack backPack = new BackPack();
     private User wife = null;
     private HashMap<String, Npc> friendsNpc = new HashMap<>();
-    private HashMap<String, User> friendsPlayer = new HashMap<>();
+    private HashMap<User, PlayerFriendship> friendsPlayer = new HashMap<>();
     private int gold;
     private int dailyMoney=0;
     private int wood;
@@ -43,8 +45,10 @@ public class User {
     private MainLocation mainLocation = MainLocation.House;
     private HashMap<Integer, Trade> trades = new HashMap<>();
     private CookingItem cookingItem;
+    private Map<User,ArrayList<String>> conversations=new HashMap<>();
     private int stone;
-
+    private Map<User,List<Gift>> receivedGifts=new HashMap<>();
+    private Map<User,List<Gift>> sentGifts=new HashMap<>();
     public int getStone() {
         return stone;
     }
@@ -243,11 +247,11 @@ public class User {
         this.friendsNpc = friendsNpc;
     }
 
-    public HashMap<String, User> getFriendsPlayer() {
+    public HashMap<User, PlayerFriendship> getFriendsPlayer() {
         return friendsPlayer;
     }
 
-    public void setFriendsPlayer(HashMap<String, User> friendsPlayer) {
+    public void setFriendsPlayer(HashMap<User, PlayerFriendship> friendsPlayer) {
         this.friendsPlayer = friendsPlayer;
     }
 
@@ -304,6 +308,30 @@ public class User {
         dailyMoney+=amount;
     }public  void  increaseGold(int amount ){
         gold+=amount;
+    }
+
+    public Map<User, ArrayList<String>> getConversations() {
+        return conversations;
+    }
+
+    public void setConversations(Map<User, ArrayList<String>> conversations) {
+        this.conversations = conversations;
+    }
+
+    public Map<User, List<Gift>> getReceivedGifts() {
+        return receivedGifts;
+    }
+
+    public void setReceivedGifts(Map<User, List<Gift>> receivedGifts) {
+        this.receivedGifts = receivedGifts;
+    }
+
+    public Map<User, List<Gift>> getSentGifts() {
+        return sentGifts;
+    }
+
+    public void setSentGifts(Map<User, List<Gift>> sentGifts) {
+        this.sentGifts = sentGifts;
     }
     //    public void learnRecipe(CraftingItemType recipe) {
 //        learnedCraftingRecipes.add(recipe);

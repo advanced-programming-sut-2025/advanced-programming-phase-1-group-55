@@ -1,6 +1,6 @@
 package model.NPC;
 
-import model.FriendShip;
+import model.Friendship.FriendShip;
 import model.User;
 
 import java.util.HashMap;
