@@ -147,7 +147,7 @@ public class TradeController {
                     trade.getReciver().increaseGold(trade.getPrice());
                 } else {
                     trade.getSender().getBackPack().removeAmountFromInventory(trade.getTargetItem().getItemType(), trade.getTargetAmount());
-                    trade.getSender().getBackPack().addItemToInventory(trade.getTargetItem(), trade.getTargetAmount());
+                    trade.getReciver().getBackPack().addItemToInventory(trade.getTargetItem(), trade.getTargetAmount());
                 }
                 trade.setAccepted(true);
                 trade.setPrinted(true);
