@@ -10,6 +10,7 @@ import model.Item.Item;
 import model.Item.ItemType;
 import model.Map.*;
 import model.Result;
+import model.Tool.BackPack;
 import model.User;
 
 import java.util.ArrayList;
@@ -41,7 +42,10 @@ public class GameMenuController {
         currentGame.playersInGame.get(3).getFriendsPlayer().put(currentGame.playersInGame.get(1),friendship5);
         currentGame.playersInGame.get(2).getFriendsPlayer().put(currentGame.playersInGame.get(3),friendship6);
         currentGame.playersInGame.get(3).getFriendsPlayer().put(currentGame.playersInGame.get(2),friendship6);
-
+        for(User user:currentGame.playersInGame){
+            user.setBackPack(new BackPack());
+            user.setConversations(new HashMap<>());
+        }
         for(int i=0;i<currentGame.playersInGame.size();i++){
             for (int j=i;j<currentGame.playersInGame.size();j++){
                 if(j!=1){

@@ -14,6 +14,7 @@ public class MainGameView implements AppMenu {
     private final CropController controller2 = new CropController();
     private final StoreController controller3 = new StoreController();
     private final walkController controller4 = new walkController();
+    private final FriendshipController controller5=new FriendshipController();
     //    private final TreeCotroller controller3 = new TreeCotroller();
 //    private final ForagingCropController controller4 = new ForagingCropController();
 //    private final ForagingTreeController controller5 = new ForagingTreeController();
@@ -186,7 +187,7 @@ public class MainGameView implements AppMenu {
                 System.out.println(controller3.purchaseItem(1,matcher.group("name")));
             }
         }else if ((matcher=FriendshipCommands.showFriends.getMatcher(input))!=null){
-
+            System.out.println(controller5.showFriends());
         }
     }
 }
