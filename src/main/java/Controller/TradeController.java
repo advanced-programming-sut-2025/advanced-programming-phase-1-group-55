@@ -140,11 +140,14 @@ public class TradeController {
                 }
                 trade.setAccepted(true);
                 trade.setPrinted(true);
+                trade.setAnswered(true);
                 return new Result(true, "Trade " + id + " accepted(request)");
             } else if (response.equals("reject")) {
 
                 trade.setAccepted(false);
                 trade.setPrinted(true);
+                trade.setAnswered(true);
+
                 return new Result(true, "Trade " + id + " rejected(request)");
 
             } else {
@@ -160,11 +163,15 @@ public class TradeController {
                 }
                 trade.setAccepted(true);
                 trade.setPrinted(true);
+                trade.setAnswered(true);
+
                 return new Result(true, "Trade " + id + " accepted (offer)");
             } else if (response.equals("reject")) {
 
                 trade.setAccepted(false);
                 trade.setPrinted(true);
+                trade.setAnswered(true);
+
                 return new Result(true, "Trade " + id + " rejected(offer)");
 
             } else {
@@ -179,6 +186,17 @@ public class TradeController {
         stringBuilder.append("trade history : \n");
         for (Trade trade : currentGame.currentUser.getTrades().values()) {
             stringBuilder.append(trade.toString()).append("\n");
+        }
+        return new Result(true, stringBuilder.toString());
+    }
+
+    public Result NotAnswerdTrades() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Trade trade : currentGame.currentUser.getTrades().values()) {
+            if (!trade.isAnswered()) {
+                stringBuilder.append(trade.toString()).append("\n");
+            }
+            stringBuilder.append("---------------------------------------------------------\n");
         }
         return new Result(true, stringBuilder.toString());
     }

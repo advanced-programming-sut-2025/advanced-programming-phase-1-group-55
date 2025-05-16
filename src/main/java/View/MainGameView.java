@@ -207,6 +207,8 @@ public class MainGameView implements AppMenu {
 
         } else if (input.matches("\\s*trade\\s+history\\s*")) {
             System.out.println(controller5.TradeHistory());
+        } else if (input.matches("\\s*remained\\s+trades\\s*")) {
+            System.out.println(controller5.NotAnswerdTrades());
         } else {
             System.out.println("Unknown command");
         }

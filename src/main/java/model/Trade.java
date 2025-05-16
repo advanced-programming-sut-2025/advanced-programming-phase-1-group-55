@@ -15,7 +15,15 @@ public class Trade {
     private int id;
     private boolean Printed = false;
     private boolean Accepted = false;
+    private boolean answered = false;
 
+    public boolean isAnswered() {
+        return answered;
+    }
+
+    public void setAnswered(boolean answered) {
+        this.answered = answered;
+    }
 
     public Trade(User sender, User reciver, Item item, String type, int amount, int price, Item targetItem, int targetAmount, int id) {
         Sender = sender;
