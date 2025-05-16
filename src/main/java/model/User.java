@@ -1,5 +1,6 @@
 package model;
 
+import enums.CookingItemType;
 import enums.CraftingItemType;
 import enums.SkillType;
 import model.CookingItems.CookingItem;
@@ -158,6 +159,8 @@ public class User {
         this.email = email;
         this.numberOfSecurityQuestion = numberOfSecurityQuestion;
         this.securityQuestion = securityQuestion;
+        this.cookingItem = new CookingItem(CookingItemType.DISH_O_THE_SEA);
+
 //        learnRecipe(CraftingItemType.FURNACE);
 //        learnRecipe(CraftingItemType.SCARECROW);
 //        learnRecipe(CraftingItemType.MAYONNAISE_MACHINE);

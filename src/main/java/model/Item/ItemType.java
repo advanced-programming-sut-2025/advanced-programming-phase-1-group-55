@@ -268,6 +268,8 @@ public enum ItemType {
     DINOSAUR("dinosaur"),
     PIG("pig"),
 
+    DUMMY("dummy"),
+
     LARGE_PACK("large backpack"),
     DELUXE_PACK("deluxe backpack");
 
@@ -278,22 +280,23 @@ public enum ItemType {
 
 
 
-    private final String DisplayName;
+    private final String name;
 
     ItemType(String DisplayName) {
-        this.DisplayName = DisplayName;
+        this.name = name();
     }
 
     @Override
     public String toString()
     {
-        return DisplayName;
+        return name();
     }
-    public static ItemType getItemType(String DisplayName)
+
+    public static ItemType getItemType(String name)
     {
         for (ItemType itemType : ItemType.values())
         {
-            if (itemType.DisplayName.equalsIgnoreCase(DisplayName))
+            if (itemType.toString().equalsIgnoreCase(name))
             {
                 return itemType;
             }
@@ -302,6 +305,6 @@ public enum ItemType {
     }
 
     public String getDisplayName() {
-        return DisplayName;
+        return name;
     }
 }

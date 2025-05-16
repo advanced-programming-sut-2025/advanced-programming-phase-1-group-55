@@ -127,6 +127,7 @@ public enum CookingItemType {
         put(ItemType.SUGAR, 1);
         put(ItemType.MILK, 1);
     }}, 125, "Mining (5 hours)", "Mining Level 1", 200);
+//    DUMMY(ItemType.DUMMY, new HashMap<>(), 0, "", 0);
 
 
 
@@ -180,9 +181,9 @@ public enum CookingItemType {
 //        }
 //        return null;
 //    }
-    public static CookingItemType getCookingRecipe(String recipeName) {
+    public static CookingItemType getKitchenRecipe(String recipeName) {
         for (CookingItemType cookingItemType : CookingItemType.values()) {
-            if (cookingItemType.name().equals(recipeName)) {
+            if (cookingItemType.getProductName().toString().equalsIgnoreCase(recipeName)) {
                 return cookingItemType;
             }
         }
@@ -190,7 +191,7 @@ public enum CookingItemType {
     }
     public static CookingItemType isEdible(ItemType itemType) {
         for (CookingItemType cookingItemType : CookingItemType.values()) {
-            if (cookingItemType.productName.equals(itemType)) {
+            if (cookingItemType.getProductName().equals(itemType)) {
                 return cookingItemType;
             }
         }

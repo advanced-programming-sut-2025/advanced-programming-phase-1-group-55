@@ -1,11 +1,8 @@
 package enums;
 
-import model.Ingredient;
 import model.Item.ItemType;
 
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 
 public enum CraftingItemType {
     CHERRY_BOMB_RECIPE(ItemType.CHERRY_BOMB_RECIPE, ItemType.CHERRY_BOMB, new HashMap<>() {{
@@ -160,7 +157,7 @@ public enum CraftingItemType {
     public int getSellPrice() {
         return sellPrice;
     }
-    public static CraftingItemType getCraftingItemType(String name) {
+    public static CraftingItemType getRecipeFromItemName(String name) {
         for (CraftingItemType recipe : CraftingItemType.values()) {
             if (name.equalsIgnoreCase(recipe.getProductName().toString())) {
                 return recipe;
