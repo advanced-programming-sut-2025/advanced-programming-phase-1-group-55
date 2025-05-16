@@ -32,10 +32,8 @@ public class User {
     private BackPack backPack = new BackPack();
     private User wife = null;
     private HashMap<String, Npc> friendsNpc = new HashMap<>();
-    private HashMap<String, User> friendsPlayer = new HashMap<>();
     private int gold = 10000;
     private HashMap<User, PlayerFriendship> friendsPlayer = new HashMap<>();
-    private static int gold = 10000;
     private int dailyMoney = 0;
     private int wood;
     private double energy = 200;

@@ -219,9 +219,9 @@ public class GameMenuController {
         currentMenu = Menu.MainGameMenu;
 
         for (User player : playersInGame) {
+            player.setBackPack(new BackPack());
             player.getBackPack().getInventory().put("coal", new Item(ItemType.getItemType("coal")));
             player.getBackPack().getInventory().get("coal").setNumber(100);
-            player.setBackPack(new BackPack());
         }
 
         setFriendships();
