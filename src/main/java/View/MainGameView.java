@@ -187,9 +187,6 @@ public class MainGameView implements AppMenu {
             }
         }else if ((matcher=FriendshipCommands.showFriends.getMatcher(input))!=null){
 
-        }else if (input.matches("\\s*player\\s*")) {
-            currentGame.getMap().tiles[currentGame.currentUser.getLocation().getY()][currentGame.currentUser.getLocation().getX()].setMohtaviat("P");
-
         }
     }
 }
