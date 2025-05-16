@@ -49,6 +49,7 @@ public class FriendshipController {
             user.getFriendsPlayer().get(currentGame.currentUser).increaseXp(20);
             user.getFriendsPlayer().get(currentGame.currentUser).setTodayTalked(true);
         }
+        user.setHasMessageToday(true);
         return new Result(true,"message successfully sent to : "+username);
     }
     public Result showTalkHistory(String username){

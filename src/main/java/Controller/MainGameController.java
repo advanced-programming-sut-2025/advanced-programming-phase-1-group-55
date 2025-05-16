@@ -224,6 +224,15 @@ public class MainGameController {
             return new Result(false,"user not found!");
         }
         currentGame.currentUser=user;
-        return  new Result(true,username +" is now the main player");
+        StringBuilder message=new StringBuilder();
+        if (currentGame.currentUser.isHasGiftToday()){
+            message.append("you received new gift!\n");
+            currentGame.currentUser.setHasGiftToday(false);
+        }
+        if (currentGame.currentUser.isHasMessageToday()){
+            message.append("you received new message!");
+            currentGame.currentUser.setHasMessageToday(false);
+        }
+        return  new Result(true,username +" is now the main player\n"+message);
     }
 }

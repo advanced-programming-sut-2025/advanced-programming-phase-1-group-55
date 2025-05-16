@@ -48,6 +48,8 @@ public class User {
     private int stone;
     private Map<User,List<Gift>> receivedGifts=new HashMap<>();
     private Map<User,List<Gift>> sentGifts=new HashMap<>();
+    private boolean hasGiftToday=false;
+    private  boolean hasMessageToday=false;
     public int getStone() {
         return stone;
     }
@@ -153,6 +155,22 @@ public class User {
 
     public void setSecurityQuestion(String securityQuestion) {
         this.securityQuestion = securityQuestion;
+    }
+
+    public boolean isHasGiftToday() {
+        return hasGiftToday;
+    }
+
+    public void setHasGiftToday(boolean hasGiftToday) {
+        this.hasGiftToday = hasGiftToday;
+    }
+
+    public boolean isHasMessageToday() {
+        return hasMessageToday;
+    }
+
+    public void setHasMessageToday(boolean hasMessageToday) {
+        this.hasMessageToday = hasMessageToday;
     }
 
     private ArrayList<Trade> userTrades;
