@@ -56,8 +56,11 @@ public class TradeController {
             if (Price > currentGame.currentUser.getGold()) {
                 return new Result(false, "You dont have enough Gold");
             }
-            if (currentGame.currentUser.getBackPack().getInventory().get(targetItem) == null || currentGame.currentUser.getBackPack().getInventory().get(targetItem).getNumber() < TargetAmount) {
-                return new Result(false, "You dont have enough item");
+            if (targetItem != null) {
+
+                if (currentGame.currentUser.getBackPack().getInventory().get(targetItem) == null || currentGame.currentUser.getBackPack().getInventory().get(targetItem).getNumber() < TargetAmount) {
+                    return new Result(false, "You dont have enough item");
+                }
             }
             if (targetUser.getBackPack().getInventory().get(item) == null || targetUser.getBackPack().getInventory().get(item).getNumber() < Amount) {
                 return new Result(false, "Item " + item + " is out of stock! Remained : " + targetUser.getBackPack().getInventory().get(item).getNumber());
@@ -65,8 +68,8 @@ public class TradeController {
             }
 
             Trade trade = new Trade(currentGame.currentUser, targetUser, new Item(getItemType(item)), "request", Amount, Price, new Item(getItemType(targetItem)), TargetAmount, id++);
-            currentGame.currentUser.addTrade(trade);
-            targetUser.addTrade(trade);
+            currentGame.currentUser.getTrades().put(id, trade);
+            targetUser.getTrades().put(id, trade);
             currentGame.addToAllTrade(trade);
 
         } else if (type.equals("offer")) {
@@ -83,8 +86,8 @@ public class TradeController {
             }
 
             Trade trade = new Trade(currentGame.currentUser, targetUser, new Item(getItemType(item)), "offer", Amount, Price, new Item(getItemType(targetItem)), TargetAmount, id++);
-            currentGame.currentUser.addTrade(trade);
-            targetUser.addTrade(trade);
+            currentGame.currentUser.getTrades().put(id, trade);
+            targetUser.getTrades().put(id, trade);
             currentGame.addToAllTrade(trade);
 
         }

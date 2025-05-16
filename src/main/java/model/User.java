@@ -45,6 +45,7 @@ public class User {
     private CookingItem cookingItem;
     private int stone;
 
+
     public int getStone() {
         return stone;
     }
@@ -152,7 +153,6 @@ public class User {
         this.securityQuestion = securityQuestion;
     }
 
-    private ArrayList<Trade> userTrades;
 
     public User(String username, String password, String nickName, String gender, String email, int numberOfSecurityQuestion, String securityQuestion) {
         this.username = username;
@@ -167,9 +167,6 @@ public class User {
 //        learnRecipe(CraftingItemType.MAYONNAISE_MACHINE);
     }
 
-    public void addTrade(Trade trade) {
-        userTrades.add(trade);
-    }
 
     public double getEnergy() {
         return energy;
@@ -267,13 +264,6 @@ public class User {
         this.location = location;
     }
 
-    public ArrayList<Trade> getUserTrades() {
-        return userTrades;
-    }
-
-    public void setUserTrades(ArrayList<Trade> userTrades) {
-        this.userTrades = userTrades;
-    }
 
     public CookingItem getCookingItem() {
         return cookingItem;

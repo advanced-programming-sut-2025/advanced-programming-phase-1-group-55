@@ -4,6 +4,8 @@ import enums.Menu;
 import enums.mainGameCommands;
 import model.App;
 import model.Game;
+import model.Item.Item;
+import model.Item.ItemType;
 import model.Map.*;
 import model.Result;
 import model.User;
@@ -176,9 +178,14 @@ public class GameMenuController {
 
         }
 
-        
+
         currentGame = new Game(mainUser, playersInGame, Map);
         currentMenu = Menu.MainGameMenu;
+        Item item = new Item(ItemType.getItemType("coal"));
+        item.setNumber(100);
+        for (User player : playersInGame) {
+            player.getBackPack().getInventory().put("coal", item);
+        }
         return new Result(true, "game has created successfully !");
     }
 
