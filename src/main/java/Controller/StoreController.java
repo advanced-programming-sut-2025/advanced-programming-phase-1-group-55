@@ -114,11 +114,9 @@ public class StoreController {
                 return  new Result(false,"This product is not available.");
             }
         }else {
-            System.out.println(amount+" "+product.getTodaySell()+" ="+ product.getDailyLimit());
             return new Result(false,"this item is not available today");
         }
         if(App.currentGame.currentUser.getGold()<product.getGoldCost()*amount){
-            System.out.println(App.currentGame.currentUser.getGold()+" "+product.getGoldCost()*amount);
             return  new Result(false,"you don't have enough money:(");
         }
 
