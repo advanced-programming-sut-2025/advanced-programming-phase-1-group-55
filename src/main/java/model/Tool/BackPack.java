@@ -102,7 +102,9 @@ public class BackPack {
         this.inventory = inventory;
     }
     private ArrayList<CraftingItemType> craftingRecipes = new ArrayList<>();
-    private ArrayList<CookingItemType> cookingRecipes = new ArrayList<>();
+    private ArrayList<CookingItemType> cookingRecipes = new ArrayList<>(
+            Arrays.asList(CookingItemType.FRIED_EGG, CookingItemType.BAKED_FISH, CookingItemType.SALAD)
+    );
 
     public void setCraftingRecipes(ArrayList<CraftingItemType> craftingRecipes) {
         this.craftingRecipes = craftingRecipes;

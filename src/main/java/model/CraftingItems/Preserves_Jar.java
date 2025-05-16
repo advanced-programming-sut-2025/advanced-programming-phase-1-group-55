@@ -5,7 +5,7 @@ import model.Item.ItemType;
 
 public class Preserves_Jar extends CraftingItem {
     public Preserves_Jar() {
-        super(CraftingItemType.PRESERVES_JAR);
+        super(CraftingItemType.PRESERVES_JAR_RECIPE);
     }
 
     @Override

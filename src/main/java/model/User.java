@@ -1,6 +1,7 @@
 package model;
 
 import enums.CraftingItemType;
+import enums.SkillType;
 import model.CookingItems.CookingItem;
 import model.Item.Item;
 import model.Item.ItemType;
@@ -43,6 +44,10 @@ public class User {
     private MainLocation mainLocation = MainLocation.House;
     private HashMap<Integer, Trade> trades = new HashMap<>();
     private CookingItem cookingItem;
+    private Skill farmingSkill = new Skill(SkillType.Farming);
+    private Skill miningSkill = new Skill(SkillType.Mining);
+    private Skill foragingSkill = new Skill(SkillType.Foraging);
+    private Skill fishingSkill = new Skill(SkillType.Fishing);
 
     public HashMap<Integer, Trade> getTrades() {
         return trades;
@@ -295,6 +300,22 @@ public class User {
         dailyMoney+=amount;
     }public  void  increaseGold(int amount ){
         gold+=amount;
+    }
+
+    public Skill getFarmingSkill() {
+        return farmingSkill;
+    }
+
+    public Skill getMiningSkill() {
+        return miningSkill;
+    }
+
+    public Skill getForagingSkill() {
+        return foragingSkill;
+    }
+
+    public Skill getFishingSkill() {
+        return fishingSkill;
     }
     //    public void learnRecipe(CraftingItemType recipe) {
 //        learnedCraftingRecipes.add(recipe);

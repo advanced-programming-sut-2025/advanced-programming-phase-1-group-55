@@ -5,7 +5,7 @@ import model.Item.ItemType;
 
 public class Keg extends CraftingItem {
     public Keg() {
-        super(CraftingItemType.KEG);
+        super(CraftingItemType.KEG_RECIPE);
     }
 
     @Override
