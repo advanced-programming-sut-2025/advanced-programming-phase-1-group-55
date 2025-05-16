@@ -106,7 +106,7 @@ public class inHouseController {
         if (tile == null) {
             return new Result(false, "this tile does not exist");
         }
-        if (tile.getMohtaviat() != null) {
+        if (tile.getItemInThisTile() != null) {
             return new Result(false, "this tile has something ");
         }
         user.getBackPack().removeItemFromInventory(item);
