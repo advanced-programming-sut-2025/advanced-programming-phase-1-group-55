@@ -1,7 +1,10 @@
 package model.Tool;
 
-public   class Tools {
-    protected int level=0;
+import static model.App.currentGame;
+import static model.weather.getEnergyLoser;
+
+public class Tools {
+    protected int level = 0;
 
     protected String name;
 
@@ -13,8 +16,8 @@ public   class Tools {
         this.level = level;
     }
 
-    public void increaseLevel(int amount){
-        level+=amount;
+    public void increaseLevel(int amount) {
+        level += amount;
     }
 
     public String getName() {
@@ -22,7 +25,7 @@ public   class Tools {
     }
 
     public void useTool() {
-
+        currentGame.currentUser.decreaseEnergy((int) (energyCost() * getEnergyLoser()));
     }
 
     public void setName(String name) {

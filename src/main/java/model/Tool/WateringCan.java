@@ -5,6 +5,7 @@ import model.Store.Store;
 
 import static java.lang.Math.max;
 import static model.App.*;
+import static model.weather.getEnergyLoser;
 
 public class WateringCan extends Tools {
     private int capacityUsed=0;
@@ -55,7 +56,7 @@ public class WateringCan extends Tools {
 
     @Override
     public void useTool() {
-       currentGame.currentUser.setEnergy(max(currentGame.currentUser.getEnergy()-energyCost(),0));
+        currentGame.currentUser.decreaseEnergy((int) (energyCost() * getEnergyLoser()));
     }
 
     public int getPrimaryEnergyCost() {

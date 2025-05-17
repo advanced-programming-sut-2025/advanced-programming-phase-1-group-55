@@ -6,6 +6,8 @@ import model.Store.FishingStore;
 import model.Store.Store;
 
 import static java.lang.Math.max;
+import static model.App.currentGame;
+import static model.weather.getEnergyLoser;
 
 
 public class FishingPole extends Tools {
@@ -62,7 +64,7 @@ public class FishingPole extends Tools {
 
     @Override
     public void useTool() {
-        App.currentGame.currentUser.setEnergy(max(App.currentGame.currentUser.getEnergy() - energyCost(), 0));
+        currentGame.currentUser.decreaseEnergy((int) (energyCost() * getEnergyLoser()));
     }
     //todo current user bezar
 

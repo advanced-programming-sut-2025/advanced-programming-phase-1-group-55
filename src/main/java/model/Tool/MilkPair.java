@@ -6,6 +6,7 @@ import model.Store.Store;
 
 import static java.lang.Math.max;
 import static model.App.*;
+import static model.weather.getEnergyLoser;
 
 public class MilkPair extends  Tools{
     private final String names="MilkPair";
@@ -45,6 +46,6 @@ public class MilkPair extends  Tools{
     }
     @Override
     public void useTool() {
-        currentGame.currentUser.setEnergy(max(currentGame.currentUser.getEnergy()-energyCost(),0));
+        currentGame.currentUser.decreaseEnergy((int) (energyCost() * getEnergyLoser()));
     }
 }
