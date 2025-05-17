@@ -18,6 +18,7 @@ public class MainGameView implements AppMenu {
     private final walkController controller4 = new walkController();
     private final FriendshipController controller6 = new FriendshipController();
     private final TradeController controller5 = new TradeController();
+    private final NpcController controller21=new NpcController();
     private final FarmingController controller7 = new FarmingController();
     //    private final TreeCotroller controller3 = new TreeCotroller();
 //    private final ForagingCropController controller4 = new ForagingCropController();
@@ -247,8 +248,19 @@ public class MainGameView implements AppMenu {
         } else if ((matcher = FriendshipCommands.showLAllGifts.getMatcher(input)) != null) {
             System.out.println(controller6.showAllGiftsBySpecialFriend(matcher.group("username")));
         } else if ((matcher = FriendshipCommands.rateGift.getMatcher(input)) != null) {
+        } else if ((NpcCommands.friendshipList.getMatcher(input))!=null) {
+            System.out.println(controller21.showFriendships());
+        } else if ((matcher=FriendshipCommands.rateGift.getMatcher(input))!=null) {
             System.out.println(controller6.rateGift(Integer.parseInt(matcher.group("rate"))
                     , Integer.parseInt(matcher.group("id"))));
+        } else if ((matcher=NpcCommands.meetNpc.getMatcher(input))!=null) {
+            System.out.println(controller21.meetNpc(matcher.group("name")));
+        } else if ((matcher=NpcCommands.giftNpc.getMatcher(input))!=null) {
+            System.out.println(controller21.giftNpc(matcher.group("name"),matcher.group("item")));
+        } else if ((NpcCommands.questlist.getMatcher(input))!=null) {
+            System.out.println(controller21.showQuests());
+        } else if ((matcher=NpcCommands.questFinish.getMatcher(input))!=null) {
+            System.out.println(controller21.doQuest(Integer.parseInt(matcher.group("id"))));
         } else if (input.matches("\\s*exit\\s+game\\s*")) {
             currentMenu = Menu.MainMenu;
             System.out.println("Redirecting to MainMenu!");

@@ -29,7 +29,7 @@ public class FishingStore extends Store{
                     1, 1800, 0, 0, Seasons.special));
             put("iridium rod", new Product(new Item(ItemType.IRIDIUM_ROD),
                     1, 7500, 0, 0, Seasons.special));
-        }}, new Npc("Willy"), "FishShop");
+        }}, "FishShop");
     }
     public Result purchase(int amount , Product product){
         BackPack backPack=App.currentGame.currentUser.getBackPack();

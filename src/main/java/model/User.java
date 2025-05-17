@@ -7,13 +7,11 @@ import enums.CraftingItemType;
 import enums.SkillType;
 import model.CookingItems.CookingItem;
 import model.Friendship.Gift;
+import model.Friendship.NpcFriendship;
 import model.Friendship.PlayerFriendship;
 import model.Item.Item;
 import model.Item.ItemType;
-import model.Map.Farm;
-import model.Map.Location;
-import model.Map.MainLocation;
-import model.Map.Tile;
+import model.Map.*;
 import model.NPC.Npc;
 import model.NPC.Quest;
 import model.Tool.BackPack;
@@ -33,7 +31,7 @@ public class User {
     private String securityQuestion;
     private BackPack backPack = new BackPack();
     private User wife = null;
-    private HashMap<String, Npc> friendsNpc = new HashMap<>();
+    private HashMap<String, NpcFriendship> friendsNpc = new HashMap<>();
     private int gold = 10000;
     private HashMap<User, PlayerFriendship> friendsPlayer = new HashMap<>();
     private int dailyMoney = 0;
@@ -280,11 +278,11 @@ public class User {
         this.wife = wife;
     }
 
-    public HashMap<String, Npc> getFriendsNpc() {
+    public HashMap<String, NpcFriendship> getFriendsNpc() {
         return friendsNpc;
     }
 
-    public void setFriendsNpc(HashMap<String, Npc> friendsNpc) {
+    public void setFriendsNpc(HashMap<String, NpcFriendship> friendsNpc) {
         this.friendsNpc = friendsNpc;
     }
 

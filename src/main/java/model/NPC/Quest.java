@@ -9,14 +9,23 @@ public class Quest {
     private  int id;
     private ReadyItem want;
     private ReadyItem reward;
-    private boolean hasAlreadyFinished;
+    private boolean hasAlreadyFinished=false;
     private Npc npc;
+    private int level;
 
-    public Quest(int id, ReadyItem want, ReadyItem reward,Npc npc) {
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public Quest(int id, ReadyItem want, ReadyItem reward, int level) {
         this.id = id;
         this.want = want;
         this.reward = reward;
-        this.npc=npc;
+        this.level=level;
     }
 
     public Npc getNpc() {
@@ -58,5 +67,15 @@ public class Quest {
 
     public void setReward(ReadyItem reward) {
         this.reward = reward;
+    }
+
+    @Override
+    public String toString() {
+        return "Quest{" +
+                "id=" + id +
+                ", want=" + want.toString() +
+                ", reward=" + reward.toString() +
+                ", npc=" + npc.getType().getDisplayName() +
+                '}';
     }
 }

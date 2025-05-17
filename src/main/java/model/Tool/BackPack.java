@@ -75,7 +75,9 @@ public class BackPack {
     public void addToInventory(Item item){
         if (inventory.size() < getSize()) {
             inventory.put(item.getItemType().name(),item);
-            item.setNumber(1);
+            if(item.getNumber()==0){
+                item.setNumber(1);
+            }
         }
     }
     public void removeFromInventory(Item item){

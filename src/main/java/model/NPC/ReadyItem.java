@@ -27,4 +27,11 @@ public class ReadyItem {
     public void setAmount(int amount) {
         this.amount = amount;
     }
+
+    @Override
+    public String toString() {
+        return
+                " item=" + item.getDisplayName() +
+                ", amount=" + amount;
+    }
 }

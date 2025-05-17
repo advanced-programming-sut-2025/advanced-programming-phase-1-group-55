@@ -49,7 +49,7 @@ public class MarineRanchStore extends Store{
                     1, 16000, 0, 0, Seasons.special));
 
 
-        }}, new Npc("Marnie"), "marnieRanch");
+        }}, "marnieRanch");
     }
     public Result purchase(int amount , Product product){
         BackPack backPack= App.currentGame.currentUser.getBackPack();
