@@ -4,11 +4,15 @@ import enums.WeatherType;
 import model.*;
 import model.Friendship.NpcFriendship;
 import model.Item.Item;
+import model.Item.ItemType;
 import model.Map.MainLocation;
 import model.NPC.Dialog;
 import model.NPC.Npc;
 import model.NPC.Quest;
+import model.Tool.BackPack;
 import model.Tool.Tools;
+
+import java.util.HashMap;
 
 public class NpcController {
     public static String getDialogMessage(int friendshipLevel, WeatherType weather, MainTime time) {
@@ -110,5 +114,44 @@ public class NpcController {
             message.append(quest.toString()).append("\n");
         }
         return new Result(true,message.toString());
+    }public Result doQuest(int id){
+        if(id>14){
+            return new Result(false,"the id is not valid");
+        }
+        if(!App.currentGame.currentUser.getQuest().containsKey(id)){
+            return new Result(false,"you don't have this quest ");
+        }
+        Quest quest=App.currentGame.currentUser.getQuest().get(id);
+        String name=quest.getNpc().getType().getDisplayName();
+        if(!npcIsValid(name)){
+            return new Result(false,"npc doesn't exist");
+        }
+        Npc npc=findNpc(name);
+        if(npc==null){
+            return new Result(false,"you are not near the "+name+" to finish quest!");
+        }
+        BackPack backPack=App.currentGame.currentUser.getBackPack();
+        ItemType itemType=quest.getWant().getItem();
+        if(!backPack.getInventory().containsKey(itemType.getDisplayName())||
+       backPack.getInventory().get(itemType.getDisplayName()).getNumber()<quest.getWant().getAmount()){
+            return new Result(false,"you don't have enough item");
+        }
+        int zarib=1;
+        if(App.currentGame.currentUser.getFriendsNpc().get(quest.getNpc().getType().getDisplayName()).getLevel()>=2){
+            zarib=2;
+        }
+        if(quest.getReward().getItem().equals(ItemType.LevelUpFriendship)){
+            App.currentGame.currentUser.getFriendsNpc().get(quest.getNpc().getType().getDisplayName()).increaseXp(201);
+        } else if (quest.getReward().getItem().equals(ItemType.GOLD)) {
+            App.currentGame.currentUser.increaseGold(quest.getReward().getAmount()*zarib);
+        }else{
+            backPack.addItemToInventory(new Item(quest.getReward().getItem()),quest.getReward().getAmount()*zarib);
+        }
+        backPack.removeAmountFromInventory(quest.getWant().getItem(),quest.getWant().getAmount());
+        for(User user:App.currentGame.playersInGame){
+            user.getQuest().remove(quest.getId());
+        }
+        quest.setHasAlreadyFinished(true);
+        return new Result(true,"quest successfully finished");
     }
 }

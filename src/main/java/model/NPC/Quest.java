@@ -9,7 +9,7 @@ public class Quest {
     private  int id;
     private ReadyItem want;
     private ReadyItem reward;
-    private boolean hasAlreadyFinished;
+    private boolean hasAlreadyFinished=false;
     private Npc npc;
     private int level;
 

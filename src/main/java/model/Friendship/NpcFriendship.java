@@ -65,7 +65,7 @@ public class NpcFriendship extends FriendShip {
     public void checkQuest(){
         if (level>=1){
             for (Quest quest1:npc.getType().getQuests().values()){
-                if (quest1.getLevel()==2){
+                if (quest1.getLevel()==2&&!quest1.isHasAlreadyFinished()){
                     user.getQuest().put(quest1.getId(),quest1);
                 }
             }
