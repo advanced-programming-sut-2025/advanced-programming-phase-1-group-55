@@ -18,6 +18,7 @@ public class MainGameView implements AppMenu {
     private final walkController controller4 = new walkController();
     private final FriendshipController controller6 = new FriendshipController();
     private final TradeController controller5 = new TradeController();
+    private final FarmingController controller7 = new FarmingController();
     //    private final TreeCotroller controller3 = new TreeCotroller();
 //    private final ForagingCropController controller4 = new ForagingCropController();
 //    private final ForagingTreeController controller5 = new ForagingTreeController();
@@ -256,6 +257,8 @@ public class MainGameView implements AppMenu {
             int y = Integer.parseInt(matcher.group("y"));
             System.out.println(MainLocation.isNearATile(new Location(y, x)));
 
+        } else if ((matcher = mainGameCommands.useTool.getMatcher(input)) != null) {
+            System.out.println(controller7.useTool(matcher.group("direction").trim()));
         } else {
             System.out.println("Unknown command");
         }

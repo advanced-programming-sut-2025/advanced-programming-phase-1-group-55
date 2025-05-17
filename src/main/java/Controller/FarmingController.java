@@ -14,50 +14,50 @@ import static model.App.*;
 
 import java.util.ResourceBundle;
 
-public class FarmingController extends SkillController {
+public class FarmingController {
 
-    public FarmingController() {
-        super(App.currentGame.currentUser.getFarmingSkill());
-    }
-
-
-    public void onHarvestProduct() {
-        skill.changePoints(5);
-    }
+//    public FarmingController() {
+//        super(App.currentGame.currentUser.getFarmingSkill());
+//    }
 
 
-    public CropQuality getCropQualityByFarmingLevel() {
-        int level = skill.getLevel();
-        double random = Math.random();
-
-        switch (level) {
-            case 0:
-                return CropQuality.NORMAL;
-
-            case 1:
-                if (random < 0.8) return CropQuality.NORMAL;
-                else return CropQuality.SILVER;
-
-            case 2:
-                if (random < 0.6) return CropQuality.NORMAL;
-                else if (random < 0.9) return CropQuality.SILVER;
-                else return CropQuality.GOLD;
-
-            case 3:
-                if (random < 0.5) return CropQuality.NORMAL;
-                else if (random < 0.8) return CropQuality.SILVER;
-                else return CropQuality.GOLD;
-
-            case 4:
-                if (random < 0.4) return CropQuality.NORMAL;
-                else if (random < 0.7) return CropQuality.SILVER;
-                else if (random < 0.9) return CropQuality.GOLD;
-                else return CropQuality.IRIDIUM;
-
-            default:
-                return CropQuality.NORMAL;
-        }
-    }
+//    public void onHarvestProduct() {
+//        skill.changePoints(5);
+//    }
+//
+//
+//    public CropQuality getCropQualityByFarmingLevel() {
+//        int level = skill.getLevel();
+//        double random = Math.random();
+//
+//        switch (level) {
+//            case 0:
+//                return CropQuality.NORMAL;
+//
+//            case 1:
+//                if (random < 0.8) return CropQuality.NORMAL;
+//                else return CropQuality.SILVER;
+//
+//            case 2:
+//                if (random < 0.6) return CropQuality.NORMAL;
+//                else if (random < 0.9) return CropQuality.SILVER;
+//                else return CropQuality.GOLD;
+//
+//            case 3:
+//                if (random < 0.5) return CropQuality.NORMAL;
+//                else if (random < 0.8) return CropQuality.SILVER;
+//                else return CropQuality.GOLD;
+//
+//            case 4:
+//                if (random < 0.4) return CropQuality.NORMAL;
+//                else if (random < 0.7) return CropQuality.SILVER;
+//                else if (random < 0.9) return CropQuality.GOLD;
+//                else return CropQuality.IRIDIUM;
+//
+//            default:
+//                return CropQuality.NORMAL;
+//        }
+//    }
 
     public Result useTool(String direction) {
         int directionInt;
@@ -74,7 +74,7 @@ public class FarmingController extends SkillController {
         } else {
             tool.useTool();
             if (tool.getName().equals("Hoe")) {
-                if (tile.isShokhmed() || tile.isEmpty()) {
+                if (tile.isShokhmed() || !tile.isEmpty()) {
                     return new Result(false, "failed! tile shokhm khorde");
                 } else {
 
@@ -84,7 +84,7 @@ public class FarmingController extends SkillController {
 
             }
         }
-
+        return new Result(false, "failed! tool not found");
 
     }
 
@@ -106,15 +106,15 @@ public class FarmingController extends SkillController {
     }
 
 
-    public int getCurrentLevel() {
-        return skill.getLevel();
-    }
-
-    public int getCurrentPoints() {
-        return skill.getPoints();
-    }
-
-    public Skill getFarmingSkill() {
-        return skill;
-    }
+//    public int getCurrentLevel() {
+//        return skill.getLevel();
+//    }
+//
+//    public int getCurrentPoints() {
+//        return skill.getPoints();
+//    }
+//
+//    public Skill getFarmingSkill() {
+//        return skill;
+//    }
 }
