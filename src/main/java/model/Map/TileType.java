@@ -1,13 +1,13 @@
 package model.Map;
 
-public enum TileTexture {
+public enum TileType {
     grass("grass"),
     water( "water"),
     building("building"),
     ANIMAL_BUILDING("animal_building"),;
     private final String name;
 
-    TileTexture(String name)
+    TileType(String name)
     {
         this.name = name;
     }
@@ -17,9 +17,9 @@ public enum TileTexture {
         return name;
     }
 
-    public static TileTexture mapTypeNameToTexture(String typeName)
+    public static TileType mapTypeNameToTexture(String typeName)
     {
-        for (TileTexture t : TileTexture.values())
+        for (TileType t : TileType.values())
         {
             if (t.name.equalsIgnoreCase(typeName))
             {

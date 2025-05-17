@@ -23,21 +23,21 @@ public enum MainLocation {
     ,nearTheBin;
     public static boolean isNearTheWater(Location location){
         GameMap map=App.currentGame.getMap();
-        if(map.tiles[location.getY()+1][location.getX()+1].getTexture().equals(TileTexture.water)){
+        if(map.tiles[location.getY()+1][location.getX()+1].getTexture().equals(TileType.water)){
             return true;
-        }else if(map.tiles[location.getY()][location.getX()+1].getTexture().equals(TileTexture.water)){
+        }else if(map.tiles[location.getY()][location.getX()+1].getTexture().equals(TileType.water)){
             return true;
-        }else if(map.tiles[location.getY()+1][location.getX()].getTexture().equals(TileTexture.water)){
+        }else if(map.tiles[location.getY()+1][location.getX()].getTexture().equals(TileType.water)){
             return true;
-        }else if(map.tiles[location.getY()-1][location.getX()+1].getTexture().equals(TileTexture.water)){
+        }else if(map.tiles[location.getY()-1][location.getX()+1].getTexture().equals(TileType.water)){
             return true;
-        }else if(map.tiles[location.getY()+1][location.getX()-1].getTexture().equals(TileTexture.water)){
+        }else if(map.tiles[location.getY()+1][location.getX()-1].getTexture().equals(TileType.water)){
             return true;
-        }else if(map.tiles[location.getY()-1][location.getX()-1].getTexture().equals(TileTexture.water)){
+        }else if(map.tiles[location.getY()-1][location.getX()-1].getTexture().equals(TileType.water)){
             return true;
-        }else if(map.tiles[location.getY()][location.getX()-1].getTexture().equals(TileTexture.water)){
+        }else if(map.tiles[location.getY()][location.getX()-1].getTexture().equals(TileType.water)){
             return true;
-        }else return map.tiles[location.getY() - 1][location.getX()].getTexture().equals(TileTexture.water);
+        }else return map.tiles[location.getY() - 1][location.getX()].getTexture().equals(TileType.water);
     }
     public static Boolean isNearTheShippingBin(Location location){
         GameMap map=App.currentGame.getMap();
