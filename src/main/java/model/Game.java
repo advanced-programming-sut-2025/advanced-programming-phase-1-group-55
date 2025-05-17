@@ -15,6 +15,7 @@ import com.google.gson.GsonBuilder;
 
 import enums.Menu;
 import model.Friendship.PlayerFriendship;
+import model.Item.Item;
 import model.Map.GameMap;
 import model.Map.Tile;
 import model.NPC.Dialog;
@@ -30,12 +31,23 @@ public class Game {
     private GameMap map;
     private ArrayList<PlayerFriendship> allFriendships = new ArrayList<>();
     private HashMap<Integer, Trade> AllTrades = new HashMap<>();
-    private  int numberOfAllGifts=0;
-    private   final List<Dialog> allDialogs = new ArrayList<>(Arrays.asList(Dialog.values()));
+    private int numberOfAllGifts = 0;
+    private final List<Dialog> allDialogs = new ArrayList<>(Arrays.asList(Dialog.values()));
+
     public Game(User currentUser, ArrayList<User> playersInGame, GameMap map) {
         this.currentUser = currentUser;
         this.playersInGame = playersInGame;
         this.map = map;
+    }
+
+    private HashMap<String, Item> AllPlants = new HashMap<>();
+
+    public HashMap<String, Item> getAllPlants() {
+        return AllPlants;
+    }
+
+    public void setAllPlants(HashMap<String, Item> allPlants) {
+        AllPlants = allPlants;
     }
 
     private int turnCounter = 0;
@@ -43,9 +55,11 @@ public class Game {
     public int getTurnCounter() {
         return turnCounter;
     }
-    public void increaseNumberOfGifts(){
+
+    public void increaseNumberOfGifts() {
         numberOfAllGifts++;
     }
+
     public void setTurnCounter(int turnCounter) {
         this.turnCounter = turnCounter;
     }

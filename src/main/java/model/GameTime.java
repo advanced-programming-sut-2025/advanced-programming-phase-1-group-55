@@ -14,6 +14,7 @@ import static model.weather.*;
 
 import model.Friendship.NpcFriendship;
 import model.Friendship.PlayerFriendship;
+import model.Item.Item;
 import model.Map.Location;
 import model.Store.Product;
 import model.Store.Store;
@@ -57,6 +58,9 @@ public class GameTime {
         if (weather.getCurrentWeather().equals(WeatherType.Storm)) {
             System.out.println(RandomThor());
             System.out.println("Current Weather is " + weather.getCurrentWeather());
+
+        }
+        for (Item plant :currentGame.getAllPlants().values()) {
 
         }
 

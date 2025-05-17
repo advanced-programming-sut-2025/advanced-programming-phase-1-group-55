@@ -114,7 +114,9 @@ public class FarmingController {
             if (!tile.isShokhmed() || !tile.isEmpty() || tile.getOwner() != user) {
                 return new Result(false, "you cant plant on this tile");
             } else {
-                tile.setItemInThisTile(user.getBackPack().getInventory().get(seed));
+                Item item = new Item(getItemType(seed));
+                currentGame.getAllPlants().put(seed,item);
+                tile.setItemInThisTile(item);
                 user.getBackPack().getInventory().get(seed).addNumber(-1);
                 return new Result(true, "seed planted successfully");
             }
