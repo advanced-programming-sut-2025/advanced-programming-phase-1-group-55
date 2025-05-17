@@ -41,7 +41,7 @@ public enum ItemType {
     COPPER("Copper"),
     IRON("Iron"),
     GOLD("Gold"),
-    IRIDIUM("Iriduim"),
+    IRIDIUM("Iridium"),
     COAL("Coal"),
 
     COPPER_ORE("copper ore"),
@@ -90,8 +90,7 @@ public enum ItemType {
     BIG_COOP("big coop"),
     DELUXE_COOP("deluxe coop"),
     WELL("well"),
-    SHIPPING_BIN("shipping bin")
-    ,
+    SHIPPING_BIN("shipping bin"),
 
     HAY("hay"),
     SHEARS("shears"),
@@ -122,8 +121,10 @@ public enum ItemType {
     FARMERS_LUNCH("farmers lunch"),
     SEAFOAM_PUDDING("seafoam pudding"),
     MINERS_TREAT("miners treat"),
+
     HARD_WOOD("hard wood"),
     LevelUpFriendship("level up friendship"),
+
 
     EGG("egg"),
     BIG_EGG("big egg"),
@@ -183,8 +184,6 @@ public enum ItemType {
     GOLD_TOOL("gold tool"),
     IRIDIUM_TOOL("iridium tool"),
     PICKLE("pickle"),
-
-
 
     BEER("beer"),
     HASH_BROWNS_RECIPE("hash browns recipe"),
@@ -275,30 +274,21 @@ public enum ItemType {
     DELUXE_PACK("deluxe backpack");
 
 
-
-
-
-
-
-
-    private final String name;
+    private final String DisplayName;
 
     ItemType(String DisplayName) {
-        this.name = name();
+        this.DisplayName = DisplayName;
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return name();
     }
 
-    public static ItemType getItemType(String name)
-    {
-        for (ItemType itemType : ItemType.values())
-        {
-            if (itemType.toString().equalsIgnoreCase(name))
-            {
+    public static ItemType getItemType(String name) {
+
+        for (ItemType itemType : ItemType.values()) {
+            if (itemType.getDisplayName().equalsIgnoreCase(name)) {
                 return itemType;
             }
         }
@@ -306,6 +296,6 @@ public enum ItemType {
     }
 
     public String getDisplayName() {
-        return name;
+        return this.DisplayName;
     }
 }

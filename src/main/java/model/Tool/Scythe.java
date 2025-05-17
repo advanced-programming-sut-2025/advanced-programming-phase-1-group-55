@@ -5,6 +5,7 @@ import model.Store.Store;
 
 import static java.lang.Math.max;
 import static model.App.*;
+import static model.weather.getEnergyLoser;
 
 public class Scythe extends  Tools{
     public int getPriceToLevelUp(){
@@ -40,13 +41,13 @@ public class Scythe extends  Tools{
 
     @Override
     public int energyCost() {
-        return 2;
+        return (int) ((2) * getEnergyLoser());
     }
     public Store getStore(){
         return new BlackSmithStore();
     }
     @Override
     public void useTool() {
-        currentGame.currentUser.setEnergy(max(currentGame.currentUser.getEnergy()-energyCost(),0));
+        currentGame.currentUser.decreaseEnergy((int) (energyCost() * getEnergyLoser()));
     }
 }

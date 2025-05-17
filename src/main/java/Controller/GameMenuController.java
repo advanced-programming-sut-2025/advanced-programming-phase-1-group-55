@@ -2,20 +2,19 @@ package Controller;
 
 import enums.Menu;
 import enums.mainGameCommands;
-import model.*;
+import model.App;
 import model.Friendship.FriendShip;
-import model.Friendship.NpcFriendship;
 import model.Friendship.PlayerFriendship;
+import model.Game;
 import model.Item.Item;
 import model.Item.ItemType;
 import model.Map.*;
-import model.NPC.Npc;
-import model.NPC.Quest;
+import model.Result;
 import model.Tool.BackPack;
+import model.User;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 
@@ -236,8 +235,8 @@ public class GameMenuController {
 
         for (User player : playersInGame) {
             player.setBackPack(new BackPack());
-            player.getBackPack().getInventory().put("coal", new Item(ItemType.getItemType("coal")));
-            player.getBackPack().getInventory().get("coal").setNumber(100);
+            player.getBackPack().getInventory().put("maple seed", new Item(ItemType.getItemType("maple seed")));
+            player.getBackPack().getInventory().get("maple seed").setNumber(100);
             player.setDailyMoney(0);
         }
 

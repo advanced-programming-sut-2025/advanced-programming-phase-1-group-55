@@ -108,7 +108,7 @@ public class walkController {
                 int ny = y + dir[0];
                 int nx = x + dir[1];
 
-                if (ny >= 0 && nx >= 0 && ny < n && nx < m && !visited[ny][nx] && map[ny][nx].isWalkable() && (map[ny][nx].getOwner() == currentGame.currentUser||map[ny][nx].getOwner() == null)) {
+                if (ny >= 0 && nx >= 0 && ny < n && nx < m && !visited[ny][nx] && map[ny][nx].isWalkable() && (map[ny][nx].getOwner() == currentGame.currentUser || map[ny][nx].getOwner() == null)) {
                     visited[ny][nx] = true;
                     parent[ny][nx] = map[y][x];
                     queue.add(new int[]{ny, nx});
@@ -183,6 +183,7 @@ public class walkController {
         Location newLocation = new Location(finalTile.getLocation().getY(), finalTile.getLocation().getX());
         currentGame.currentUser.setLocation(newLocation);
         currentGame.currentUser.decreaseEnergy((int) Math.ceil(usedEnergy));
+
 
         boolean fullMove = stepsCanMove == path.size();
 

@@ -6,6 +6,7 @@ import enums.Seasons;
 
 import static enums.DayOfTheWeeks.*;
 import static enums.Seasons.*;
+import static model.weather.*;
 
 import enums.WeatherType;
 
@@ -47,6 +48,12 @@ public class GameTime {
         GameTime.hour = 9;
         weather.setCurrentWeather(weather.getTomorrowWeather());
         weather.RandomWeatherForTommorow();
+        if (weather.getCurrentWeather().equals(WeatherType.Rain)) {
+            setEnergyLoser(1.5);
+        } else if (weather.getCurrentWeather().equals(WeatherType.Snow)) {
+            setEnergyLoser(2);
+        }
+
         if (weather.getCurrentWeather().equals(WeatherType.Storm)) {
             System.out.println(RandomThor());
             System.out.println("Current Weather is " + weather.getCurrentWeather());
@@ -54,7 +61,10 @@ public class GameTime {
         }
 
         for (User player : currentGame.playersInGame) {
-            player.setLocation(new Location(player.getFarm().getLocation().getY() + 1, player.getFarm().getLocation().getX() + 1));
+            if (!player.isFainted()) {
+
+                player.setLocation(new Location(player.getFarm().getLocation().getY() + 1, player.getFarm().getLocation().getX() + 1));
+            }
 
             if (player.isFainted()) {
                 player.setFainted(false);
@@ -67,6 +77,19 @@ public class GameTime {
             DayofMonth = 1;
             currentSeason = currentSeason.nextSeason();
         }
+
+//        if (DayofMonth >= 28 && DayofMonth < 56) {
+//            DayofMonth = 1;
+//
+//            currentSeason = currentSeason.nextSeason();
+//        } else if (DayofMonth >= 56 && DayofMonth < 84) {
+//            DayofMonth = 1;
+//            currentSeason = currentSeason.nextSeason().nextSeason();
+//
+//        } else if (DayofMonth > 84) {
+//            DayofMonth = 1;
+//            currentSeason = currentSeason.nextSeason().nextSeason().nextSeason();
+//        }
         for (User user : currentGame.playersInGame) {
             user.increaseGold(user.getDailyMoney());
             user.setDailyMoney(0);
@@ -133,15 +156,6 @@ public class GameTime {
         for (int i = 0; i < number; i++) {
             roozbad();
 
-        }
-
-        if (DayofMonth + number > 28) {
-            currentSeason = currentSeason.nextSeason();
-        } else if (DayofMonth + number > 56) {
-            currentSeason = currentSeason.nextSeason().nextSeason();
-
-        } else if (DayofMonth + number > 84) {
-            currentSeason = currentSeason.nextSeason().nextSeason().nextSeason();
         }
 
 

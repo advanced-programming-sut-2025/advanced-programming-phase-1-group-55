@@ -1,94 +1,5 @@
 [
   {
-    "username": "arshia",
-    "password": "3cd77bb3992548d5f700311ed6132525ef36e902660a944b3edd8bfc67197339",
-    "nickName": "arshix",
-    "gender": "male",
-    "email": "arshia@gmail.com",
-    "numberOfSecurityQuestion": 1,
-    "securityQuestion": "soltani",
-    "backPack": {
-      "currentTool": {
-        "level": 0
-      },
-      "availableTools": {
-        "WateringCan": {
-          "level": 0
-        },
-        "Scythe": {
-          "level": 0
-        },
-        "FishingPole": {
-          "level": 0
-        },
-        "Pickaxe": {
-          "level": 0
-        },
-        "Trashcan": {
-          "level": 0
-        },
-        "Hoe": {
-          "level": 0
-        },
-        "Axe": {
-          "level": 0
-        }
-      },
-      "inventory": {},
-      "level": 1,
-      "learnedCraftingRecipes": [],
-      "learnedCookingRecipes": [],
-      "craftingRecipes": [],
-      "cookingRecipes": [
-        "FRIED_EGG",
-        "BAKED_FISH",
-        "SALAD"
-      ]
-    },
-    "friendsNpc": {},
-    "gold": 10000,
-    "friendsPlayer": {},
-    "dailyMoney": 0,
-    "wood": 0,
-    "energy": 200.0,
-    "stayLoggedIn": true,
-    "mostAchievedMoney": 0,
-    "matchPlayed": 0,
-    "location": {
-      "y": 0,
-      "x": 0
-    },
-    "fainted": false,
-    "mainLocation": "House",
-    "trades": {},
-    "stone": 0,
-    "receivedGifts": {},
-    "sentGifts": {},
-    "hasGiftToday": false,
-    "hasMessageToday": false,
-    "farmingSkill": {
-      "type": "Farming",
-      "level": 0,
-      "points": 0
-    },
-    "miningSkill": {
-      "type": "Mining",
-      "level": 0,
-      "points": 0
-    },
-    "foragingSkill": {
-      "type": "Foraging",
-      "level": 0,
-      "points": 0
-    },
-    "fishingSkill": {
-      "type": "Fishing",
-      "level": 0,
-      "points": 0
-    },
-    "refrigerator": []
-  },
-  {
     "username": "arshiaY5",
     "password": "1efb4ef0da0b46701287a19814214eee4518e892f954d4c2d71fd5e89b411b18",
     "nickName": "arshix",
@@ -122,6 +33,9 @@
         "Axe": {
           "level": 0
         }
+      },
+      "trashcan": {
+        "level": 0
       },
       "inventory": {},
       "level": 1,
@@ -212,6 +126,9 @@
           "level": 0
         }
       },
+      "trashcan": {
+        "level": 0
+      },
       "inventory": {},
       "level": 1,
       "learnedCraftingRecipes": [],
@@ -276,6 +193,282 @@
     "securityQuestion": "soltani",
     "backPack": {
       "currentTool": {
+        "level": 0
+      },
+      "availableTools": {
+        "WateringCan": {
+          "level": 0
+        },
+        "Scythe": {
+          "level": 0
+        },
+        "FishingPole": {
+          "level": 0
+        },
+        "Pickaxe": {
+          "level": 0
+        },
+        "Trashcan": {
+          "level": 0
+        },
+        "Hoe": {
+          "level": 0
+        },
+        "Axe": {
+          "level": 0
+        }
+      },
+      "trashcan": {
+        "level": 0
+      },
+      "inventory": {},
+      "level": 1,
+      "learnedCraftingRecipes": [],
+      "learnedCookingRecipes": [],
+      "craftingRecipes": [],
+      "cookingRecipes": [
+        "FRIED_EGG",
+        "BAKED_FISH",
+        "SALAD"
+      ]
+    },
+    "friendsNpc": {},
+    "gold": 10000,
+    "friendsPlayer": {},
+    "dailyMoney": 0,
+    "wood": 0,
+    "energy": 200.0,
+    "stayLoggedIn": false,
+    "mostAchievedMoney": 0,
+    "matchPlayed": 0,
+    "location": {
+      "y": 0,
+      "x": 0
+    },
+    "fainted": false,
+    "mainLocation": "House",
+    "trades": {},
+    "stone": 0,
+    "receivedGifts": {},
+    "sentGifts": {},
+    "hasGiftToday": false,
+    "hasMessageToday": false,
+    "farmingSkill": {
+      "type": "Farming",
+      "level": 0,
+      "points": 0
+    },
+    "miningSkill": {
+      "type": "Mining",
+      "level": 0,
+      "points": 0
+    },
+    "foragingSkill": {
+      "type": "Foraging",
+      "level": 0,
+      "points": 0
+    },
+    "fishingSkill": {
+      "type": "Fishing",
+      "level": 0,
+      "points": 0
+    },
+    "refrigerator": []
+  },
+  {
+    "username": "arshiaE6",
+    "password": "1efb4ef0da0b46701287a19814214eee4518e892f954d4c2d71fd5e89b411b18",
+    "nickName": "arshix",
+    "gender": "male",
+    "email": "arshia@gmail.com",
+    "numberOfSecurityQuestion": 1,
+    "securityQuestion": "soltani",
+    "backPack": {
+      "currentTool": {
+        "level": 0
+      },
+      "availableTools": {
+        "WateringCan": {
+          "level": 0
+        },
+        "Scythe": {
+          "level": 0
+        },
+        "FishingPole": {
+          "level": 0
+        },
+        "Pickaxe": {
+          "level": 0
+        },
+        "Trashcan": {
+          "level": 0
+        },
+        "Hoe": {
+          "level": 0
+        },
+        "Axe": {
+          "level": 0
+        }
+      },
+      "trashcan": {
+        "level": 0
+      },
+      "inventory": {},
+      "level": 1,
+      "learnedCraftingRecipes": [],
+      "learnedCookingRecipes": [],
+      "craftingRecipes": [],
+      "cookingRecipes": [
+        "FRIED_EGG",
+        "BAKED_FISH",
+        "SALAD"
+      ]
+    },
+    "friendsNpc": {},
+    "gold": 10000,
+    "friendsPlayer": {},
+    "dailyMoney": 0,
+    "wood": 0,
+    "energy": 200.0,
+    "stayLoggedIn": false,
+    "mostAchievedMoney": 0,
+    "matchPlayed": 0,
+    "location": {
+      "y": 0,
+      "x": 0
+    },
+    "fainted": false,
+    "mainLocation": "House",
+    "trades": {},
+    "stone": 0,
+    "receivedGifts": {},
+    "sentGifts": {},
+    "hasGiftToday": false,
+    "hasMessageToday": false,
+    "farmingSkill": {
+      "type": "Farming",
+      "level": 0,
+      "points": 0
+    },
+    "miningSkill": {
+      "type": "Mining",
+      "level": 0,
+      "points": 0
+    },
+    "foragingSkill": {
+      "type": "Foraging",
+      "level": 0,
+      "points": 0
+    },
+    "fishingSkill": {
+      "type": "Fishing",
+      "level": 0,
+      "points": 0
+    },
+    "refrigerator": []
+  },
+  {
+    "username": "arshia",
+    "password": "b04adcdf946e2fdf3b8a10bc1e15d512a03959c17476e989b93ca59564851d93",
+    "nickName": "arshix",
+    "gender": "male",
+    "email": "arshia@gmail.com",
+    "numberOfSecurityQuestion": 1,
+    "securityQuestion": "soltani",
+    "backPack": {
+      "currentTool": {
+        "level": 0
+      },
+      "availableTools": {
+        "WateringCan": {
+          "level": 0
+        },
+        "Scythe": {
+          "level": 0
+        },
+        "FishingPole": {
+          "level": 0
+        },
+        "Pickaxe": {
+          "level": 0
+        },
+        "Trashcan": {
+          "level": 0
+        },
+        "Hoe": {
+          "level": 0
+        },
+        "Axe": {
+          "level": 0
+        }
+      },
+      "trashcan": {
+        "level": 0
+      },
+      "inventory": {},
+      "level": 1,
+      "learnedCraftingRecipes": [],
+      "learnedCookingRecipes": [],
+      "craftingRecipes": [],
+      "cookingRecipes": [
+        "FRIED_EGG",
+        "BAKED_FISH",
+        "SALAD"
+      ]
+    },
+    "friendsNpc": {},
+    "gold": 10000,
+    "friendsPlayer": {},
+    "dailyMoney": 0,
+    "wood": 0,
+    "energy": 200.0,
+    "stayLoggedIn": true,
+    "mostAchievedMoney": 0,
+    "matchPlayed": 0,
+    "location": {
+      "y": 0,
+      "x": 0
+    },
+    "fainted": false,
+    "mainLocation": "House",
+    "trades": {},
+    "stone": 0,
+    "receivedGifts": {},
+    "sentGifts": {},
+    "hasGiftToday": false,
+    "hasMessageToday": false,
+    "farmingSkill": {
+      "type": "Farming",
+      "level": 0,
+      "points": 0
+    },
+    "miningSkill": {
+      "type": "Mining",
+      "level": 0,
+      "points": 0
+    },
+    "foragingSkill": {
+      "type": "Foraging",
+      "level": 0,
+      "points": 0
+    },
+    "fishingSkill": {
+      "type": "Fishing",
+      "level": 0,
+      "points": 0
+    },
+    "refrigerator": []
+  },
+  {
+    "username": "arshia132",
+    "password": "1efb4ef0da0b46701287a19814214eee4518e892f954d4c2d71fd5e89b411b18",
+    "nickName": "arshix",
+    "gender": "male",
+    "email": "arshia@gmail.com",
+    "numberOfSecurityQuestion": 1,
+    "securityQuestion": "soltani",
+    "backPack": {
+      "currentTool": {
         "names": "Hoe",
         "level": 0
       },
@@ -295,9 +488,6 @@
           "usedSuccessfully": false,
           "level": 0
         },
-        "Trashcan": {
-          "level": 0
-        },
         "Hoe": {
           "names": "Hoe",
           "level": 0
@@ -306,6 +496,9 @@
           "usedSuccessfully": false,
           "level": 0
         }
+      },
+      "trashcan": {
+        "level": 0
       },
       "inventory": {},
       "level": 1,

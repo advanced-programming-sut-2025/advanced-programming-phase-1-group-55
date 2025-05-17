@@ -8,7 +8,7 @@ public enum inHouseGameMenuCommands {
     ShowLearnedCratingRecipes("^\\s*crafting\\s+show\\s+recipes\\s*$"),
     CHEAT_ADD_CRAFTING_RECIPE("cheat\\s+add\\s+crafting\\s+recipe\\s+(?<recipeName>.*)"),
     CraftItem("crafting\\s+craft\\s+(?<itemName>.*)"),
-    PlaceItem("place\\s+item\\s+" + "-n\\s+(?<itemName>.*)\\s+" + "-d\\s+(?<direction>\\S+)"),
+    PlaceItem("place\\s+item\\s+-n\\s+(?<itemName>.*)\\s+-d\\s+(?<direction>\\S+)"),
     CheatAddItem("cheat\\s+add\\s+item\\s+" + "-n\\s+(?<itemName>.*)\\s+" + "-c\\s+(?<count>\\d+)"),
     PutInRefrigerator("cooking\\s+refrigerator\\s+put\\s+(?<item>.*)"),
     PickFromRefrigerator("cooking\\s+refrigerator\\s+pick\\s+(?<item>.*)"),

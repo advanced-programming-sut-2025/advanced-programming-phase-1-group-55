@@ -5,6 +5,7 @@ import model.Store.Store;
 
 import static java.lang.Math.max;
 import static model.App.currentGame;
+import static model.weather.getEnergyLoser;
 
 public class Pickaxe extends Tools {
     boolean usedSuccessfully = false;
@@ -42,12 +43,8 @@ public class Pickaxe extends Tools {
 
     @Override
     public int energyCost() {
-        int energy = 6 - level;
-        if (!usedSuccessfully) {
-            energy--;
-        }
-        //TO DO  AGAR MINING MAX BOOD ENERGY --;
-        return max(energy, 0);
+       
+        return (int) ((6 - level) * getEnergyLoser());
     }
 
     public Store getStore() {
@@ -56,7 +53,7 @@ public class Pickaxe extends Tools {
 
     @Override
     public void useTool() {
-        currentGame.currentUser.setEnergy(max(currentGame.currentUser.getEnergy() - energyCost(), 0));
+        currentGame.currentUser.decreaseEnergy((int) (energyCost() * getEnergyLoser()));
     }
 
 }

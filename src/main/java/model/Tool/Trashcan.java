@@ -2,6 +2,7 @@ package model.Tool;
 
 import static java.lang.Math.max;
 import static model.App.*;
+import static model.weather.getEnergyLoser;
 
 public class Trashcan extends Tools{
 
@@ -11,12 +12,12 @@ public class Trashcan extends Tools{
 
     @Override
     public void useTool() {
-        currentGame.currentUser.setEnergy(max(currentGame.currentUser.getEnergy()-energyCost(),0));
+        currentGame.currentUser.decreaseEnergy((int) (energyCost() * getEnergyLoser()));
     }
 
     @Override
     public int energyCost() {
-        return 0;
+        return (int) ((6 - level) * getEnergyLoser());
     }
 
     public int getPriceToLevelUp(){
