@@ -1,13 +1,13 @@
 package model.NPC;
 
+import model.App;
 import model.Item.Item;
 import model.Item.ItemType;
-import model.ItemOfMap;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
+import model.App.*;
 public enum NpcType {
     SEBASTIAN(
             new HashMap<>(){{
@@ -16,10 +16,13 @@ public enum NpcType {
                 put("pizza",new Item(ItemType.PIZZA));
             }},
             new HashMap<>(){{
-                put(new ReadyItem(ItemType.IRON,50),new ReadyItem(ItemType.DIAMOND,2));
-                put(new ReadyItem(ItemType.STONE,150),new ReadyItem(ItemType.QUARTZ,50));
-                put(new ReadyItem(ItemType.PUMPKIN_PIE,1),new ReadyItem(ItemType.GOLD,5000));
-            }}),
+                put(0,new Quest(0,new ReadyItem(ItemType.IRON,50),new ReadyItem(ItemType.DIAMOND,2),
+                        App.currentGame.getMap().getVillage().getNpss().get("Sebastian")));
+                put(1,new Quest(1,new ReadyItem(ItemType.STONE,150),new ReadyItem(ItemType.QUARTZ,50)
+                        ,App.currentGame.getMap().getVillage().getNpss().get("Sebastian")));
+                put(2,new Quest(2,new ReadyItem(ItemType.PUMPKIN_PIE,1),new ReadyItem(ItemType.GOLD,5000),
+                        App.currentGame.getMap().getVillage().getNpss().get("Sebastian")));
+            }},"Sebastian"),
 
     ABIGAIL(
             new HashMap<>(){{
@@ -28,10 +31,13 @@ public enum NpcType {
                 put("coffee",new Item(ItemType.COFFEE));
             }},
             new HashMap<>(){{
-                put(new ReadyItem(ItemType.GOLD_BAR,1),new ReadyItem(ItemType.LevelUpFriendship,1));
-                put(new ReadyItem(ItemType.PUMPKIN,1),new ReadyItem(ItemType.GOLD,500));
-                put(new ReadyItem(ItemType.WHEAT,50),new ReadyItem(ItemType.IRIDIUM_SPRINKLER,1));
-            }}),
+                put(3,new Quest(1,new ReadyItem(ItemType.GOLD_BAR,1),new ReadyItem(ItemType.LevelUpFriendship,1),
+                        App.currentGame.getMap().getVillage().getNpss().get("Abigail")));
+                put(4,new Quest(1,new ReadyItem(ItemType.PUMPKIN,1),new ReadyItem(ItemType.GOLD,500)
+                        ,App.currentGame.getMap().getVillage().getNpss().get("Abigail")));
+                put(5,new Quest(1,new ReadyItem(ItemType.WHEAT,50),new ReadyItem(ItemType.IRIDIUM_SPRINKLER,1),
+                        App.currentGame.getMap().getVillage().getNpss().get("Abigail")));
+            }},"Abigail"),
 
     HARVEY(
             new HashMap<>(){{
@@ -40,10 +46,13 @@ public enum NpcType {
                 put(ItemType.BEER.getDisplayName(), new Item(ItemType.BEER));
             }},
             new HashMap<>(){{
-                put(new ReadyItem(ItemType.EGGPLANT,12),new ReadyItem(ItemType.GOLD,750));
-                put(new ReadyItem(ItemType.SALMON,1),new ReadyItem(ItemType.LevelUpFriendship,1));
-                put(new ReadyItem(ItemType.BEER,1),new ReadyItem(ItemType.SALAD,5));
-            }}),
+                put(6,new Quest(1,new ReadyItem(ItemType.EGGPLANT,12),new ReadyItem(ItemType.GOLD,750),
+                        App.currentGame.getMap().getVillage().getNpss().get("Harvey")));
+                put(7,new Quest(1,new ReadyItem(ItemType.SALMON,1),new ReadyItem(ItemType.LevelUpFriendship,1),
+                        App.currentGame.getMap().getVillage().getNpss().get("Harvey")));
+                put(8,new Quest(1,new ReadyItem(ItemType.BEER,1),new ReadyItem(ItemType.SALAD,5),
+                        App.currentGame.getMap().getVillage().getNpss().get("Harvey")));
+            }},"Harvey"),
 
     LEAH(
             new HashMap<>(){{
@@ -52,10 +61,13 @@ public enum NpcType {
                 put(ItemType.BEER.getDisplayName(), new Item(ItemType.BEER));
             }},
             new HashMap<>(){{
-                put(new ReadyItem(ItemType.HARD_WOOD,10),new ReadyItem(ItemType.GOLD,500));
-                put(new ReadyItem(ItemType.SALMON,1),new ReadyItem(ItemType.SALMON_DINNER,1));
-                put(new ReadyItem(ItemType.WOOD,200),new ReadyItem(ItemType.DELUXE_SCARECROW,1));
-            }}),
+                put(9,new Quest(1,new ReadyItem(ItemType.HARD_WOOD,10),new ReadyItem(ItemType.GOLD,500),
+                        App.currentGame.getMap().getVillage().getNpss().get("Leah")));
+                put(10,new Quest(1,new ReadyItem(ItemType.SALMON,1),new ReadyItem(ItemType.SALMON_DINNER,1),
+                        App.currentGame.getMap().getVillage().getNpss().get("Leah")));
+                put(11,new Quest(1,new ReadyItem(ItemType.WOOD,200),new ReadyItem(ItemType.DELUXE_SCARECROW,1),
+                        App.currentGame.getMap().getVillage().getNpss().get("Leah")));
+            }},"Leah"),
 
     ROBIN(
             new HashMap<>(){{
@@ -64,19 +76,22 @@ public enum NpcType {
                 put(ItemType.WOOD.getDisplayName(), new Item(ItemType.WOOD));
             }},
             new HashMap<>(){{
-                put(new ReadyItem(ItemType.WOOD,80),new ReadyItem(ItemType.GOLD,1000));
-                put(new ReadyItem(ItemType.IRON_BAR,10),new ReadyItem(ItemType.BEE_HOUSE,3));
-                put(new ReadyItem(ItemType.WOOD,1000),new ReadyItem(ItemType.GOLD,25000));
-            }});
-
+                put(12,new Quest(1,new ReadyItem(ItemType.WOOD,80),new ReadyItem(ItemType.GOLD,1000),
+                        App.currentGame.getMap().getVillage().getNpss().get("Robin")));
+                put(13,new Quest(1,new ReadyItem(ItemType.IRON_BAR,10),new ReadyItem(ItemType.BEE_HOUSE,3),
+                        App.currentGame.getMap().getVillage().getNpss().get("Robin")));
+                put(14,new Quest(1,new ReadyItem(ItemType.WOOD,1000),new ReadyItem(ItemType.GOLD,25000),
+                        App.currentGame.getMap().getVillage().getNpss().get("Robin")));
+            }},"Robin");
+    private final String DisplayName;
     private final Map<String, Item> favorites;
-    private final Map<ReadyItem,ReadyItem> exchange;
+    private final Map<Integer,Quest> quests;
     private ArrayList<Dialog> dialogs; //todo taghir be shey dialog va ezafe kardan ertebaat baa fasl
     private  String job;
-    private ArrayList<Quest> quests; //todo shey quest ezaafe beshe
-    NpcType( Map<String,Item> favorites, Map<ReadyItem,ReadyItem> exchange) {
+    NpcType( Map<String,Item> favorites, Map<Integer,Quest> quest,String names) {
         this.favorites = favorites;
-        this.exchange=exchange;
+        this.quests =quest;
+        this.DisplayName=names;
     }
 
 
@@ -84,8 +99,8 @@ public enum NpcType {
         return favorites;
     }
 
-    public Map<ReadyItem,ReadyItem> getRequest() {
-        return exchange;
+    public Map<Integer,Quest> getRequest() {
+        return quests;
     }
 
 
@@ -105,11 +120,12 @@ public enum NpcType {
         this.job = job;
     }
 
-    public ArrayList<Quest> getQuests() {
+    public String getDisplayName() {
+        return DisplayName;
+    }
+
+    public Map<Integer, Quest> getQuests() {
         return quests;
     }
 
-    public void setQuests(ArrayList<Quest> quests) {
-        this.quests = quests;
-    }
 }

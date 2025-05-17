@@ -7,8 +7,25 @@ import java.util.Map;
 
 public class Quest {
     private  int id;
-    private Map<String, ItemOfMap> reward=new HashMap<>();
+    private ReadyItem want;
+    private ReadyItem reward;
     private boolean hasAlreadyFinished;
+    private Npc npc;
+
+    public Quest(int id, ReadyItem want, ReadyItem reward,Npc npc) {
+        this.id = id;
+        this.want = want;
+        this.reward = reward;
+        this.npc=npc;
+    }
+
+    public Npc getNpc() {
+        return npc;
+    }
+
+    public void setNpc(Npc npc) {
+        this.npc = npc;
+    }
 
     public int getId() {
         return id;
@@ -18,13 +35,6 @@ public class Quest {
         this.id = id;
     }
 
-    public Map<String, ItemOfMap> getReward() {
-        return reward;
-    }
-
-    public void setReward(Map<String, ItemOfMap> reward) {
-        this.reward = reward;
-    }
 
     public boolean isHasAlreadyFinished() {
         return hasAlreadyFinished;
@@ -32,5 +42,21 @@ public class Quest {
 
     public void setHasAlreadyFinished(boolean hasAlreadyFinished) {
         this.hasAlreadyFinished = hasAlreadyFinished;
+    }
+
+    public ReadyItem getWant() {
+        return want;
+    }
+
+    public void setWant(ReadyItem want) {
+        this.want = want;
+    }
+
+    public ReadyItem getReward() {
+        return reward;
+    }
+
+    public void setReward(ReadyItem reward) {
+        this.reward = reward;
     }
 }

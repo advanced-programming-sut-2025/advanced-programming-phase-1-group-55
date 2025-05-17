@@ -9,10 +9,9 @@ import java.util.Map;
 public class Npc {
     private  String name;
     private NpcType type;
-    //mahal sokunat ezaafe beshe
-    private Map<User, FriendShip> friends=new HashMap<>(); // miroonim badan ye shey friendship tarif konim
-    public Npc(String name){
-        this.name=name;
+    private Map<User, FriendShip> friends=new HashMap<>();
+    public Npc(NpcType ty){
+        this.type=ty;
     }
 
     public String getName() {
