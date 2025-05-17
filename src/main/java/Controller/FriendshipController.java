@@ -151,5 +151,17 @@ public class FriendshipController {
             gifts.append(gift.toString()).append("\n");
         }
         return new Result(true,gifts.toString());
+    }public Result rateGift(int rate,int id){
+        if(rate>5||rate<1){
+            return  new Result(false,"rate is not valid");
+        }
+        if(currentGame.currentUser.getReceivedGifts()==null||currentGame.currentUser.getReceivedGifts().isEmpty()||
+                !currentGame.currentUser.getReceivedGifts().containsKey(id)){
+            return  new Result(false,"there is no gift with the given id!");
+        }
+        Gift gift=currentGame.currentUser.getReceivedGifts().get(id);
+        gift.setRate(rate);
+        currentGame.currentUser.getFriendsPlayer().get(gift.getSender()).increaseXp((rate-3)*30+15);
+        return new Result(true,"you rated the gift with id "+id+" successfully\nrate: "+rate);
     }
 }
