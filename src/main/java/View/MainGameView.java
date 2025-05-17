@@ -228,7 +228,7 @@ public class MainGameView implements AppMenu {
             System.out.println(controller6.hug(matcher.group("username")));
 
         } else if ((matcher = FriendshipCommands.flower.getMatcher(input)) != null) {
-            System.out.println(controller6.hug(matcher.group("username")));
+            System.out.println(controller6.sendFlower(matcher.group("username")));
         } else {
             System.out.println("Unknown command");
         }

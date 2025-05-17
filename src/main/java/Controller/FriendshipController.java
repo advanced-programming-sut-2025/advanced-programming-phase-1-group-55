@@ -9,6 +9,7 @@ import model.User;
 
 import java.util.ArrayList;
 
+import static java.lang.Math.max;
 import static model.App.*;
 
 public class FriendshipController {
@@ -71,7 +72,7 @@ public class FriendshipController {
             return  new Result(false,"user not found!");
         }
         if(!locationsAreNear(user.getLocation(),currentGame.currentUser.getLocation())){
-            return  new Result(false,"you must be near the other player to talk!");
+            return  new Result(false,"you must be near the other player to hug!");
         }
         if(user.getFriendsPlayer().get(currentGame.currentUser).getLevel()<2){
             return new Result(false,"your friendship level must be more than 2 , to hug each other");
@@ -84,15 +85,17 @@ public class FriendshipController {
             return  new Result(false,"user not found!");
         }
         if(!locationsAreNear(user.getLocation(),currentGame.currentUser.getLocation())){
-            return  new Result(false,"you must be near the other player to talk!");
+            return  new Result(false,"you must be near the other player to send flower!");
         }
-        if(!currentGame.currentUser.getBackPack().getInventory().containsKey("bouquet")){
+        if(!currentGame.currentUser.getBackPack().getInventory().containsKey("BOUQUET")){
             return new Result(false,"you don't have flower in your inventory");
         }
         user.getBackPack().addItemToInventory(new Item(ItemType.BOUQUET),1);
         currentGame.currentUser.getBackPack().removeAmountFromInventory(ItemType.BOUQUET,1);
         user.getFriendsPlayer().get(currentGame.currentUser).setHasReceivedFlower(true);
         user.getFriendsPlayer().get(currentGame.currentUser).increaseXp(0);
+        user.getFriendsPlayer().get(currentGame.currentUser)
+                .setLevel(max(3,user.getFriendsPlayer().get(currentGame.currentUser).getLevel()));
         return new Result(true,"you successfully send flower to your friend");
     }
 }
