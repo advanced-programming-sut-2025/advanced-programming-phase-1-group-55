@@ -32,25 +32,33 @@ public class AnimalController {
         NpcVillage city = App.currentGame.getMap().getVillage();
         Tile targetTile = farm.getTile(x, y);
         FarmBuildingType farmBuilding = FarmBuildingType.getFarmBuildingType(buildingName);
-        if (farmBuilding != null) {
+        if (farmBuilding == null) {
             return new Result(false, "invalid Building Name");
         }
-        if (farm.isInBounds(x, y)) {
+        if (!farm.isInBounds(x, y)) {
             return new Result(false, "invalid Building Location");
         }
         int width = farmBuilding.getWidth();
         int height = farmBuilding.getHeight();
+
+//        if (!farm.isGoodForAnimalBuilding(targetTile, width, height))
+//        {
+//            return new Result(false, "you can't build this building here");
+//        }
+
+
+
         int price = farmBuilding.getPrice();
         int wood = farmBuilding.getWoodNumber();
         int stone = farmBuilding.getStoneNumber();
         boolean canAfford = true;
-        if(user.getGold() < price){
+        if(user.getGold() <= price){
             canAfford = false;
         }
-        if (user.getBackPack().howManyInInventory(ItemType.WOOD) < wood) {
+        if (user.getBackPack().howManyInInventory(ItemType.WOOD) <= wood) {
             canAfford = false;
         }
-        if (user.getBackPack().howManyInInventory(ItemType.STONE) < stone) {
+        if (user.getBackPack().howManyInInventory(ItemType.STONE) <= stone) {
             canAfford = false;
         }
         if (!canAfford) {
@@ -227,6 +235,7 @@ public class AnimalController {
         return new Result(true, "The animal has been sold");
 
     }
+
 
 
 

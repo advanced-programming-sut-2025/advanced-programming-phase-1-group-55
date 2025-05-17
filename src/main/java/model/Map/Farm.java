@@ -129,15 +129,16 @@ public class Farm {
 
     public boolean isInBounds(int x, int y)
     {
-        return x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT;
+        return x >= 0 && x < 20 && y >= 0 && y < 20;
     }
     public Tile getTile(int x, int y)
     {
-        if (isInBounds(x, y))
-        {
+        if (!isInBounds(x, y)) return null;
+//        if (isInBounds(x, y))
+//        {
             return App.currentGame.getMap().tiles[x][y];
-        }
-        return null;
+//        }
+//        return null;
     }
     private boolean isTileGoodForAnimalBuilding(Tile tile) {
         return (tile.getTexture() == TileTexture.grass && tile.getItemInThisTile() == null);
@@ -177,6 +178,7 @@ public class Farm {
         animalBuildings.add(building);
         for (Tile tile : building.getTiles())
         {
+
             tile.setTexture(TileTexture.ANIMAL_BUILDING);
         }
     }
