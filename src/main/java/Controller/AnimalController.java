@@ -1,5 +1,6 @@
 package Controller;
 
+import View.MainGameView;
 import enums.AnimalCommands;
 import model.Animal.Animal;
 import model.Animal.AnimalBuilding;
@@ -14,6 +15,8 @@ import model.Map.Tile;
 import model.Recipe;
 import model.Result;
 import model.User;
+
+import java.util.ArrayList;
 
 import static model.App.currentGame;
 
@@ -104,5 +107,33 @@ public class AnimalController {
         animal.pet();
         return new Result(true, "The animal was petted.");
     }
+    public Result cheatSetFriendship(String input) {
+        String name = AnimalCommands.SET_FRIENDSHIP.getMatcher(input).group("name").trim();
+        int amount = Integer.parseInt(AnimalCommands.SET_FRIENDSHIP.getMatcher(input).group("amount").trim());
+        User user = App.currentGame.currentUser;
+        Animal animal = user.findAnimal(name);
+        if (animal == null) {
+            return new Result(false, "animal not found");
+        }
+        animal.setFriendship(amount);
+        return new Result(true, "The animal friendship was cheated.");
+    }
+    public Result showAnimalDetails() {
+        User user = App.currentGame.currentUser;
+        ArrayList<Animal> animals = user.getAnimals();
+        if (animals.isEmpty()) {
+            return new Result(false, "you dont have any animals");
+        }
+
+        for (Animal animal : animals) {
+            StringBuilder sb = new StringBuilder("Crop found:\n");
+            sb.append(animal.getInfo());
+            return new Result(true, sb.toString());
+        }
+        return new Result(false, "You have no animals");
+    }
+    
+
+
 
 }

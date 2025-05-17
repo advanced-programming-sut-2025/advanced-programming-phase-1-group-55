@@ -12,7 +12,8 @@ public enum AnimalCommands {
     FEED_HAY("feed\\s+hay\\s+-n\\s+(?<name>.+)"),
     PRODUCES("produces"),
     COLLECT_PRODUCES("collect\\s+produces\\s+-n\\s+(?<name>.+)"),
-    SELL_ANIMAL("sell\\s+animal\\s+-n\\s+(?<name>.+)");
+    SELL_ANIMAL("sell\\s+animal\\s+-n\\s+(?<name>.+)"),
+    SET_FRIENDSHIP("cheat\\s+set\\s+friendship\\s+-n\\s+(?<name>.*)\\s+-c\\s+(?<amount>\\d+)");
 
 
 

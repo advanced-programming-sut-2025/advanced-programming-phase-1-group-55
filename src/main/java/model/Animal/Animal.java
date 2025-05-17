@@ -208,6 +208,19 @@ public class Animal extends Item {
     }
 
 
+    public String getInfo()
+    {
+        StringBuilder output = new StringBuilder();
+
+        output.append(name).append("\n");
+        output.append("\t").append("kind: ").append(animalType.getName()).append("\n");
+        output.append("\t").append("friendship: ").append(friendship).append(" xp \n");
+        output.append("\t").append("is fed today: ").append(isFed ? "positive" : "negative").append("\n");
+        output.append("\t").append("is pet today: ").append(isPet ? "positive" : "negative").append("\n");
+        output.append("--------------------------------");
+        return output.toString();
+    }
+
 
 
 
