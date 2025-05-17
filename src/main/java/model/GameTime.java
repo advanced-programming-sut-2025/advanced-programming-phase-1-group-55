@@ -58,7 +58,10 @@ public class GameTime {
         }
 
         for (User player : currentGame.playersInGame) {
-            player.setLocation(new Location(player.getFarm().getLocation().getY() + 1, player.getFarm().getLocation().getX() + 1));
+            if (!player.isFainted()) {
+
+                player.setLocation(new Location(player.getFarm().getLocation().getY() + 1, player.getFarm().getLocation().getX() + 1));
+            }
 
             if (player.isFainted()) {
                 player.setFainted(false);
