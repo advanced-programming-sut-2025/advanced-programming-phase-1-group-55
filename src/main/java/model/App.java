@@ -67,4 +67,7 @@ public class App {
         questionsList.put(3, "What is the name of your childhood best friend?");
     }
 
+    public static boolean usernameExists(String arshia1) {
+        return AllUsers.get(arshia1) != null;
+    }
 }
