@@ -27,7 +27,7 @@ public class GameTime {
     private static DayOfTheWeeks day = saturday;
     private static Seasons currentSeason = fall;
     private static int DayofMonth = 1;
-    private static MainTime mainTime= MainTime.Day;
+    private static MainTime mainTime = MainTime.Day;
 
     public static void setHour(int hour) {
         GameTime.hour = hour;
@@ -60,8 +60,8 @@ public class GameTime {
             System.out.println("Current Weather is " + weather.getCurrentWeather());
 
         }
-        for (Item plant :currentGame.getAllPlants().values()) {
-
+        for (Item plant : currentGame.getAllPlants().values()) {
+            plant.increaseStage(1);
         }
 
         for (User player : currentGame.playersInGame) {
@@ -104,8 +104,8 @@ public class GameTime {
             }
         }
         friendshipWorks();
-        for (User user:currentGame.playersInGame){
-            for (NpcFriendship friendship:user.getFriendsNpc().values()){
+        for (User user : currentGame.playersInGame) {
+            for (NpcFriendship friendship : user.getFriendsNpc().values()) {
                 friendship.increaseDayOfBeingFriend();
                 friendship.setTodayMet(false);
                 friendship.setTodayHadGift(false);
@@ -148,8 +148,8 @@ public class GameTime {
         if (GameTime.hour >= 22) {
             roozbad();
         }
-        if(GameTime.hour>17){
-            mainTime= MainTime.Night;
+        if (GameTime.hour > 17) {
+            mainTime = MainTime.Night;
         }
 
 
