@@ -78,9 +78,16 @@ public class BackPack {
             item.setNumber(1);
         }
     }
+
+
+
     public void removeFromInventory(Item item){
          inventory.remove(item.getItemType().getDisplayName());
     }
+
+
+
+
     public String ShowInventory(){
         if (inventory.isEmpty()) {
             return "inventory is empty";
