@@ -63,6 +63,7 @@ public class User {
     public void setStone(int stone) {
         this.stone = stone;
     }
+
     private Skill farmingSkill = new Skill(SkillType.Farming);
     private Skill miningSkill = new Skill(SkillType.Mining);
     private Skill foragingSkill = new Skill(SkillType.Foraging);
@@ -216,8 +217,8 @@ public class User {
         return this.energy;
     }
 
-    public void setEnergy(double energys) {
-        energy = energys;
+    public void setEnergy(double energy) {
+        this.energy = energy;
     }
 
     public String getNickName() {
@@ -402,6 +403,7 @@ public class User {
     public Skill getFishingSkill() {
         return fishingSkill;
     }
+
     public ArrayList<CookingItem> getRefrigerator() {
         if (refrigerator == null) {
             refrigerator = new ArrayList<>();
