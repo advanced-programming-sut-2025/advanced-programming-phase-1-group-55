@@ -1,5 +1,6 @@
 package Controller;
 
+import model.Friendship.PlayerFriendship;
 import model.Item.Item;
 import model.Result;
 import model.Trade;
@@ -156,6 +157,9 @@ public class TradeController {
                     trade.getSender().getFriendsPlayer().get(trade.getReciver()).increaseXp(50);
                     trade.getSender().getFriendsPlayer().get(trade.getReciver()).setTodayTraded(true);
                 }
+                PlayerFriendship friendship=trade.getSender().getFriendsPlayer().get(trade.getReciver());
+                friendship.setTodayTraded(true);
+                friendship.increaseXp(50);
                 return new Result(true, "Trade " + id + " accepted(request)");
             } else if (response.equals("reject")) {
 
@@ -166,6 +170,9 @@ public class TradeController {
                     trade.getSender().getFriendsPlayer().get(trade.getReciver()).increaseXp(-30);
                     trade.getSender().getFriendsPlayer().get(trade.getReciver()).setTodayTraded(true);
                 }
+                PlayerFriendship friendship=trade.getSender().getFriendsPlayer().get(trade.getReciver());
+                friendship.setTodayTraded(false);
+                friendship.increaseXp(-30);
                 return new Result(true, "Trade " + id + " rejected(request)");
 
             } else {
@@ -188,14 +195,18 @@ public class TradeController {
                 trade.setAccepted(true);
                 trade.setPrinted(true);
                 trade.setAnswered(true);
-
+                PlayerFriendship friendship=trade.getSender().getFriendsPlayer().get(trade.getReciver());
+                friendship.setTodayTraded(false);
+                friendship.increaseXp(50);
                 return new Result(true, "Trade " + id + " accepted (offer)");
             } else if (response.equals("reject")) {
 
                 trade.setAccepted(false);
                 trade.setPrinted(true);
                 trade.setAnswered(true);
-
+                PlayerFriendship friendship=trade.getSender().getFriendsPlayer().get(trade.getReciver());
+                friendship.setTodayTraded(false);
+                friendship.increaseXp(-30);
                 return new Result(true, "Trade " + id + " rejected(offer)");
 
             } else {
