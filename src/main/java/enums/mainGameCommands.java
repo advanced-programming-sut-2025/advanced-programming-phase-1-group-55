@@ -8,7 +8,7 @@ public enum mainGameCommands implements Command {
     showAvailableTools("^\\s*tools\\s+show\\s+available\\s*$"),
     showCurrentTool("^\\s*tools\\s+show\\s+current\\s*$"),
     upgradeTool("^\\s*tools\\s+upgrade\\s+(?<name>\\S+)\\s*$"),
-    trashItem("^\\s*inventory\\s+trash\\s+-i\\s+(?<name>\\S+)\\s*$"),
+    trashItem("^\\s*inventory\\s+trash\\s+-i\\s+(?<name>.+?)(?=\\s+-n\\s+\\S+)?(?:\\s+-n\\s+(?<amount>\\S+))?\\s*$"),
     showInventory("^\\s*inventory\\s+show\\s*$"),
     useTool("^\\s*tools\\s+use\\s+-d\\s+(?<direction>\\S.*)\\s*"),
     time("\\s*time\\s*"),

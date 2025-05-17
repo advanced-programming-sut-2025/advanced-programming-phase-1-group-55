@@ -204,10 +204,19 @@ public class MainGameView implements AppMenu {
 
         } else if (input.matches("\\s*inv\\s*")) {
             for (Item item : currentGame.currentUser.getBackPack().getInventory().values()) {
+                if(item.getNumber()==0){
+                    continue;
+                }
                 System.out.println(item.getItemType() + "  " + item.getNumber());
             }
 
-        } else if (input.matches("\\s*trade\\s+history\\s*")) {
+        }else if ((matcher=mainGameCommands.trashItem.getMatcher(input))!=null){
+            int amount=0;
+            if(matcher.group("amount")!=null){
+                amount=Integer.parseInt(matcher.group("amount"));
+            }
+            System.out.println(controller.trashItem(matcher.group("name").trim(),amount));
+        }else if (input.matches("\\s*trade\\s+history\\s*")) {
             System.out.println(controller5.TradeHistory());
         } else if (input.matches("\\s*remained\\s+trades\\s*")) {
             System.out.println(controller5.NotAnswerdTrades());

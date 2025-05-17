@@ -222,6 +222,7 @@ public class GameMenuController {
             player.setBackPack(new BackPack());
             player.getBackPack().getInventory().put("coal", new Item(ItemType.getItemType("coal")));
             player.getBackPack().getInventory().get("coal").setNumber(100);
+            player.setDailyMoney(0);
         }
 
         setFriendships();
