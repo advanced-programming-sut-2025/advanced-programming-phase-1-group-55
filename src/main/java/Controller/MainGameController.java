@@ -1,11 +1,8 @@
 package Controller;
 
 
-import enums.AnsiColor;
 import model.App;
-import model.Game;
 import model.Item.Item;
-import model.Map.GameMap;
 import model.Map.Location;
 import enums.WeatherType;
 import model.Map.MainLocation;
@@ -13,13 +10,12 @@ import model.Tool.Tools;
 import model.Tool.Trashcan;
 import model.Tool.WateringCan;
 import model.Result;
-import enums.AnsiColor;
+
 import static model.Item.ItemType.*;
 
 import model.User;
-import model.weather.*;
 
-import static model.weather.*;
+import static model.Weather.*;
 
 
 import static model.App.*;

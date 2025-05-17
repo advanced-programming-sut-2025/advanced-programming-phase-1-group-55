@@ -172,6 +172,10 @@ public class Animal extends Item {
         isFed = true;
         increaseFriendship(8);
     }
+    public void goIn()
+    {
+        isIn = true;
+    }
     public Item getProduct()
     {
         Item product = products.get(0);

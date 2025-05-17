@@ -7,16 +7,11 @@ import enums.Seasons;
 import static enums.DayOfTheWeeks.*;
 import static enums.Seasons.*;
 
-import java.awt.*;
-import java.time.LocalDate;
-import java.util.regex.Pattern;
-
 import enums.WeatherType;
 
-import static model.weather.*;
+import static model.Weather.*;
 
 import model.Friendship.PlayerFriendship;
-import model.Game;
 import model.Map.Location;
 import model.Store.Product;
 import model.Store.Store;
@@ -49,11 +44,11 @@ public class GameTime {
 
     public static void roozbad() {
         GameTime.hour = 9;
-        weather.setCurrentWeather(weather.getTomorrowWeather());
-        weather.RandomWeatherForTommorow();
-        if (weather.getCurrentWeather().equals(WeatherType.Storm)) {
+        Weather.setCurrentWeather(Weather.getTomorrowWeather());
+        Weather.RandomWeatherForTommorow();
+        if (Weather.getCurrentWeather().equals(WeatherType.Storm)) {
             System.out.println(RandomThor());
-            System.out.println("Current Weather is " + weather.getCurrentWeather());
+            System.out.println("Current Weather is " + Weather.getCurrentWeather());
 
         }
 

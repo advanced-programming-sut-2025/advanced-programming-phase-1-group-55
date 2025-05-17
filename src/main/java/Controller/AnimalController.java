@@ -2,19 +2,15 @@ package Controller;
 
 import View.MainGameView;
 import enums.AnimalCommands;
+import enums.WeatherType;
+import model.*;
 import model.Animal.Animal;
 import model.Animal.AnimalBuilding;
 import model.Animal.FarmAnimalType;
 import model.Animal.FarmBuildingType;
-import model.App;
+import model.Item.Item;
 import model.Item.ItemType;
-import model.Map.Farm;
-import model.Map.Location;
-import model.Map.NpcVillage;
-import model.Map.Tile;
-import model.Recipe;
-import model.Result;
-import model.User;
+import model.Map.*;
 
 import java.util.ArrayList;
 
@@ -132,7 +128,106 @@ public class AnimalController {
         }
         return new Result(false, "You have no animals");
     }
-    
+    public Result shepherdAnimal(String input) {
+        String name = AnimalCommands.SHEPHERD_ANIMAL.getMatcher(input).group("name").trim();
+        int x = Integer.parseInt(AnimalCommands.SHEPHERD_ANIMAL.getMatcher(input).group("x").trim());
+        int y = Integer.parseInt(AnimalCommands.SHEPHERD_ANIMAL.getMatcher(input).group("y").trim());
+        User user = App.currentGame.currentUser;
+        Animal animal = user.findAnimal(name);
+        if (animal == null) {
+            return new Result(false, "animal not found");
+        }
+        Farm farm = user.getFarm();
+        if (!animal.isIn()) {
+            if (farm.isInBounds(x, y)) {
+                return new Result(false, "invalid location");
+            }
+            AnimalBuilding animalBuilding = user.getFarm().getAnimalBuilding(animal);
+            Tile tile = farm.getTile(x, y);
+            if (!animalBuilding.getTiles().contains(tile)) {
+                return new Result(false, "This location is not suitable for this animal. ");
+            }
+            animal.goIn();
+            tile.setItemInThisTile(null);
+            return new Result(true, "The animal went home");
+        }
+        WeatherType currentWeather = Weather.getCurrentWeather();
+        if (currentWeather.equals(WeatherType.Snow)){
+            return new Result(false, "you cannot shepherd in snow");
+    }
+        if(currentWeather.equals(WeatherType.Rain)){
+            return new Result(false, "you cannot shepherd in rain");
+        }
+        if(currentWeather.equals(WeatherType.Storm)){
+            return new Result(false, "you cannot shepherd in storm");
+        }
+        if (!farm.isInBounds(x, y))
+        {
+            return new Result(false, "invalid location");
+        }
+        Tile tile = farm.getTile(x, y);
+        if (tile.getItemInThisTile() != null)
+        {
+            return new Result(false, "this tile is not empty");
+        }
+        if ( tile.getTexture() != TileTexture.grass){
+            return new Result(false, "you cant put on this tile");
+        }
+        animal.goOut();
+        tile.setItemInThisTile(animal);
+        return new Result(true, "The animal went out");
+
+
+    }
+    public Result collectProducts(String input) {
+        String name = AnimalCommands.COLLECT_PRODUCES.getMatcher(input).group("name").trim();
+        User user = App.currentGame.currentUser;
+        Animal animal = user.findAnimal(name);
+        if (animal == null) {
+            return new Result(false, "animal not found");
+        }
+        if (!animal.isHasProduct()) {
+            return new Result(false, "this animal dont have any products");
+        }
+        if (!user.getBackPack().inventoryHasCapacity()) {
+            return new Result(false, "you dont have inventory for collecting products");
+        }
+        Item product = animal.getProduct();
+        user.getBackPack().addItemToInventory(product, 1);
+        return new Result(true, "The product has been collected");
+
+    }
+    public Result feedHay(String input) {
+        String name = AnimalCommands.FEED_HAY.getMatcher(input).group("name").trim();
+        User user = App.currentGame.currentUser;
+        Animal animal = user.findAnimal(name);
+        if (animal == null) {
+            return new Result(false, "animal not found");
+        }
+        if (!user.getBackPack().hasEnoughInInventory(ItemType.HAY, 1)){
+            return new Result(false, "you dont have HAY inventory");
+        }
+        user.getBackPack().removeAmountFromInventory(ItemType.HAY, 1);
+        animal.feed();
+        return new Result(true, "The animal has been feeded");
+    }
+
+    public Result sellAnimal(String input) {
+        String name = AnimalCommands.SELL_ANIMAL.getMatcher(input).group("name").trim();
+        User user = App.currentGame.currentUser;
+        Animal animal = user.findAnimal(name);
+        if (animal == null) {
+            return new Result(false, "animal not found");
+        }
+        int price = animal.getPrice();
+        Farm farm = user.getFarm();
+        AnimalBuilding animalBuilding = user.getFarm().getAnimalBuilding(animal);
+        animalBuilding.sellAnimal(animal);
+        user.increaseGold(price);
+        return new Result(true, "The animal has been sold");
+
+    }
+
 
 
 
