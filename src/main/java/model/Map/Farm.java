@@ -141,7 +141,7 @@ public class Farm {
 //        return null;
     }
     private boolean isTileGoodForAnimalBuilding(Tile tile) {
-        return (tile.getTexture() == TileTexture.grass && tile.getItemInThisTile() == null);
+        return (tile.getType() == TileType.grass && tile.getItemInThisTile() == null);
     }
     public boolean isGoodForAnimalBuilding(Tile tile, int width, int height)
     {
@@ -179,7 +179,7 @@ public class Farm {
         for (Tile tile : building.getTiles())
         {
 
-            tile.setTexture(TileTexture.ANIMAL_BUILDING);
+            tile.setType(TileType.ANIMAL_BUILDING);
         }
     }
     public AnimalBuilding getBuildingForAnimal(FarmAnimalType animalType)

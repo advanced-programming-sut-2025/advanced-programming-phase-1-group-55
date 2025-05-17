@@ -6,7 +6,7 @@ import model.User;
 public class Tile {
     private Location location;
     private String mohtaviat;
-    private TileTexture texture = null;
+    private TileType type = null;
     private boolean walkable;
     private boolean isEmpty;
     private Item itemInThisTile;
@@ -30,13 +30,12 @@ public class Tile {
         isShokhmed = shokhmed;
     }
 
-    public Tile(Location location, String mohtaviat, boolean walkable, boolean isEmpty, TileTexture tileTexture) {
+    public Tile(Location location, String mohtaviat, boolean walkable, boolean isEmpty, TileType tileTexture) {
         this.location = location;
         this.mohtaviat = mohtaviat;
         this.walkable = walkable;
         this.isEmpty = isEmpty;
-        this.texture = tileTexture;
-        this.type = tileType;
+        this.type = tileTexture;
     }
 
 
@@ -65,12 +64,12 @@ public class Tile {
         this.location = location;
     }
 
-    public TileTexture getTexture() {
-        return texture;
+    public TileType getType() {
+        return type;
     }
 
-    public void setTexture(TileTexture texture) {
-        this.texture = texture;
+    public void setType(TileType texture) {
+        this.type = texture;
     }
 
     public boolean isAccessible() {

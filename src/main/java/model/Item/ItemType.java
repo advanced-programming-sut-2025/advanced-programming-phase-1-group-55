@@ -278,7 +278,6 @@ public enum ItemType {
     LARGE_EGG("large egg"),
     DUCK_EGG("duck egg"),
     DUCK_FEATHER("duck feather"),
-    WOOL("wool"),
     RABBITS_FOOT("rabbit foot"),
     DINOSAUR_EGG("dinosaur egg"),
     GOAT_MILK("goat milk"),

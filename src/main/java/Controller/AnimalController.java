@@ -180,7 +180,7 @@ public class AnimalController {
         {
             return new Result(false, "this tile is not empty");
         }
-        if ( tile.getTexture() != TileTexture.grass){
+        if ( tile.getType() != TileType.grass){
             return new Result(false, "you cant put on this tile");
         }
         animal.goOut();

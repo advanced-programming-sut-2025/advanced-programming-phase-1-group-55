@@ -222,7 +222,7 @@ public class BackPack {
     public void removeItemFromInventory(Item item) {
         if (this.inventory.containsKey(item.getItemType().getDisplayName())) {
             item.addNumber(-1);
-            if (item.getNumber() == 0) {
+            if (item.getNumber() <= 0) {
                 this.inventory.remove(item.getItemType().getDisplayName());
             }
         }
