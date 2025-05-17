@@ -264,8 +264,8 @@ public class MainGameController {
             return new Result(false, "you don't have enough item to trash");
         }
 
-        if (amount == 0) {
-            amount = currentGame.currentUser.getBackPack().getInventory().get(name).getNumber();
+        if (item.getPrice()==0) {
+            item.setPrice(150);
         }
         App.currentGame.currentUser.getBackPack().removeAmountFromInventory(item.getItemType(), amount);
         App.currentGame.currentUser.increaseGold

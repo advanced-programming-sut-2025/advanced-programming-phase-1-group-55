@@ -79,7 +79,6 @@ public class StoreController {
         };
     }
     public Result sellItem(int amount,String name){
-        //todo add shipping bin in the map,error for not being near shipping bin
         if(!App.currentGame.currentUser.getMainLocation().equals(MainLocation.nearTheBin)){
             return  new Result(false,"you must be near a shipping bin to sell your items");
         }
@@ -91,6 +90,9 @@ public class StoreController {
             return new Result(false,"you dont have enough item to sell");
         }
         App.currentGame.currentUser.getBackPack().removeAmountFromInventory(item.getItemType(),amount);
+        if(item.getPrice()==0){
+            item.setPrice(150);
+        }
         App.currentGame.currentUser.increaseDailyMoney(amount* item.getPrice());
         return new Result(true,"you sold "+name+"successfully!");
     }
