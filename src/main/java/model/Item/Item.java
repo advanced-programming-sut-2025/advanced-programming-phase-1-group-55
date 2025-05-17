@@ -1,5 +1,7 @@
 package model.Item;
 
+import model.Map.Location;
+
 public class Item {
     protected ItemType itemType;
     protected int number = 0;
@@ -7,6 +9,15 @@ public class Item {
     protected int stage = 1;
     protected boolean isWatered = false;
     protected int daysWithOutWater = 0;
+    protected Location location;
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
 
     public int getDaysWithOutWater() {
         return daysWithOutWater;

@@ -62,7 +62,12 @@ public class GameTime {
         }
         for (Item plant : currentGame.getAllPlants().values()) {
             plant.increaseStage(1);
+            if (plant.getStage() == 5) {
+                currentGame.getMap().tiles[plant.getLocation().getY()][plant.getLocation().getX()].setMohtaviat("?");
+                currentGame.getAllPlants().remove(plant.getItemType().getDisplayName());
+            }
         }
+
 
         for (User player : currentGame.playersInGame) {
             if (!player.isFainted()) {

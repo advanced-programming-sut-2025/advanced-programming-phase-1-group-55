@@ -107,7 +107,9 @@ public class FarmingController {
         }
         User user = currentGame.currentUser;
         Tile tile = getTileByDirection(directionInt);
+        System.out.println(getItemType(seed).getDisplayName());
 
+        System.out.println(seed);
         if (user.getBackPack().getInventory().get(getItemType(seed).getDisplayName()) == null) {
             return new Result(false, "you dont have this seed in your inventory");
         } else {
@@ -115,7 +117,9 @@ public class FarmingController {
                 return new Result(false, "you cant plant on this tile");
             } else {
                 Item item = new Item(getItemType(seed));
-                currentGame.getAllPlants().put(seed,item);
+                item.setLocation(tile.getLocation());
+                currentGame.getAllPlants().put(seed, item);
+
                 tile.setItemInThisTile(item);
                 user.getBackPack().getInventory().get(seed).addNumber(-1);
                 return new Result(true, "seed planted successfully");
@@ -123,6 +127,13 @@ public class FarmingController {
         }
 
 
+    }
+
+    public Result howMuchWater() {
+        if (!currentGame.currentUser.getBackPack().getCurrentTool().getName().equals("WateringCan")) {
+            return new Result(false, "your tool is not a watering can");
+        }
+        return new Result(true, "45");
     }
 
     private Tile getTileByDirection(int direction) {

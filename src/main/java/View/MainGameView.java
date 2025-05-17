@@ -210,7 +210,7 @@ public class MainGameView implements AppMenu {
                 if (item.getNumber() == 0) {
                     continue;
                 }
-                System.out.println(item.getItemType() + "  " + item.getNumber());
+                System.out.println(item.getItemType().getDisplayName() + "  " + item.getNumber());
             }
 
         } else if ((matcher = mainGameCommands.trashItem.getMatcher(input)) != null) {
@@ -281,6 +281,8 @@ public class MainGameView implements AppMenu {
             System.out.println(controller7.plantSeed(matcher.group("seed").trim(), matcher.group("direction")));
         } else if ((matcher = mainGameCommands.greenhouse.getMatcher(input)) != null) {
             System.out.println(controller.buildGreenHouse());
+        } else if ((matcher = mainGameCommands.howMuchWater.getMatcher(input)) != null) {
+            System.out.println(controller7.howMuchWater());
         } else {
             System.out.println("Unknown command");
         }

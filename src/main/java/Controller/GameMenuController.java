@@ -238,9 +238,9 @@ public class GameMenuController {
 
         for (User player : playersInGame) {
             player.setBackPack(new BackPack());
-            Item item=new Item(ItemType.getItemType("Coal"));
-            player.getBackPack().getInventory().put("Coal",item );
-            player.getBackPack().getInventory().get("Coal").setNumber(100);
+            Item item=new Item(ItemType.getItemType("jazz seeds"));
+            player.getBackPack().getInventory().put("jazz seeds",item );
+            player.getBackPack().getInventory().get("jazz seeds").setNumber(100);
             item.setPrice(150);
             player.setDailyMoney(0);
         }

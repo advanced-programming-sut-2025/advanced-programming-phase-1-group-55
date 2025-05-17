@@ -39,7 +39,8 @@ public enum mainGameCommands implements Command {
     TradeRequest("trade\\s+-u\\s+(?<username>\\w+)\\s+-t\\s+(?<type>offer|request)\\s+-i\\s+(?<item>\\w+)\\s+-a\\s+(?<amount>\\d+)(?:\\s+-p\\s+(?<price>\\d+))?(?:\\s+-ti\\s+(?<targetItem>\\w+)\\s+-ta\\s+(?<targetAmount>\\d+))?\\s*"),
     TradeResponse("\\s*trade\\s+response\\s+-(?<answer>accept|reject)\\s+-i\\s+(?<id>\\d+)\\s*"),
     isNearTile("\\s*tile\\s+(?<x>\\d+)\\s+(?<y>\\d+)\\s*"),
-    plantSeed("\\s*plant\\s+-s\\s+(?<seed>.+)\\s+-d\\s+(?<direction>\\S+)\\s*");
+    plantSeed("\\s*plant\\s+-s\\s+(?<seed>.+)\\s+-d\\s+(?<direction>\\S+)\\s*"),
+    howMuchWater("\\s*howmuch\\s+water\\s*");
     private final String pattern;
 
     mainGameCommands(String pattern) {
@@ -54,4 +55,4 @@ public enum mainGameCommands implements Command {
         }
         return null;
     }
-}
+    }
