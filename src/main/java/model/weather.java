@@ -10,7 +10,7 @@ import java.util.Random;
 
 import static enums.WeatherType.*;
 
-public class Weather {
+public class weather {
     private static WeatherType CurrentWeather = Sunny;
     private static WeatherType tomorrowWeather = RandomWeatherForTommorow();
 
@@ -84,6 +84,6 @@ public class Weather {
     }
 
     public static void setTomorrowWeather(WeatherType tomorrowWeather) {
-        Weather.tomorrowWeather = tomorrowWeather;
+        weather.tomorrowWeather = tomorrowWeather;
     }
 }

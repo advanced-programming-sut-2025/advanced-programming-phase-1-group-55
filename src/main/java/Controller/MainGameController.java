@@ -15,7 +15,7 @@ import static model.Item.ItemType.*;
 
 import model.User;
 
-import static model.Weather.*;
+import static model.weather.*;
 
 
 import static model.App.*;

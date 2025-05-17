@@ -9,15 +9,12 @@ import static enums.Seasons.*;
 
 import enums.WeatherType;
 
-import static model.Weather.*;
+import static model.weather.*;
 
-import model.Animal.Animal;
 import model.Friendship.PlayerFriendship;
 import model.Map.Location;
 import model.Store.Product;
 import model.Store.Store;
-
-import java.awt.desktop.UserSessionEvent;
 
 import static model.App.*;
 
@@ -47,11 +44,11 @@ public class GameTime {
 
     public static void roozbad() {
         GameTime.hour = 9;
-        Weather.setCurrentWeather(Weather.getTomorrowWeather());
-        Weather.RandomWeatherForTommorow();
-        if (Weather.getCurrentWeather().equals(WeatherType.Storm)) {
+        weather.setCurrentWeather(weather.getTomorrowWeather());
+        weather.RandomWeatherForTommorow();
+        if (weather.getCurrentWeather().equals(WeatherType.Storm)) {
             System.out.println(RandomThor());
-            System.out.println("Current Weather is " + Weather.getCurrentWeather());
+            System.out.println("Current Weather is " + weather.getCurrentWeather());
 
         }
 

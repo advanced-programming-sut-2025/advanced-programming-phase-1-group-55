@@ -1,6 +1,5 @@
 package Controller;
 
-import View.MainGameView;
 import enums.AnimalCommands;
 import enums.WeatherType;
 import model.*;
@@ -13,8 +12,6 @@ import model.Item.ItemType;
 import model.Map.*;
 
 import java.util.ArrayList;
-
-import static model.App.currentGame;
 
 public class AnimalController {
 //    public boolean locationsAreNear(Location location1, Location location2) {
@@ -164,7 +161,7 @@ public class AnimalController {
             tile.setItemInThisTile(null);
             return new Result(true, "The animal went home");
         }
-        WeatherType currentWeather = Weather.getCurrentWeather();
+        WeatherType currentWeather = weather.getCurrentWeather();
         if (currentWeather.equals(WeatherType.Snow)){
             return new Result(false, "you cannot shepherd in snow");
     }
