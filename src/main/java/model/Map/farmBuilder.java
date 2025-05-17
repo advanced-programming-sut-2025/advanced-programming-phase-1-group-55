@@ -78,22 +78,22 @@ public class farmBuilder {
 
         for (int i = farm.getQuarry().getLocation().getY(); i < farm.getQuarry().getLocation().getY() + farm.getQuarry().getWidth(); i++) {
             for (int j = farm.getQuarry().getLocation().getX(); j < farm.getQuarry().getLocation().getX() + farm.getQuarry().getHeight(); j++) {
-                Map.tiles[i][j] = new Tile(new Location(i, j), "^", true, false,TileType.building);
+                Map.tiles[i][j] = new Tile(new Location(i, j), "^", true, false, TileTexture.building);
             }
         }
         for (int i = farm.getLake().getLocation().getY(); i < farm.getLake().getLocation().getY() + farm.getLake().getWidth(); i++) {
             for (int j = farm.getLake().getLocation().getX(); j < farm.getLake().getLocation().getX() + farm.getLake().getHeight(); j++) {
-                Map.tiles[i][j] = new Tile(new Location(i, j), "W", false, false,TileType.water);
+                Map.tiles[i][j] = new Tile(new Location(i, j), "W", false, false, TileTexture.water);
             }
         }
         for (int i = farm.getHouse().getLocation().getY(); i < farm.getHouse().getLocation().getY() + farm.getHouse().getWidth(); i++) {
             for (int j = farm.getHouse().getLocation().getX(); j < farm.getHouse().getLocation().getX() + farm.getHouse().getHeight(); j++) {
-                Map.tiles[i][j] = new Tile(new Location(i, j), "h", true, false,TileType.building);
+                Map.tiles[i][j] = new Tile(new Location(i, j), "h", true, false, TileTexture.building);
             }
         }
         for (int i = farm.getGreenHouse().getLocation().getY(); i < farm.getGreenHouse().getLocation().getY() + farm.getGreenHouse().getWidth(); i++) {
             for (int j = farm.getGreenHouse().getLocation().getX(); j < farm.getGreenHouse().getLocation().getX() + farm.getGreenHouse().getHeight(); j++) {
-                Map.tiles[i][j] = new Tile(new Location(i, j), "g", true, false,TileType.building);
+                Map.tiles[i][j] = new Tile(new Location(i, j), "g", true, false, TileTexture.building);
             }
         }
         //random items
@@ -121,7 +121,7 @@ public class farmBuilder {
             Tile tile = Map.tiles[y + farm.getLocation().getY()][x + farm.getLocation().getX()];
             if (tile==null) {
                 tile=new Tile(new Location(y + farm.getLocation().getY(),x + farm.getLocation().getX())
-                        ,"T",true,false,TileType.grass);
+                        ,"T",true,false, TileTexture.grass);
                 Map.tiles[tile.getLocation().getY()][tile.getLocation().getX()]=tile;
                 numberOfTrees++;
                 int treeType = rand.nextInt(14);
@@ -136,7 +136,7 @@ public class farmBuilder {
             Tile tile = Map.tiles[y + farm.getLocation().getY()][x + farm.getLocation().getX()];
             if (tile==null) {
                 tile=new Tile(new Location(y + farm.getLocation().getY(),x + farm.getLocation().getX())
-                        ,"*",true,false,TileType.grass);
+                        ,"*",true,false, TileTexture.grass);
                 Map.tiles[tile.getLocation().getY()][tile.getLocation().getX()]=tile;
                 numberOfForagingSeeds++;
                 int seedType = rand.nextInt(42);
@@ -151,7 +151,7 @@ public class farmBuilder {
             Tile tile = Map.tiles[y + farm.getLocation().getY()][x + farm.getLocation().getX()];
             if (tile==null) {
                 tile=new Tile(new Location(y + farm.getLocation().getY(),x + farm.getLocation().getX())
-                        ,"&",true,false,TileType.grass);
+                        ,"&",true,false, TileTexture.grass);
                 Map.tiles[tile.getLocation().getY()][tile.getLocation().getX()]=tile;
                 numberOfForagingCrobs++;
                 int seedType = rand.nextInt(23);

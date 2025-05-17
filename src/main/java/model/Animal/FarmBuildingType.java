@@ -86,7 +86,7 @@ public enum FarmBuildingType {
     }
     public static FarmBuildingType getFarmBuildingType(String name) {
         for (FarmBuildingType farmBuildingType : FarmBuildingType.values()) {
-            if (farmBuildingType.getName().equals(name)) {
+            if (farmBuildingType.getName().equalsIgnoreCase(name)) {
                 return farmBuildingType;
             }
         }

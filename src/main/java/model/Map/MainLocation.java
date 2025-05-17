@@ -1,6 +1,5 @@
 package model.Map;
 
-import enums.Menu;
 import model.App;
 
 public enum MainLocation {
@@ -24,21 +23,21 @@ public enum MainLocation {
     ,nearTheBin;
     public static boolean isNearTheWater(Location location){
         GameMap map=App.currentGame.getMap();
-        if(map.tiles[location.getY()+1][location.getX()+1].getType().equals(TileType.water)){
+        if(map.tiles[location.getY()+1][location.getX()+1].getTexture().equals(TileTexture.water)){
             return true;
-        }else if(map.tiles[location.getY()][location.getX()+1].getType().equals(TileType.water)){
+        }else if(map.tiles[location.getY()][location.getX()+1].getTexture().equals(TileTexture.water)){
             return true;
-        }else if(map.tiles[location.getY()+1][location.getX()].getType().equals(TileType.water)){
+        }else if(map.tiles[location.getY()+1][location.getX()].getTexture().equals(TileTexture.water)){
             return true;
-        }else if(map.tiles[location.getY()-1][location.getX()+1].getType().equals(TileType.water)){
+        }else if(map.tiles[location.getY()-1][location.getX()+1].getTexture().equals(TileTexture.water)){
             return true;
-        }else if(map.tiles[location.getY()+1][location.getX()-1].getType().equals(TileType.water)){
+        }else if(map.tiles[location.getY()+1][location.getX()-1].getTexture().equals(TileTexture.water)){
             return true;
-        }else if(map.tiles[location.getY()-1][location.getX()-1].getType().equals(TileType.water)){
+        }else if(map.tiles[location.getY()-1][location.getX()-1].getTexture().equals(TileTexture.water)){
             return true;
-        }else if(map.tiles[location.getY()][location.getX()-1].getType().equals(TileType.water)){
+        }else if(map.tiles[location.getY()][location.getX()-1].getTexture().equals(TileTexture.water)){
             return true;
-        }else return map.tiles[location.getY() - 1][location.getX()].getType().equals(TileType.water);
+        }else return map.tiles[location.getY() - 1][location.getX()].getTexture().equals(TileTexture.water);
     }
     public static Boolean isNearTheShippingBin(Location location){
         GameMap map=App.currentGame.getMap();

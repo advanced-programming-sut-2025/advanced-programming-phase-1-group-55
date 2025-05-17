@@ -37,15 +37,38 @@ public class AnimalBuilding extends Item {
     public ArrayList<Animal> getAnimals() {
         return animals;
     }
-    public ArrayList<Location> getTiles() {
-        ArrayList<Location> tiles = new ArrayList<>();
-        for (int y = 0; y < height; y++) {
-            for (int x = 0; x < width; x++) {
-                tiles.add(new Location(x, y));
+//    public ArrayList<Location> getTiles() {
+//        ArrayList<Location> tiles = new ArrayList<>();
+//        for (int y = 0; y < height; y++) {
+//            for (int x = 0; x < width; x++) {
+//                tiles.add(new Location(x, y));
+//            }
+//        }
+//        return tiles;
+//    }
+    public ArrayList<Tile> getTiles()
+    {
+        int baseX = startTile.getLocation().getX();
+        int baseY = startTile.getLocation().getY();
+
+        ArrayList<Tile> temp = new ArrayList<>();
+        for (int y = 0; y <= height; y++)
+        {
+            for (int x = 0; x <= width; x++)
+            {
+                Tile tile = App.currentGame.currentUser.getFarm().getTile(baseX + x, baseY + y);
+                temp.add(tile);
             }
         }
-        return tiles;
+
+        return temp;
     }
+
+
+
+
+
+
     public boolean hasCapacity()
     {
         if (capacity == -1)

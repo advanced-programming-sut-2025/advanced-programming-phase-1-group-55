@@ -1,11 +1,15 @@
 package model.Map;
 
-import model.FarmingProdocts.Crop;
+import model.Animal.Animal;
+import model.Animal.AnimalBuilding;
+import model.Animal.FarmAnimalType;
+import model.App;
 import model.FarmingProdocts.ForagingCrops;
 import model.FarmingProdocts.ForagingSeed;
 import model.FarmingProdocts.Tree;
 import model.Rock;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,24 +18,24 @@ public class Farm {
     private House house;
     private Lake lake;
     private GreenHouse greenHouse;
-    private int height = 20;
-    private int width = 20;
-
+    private int HEIGHT = 20;
+    private int WIDTH = 20;
+    private ArrayList<AnimalBuilding> animalBuildings = new ArrayList<>();
  
-    public int getHeight() {
-        return height;
+    public int getHEIGHT() {
+        return HEIGHT;
     }
 
-    public void setHeight(int height) {
-        this.height = height;
+    public void setHEIGHT(int HEIGHT) {
+        this.HEIGHT = HEIGHT;
     }
 
-    public int getWidth() {
-        return width;
+    public int getWIDTH() {
+        return WIDTH;
     }
 
-    public void setWidth(int width) {
-        this.width = width;
+    public void setWIDTH(int WIDTH) {
+        this.WIDTH = WIDTH;
     }
 
 
@@ -121,4 +125,91 @@ public class Farm {
     public void setSeeds(Map<Location, ForagingSeed> seeds) {
         this.seeds = seeds;
     }
+
+
+    public boolean isInBounds(int x, int y)
+    {
+        return x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT;
+    }
+    public Tile getTile(int x, int y)
+    {
+        if (isInBounds(x, y))
+        {
+            return App.currentGame.getMap().tiles[x][y];
+        }
+        return null;
+    }
+    private boolean isTileGoodForAnimalBuilding(Tile tile) {
+        return (tile.getTexture() == TileTexture.grass && tile.getItemInThisTile() == null);
+    }
+    public boolean isGoodForAnimalBuilding(Tile tile, int width, int height)
+    {
+        for (int y = 0; y <= height; y++)
+        {
+            for (int x = 0; x <= width; x++)
+            {
+                if (!isTileGoodForAnimalBuilding(tile))
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    public ArrayList<Tile> getStartTileForAnimalBuilding(int width, int height)
+    {
+        ArrayList<Tile> startTiles = new ArrayList<>();
+        for (int y = 0; y < HEIGHT - height; y++)
+        {
+            for (int x = 0; x < WIDTH - width; x++)
+            {
+                Tile tile = getTile(x, y);
+                if (isGoodForAnimalBuilding(tile, width, height))
+                {
+                    startTiles.add(tile);
+                }
+            }
+        }
+        return startTiles;
+    }
+    public void buildAnimalBuilding(AnimalBuilding building)
+    {
+        animalBuildings.add(building);
+        for (Tile tile : building.getTiles())
+        {
+            tile.setTexture(TileTexture.ANIMAL_BUILDING);
+        }
+    }
+    public AnimalBuilding getBuildingForAnimal(FarmAnimalType animalType)
+    {
+        for (AnimalBuilding animalBuilding : animalBuildings)
+        {
+            if (animalType.getBuildings().contains(animalBuilding.getFarmBuildingType()))
+            {
+                if (animalBuilding.hasCapacity())
+                {
+                    return animalBuilding;
+                }
+            }
+        }
+        return null;
+    }
+    public ArrayList<AnimalBuilding> getAnimalBuildings()
+    {
+        return animalBuildings;
+    }
+    public AnimalBuilding getAnimalBuilding(Animal animal)
+    {
+        for (AnimalBuilding animalBuilding : animalBuildings)
+        {
+            if (animalBuilding.getAnimals().contains(animal))
+            {
+                return animalBuilding;
+            }
+        }
+        return null;
+    }
+
+
+
 }
