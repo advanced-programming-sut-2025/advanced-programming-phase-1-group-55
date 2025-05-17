@@ -92,6 +92,14 @@ public class FarmingController {
                 }
 
             }
+            if (tool.getName().equals("Scythe")) {
+                if (tile.getMohtaviat().equals("?")) {
+                    user.getBackPack().getInventory().get(tile.getItemInThisTile().getItemType().getDisplayName()).addNumber(1);
+                    tile.setMohtaviat(".");
+                    return new Result(true, "you received a plant ");
+                }
+                return new Result(false, "there is nothing to scythe");
+            }
         }
         return new Result(false, "failed! tool not found");
 
