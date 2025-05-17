@@ -1,13 +1,12 @@
 package model.Map;
 
 import model.Item.Item;
-import model.ItemOfMap;
 import model.User;
 
 public class Tile {
     private Location location;
     private String mohtaviat;
-    private TileType type;
+    private TileTexture texture = null;
     private boolean walkable;
     private boolean isEmpty;
     private Item itemInThisTile;
@@ -31,11 +30,12 @@ public class Tile {
         isShokhmed = shokhmed;
     }
 
-    public Tile(Location location, String mohtaviat, boolean walkable, boolean isEmpty, TileType tileType) {
+    public Tile(Location location, String mohtaviat, boolean walkable, boolean isEmpty, TileTexture tileTexture) {
         this.location = location;
         this.mohtaviat = mohtaviat;
         this.walkable = walkable;
         this.isEmpty = isEmpty;
+        this.texture = tileTexture;
         this.type = tileType;
     }
 
@@ -65,12 +65,12 @@ public class Tile {
         this.location = location;
     }
 
-    public TileType getType() {
-        return type;
+    public TileTexture getTexture() {
+        return texture;
     }
 
-    public void setType(TileType type) {
-        this.type = type;
+    public void setTexture(TileTexture texture) {
+        this.texture = texture;
     }
 
     public boolean isAccessible() {

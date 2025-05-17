@@ -51,6 +51,9 @@ public class Item {
         this.stage = stage;
     }
 
+    public Item() {
+    }
+
     public int getPrice() {
         return price;
     }
@@ -63,6 +66,11 @@ public class Item {
         itemType = itemtype;
 //        this.number = number;
     }
+    public Item(ItemType itemtype, int number) {
+        itemType = itemtype;
+        this.number = number;
+    }
+
 
     public ItemType getItemType() {
         return itemType;

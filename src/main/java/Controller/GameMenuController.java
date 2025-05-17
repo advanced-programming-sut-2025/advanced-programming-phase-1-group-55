@@ -18,10 +18,8 @@ import model.User;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Scanner;
 import java.util.regex.Matcher;
 
-import static javax.swing.UIManager.put;
 import static model.App.*;
 
 
@@ -78,8 +76,8 @@ public class GameMenuController {
 //        System.out.println(farm.getLocation().toString());
 //        System.out.println(farm.getHeight());
 //        System.out.println(farm.getWidth());
-        for (int i = farm.getLocation().getY(); i < farm.getWidth() + farm.getLocation().getY(); i++) {
-            for (int j = farm.getLocation().getX(); j < farm.getHeight() + farm.getLocation().getX(); j++) {
+        for (int i = farm.getLocation().getY(); i < farm.getWIDTH() + farm.getLocation().getY(); i++) {
+            for (int j = farm.getLocation().getX(); j < farm.getHEIGHT() + farm.getLocation().getX(); j++) {
 //                System.out.println(i + "  " + j);
                 map.tiles[i][j].setOwner(user);
             }

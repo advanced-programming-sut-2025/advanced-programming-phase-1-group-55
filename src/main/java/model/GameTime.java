@@ -8,6 +8,7 @@ import static enums.DayOfTheWeeks.*;
 import static enums.Seasons.*;
 import static model.weather.*;
 
+
 import enums.WeatherType;
 
 import static model.weather.*;

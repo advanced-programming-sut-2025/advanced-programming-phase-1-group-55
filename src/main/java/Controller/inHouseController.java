@@ -89,8 +89,8 @@ public class inHouseController {
         int count = Integer.parseInt(amount);
         Item item = new Item(type);
         item.setNumber(count);
-        item.setNumber(count);
-        user.getBackPack().addToInventory(item);
+//        user.getBackPack().addToInventory(item);
+        user.getBackPack().addItemToInventory(item, count);
         return new Result(true, itemName + " has been cheated");
     }
     public Result PlaceItem(String itemName, String direction) {
