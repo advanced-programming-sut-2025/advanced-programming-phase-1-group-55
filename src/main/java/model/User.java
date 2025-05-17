@@ -50,7 +50,7 @@ public class User {
     private HashMap<Integer, Trade> trades = new HashMap<>();
     private CookingItem cookingItem;
     private int stone;
-    private Map<User, List<Gift>> receivedGifts = new HashMap<>();
+    private Map<Integer, Gift> receivedGifts = new HashMap<>();
     private Map<User, List<Gift>> sentGifts = new HashMap<>();
     private boolean hasGiftToday = false;
     private boolean hasMessageToday = false;
@@ -343,12 +343,40 @@ public class User {
     }
 
 
-    public Map<User, List<Gift>> getReceivedGifts() {
+    public Map<Integer, Gift> getReceivedGifts() {
         return receivedGifts;
     }
 
-    public void setReceivedGifts(Map<User, List<Gift>> receivedGifts) {
+    public void setReceivedGifts(Map<Integer, Gift> receivedGifts) {
         this.receivedGifts = receivedGifts;
+    }
+
+    public void setFarmingSkill(Skill farmingSkill) {
+        this.farmingSkill = farmingSkill;
+    }
+
+    public void setMiningSkill(Skill miningSkill) {
+        this.miningSkill = miningSkill;
+    }
+
+    public void setForagingSkill(Skill foragingSkill) {
+        this.foragingSkill = foragingSkill;
+    }
+
+    public void setFishingSkill(Skill fishingSkill) {
+        this.fishingSkill = fishingSkill;
+    }
+
+    public void setRefrigerator(ArrayList<CookingItem> refrigerator) {
+        this.refrigerator = refrigerator;
+    }
+
+    public ArrayList<Trade> getUserTrades() {
+        return userTrades;
+    }
+
+    public void setUserTrades(ArrayList<Trade> userTrades) {
+        this.userTrades = userTrades;
     }
 
     public Map<User, List<Gift>> getSentGifts() {

@@ -29,7 +29,7 @@ public class Game {
     private GameMap map;
     private ArrayList<PlayerFriendship> allFriendships = new ArrayList<>();
     private HashMap<Integer, Trade> AllTrades = new HashMap<>();
-
+    private  int numberOfAllGifts=0;
     public Game(User currentUser, ArrayList<User> playersInGame, GameMap map) {
         this.currentUser = currentUser;
         this.playersInGame = playersInGame;
@@ -41,7 +41,9 @@ public class Game {
     public int getTurnCounter() {
         return turnCounter;
     }
-
+    public void increaseNumberOfGifts(){
+        numberOfAllGifts++;
+    }
     public void setTurnCounter(int turnCounter) {
         this.turnCounter = turnCounter;
     }
@@ -152,5 +154,13 @@ public class Game {
 
     public void addToAllTrade(Trade trade) {
         AllTrades.put(trade.getId(), trade);
+    }
+
+    public int getNumberOfAllGifts() {
+        return numberOfAllGifts;
+    }
+
+    public void setNumberOfAllGifts(int numberOfAllGifts) {
+        this.numberOfAllGifts = numberOfAllGifts;
     }
 }
