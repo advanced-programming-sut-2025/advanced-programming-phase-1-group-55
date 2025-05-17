@@ -2,12 +2,15 @@ package Controller;
 
 import enums.CropQuality;
 import model.App;
+import model.Item.Item;
 import model.Map.Location;
 import model.Map.Tile;
 import model.Result;
 import model.Skill;
 import model.Tool.Tools;
 import model.User;
+
+import static model.Item.ItemType.*;
 
 
 import static model.App.*;
@@ -85,6 +88,31 @@ public class FarmingController {
             }
         }
         return new Result(false, "failed! tool not found");
+
+    }
+
+    public Result plantSeed(String seed, String direction) {
+        System.out.println(seed);
+        int directionInt;
+        try {
+            directionInt = Integer.parseInt(direction);
+        } catch (Exception e) {
+            return new Result(false, "Invalid tool direction");
+        }
+        User user = currentGame.currentUser;
+        Tile tile = getTileByDirection(directionInt);
+        System.out.println(getItemType(seed).getDisplayName());
+        if (user.getBackPack().getInventory().get(getItemType(seed).getDisplayName()) == null) {
+            return new Result(false, "you dont have this seed in your inventory");
+        } else {
+            if (!tile.isShokhmed() || !tile.isEmpty()) {
+                return new Result(false, "you cant plant on this tile");
+            } else {
+                tile.setItemInThisTile(new Item(getItemType(seed)));
+                return new Result(true, "seed planted successfully");
+            }
+        }
+
 
     }
 

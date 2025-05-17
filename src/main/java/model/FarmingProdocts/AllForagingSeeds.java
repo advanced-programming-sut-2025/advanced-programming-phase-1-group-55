@@ -2,6 +2,8 @@ package model.FarmingProdocts;
 
 import enums.Seasons;
 
+import java.util.Objects;
+
 public enum AllForagingSeeds implements Seed {
     BLUE_JAZZ_SEEDS("Jazz Seeds", Seasons.spring, 0),
     CARROT_SEEDS("Carrot Seeds", Seasons.spring, 1),
@@ -82,5 +84,14 @@ public enum AllForagingSeeds implements Seed {
             }
         }
         throw new IllegalArgumentException("Invalid seed ID: " + id);
+    }
+
+    public static AllForagingSeeds fromName(String name) {
+        for (AllForagingSeeds seed : values()) {
+            if (Objects.equals(seed.getName(), name)) {
+                return seed;
+            }
+        }
+        throw new IllegalArgumentException("Invalid seed name: " + name);
     }
 }

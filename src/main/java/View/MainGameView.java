@@ -259,6 +259,8 @@ public class MainGameView implements AppMenu {
 
         } else if ((matcher = mainGameCommands.useTool.getMatcher(input)) != null) {
             System.out.println(controller7.useTool(matcher.group("direction").trim()));
+        } else if ((matcher = mainGameCommands.plantSeed.getMatcher(input)) != null) {
+            System.out.println(controller7.plantSeed(matcher.group("seed").trim(), matcher.group("direction")));
         } else {
             System.out.println("Unknown command");
         }
