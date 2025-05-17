@@ -107,6 +107,10 @@ public class AnimalController {
             return new Result(false, "animal not found");
         }
         if (!user.isNear(animal.getTile().getLocation())) {
+            Location location = animal.getTile().getLocation();
+            int x = location.getX();
+            int y = location.getY();
+            System.out.println("Animal is at: (" + x + ", " + y + ")");
             return new Result(false, "you are far away from animal");
         }
         animal.pet();
@@ -148,7 +152,7 @@ public class AnimalController {
         }
         Farm farm = user.getFarm();
         if (!animal.isIn()) {
-            if (farm.isInBounds(x, y)) {
+            if (!farm.isInBounds(x, y)) {
                 return new Result(false, "invalid location");
             }
             AnimalBuilding animalBuilding = user.getFarm().getAnimalBuilding(animal);
