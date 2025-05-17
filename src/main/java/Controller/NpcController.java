@@ -7,6 +7,7 @@ import model.Item.Item;
 import model.Map.MainLocation;
 import model.NPC.Dialog;
 import model.NPC.Npc;
+import model.NPC.Quest;
 import model.Tool.Tools;
 
 public class NpcController {
@@ -99,5 +100,15 @@ public class NpcController {
 
         App.currentGame.currentUser.getBackPack().removeAmountFromInventory(item1.getItemType(),1);
         return new Result(true,"you gifted "+item+" to your friend "+name);
+    }
+    public Result showQuests(){
+        StringBuilder message=new StringBuilder();
+        if(App.currentGame.currentUser.getQuest()==null||App.currentGame.currentUser.getQuest().isEmpty()){
+            return new Result(false,"you don't have any active quest");
+        }
+        for (Quest quest:App.currentGame.currentUser.getQuest().values()){
+            message.append(quest.toString()).append("\n");
+        }
+        return new Result(true,message.toString());
     }
 }

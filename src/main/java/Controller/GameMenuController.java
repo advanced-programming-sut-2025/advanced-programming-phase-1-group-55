@@ -56,12 +56,16 @@ public class GameMenuController {
         friendship5.setConversation(new ArrayList<>());
         friendship6.setConversation(new ArrayList<>());
         for(User user:currentGame.playersInGame){
+            user.setQuest(new HashMap<>());
             user.setFriendsNpc(new HashMap<>());
             for (Npc npc:map.getVillage().getNpss().values()){
                 NpcFriendship friendship=new NpcFriendship(user,npc);
                 user.getFriendsNpc().put(npc.getType().getDisplayName(),friendship);
                 for (Quest quest:npc.getType().getQuests().values()){
                     quest.setNpc(npc);
+                    if (quest.getLevel()==1){
+                        user.getQuest().put(quest.getId(),quest);
+                    }
                 }
             }
         }

@@ -254,6 +254,8 @@ public class MainGameView implements AppMenu {
             System.out.println(controller21.meetNpc(matcher.group("name")));
         } else if ((matcher=NpcCommands.giftNpc.getMatcher(input))!=null) {
             System.out.println(controller21.giftNpc(matcher.group("name"),matcher.group("item")));
+        } else if ((NpcCommands.questlist.getMatcher(input))!=null) {
+            System.out.println(controller21.showQuests());
         } else if (input.matches("\\s*exit\\s+game\\s*")) {
             currentMenu = Menu.MainMenu;
             System.out.println("Redirecting to MainMenu!");

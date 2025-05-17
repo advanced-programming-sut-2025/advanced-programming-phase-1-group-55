@@ -28,11 +28,11 @@ public enum NpcType {
                 put("coffee",new Item(ItemType.COFFEE));
             }},
             new HashMap<>(){{
-                put(3,new Quest(1,new ReadyItem(ItemType.GOLD_BAR,1),new ReadyItem(ItemType.LevelUpFriendship,1)
+                put(3,new Quest(3,new ReadyItem(ItemType.GOLD_BAR,1),new ReadyItem(ItemType.LevelUpFriendship,1)
                        ,1));
-                put(4,new Quest(1,new ReadyItem(ItemType.PUMPKIN,1),new ReadyItem(ItemType.GOLD,500)
+                put(4,new Quest(4,new ReadyItem(ItemType.PUMPKIN,1),new ReadyItem(ItemType.GOLD,500)
                         ,2));
-                put(5,new Quest(1,new ReadyItem(ItemType.WHEAT,50),new ReadyItem(ItemType.IRIDIUM_SPRINKLER,1)
+                put(5,new Quest(5,new ReadyItem(ItemType.WHEAT,50),new ReadyItem(ItemType.IRIDIUM_SPRINKLER,1)
                        ,3));
             }},"Abigail"),
 
@@ -43,11 +43,11 @@ public enum NpcType {
                 put(ItemType.BEER.getDisplayName(), new Item(ItemType.BEER));
             }},
             new HashMap<>(){{
-                put(6,new Quest(1,new ReadyItem(ItemType.EGGPLANT,12),new ReadyItem(ItemType.GOLD,750)
+                put(6,new Quest(6,new ReadyItem(ItemType.EGGPLANT,12),new ReadyItem(ItemType.GOLD,750)
                         ,1));
-                put(7,new Quest(1,new ReadyItem(ItemType.SALMON,1),new ReadyItem(ItemType.LevelUpFriendship,1)
+                put(7,new Quest(7,new ReadyItem(ItemType.SALMON,1),new ReadyItem(ItemType.LevelUpFriendship,1)
                         ,2));
-                put(8,new Quest(1,new ReadyItem(ItemType.BEER,1),new ReadyItem(ItemType.SALAD,5)
+                put(8,new Quest(8,new ReadyItem(ItemType.BEER,1),new ReadyItem(ItemType.SALAD,5)
                         ,3));
             }},"Harvey"),
 
@@ -58,11 +58,11 @@ public enum NpcType {
                 put(ItemType.BEER.getDisplayName(), new Item(ItemType.BEER));
             }},
             new HashMap<>(){{
-                put(9,new Quest(1,new ReadyItem(ItemType.HARD_WOOD,10),new ReadyItem(ItemType.GOLD,500)
+                put(9,new Quest(9,new ReadyItem(ItemType.HARD_WOOD,10),new ReadyItem(ItemType.GOLD,500)
                         ,1));
-                put(10,new Quest(1,new ReadyItem(ItemType.SALMON,1),new ReadyItem(ItemType.SALMON_DINNER,1)
+                put(10,new Quest(10,new ReadyItem(ItemType.SALMON,1),new ReadyItem(ItemType.SALMON_DINNER,1)
                         ,2));
-                put(11,new Quest(1,new ReadyItem(ItemType.WOOD,200),new ReadyItem(ItemType.DELUXE_SCARECROW,1)
+                put(11,new Quest(11,new ReadyItem(ItemType.WOOD,200),new ReadyItem(ItemType.DELUXE_SCARECROW,1)
                         ,3));
             }},"Leah"),
 
@@ -73,9 +73,9 @@ public enum NpcType {
                 put(ItemType.WOOD.getDisplayName(), new Item(ItemType.WOOD));
             }},
             new HashMap<>(){{
-                put(12,new Quest(1,new ReadyItem(ItemType.WOOD,80),new ReadyItem(ItemType.GOLD,1000), 1));
-                put(13,new Quest(1,new ReadyItem(ItemType.IRON_BAR,10),new ReadyItem(ItemType.BEE_HOUSE,3), 2));
-                put(14,new Quest(1,new ReadyItem(ItemType.WOOD,1000),new ReadyItem(ItemType.GOLD,25000), 3));
+                put(12,new Quest(12,new ReadyItem(ItemType.WOOD,80),new ReadyItem(ItemType.GOLD,1000), 1));
+                put(13,new Quest(13,new ReadyItem(ItemType.IRON_BAR,10),new ReadyItem(ItemType.BEE_HOUSE,3), 2));
+                put(14,new Quest(14,new ReadyItem(ItemType.WOOD,1000),new ReadyItem(ItemType.GOLD,25000), 3));
             }},"Robin");
     private final String DisplayName;
     private final Map<String, Item> favorites;

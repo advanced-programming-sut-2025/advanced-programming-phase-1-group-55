@@ -1,6 +1,7 @@
 package model.Friendship;
 
 import model.NPC.Npc;
+import model.NPC.Quest;
 import model.User;
 
 import static java.lang.Math.min;
@@ -54,15 +55,21 @@ public class NpcFriendship extends FriendShip {
                 "user=" + user.getUsername() +
                 ", npc=" + npc.getType().getDisplayName() +
                 ", dayToBeFriend=" + dayToBeFriend +
-                ", level=" + (level+1) +
+                ", level=" + (level) +
                 ", xp=" + xp +
                 '}';
     }
     public void increaseDayOfBeingFriend(){
         dayToBeFriend++;
     }
-    public  int getLevel(){
-        return level+1;
+    public void checkQuest(){
+        if (level>=1){
+            for (Quest quest1:npc.getType().getQuests().values()){
+                if (quest1.getLevel()==2){
+                    user.getQuest().put(quest1.getId(),quest1);
+                }
+            }
+        }
     }
     public  void  increaseXp(int amount){
         xp=min(amount+xp,799);
@@ -75,6 +82,7 @@ public class NpcFriendship extends FriendShip {
         if (xp>=600){
             level=3;
         }
+        checkQuest();
     }
 
     public boolean isTodayMet() {

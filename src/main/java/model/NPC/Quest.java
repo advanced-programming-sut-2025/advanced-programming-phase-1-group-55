@@ -68,4 +68,14 @@ public class Quest {
     public void setReward(ReadyItem reward) {
         this.reward = reward;
     }
+
+    @Override
+    public String toString() {
+        return "Quest{" +
+                "id=" + id +
+                ", want=" + want.toString() +
+                ", reward=" + reward.toString() +
+                ", npc=" + npc.getType().getDisplayName() +
+                '}';
+    }
 }
