@@ -192,6 +192,29 @@ public class AnimalController {
 
 
     }
+    public Result showProducts() {
+        ArrayList<Animal> animals = App.currentGame.currentUser.getAnimals();
+        ArrayList<Animal> animalsWithProducts = new ArrayList<>();
+        for (Animal animal : animals) {
+            if (animal.isHasProduct()) {
+                animalsWithProducts.add(animal);
+            }
+        }
+            if (animalsWithProducts.isEmpty()){
+                return new Result(false, "you dont have any animal with products");
+            }
+            for (Animal animal1 : animalsWithProducts) {
+                StringBuilder sb = new StringBuilder("Crop found:\n");
+                sb.append(animal1.getInfo());
+                return new Result(true, sb.toString());
+            }
+            return new Result(false, "You have no animal with products");
+
+
+    }
+
+
+
     public Result collectProducts(String input) {
         String name = AnimalCommands.COLLECT_PRODUCES.getMatcher(input).group("name").trim();
         User user = App.currentGame.currentUser;

@@ -11,10 +11,13 @@ import enums.WeatherType;
 
 import static model.Weather.*;
 
+import model.Animal.Animal;
 import model.Friendship.PlayerFriendship;
 import model.Map.Location;
 import model.Store.Product;
 import model.Store.Store;
+
+import java.awt.desktop.UserSessionEvent;
 
 import static model.App.*;
 
