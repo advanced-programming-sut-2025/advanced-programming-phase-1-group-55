@@ -229,6 +229,12 @@ public class MainGameView implements AppMenu {
 
         } else if ((matcher = FriendshipCommands.flower.getMatcher(input)) != null) {
             System.out.println(controller6.sendFlower(matcher.group("username")));
+        } else if ((matcher = FriendshipCommands.sendGift.getMatcher(input))!=null){
+            System.out.println(controller6.sendGift(matcher.group("username"),matcher.group("item"),Integer.parseInt(matcher.group("amount"))));
+        } else if (FriendshipCommands.showReceivedGifts.getMatcher(input)!=null) {
+            System.out.println(controller6.showAllReceivedGifts());
+        } else if ((matcher=FriendshipCommands.showLAllGifts.getMatcher(input))!=null) {
+            System.out.println(controller6.showAllGiftsBySpecialFriend(matcher.group("username")));
         } else if (input.matches("\\s*exit\\s+game\\s*")) {
             currentMenu = Menu.MainMenu;
             System.out.println("Redirecting to MainMenu!");
