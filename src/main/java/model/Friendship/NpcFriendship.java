@@ -54,7 +54,7 @@ public class NpcFriendship extends FriendShip {
                 "user=" + user.getUsername() +
                 ", npc=" + npc.getType().getDisplayName() +
                 ", dayToBeFriend=" + dayToBeFriend +
-                ", level=" + level+1 +
+                ", level=" + (level+1) +
                 ", xp=" + xp +
                 '}';
     }
@@ -66,8 +66,14 @@ public class NpcFriendship extends FriendShip {
     }
     public  void  increaseXp(int amount){
         xp=min(amount+xp,799);
-        if (xp%200==0){
-            level++;
+        if (xp>=200){
+            level=1;
+        }
+        if (xp>=400){
+            level=2;
+        }
+        if (xp>=600){
+            level=3;
         }
     }
 

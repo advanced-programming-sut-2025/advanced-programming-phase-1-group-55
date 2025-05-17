@@ -121,5 +121,13 @@ public enum NpcType {
     public Map<Integer, Quest> getQuests() {
         return quests;
     }
+    public boolean isFavorite(ItemType itemType){
+        for (Item item:favorites.values()){
+            if (item.getItemType().equals(itemType)){
+                return true;
+            }
+        }
+        return false;
+    }
 
 }

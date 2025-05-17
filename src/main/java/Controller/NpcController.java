@@ -3,9 +3,11 @@ package Controller;
 import enums.WeatherType;
 import model.*;
 import model.Friendship.NpcFriendship;
+import model.Item.Item;
 import model.Map.MainLocation;
 import model.NPC.Dialog;
 import model.NPC.Npc;
+import model.Tool.Tools;
 
 public class NpcController {
     public static String getDialogMessage(int friendshipLevel, WeatherType weather, MainTime time) {
@@ -13,8 +15,6 @@ public class NpcController {
             if (dialog.getFriendshipLevel() == friendshipLevel &&
                     dialog.getWeatherType().equals( weather) &&
                     dialog.getMainTime().equals(time)) {
-                System.out.println(weather.name());
-                System.out.println(time.name());
                 return dialog.getMessage();
             }
         }
@@ -71,5 +71,33 @@ public class NpcController {
             friendship.setTodayMet(true);
         }
         return new Result(true,"i'm "+name+"; "+dialog);
+    }
+    public Result giftNpc(String name,String item){
+        if(!npcIsValid(name)){
+            return new Result(false,"npc doesn't exist");
+        }
+        Npc npc=findNpc(name);
+        if(npc==null){
+            return new Result(false,"you are not near the "+name+" to gift!");
+        }
+        for (Tools tools:App.currentGame.currentUser.getBackPack().getAvailableTools().values()){
+            if (item.equals(tools.getName())){
+                return new Result(false,"you can't gift "+item+" to npc");
+            }
+        }
+        if(!App.currentGame.currentUser.getBackPack().getInventory().containsKey(item)){
+            return new Result(false,"you don't have this item");
+        }
+        Item item1=App.currentGame.currentUser.getBackPack().getInventory().get(item);
+        if(!App.currentGame.currentUser.getFriendsNpc().get(name).isTodayHadGift()){
+            int amount=50;
+            if(npc.getType().isFavorite(item1.getItemType())){
+                amount=200;
+            }
+            App.currentGame.currentUser.getFriendsNpc().get(name).increaseXp(amount);
+        }
+
+        App.currentGame.currentUser.getBackPack().removeAmountFromInventory(item1.getItemType(),1);
+        return new Result(true,"you gifted "+item+" to your friend "+name);
     }
 }
