@@ -4,7 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public enum NpcCommands implements Command{
-    meetNpc("^\\s*meet\\S+npc\\s+(?<name>\\S+)\\s*$"),
+    meetNpc("^\\s*meet\\s+npc\\s+(?<name>\\S+)\\s*$"),
     giftNpc("^\\s*gift\\s+npc\\s+(?<name>\\S+)\\s+-i\\s+(?<item>\\S.*)\\s*$"),
     friendshipList("^\\s*friendship\\s+npc\\s+list\\s*$"),
     questlist("^\\s*quests\\s+list\n\\s*$"),

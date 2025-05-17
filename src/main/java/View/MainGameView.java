@@ -250,6 +250,8 @@ public class MainGameView implements AppMenu {
         } else if ((matcher=FriendshipCommands.rateGift.getMatcher(input))!=null) {
             System.out.println(controller6.rateGift(Integer.parseInt(matcher.group("rate"))
                     ,Integer.parseInt(matcher.group("id"))));
+        } else if ((matcher=NpcCommands.meetNpc.getMatcher(input))!=null) {
+            System.out.println(controller21.meetNpc(matcher.group("name")));
         } else if (input.matches("\\s*exit\\s+game\\s*")) {
             currentMenu = Menu.MainMenu;
             System.out.println("Redirecting to MainMenu!");

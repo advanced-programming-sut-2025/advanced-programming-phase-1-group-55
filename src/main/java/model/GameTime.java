@@ -7,17 +7,12 @@ import enums.Seasons;
 import static enums.DayOfTheWeeks.*;
 import static enums.Seasons.*;
 
-import java.awt.*;
-import java.time.LocalDate;
-import java.util.regex.Pattern;
-
 import enums.WeatherType;
 
 import static model.weather.*;
 
 import model.Friendship.NpcFriendship;
 import model.Friendship.PlayerFriendship;
-import model.Game;
 import model.Map.Location;
 import model.Store.Product;
 import model.Store.Store;
@@ -30,7 +25,7 @@ public class GameTime {
     private static DayOfTheWeeks day = saturday;
     private static Seasons currentSeason = fall;
     private static int DayofMonth = 1;
-
+    private static MainTime mainTime= MainTime.Day;
 
     public static void setHour(int hour) {
         GameTime.hour = hour;
@@ -85,6 +80,8 @@ public class GameTime {
         for (User user:currentGame.playersInGame){
             for (NpcFriendship friendship:user.getFriendsNpc().values()){
                 friendship.increaseDayOfBeingFriend();
+                friendship.setTodayMet(false);
+                friendship.setTodayHadGift(false);
             }
         }
     }
@@ -123,8 +120,9 @@ public class GameTime {
         GameTime.hour += hour;
         if (GameTime.hour >= 22) {
             roozbad();
-
-
+        }
+        if(GameTime.hour>17){
+            mainTime= MainTime.Night;
         }
 
 
@@ -147,6 +145,14 @@ public class GameTime {
         }
 
 
+    }
+
+    public static MainTime getMainTime() {
+        return mainTime;
+    }
+
+    public static void setMainTime(MainTime mainTime) {
+        GameTime.mainTime = mainTime;
     }
 
 

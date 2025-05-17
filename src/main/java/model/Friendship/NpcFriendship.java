@@ -3,10 +3,13 @@ package model.Friendship;
 import model.NPC.Npc;
 import model.User;
 
+import static java.lang.Math.min;
+
 public class NpcFriendship extends FriendShip {
     private User user;
     private Npc npc;
     private int dayToBeFriend=0;
+    private boolean todayMet=false;
     private boolean todayHadGift=false;
     public User getUser() {
         return user;
@@ -51,11 +54,28 @@ public class NpcFriendship extends FriendShip {
                 "user=" + user.getUsername() +
                 ", npc=" + npc.getType().getDisplayName() +
                 ", dayToBeFriend=" + dayToBeFriend +
-                ", level=" + level +
+                ", level=" + level+1 +
                 ", xp=" + xp +
                 '}';
     }
     public void increaseDayOfBeingFriend(){
         dayToBeFriend++;
+    }
+    public  int getLevel(){
+        return level+1;
+    }
+    public  void  increaseXp(int amount){
+        xp=min(amount+xp,799);
+        if (xp%200==0){
+            level++;
+        }
+    }
+
+    public boolean isTodayMet() {
+        return todayMet;
+    }
+
+    public void setTodayMet(boolean todayMet) {
+        this.todayMet = todayMet;
     }
 }

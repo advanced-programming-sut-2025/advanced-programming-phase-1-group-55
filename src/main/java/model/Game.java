@@ -17,6 +17,7 @@ import enums.Menu;
 import model.Friendship.PlayerFriendship;
 import model.Map.GameMap;
 import model.Map.Tile;
+import model.NPC.Dialog;
 
 import static model.GameTime.*;
 
@@ -30,6 +31,7 @@ public class Game {
     private ArrayList<PlayerFriendship> allFriendships = new ArrayList<>();
     private HashMap<Integer, Trade> AllTrades = new HashMap<>();
     private  int numberOfAllGifts=0;
+    private   final List<Dialog> allDialogs = new ArrayList<>(Arrays.asList(Dialog.values()));
     public Game(User currentUser, ArrayList<User> playersInGame, GameMap map) {
         this.currentUser = currentUser;
         this.playersInGame = playersInGame;
@@ -162,5 +164,9 @@ public class Game {
 
     public void setNumberOfAllGifts(int numberOfAllGifts) {
         this.numberOfAllGifts = numberOfAllGifts;
+    }
+
+    public List<Dialog> getAllDialogs() {
+        return allDialogs;
     }
 }
