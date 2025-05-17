@@ -46,4 +46,10 @@ public class Trashcan extends Tools{
         return 500;
     }
 
+    public double getRatio() {
+       return (double) ((level + 1) * 15) /100;
+    }
+
+    public void setRatio(double ratio) {
+    }
 }

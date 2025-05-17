@@ -164,7 +164,8 @@ public class MainGameController {
             return new Result(false, "level of your tool is max , you can't upgrade it !");
         }
 
-        if (tool instanceof Trashcan can) {
+        if (name.equals("trashcan")) {
+            Trashcan can=currentGame.currentUser.getBackPack().getTrashcan();
             if (can.getPriceToLevelUp() > currentGame.currentUser.getGold()) {
                 return new Result(false, "you don't have enough money to levelUp your tool");
             } else {
@@ -234,5 +235,23 @@ public class MainGameController {
             currentGame.currentUser.setHasMessageToday(false);
         }
         return  new Result(true,username +" is now the main player\n"+message);
+    }
+    public Result trashItem(String name,int amount){
+        if(!App.currentGame.currentUser.getBackPack().getInventory().containsKey(name)){
+            return  new Result(false,"you don't have this item");
+        }
+        Item item=App.currentGame.currentUser.getBackPack().getInventory().get(name);
+        if(item.getNumber()<amount){
+            return new Result(false,"you don't have enough item to trash");
+        }
+
+        if (amount==0){
+            amount=currentGame.currentUser.getBackPack().getInventory().get(name).getNumber();
+        }
+        App.currentGame.currentUser.getBackPack().removeAmountFromInventory(item.getItemType(),amount);
+        App.currentGame.currentUser.increaseGold
+                ((int)(amount* item.getPrice()*currentGame.currentUser
+                        .getBackPack().getTrashcan().getRatio()));
+        return new Result(true,"you sold "+name+"successfully!");
     }
 }
