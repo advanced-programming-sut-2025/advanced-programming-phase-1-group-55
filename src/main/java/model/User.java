@@ -15,6 +15,7 @@ import model.Map.Location;
 import model.Map.MainLocation;
 import model.Map.Tile;
 import model.NPC.Npc;
+import model.NPC.Quest;
 import model.Tool.BackPack;
 
 import java.util.*;
@@ -54,6 +55,7 @@ public class User {
     private Map<User, List<Gift>> sentGifts = new HashMap<>();
     private boolean hasGiftToday = false;
     private boolean hasMessageToday = false;
+    private Map<Integer, Quest> quest=new HashMap<>();
 
 
 
@@ -440,6 +442,14 @@ public class User {
                 break;
             }
         }
+    }
+
+    public Map<Integer, Quest> getQuest() {
+        return quest;
+    }
+
+    public void setQuest(Map<Integer, Quest> quest) {
+        this.quest = quest;
     }
     //    public void learnRecipe(CraftingItemType recipe) {
 //        learnedCraftingRecipes.add(recipe);
