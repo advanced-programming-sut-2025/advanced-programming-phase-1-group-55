@@ -6,13 +6,15 @@ import model.Store.FishingStore;
 import model.Store.Store;
 
 import static java.lang.Math.max;
+import static model.App.currentGame;
+import static model.weather.getEnergyLoser;
 
 
 public class FishingPole extends Tools {
     private final FishingPoleType type;
 
     public Store getStore() {
-        return  new FishingStore();
+        return new FishingStore();
     }
 
     public FishingPoleType getType() {
@@ -37,7 +39,7 @@ public class FishingPole extends Tools {
     public int energyCost() {
         int energy = type.getEnergyPerUse();
         // TODO  AGAR FISHING MAX BOOD ENERGY--;
-        return energy;
+       return  (int) ((energy) * getEnergyLoser());
     }
 
     @Override
@@ -62,7 +64,7 @@ public class FishingPole extends Tools {
 
     @Override
     public void useTool() {
-        App.currentGame.currentUser.setEnergy(max(App.currentGame.currentUser.getEnergy() - energyCost(), 0));
+        currentGame.currentUser.decreaseEnergy((int) (energyCost() * getEnergyLoser()));
     }
     //todo current user bezar
 

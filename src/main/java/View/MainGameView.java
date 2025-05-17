@@ -4,6 +4,7 @@ import Controller.*;
 import enums.*;
 import model.App;
 import model.Item.Item;
+import model.Map.Location;
 import model.Map.MainLocation;
 
 import java.util.regex.Matcher;
@@ -17,6 +18,7 @@ public class MainGameView implements AppMenu {
     private final walkController controller4 = new walkController();
     private final FriendshipController controller6 = new FriendshipController();
     private final TradeController controller5 = new TradeController();
+    private final FarmingController controller7 = new FarmingController();
     //    private final TreeCotroller controller3 = new TreeCotroller();
 //    private final ForagingCropController controller4 = new ForagingCropController();
 //    private final ForagingTreeController controller5 = new ForagingTreeController();
@@ -204,19 +206,19 @@ public class MainGameView implements AppMenu {
 
         } else if (input.matches("\\s*inv\\s*")) {
             for (Item item : currentGame.currentUser.getBackPack().getInventory().values()) {
-                if(item.getNumber()==0){
+                if (item.getNumber() == 0) {
                     continue;
                 }
                 System.out.println(item.getItemType() + "  " + item.getNumber());
             }
 
-        }else if ((matcher=mainGameCommands.trashItem.getMatcher(input))!=null){
-            int amount=0;
-            if(matcher.group("amount")!=null){
-                amount=Integer.parseInt(matcher.group("amount"));
+        } else if ((matcher = mainGameCommands.trashItem.getMatcher(input)) != null) {
+            int amount = 0;
+            if (matcher.group("amount") != null) {
+                amount = Integer.parseInt(matcher.group("amount"));
             }
-            System.out.println(controller.trashItem(matcher.group("name").trim(),amount));
-        }else if (input.matches("\\s*trade\\s+history\\s*")) {
+            System.out.println(controller.trashItem(matcher.group("name").trim(), amount));
+        } else if (input.matches("\\s*trade\\s+history\\s*")) {
             System.out.println(controller5.TradeHistory());
         } else if (input.matches("\\s*remained\\s+trades\\s*")) {
             System.out.println(controller5.NotAnswerdTrades());
@@ -238,18 +240,33 @@ public class MainGameView implements AppMenu {
 
         } else if ((matcher = FriendshipCommands.flower.getMatcher(input)) != null) {
             System.out.println(controller6.sendFlower(matcher.group("username")));
-        } else if ((matcher = FriendshipCommands.sendGift.getMatcher(input))!=null){
-            System.out.println(controller6.sendGift(matcher.group("username"),matcher.group("item"),Integer.parseInt(matcher.group("amount"))));
-        } else if (FriendshipCommands.showReceivedGifts.getMatcher(input)!=null) {
+        } else if ((matcher = FriendshipCommands.sendGift.getMatcher(input)) != null) {
+            System.out.println(controller6.sendGift(matcher.group("username"), matcher.group("item"), Integer.parseInt(matcher.group("amount"))));
+        } else if (FriendshipCommands.showReceivedGifts.getMatcher(input) != null) {
             System.out.println(controller6.showAllReceivedGifts());
-        } else if ((matcher=FriendshipCommands.showLAllGifts.getMatcher(input))!=null) {
+        } else if ((matcher = FriendshipCommands.showLAllGifts.getMatcher(input)) != null) {
             System.out.println(controller6.showAllGiftsBySpecialFriend(matcher.group("username")));
-        } else if ((matcher=FriendshipCommands.rateGift.getMatcher(input))!=null) {
+        } else if ((matcher = FriendshipCommands.rateGift.getMatcher(input)) != null) {
             System.out.println(controller6.rateGift(Integer.parseInt(matcher.group("rate"))
-                    ,Integer.parseInt(matcher.group("id"))));
+                    , Integer.parseInt(matcher.group("id"))));
         } else if (input.matches("\\s*exit\\s+game\\s*")) {
             currentMenu = Menu.MainMenu;
             System.out.println("Redirecting to MainMenu!");
+        } else if ((matcher = mainGameCommands.isNearTile.getMatcher(input)) != null) {
+            int x = Integer.parseInt(matcher.group("x"));
+            int y = Integer.parseInt(matcher.group("y"));
+            System.out.println(MainLocation.isNearATile(new Location(y, x)));
+            System.out.println("mohtaviat" + currentGame.getMap().tiles[y][x].getMohtaviat());
+            System.out.println("owner" + currentGame.getMap().tiles[y][x].getOwner().getUsername());
+            System.out.println(currentGame.getMap().tiles[y][x].getType());
+            System.out.println("item :" + currentGame.getMap().tiles[y][x].getItemInThisTile());
+            System.out.println("empty " + currentGame.getMap().tiles[y][x].isEmpty());
+            System.out.println("shokhm " + currentGame.getMap().tiles[y][x].isShokhmed());
+
+        } else if ((matcher = mainGameCommands.useTool.getMatcher(input)) != null) {
+            System.out.println(controller7.useTool(matcher.group("direction").trim()));
+        } else if ((matcher = mainGameCommands.plantSeed.getMatcher(input)) != null) {
+            System.out.println(controller7.plantSeed(matcher.group("seed").trim(), matcher.group("direction")));
         } else {
             System.out.println("Unknown command");
         }

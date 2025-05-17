@@ -6,6 +6,7 @@ import model.Store.Store;
 
 import static java.lang.Math.max;
 import static model.App.*;
+import static model.weather.getEnergyLoser;
 
 public class Shears extends  Tools{
     public int getPriceToLevelUp(){
@@ -29,11 +30,11 @@ public class Shears extends  Tools{
 
     @Override
     public int energyCost() {
-        return 4;
+        return (int) ((4) * getEnergyLoser());
     }
     @Override
     public void useTool() {
-        currentGame.currentUser.setEnergy(max(currentGame.currentUser.getEnergy()-energyCost(),0));
+        currentGame.currentUser.decreaseEnergy((int) (energyCost() * getEnergyLoser()));
     }
     public int getPrice(){
         if(level==2){

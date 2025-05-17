@@ -5,31 +5,34 @@ import model.Store.Store;
 
 import static java.lang.Math.max;
 import static model.App.*;
+import static model.weather.getEnergyLoser;
 
 public class WateringCan extends Tools {
-    private int capacityUsed=0;
-    public int getCapacity(){
-        if (level==1){
+    private int capacityUsed = 0;
+
+    public int getCapacity() {
+        if (level == 1) {
             return 40;
-        }else if(level==2){
+        } else if (level == 2) {
             return 55;
-        }else if(level==3){
+        } else if (level == 3) {
             return 70;
-        }else if(level==4){
+        } else if (level == 4) {
             return 85;
-        }else if(level==5){
+        } else if (level == 5) {
             return 100;
         }
         return 0;
     }
-    public int getPriceToLevelUp(){
-        if(level==1){
+
+    public int getPriceToLevelUp() {
+        if (level == 1) {
             return 2000;
-        } else if (level==2) {
+        } else if (level == 2) {
             return 5000;
-        }else if (level==3){
+        } else if (level == 3) {
             return 10000;
-        } else if (level==4) {
+        } else if (level == 4) {
             return 25000;
         }
         return 0;
@@ -37,13 +40,13 @@ public class WateringCan extends Tools {
 
     @Override
     public int getPrice() {
-        if(level==2){
+        if (level == 2) {
             return 2000;
-        } else if (level==3) {
+        } else if (level == 3) {
             return 5000;
-        }else if (level==4){
+        } else if (level == 4) {
             return 10000;
-        } else if (level==5) {
+        } else if (level == 5) {
             return 25000;
         }
         return 1000;
@@ -55,7 +58,7 @@ public class WateringCan extends Tools {
 
     @Override
     public void useTool() {
-       currentGame.currentUser.setEnergy(max(currentGame.currentUser.getEnergy()-energyCost(),0));
+        currentGame.currentUser.decreaseEnergy((int) (energyCost() * getEnergyLoser()));
     }
 
     public int getPrimaryEnergyCost() {
@@ -69,27 +72,28 @@ public class WateringCan extends Tools {
     public void setCapacityUsed(int capacityUsed) {
         this.capacityUsed = capacityUsed;
     }
+
     @Override
     public int energyCost() {
-        int energy=6-level;
-        //TO DO  AGAR FARMING MAX BOOD ENERGY --;
-        return max(energy,0);
+        return (int) ((6 - level) * getEnergyLoser());
     }
-    public int getAreaToSplashWater(){
-        if(level==1){
+
+    public int getAreaToSplashWater() {
+        if (level == 1) {
             return 40;
-        } else if (level==2) {
+        } else if (level == 2) {
             return 55;
-        } else if (level==3) {
+        } else if (level == 3) {
             return 70;
-        } else if (level==4) {
+        } else if (level == 4) {
             return 85;
-        } else if (level==5) {
+        } else if (level == 5) {
             return 100;
         }
         return 0;
     }
-    public Store getStore(){
+
+    public Store getStore() {
         return new BlackSmithStore();
     }
 }

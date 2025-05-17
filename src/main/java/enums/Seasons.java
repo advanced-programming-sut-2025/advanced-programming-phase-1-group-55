@@ -29,6 +29,7 @@ public enum Seasons {
     }
 
     public Seasons nextSeason() {
+        System.out.println("value : "+this.value);
         return getSeasonByValue((this.value + 1) % 4);
     }
 

@@ -36,7 +36,7 @@ public class App {
             if (userList != null) {
                 for (User user : userList) {
                     if (user.getGold() == 0) {
-                        user.setGold(10000);
+                        user.setGold(1000000000);
                     }
                     AllUsers.put(user.getUsername(), user);
                 }
@@ -47,6 +47,7 @@ public class App {
                 if (user.isStayLoggedIn()) {
                     mainUser = user;
                     currentMenu = Menu.MainMenu;
+                    break;
                 }
             }
             reader.close();
