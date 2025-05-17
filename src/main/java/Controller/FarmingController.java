@@ -60,14 +60,31 @@ public class FarmingController extends SkillController {
     }
 
     public Result useTool(String direction) {
+        int directionInt;
         try {
-            int directionInt = Integer.parseInt(direction);
+            directionInt = Integer.parseInt(direction);
         } catch (Exception e) {
             return new Result(false, "Invalid tool direction");
         }
         Tools tool = currentGame.currentUser.getBackPack().getCurrentTool();
-        if ()
-        tool.useTool();//energy kam mishe hata age erroe bede
+        User user = currentGame.currentUser;
+        Tile tile = getTileByDirection(directionInt);
+        if (tool.energyCost() > user.getEnergy()) {
+            return new Result(false, "You do not have enough energy to use this tool");
+        } else {
+            tool.useTool();
+            if (tool.getName().equals("Hoe")) {
+                if (tile.isShokhmed() || tile.isEmpty()) {
+                    return new Result(false, "failed! tile shokhm khorde");
+                } else {
+
+                    tile.setShokhmed(true);
+                    return new Result(true, "tile shokhmed successfully");
+                }
+
+            }
+        }
+
 
     }
 
@@ -80,7 +97,7 @@ public class FarmingController extends SkillController {
             case 2 -> currentGame.getMap().tiles[y - 1][x];
             case 3 -> currentGame.getMap().tiles[y - 1][x + 1];
             case 4 -> currentGame.getMap().tiles[y][x + 1];
-            case 5 -> currentGame.getMap().tiles[y + 1][x - 1];
+            case 5 -> currentGame.getMap().tiles[y + 1][x + 1];
             case 6 -> currentGame.getMap().tiles[y + 1][x];
             case 7 -> currentGame.getMap().tiles[y + 1][x - 1];
             case 8 -> currentGame.getMap().tiles[y][x - 1];
