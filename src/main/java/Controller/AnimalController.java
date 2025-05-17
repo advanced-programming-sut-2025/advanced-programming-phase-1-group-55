@@ -68,6 +68,7 @@ public class AnimalController {
         user.getBackPack().removeAmountFromInventory(ItemType.WOOD, wood);
         user.getBackPack().removeAmountFromInventory(ItemType.STONE, stone);
         farm.buildAnimalBuilding(new AnimalBuilding(targetTile, farmBuilding));
+        System.out.println("DEBUG: animalBuildings.size()=" + farm.getAnimalBuildings().size());
         return new Result(true, "Animal Building built successfully");
     }
 
@@ -80,14 +81,14 @@ public class AnimalController {
         NpcVillage city = App.currentGame.getMap().getVillage();
 
         FarmAnimalType animalType = FarmAnimalType.getFarmAnimalsType(animal);
-        if (animalType != null) {
+        if (animalType == null) {
             return new Result(false, "invalid Animal Type");
         }
         if(!user.validAnimalName(name)){
             return new Result(false, "invalid Animal Name");
         }
         AnimalBuilding animalBuilding = farm.getBuildingForAnimal(animalType);
-        if (animalBuilding != null) {
+        if (animalBuilding == null) {
             return new Result(false, "you dint have a place for this animal");
         }
         int price = animalType.getPrice();

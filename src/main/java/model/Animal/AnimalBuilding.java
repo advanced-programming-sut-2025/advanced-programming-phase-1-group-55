@@ -71,13 +71,14 @@ public class AnimalBuilding extends Item {
 
     public boolean hasCapacity()
     {
-        if (capacity == -1)
-        {
-            return true;
-        }
-
-//        return (capacity - faghatVaseShipingBin.size()) > 0;
-        return false;
+//        if (capacity == -1)
+//        {
+//            return true;
+//        }
+//
+////        return (capacity - faghatVaseShipingBin.size()) > 0;
+//        return false;
+        return true;
     }
 //    public void putAnimalInBuilding(Animal animal, ArrayList<Tile> tiles, ArrayList<Animal> animals) {
 //        animals.add(animal); // اضافه کردن حیوان به لیست حیوانات

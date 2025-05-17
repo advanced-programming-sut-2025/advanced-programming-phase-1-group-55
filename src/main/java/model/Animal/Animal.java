@@ -4,6 +4,7 @@ import model.Item.Item;
 import model.Map.Tile;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Animal extends Item {
@@ -13,7 +14,8 @@ public class Animal extends Item {
     private boolean isFed = false;
     private boolean isIn = true;
     private boolean isPet = false;
-    private final ArrayList<Item> products;
+//    private final ArrayList<Item> products;
+private final List<Item> products;
     private Tile tile = null;
     private boolean hasProduct = false;
     private boolean secondProduct = false;
@@ -28,7 +30,8 @@ public class Animal extends Item {
         this.isFed = false;
         this.isIn = true;
         this.isPet = false;
-        this.products = (ArrayList<Item>) animalType.getProduct();
+//        this.products = (ArrayList<Item>) animalType.getProduct();
+        this.products = new ArrayList<>(animalType.getProduct());
     }
 
     public String getName() {
@@ -75,7 +78,12 @@ public class Animal extends Item {
         isPet = pet;
     }
 
-    public ArrayList<Item> getProducts() {
+//    public ArrayList<Item> getProducts() {
+//        return products;
+//    }
+
+
+    public List<Item> getProducts() {
         return products;
     }
 
