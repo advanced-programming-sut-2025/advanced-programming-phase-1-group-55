@@ -256,6 +256,12 @@ public class MainGameView implements AppMenu {
             int x = Integer.parseInt(matcher.group("x"));
             int y = Integer.parseInt(matcher.group("y"));
             System.out.println(MainLocation.isNearATile(new Location(y, x)));
+            System.out.println("mohtaviat" + currentGame.getMap().tiles[y][x].getMohtaviat());
+            System.out.println("owner" + currentGame.getMap().tiles[y][x].getOwner().getUsername());
+            System.out.println(currentGame.getMap().tiles[y][x].getType());
+            System.out.println("item :" + currentGame.getMap().tiles[y][x].getItemInThisTile());
+            System.out.println("empty " + currentGame.getMap().tiles[y][x].isEmpty());
+            System.out.println("shokhm " + currentGame.getMap().tiles[y][x].isShokhmed());
 
         } else if ((matcher = mainGameCommands.useTool.getMatcher(input)) != null) {
             System.out.println(controller7.useTool(matcher.group("direction").trim()));

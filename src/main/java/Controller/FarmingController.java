@@ -78,7 +78,7 @@ public class FarmingController {
             tool.useTool();
             if (tool.getName().equals("Hoe")) {
                 if (tile.isShokhmed() || !tile.isEmpty()) {
-                    return new Result(false, "failed! tile shokhm khorde");
+                    return new Result(false, "failed! you cant shokhm this tile ");
                 } else {
 
                     tile.setShokhmed(true);
@@ -92,7 +92,7 @@ public class FarmingController {
     }
 
     public Result plantSeed(String seed, String direction) {
-        System.out.println(seed);
+
         int directionInt;
         try {
             directionInt = Integer.parseInt(direction);
@@ -101,14 +101,15 @@ public class FarmingController {
         }
         User user = currentGame.currentUser;
         Tile tile = getTileByDirection(directionInt);
-        System.out.println(getItemType(seed).getDisplayName());
+
         if (user.getBackPack().getInventory().get(getItemType(seed).getDisplayName()) == null) {
             return new Result(false, "you dont have this seed in your inventory");
         } else {
-            if (!tile.isShokhmed() || !tile.isEmpty()) {
+            if (!tile.isShokhmed() || !tile.isEmpty() || tile.getOwner() != user) {
                 return new Result(false, "you cant plant on this tile");
             } else {
-                tile.setItemInThisTile(new Item(getItemType(seed)));
+                tile.setItemInThisTile(user.getBackPack().getInventory().get(seed));
+                user.getBackPack().getInventory().get(seed).addNumber(-1);
                 return new Result(true, "seed planted successfully");
             }
         }
