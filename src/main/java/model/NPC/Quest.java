@@ -11,12 +11,22 @@ public class Quest {
     private ReadyItem reward;
     private boolean hasAlreadyFinished;
     private Npc npc;
+    private int level;
 
-    public Quest(int id, ReadyItem want, ReadyItem reward,Npc npc) {
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public Quest(int id, ReadyItem want, ReadyItem reward, Npc npc,int level) {
         this.id = id;
         this.want = want;
         this.reward = reward;
         this.npc=npc;
+        this.level=level;
     }
 
     public Npc getNpc() {
