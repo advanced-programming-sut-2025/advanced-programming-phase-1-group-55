@@ -115,13 +115,13 @@ public class MainGameView implements AppMenu {
                 System.out.println("You must be at home for this.");
             }
         } else if ((matcher = inHouseGameMenuCommands.PlaceItem.getMatcher(input)) != null) {
-            if (MainLocation.House.equals(currentGame.currentUser.getMainLocation())) {
+//            if (MainLocation.House.equals(currentGame.currentUser.getMainLocation())) {
                 String itemName = matcher.group("itemName");
                 String direction = matcher.group("direction");
                 System.out.println(inHouseController.PlaceItem(itemName, direction));
-            } else {
-                System.out.println("You must be at home for this.");
-            }
+//            } else {
+//                System.out.println("You must be at home for this.");
+//            }
         } else if ((matcher = inHouseGameMenuCommands.PutInRefrigerator.getMatcher(input)) != null) {
             if (MainLocation.House.equals(currentGame.currentUser.getMainLocation())) {
                 String item = matcher.group("item");
