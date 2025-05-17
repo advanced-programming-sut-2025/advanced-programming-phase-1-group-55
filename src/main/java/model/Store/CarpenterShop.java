@@ -27,7 +27,6 @@ public class CarpenterShop extends Store{
                     put("well",new Product(new Item(ItemType.WELL),1,1000,0,75, Seasons.special));
                     put("shipping bin",new Product(new Item(ItemType.SHIPPING_BIN),100000,250,150,0, Seasons.special));
                 }},
-                new Npc("Robin"),
                 "CarpenterShop");
 
     }

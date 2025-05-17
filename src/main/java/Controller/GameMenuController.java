@@ -2,19 +2,20 @@ package Controller;
 
 import enums.Menu;
 import enums.mainGameCommands;
-import model.App;
+import model.*;
 import model.Friendship.FriendShip;
+import model.Friendship.NpcFriendship;
 import model.Friendship.PlayerFriendship;
-import model.Game;
 import model.Item.Item;
 import model.Item.ItemType;
 import model.Map.*;
-import model.Result;
+import model.NPC.Npc;
+import model.NPC.Quest;
 import model.Tool.BackPack;
-import model.User;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 
@@ -23,7 +24,7 @@ import static model.App.*;
 
 
 public class GameMenuController {
-    private void setFriendships(){
+    private void setFriendships(GameMap map){
         PlayerFriendship friendship1=new PlayerFriendship(currentGame.playersInGame.get(0),currentGame.playersInGame.get(1));
         PlayerFriendship friendship2=new PlayerFriendship(currentGame.playersInGame.get(0),currentGame.playersInGame.get(2));
         PlayerFriendship friendship3=new PlayerFriendship(currentGame.playersInGame.get(0),currentGame.playersInGame.get(3));
@@ -54,6 +55,17 @@ public class GameMenuController {
         friendship4.setConversation(new ArrayList<>());
         friendship5.setConversation(new ArrayList<>());
         friendship6.setConversation(new ArrayList<>());
+        for(User user:currentGame.playersInGame){
+            user.setFriendsNpc(new HashMap<>());
+            for (Npc npc:map.getVillage().getNpss().values()){
+                NpcFriendship friendship=new NpcFriendship(user,npc);
+                user.getFriendsNpc().put(npc.getType().getDisplayName(),friendship);
+                for (Quest quest:npc.getType().getQuests().values()){
+                    quest.setNpc(npc);
+                }
+            }
+        }
+
     }
     public void setTileOwner(User user, Farm farm, GameMap map) {
 //        System.out.println(user.getUsername() + mainUser.getUsername());
@@ -225,7 +237,7 @@ public class GameMenuController {
             player.setDailyMoney(0);
         }
 
-        setFriendships();
+        setFriendships(Map);
         return new Result(true, "game has created successfully !");
     }
 

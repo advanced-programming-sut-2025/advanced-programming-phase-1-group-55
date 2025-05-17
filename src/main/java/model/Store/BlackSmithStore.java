@@ -39,7 +39,7 @@ public class BlackSmithStore extends Store {
                             100000,5000,0,0, Seasons.special));
                     put("iridium trashcan",new Product(new Item(ItemType.IRIDIUM_TRASHCAN),
                             100000,12500,0,0, Seasons.special));
-                }}, new Npc("Clint"), "Blacksmith");
+                }}, "Blacksmith");
     }
     public Result purchase(int amount , Product product){
             return App.currentGame.currentUser.getBackPack().addItemToInventory(product.getItem(),amount);

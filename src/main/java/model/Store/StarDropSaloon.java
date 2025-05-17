@@ -43,7 +43,7 @@ public class StarDropSaloon extends Store{
                     1, 5000, 0, 1, Seasons.special));
             put("cookie recipe", new Product(new Item(ItemType.COOKIE_RECIPE),
                     1, 300, 0, 1, Seasons.special));
-        }}, new Npc("Gus"), "starDropSaloon");
+        }}, "starDropSaloon");
     }
     public Result purchase(int amount , Product product){
        if(true){

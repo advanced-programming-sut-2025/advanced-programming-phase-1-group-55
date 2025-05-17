@@ -127,7 +127,7 @@ public class GeneralStore extends Store {
                     Integer.MAX_VALUE, 100, 0, 0, Seasons.special));
             put("quality retaining soil", new Product(new Item(ItemType.QUALITY_RETAINING_SOIL),
                     Integer.MAX_VALUE, 150, 0, 0, Seasons.special));
-        }}, new Npc("Pierre"), "Generalstore");
+        }}, "Generalstore");
     }
     public Result purchase(int amount , Product product){
        BackPack backPack= App.currentGame.currentUser.getBackPack();

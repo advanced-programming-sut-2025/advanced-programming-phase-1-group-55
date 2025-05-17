@@ -15,6 +15,7 @@ import enums.WeatherType;
 
 import static model.weather.*;
 
+import model.Friendship.NpcFriendship;
 import model.Friendship.PlayerFriendship;
 import model.Game;
 import model.Map.Location;
@@ -81,6 +82,11 @@ public class GameTime {
             }
         }
         friendshipWorks();
+        for (User user:currentGame.playersInGame){
+            for (NpcFriendship friendship:user.getFriendsNpc().values()){
+                friendship.increaseDayOfBeingFriend();
+            }
+        }
     }
 
     public static DayOfTheWeeks getDay() {

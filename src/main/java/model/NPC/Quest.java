@@ -21,11 +21,10 @@ public class Quest {
         this.level = level;
     }
 
-    public Quest(int id, ReadyItem want, ReadyItem reward, Npc npc,int level) {
+    public Quest(int id, ReadyItem want, ReadyItem reward, int level) {
         this.id = id;
         this.want = want;
         this.reward = reward;
-        this.npc=npc;
         this.level=level;
     }
 

@@ -12,16 +12,14 @@ public class Store {
     private final int openingTime;
     private final int closingTime;
     private Map<String, Product> productsOfStore=new HashMap<>();
-    private final Npc owner;
     private final String DisplayName;
 
 
     public Store(int openingTime, int closingTime, Map<String,
-            Product> productsOfStore, Npc owner, String displayName) {
+            Product> productsOfStore, String displayName) {
         this.openingTime = openingTime;
         this.closingTime = closingTime;
         this.productsOfStore = productsOfStore;
-        this.owner = owner;
         DisplayName = displayName;
     }
 
@@ -41,9 +39,7 @@ public class Store {
         this.productsOfStore = productsOfStore;
     }
 
-    public Npc getOwner() {
-        return owner;
-    }
+
 
     public String getDisplayName() {
         return DisplayName;

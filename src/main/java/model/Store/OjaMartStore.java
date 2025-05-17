@@ -129,7 +129,7 @@ public class OjaMartStore extends Store{
                     10, 20, 0, 0, Seasons.winter));
 
 
-        }}, new Npc("Morris"), "OjaMart");
+        }}, "OjaMart");
     }
     public Result purchase(int amount , Product product){
       Result x=App.currentGame.currentUser.getBackPack().addItemToInventory(product.getItem(),amount);
