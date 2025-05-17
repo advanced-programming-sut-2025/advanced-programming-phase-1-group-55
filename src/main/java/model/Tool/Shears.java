@@ -30,7 +30,7 @@ public class Shears extends  Tools{
 
     @Override
     public int energyCost() {
-        return 4;
+        return (int) ((4) * getEnergyLoser());
     }
     @Override
     public void useTool() {

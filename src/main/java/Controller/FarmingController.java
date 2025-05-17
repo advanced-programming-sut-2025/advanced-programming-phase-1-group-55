@@ -2,8 +2,17 @@ package Controller;
 
 import enums.CropQuality;
 import model.App;
+import model.Map.Location;
+import model.Map.Tile;
+import model.Result;
 import model.Skill;
+import model.Tool.Tools;
 import model.User;
+
+
+import static model.App.*;
+
+import java.util.ResourceBundle;
 
 public class FarmingController extends SkillController {
 
@@ -49,6 +58,36 @@ public class FarmingController extends SkillController {
                 return CropQuality.NORMAL;
         }
     }
+
+    public Result useTool(String direction) {
+        try {
+            int directionInt = Integer.parseInt(direction);
+        } catch (Exception e) {
+            return new Result(false, "Invalid tool direction");
+        }
+        Tools tool = currentGame.currentUser.getBackPack().getCurrentTool();
+        if ()
+        tool.useTool();//energy kam mishe hata age erroe bede
+
+    }
+
+    private Tile getTileByDirection(int direction) {
+        Location location = currentGame.currentUser.getLocation();
+        int x = location.getX();
+        int y = location.getY();
+        return switch (direction) {
+            case 1 -> currentGame.getMap().tiles[y - 1][x - 1];
+            case 2 -> currentGame.getMap().tiles[y - 1][x];
+            case 3 -> currentGame.getMap().tiles[y - 1][x + 1];
+            case 4 -> currentGame.getMap().tiles[y][x + 1];
+            case 5 -> currentGame.getMap().tiles[y + 1][x - 1];
+            case 6 -> currentGame.getMap().tiles[y + 1][x];
+            case 7 -> currentGame.getMap().tiles[y + 1][x - 1];
+            case 8 -> currentGame.getMap().tiles[y][x - 1];
+            default -> null;
+        };
+    }
+
 
     public int getCurrentLevel() {
         return skill.getLevel();

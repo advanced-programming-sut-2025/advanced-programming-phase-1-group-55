@@ -17,7 +17,7 @@ public class Trashcan extends Tools{
 
     @Override
     public int energyCost() {
-        return 0;
+        return (int) ((6 - level) * getEnergyLoser());
     }
 
     public int getPriceToLevelUp(){

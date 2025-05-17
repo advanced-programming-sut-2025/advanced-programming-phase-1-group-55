@@ -14,7 +14,7 @@ public class FishingPole extends Tools {
     private final FishingPoleType type;
 
     public Store getStore() {
-        return  new FishingStore();
+        return new FishingStore();
     }
 
     public FishingPoleType getType() {
@@ -39,7 +39,7 @@ public class FishingPole extends Tools {
     public int energyCost() {
         int energy = type.getEnergyPerUse();
         // TODO  AGAR FISHING MAX BOOD ENERGY--;
-        return energy;
+       return  (int) ((energy) * getEnergyLoser());
     }
 
     @Override

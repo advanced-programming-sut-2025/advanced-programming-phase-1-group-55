@@ -39,7 +39,7 @@ public class MilkPair extends  Tools{
      }
     @Override
     public int energyCost() {
-        return 4;
+        return (int) ((4) * getEnergyLoser());
     }
     public Store getStore(){
         return new MarineRanchStore();

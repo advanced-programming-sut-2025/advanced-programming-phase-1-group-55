@@ -41,7 +41,7 @@ public class Scythe extends  Tools{
 
     @Override
     public int energyCost() {
-        return 2;
+        return (int) ((2) * getEnergyLoser());
     }
     public Store getStore(){
         return new BlackSmithStore();

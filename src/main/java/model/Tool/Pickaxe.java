@@ -43,12 +43,8 @@ public class Pickaxe extends Tools {
 
     @Override
     public int energyCost() {
-        int energy = 6 - level;
-        if (!usedSuccessfully) {
-            energy--;
-        }
-        //TO DO  AGAR MINING MAX BOOD ENERGY --;
-        return max(energy, 0);
+       
+        return (int) ((6 - level) * getEnergyLoser());
     }
 
     public Store getStore() {

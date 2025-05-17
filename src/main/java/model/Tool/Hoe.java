@@ -1,5 +1,7 @@
 package model.Tool;
 
+import model.Map.Location;
+import model.Map.MainLocation;
 import model.Store.BlackSmithStore;
 import model.Store.Store;
 
@@ -44,7 +46,7 @@ public class Hoe extends Tools {
 
     @Override
     public int energyCost() {
-        return 6 - level;
+        return (int) ((6 - level) * getEnergyLoser());
     }
 
     public Store getStore() {
@@ -53,6 +55,7 @@ public class Hoe extends Tools {
 
     @Override
     public void useTool() {
-        currentGame.currentUser.decreaseEnergy((int) (energyCost() * getEnergyLoser()));
+
+        currentGame.currentUser.decreaseEnergy(energyCost());
     }
 }

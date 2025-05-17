@@ -25,7 +25,8 @@ public class Tools {
     }
 
     public void useTool() {
-        currentGame.currentUser.decreaseEnergy((int) (energyCost() * getEnergyLoser()));
+
+
     }
 
     public void setName(String name) {
