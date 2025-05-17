@@ -74,7 +74,8 @@ public class inHouseController {
         }
         CraftingItem product = CraftingItemCreator.create(recipe);
         product.setNumber(1);
-        user.getBackPack().addToInventory(product);
+//        user.getBackPack().addToInventory(product);
+        user.getBackPack().addItemToInventory(product, 1);
         return new Result(true, recipe.getProductName() + " has been crafted");
     }
     public Result CheatAddItem(String itemName, String amount) {
@@ -216,7 +217,8 @@ public class inHouseController {
             return new Result(false, "you ran out of energy and fainted");
         }
         CookingItem food = new CookingItem(recipe);
-        user.getBackPack().addToInventory(food);
+//        user.getBackPack().addToInventory(food);
+        user.getBackPack().addItemToInventory(food, 1);
         return new Result(true, food.getItemType().getDisplayName() + " was cooked and added to inventory.");
     }
     public Result Eat(String itemName) {
