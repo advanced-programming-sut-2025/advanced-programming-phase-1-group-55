@@ -43,7 +43,7 @@ public class User {
     private int matchPlayed = 0;
     private Location location = new Location(0, 0);//todo ino bayad bokonm location aval farmesh
     private boolean fainted = false;
-
+    private Location playerTommorowLocation;
     private Game playedGame;
     private Farm farm;
     private MainLocation mainLocation = MainLocation.House;
@@ -63,7 +63,6 @@ public class User {
     public void setStone(int stone) {
         this.stone = stone;
     }
-
     private Skill farmingSkill = new Skill(SkillType.Farming);
     private Skill miningSkill = new Skill(SkillType.Mining);
     private Skill foragingSkill = new Skill(SkillType.Foraging);
@@ -95,6 +94,14 @@ public class User {
         this.playedGame = playedGame;
     }
 
+
+    public Location getPlayerTommorowLocation() {
+        return playerTommorowLocation;
+    }
+
+    public void setPlayerTommorowLocation(Location playerTommorowLocation) {
+        this.playerTommorowLocation = playerTommorowLocation;
+    }
 
     public boolean isFainted() {
         return fainted;
@@ -367,7 +374,6 @@ public class User {
     public Skill getFishingSkill() {
         return fishingSkill;
     }
-
     public ArrayList<CookingItem> getRefrigerator() {
         if (refrigerator == null) {
             refrigerator = new ArrayList<>();
