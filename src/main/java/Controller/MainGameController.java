@@ -6,6 +6,7 @@ import model.App;
 import model.Game;
 import model.Item.Item;
 import model.Map.GameMap;
+import model.Map.GreenHouse;
 import model.Map.Location;
 import enums.WeatherType;
 import model.Map.MainLocation;
@@ -14,6 +15,7 @@ import model.Tool.Trashcan;
 import model.Tool.WateringCan;
 import model.Result;
 import enums.AnsiColor;
+
 import static model.Item.ItemType.*;
 
 import model.User;
@@ -165,7 +167,7 @@ public class MainGameController {
         }
 
         if (name.equals("trashcan")) {
-            Trashcan can=currentGame.currentUser.getBackPack().getTrashcan();
+            Trashcan can = currentGame.currentUser.getBackPack().getTrashcan();
             if (can.getPriceToLevelUp() > currentGame.currentUser.getGold()) {
                 return new Result(false, "you don't have enough money to levelUp your tool");
             } else {
@@ -214,44 +216,61 @@ public class MainGameController {
         return new Result(true, " you teleported to " + "y:" + y + " x:" + x);
     }
 
+    public Result buildGreenHouse() {
+        User user = currentGame.currentUser;
+        if (user.getGold() < 1000 || user.getBackPack().getInventory().get("wood") == null || user.getBackPack().getInventory().get("wood").getNumber() < 500) {
+            return new Result(false, "you dont have enough material to build green house");
+        } else {
+
+            user.setGreenHouse(user.getFarm().getGreenHouse());
+            user.getGreenHouse().setRepaired(true);
+            user.increaseGold(-1000);
+            user.getBackPack().getInventory().get("wood").addNumber(-500);
+            return new Result(true, "green house build successfully");
+        }
+    }
+
     public Result showOwner(int x, int y) {
         if (currentGame.getMap().tiles[y][x].getOwner() == null) {
             return new Result(false, "Default tile");
         }
-        return new Result(true, "this tile is in " + currentGame.getMap().tiles[y][x].getOwner().getUsername() + "'s farm"+ "Mohtaviat :"+currentGame.getMap().tiles[y][x].getMohtaviat());
-    }public Result changePlayer(String username){
-        User user=FriendshipController.findUser(username);
-        if (user==null){
-            return new Result(false,"user not found!");
+        return new Result(true, "this tile is in " + currentGame.getMap().tiles[y][x].getOwner().getUsername() + "'s farm" + "Mohtaviat :" + currentGame.getMap().tiles[y][x].getMohtaviat());
+    }
+
+    public Result changePlayer(String username) {
+        User user = FriendshipController.findUser(username);
+        if (user == null) {
+            return new Result(false, "user not found!");
         }
-        currentGame.currentUser=user;
-        StringBuilder message=new StringBuilder();
-        if (currentGame.currentUser.isHasGiftToday()){
+        currentGame.currentUser = user;
+        StringBuilder message = new StringBuilder();
+        if (currentGame.currentUser.isHasGiftToday()) {
             message.append("you received new gift!\n");
             currentGame.currentUser.setHasGiftToday(false);
         }
-        if (currentGame.currentUser.isHasMessageToday()){
+        if (currentGame.currentUser.isHasMessageToday()) {
             message.append("you received new message!");
             currentGame.currentUser.setHasMessageToday(false);
         }
-        return  new Result(true,username +" is now the main player\n"+message);
+        return new Result(true, username + " is now the main player\n" + message);
     }
-    public Result trashItem(String name,int amount){
-        if(!App.currentGame.currentUser.getBackPack().getInventory().containsKey(name)){
-            return  new Result(false,"you don't have this item");
+
+    public Result trashItem(String name, int amount) {
+        if (!App.currentGame.currentUser.getBackPack().getInventory().containsKey(name)) {
+            return new Result(false, "you don't have this item");
         }
-        Item item=App.currentGame.currentUser.getBackPack().getInventory().get(name);
-        if(item.getNumber()<amount){
-            return new Result(false,"you don't have enough item to trash");
+        Item item = App.currentGame.currentUser.getBackPack().getInventory().get(name);
+        if (item.getNumber() < amount) {
+            return new Result(false, "you don't have enough item to trash");
         }
 
-        if (amount==0){
-            amount=currentGame.currentUser.getBackPack().getInventory().get(name).getNumber();
+        if (amount == 0) {
+            amount = currentGame.currentUser.getBackPack().getInventory().get(name).getNumber();
         }
-        App.currentGame.currentUser.getBackPack().removeAmountFromInventory(item.getItemType(),amount);
+        App.currentGame.currentUser.getBackPack().removeAmountFromInventory(item.getItemType(), amount);
         App.currentGame.currentUser.increaseGold
-                ((int)(amount* item.getPrice()*currentGame.currentUser
+                ((int) (amount * item.getPrice() * currentGame.currentUser
                         .getBackPack().getTrashcan().getRatio()));
-        return new Result(true,"you sold "+name+"successfully!");
+        return new Result(true, "you sold " + name + "successfully!");
     }
 }

@@ -53,9 +53,16 @@ public class User {
     private Map<User, List<Gift>> sentGifts = new HashMap<>();
     private boolean hasGiftToday = false;
     private boolean hasMessageToday = false;
-    private Map<Integer, Quest> quest=new HashMap<>();
+    private Map<Integer, Quest> quest = new HashMap<>();
+    private GreenHouse greenHouse;
 
+    public GreenHouse getGreenHouse() {
+        return greenHouse;
+    }
 
+    public void setGreenHouse(GreenHouse greenHouse) {
+        this.greenHouse = greenHouse;
+    }
 
     public int getStone() {
         return stone;

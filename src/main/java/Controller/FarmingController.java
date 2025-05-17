@@ -77,6 +77,12 @@ public class FarmingController {
         } else {
             tool.useTool();
             if (tool.getName().equals("Hoe")) {
+                if (tile.getMohtaviat().equals("g")) {
+                    if (user.getGreenHouse() == null) {
+                        return new Result(false, "failed! you have no green house ");
+                    }
+                    return new Result(true, "you shokmed green house");
+                }
                 if (tile.isShokhmed() || !tile.isEmpty()) {
                     return new Result(false, "failed! you cant shokhm this tile ");
                 } else {

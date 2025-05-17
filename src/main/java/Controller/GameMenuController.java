@@ -238,8 +238,8 @@ public class GameMenuController {
 
         for (User player : playersInGame) {
             player.setBackPack(new BackPack());
-            player.getBackPack().getInventory().put("maple seed", new Item(ItemType.getItemType("maple seed")));
-            player.getBackPack().getInventory().get("maple seed").setNumber(100);
+            player.getBackPack().getInventory().put("wood", new Item(ItemType.getItemType("wood")));
+            player.getBackPack().getInventory().get("wood").setNumber(10000);
             player.setDailyMoney(0);
         }
 

@@ -21,7 +21,7 @@ public enum mainGameCommands implements Command {
     weather("\\s*weather\\s*"),
     weatherForecast("\\s*weather\\s+forecast\\s*"),
     cheatWeatherSet("^\\s*cheat weather set (?<type>\\S+)\\s*$"),
-    greenhouse("^\\s*greenhouse build\\s*"),
+    greenhouse("^\\s*greenhouse\\s+build\\s*"),
     energyShow("\\s*energy\\s+show\\s*"),
     energySet("\\s*energy\\s+set\\s+-v\\s+(?<V>\\S+)\\s*"),
     UnlimitedEnergy("\\s*energy\\s+unlimited\\s*"),
