@@ -12,6 +12,8 @@ public class Tile {
     private boolean isEmpty;
     private Item itemInThisTile;
     private User owner;
+    private boolean isShokhmed;
+
     public User getOwner() {
         return owner;
     }
@@ -21,13 +23,20 @@ public class Tile {
     }
 
 
+    public boolean isShokhmed() {
+        return isShokhmed;
+    }
+
+    public void setShokhmed(boolean shokhmed) {
+        isShokhmed = shokhmed;
+    }
 
     public Tile(Location location, String mohtaviat, boolean walkable, boolean isEmpty, TileType tileType) {
         this.location = location;
         this.mohtaviat = mohtaviat;
         this.walkable = walkable;
         this.isEmpty = isEmpty;
-        this.type=tileType;
+        this.type = tileType;
     }
 
 

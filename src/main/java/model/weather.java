@@ -13,6 +13,15 @@ import static enums.WeatherType.*;
 public class weather {
     private static WeatherType CurrentWeather = Sunny;
     private static WeatherType tomorrowWeather = RandomWeatherForTommorow();
+    private static double EnergyLoser = 1;
+
+    public static double getEnergyLoser() {
+        return EnergyLoser;
+    }
+
+    public static void setEnergyLoser(double energyLoser) {
+        EnergyLoser = energyLoser;
+    }
 
     public static WeatherType RandomWeatherForTommorow() {
         Random random = new Random();

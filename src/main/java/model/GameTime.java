@@ -6,6 +6,7 @@ import enums.Seasons;
 
 import static enums.DayOfTheWeeks.*;
 import static enums.Seasons.*;
+import static model.weather.*;
 
 import java.awt.*;
 import java.time.LocalDate;
@@ -51,6 +52,12 @@ public class GameTime {
         GameTime.hour = 9;
         weather.setCurrentWeather(weather.getTomorrowWeather());
         weather.RandomWeatherForTommorow();
+        if (weather.getCurrentWeather().equals(WeatherType.Rain)) {
+            setEnergyLoser(1.5);
+        } else if (weather.getCurrentWeather().equals(WeatherType.Snow)) {
+            setEnergyLoser(2);
+        }
+
         if (weather.getCurrentWeather().equals(WeatherType.Storm)) {
             System.out.println(RandomThor());
             System.out.println("Current Weather is " + weather.getCurrentWeather());

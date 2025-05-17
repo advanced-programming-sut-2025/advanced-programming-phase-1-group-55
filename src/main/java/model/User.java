@@ -56,6 +56,7 @@ public class User {
     private boolean hasMessageToday = false;
 
 
+
     public int getStone() {
         return stone;
     }
