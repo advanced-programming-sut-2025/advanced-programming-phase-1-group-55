@@ -213,7 +213,7 @@ public class User {
 
 
     public double getEnergy() {
-        return energy;
+        return this.energy;
     }
 
     public void setEnergy(double energys) {

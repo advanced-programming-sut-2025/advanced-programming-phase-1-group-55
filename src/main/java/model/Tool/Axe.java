@@ -44,7 +44,7 @@ public class Axe extends  Tools{
         if(!usedSuccessfully){
             energy--;
         }
-        //TO DO  AGAR FORAGING MAX BOOD ENERGY --;
+        //TODO  AGAR FORAGING MAX BOOD ENERGY --;
         return max(energy,0);
     }
     public Store getStore(){

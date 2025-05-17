@@ -22,6 +22,10 @@ public class GameMenu extends AppView implements AppMenu {
 
             System.out.println(controller.newGame(gameNew.group("user1"), gameNew.group("user2"), gameNew.group("user3")));
 
+        } else if (input.equals("back")) {
+            currentMenu = Menu.MainMenu;
+            System.out.println("Redirecting to main menu !");
+
         } else {
             System.out.println("invalid command in Game menu");
         }

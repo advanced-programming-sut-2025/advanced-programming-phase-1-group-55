@@ -41,7 +41,7 @@ public enum ItemType {
     COPPER("Copper"),
     IRON("Iron"),
     GOLD("Gold"),
-    IRIDIUM("Iriduim"),
+    IRIDIUM("Iridium"),
     COAL("Coal"),
 
     COPPER_ORE("copper ore"),
