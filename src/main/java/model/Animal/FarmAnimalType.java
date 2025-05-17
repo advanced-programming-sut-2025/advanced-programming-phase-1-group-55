@@ -3,6 +3,7 @@ package model.Animal;
 import model.Item.Item;
 import model.Item.ItemType;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public enum FarmAnimalType {
@@ -76,5 +77,16 @@ public enum FarmAnimalType {
 
     public List<FarmBuildingType> getBuildings() {
         return buildings;
+    }
+    public static FarmAnimalType getFarmAnimalsType(String name) {
+        for (FarmAnimalType type : FarmAnimalType.values()) {
+            if (type.getName().equalsIgnoreCase(name)) {
+                return type;
+            }
+        }
+        return null;
+    }
+    public static List<FarmAnimalType> farmAnimalsTypes() {
+        return new ArrayList<>(List.of(FarmAnimalType.values()));
     }
 }

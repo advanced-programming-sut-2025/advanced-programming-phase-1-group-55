@@ -1,6 +1,9 @@
 package Controller;
 
 import enums.AnimalCommands;
+import model.Animal.Animal;
+import model.Animal.AnimalBuilding;
+import model.Animal.FarmAnimalType;
 import model.Animal.FarmBuildingType;
 import model.App;
 import model.Item.ItemType;
@@ -57,8 +60,49 @@ public class AnimalController {
         user.increaseGold(-1 * price);
         user.getBackPack().removeAmountFromInventory(ItemType.WOOD, wood);
         user.getBackPack().removeAmountFromInventory(ItemType.STONE, stone);
-
-
-
+        farm.buildAnimalBuilding(new AnimalBuilding(targetTile, farmBuilding));
+        return new Result(true, "Animal Building built successfully");
     }
+
+
+    public Result buyAnimal(String input) {
+        String animal = AnimalCommands.BUY_ANIMAL.getMatcher(input).group("animal").trim();
+        String name = AnimalCommands.BUY_ANIMAL.getMatcher(input).group("name").trim();
+        User user = App.currentGame.currentUser;
+        Farm farm = user.getFarm();
+        NpcVillage city = App.currentGame.getMap().getVillage();
+
+        FarmAnimalType animalType = FarmAnimalType.getFarmAnimalsType(animal);
+        if (animalType != null) {
+            return new Result(false, "invalid Animal Type");
+        }
+        if(!user.validAnimalName(name)){
+            return new Result(false, "invalid Animal Name");
+        }
+        AnimalBuilding animalBuilding = farm.getBuildingForAnimal(animalType);
+        if (animalBuilding != null) {
+            return new Result(false, "you dint have a place for this animal");
+        }
+        int price = animalType.getPrice();
+        if (user.getGold() < price) {
+            return new Result(false, "you are poor");
+        }
+        user.increaseGold(-1 * price);
+        animalBuilding.putAnimalInBuilding(new Animal(name, animalType));
+        return new Result(true, "Animal buy successfully");
+    }
+    public Result pet(String input) {
+        String name = AnimalCommands.PET_ANIMAL.getMatcher(input).group("name").trim();
+        User user = App.currentGame.currentUser;
+        Animal animal = user.findAnimal(name);
+        if (animal == null) {
+            return new Result(false, "animal not found");
+        }
+        if (!user.isNear(animal.getTile().getLocation())) {
+            return new Result(false, "you are far away from animal");
+        }
+        animal.pet();
+        return new Result(true, "The animal was petted.");
+    }
+
 }

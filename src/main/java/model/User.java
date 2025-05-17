@@ -5,6 +5,8 @@ package model;
 import enums.CookingItemType;
 import enums.CraftingItemType;
 import enums.SkillType;
+import model.Animal.Animal;
+import model.Animal.AnimalBuilding;
 import model.CookingItems.CookingItem;
 import model.Friendship.Gift;
 import model.Friendship.PlayerFriendship;
@@ -438,6 +440,80 @@ public class User {
             }
         }
     }
+    public ArrayList<Animal> getAnimals()
+    {
+        ArrayList<Animal> animals = new ArrayList<>();
+        for (AnimalBuilding animalBuilding : farm.getAnimalBuildings())
+        {
+            for (Animal animal : animalBuilding.getAnimals())
+            {
+                animals.add(animal);
+            }
+        }
+        return animals;
+    }
+    public Animal findAnimal(String name)
+    {
+        for (Animal animal : getAnimals())
+        {
+            if (animal.getName().equalsIgnoreCase(name))
+            {
+                return animal;
+            }
+        }
+        return null;
+    }
+    public boolean validAnimalName(String name)
+    {
+        for (Animal animal : getAnimals())
+        {
+            if (animal.getName().equalsIgnoreCase(name))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+    public boolean isNearAnimal(Animal animal)
+    {
+        for (Animal anim : getAnimals())
+        {
+            if (anim.getName().equalsIgnoreCase(animal.getName()))
+            {
+                Tile tile = anim.getTile();
+
+                if (tile == null)
+                {
+                    return false;
+                }
+
+                Location p = tile.getLocation();
+                ArrayList<Location> neighbors = currentGame.currentUser.getFarm().getNeighbors(
+                        currentGame.currentUser.getLocation());
+
+                for (Location neighbor : neighbors)
+                {
+                    if (neighbor.equals(p))
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+    public boolean isNear(Location otherLocation)
+    {
+
+        Location location = this.location;
+        int dx = Math.abs(location.getX() - otherLocation.getX());
+        int dy = Math.abs(location.getY() - otherLocation.getY());
+
+        return (dx <= 1 && dy <= 1) && !(dx == 0 && dy == 0);
+    }
+
+
     //    public void learnRecipe(CraftingItemType recipe) {
 //        learnedCraftingRecipes.add(recipe);
 //    }

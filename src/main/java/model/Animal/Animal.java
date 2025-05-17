@@ -206,4 +206,9 @@ public class Animal extends Item {
     {
         return (int) (animalType.getPrice() * (((double) friendship / 1000) + 0.3));
     }
+
+
+
+
+
 }

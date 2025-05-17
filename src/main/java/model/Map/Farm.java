@@ -209,6 +209,26 @@ public class Farm {
         }
         return null;
     }
+    public ArrayList<Location> getNeighbors(Location p)
+    {
+        ArrayList<Location> neighbors = new ArrayList<>();
+
+        int[] dx = {-1, 0, 1, 0};
+        int[] dy = {0, 1, 0, -1};
+
+        for (int dir = 0; dir < 4; dir++)
+        {
+            int newX = p.getX() + dx[dir];
+            int newY = p.getY() + dy[dir];
+
+            if (isInBounds(newX, newY))
+            {
+                neighbors.add(new Location(newX, newY));
+            }
+        }
+
+        return neighbors;
+    }
 
 
 
