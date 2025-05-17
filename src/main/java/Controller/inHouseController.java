@@ -73,6 +73,7 @@ public class inHouseController {
             return new Result(false, "you ran out of energy and fainted");
         }
         CraftingItem product = CraftingItemCreator.create(recipe);
+        product.setNumber(1);
         user.getBackPack().addToInventory(product);
         return new Result(true, recipe.getProductName() + " has been crafted");
     }
