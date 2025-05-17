@@ -58,7 +58,7 @@ public enum ItemType {
     MAPLE_SEED("maple seed"),
     PINE_CONE("pine cone"),
     MAHOGANY_SEED("mahogany seed"),
-
+    WOOL("Wool"),
     CHERRY_BOMB_RECIPE("Cherry Bomb"),
     BOMB_RECIPE("Bomb"),
     MEGA_BOMB_RECIPE("Mega Bomb"),
@@ -122,8 +122,8 @@ public enum ItemType {
     FARMERS_LUNCH("farmers lunch"),
     SEAFOAM_PUDDING("seafoam pudding"),
     MINERS_TREAT("miners treat"),
-
-
+    HARD_WOOD("hard wood"),
+    LevelUpFriendship("level up friendship"),
 
     EGG("egg"),
     BIG_EGG("big egg"),
@@ -146,6 +146,7 @@ public enum ItemType {
     BLUEBERRY("blueberry"),
     MELON("melon"),
     APRICOT("apricot"),
+    GRAPES("grapes"),
     CHERRY("cherry"),
     BANANA("banana"),
     MANGO("mango"),
@@ -181,7 +182,7 @@ public enum ItemType {
     STEEL_TOOL("steel tool"),
     GOLD_TOOL("gold tool"),
     IRIDIUM_TOOL("iridium tool"),
-
+    PICKLE("pickle"),
 
 
 

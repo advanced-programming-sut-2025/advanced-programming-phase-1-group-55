@@ -1,5 +1,7 @@
 package model.Map;
 
+import model.NPC.Npc;
+import model.NPC.NpcType;
 import model.Store.*;
 
 import java.util.HashMap;
@@ -15,6 +17,13 @@ public class NpcVillage {
         put("CarpenterShop",new CarpenterShop());
         put("StarDropSaloon",new StarDropSaloon());
         put("Generalstore",new GeneralStore());
+    }};
+    private final Map<String, Npc> nps=new HashMap<>(){{
+        put("Abigail",new Npc(NpcType.ABIGAIL));
+        put("Sebastian",new Npc(NpcType.SEBASTIAN));
+        put("Harvey",new Npc(NpcType.HARVEY));
+        put("Robin",new Npc(NpcType.ROBIN));
+        put("Leah",new Npc(NpcType.LEAH));
     }};
     private final Location location=new Location(10,35);
     private final int width=20;
@@ -35,5 +44,9 @@ public class NpcVillage {
 
     public int getHeight() {
         return height;
+    }
+
+    public Map<String, Npc> getNpss() {
+        return nps;
     }
 }
