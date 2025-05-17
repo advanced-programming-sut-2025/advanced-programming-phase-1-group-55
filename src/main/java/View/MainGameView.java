@@ -204,10 +204,19 @@ public class MainGameView implements AppMenu {
 
         } else if (input.matches("\\s*inv\\s*")) {
             for (Item item : currentGame.currentUser.getBackPack().getInventory().values()) {
+                if(item.getNumber()==0){
+                    continue;
+                }
                 System.out.println(item.getItemType() + "  " + item.getNumber());
             }
 
-        } else if (input.matches("\\s*trade\\s+history\\s*")) {
+        }else if ((matcher=mainGameCommands.trashItem.getMatcher(input))!=null){
+            int amount=0;
+            if(matcher.group("amount")!=null){
+                amount=Integer.parseInt(matcher.group("amount"));
+            }
+            System.out.println(controller.trashItem(matcher.group("name").trim(),amount));
+        }else if (input.matches("\\s*trade\\s+history\\s*")) {
             System.out.println(controller5.TradeHistory());
         } else if (input.matches("\\s*remained\\s+trades\\s*")) {
             System.out.println(controller5.NotAnswerdTrades());
@@ -228,7 +237,19 @@ public class MainGameView implements AppMenu {
             System.out.println(controller6.hug(matcher.group("username")));
 
         } else if ((matcher = FriendshipCommands.flower.getMatcher(input)) != null) {
-            System.out.println(controller6.hug(matcher.group("username")));
+            System.out.println(controller6.sendFlower(matcher.group("username")));
+        } else if ((matcher = FriendshipCommands.sendGift.getMatcher(input))!=null){
+            System.out.println(controller6.sendGift(matcher.group("username"),matcher.group("item"),Integer.parseInt(matcher.group("amount"))));
+        } else if (FriendshipCommands.showReceivedGifts.getMatcher(input)!=null) {
+            System.out.println(controller6.showAllReceivedGifts());
+        } else if ((matcher=FriendshipCommands.showLAllGifts.getMatcher(input))!=null) {
+            System.out.println(controller6.showAllGiftsBySpecialFriend(matcher.group("username")));
+        } else if ((matcher=FriendshipCommands.rateGift.getMatcher(input))!=null) {
+            System.out.println(controller6.rateGift(Integer.parseInt(matcher.group("rate"))
+                    ,Integer.parseInt(matcher.group("id"))));
+        } else if (input.matches("\\s*exit\\s+game\\s*")) {
+            currentMenu = Menu.MainMenu;
+            System.out.println("Redirecting to MainMenu!");
         } else {
             System.out.println("Unknown command");
         }

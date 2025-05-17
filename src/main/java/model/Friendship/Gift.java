@@ -8,11 +8,13 @@ public class Gift {
     private User receiver;
     private Item item;
     private int rate;
+    private  int id;
 
-    public Gift(User sender, User receiver, Item item) {
+    public Gift(User sender, User receiver, Item item,int id) {
         this.sender = sender;
         this.receiver = receiver;
         this.item = item;
+        this.id=id;
     }
 
     public User getSender() {
@@ -45,5 +47,25 @@ public class Gift {
 
     public void setRate(int rate) {
         this.rate = rate;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "Gift{" +
+                "sender=" + sender.getUsername() +
+                ", receiver=" + receiver.getUsername() +
+                ", item=" + item.getItemType().getDisplayName() +
+                ", amount="+item.getNumber()+
+                ", rate=" + rate +
+                ", id=" + id +
+                '}';
     }
 }

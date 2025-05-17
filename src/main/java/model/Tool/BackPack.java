@@ -19,9 +19,8 @@ public class BackPack {
         put("WateringCan", new WateringCan());
         put("Scythe", new Scythe());
         put("FishingPole", new FishingPole(FishingPoleType.TRAINING_ROD));
-        put("Trashcan",new Trashcan());
     }};
-// todo havij , goosht zoghaal va ... yadet nare , bakhsh inventory moonde !!!!!!!
+    private Trashcan trashcan=new Trashcan();
     private Map<String,Item> inventory = new HashMap<>();
     private int level = 1;
     public Map<String, Tools> getAvailableTools() {
@@ -76,6 +75,7 @@ public class BackPack {
     public void addToInventory(Item item){
         if (inventory.size() < getSize()) {
             inventory.put(item.getItemType().name(),item);
+            item.setNumber(1);
         }
     }
     public void removeFromInventory(Item item){
@@ -224,5 +224,13 @@ public class BackPack {
                 this.inventory.remove(item.getItemType().getDisplayName());
             }
         }
+    }
+
+    public Trashcan getTrashcan() {
+        return trashcan;
+    }
+
+    public void setTrashcan(Trashcan trashcan) {
+        this.trashcan = trashcan;
     }
 }

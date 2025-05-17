@@ -17,6 +17,7 @@ import static model.weather.*;
 
 import model.Friendship.PlayerFriendship;
 import model.Game;
+import model.Map.Location;
 import model.Store.Product;
 import model.Store.Store;
 
@@ -33,17 +34,19 @@ public class GameTime {
     public static void setHour(int hour) {
         GameTime.hour = hour;
     }
-    public  static void friendshipWorks(){
-       for(User user:currentGame.playersInGame){
-           for (PlayerFriendship friendship:user.getFriendsPlayer().values()){
-               friendship.setTodayTalked(false);
-               friendship.setTodayGotFlower(false);
-               friendship.setTodayGotGift(false);
-               friendship.setTodayHugged(false);
-               friendship.setTodayTraded(false);
-           }
-       }
+
+    public static void friendshipWorks() {
+        for (User user : currentGame.playersInGame) {
+            for (PlayerFriendship friendship : user.getFriendsPlayer().values()) {
+                friendship.setTodayTalked(false);
+                friendship.setTodayGotFlower(false);
+                friendship.setTodayGotGift(false);
+                friendship.setTodayHugged(false);
+                friendship.setTodayTraded(false);
+            }
+        }
     }
+
     public static void roozbad() {
         GameTime.hour = 9;
         weather.setCurrentWeather(weather.getTomorrowWeather());
@@ -53,11 +56,13 @@ public class GameTime {
             System.out.println("Current Weather is " + weather.getCurrentWeather());
 
         }
-        for (User player : currentGame.playersInGame) {
-            if (player.getPlayerTommorowLocation() != null) {
 
-                System.out.println("ok shod");
-                player.setLocation(player.getPlayerTommorowLocation());
+        for (User player : currentGame.playersInGame) {
+            player.setLocation(new Location(player.getFarm().getLocation().getY() + 1, player.getFarm().getLocation().getX() + 1));
+
+            if (player.isFainted()) {
+                player.setFainted(false);
+                player.setEnergy(150);
             }
         }
         day = day.nextDay();
