@@ -1,21 +1,18 @@
 package Controller;
 
-import enums.CropQuality;
-import model.App;
 import model.Item.Item;
 import model.Map.Location;
+import model.Map.MainLocation;
 import model.Map.Tile;
 import model.Result;
-import model.Skill;
 import model.Tool.Tools;
+import model.Tool.WateringCan;
 import model.User;
 
 import static model.Item.ItemType.*;
 
 
 import static model.App.*;
-
-import java.util.ResourceBundle;
 
 public class FarmingController {
 
@@ -72,37 +69,79 @@ public class FarmingController {
         Tools tool = currentGame.currentUser.getBackPack().getCurrentTool();
         User user = currentGame.currentUser;
         Tile tile = getTileByDirection(directionInt);
+        System.out.println(tool.energyCost());
         if (tool.energyCost() > user.getEnergy()) {
             return new Result(false, "You do not have enough energy to use this tool");
         } else {
             tool.useTool();
-            if (tool.getName().equals("Hoe")) {
-                if (tile.getMohtaviat().equals("g")) {
-                    if (user.getGreenHouse() == null) {
-                        return new Result(false, "failed! you have no green house ");
+            switch (tool.getName()) {
+                case "Hoe" -> {
+                    if (tile.getMohtaviat().equals("g")) {
+                        if (user.getGreenHouse() == null) {
+                            return new Result(false, "failed! you have no green house");
+                        }
+                        return new Result(true, "you shokmed green house");
                     }
-                    return new Result(true, "you shokmed green house");
+                    if (tile.isShokhmed() || !tile.isEmpty()) {
+                        return new Result(false, "failed! you can't shokhm this tile");
+                    } else {
+                        tile.setShokhmed(true);
+                        return new Result(true, "tile shokhmed successfully");
+                    }
                 }
-                if (tile.isShokhmed() || !tile.isEmpty()) {
-                    return new Result(false, "failed! you cant shokhm this tile ");
-                } else {
+                case "Scythe" -> {
+                    if (tile.getMohtaviat().equals("?")) {
+                        user.getBackPack().getInventory()
+                                .get(tile.getItemInThisTile().getItemType().getDisplayName())
+                                .addNumber(1);
+                        tile.setMohtaviat(".");
+                        return new Result(true, "you received a plant");
+                    }
+                    return new Result(false, "there is nothing to scythe");
+                }
+                case "Axe"->{
+                    if(tile.getMohtaviat().equals("T")){
+                        currentGame.currentUser.getBackPack().addItemToInventory(new Item(WOOD),200);
+                        tile.setMohtaviat(".");
+                        tile.setItemInThisTile(null);
+                    } else if (tile.getMohtaviat().equals("&")||tile.getMohtaviat().equals("*")) {
+                        currentGame.currentUser.getBackPack().addItemToInventory
+                                (new Item(tile.getItemInThisTile().getItemType()),20);
+                        tile.setMohtaviat(".");
+                        tile.setItemInThisTile(null);
+                    }
+                } case "Pickaxe"->{
+                    if(tile.getMohtaviat().equals("0")){
+                        currentGame.currentUser.getBackPack().addItemToInventory
+                                (new Item(tile.getItemInThisTile().getItemType()),20);
+                        tile.setMohtaviat("^");
+                        tile.setItemInThisTile(null);
+                    } else if (tile.getMohtaviat().equals("I")) {
+                        currentGame.currentUser.getBackPack().addItemToInventory
+                                (new Item(tile.getItemInThisTile().getItemType()),tile.getItemInThisTile().getNumber());
+                        tile.setMohtaviat(".");
+                        tile.setItemInThisTile(null);
+                    }
+                }
+                case "WateringCan"->{
+                    if(user.getMainLocation().equals(MainLocation.NearTheWater)){
+                        if (tool instanceof WateringCan can) {
+                            can.setWaterContains(can.getCapacity());
+                            return new Result(true,"you filled your wateringCan: "+can.getWaterContains());
+                        }
 
-                    tile.setShokhmed(true);
-                    return new Result(true, "tile shokhmed successfully");
-                }
+                    }//todo aab daadn
+                    else if (true) {
 
-            }
-            if (tool.getName().equals("Scythe")) {
-                if (tile.getMohtaviat().equals("?")) {
-                    user.getBackPack().getInventory().get(tile.getItemInThisTile().getItemType().getDisplayName()).addNumber(1);
-                    tile.setMohtaviat(".");
-                    return new Result(true, "you received a plant ");
+                    }
                 }
-                return new Result(false, "there is nothing to scythe");
+                default -> {
+                    return new Result(false, "failed! tool not found");
+                }
             }
+
         }
-        return new Result(false, "failed! tool not found");
-
+        return new Result(false,"tool used successfully");
     }
 
     public Result plantSeed(String seed, String direction) {

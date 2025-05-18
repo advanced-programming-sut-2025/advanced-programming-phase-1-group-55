@@ -4,6 +4,7 @@ import enums.Menu;
 import model.App;
 import model.User;
 
+import static java.lang.Math.max;
 import static model.App.*;
 
 public enum MainLocation {
@@ -33,15 +34,15 @@ public enum MainLocation {
             return true;
         }else if(map.tiles[location.getY()+1][location.getX()].getType().equals(TileType.water)){
             return true;
-        }else if(map.tiles[location.getY()-1][location.getX()+1].getType().equals(TileType.water)){
+        }else if(map.tiles[max(0,location.getY()-1)][location.getX()+1].getType().equals(TileType.water)){
             return true;
-        }else if(map.tiles[location.getY()+1][location.getX()-1].getType().equals(TileType.water)){
+        }else if(map.tiles[location.getY()+1][max(0,location.getX()-1)].getType().equals(TileType.water)){
             return true;
-        }else if(map.tiles[location.getY()-1][location.getX()-1].getType().equals(TileType.water)){
+        }else if(map.tiles[max(0,location.getY()-1)][max(0,location.getX()-1)].getType().equals(TileType.water)){
             return true;
-        }else if(map.tiles[location.getY()][location.getX()-1].getType().equals(TileType.water)){
+        }else if(map.tiles[location.getY()][max(0,location.getX()-1)].getType().equals(TileType.water)){
             return true;
-        }else return map.tiles[location.getY() - 1][location.getX()].getType().equals(TileType.water);
+        }else return map.tiles[max(0,location.getY() - 1)][location.getX()].getType().equals(TileType.water);
     }
     public static Boolean isNearTheShippingBin(Location location){
         GameMap map=App.currentGame.getMap();
@@ -51,15 +52,15 @@ public enum MainLocation {
             return true;
         }else if(map.tiles[location.getY()+1][location.getX()].getMohtaviat().equals("@")){
             return true;
-        }else if(map.tiles[location.getY()-1][location.getX()+1].getMohtaviat().equals("@")){
+        }else if(map.tiles[max(0,location.getY()-1)][location.getX()+1].getMohtaviat().equals("@")){
             return true;
-        }else if(map.tiles[location.getY()+1][location.getX()-1].getMohtaviat().equals("@")){
+        }else if(map.tiles[location.getY()+1][max(0,location.getX()-1)].getMohtaviat().equals("@")){
             return true;
-        }else if(map.tiles[location.getY()-1][location.getX()-1].getMohtaviat().equals("@")){
+        }else if(map.tiles[max(0,location.getY()-1)][max(0,location.getX()-1)].getMohtaviat().equals("@")){
             return true;
-        }else if(map.tiles[location.getY()][location.getX()-1].getMohtaviat().equals("@")){
+        }else if(map.tiles[location.getY()][max(0,location.getX()-1)].getMohtaviat().equals("@")){
             return true;
-        }else return map.tiles[location.getY() - 1][location.getX()].getMohtaviat().equals("@");
+        }else return map.tiles[max(0,location.getY() - 1)][location.getX()].getMohtaviat().equals("@");
     }
     public static MainLocation findLocation(Location location){
         Farm farm=App.currentGame.currentUser.getFarm();

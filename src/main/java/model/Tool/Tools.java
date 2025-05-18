@@ -39,7 +39,7 @@ public class Tools {
     }
 
     public int getPriceToLevelUp() {
-        return 0;
+        return 400;
     }
 
     public int getPrice() {

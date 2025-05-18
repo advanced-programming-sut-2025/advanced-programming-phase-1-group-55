@@ -8,18 +8,18 @@ import static model.App.*;
 import static model.weather.getEnergyLoser;
 
 public class WateringCan extends Tools {
-    private int capacityUsed = 0;
+    private int waterContains = 0;
 
     public int getCapacity() {
-        if (level == 1) {
+        if (level == 0) {
             return 40;
-        } else if (level == 2) {
+        } else if (level == 1) {
             return 55;
-        } else if (level == 3) {
+        } else if (level == 2) {
             return 70;
-        } else if (level == 4) {
+        } else if (level == 3) {
             return 85;
-        } else if (level == 5) {
+        } else if (level == 4) {
             return 100;
         }
         return 0;
@@ -65,12 +65,12 @@ public class WateringCan extends Tools {
         return 5;
     }
 
-    public int getCapacityUsed() {
-        return capacityUsed;
+    public int getWaterContains() {
+        return waterContains;
     }
 
-    public void setCapacityUsed(int capacityUsed) {
-        this.capacityUsed = capacityUsed;
+    public void setWaterContains(int waterContains) {
+        this.waterContains = waterContains;
     }
 
     @Override
