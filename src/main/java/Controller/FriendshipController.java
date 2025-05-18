@@ -1,7 +1,6 @@
 package Controller;
 
-import model.Friendship.Gift;
-import model.Friendship.PlayerFriendship;
+import model.Friendship.*;
 import model.Item.Item;
 import model.Item.ItemType;
 import model.Map.Location;
@@ -42,7 +41,7 @@ public class FriendshipController {
 
     public Result talk(String username,String message){
         User user=findUser(username);
-        if(user==null){
+        if(user==null||user.getUsername().equals(currentGame.currentUser.getUsername())){
             return  new Result(false,"user not found!");
         }
         if(!locationsAreNear(user.getLocation(),currentGame.currentUser.getLocation())){
@@ -54,12 +53,16 @@ public class FriendshipController {
             user.getFriendsPlayer().get(currentGame.currentUser).setTodayTalked(true);
         }
         user.setHasMessageToday(true);
+        if(user.getFriendsPlayer().get(currentGame.currentUser).isAreMarried()){
+            user.increaseEnergy(50);
+            currentGame.currentUser.increaseEnergy(50);
+        }
         return new Result(true,"message successfully sent to : "+username);
     }
     public Result showTalkHistory(String username){
         User user=findUser(username);
         StringBuilder conversation=new StringBuilder();
-        if(user==null){
+        if(user==null||user.getUsername().equals(currentGame.currentUser.getUsername())){
             return  new Result(false,"user not found!");
         }
         for (String message:currentGame.currentUser.getFriendsPlayer().get(user).getConversation()){
@@ -69,7 +72,7 @@ public class FriendshipController {
     }
     public Result hug(String username){
         User user=findUser(username);
-        if(user==null){
+        if(user==null||user.getUsername().equals(currentGame.currentUser.getUsername())){
             return  new Result(false,"user not found!");
         }
         if(!locationsAreNear(user.getLocation(),currentGame.currentUser.getLocation())){
@@ -79,10 +82,14 @@ public class FriendshipController {
             return new Result(false,"your friendship level must be more than 2 , to hug each other");
         }
         user.getFriendsPlayer().get(currentGame.currentUser).increaseXp(60);
+        if(user.getFriendsPlayer().get(currentGame.currentUser).isAreMarried()){
+            user.increaseEnergy(50);
+            currentGame.currentUser.increaseEnergy(50);
+        }
         return new Result(true,"you huged each other :>");
     }public Result sendFlower(String username){
         User user=findUser(username);
-        if(user==null){
+        if(user==null||user.getUsername().equals(currentGame.currentUser.getUsername())){
             return  new Result(false,"user not found!");
         }
         if(!locationsAreNear(user.getLocation(),currentGame.currentUser.getLocation())){
@@ -97,11 +104,15 @@ public class FriendshipController {
         user.getFriendsPlayer().get(currentGame.currentUser).increaseXp(0);
         user.getFriendsPlayer().get(currentGame.currentUser)
                 .setLevel(max(3,user.getFriendsPlayer().get(currentGame.currentUser).getLevel()));
+        if(user.getFriendsPlayer().get(currentGame.currentUser).isAreMarried()){
+            user.increaseEnergy(50);
+            currentGame.currentUser.increaseEnergy(50);
+        }
         return new Result(true,"you successfully send flower to your friend");
     }
     public Result sendGift(String username,String name,int amount){
         User user=findUser(username);
-        if(user==null){
+        if(user==null||user.getUsername().equals(currentGame.currentUser.getUsername())){
             return  new Result(false,"user not found!");
         }
 
@@ -126,6 +137,10 @@ public class FriendshipController {
         currentGame.increaseNumberOfGifts();
         user.getReceivedGifts().put(gift.getId(),gift);
         user.getFriendsPlayer().get(currentGame.currentUser).getGifts().add(gift);
+        if(user.getFriendsPlayer().get(currentGame.currentUser).isAreMarried()){
+            user.increaseEnergy(50);
+            currentGame.currentUser.increaseEnergy(50);
+        }
         return new Result(true,"you gifted item successfully");
     }
     public Result showAllReceivedGifts(){
@@ -139,7 +154,7 @@ public class FriendshipController {
         return new Result(true,gifts.toString());
     }public Result showAllGiftsBySpecialFriend(String username){
         User user=findUser(username);
-        if(user==null){
+        if(user==null||user.getUsername().equals(currentGame.currentUser.getUsername())){
             return  new Result(false,"user not found!");
         }
         StringBuilder gifts=new StringBuilder();
@@ -164,5 +179,68 @@ public class FriendshipController {
         gift.setRate(rate);
         currentGame.currentUser.getFriendsPlayer().get(gift.getSender()).increaseXp((rate-3)*30+15);
         return new Result(true,"you rated the gift with id "+id+" successfully\nrate: "+rate);
+    }public Result askMarriage(String name, String ring){
+        User user=findUser(name);
+        if(user==null||user.getUsername().equals(currentGame.currentUser.getUsername())){
+            return  new Result(false,"user not found!");
+        }
+
+         if(!currentGame.currentUser.getBackPack().getInventory().containsKey(ring)){
+             return new Result(false,"you don't have "+ring+" to ask for marriage");
+         }
+         if(!locationsAreNear(user.getLocation(),currentGame.currentUser.getLocation())){
+            return  new Result(false,"You must be near the other player to ask for marriage!");
+         }
+         if(user.getFriendsPlayer().get(currentGame.currentUser).getLevel()<3){
+            return  new Result(false,"your friendship level must be more than 3 to marry each other");
+         }
+        if (!(user.getGender().equals("female")&&currentGame.currentUser.getGender().equals("male"))){
+            return new Result(false,"A man must make a marriage proposal to a woman");
+        }
+        MarriageRequest marriageRequest=new MarriageRequest
+                (currentGame.currentUser,user,currentGame.currentUser.getBackPack().getInventory().get(ring));
+         user.getFriendsPlayer().get(currentGame.currentUser).setMarriageRequest(marriageRequest);
+          return  new Result(true,"Your marriage request has been successfully submitted.");
+    }public Result showMarriageRequest(String name){
+        User user=findUser(name);
+        if(user==null||user.getUsername().equals(currentGame.currentUser.getUsername())){
+            return  new Result(false,"user not found!");
+        }
+        if(user.getFriendsPlayer().get(currentGame.currentUser).getMarriageRequest()==null){
+            return  new Result(false,"there is no marriage request between you and "+name);
+        }
+        return new Result(true,user.getFriendsPlayer()
+                .get(currentGame.currentUser).getMarriageRequest().toString());
+    }
+    public Result answerMarriageRequest(String answer,String username){
+        User user=findUser(username);
+        if(user==null||user.getUsername().equals(currentGame.currentUser.getUsername())){
+            return  new Result(false,"user not found!");
+        }
+        PlayerFriendship friendship=user.getFriendsPlayer().get(currentGame.currentUser);
+        if(friendship.getMarriageRequest()==null){
+            return  new Result(false,"there is no marriage request between you and "+username);
+        }
+        if(answer.equals("accept")){
+            if (!user.getBackPack().getInventory().containsKey(friendship.getMarriageRequest().getRing().getItemType().getDisplayName())){
+                return new Result(false,username+"removed "+
+                        friendship.getMarriageRequest().getRing().getItemType().getDisplayName()
+                        +"from his inventory!!");
+            }
+            Item item=friendship.getMarriageRequest().getRing();
+            friendship.getMarriageRequest().getMen().getBackPack().removeAmountFromInventory(item.getItemType(),1);
+            friendship.getMarriageRequest().getWomen().getBackPack().addItemToInventory(new Item(item.getItemType()),1);
+            friendship.setLevel(4);
+            friendship.getMarriageRequest().setAnswer(Answer.accept);
+            friendship.setAreMarried(true);
+            return new Result(true,"request accepted:>");
+        }else {
+            friendship.setLevel(0);
+            friendship.setXp(0);
+            friendship.getMarriageRequest().setAnswer(Answer.reject);
+            friendship.getMarriageRequest().getMen().setSad(true);
+            friendship.getMarriageRequest().setAnswer(Answer.reject);
+            return new Result(true,"request rejected :<");
+        }
     }
 }

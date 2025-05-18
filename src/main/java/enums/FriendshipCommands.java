@@ -14,7 +14,8 @@ public enum FriendshipCommands implements Command{
     hug("^\\s*hug\\s+-u\\s+(?<username>\\S+)\\s*$"),
     flower("^\\s*flower\\s+-u\\s+(?<username>\\S+)\\s*$"),
     askMarriage("^\\s*ask\\s+marriage\\s+-u\\s+(?<username>\\S+)\\s+-r\\s+(?<ring>\\S.*)\\s*$"),
-    respondMarriage("^\\s*respond\\s+–(?<answer>\\S+)\\s+-u\\s+(?<username>\\S+)\\s*$");
+    showMarriageRequest("^show\\s+marriage\\s+(?<username>\\S+)\\s*$"),
+    respondMarriage("^\\s*respond\\s+-(?<answer>accept|reject)\\s+-u\\s+(?<username>\\S+)\\s*$");
     private final String pattern;
 
     FriendshipCommands(String pattern) {

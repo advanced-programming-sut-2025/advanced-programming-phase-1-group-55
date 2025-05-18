@@ -29,6 +29,8 @@ public class User {
     private String nickName;
     private String gender;
     private String email;
+    private boolean isSad=false;
+    private int timePassedBeingSad=0;
     private int numberOfSecurityQuestion;
     private String securityQuestion;
     private BackPack backPack = new BackPack();
@@ -80,6 +82,23 @@ public class User {
     private Skill fishingSkill = new Skill(SkillType.Fishing);
     private ArrayList<CookingItem> refrigerator = new ArrayList<>();
 
+    public boolean isSad() {
+        return isSad;
+    }
+    public void increaseTimeToBeSad(){
+        timePassedBeingSad++;
+    }
+    public void setSad(boolean sad) {
+        isSad = sad;
+    }
+
+    public int getTimePassedBeingSad() {
+        return timePassedBeingSad;
+    }
+
+    public void setTimePassedBeingSad(int timePassedBeingSad) {
+        this.timePassedBeingSad = timePassedBeingSad;
+    }
 
     public HashMap<Integer, Trade> getTrades() {
         return trades;
@@ -224,7 +243,11 @@ public class User {
 
 
     public double getEnergy() {
-        return this.energy;
+        int zarib=1;
+        if (isSad){
+            zarib=2;
+        }
+        return (this.energy)/zarib;
     }
 
     public void setEnergy(double energy) {

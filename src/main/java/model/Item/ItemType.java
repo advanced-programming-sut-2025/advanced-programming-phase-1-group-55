@@ -301,8 +301,9 @@ public enum ItemType {
     DINOSAUR_EGG("dinosaur egg"),
     GOAT_MILK("goat milk"),
     LARGE_GOAT_MILK("large goat milk"),
-    TRUFFLE("truffle");
-
+    TRUFFLE("truffle"),
+    RING("ring"),
+    DELUXE_RING("deluxe ring");
 
 
     private final String DisplayName;
