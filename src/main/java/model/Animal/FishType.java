@@ -115,34 +115,78 @@ public enum FishType {
 
         return true;
     }
-    public static FishType getRandomFish(FishingPoleType poleType)
-    {
+//    public static FishType getRandomFish(FishingPoleType poleType)
+//    {
+//
+//        Seasons season = GameTime.getSeason();
+//        switch (poleType)
+//        {
+//            case FishingPoleType.TRAINING_ROD:
+//            {
+//                switch (season)
+//                {
+//                    case summer: return FishType.TILAPIA;
+//                    case fall: return FishType.SARDINE;
+//                    case winter: return FishType.PERCH;
+//                    case spring: return FishType.HERRING;
+//                }
+//            }
+//
+//            case FishingPoleType.BAMBOO_ROD:
+//            case FishingPoleType.IRIDIUM_ROD:
+//            case FishingPoleType.FIBERGLASS_ROD:
+//            {
+//                Random rand = new Random();
+//                return FishType.values()[rand.nextInt(FishType.values().length)];
+//            }
+//        }
+//
+//        return null;
+//    }
+public static FishType getRandomFish(FishingPoleType poleType) {
+    Seasons season = GameTime.getSeason();
 
-        Seasons season = GameTime.getSeason();
-        switch (poleType)
-        {
-            case FishingPoleType.TRAINING_ROD:
-            {
-                switch (season)
-                {
-                    case summer: return FishType.TILAPIA;
-                    case fall: return FishType.SARDINE;
-                    case winter: return FishType.PERCH;
-                    case spring: return FishType.HERRING;
+    switch (poleType) {
+        case TRAINING_ROD:
+            switch (season) {
+                case summer: return FishType.TILAPIA;
+                case fall: return FishType.SARDINE;
+                case winter: return FishType.PERCH;
+                case spring: return FishType.HERRING;
+            }
+            break;
+
+        case BAMBOO_ROD:
+        case FIBERGLASS_ROD:
+        case IRIDIUM_ROD: {
+            ArrayList<FishType> fishes = getOrdinaryFishTypes(season);
+
+            int fishingLevel = App.currentGame.currentUser.getFishingSkill().getLevel();
+            if (fishingLevel >= 4) {
+                FishType legendary = getLegendaryFishType(season);
+                if (legendary != null) {
+                    fishes.add(legendary);
                 }
             }
 
-            case FishingPoleType.BAMBOO_ROD:
-            case FishingPoleType.IRIDIUM_ROD:
-            case FishingPoleType.FIBERGLASS_ROD:
-            {
-                Random rand = new Random();
-                return FishType.values()[rand.nextInt(FishType.values().length)];
-            }
+            Random rand = new Random();
+            return fishes.get(rand.nextInt(fishes.size()));
         }
-
-        return null;
     }
+
+    return null;
+}
+    public static String getQualityName(double quality) {
+        if (quality < 0.5)
+            return "normal";
+        else if (quality < 0.7)
+            return "silver";
+        else if (quality < 0.9)
+            return "gold";
+        else
+            return "iridium";
+    }
+
 
 
 

@@ -24,7 +24,18 @@ public class Fish extends Item {
     }
 
     public double getQuality() {
+
         return quality;
+    }
+    public static String getQualityName(double quality) {
+        if (quality < 0.5)
+            return "normal";
+        else if (quality < 0.7)
+            return "silver";
+        else if (quality < 0.9)
+            return "gold";
+        else
+            return "iridium";
     }
     public void calculateQuality(FishingPoleType type)
     {
@@ -67,4 +78,5 @@ public class Fish extends Item {
         int result = (int) (R * M * (skill + 2));
         return result;
     }
+
 }

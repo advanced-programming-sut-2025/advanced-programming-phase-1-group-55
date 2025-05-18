@@ -291,7 +291,7 @@ public class AnimalController {
         if (tool == null) {
             return new Result(false, "tool not found");
         }
-        if (!user.getBackPack().getCurrentTool().equals(fishingPoleName)) {
+        if (!(user.getBackPack().getCurrentTool() instanceof FishingPole)) {
             return new Result(false, "you should use a FishingPole");
         }
 //        if (!user.getBackPack().getCurrentTool().equals(fishingPoleName)) {
@@ -323,11 +323,16 @@ public class AnimalController {
         StringBuilder sb = new StringBuilder();
         sb.append("You caught ").append(fishes.size()).append(" fish(es):\n");
         for (Fish fish : fishes) {
+            String qualityName = Fish.getQualityName(fish.getQuality());
             sb.append("- ").append(fish.getType().getDisplayName())
-                    .append(" (quality: ").append(fish.getQuality()).append(")\n");
+                    .append(" (quality: ").append(qualityName).append(")\n");
         }
         return new Result(true, sb.toString());
-    }
+
+
+
+        }
+
 
 
 }

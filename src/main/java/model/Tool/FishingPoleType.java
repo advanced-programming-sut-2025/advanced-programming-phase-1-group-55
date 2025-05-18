@@ -6,7 +6,6 @@ public enum FishingPoleType {
     FIBERGLASS_ROD( 2, 6, 1800, true, 0.9),
     IRIDIUM_ROD( 4, 4, 7500, true, 1.2);
 
-
     private final int requiredLevel;
     private final int energyPerUse;
     private final int price;
