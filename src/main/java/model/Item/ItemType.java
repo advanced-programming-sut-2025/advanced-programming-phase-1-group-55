@@ -1,5 +1,6 @@
 package model.Item;
 
+import enums.Seasons;
 import model.App;
 import model.Map.Tile;
 
@@ -271,7 +272,25 @@ public enum ItemType {
 
 
     DUMMY("dummy"),
-
+     DAFFODIL("daffodil"),
+    MOREL("morel"),
+    SALMON_BERRY("salmon berry"),
+    SPRING_ONION("spring onion"),
+    WILD_HORSERADISH("wild horseradish"),
+    FIDDLEHEAD_FERN("fiddle head fern"),
+    RED_MUSHROOM("Red Mushroom"),
+    SPICE_BERRY("Spice Berry"),
+    SWEET_PEA("Sweet Pea"),
+    BLACKBERRY("Blackberry"),
+    CHANTERELLE("Chanterelle"),
+    HAZELNUT("Hazelnut"),
+    PURPLE_MUSHROOM("Purple Mushroom"),
+    WILD_PLUM("Wild Plum"),
+    CROCUS("Crocus"),
+    CRYSTAL_FRUIT("Crystal Fruit"),
+    HOLLY("Holly"),
+    SNOW_YAM("Snow Yam"),
+    WINTER_ROOT("Winter Root"),
     LARGE_PACK("large backpack"),
     DELUXE_PACK("deluxe backpack"),
     LARGE_MILK("large milk"),

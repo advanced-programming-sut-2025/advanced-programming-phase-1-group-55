@@ -1,9 +1,10 @@
 package model;
 
 import enums.RockType;
+import model.Item.Item;
 import model.Map.Location;
 
-public class Rock {
+public class Rock  {
     private Location location;
     private RockType rockType;
 

@@ -17,8 +17,11 @@ import model.Friendship.NpcFriendship;
 import model.Friendship.PlayerFriendship;
 import model.Item.Item;
 import model.Map.Location;
+import model.Map.farmBuilder;
 import model.Store.Product;
 import model.Store.Store;
+
+import java.util.Random;
 
 import static model.App.*;
 
@@ -33,7 +36,6 @@ public class GameTime {
     public static void setHour(int hour) {
         GameTime.hour = hour;
     }
-
     public static void friendshipWorks() {
         for (User user : currentGame.playersInGame) {
             for (PlayerFriendship friendship : user.getFriendsPlayer().values()) {
@@ -45,7 +47,6 @@ public class GameTime {
             }
         }
     }
-
     public static void roozbad() {
         GameTime.hour = 9;
         weather.setCurrentWeather(weather.getTomorrowWeather());
@@ -68,9 +69,8 @@ public class GameTime {
                 currentGame.getAllPlants().remove(plant.getItemType().getDisplayName());
             }
         }
-
-
         for (User player : currentGame.playersInGame) {
+            //in moheme paak nakonid faghat baraaye saadegi tahvil comment kardim!!!!!!!!!!!!!!
 //            if (!player.isFainted()) {
 //
 //                player.setLocation(new Location(player.getFarm().getLocation().getY() + 1, player.getFarm().getLocation().getX() + 1));
@@ -87,22 +87,10 @@ public class GameTime {
             DayofMonth = 1;
             currentSeason = currentSeason.nextSeason();
         }
-
-//        if (DayofMonth >= 28 && DayofMonth < 56) {
-//            DayofMonth = 1;
-//
-//            currentSeason = currentSeason.nextSeason();
-//        } else if (DayofMonth >= 56 && DayofMonth < 84) {
-//            DayofMonth = 1;
-//            currentSeason = currentSeason.nextSeason().nextSeason();
-//
-//        } else if (DayofMonth > 84) {
-//            DayofMonth = 1;
-//            currentSeason = currentSeason.nextSeason().nextSeason().nextSeason();
-//        }
         for (User user : currentGame.playersInGame) {
             user.increaseGold(user.getDailyMoney());
             user.setDailyMoney(0);
+            farmBuilder.placeRandomForaggings(user.getFarm(),currentGame.getMap(),2,2,1,false);
         }
         for (Store store : currentGame.getMap().getVillage().getStores().values()) {
             for (Product product : store.getProductsOfStore().values()) {
@@ -117,6 +105,7 @@ public class GameTime {
                 friendship.setTodayHadGift(false);
             }
         }
+
     }
 
     public static DayOfTheWeeks getDay() {
