@@ -13,6 +13,7 @@ import static model.weather.getEnergyLoser;
 public class FishingPole extends Tools {
     private final FishingPoleType type;
 
+
     public Store getStore() {
         return new FishingStore();
     }
@@ -22,7 +23,10 @@ public class FishingPole extends Tools {
     }
 
 
+
+
     public FishingPole(FishingPoleType type) {
+
         this.type = type;
     }
 
@@ -52,6 +56,8 @@ public class FishingPole extends Tools {
             return FishingPoleType.IRIDIUM_ROD.getPrice();
         }
     }
+
+
 
     @Override
     public int getPrice() {

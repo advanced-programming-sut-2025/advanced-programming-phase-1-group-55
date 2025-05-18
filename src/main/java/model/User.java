@@ -2,26 +2,23 @@ package model;
 
 //import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
 
-import enums.CookingItemType;
-import enums.CraftingItemType;
 import enums.SkillType;
 import model.Animal.Animal;
 import model.Animal.AnimalBuilding;
+import model.Artisan.ArtisanMachine;
+import model.Artisan.ArtisanMachineType;
 import model.CookingItems.CookingItem;
 import model.Friendship.Gift;
 import model.Friendship.NpcFriendship;
 import model.Friendship.PlayerFriendship;
-import model.Item.Item;
 import model.Item.ItemType;
 import model.Map.*;
-import model.NPC.Npc;
 import model.NPC.Quest;
 import model.Tool.BackPack;
 
 import java.util.*;
 
 import static model.App.currentGame;
-import static model.App.mainUser;
 
 public class User {
     private String username;
@@ -81,6 +78,7 @@ public class User {
     private Skill foragingSkill = new Skill(SkillType.Foraging);
     private Skill fishingSkill = new Skill(SkillType.Fishing);
     private ArrayList<CookingItem> refrigerator = new ArrayList<>();
+    private ArrayList<ArtisanMachine> artisanMachines = new ArrayList<>();
 
     public boolean isSad() {
         return isSad;
@@ -552,6 +550,17 @@ public class User {
         int dy = Math.abs(location.getY() - otherLocation.getY());
 
         return (dx <= 1 && dy <= 1) && !(dx == 0 && dy == 0);
+    }
+    public ArtisanMachine getArtisan(ArtisanMachineType type)
+    {
+        for (ArtisanMachine good : artisanMachines)
+        {
+            if (good.getArtisanType() == type)
+            {
+                return good;
+            }
+        }
+        return null;
     }
 
 

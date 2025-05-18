@@ -13,6 +13,7 @@ import enums.WeatherType;
 
 import static model.weather.*;
 
+import model.Animal.Animal;
 import model.Friendship.NpcFriendship;
 import model.Friendship.PlayerFriendship;
 import model.Item.Item;
