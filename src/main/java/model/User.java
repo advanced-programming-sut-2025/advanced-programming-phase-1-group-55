@@ -17,6 +17,7 @@ import model.Map.*;
 import model.NPC.Npc;
 import model.NPC.Quest;
 import model.Tool.BackPack;
+import model.Tool.FishingPole;
 
 import java.util.*;
 

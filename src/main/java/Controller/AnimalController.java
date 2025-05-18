@@ -3,15 +3,16 @@ package Controller;
 import enums.AnimalCommands;
 import enums.WeatherType;
 import model.*;
-import model.Animal.Animal;
-import model.Animal.AnimalBuilding;
-import model.Animal.FarmAnimalType;
-import model.Animal.FarmBuildingType;
+import model.Animal.*;
 import model.Item.Item;
 import model.Item.ItemType;
 import model.Map.*;
+import model.Tool.FishingPole;
+import model.Tool.FishingPoleType;
+import model.Tool.Tools;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class AnimalController {
 //    public boolean locationsAreNear(Location location1, Location location2) {
@@ -260,9 +261,71 @@ public class AnimalController {
         return new Result(true, "The animal has been sold");
 
     }
+    private int numberOfFishes()
+    {
+        Random random = new Random();
+        double R = 0.5 + 0.5 * random.nextDouble();
+        double M;
+        int skill = App.currentGame.currentUser.getFishingSkill().getLevel();
+
+        switch (weather.getCurrentWeather()) {
+            case WeatherType.Sunny -> M = 1.5;
+            case WeatherType.Rain -> M = 1.2;
+            case WeatherType.Storm -> M = 0.5;
+            default -> M = 1;
+        }
+
+        int result = (int) (R * M * (skill + 2));
+        return Math.min(result, 6);
+    }
 
 
+    public Result fishing(String input) {
+        Random random = new Random();
+        String fishingPoleName = AnimalCommands.FISHING.getMatcher(input).group("fishingPole").trim();
+        User user = App.currentGame.currentUser;
+        Tools tool = user.getBackPack().getCurrentTool();
+        if (tool == null) {
+            return new Result(false, "tool not found");
+        }
+        if (!(tool instanceof FishingPole)) {
+            return new Result(false, "you should use a FishingPole");
+        }
+        if (!MainLocation.isNearTheWater(user.getLocation())) {
+            return new Result(false, "you are not near the water");
+        }
+        if (!user.getBackPack().getAvailableTools().containsKey(fishingPoleName)) {
+            return new Result(false, "you dont have fishing pole on your backpack");
+        }
+        int numberOfFishes = numberOfFishes();
+        FishingPole fishingPole = (FishingPole) user.getBackPack().getCurrentTool();
+        ArrayList<Fish> fishes = new ArrayList<>();
+        for (int i = 0; i < numberOfFishes; i++) {
+            FishType type = FishType.getRandomFish(fishingPole.getType());
+            if (type != null) {
+                fishes.add(new Fish(type));
+            }
+        }
+            if (fishes.isEmpty()) {
+                return new Result(false, "you dont have any fish");
+            }
+            if (!user.getBackPack().inventoryHasCapacity()){
+                return new Result(false, "you dont have inventory");
+            }
 
+            for (Fish fish : fishes) {
+                fish.calculateQuality(fishingPole.getType());
+                user.getFishingSkill().changePoints(5);
+                user.getBackPack().addItemToInventory(fish, 1);
+            }
+        StringBuilder sb = new StringBuilder();
+        sb.append("You caught ").append(fishes.size()).append(" fish(es):\n");
+        for (Fish fish : fishes) {
+            sb.append("- ").append(fish.getType().getDisplayName())
+                    .append(" (quality: ").append(fish.getQuality()).append(")\n");
+        }
+        return new Result(true, sb.toString());
+    }
 
 
 }

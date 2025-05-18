@@ -115,11 +115,11 @@ public enum FishType {
 
         return true;
     }
-    public static FishType getRandomFish(FishingPoleType poleLevel)
+    public static FishType getRandomFish(FishingPoleType poleType)
     {
 
         Seasons season = GameTime.getSeason();
-        switch (poleLevel)
+        switch (poleType)
         {
             case FishingPoleType.TRAINING_ROD:
             {
