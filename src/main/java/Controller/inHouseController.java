@@ -107,11 +107,14 @@ public class inHouseController {
         if (tile == null) {
             return new Result(false, "this tile does not exist");
         }
-        if (tile.getMohtaviat() != null||!tile.getMohtaviat().equals("h")) {
+        if (tile.getItemInThisTile()!=null) {
             return new Result(false, "this tile has something ");
         }
-        user.getBackPack().removeItemFromInventory(item);
-        tile.setItemInThisTile(item);
+        user.getBackPack().removeAmountFromInventory(item.getItemType(),1);
+        Item placedItem=new Item(item.getItemType());
+        placedItem.setNumber(1);
+        tile.setItemInThisTile(placedItem);
+        tile.setMohtaviat("I");
         return new Result(true, itemName + " has been placed");
 
     }
