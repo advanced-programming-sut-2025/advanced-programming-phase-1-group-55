@@ -266,9 +266,9 @@ public class MainGameController {
             item.setPrice(150);
         }
         App.currentGame.currentUser.getBackPack().removeAmountFromInventory(item.getItemType(), amount);
+        double sum=(amount * item.getPrice() * currentGame.currentUser.getBackPack().getTrashcan().getRatio());
         App.currentGame.currentUser.increaseGold
-                ((int) (amount * item.getPrice() * currentGame.currentUser
-                        .getBackPack().getTrashcan().getRatio()));
+                ((int) (sum/100));
         return new Result(true, "you sold " + name + "successfully!");
     }
 }

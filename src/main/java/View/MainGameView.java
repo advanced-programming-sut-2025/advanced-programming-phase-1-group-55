@@ -286,11 +286,11 @@ public class MainGameView implements AppMenu {
             }
 
         } else if ((matcher = mainGameCommands.trashItem.getMatcher(input)) != null) {
-            int amount = 0;
+            int amount = 1;
             if (matcher.group("amount") != null) {
                 amount = Integer.parseInt(matcher.group("amount"));
             }
-            System.out.println(controller.trashItem(matcher.group("name").trim(), amount));
+            System.out.println(controller.trashItem(matcher.group("name").trim(), 1));
         } else if (input.matches("\\s*trade\\s+history\\s*")) {
             System.out.println(controller5.TradeHistory());
         } else if (input.matches("\\s*remained\\s+trades\\s*")) {
