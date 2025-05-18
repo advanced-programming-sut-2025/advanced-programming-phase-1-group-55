@@ -320,6 +320,7 @@ public class MainGameView implements AppMenu {
         } else if ((matcher = FriendshipCommands.showLAllGifts.getMatcher(input)) != null) {
             System.out.println(controller6.showAllGiftsBySpecialFriend(matcher.group("username")));
         } else if ((matcher = FriendshipCommands.rateGift.getMatcher(input)) != null) {
+            System.out.println(controller6.rateGift(Integer.parseInt(matcher.group("rate")),Integer.parseInt(matcher.group("id"))));
         } else if ((NpcCommands.friendshipList.getMatcher(input)) != null) {
             System.out.println(controller21.showFriendships());
         } else if ((matcher = FriendshipCommands.rateGift.getMatcher(input)) != null) {

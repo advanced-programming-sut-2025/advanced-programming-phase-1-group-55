@@ -88,7 +88,7 @@ public class FriendshipController {
         if(!locationsAreNear(user.getLocation(),currentGame.currentUser.getLocation())){
             return  new Result(false,"you must be near the other player to send flower!");
         }
-        if(!currentGame.currentUser.getBackPack().getInventory().containsKey("BOUQUET")){
+        if(!currentGame.currentUser.getBackPack().getInventory().containsKey("bouquet")){
             return new Result(false,"you don't have flower in your inventory");
         }
         user.getBackPack().addItemToInventory(new Item(ItemType.BOUQUET),1);
@@ -155,6 +155,7 @@ public class FriendshipController {
         if(rate>5||rate<1){
             return  new Result(false,"rate is not valid");
         }
+
         if(currentGame.currentUser.getReceivedGifts()==null||currentGame.currentUser.getReceivedGifts().isEmpty()||
                 !currentGame.currentUser.getReceivedGifts().containsKey(id)){
             return  new Result(false,"there is no gift with the given id!");
