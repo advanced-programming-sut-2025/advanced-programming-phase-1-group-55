@@ -20,6 +20,7 @@ public class Farm {
     private GreenHouse greenHouse;
     private int HEIGHT = 20;
     private int WIDTH = 20;
+    private int numberOfRocksInTheQuery=0;
     private ArrayList<AnimalBuilding> animalBuildings = new ArrayList<>();
  
     public int getHEIGHT() {
@@ -60,7 +61,9 @@ public class Farm {
         this.quarry = quarry;
         this.location = location;
     }
-
+   public void increaseRocks(){
+        numberOfRocksInTheQuery++;
+   }
 
     public House getHouse() {
         return house;
@@ -233,5 +236,11 @@ public class Farm {
     }
 
 
+    public int getNumberOfRocksInTheQuery() {
+        return numberOfRocksInTheQuery;
+    }
 
+    public void setNumberOfRocksInTheQuery(int numberOfRocksInTheQuery) {
+        this.numberOfRocksInTheQuery = numberOfRocksInTheQuery;
+    }
 }

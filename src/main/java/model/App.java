@@ -7,10 +7,7 @@ import enums.Menu;
 
 import java.io.FileReader;
 import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class App {
     public static User mainUser;
@@ -18,6 +15,7 @@ public class App {
     public static Menu currentMenu = Menu.Register;
     public static HashMap<String, User> AllUsers = new HashMap<>();
     public static Game currentGame;
+    public static Random rand=new Random();
 
     public static Menu getCurrentMenu() {
         return currentMenu;

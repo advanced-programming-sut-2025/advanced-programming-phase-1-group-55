@@ -1,10 +1,15 @@
 package model.Map;
 
 import enums.RockType;
+import model.App;
 import model.FarmingProdocts.*;
+import model.Item.Item;
 import model.Rock;
 
+import java.util.Objects;
 import java.util.Random;
+
+import static model.App.rand;
 
 public class farmBuilder {
     private Farm farm1, farm1_copy, farm2, farm2_copy;
@@ -72,7 +77,6 @@ public class farmBuilder {
 
 
     public void fillFarmTiles(GameMap Map, Farm farm) {
-        Random rand=new Random();
         //todo bad taghir dadan tartib farm ha eslah beshe
 
 
@@ -97,22 +101,7 @@ public class farmBuilder {
             }
         }
         //random items
-            //rocks
-        int numberOfRocks=0;
-        do {
-            int x = rand.nextInt(3);
-            int y = rand.nextInt(3);
-            Tile tile = Map.tiles[y + farm.getQuarry().getLocation().getY()][x + farm.getQuarry().getLocation().getX()];
-            if (tile.getMohtaviat() .equals("^")) {
-                tile.setMohtaviat("0");
-                tile.setEmpty(false);
-                tile.setAccessible(true);
-                tile.setWalkable(true);
-                numberOfRocks++;
-                int rockType=rand.nextInt(17);
-                farm.getRocks().put(tile.getLocation(),new Rock(tile.getLocation(), RockType.getTypeByInt(rockType)));
-            }
-        } while (numberOfRocks != 3);
+
            //TREES
         int numberOfTrees=0;
         do {
@@ -129,36 +118,89 @@ public class farmBuilder {
             }
         } while (numberOfTrees != 15);
            //foraging seeds
-        int numberOfForagingSeeds=0;
-        do {
-            int x = rand.nextInt(20);
-            int y = rand.nextInt(20);
-            Tile tile = Map.tiles[y + farm.getLocation().getY()][x + farm.getLocation().getX()];
-            if (tile==null) {
-                tile=new Tile(new Location(y + farm.getLocation().getY(),x + farm.getLocation().getX())
-                        ,"*",true,false, TileType.grass);
-                Map.tiles[tile.getLocation().getY()][tile.getLocation().getX()]=tile;
-                numberOfForagingSeeds++;
-                int seedType = rand.nextInt(42);
-                farm.getSeeds().put(tile.getLocation(), new ForagingSeed(tile.getLocation(), AllForagingSeeds.fromId(seedType)));
-            }
-        } while (numberOfForagingSeeds != 10);
-           //foraging crobs
-        int numberOfForagingCrobs=0;
-        do {
-            int x = rand.nextInt(20);
-            int y = rand.nextInt(20);
-            Tile tile = Map.tiles[y + farm.getLocation().getY()][x + farm.getLocation().getX()];
-            if (tile==null) {
-                tile=new Tile(new Location(y + farm.getLocation().getY(),x + farm.getLocation().getX())
-                        ,"&",true,false, TileType.grass);
-                Map.tiles[tile.getLocation().getY()][tile.getLocation().getX()]=tile;
-                numberOfForagingCrobs++;
-                int seedType = rand.nextInt(23);
-                farm.getCrobs().put(tile.getLocation(), new ForagingCrops(tile.getLocation(), AllForagingCrops.fromId(seedType)));
-            }
-        } while (numberOfForagingCrobs != 10);
+        placeRandomForaggings(farm, Map, 5,5,2,true);
 
+
+    }
+
+    public static void placeRandomForaggings(Farm farm, GameMap map,int numberOfForagingCrops,int numberOfForagingSeeds,int numberOfRocks,boolean isFirstTime ) {
+        int counter1=0;
+        int tryCount1=0;
+        // be ehtemaal 1 darsad biofte
+        int x2=rand.nextInt()%100;
+        if(isFirstTime || x2 %25==0){
+            do {
+                tryCount1++;
+                int x = rand.nextInt(20);
+                int y = rand.nextInt(20);
+                Tile tile = map.tiles[y + farm.getLocation().getY()][x + farm.getLocation().getX()];
+                if (tile==null|| Objects.equals(tile.getMohtaviat(), ".")) {
+                    tile=new Tile(new Location(y + farm.getLocation().getY(),x + farm.getLocation().getX())
+                            ,"*",true,false, TileType.grass);
+                    map.tiles[tile.getLocation().getY()][tile.getLocation().getX()]=tile;
+                    counter1++;
+                    int seedType = rand.nextInt(40);
+                    ForagingSeed foragingSeed=new ForagingSeed(tile.getLocation(), AllForagingSeeds.fromId(seedType));
+                    farm.getSeeds().put(tile.getLocation(),foragingSeed );
+                    Item item=new Item(foragingSeed.getType().getItemType());
+                    item.setNumber(5);
+                    tile.setItemInThisTile(item);
+
+                }
+            } while (counter1 != numberOfForagingSeeds||tryCount1>15);
+        }
+        int counter2=0;
+        int tryCount2=0;
+        if(isFirstTime || x2 %25==0){
+            do {
+                tryCount2++;
+                int x = rand.nextInt(20);
+                int y = rand.nextInt(20);
+                Tile tile = map.tiles[y + farm.getLocation().getY()][x + farm.getLocation().getX()];
+                if (tile==null||Objects.equals(tile.getMohtaviat(), ".")) {
+                    tile=new Tile(new Location(y + farm.getLocation().getY(),x + farm.getLocation().getX())
+                            ,"&",true,false, TileType.grass);
+                    map.tiles[tile.getLocation().getY()][tile.getLocation().getX()]=tile;
+                    counter2++;
+                    int seedType = rand.nextInt(23);
+                    ForagingCrops foragingCrops= new ForagingCrops(tile.getLocation(), AllForagingCrops.fromId(seedType));
+                    farm.getCrobs().put(tile.getLocation(),foragingCrops );
+                    Item item=new Item(foragingCrops.getForagingCropsType().getItemType());
+                    item.setNumber(5);
+                    tile.setItemInThisTile(item);
+                }
+            } while (counter2 != numberOfForagingCrops||tryCount2>15);
+        }
+        //foraging crops
+
+
+        //rocks
+        int tryCount=0;
+        int counter3=0;
+        if ((isFirstTime || x2%20==0)&&farm.getNumberOfRocksInTheQuery()<16){
+            do {
+                tryCount++;
+                int x = rand.nextInt(4);
+                int y = rand.nextInt(4);
+                Tile tile = map.tiles[y + farm.getQuarry().getLocation().getY()][x + farm.getQuarry().getLocation().getX()];
+                if (tile.getMohtaviat() .equals("^")) {
+                    tile.setMohtaviat("0");
+                    tile.setEmpty(false);
+                    tile.setAccessible(true);
+                    tile.setWalkable(true);
+                    farm.increaseRocks();
+                    counter3++;
+                    int rockType=rand.nextInt(17);
+                    Rock rock=new Rock(tile.getLocation(), RockType.getTypeByInt(rockType));
+                    farm.getRocks().put(tile.getLocation(),rock);
+                    Item item=new Item(rock.getRockType().getItemType());
+                    tile.setItemInThisTile(item);
+                    item.setNumber(1);
+                    item.setPrice(rock.getRockType().getSellPrice());
+
+                }
+            } while (counter3 != numberOfRocks&&farm.getNumberOfRocksInTheQuery()<16&&tryCount<20);
+        }
 
     }
 
