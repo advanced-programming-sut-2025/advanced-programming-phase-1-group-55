@@ -33,6 +33,7 @@ public class FishingStore extends Store{
     }
     public Result purchase(int amount , Product product){
         BackPack backPack=App.currentGame.currentUser.getBackPack();
+        String message="you upgraded your fishing pole successfully";
         if(product.getItem().getItemType().equals(ItemType.FISH_SMOKER_RECIPE)){
             //TODO ADD RECIPE
             //App.currentGame.currentUser.getBackPack().getLearnedCraftingRecipes().add(CraftingItemType.);
@@ -46,11 +47,11 @@ public class FishingStore extends Store{
             backPack.getAvailableTools().remove("FishingPole");
             backPack.getAvailableTools().put("FishingPole",new FishingPole(FishingPoleType.IRIDIUM_ROD));
         }else if (product.getItem().getItemType().equals(ItemType.TRAINING_ROD)) {
-            backPack.getAvailableTools().remove("FishingPole");
             backPack.getAvailableTools().put("FishingPole",new FishingPole(FishingPoleType.TRAINING_ROD));
+            message="you successfully purchased  your first pole";
         }
         product.increaseDailySold(amount);
         App.currentGame.currentUser.increaseGold(-amount* product.getGoldCost());
-        return new Result(true,"you upgraded your fishing pole successfully");
+        return new Result(true,message);
     }
 }

@@ -130,8 +130,13 @@ public class FarmingController {
                             return new Result(true,"you filled your wateringCan: "+can.getWaterContains());
                         }
 
-                    }//todo aab daadn
-                    else if (true) {
+
+                    } else if (tile.getMohtaviat().equals("?")) {
+                        WateringCan can=(WateringCan)tool;
+                            can.setWaterContains(can.getWaterContains()-20);
+                            String message="you have "+can.getWaterContains()+" water now";
+                            return new Result(true,message+" you used your watering can for plant");
+
 
                     }
                 }
@@ -168,6 +173,7 @@ public class FarmingController {
                 currentGame.getAllPlants().put(seed, item);
 
                 tile.setItemInThisTile(item);
+                tile.setMohtaviat("?");
                 user.getBackPack().getInventory().get(seed).addNumber(-1);
                 return new Result(true, "seed planted successfully");
             }
@@ -180,7 +186,9 @@ public class FarmingController {
         if (!currentGame.currentUser.getBackPack().getCurrentTool().getName().equals("WateringCan")) {
             return new Result(false, "your tool is not a watering can");
         }
-        return new Result(true, "45");
+        WateringCan wateringCan=(WateringCan)currentGame.currentUser.getBackPack().getCurrentTool();
+        String message=" you have:"+wateringCan.getWaterContains()+"water in your watering can";
+        return new Result(true, message);
     }
 
     private Tile getTileByDirection(int direction) {

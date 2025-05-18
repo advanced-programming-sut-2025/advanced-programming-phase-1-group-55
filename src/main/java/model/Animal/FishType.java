@@ -147,6 +147,8 @@ public static FishType getRandomFish(FishingPoleType poleType) {
     Seasons season = GameTime.getSeason();
 
     switch (poleType) {
+        case BAMBOO_ROD:
+        case FIBERGLASS_ROD:
         case TRAINING_ROD:
             switch (season) {
                 case summer: return FishType.TILAPIA;
@@ -156,8 +158,7 @@ public static FishType getRandomFish(FishingPoleType poleType) {
             }
             break;
 
-        case BAMBOO_ROD:
-        case FIBERGLASS_ROD:
+
         case IRIDIUM_ROD: {
             ArrayList<FishType> fishes = getOrdinaryFishTypes(season);
 
