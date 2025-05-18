@@ -108,13 +108,13 @@ public class MainGameView implements AppMenu {
                 System.out.println("You must be at home for this.");
             }
         } else if ((matcher = inHouseGameMenuCommands.CheatAddItem.getMatcher(input)) != null) {
-            if (MainLocation.House.equals(currentGame.currentUser.getMainLocation())) {
+            //if (MainLocation.House.equals(currentGame.currentUser.getMainLocation())) {
                 String itemName = matcher.group("itemName");
                 String count = matcher.group("count");
                 System.out.println(inHouseController.CheatAddItem(itemName, count));
-            } else {
-                System.out.println("You must be at home for this.");
-            }
+//            } else {
+//                System.out.println("You must be at home for this.");
+//            }
         } else if ((matcher = inHouseGameMenuCommands.PlaceItem.getMatcher(input)) != null) {
 //            if (MainLocation.House.equals(currentGame.currentUser.getMainLocation())) {
                 String itemName = matcher.group("itemName");
@@ -326,6 +326,12 @@ public class MainGameView implements AppMenu {
         } else if ((matcher = FriendshipCommands.rateGift.getMatcher(input)) != null) {
             System.out.println(controller6.rateGift(Integer.parseInt(matcher.group("rate"))
                     , Integer.parseInt(matcher.group("id"))));
+        } else if ((matcher=FriendshipCommands.askMarriage.getMatcher(input))!=null) {
+            System.out.println(controller6.askMarriage(matcher.group("username"),matcher.group("ring")));
+        } else if ((matcher=FriendshipCommands.showMarriageRequest.getMatcher(input))!=null) {
+            System.out.println(controller6.showMarriageRequest(matcher.group("username")));
+        } else if ((matcher=FriendshipCommands.respondMarriage.getMatcher(input))!=null) {
+            System.out.println(controller6.answerMarriageRequest(matcher.group("answer"),matcher.group("username")));
         } else if ((matcher = NpcCommands.meetNpc.getMatcher(input)) != null) {
             System.out.println(controller21.meetNpc(matcher.group("name")));
         } else if ((matcher = NpcCommands.giftNpc.getMatcher(input)) != null) {

@@ -104,6 +104,13 @@ public class GameTime {
                 friendship.setTodayMet(false);
                 friendship.setTodayHadGift(false);
             }
+            if(user.isSad()){
+                user.increaseTimeToBeSad();
+                if (user.getTimePassedBeingSad()>=7){
+                    user.setTimePassedBeingSad(0);
+                    user.setSad(false);
+                }
+            }
         }
 
     }

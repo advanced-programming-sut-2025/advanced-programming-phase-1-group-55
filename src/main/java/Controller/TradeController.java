@@ -157,6 +157,10 @@ public class TradeController {
                     trade.getSender().getFriendsPlayer().get(trade.getReciver()).increaseXp(50);
                     trade.getSender().getFriendsPlayer().get(trade.getReciver()).setTodayTraded(true);
                 }
+                if(trade.getSender().getFriendsPlayer().get(trade.getReciver()).isAreMarried()){
+                    trade.getSender().increaseEnergy(50);
+                    trade.getReciver().increaseEnergy(50);
+                }
                 return new Result(true, "Trade " + id + " accepted(request)");
             } else if (response.equals("reject")) {
 
@@ -192,6 +196,10 @@ public class TradeController {
                 if(!trade.getSender().getFriendsPlayer().get(trade.getReciver()).isTodayTraded()){
                     trade.getSender().getFriendsPlayer().get(trade.getReciver()).increaseXp(50);
                     trade.getSender().getFriendsPlayer().get(trade.getReciver()).setTodayTraded(true);
+                }
+                if(trade.getSender().getFriendsPlayer().get(trade.getReciver()).isAreMarried()){
+                    trade.getSender().increaseEnergy(50);
+                    trade.getReciver().increaseEnergy(50);
                 }
                 return new Result(true, "Trade " + id + " accepted (offer)");
             } else if (response.equals("reject")) {

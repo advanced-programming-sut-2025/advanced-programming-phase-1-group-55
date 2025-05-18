@@ -6,6 +6,8 @@ import java.util.ArrayList;
 
 public class PlayerFriendship extends FriendShip {
     private User user1;
+    private boolean areMarried=false;
+    private MarriageRequest marriageRequest=null;
     private User user2;
     private boolean todayHugged=false;
     private boolean todayTraded=false;
@@ -127,5 +129,21 @@ public class PlayerFriendship extends FriendShip {
 
     public void setHasMarriage(boolean hasMarriage) {
         this.hasMarriage = hasMarriage;
+    }
+
+    public boolean isAreMarried() {
+        return areMarried;
+    }
+
+    public void setAreMarried(boolean areMarried) {
+        this.areMarried = areMarried;
+    }
+
+    public MarriageRequest getMarriageRequest() {
+        return marriageRequest;
+    }
+
+    public void setMarriageRequest(MarriageRequest marriageRequest) {
+        this.marriageRequest = marriageRequest;
     }
 }
