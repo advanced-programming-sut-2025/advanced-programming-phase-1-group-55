@@ -86,6 +86,7 @@ public class FarmingController {
                         return new Result(false, "failed! you can't shokhm this tile");
                     } else {
                         tile.setShokhmed(true);
+                        tile.setMohtaviat("+");
                         return new Result(true, "tile shokhmed successfully");
                     }
                 }
@@ -121,6 +122,9 @@ public class FarmingController {
                                 (new Item(tile.getItemInThisTile().getItemType()),tile.getItemInThisTile().getNumber());
                         tile.setMohtaviat(".");
                         tile.setItemInThisTile(null);
+                    } else if (tile.getMohtaviat().equals("+")) {
+                        tile.setMohtaviat(".");
+                        tile.setShokhmed(false);
                     }
                 }
                 case "WateringCan"->{
