@@ -20,9 +20,7 @@ public class MainGameView implements AppMenu {
     private final TradeController controller5 = new TradeController();
     private final NpcController controller21 = new NpcController();
     private final FarmingController controller7 = new FarmingController();
-    //    private final TreeCotroller controller3 = new TreeCotroller();
-//    private final ForagingCropController controller4 = new ForagingCropController();
-//    private final ForagingTreeController controller5 = new ForagingTreeController();
+
     private final inHouseController inHouseController = new inHouseController();
     private final AnimalController animalController = new AnimalController();
 
@@ -42,17 +40,7 @@ public class MainGameView implements AppMenu {
             System.out.println(controller2.getTreeByName(matcher.group("name")));
             System.out.println(controller2.getForagingCropsByName(matcher.group("name")));
             System.out.println(controller2.getForagingTreesByName(matcher.group("name")));
-//        } else if ((matcher = TreesCommands.ShowTreeByName.getMatcher(input)) != null) {
-//            System.out.println(controller3.getTreeByName(matcher.group("name")));
-//        } else if ((matcher = ForagingCropsCommands.showForagingCropsByName.getMatcher(input)) != null) {
-//            System.out.println(controller4.getForagingCropsByName(matcher.group("name")));
-//        } else if ((matcher = ForagingTreesCommands.showForagingTreesByName.getMatcher(input)) != null) {
-//            System.out.println(controller5.getForagingTreesByName(matcher.group("name")));
-//        } else if ((matcher = inHouseGameMenuCommands.ShowLearnedRecipes.getMatcher(input)) != null) {
-//            System.out.println(inHouseController.getLearnedRecipes(currentGame.currentUser));
-            // یادت نره این باید بره تو inHouseView برای تست لینجا گذاشتم
-//        } else if ((matcher = mainGameCommands.ShowCraftingRecipe.getMatcher(input)) != null) {
-//            System.out.println(inHouseController.ShowCraftingRecipe());
+
         } else if ((matcher = mainGameCommands.date.getMatcher(input)) != null) {
             System.out.println(controller.date());
 
@@ -179,61 +167,45 @@ public class MainGameView implements AppMenu {
                 System.out.println("You must be at marnie ranch store for this.");
             }
         } else if ((matcher = AnimalCommands.PET_ANIMAL.getMatcher(input)) != null) {
-//            if (MainLocation.House.equals(currentGame.currentUser.getMainLocation())) {
+
 
             System.out.println(animalController.pet(input));
-//            } else {
-//                System.out.println("You must be at home for this.");
-//            }
+
         } else if ((matcher = AnimalCommands.SET_FRIENDSHIP.getMatcher(input)) != null) {
-//            if (MainLocation.House.equals(currentGame.currentUser.getMainLocation())) {
+
 
             System.out.println(animalController.cheatSetFriendship(input));
-//            } else {
-//                System.out.println("You must be at home for this.");
-//            }
+
         } else if ((matcher = AnimalCommands.ANIMAL_INFOS.getMatcher(input)) != null) {
-//            if (MainLocation.House.equals(currentGame.currentUser.getMainLocation())) {
+
 
             System.out.println(animalController.showAnimalDetails());
-//            } else {
-//                System.out.println("You must be at home for this.");
-//            }
+
         } else if ((matcher = AnimalCommands.SHEPHERD_ANIMAL.getMatcher(input)) != null) {
-//            if (MainLocation.House.equals(currentGame.currentUser.getMainLocation())) {
+
 
             System.out.println(animalController.shepherdAnimal(input));
-//            } else {
-//                System.out.println("You must be at home for this.");
-//            }
+
         } else if ((matcher = AnimalCommands.FEED_HAY.getMatcher(input)) != null) {
-//            if (MainLocation.House.equals(currentGame.currentUser.getMainLocation())) {
+
 
             System.out.println(animalController.feedHay(input));
-//            } else {
-//                System.out.println("You must be at home for this.");
-//            }
+
         } else if ((matcher = AnimalCommands.PRODUCES.getMatcher(input)) != null) {
-//            if (MainLocation.House.equals(currentGame.currentUser.getMainLocation())) {
+
 
             System.out.println(animalController.showProducts());
-//            } else {
-//                System.out.println("You must be at home for this.");
-//            }
+
         } else if ((matcher = AnimalCommands.COLLECT_PRODUCES.getMatcher(input)) != null) {
-//            if (MainLocation.House.equals(currentGame.currentUser.getMainLocation())) {
+
 
             System.out.println(animalController.collectProducts(input));
-//            } else {
-//                System.out.println("You must be at home for this.");
-//            }
+
         } else if ((matcher = AnimalCommands.SELL_ANIMAL.getMatcher(input)) != null) {
-//            if (MainLocation.House.equals(currentGame.currentUser.getMainLocation())) {
+
 
             System.out.println(animalController.sellAnimal(input));
-//            } else {
-//                System.out.println("You must be at home for this.");
-//            }
+
         }
         else if (input.matches("\\s*next\\s+turn\\s*")) {
             currentGame.nextTurn();

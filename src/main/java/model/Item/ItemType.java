@@ -282,7 +282,22 @@ public enum ItemType {
     DINOSAUR_EGG("dinosaur egg"),
     GOAT_MILK("goat milk"),
     LARGE_GOAT_MILK("large goat milk"),
-    TRUFFLE("truffle");
+    TRUFFLE("truffle"),
+    SHAD("shad"),
+    BLUE_DISCUS("blue discus"),
+    SQUID("squid squid"),
+    TUNA("tuna"),
+    PERCH("perch"),
+    LIONFISH("lionfish"),
+    HERRING("herring"),
+    GHOSTFISH("ghostfish"),
+    TILAPIA("tilapia"),
+    DORADO("dorado"),
+    LEGEND("legend"),
+    GLACIER_FISH("glacier fish"),
+    ANGLER("angler"),
+    CRIMSON_FISH("crimson fish"),
+    ;
 
 
 
