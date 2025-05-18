@@ -206,6 +206,11 @@ public class MainGameView implements AppMenu {
 
             System.out.println(animalController.sellAnimal(input));
 
+        } else if ((matcher = AnimalCommands.FISHING.getMatcher(input)) != null) {
+
+
+            System.out.println(animalController.fishing(input));
+
         }
         else if (input.matches("\\s*next\\s+turn\\s*")) {
             currentGame.nextTurn();

@@ -285,18 +285,20 @@ public class AnimalController {
         String fishingPoleName = AnimalCommands.FISHING.getMatcher(input).group("fishingPole").trim();
         User user = App.currentGame.currentUser;
         Tools tool = user.getBackPack().getCurrentTool();
-        if (tool == null) {
-            return new Result(false, "tool not found");
-        }
-        if (!(tool instanceof FishingPole)) {
-            return new Result(false, "you should use a FishingPole");
-        }
         if (!MainLocation.isNearTheWater(user.getLocation())) {
             return new Result(false, "you are not near the water");
         }
-        if (!user.getBackPack().getAvailableTools().containsKey(fishingPoleName)) {
-            return new Result(false, "you dont have fishing pole on your backpack");
+        if (tool == null) {
+            return new Result(false, "tool not found");
         }
+        if (!user.getBackPack().getCurrentTool().equals(fishingPoleName)) {
+            return new Result(false, "you should use a FishingPole");
+        }
+//        if (!user.getBackPack().getCurrentTool().equals(fishingPoleName)) {
+//            return new Result(false, "you should use a FishingPole");
+//        }
+
+
         int numberOfFishes = numberOfFishes();
         FishingPole fishingPole = (FishingPole) user.getBackPack().getCurrentTool();
         ArrayList<Fish> fishes = new ArrayList<>();
