@@ -1,0 +1,170 @@
+package com.StardewValley.enums;
+
+import com.StardewValley.model.Item.ItemType;
+
+import java.util.HashMap;
+
+public enum CraftingItemType {
+    CHERRY_BOMB_RECIPE(ItemType.CHERRY_BOMB_RECIPE, ItemType.CHERRY_BOMB, new HashMap<>() {{
+        put(ItemType.COPPER_ORE, 4);
+        put(ItemType.COAL, 1);
+    }}, "Mining Level 1", 50),
+
+    BOMB_RECIPE(ItemType.BOMB_RECIPE ,ItemType.BOMB, new HashMap<>() {{
+        put(ItemType.IRON_ORE, 4);
+        put(ItemType.COAL, 1);
+    }}, "Mining Level 2", 50),
+
+    MEGA_BOMB_RECIPE(ItemType.MEGA_BOMB_RECIPE, ItemType.MEGA_BOMB, new HashMap<>() {{
+        put(ItemType.GOLD_ORE, 4);
+        put(ItemType.COAL, 1);
+    }}, "Mining Level 3", 50),
+
+    SPRINKLER_RECIPE(ItemType.SPRINKLER_RECIPE, ItemType.SPRINKLER, new HashMap<>() {{
+        put(ItemType.COPPER_BAR, 1);
+        put(ItemType.IRON_BAR, 1);
+    }}, "Farming Level 1", 0),
+
+    QUALITY_SPRINKLER_RECIPE(ItemType.QUALITY_SPRINKLER_RECIPE, ItemType.QUALITY_SPRINKLER, new HashMap<>() {{
+        put(ItemType.IRON_BAR, 1);
+        put(ItemType.GOLD_BAR, 1);
+    }}, "Farming Level 2", 0),
+
+    IRIDIUM_SPRINKLER_RECIPE(ItemType.IRIDIUM_SPRINKLER_RECIPE, ItemType.IRIDIUM_SPRINKLER, new HashMap<>() {{
+        put(ItemType.GOLD_BAR, 1);
+        put(ItemType.IRIDIUM_BAR, 1);
+    }}, "Farming Level 3", 0),
+
+    CHARCOAL_KILN_RECIPE(ItemType.CHARCOAL_KILN_RECIPE, ItemType.CHARCOAL_KILN, new HashMap<>() {{
+        put(ItemType.WOOD, 20);
+        put(ItemType.COPPER_BAR, 2);
+    }}, "Foraging Level 1", 0),
+
+    FURNACE_RECIPE(ItemType.FURNACE_RECIPE, ItemType.FURNACE, new HashMap<>() {{
+        put(ItemType.COPPER_ORE, 20);
+        put(ItemType.STONE, 25);
+    }}, "-", 0),
+
+    SCARECROW_RECIPE(ItemType.SCARECROW_RECIPE, ItemType.SCARECROW, new HashMap<>() {{
+        put(ItemType.WOOD, 50);
+        put(ItemType.COAL, 1);
+        put(ItemType.FIBER, 20);
+    }}, "-", 0),
+
+    DELUXE_SCARECROW_RECIPE(ItemType.DELUXE_SCARECROW_RECIPE, ItemType.DELUXE_SCARECROW, new HashMap<>() {{
+        put(ItemType.WOOD, 50);
+        put(ItemType.COAL, 1);
+        put(ItemType.FIBER, 20);
+        put(ItemType.IRIDIUM_ORE, 1);
+    }}, "Farming Level 2", 0),
+
+    BEE_HOUSE_RECIPE(ItemType.BEE_HOUSE_RECIPE, ItemType.BEE_HOUSE, new HashMap<>() {{
+        put(ItemType.WOOD, 40);
+        put(ItemType.COAL, 8);
+        put(ItemType.IRON_BAR, 1);
+    }}, "Farming Level 1", 0),
+
+    CHEESE_PRESS_RECIPE(ItemType.CHEESE_PRESS_RECIPE, ItemType.CHEESE_PRESS, new HashMap<>() {{
+        put(ItemType.WOOD, 45);
+        put(ItemType.STONE, 45);
+        put(ItemType.COPPER_BAR, 1);
+    }}, "Farming Level 2", 0),
+
+    KEG_RECIPE(ItemType.KEG_RECIPE, ItemType.KEG, new HashMap<>() {{
+        put(ItemType.WOOD, 30);
+        put(ItemType.COPPER_BAR, 1);
+        put(ItemType.IRON_BAR, 1);
+    }}, "Farming Level 3", 0),
+
+    LOOM_RECIPE(ItemType.LOOM_RECIPE, ItemType.LOOM, new HashMap<>() {{
+        put(ItemType.WOOD, 60);
+        put(ItemType.FIBER, 30);
+    }}, "Farming Level 3", 0),
+
+    MAYONNAISE_MACHINE_RECIPE(ItemType.MAYONNAISE_MACHINE_RECIPE, ItemType.MAYONNAISE_MACHINE, new HashMap<>() {{
+        put(ItemType.WOOD, 15);
+        put(ItemType.STONE, 15);
+        put(ItemType.COPPER_BAR, 1);
+    }}, "-", 0),
+
+    OIL_MAKER_RECIPE(ItemType.OIL_MAKER_RECIPE, ItemType.OIL_MAKER, new HashMap<>() {{
+        put(ItemType.WOOD, 100);
+        put(ItemType.GOLD_BAR, 1);
+        put(ItemType.IRON_BAR, 1);
+    }}, "Farming Level 3", 0),
+
+    PRESERVES_JAR_RECIPE(ItemType.PRESERVES_JAR_RECIPE, ItemType.PRESERVES_JAR, new HashMap<>() {{
+        put(ItemType.WOOD, 50);
+        put(ItemType.STONE, 40);
+        put(ItemType.COAL, 8);
+    }}, "Farming Level 2", 0),
+
+    DEHYDRATOR_RECIPE(ItemType.DEHYDRATOR_RECIPE, ItemType.DEHYDRATOR, new HashMap<>() {{
+        put(ItemType.WOOD, 30);
+        put(ItemType.STONE, 20);
+        put(ItemType.FIBER, 30);
+    }}, "Pierre's General Store", 0),
+
+    GRASS_STARTER_RECIPE(ItemType.GRASS_STARTER_RECIPE, ItemType.GRASS_STARTER, new HashMap<>() {{
+        put(ItemType.WOOD, 1);
+        put(ItemType.FIBER, 1);
+    }}, "Pierre's General Store", 0),
+
+    FISH_SMOKER_RECIPE(ItemType.FISH_SMOKER_RECIPE, ItemType.FISH_SMOKER, new HashMap<>() {{
+        put(ItemType.WOOD, 50);
+        put(ItemType.IRON_BAR, 3);
+        put(ItemType.COAL, 10);
+    }}, "Fish Shop", 0),
+
+    MYSTIC_TREE_SEED_RECIPE(ItemType.MYSTIC_TREE_SEED_RECIPE, ItemType.MYSTIC_TREE_SEED, new HashMap<>() {{
+        put(ItemType.ACORN, 5);
+        put(ItemType.MAPLE_SEED, 5);
+        put(ItemType.PINE_CONE, 5);
+        put(ItemType.MAHOGANY_SEED, 5);
+    }}, "Foraging Level 4", 100);
+
+
+    private final ItemType type;
+    private final ItemType productName;
+    private final HashMap<ItemType, Integer> ingredients;
+    private final String source;
+    private final int sellPrice;
+
+    CraftingItemType(ItemType type, ItemType productName, HashMap<ItemType, Integer> ingredients, String source, int sellPrice) {
+        this.type = type;
+        this.productName = productName;
+        this.ingredients = ingredients;
+        this.source = source;
+        this.sellPrice = sellPrice;
+    }
+
+    public ItemType getType() {
+        return type;
+    }
+
+    public ItemType getProductName() {
+        return productName;
+    }
+
+    public HashMap<ItemType, Integer> getIngredients() {
+        return ingredients;
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    public int getSellPrice() {
+        return sellPrice;
+    }
+    public static CraftingItemType getRecipeFromItemName(String name) {
+        for (CraftingItemType recipe : CraftingItemType.values()) {
+            if (name.equalsIgnoreCase(recipe.getProductName().toString())) {
+                return recipe;
+            }
+        }
+        return null;
+    }
+
+}
+
