@@ -1,0 +1,53 @@
+package com.StardewValley.model.Store;
+
+import com.StardewValley.enums.Seasons;
+import com.StardewValley.model.App;
+import com.StardewValley.model.Item.Item;
+import com.StardewValley.model.Item.ItemType;
+import com.StardewValley.model.NPC.Npc;
+import com.StardewValley.model.Result;
+
+
+import java.time.LocalTime;
+import java.util.HashMap;
+
+
+public class CarpenterShop extends Store{
+    public CarpenterShop() {
+        super(9, 20,
+                new HashMap<>() {{
+                    put("wood",new Product(new Item(ItemType.WOOD),100000,10,0,0, Seasons.special));
+                    put("stone",new Product(new Item(ItemType.STONE),100000,20,0,0, Seasons.special));
+                    put("barn",new Product(new Item(ItemType.BARN),1,6000,350,150, Seasons.special));
+                    put("deluxe barn",new Product(new Item(ItemType.DELUXE_BARN),1,25000,550,300, Seasons.special));
+                    put("coop",new Product(new Item(ItemType.COOP),1,4000,300,100, Seasons.special));
+                    put("big coop",new Product(new Item(ItemType.BIG_COOP),1,10000,400,150, Seasons.special));
+                    put("deluxe coop",new Product(new Item(ItemType.DELUXE_COOP),1,20000,500,200, Seasons.special));
+                    put("big barn",new Product(new Item(ItemType.BIG_BARN),1,12000,450,200, Seasons.special));
+                    put("well",new Product(new Item(ItemType.WELL),1,1000,0,75, Seasons.special));
+                    put("shipping bin",new Product(new Item(ItemType.SHIPPING_BIN),100000,250,150,0, Seasons.special));
+                }},
+                "CarpenterShop");
+
+    }
+    public Result purchase(int amount , Product product){
+//          if(product.getItem().getItemType().equals(ItemType.WOOD)){
+//              App.currentGame.currentUser.setWood(App.currentGame.currentUser.getWood()+amount);
+//          } else if (product.getItem().getItemType().equals(ItemType.STONE)) {
+//              App.currentGame.currentUser.setStone(App.currentGame.currentUser.getStone()+amount);
+//          } else  {
+              Result x=App.currentGame.currentUser.getBackPack().addItemToInventory(product.getItem(),amount);
+            if(x.IsSuccess()){
+                product.increaseDailySold(amount);
+            }
+            return x;
+//          }
+//        product.increaseDailySold(amount);
+//          App.currentGame.currentUser.increaseGold(-amount* product.getGoldCost());
+       // return  new Result(true,"you purchased this item successfully");
+    }
+}
+
+
+
+

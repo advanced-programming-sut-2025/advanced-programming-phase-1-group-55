@@ -1,0 +1,28 @@
+package com.StardewValley.Controller;
+
+
+import com.StardewValley.model.FarmingProdocts.AllTrees;
+import com.StardewValley.model.FarmingProdocts.Tree;
+import com.StardewValley.model.Result;
+
+public class TreeCotroller {
+    public Result getTreeByName(String name) {
+        for (AllTrees tree : AllTrees.values()) {
+            if (tree.getName().equalsIgnoreCase(name)) {
+                StringBuilder sb = new StringBuilder("Tree found:\n");
+                sb.append("Name: ").append(tree.getName()).append("\n")
+                        .append("Source: ").append(tree.getSeedSource().getName()).append("\n")
+                        .append("Stages: ").append(tree.getStages()).append("\n")
+                        .append("Total Harvest Time: ").append(tree.getTotalHarvestTime()).append("\n")
+                        .append("Fruits: ").append(tree.getFruits()).append("\n")
+                        .append("Fruit Harvest Cycle: ").append(tree.getFruits().getType().getFruitHarvestCycle()).append("\n")
+                        .append("Fruit Base Sell Price: ").append(tree.getFruits().getType().getFruitBaseSellPrice()).append("\n")
+                        .append("Is Fruit Edible:").append(tree.getFruits().getType().isFruitEdible()).append("\n")
+                        .append("Fruit Energy: ").append(tree.getFruits().getType().getFruitEnergy()).append("\n")
+                        .append("Season: ").append(tree.getSeedSource().getSeason()).append("\n");
+                return new Result(true, sb.toString());
+            }
+        }
+        return new Result(false, "Tree with this name doesn't exist");
+    }
+}
