@@ -5,7 +5,7 @@ import model.Item.Item;
 
 import java.util.List;
 
-public class Crop {
+public class Crop{
     private AllCrops cropType;
     private Location location;
 

@@ -181,6 +181,33 @@ public class FarmingController {
 
 
     }
+    public Result fertilizePlant(String fertilizerName, String direction) {
+        User user = currentGame.currentUser;
+
+        int dirInt;
+        try {
+            dirInt = Integer.parseInt(direction);
+        } catch (Exception e) {
+            return new Result(false, "Invalid direction");
+        }
+
+        Tile tile = getTileByDirection(dirInt);
+        if (tile == null || !tile.getMohtaviat().equals("?")) {
+            return new Result(false, "There is no plant in this direction.");
+        }
+
+        if (!user.getBackPack().getInventory().containsKey(fertilizerName)
+                || user.getBackPack().getInventory().get(fertilizerName).getNumber() <= 0) {
+            return new Result(false, "You don't have this fertilizer.");
+        }
+
+        Item crop = tile.getItemInThisTile();
+        crop.setFertilized(true);  // نیاز به متد در Item یا زیرکلاس
+
+        user.getBackPack().getInventory().get(fertilizerName).addNumber(-1);
+        return new Result(true, "Fertilizer used on crop successfully.");
+    }
+
 
     public Result howMuchWater() {
         if (!currentGame.currentUser.getBackPack().getCurrentTool().getName().equals("WateringCan")) {

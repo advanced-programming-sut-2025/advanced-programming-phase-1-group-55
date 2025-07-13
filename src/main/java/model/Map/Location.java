@@ -34,6 +34,25 @@ public class Location {
         x += dx;
         return new Location(y, x);
     }
+    public Location getAdjacent(String direction) {
+        int dx = 0, dy = 0;
+
+        switch (direction.toLowerCase()) {
+            case "up": dy = -1; break;
+            case "down": dy = 1; break;
+            case "left": dx = -1; break;
+            case "right": dx = 1; break;
+            case "upleft": dx = -1; dy = -1; break;
+            case "upright": dx = 1; dy = -1; break;
+            case "downleft": dx = -1; dy = 1; break;
+            case "downright": dx = 1; dy = 1; break;
+            default:
+                throw new IllegalArgumentException("Invalid direction: " + direction);
+        }
+
+        return new Location(this.y + dy, this.x + dx);
+    }
+
 
     @Override
     public String toString() {
