@@ -1,6 +1,8 @@
 package Controller;
 
+import model.FarmingProdocts.*;
 import model.Item.Item;
+import model.Item.ItemType;
 import model.Map.Location;
 import model.Map.MainLocation;
 import model.Map.Tile;
@@ -133,9 +135,24 @@ public class FarmingController {
 
                     } else if (tile.getMohtaviat().equals("?")) {
                         WateringCan can=(WateringCan)tool;
-                            can.setWaterContains(can.getWaterContains()-20);
-                            String message="you have "+can.getWaterContains()+" water now";
-                            return new Result(true,message+" you used your watering can for plant");
+                        if (can.getWaterContains() < 20) {
+                            return new Result(false, "Not enough water in watering can");
+                        }
+
+                        if (!(tile.getItemInThisTile() instanceof Fertilizable plant)) {
+                            return new Result(false, "There is no plant to water on this tile.");
+                        }
+
+                        if (plant.isWatered()) {
+                            return new Result(false, "This plant is already watered today.");
+                        }
+
+                        can.setWaterContains(can.getWaterContains() - 20);
+                        plant.setWatered(true);
+//                        plant.resetDaysWithoutWater();
+
+                        String message = "You have " + can.getWaterContains() + " water left.";
+                        return new Result(true, message + " You watered the plant successfully.");
 
 
                     }
@@ -149,64 +166,122 @@ public class FarmingController {
         return new Result(false,"tool used successfully");
     }
 
-    public Result plantSeed(String seed, String direction) {
+public Result plantSeed(String seed, String direction) {
+    int directionInt;
+    try {
+        directionInt = Integer.parseInt(direction);
+    } catch (Exception e) {
+        return new Result(false, "Invalid tool direction.");
+    }
 
+    User user = currentGame.currentUser;
+    Tile tile = getTileByDirection(directionInt);
+
+    ItemType seedType = getItemType(seed);
+    if (seedType == null) {
+        return new Result(false, "Invalid seed name.");
+    }
+
+    Item seedItem = user.getBackPack().getInventory().get(seedType.getDisplayName());
+    if (seedItem == null || seedItem.getNumber() <= 0) {
+        return new Result(false, "You don't have this seed in your inventory.");
+    }
+
+    if (!tile.isShokhmed() || !tile.isEmpty() ) {
+        return new Result(false, "You can't plant on this tile.");
+    }
+
+
+    AllCrops cropType = getCropTypeBySeed(seedType);
+    if (cropType == null) {
+        return new Result(false, "No crop matches this seed.");
+    }
+
+
+    Crop crop = new Crop(cropType, tile.getLocation());
+    tile.setItemInThisTile(crop);
+    tile.setMohtaviat("?");
+    seedItem.addNumber(-1);
+
+    return new Result(true, "Seed planted successfully.");
+}
+
+    private AllCrops getCropTypeBySeed(ItemType seedItemType) {
+        for (AllCrops crop : AllCrops.values()) {
+            if (crop.getSeed().getName().equalsIgnoreCase(seedItemType.getDisplayName())) {
+                return crop;
+            }
+        }
+        return null;
+    }
+
+
+
+
+
+
+
+
+
+
+    public Result fertilizePlant(String fertilizer, String direction) {
         int directionInt;
+
         try {
             directionInt = Integer.parseInt(direction);
         } catch (Exception e) {
-            return new Result(false, "Invalid tool direction");
+            return new Result(false, "Invalid direction value.");
         }
+
         User user = currentGame.currentUser;
         Tile tile = getTileByDirection(directionInt);
-        System.out.println(getItemType(seed).getDisplayName());
 
-        System.out.println(seed);
-        if (user.getBackPack().getInventory().get(getItemType(seed).getDisplayName()) == null) {
-            return new Result(false, "you dont have this seed in your inventory");
-        } else {
-            if (!tile.isShokhmed() || !tile.isEmpty() || tile.getOwner() != user) {
-                return new Result(false, "you cant plant on this tile");
-            } else {
-                Item item = new Item(getItemType(seed));
-                item.setLocation(tile.getLocation());
-                currentGame.getAllPlants().put(seed, item);
 
-                tile.setItemInThisTile(item);
-                tile.setMohtaviat("?");
-                user.getBackPack().getInventory().get(seed).addNumber(-1);
-                return new Result(true, "seed planted successfully");
-            }
+        Item fertilizerItem = user.getBackPack().getInventory().get(fertilizer);
+        if (fertilizerItem == null || fertilizerItem.getNumber() <= 0) {
+            return new Result(false, "You do not have this fertilizer.");
         }
 
 
+        Item itemInTile = tile.getItemInThisTile();
+        if (!(itemInTile instanceof Fertilizable plant)) {
+            return new Result(false, "There is no plant to fertilize on this tile.");
+        }
+
+
+        if (plant.isFertilized()) {
+            return new Result(false, "This plant is already fertilized.");
+        }
+
+        plant.setFertilized(true);
+        fertilizerItem.addNumber(-1);
+        return new Result(true, "Fertilizer applied successfully.");
     }
-    public Result fertilizePlant(String fertilizerName, String direction) {
-        User user = currentGame.currentUser;
 
-        int dirInt;
-        try {
-            dirInt = Integer.parseInt(direction);
-        } catch (Exception e) {
-            return new Result(false, "Invalid direction");
-        }
 
-        Tile tile = getTileByDirection(dirInt);
-        if (tile == null || !tile.getMohtaviat().equals("?")) {
-            return new Result(false, "There is no plant in this direction.");
-        }
+public Result showPlant(int x, int y) {
+    Tile tile = currentGame.getMap().tiles[y][x];
+    Item item = tile.getItemInThisTile();
 
-        if (!user.getBackPack().getInventory().containsKey(fertilizerName)
-                || user.getBackPack().getInventory().get(fertilizerName).getNumber() <= 0) {
-            return new Result(false, "You don't have this fertilizer.");
-        }
-
-        Item crop = tile.getItemInThisTile();
-        crop.setFertilized(true);  // نیاز به متد در Item یا زیرکلاس
-
-        user.getBackPack().getInventory().get(fertilizerName).addNumber(-1);
-        return new Result(true, "Fertilizer used on crop successfully.");
+    if (!(item instanceof Crop crop)) {
+        return new Result(false, "There is no plant in this tile.");
     }
+
+    StringBuilder info = new StringBuilder();
+    info.append("Name: ").append(crop.getCropType().getName()).append("\n");
+    info.append("Watered Today: ").append(crop.isWatered()).append("\n");
+    info.append("Fertilized: ").append(crop.isFertilized()).append("\n");
+    // info.append("Current Stage: ").append(crop.getCurrentStage()).append("\n");
+    // info.append("Days Until Harvest: ").append(crop.getDaysUntilHarvest()).append("\n");
+    // info.append("Quality: ").append(crop.getQuality());
+
+    return new Result(true, info.toString());
+}
+
+
+
+
+
 
 
     public Result howMuchWater() {

@@ -338,6 +338,9 @@ public enum ItemType {
     SUNFLOWER("sunflower"),
     JELLY("jelly"),
     SMOKED_FISH("smoothed fish"),
+
+
+    FERTILIZER("fertilizer"),
     ;
 
 

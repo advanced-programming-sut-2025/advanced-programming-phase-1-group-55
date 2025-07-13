@@ -40,6 +40,8 @@ public enum mainGameCommands implements Command {
     TradeResponse("\\s*trade\\s+response\\s+-(?<answer>accept|reject)\\s+-i\\s+(?<id>\\d+)\\s*"),
     isNearTile("\\s*tile\\s+(?<x>\\d+)\\s+(?<y>\\d+)\\s*"),
     plantSeed("\\s*plant\\s+-s\\s+(?<seed>.+)\\s+-d\\s+(?<direction>\\S+)\\s*"),
+    showPlant("^\\s*showplant\\s+-l\\s+(?<x>\\d+)\\s*,\\s*(?<y>\\d+)\\s*$"),
+    fertilize("^\\s*fertilize\\s+-f\\s+(?<fertilizer>.+?)\\s+-d\\s+(?<direction>\\S+)\\s*$"),
     howMuchWater("\\s*howmuch\\s+water\\s*");
     private final String pattern;
 

@@ -339,7 +339,13 @@ public class MainGameView implements AppMenu {
             System.out.println(controller.buildGreenHouse());
         } else if ((matcher = mainGameCommands.howMuchWater.getMatcher(input)) != null) {
             System.out.println(controller7.howMuchWater());
-        } else {
+        } else if ((matcher = mainGameCommands.fertilize.getMatcher(input)) != null) {
+            System.out.println(controller7.fertilizePlant(matcher.group("fertilizer").trim(), matcher.group("direction").trim()));
+        } else if ((matcher = mainGameCommands.showPlant.getMatcher(input)) != null) {
+            int x = Integer.parseInt(matcher.group("x").trim());
+            int y = Integer.parseInt(matcher.group("y").trim());
+            System.out.println(controller7.showPlant(x, y));
+        }  else {
             System.out.println("Unknown command");
         }
     }

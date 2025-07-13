@@ -1,15 +1,18 @@
 package model.FarmingProdocts;
-import model.Map.Location;
 
 import model.Item.Item;
+import model.Item.ItemType;
+import model.Map.Location;
 
-import java.util.List;
+public class Crop extends Item implements Fertilizable {
 
-public class Crop{
     private AllCrops cropType;
     private Location location;
+    private boolean isWatered = false;
+    private boolean isFertilized = false;
 
     public Crop(AllCrops cropType, Location location) {
+//        super(cropType);
         this.cropType = cropType;
         this.location = location;
     }
@@ -31,6 +34,26 @@ public class Crop{
     }
 
     @Override
+    public boolean isWatered() {
+        return isWatered;
+    }
+
+    @Override
+    public void setWatered(boolean watered) {
+        this.isWatered = watered;
+    }
+
+    @Override
+    public boolean isFertilized() {
+        return isFertilized;
+    }
+
+    @Override
+    public void setFertilized(boolean fertilized) {
+        this.isFertilized = fertilized;
+    }
+
+    @Override
     public String toString() {
         return "Crop{" +
                 "name='" + cropType.getName() + '\'' +
@@ -43,9 +66,8 @@ public class Crop{
                 ", baseEnergy=" + cropType.getBaseEnergy() +
                 ", season='" + cropType.getSeed().getSeason() + '\'' +
                 ", canBecomeGiant=" + cropType.isCanBecomeGiant() +
+                ", isWatered=" + isWatered +
+                ", isFertilized=" + isFertilized +
                 '}';
     }
 }
-
-
-
