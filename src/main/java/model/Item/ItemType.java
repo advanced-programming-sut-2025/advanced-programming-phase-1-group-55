@@ -339,6 +339,8 @@ public enum ItemType {
     JELLY("jelly"),
     SMOKED_FISH("smoothed fish"),
 
+    BLUE_JAZZ("Blue Jazz"),
+
 
     FERTILIZER("fertilizer"),
     ;
