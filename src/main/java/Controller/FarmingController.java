@@ -92,41 +92,24 @@ public class FarmingController {
                     }
                 }
                 case "Scythe" -> {
-//                    if (tile.getMohtaviat().equals("?")) {
-//                        user.getBackPack().getInventory()
-//                                .get(tile.getItemInThisTile().getItemType().getDisplayName())
-//                                .addNumber(1);
-//
-//                        tile.setMohtaviat(".");
-//                        return new Result(true, "you received a plant");
-//                    }
-//                    return new Result(false, "there is nothing to scythe");
                     if (tile.getMohtaviat().equals("?")) {
                         Item item = tile.getItemInThisTile();
-
                         if (!(item instanceof Crop crop)) {
                             return new Result(false, "There is no crop to harvest in this tile.");
                         }
-
-                        String cropName = crop.getCropType().getName();  // مثلاً "Blue Jazz"
+                        String cropName = crop.getCropType().getName();
                         ItemType itemType = ItemType.getItemType(cropName);
-
                         if (itemType == null) {
                             return new Result(false, "Unknown crop item: " + cropName);
                         }
-
-                        // اضافه کردن به inventory
                         user.getBackPack().getInventory()
-                                .computeIfAbsent(itemType.getDisplayName(), k -> new Item(itemType)) // اگر وجود نداشت، ایجاد کن
+                                .computeIfAbsent(itemType.getDisplayName(), k -> new Item(itemType))
                                 .addNumber(1);
-
-                        // حذف گیاه از زمین
                         tile.setItemInThisTile(null);
                         tile.setMohtaviat(".");
-
+                        tile.setShokhmed(false);
                         return new Result(true, "You received 1 " + cropName);
                     }
-
                     return new Result(false, "There is nothing to scythe");
                 }
                 case "Axe"->{
@@ -339,15 +322,5 @@ public Result showPlant(int x, int y) {
     }
 
 
-//    public int getCurrentLevel() {
-//        return skill.getLevel();
-//    }
-//
-//    public int getCurrentPoints() {
-//        return skill.getPoints();
-//    }
-//
-//    public Skill getFarmingSkill() {
-//        return skill;
-//    }
+
 }
