@@ -1,8 +1,7 @@
-package com.StardewValley.View;
+package com.StardewValley.View.oldView;
 
 import  com.StardewValley.Controller.*;
 import  com.StardewValley.enums.*;
-import  com.StardewValley.model.App;
 import  com.StardewValley.model.Item.Item;
 import  com.StardewValley.model.Map.Location;
 import  com.StardewValley.model.Map.MainLocation;

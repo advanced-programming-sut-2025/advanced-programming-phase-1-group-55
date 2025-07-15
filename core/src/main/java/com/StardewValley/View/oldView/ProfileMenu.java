@@ -1,12 +1,9 @@
-package com.StardewValley.View;
+package com.StardewValley.View.oldView;
 
 import  com.StardewValley.Controller.ProfileMenuController;
 import  com.StardewValley.enums.Menu;
 import  com.StardewValley.enums.ProfileCommands;
 
-import static  com.StardewValley.enums.ProfileCommands.*;
-
-import java.util.Scanner;
 import java.util.regex.Matcher;
 
 import static  com.StardewValley.model.App.*;

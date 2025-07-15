@@ -1,9 +1,6 @@
 package com.StardewValley.enums;
 
-import com.StardewValley.View.*;
-
-import java.util.Scanner;
-import java.util.regex.Pattern;
+import com.StardewValley.View.oldView.*;
 
 public enum Menu {
     ExitMenu(new ExitMenu()),

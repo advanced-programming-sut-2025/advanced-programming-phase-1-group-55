@@ -1,10 +1,8 @@
-package com.StardewValley.View;
+package com.StardewValley.View.oldView;
 
 
 import  com.StardewValley.enums.Menu;
 import  com.StardewValley.model.App;
-
-import java.util.Scanner;
 
 import static  com.StardewValley.model.App.getCurrentMenu;
 import static  com.StardewValley.model.App.readfile;

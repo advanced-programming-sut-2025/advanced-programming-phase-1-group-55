@@ -1,9 +1,7 @@
-package com.StardewValley.View;
+package com.StardewValley.View.oldView;
 
 import  com.StardewValley.Controller.MainMenuController;
 import  com.StardewValley.enums.Menu;
-
-import java.util.Scanner;
 
 import static  com.StardewValley.model.App.*;
 

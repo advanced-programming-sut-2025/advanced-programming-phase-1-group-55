@@ -1,4 +1,4 @@
-package com.StardewValley.View;
+package com.StardewValley.View.oldView;
 
 import  com.StardewValley.Controller.RegisterController;
 import  com.StardewValley.enums.Menu;

@@ -1,7 +1,6 @@
-package com.StardewValley.View;
+package com.StardewValley.View.oldView;
 import  com.StardewValley.enums.*;
 
-import java.util.Scanner;
 import java.util.regex.Matcher;
 import static  com.StardewValley.model.App.currentMenu;
 public class ExitMenu extends AppView implements AppMenu {

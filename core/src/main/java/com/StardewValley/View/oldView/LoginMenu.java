@@ -1,10 +1,9 @@
-package com.StardewValley.View;
+package com.StardewValley.View.oldView;
 
 import  com.StardewValley.Controller.LoginMenuController;
 import  com.StardewValley.enums.LoginCommands;
 
 
-import java.util.Scanner;
 import java.util.regex.Matcher;
 
 public class LoginMenu extends AppView implements AppMenu {
