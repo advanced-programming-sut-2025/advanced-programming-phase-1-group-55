@@ -1,0 +1,25 @@
+{
+    "header": {
+        "target": "w",
+        "formatVersion": 5,
+        "hidef": true,
+        "compressed": 128
+    },
+    "readers": [
+        {
+            "type": "Microsoft.Xna.Framework.Content.DictionaryReader`2[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]",
+            "version": 0
+        },
+        {
+            "type": "Microsoft.Xna.Framework.Content.StringReader",
+            "version": 0
+        }
+    ],
+    "content": {
+        "winter_15.000": "Me gusta mirar las luces.#$b#me recuerdan a algo de hace mucho, mucho tiempo...$s",
+        "winter.000": "Voy a tardar un tiempo, pero voy a intentar leerme todos los libros de la biblioteca.#$b#Tengo mucho que recuperar...$s",
+        "school": "No puedo hablar ahora, @. Tengo que concentrarme...",
+        "dinner": "Oh, ¿Tienes hambre? Yo ya me he acabado toda la comida...$u",
+        "tent": "No nos importa la lluvia demasiado, pero está bien poder secarse aquí a veces."
+    }
+}

@@ -1,0 +1,34 @@
+{
+    "header": {
+        "target": "w",
+        "formatVersion": 5,
+        "hidef": true,
+        "compressed": 128
+    },
+    "readers": [
+        {
+            "type": "Microsoft.Xna.Framework.Content.DictionaryReader`2[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]",
+            "version": 0
+        },
+        {
+            "type": "Microsoft.Xna.Framework.Content.StringReader",
+            "version": 0
+        }
+    ],
+    "content": {
+        "GingerIsland_East_JungleHut": "Cabaña de Jungla",
+        "GingerIsland_North_DigSite": "Lugar de Excavación",
+        "GingerIsland_North_FieldOffice": "Sucursal",
+        "GingerIsland_North_Trader": "Comerciante Isleño",
+        "GingerIsland_North_Volcano": "Volcán",
+        "GingerIsland_South_Dock": "Barco de Willy",
+        "GingerIsland_South_Resort": "Centro turístico",
+        "GingerIsland_SouthEast_PirateCove": "Cala Pirata",
+        "GingerIsland_West_BirdieShack": "Choza de Birdie",
+        "GingerIsland_West_GourmandCave": "Rana Glotona",
+        "GingerIsland_West_House": "Granja Isleña",
+        "GingerIsland_West_QiWalnutRoom": "Habitación de las Nueces de Qi",
+        "GingerIsland_West_Shipwreck": "Naufragio",
+        "GingerIsland_West_TigerSlimeGrove": "Arboleda de Babas Tigre"
+    }
+}

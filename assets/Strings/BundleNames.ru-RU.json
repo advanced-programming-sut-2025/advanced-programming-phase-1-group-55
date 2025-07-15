@@ -1,0 +1,39 @@
+{
+    "header": {
+        "target": "w",
+        "formatVersion": 5,
+        "hidef": true,
+        "compressed": 128
+    },
+    "readers": [
+        {
+            "type": "Microsoft.Xna.Framework.Content.DictionaryReader`2[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]",
+            "version": 0
+        },
+        {
+            "type": "Microsoft.Xna.Framework.Content.StringReader",
+            "version": 0
+        }
+    ],
+    "content": {
+        "Rare Crops": "Узелок редких культур",
+        "Fish Farmer's": "Аквафермерский узелок",
+        "Garden": "Садовый узелок",
+        "Brewer's": "Узелок напитков",
+        "Quality Fish": "Узелок отборного улова",
+        "Master Fisher's": "Узелок искусного рыбака",
+        "Treasure Hunter's": "Узелок кладоискателя",
+        "Children's": "Детский узелок",
+        "Forager's": "Узелок собирателя",
+        "Home Cook's": "Узелок домашней выпечки",
+        "Wild Medicine": "Знахарский узелок",
+        "Sticky": "Липкий узелок",
+        "Engineer's": "Инженерный узелок",
+        "Forest": "Лесной узелок",
+        "Helper's": "Узелок помощника",
+        "Spirit's Eve": "Узелок Дня всех духов",
+        "Winter Star": "Узелок Зимней звезды",
+        "Aquatic Jelly": "Желейный узелок",
+        "Bookworm's": "Узелок буквоеда"
+    }
+}
