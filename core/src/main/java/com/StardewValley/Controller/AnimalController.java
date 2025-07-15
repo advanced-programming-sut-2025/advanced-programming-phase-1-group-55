@@ -8,7 +8,6 @@ import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.Item.ItemType;
 import com.StardewValley.model.Map.*;
 import com.StardewValley.model.Tool.FishingPole;
-import com.StardewValley.model.Tool.FishingPoleType;
 import com.StardewValley.model.Tool.Tools;
 
 import java.util.ArrayList;
@@ -25,9 +24,9 @@ public class AnimalController {
         String buildingName = AnimalCommands.BUILD_ANIMAL_HOUSE.getMatcher(input).group("name").trim();
         int x = Integer.parseInt(AnimalCommands.BUILD_ANIMAL_HOUSE.getMatcher(input).group("x").trim());
         int y = Integer.parseInt(AnimalCommands.BUILD_ANIMAL_HOUSE.getMatcher(input).group("y").trim());
-        User user = App.currentGame.currentUser;
+        User user = App.currentGameModel.currentUser;
         Farm farm = user.getFarm();
-        NpcVillage city = App.currentGame.getMap().getVillage();
+        NpcVillage city = App.currentGameModel.getMap().getVillage();
         Tile targetTile = farm.getTile(x, y);
         FarmBuildingType farmBuilding = FarmBuildingType.getFarmBuildingType(buildingName);
         if (farmBuilding == null) {
@@ -74,9 +73,9 @@ public class AnimalController {
     public Result buyAnimal(String input) {
         String animal = AnimalCommands.BUY_ANIMAL.getMatcher(input).group("animal").trim();
         String name = AnimalCommands.BUY_ANIMAL.getMatcher(input).group("name").trim();
-        User user = App.currentGame.currentUser;
+        User user = App.currentGameModel.currentUser;
         Farm farm = user.getFarm();
-        NpcVillage city = App.currentGame.getMap().getVillage();
+        NpcVillage city = App.currentGameModel.getMap().getVillage();
 
         FarmAnimalType animalType = FarmAnimalType.getFarmAnimalsType(animal);
         if (animalType == null) {
@@ -99,7 +98,7 @@ public class AnimalController {
     }
     public Result pet(String input) {
         String name = AnimalCommands.PET_ANIMAL.getMatcher(input).group("name").trim();
-        User user = App.currentGame.currentUser;
+        User user = App.currentGameModel.currentUser;
         Animal animal = user.findAnimal(name);
         if (animal == null) {
             return new Result(false, "animal not found");
@@ -117,7 +116,7 @@ public class AnimalController {
     public Result cheatSetFriendship(String input) {
         String name = AnimalCommands.SET_FRIENDSHIP.getMatcher(input).group("name").trim();
         int amount = Integer.parseInt(AnimalCommands.SET_FRIENDSHIP.getMatcher(input).group("amount").trim());
-        User user = App.currentGame.currentUser;
+        User user = App.currentGameModel.currentUser;
         Animal animal = user.findAnimal(name);
         if (animal == null) {
             return new Result(false, "animal not found");
@@ -126,7 +125,7 @@ public class AnimalController {
         return new Result(true, "The animal friendship was cheated.");
     }
     public Result showAnimalDetails() {
-        User user = App.currentGame.currentUser;
+        User user = App.currentGameModel.currentUser;
         ArrayList<Animal> animals = user.getAnimals();
         if (animals.isEmpty()) {
             return new Result(false, "you dont have any animals");
@@ -143,7 +142,7 @@ public class AnimalController {
         String name = AnimalCommands.SHEPHERD_ANIMAL.getMatcher(input).group("name").trim();
         int x = Integer.parseInt(AnimalCommands.SHEPHERD_ANIMAL.getMatcher(input).group("x").trim());
         int y = Integer.parseInt(AnimalCommands.SHEPHERD_ANIMAL.getMatcher(input).group("y").trim());
-        User user = App.currentGame.currentUser;
+        User user = App.currentGameModel.currentUser;
         Animal animal = user.findAnimal(name);
         if (animal == null) {
             return new Result(false, "animal not found");
@@ -191,7 +190,7 @@ public class AnimalController {
 
     }
     public Result showProducts() {
-        ArrayList<Animal> animals = App.currentGame.currentUser.getAnimals();
+        ArrayList<Animal> animals = App.currentGameModel.currentUser.getAnimals();
         ArrayList<Animal> animalsWithProducts = new ArrayList<>();
         for (Animal animal : animals) {
             if (animal.isHasProduct()) {
@@ -215,7 +214,7 @@ public class AnimalController {
 
     public Result collectProducts(String input) {
         String name = AnimalCommands.COLLECT_PRODUCES.getMatcher(input).group("name").trim();
-        User user = App.currentGame.currentUser;
+        User user = App.currentGameModel.currentUser;
         Animal animal = user.findAnimal(name);
         if (animal == null) {
             return new Result(false, "animal not found");
@@ -233,7 +232,7 @@ public class AnimalController {
     }
     public Result feedHay(String input) {
         String name = AnimalCommands.FEED_HAY.getMatcher(input).group("name").trim();
-        User user = App.currentGame.currentUser;
+        User user = App.currentGameModel.currentUser;
         Animal animal = user.findAnimal(name);
         if (animal == null) {
             return new Result(false, "animal not found");
@@ -248,7 +247,7 @@ public class AnimalController {
 
     public Result sellAnimal(String input) {
         String name = AnimalCommands.SELL_ANIMAL.getMatcher(input).group("name").trim();
-        User user = App.currentGame.currentUser;
+        User user = App.currentGameModel.currentUser;
         Animal animal = user.findAnimal(name);
         if (animal == null) {
             return new Result(false, "animal not found");
@@ -266,7 +265,7 @@ public class AnimalController {
         Random random = new Random();
         double R = 0.5 + 0.5 * random.nextDouble();
         double M;
-        int skill = App.currentGame.currentUser.getFishingSkill().getLevel();
+        int skill = App.currentGameModel.currentUser.getFishingSkill().getLevel();
 
         switch (weather.getCurrentWeather()) {
             case WeatherType.Sunny -> M = 1.5;
@@ -283,7 +282,7 @@ public class AnimalController {
     public Result fishing(String input) {
         Random random = new Random();
         String fishingPoleName = AnimalCommands.FISHING.getMatcher(input).group("fishingPole").trim();
-        User user = App.currentGame.currentUser;
+        User user = App.currentGameModel.currentUser;
         Tools tool = user.getBackPack().getCurrentTool();
         if (!MainLocation.isNearTheWater(user.getLocation())) {
             return new Result(false, "you are not near the water");

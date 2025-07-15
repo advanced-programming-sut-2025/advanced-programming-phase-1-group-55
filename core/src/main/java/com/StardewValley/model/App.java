@@ -14,7 +14,7 @@ public class App {
     public static Scanner scanner = new Scanner(System.in);
     public static Menu currentMenu = Menu.Register;
     public static HashMap<String, User> AllUsers = new HashMap<>();
-    public static Game currentGame;
+    public static GameModel currentGameModel;
     public static Random rand=new Random();
 
     public static Menu getCurrentMenu() {

@@ -4,10 +4,8 @@ import com.StardewValley.enums.Seasons;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.Item.ItemType;
-import com.StardewValley.model.NPC.Npc;
 import com.StardewValley.model.Result;
 
-import java.time.LocalTime;
 import java.util.HashMap;
 
 public class BlackSmithStore extends Store {
@@ -42,6 +40,6 @@ public class BlackSmithStore extends Store {
                 }}, "Blacksmith");
     }
     public Result purchase(int amount , Product product){
-            return App.currentGame.currentUser.getBackPack().addItemToInventory(product.getItem(),amount);
+            return App.currentGameModel.currentUser.getBackPack().addItemToInventory(product.getItem(),amount);
     }
 }

@@ -10,21 +10,21 @@ import com.StardewValley.model.Store.*;
 
 public class StoreController {
     public Store findStore(){
-        MainLocation location=App.currentGame.currentUser.getMainLocation();
+        MainLocation location=App.currentGameModel.currentUser.getMainLocation();
         if(location.equals(MainLocation.BlackSmithStore)){
-            return App.currentGame.getMap().getVillage().getStores().get("BlackSmith");
+            return App.currentGameModel.getMap().getVillage().getStores().get("BlackSmith");
         } else if (location.equals(MainLocation.FishingStore)) {
-            return App.currentGame.getMap().getVillage().getStores().get("FishShop");
+            return App.currentGameModel.getMap().getVillage().getStores().get("FishShop");
         }else if (location.equals(MainLocation.GeneralStore)) {
-            return App.currentGame.getMap().getVillage().getStores().get("Generalstore");
+            return App.currentGameModel.getMap().getVillage().getStores().get("Generalstore");
         }else if (location.equals(MainLocation.CarpenterShop)) {
-            return App.currentGame.getMap().getVillage().getStores().get("CarpenterShop");
+            return App.currentGameModel.getMap().getVillage().getStores().get("CarpenterShop");
         }else if (location.equals(MainLocation.MarineRanchStore)) {
-            return App.currentGame.getMap().getVillage().getStores().get("MarnieRanch");
+            return App.currentGameModel.getMap().getVillage().getStores().get("MarnieRanch");
         }else if (location.equals(MainLocation.OjaMartStore)) {
-            return App.currentGame.getMap().getVillage().getStores().get("OjaMart");
+            return App.currentGameModel.getMap().getVillage().getStores().get("OjaMart");
         }else if (location.equals(MainLocation.StarDropSaloon)) {
-            return App.currentGame.getMap().getVillage().getStores().get("StarDropSaloon");
+            return App.currentGameModel.getMap().getVillage().getStores().get("StarDropSaloon");
         }
         return  null;
     }
@@ -79,21 +79,21 @@ public class StoreController {
         };
     }
     public Result sellItem(int amount,String name){
-        if(!App.currentGame.currentUser.getMainLocation().equals(MainLocation.nearTheBin)){
+        if(!App.currentGameModel.currentUser.getMainLocation().equals(MainLocation.nearTheBin)){
             return  new Result(false,"you must be near a shipping bin to sell your items");
         }
-        if(!App.currentGame.currentUser.getBackPack().getInventory().containsKey(name)){
+        if(!App.currentGameModel.currentUser.getBackPack().getInventory().containsKey(name)){
             return  new Result(false,"you don't have this item");
         }
-        Item item=App.currentGame.currentUser.getBackPack().getInventory().get(name);
+        Item item=App.currentGameModel.currentUser.getBackPack().getInventory().get(name);
         if(item.getNumber()<amount){
             return new Result(false,"you dont have enough item to sell");
         }
-        App.currentGame.currentUser.getBackPack().removeAmountFromInventory(item.getItemType(),amount);
+        App.currentGameModel.currentUser.getBackPack().removeAmountFromInventory(item.getItemType(),amount);
         if(item.getPrice()==0){
             item.setPrice(150);
         }
-        App.currentGame.currentUser.increaseDailyMoney(amount* item.getPrice());
+        App.currentGameModel.currentUser.increaseDailyMoney(amount* item.getPrice());
         return new Result(true,"you sold "+name+"successfully!");
     }
 
@@ -118,14 +118,14 @@ public class StoreController {
         }else {
             return new Result(false,"this item is not available today");
         }
-        if(App.currentGame.currentUser.getGold()<product.getGoldCost()*amount){
+        if(App.currentGameModel.currentUser.getGold()<product.getGoldCost()*amount){
             return  new Result(false,"you don't have enough money:(");
         }
 
         return purchaseItemSuccessFully(store,product,amount);
     }
     public Result cheatAddMoney(int amount){
-        App.currentGame.currentUser.setGold(App.currentGame.currentUser.getGold()+amount);
+        App.currentGameModel.currentUser.setGold(App.currentGameModel.currentUser.getGold()+amount);
         return  new Result(true,amount +" added to your account:)");
     }
 }

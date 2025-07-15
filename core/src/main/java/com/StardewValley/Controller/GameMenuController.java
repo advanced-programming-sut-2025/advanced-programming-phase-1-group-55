@@ -2,11 +2,9 @@ package com.StardewValley.Controller;
 
 import com.StardewValley.enums.Menu;
 import com.StardewValley.enums.mainGameCommands;
-import com.StardewValley.model.App;
-import com.StardewValley.model.Friendship.FriendShip;
 import com.StardewValley.model.Friendship.NpcFriendship;
 import com.StardewValley.model.Friendship.PlayerFriendship;
-import com.StardewValley.model.Game;
+import com.StardewValley.model.GameModel;
 import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.Item.ItemType;
 import com.StardewValley.model.Map.*;
@@ -25,37 +23,37 @@ import static com.StardewValley.model.App.*;
 
 public class GameMenuController {
     private void setFriendships(GameMap map){
-        PlayerFriendship friendship1=new PlayerFriendship(currentGame.playersInGame.get(0),currentGame.playersInGame.get(1));
-        PlayerFriendship friendship2=new PlayerFriendship(currentGame.playersInGame.get(0),currentGame.playersInGame.get(2));
-        PlayerFriendship friendship3=new PlayerFriendship(currentGame.playersInGame.get(0),currentGame.playersInGame.get(3));
-        PlayerFriendship friendship4=new PlayerFriendship(currentGame.playersInGame.get(1),currentGame.playersInGame.get(2));
-        PlayerFriendship friendship5=new PlayerFriendship(currentGame.playersInGame.get(1),currentGame.playersInGame.get(3));
-        PlayerFriendship friendship6=new PlayerFriendship(currentGame.playersInGame.get(2),currentGame.playersInGame.get(3));
-        currentGame.playersInGame.get(0).getFriendsPlayer().put(currentGame.playersInGame.get(1),friendship1);
-        currentGame.playersInGame.get(1).getFriendsPlayer().put(currentGame.playersInGame.get(0),friendship1);
-        currentGame.playersInGame.get(0).getFriendsPlayer().put(currentGame.playersInGame.get(2),friendship2);
-        currentGame.playersInGame.get(2).getFriendsPlayer().put(currentGame.playersInGame.get(0),friendship2);
-        currentGame.playersInGame.get(0).getFriendsPlayer().put(currentGame.playersInGame.get(3),friendship3);
-        currentGame.playersInGame.get(3).getFriendsPlayer().put(currentGame.playersInGame.get(0),friendship3);
-        currentGame.playersInGame.get(1).getFriendsPlayer().put(currentGame.playersInGame.get(2),friendship4);
-        currentGame.playersInGame.get(2).getFriendsPlayer().put(currentGame.playersInGame.get(1),friendship4);
-        currentGame.playersInGame.get(1).getFriendsPlayer().put(currentGame.playersInGame.get(3),friendship5);
-        currentGame.playersInGame.get(3).getFriendsPlayer().put(currentGame.playersInGame.get(1),friendship5);
-        currentGame.playersInGame.get(2).getFriendsPlayer().put(currentGame.playersInGame.get(3),friendship6);
-        currentGame.playersInGame.get(3).getFriendsPlayer().put(currentGame.playersInGame.get(2),friendship6);
-        currentGame.getAllFriendships().add(friendship1);
-        currentGame.getAllFriendships().add(friendship2);
-        currentGame.getAllFriendships().add(friendship3);
-        currentGame.getAllFriendships().add(friendship4);
-        currentGame.getAllFriendships().add(friendship5);
-        currentGame.getAllFriendships().add(friendship6);
+        PlayerFriendship friendship1=new PlayerFriendship(currentGameModel.playersInGame.get(0), currentGameModel.playersInGame.get(1));
+        PlayerFriendship friendship2=new PlayerFriendship(currentGameModel.playersInGame.get(0), currentGameModel.playersInGame.get(2));
+        PlayerFriendship friendship3=new PlayerFriendship(currentGameModel.playersInGame.get(0), currentGameModel.playersInGame.get(3));
+        PlayerFriendship friendship4=new PlayerFriendship(currentGameModel.playersInGame.get(1), currentGameModel.playersInGame.get(2));
+        PlayerFriendship friendship5=new PlayerFriendship(currentGameModel.playersInGame.get(1), currentGameModel.playersInGame.get(3));
+        PlayerFriendship friendship6=new PlayerFriendship(currentGameModel.playersInGame.get(2), currentGameModel.playersInGame.get(3));
+        currentGameModel.playersInGame.get(0).getFriendsPlayer().put(currentGameModel.playersInGame.get(1),friendship1);
+        currentGameModel.playersInGame.get(1).getFriendsPlayer().put(currentGameModel.playersInGame.get(0),friendship1);
+        currentGameModel.playersInGame.get(0).getFriendsPlayer().put(currentGameModel.playersInGame.get(2),friendship2);
+        currentGameModel.playersInGame.get(2).getFriendsPlayer().put(currentGameModel.playersInGame.get(0),friendship2);
+        currentGameModel.playersInGame.get(0).getFriendsPlayer().put(currentGameModel.playersInGame.get(3),friendship3);
+        currentGameModel.playersInGame.get(3).getFriendsPlayer().put(currentGameModel.playersInGame.get(0),friendship3);
+        currentGameModel.playersInGame.get(1).getFriendsPlayer().put(currentGameModel.playersInGame.get(2),friendship4);
+        currentGameModel.playersInGame.get(2).getFriendsPlayer().put(currentGameModel.playersInGame.get(1),friendship4);
+        currentGameModel.playersInGame.get(1).getFriendsPlayer().put(currentGameModel.playersInGame.get(3),friendship5);
+        currentGameModel.playersInGame.get(3).getFriendsPlayer().put(currentGameModel.playersInGame.get(1),friendship5);
+        currentGameModel.playersInGame.get(2).getFriendsPlayer().put(currentGameModel.playersInGame.get(3),friendship6);
+        currentGameModel.playersInGame.get(3).getFriendsPlayer().put(currentGameModel.playersInGame.get(2),friendship6);
+        currentGameModel.getAllFriendships().add(friendship1);
+        currentGameModel.getAllFriendships().add(friendship2);
+        currentGameModel.getAllFriendships().add(friendship3);
+        currentGameModel.getAllFriendships().add(friendship4);
+        currentGameModel.getAllFriendships().add(friendship5);
+        currentGameModel.getAllFriendships().add(friendship6);
         friendship1.setConversation(new ArrayList<>());
         friendship2.setConversation(new ArrayList<>());
         friendship3.setConversation(new ArrayList<>());
         friendship4.setConversation(new ArrayList<>());
         friendship5.setConversation(new ArrayList<>());
         friendship6.setConversation(new ArrayList<>());
-        for(User user:currentGame.playersInGame){
+        for(User user: currentGameModel.playersInGame){
             user.setQuest(new HashMap<>());
             user.setFriendsNpc(new HashMap<>());
             for (Npc npc:map.getVillage().getNpss().values()){
@@ -231,7 +229,7 @@ public class GameMenuController {
         }
 
 
-        currentGame = new Game(mainUser, playersInGame, Map);
+        currentGameModel = new GameModel(mainUser, playersInGame, Map);
         currentMenu = Menu.MainGameMenu;
 
         for (User player : playersInGame) {

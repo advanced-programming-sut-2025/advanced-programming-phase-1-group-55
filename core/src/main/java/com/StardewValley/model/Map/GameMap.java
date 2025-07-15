@@ -2,15 +2,12 @@ package com.StardewValley.model.Map;
 
 import com.StardewValley.enums.AnsiColor;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.StardewValley.model.App.*;
-
 import static java.lang.Math.max;
 import static java.lang.Math.min;
-import static com.StardewValley.model.App.currentGame;
+import static com.StardewValley.model.App.currentGameModel;
 
 public class GameMap {
     public Tile[][] tiles = new Tile[41][160];
@@ -131,7 +128,7 @@ public class GameMap {
         for (int i = max(start.getY(), 0); i < min(sizey + max(start.getY(), 0), 41); i++) {
             for (int j = max(start.getX(), 0); j < min(sizex + max(start.getX(), 0), 160); j++) {
                 Tile t = tiles[i][j];
-                if (j == currentGame.currentUser.getLocation().getX() && i == currentGame.currentUser.getLocation().getY()) {
+                if (j == currentGameModel.currentUser.getLocation().getX() && i == currentGameModel.currentUser.getLocation().getY()) {
                     map.append(AnsiColor.RED).append("P").append(AnsiColor.RESET);
                     continue;
 

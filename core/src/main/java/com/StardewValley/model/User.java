@@ -18,7 +18,7 @@ import  com.StardewValley.model.Tool.BackPack;
 
 import java.util.*;
 
-import static  com.StardewValley.model.App.currentGame;
+import static  com.StardewValley.model.App.currentGameModel;
 
 public class User {
     private String username;
@@ -44,7 +44,7 @@ public class User {
     private Location location = new Location(0, 0);//todo ino bayad bokonm location aval farmesh
     private boolean fainted = false;
     private Location playerTommorowLocation;
-    private Game playedGame;
+    private GameModel playedGameModel;
     private Farm farm;
     private MainLocation mainLocation = MainLocation.House;
     private HashMap<Integer, Trade> trades = new HashMap<>();
@@ -114,12 +114,12 @@ public class User {
         this.farm = farm;
     }
 
-    public Game getPlayedGame() {
-        return playedGame;
+    public GameModel getPlayedGame() {
+        return playedGameModel;
     }
 
-    public void setPlayedGame(Game playedGame) {
-        this.playedGame = playedGame;
+    public void setPlayedGame(GameModel playedGameModel) {
+        this.playedGameModel = playedGameModel;
     }
 
 
@@ -527,8 +527,8 @@ public class User {
                 }
 
                 Location p = tile.getLocation();
-                ArrayList<Location> neighbors = currentGame.currentUser.getFarm().getNeighbors(
-                        currentGame.currentUser.getLocation());
+                ArrayList<Location> neighbors = currentGameModel.currentUser.getFarm().getNeighbors(
+                        currentGameModel.currentUser.getLocation());
 
                 for (Location neighbor : neighbors)
                 {

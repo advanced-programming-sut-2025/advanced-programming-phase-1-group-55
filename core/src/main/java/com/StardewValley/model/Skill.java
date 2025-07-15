@@ -125,7 +125,7 @@ public class Skill {
         HashMap<CraftingItemType, Integer> map = type.getCraftingRecipes();
         for (CraftingItemType key : map.keySet()) {
             if (level >= map.get(key)) {
-                User user = App.currentGame.currentUser;
+                User user = App.currentGameModel.currentUser;
                 if (!user.getBackPack().getCraftingRecipes().contains(key)) {
                     user.getBackPack().getCraftingRecipes().add(key);
                 }
@@ -136,7 +136,7 @@ public class Skill {
         HashMap<CookingItemType, Integer> map = type.getCookingRecipes();
         for (CookingItemType key : map.keySet()) {
             if (level >= map.get(key)) {
-                User user = App.currentGame.currentUser;
+                User user = App.currentGameModel.currentUser;
                 if (!user.getBackPack().getCookingRecipes().contains(key)) {
                     user.getBackPack().getCookingRecipes().add(key);
                 }

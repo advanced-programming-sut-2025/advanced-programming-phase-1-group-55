@@ -1,17 +1,7 @@
 package com.StardewValley.model;
 
-import com.google.gson.Gson;
 
-import com.google.gson.reflect.TypeToken;
-import com.StardewValley.enums.*;
-
-
-import java.io.FileReader;
-import java.lang.reflect.Type;
 import java.util.*;
-
-
-import com.google.gson.GsonBuilder;
 
 
 import com.StardewValley.model.Friendship.PlayerFriendship;
@@ -25,7 +15,7 @@ import static com.StardewValley.model.GameTime.*;
 
 import java.util.List;
 
-public class Game {
+public class GameModel {
     public User currentUser;
     public ArrayList<User> playersInGame = new ArrayList<>();
     private GameMap map;
@@ -34,7 +24,7 @@ public class Game {
     private int numberOfAllGifts = 0;
     private final List<Dialog> allDialogs = new ArrayList<>(Arrays.asList(Dialog.values()));
 
-    public Game(User currentUser, ArrayList<User> playersInGame, GameMap map) {
+    public GameModel(User currentUser, ArrayList<User> playersInGame, GameMap map) {
         this.currentUser = currentUser;
         this.playersInGame = playersInGame;
         this.map = map;
@@ -104,7 +94,7 @@ public class Game {
 
 
     public Tile getTileFromDirection(String direction) {
-        User user = App.currentGame.currentUser;
+        User user = App.currentGameModel.currentUser;
         int currentX = user.getLocation().getX();
         int currentY = user.getLocation().getY();
 
@@ -149,7 +139,7 @@ public class Game {
         int newX = currentX + dx;
         int newY = currentY + dy;
 
-        return App.currentGame.getMap().tiles[newX][newY];
+        return App.currentGameModel.getMap().tiles[newX][newY];
     }
 
     public ArrayList<PlayerFriendship> getAllFriendships() {

@@ -1,7 +1,5 @@
 package com.StardewValley.model.Tool;
 
-import com.StardewValley.model.Map.Location;
-import com.StardewValley.model.Map.MainLocation;
 import com.StardewValley.model.Store.BlackSmithStore;
 import com.StardewValley.model.Store.Store;
 
@@ -56,6 +54,6 @@ public class Hoe extends Tools {
     @Override
     public void useTool() {
 
-        currentGame.currentUser.decreaseEnergy(energyCost());
+        currentGameModel.currentUser.decreaseEnergy(energyCost());
     }
 }

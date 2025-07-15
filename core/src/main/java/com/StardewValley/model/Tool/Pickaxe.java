@@ -4,7 +4,7 @@ import com.StardewValley.model.Store.BlackSmithStore;
 import com.StardewValley.model.Store.Store;
 
 import static java.lang.Math.max;
-import static com.StardewValley.model.App.currentGame;
+import static com.StardewValley.model.App.currentGameModel;
 import static com.StardewValley.model.weather.getEnergyLoser;
 
 public class Pickaxe extends Tools {
@@ -53,7 +53,7 @@ public class Pickaxe extends Tools {
 
     @Override
     public void useTool() {
-        currentGame.currentUser.decreaseEnergy((int) (energyCost() * getEnergyLoser()));
+        currentGameModel.currentUser.decreaseEnergy((int) (energyCost() * getEnergyLoser()));
     }
 
 }

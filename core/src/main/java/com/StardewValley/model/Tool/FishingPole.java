@@ -1,12 +1,10 @@
 package com.StardewValley.model.Tool;
 
-import com.StardewValley.model.App;
-import com.StardewValley.model.Store.BlackSmithStore;
 import com.StardewValley.model.Store.FishingStore;
 import com.StardewValley.model.Store.Store;
 
 import static java.lang.Math.max;
-import static com.StardewValley.model.App.currentGame;
+import static com.StardewValley.model.App.currentGameModel;
 import static com.StardewValley.model.weather.getEnergyLoser;
 
 
@@ -70,7 +68,7 @@ public class FishingPole extends Tools {
 
     @Override
     public void useTool() {
-        currentGame.currentUser.decreaseEnergy((int) (energyCost() * getEnergyLoser()));
+        currentGameModel.currentUser.decreaseEnergy((int) (energyCost() * getEnergyLoser()));
     }
     //todo current user bezar
 

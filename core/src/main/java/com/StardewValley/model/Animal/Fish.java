@@ -3,7 +3,6 @@ package com.StardewValley.model.Animal;
 import com.StardewValley.enums.WeatherType;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Item.Item;
-import com.StardewValley.model.Item.ItemType;
 import com.StardewValley.model.Tool.FishingPoleType;
 import com.StardewValley.model.weather;
 
@@ -41,7 +40,7 @@ public class Fish extends Item {
     {
         Random random = new Random();
         int R = random.nextInt(2);
-        int skill = App.currentGame.currentUser.getFishingSkill().getLevel();
+        int skill = App.currentGameModel.currentUser.getFishingSkill().getLevel();
         double M;
         double pole = 0;
         switch (weather.getCurrentWeather())
@@ -66,7 +65,7 @@ public class Fish extends Item {
         Random random = new Random();
         double R = 0.5 + 0.5 * random.nextDouble();
         double M;
-        int skill = App.currentGame.currentUser.getFishingSkill().getLevel();
+        int skill = App.currentGameModel.currentUser.getFishingSkill().getLevel();
 
         switch (weather.getCurrentWeather()) {
             case WeatherType.Sunny -> M = 1.5;

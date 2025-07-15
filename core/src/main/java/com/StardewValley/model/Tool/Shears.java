@@ -1,6 +1,5 @@
 package com.StardewValley.model.Tool;
 
-import com.StardewValley.model.Store.BlackSmithStore;
 import com.StardewValley.model.Store.MarineRanchStore;
 import com.StardewValley.model.Store.Store;
 
@@ -34,7 +33,7 @@ public class Shears extends  Tools{
     }
     @Override
     public void useTool() {
-        currentGame.currentUser.decreaseEnergy((int) (energyCost() * getEnergyLoser()));
+        currentGameModel.currentUser.decreaseEnergy((int) (energyCost() * getEnergyLoser()));
     }
     public int getPrice(){
         if(level==2){

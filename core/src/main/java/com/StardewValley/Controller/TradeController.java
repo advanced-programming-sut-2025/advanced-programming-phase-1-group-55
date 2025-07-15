@@ -7,16 +7,14 @@ import com.StardewValley.model.Trade;
 import com.StardewValley.model.User;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import static com.StardewValley.model.App.*;
 import static com.StardewValley.model.Item.ItemType.*;
-import static com.StardewValley.model.Game.*;
 
 public class TradeController {
     public Result TradeMenu() {
         StringBuilder sb = new StringBuilder();
-        ArrayList<User> players = currentGame.getPlayersInGame();
+        ArrayList<User> players = currentGameModel.getPlayersInGame();
         sb.append("players username : \n");
         for (User user : players) {
             sb.append(user.getUsername()).append("\n");
@@ -61,12 +59,12 @@ public class TradeController {
         }
         if (type.equals("request")) {
 
-            if (Price > currentGame.currentUser.getGold()) {
+            if (Price > currentGameModel.currentUser.getGold()) {
                 return new Result(false, "You dont have enough Gold");
             }
             if (targetItem != null) {
 
-                if (currentGame.currentUser.getBackPack().getInventory().get(targetItem) == null || currentGame.currentUser.getBackPack().getInventory().get(targetItem).getNumber() < TargetAmount) {
+                if (currentGameModel.currentUser.getBackPack().getInventory().get(targetItem) == null || currentGameModel.currentUser.getBackPack().getInventory().get(targetItem).getNumber() < TargetAmount) {
                     return new Result(false, "You dont have enough item");
                 }
             }
@@ -75,10 +73,10 @@ public class TradeController {
 
             }
 
-            Trade trade = new Trade(currentGame.currentUser, targetUser, new Item(getItemType(item)), "request", Amount, Price, new Item(getItemType(targetItem)), TargetAmount, id);
-            currentGame.currentUser.getTrades().put(id, trade);
+            Trade trade = new Trade(currentGameModel.currentUser, targetUser, new Item(getItemType(item)), "request", Amount, Price, new Item(getItemType(targetItem)), TargetAmount, id);
+            currentGameModel.currentUser.getTrades().put(id, trade);
             targetUser.getTrades().put(id, trade);
-            currentGame.addToAllTrade(trade);
+            currentGameModel.addToAllTrade(trade);
             id++;
 
 
@@ -90,7 +88,7 @@ public class TradeController {
                 }
             } else {
 
-                if (currentGame.currentUser.getBackPack().getInventory().get(item) == null || currentGame.currentUser.getBackPack().getInventory().get(item).getNumber() < Amount) {
+                if (currentGameModel.currentUser.getBackPack().getInventory().get(item) == null || currentGameModel.currentUser.getBackPack().getInventory().get(item).getNumber() < Amount) {
                     return new Result(false, "You dont have enough item");
                 }
                 if (targetUser.getBackPack().getInventory().get(targetItem) == null || targetUser.getBackPack().getInventory().get(item).getNumber() < TargetAmount) {
@@ -99,10 +97,10 @@ public class TradeController {
                 }
             }
 
-            Trade trade = new Trade(currentGame.currentUser, targetUser, new Item(getItemType(item)), "offer", Amount, Price, new Item(getItemType(targetItem)), TargetAmount, id);
-            currentGame.currentUser.getTrades().put(id, trade);
+            Trade trade = new Trade(currentGameModel.currentUser, targetUser, new Item(getItemType(item)), "offer", Amount, Price, new Item(getItemType(targetItem)), TargetAmount, id);
+            currentGameModel.currentUser.getTrades().put(id, trade);
             targetUser.getTrades().put(id, trade);
-            currentGame.addToAllTrade(trade);
+            currentGameModel.addToAllTrade(trade);
             id++;
 
         }
@@ -110,10 +108,10 @@ public class TradeController {
     }
 
     public Result tradeList() {
-        if (currentGame.currentUser.getTrades().isEmpty()) {
+        if (currentGameModel.currentUser.getTrades().isEmpty()) {
             return new Result(false, "You don't have trades");
         }
-        for (Trade trade : currentGame.currentUser.getTrades().values()) {
+        for (Trade trade : currentGameModel.currentUser.getTrades().values()) {
             System.out.println(trade);
             System.out.println("-----------------------------------------");
 
@@ -130,12 +128,12 @@ public class TradeController {
             return new Result(false, "Invalid ID");
         }
 
-        Trade trade = currentGame.currentUser.getTrades().get(id);
+        Trade trade = currentGameModel.currentUser.getTrades().get(id);
 
         if (trade == null) {
             return new Result(false, "Trade not found");
         }
-        if (!currentGame.currentUser.getUsername().equals(trade.getReciver().getUsername())) {
+        if (!currentGameModel.currentUser.getUsername().equals(trade.getReciver().getUsername())) {
             return new Result(false, "You should be receiver to response the trade");
         }
         if (trade.getType().equals("request")) {
@@ -222,7 +220,7 @@ public class TradeController {
     public Result TradeHistory() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("trade history : \n");
-        for (Trade trade : currentGame.currentUser.getTrades().values()) {
+        for (Trade trade : currentGameModel.currentUser.getTrades().values()) {
             stringBuilder.append(trade.toString()).append("\n");
         }
         return new Result(true, stringBuilder.toString());
@@ -230,7 +228,7 @@ public class TradeController {
 
     public Result NotAnswerdTrades() {
         StringBuilder stringBuilder = new StringBuilder();
-        for (Trade trade : currentGame.currentUser.getTrades().values()) {
+        for (Trade trade : currentGameModel.currentUser.getTrades().values()) {
             if (!trade.isAnswered()) {
                 stringBuilder.append(trade.toString()).append("\n");
             }

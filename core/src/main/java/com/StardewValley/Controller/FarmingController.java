@@ -66,8 +66,8 @@ public class FarmingController {
         } catch (Exception e) {
             return new Result(false, "Invalid tool direction");
         }
-        Tools tool = currentGame.currentUser.getBackPack().getCurrentTool();
-        User user = currentGame.currentUser;
+        Tools tool = currentGameModel.currentUser.getBackPack().getCurrentTool();
+        User user = currentGameModel.currentUser;
         Tile tile = getTileByDirection(directionInt);
         System.out.println(tool.energyCost());
         if (tool.energyCost() > user.getEnergy()) {
@@ -102,23 +102,23 @@ public class FarmingController {
                 }
                 case "Axe"->{
                     if(tile.getMohtaviat().equals("T")){
-                        currentGame.currentUser.getBackPack().addItemToInventory(new Item(WOOD),200);
+                        currentGameModel.currentUser.getBackPack().addItemToInventory(new Item(WOOD),200);
                         tile.setMohtaviat(".");
                         tile.setItemInThisTile(null);
                     } else if (tile.getMohtaviat().equals("&")||tile.getMohtaviat().equals("*")) {
-                        currentGame.currentUser.getBackPack().addItemToInventory
+                        currentGameModel.currentUser.getBackPack().addItemToInventory
                                 (new Item(tile.getItemInThisTile().getItemType()),20);
                         tile.setMohtaviat(".");
                         tile.setItemInThisTile(null);
                     }
                 } case "Pickaxe"->{
                     if(tile.getMohtaviat().equals("0")){
-                        currentGame.currentUser.getBackPack().addItemToInventory
+                        currentGameModel.currentUser.getBackPack().addItemToInventory
                                 (new Item(tile.getItemInThisTile().getItemType()),20);
                         tile.setMohtaviat("^");
                         tile.setItemInThisTile(null);
                     } else if (tile.getMohtaviat().equals("I")) {
-                        currentGame.currentUser.getBackPack().addItemToInventory
+                        currentGameModel.currentUser.getBackPack().addItemToInventory
                                 (new Item(tile.getItemInThisTile().getItemType()),tile.getItemInThisTile().getNumber());
                         tile.setMohtaviat(".");
                         tile.setItemInThisTile(null);
@@ -161,7 +161,7 @@ public class FarmingController {
         } catch (Exception e) {
             return new Result(false, "Invalid tool direction");
         }
-        User user = currentGame.currentUser;
+        User user = currentGameModel.currentUser;
         Tile tile = getTileByDirection(directionInt);
         System.out.println(getItemType(seed).getDisplayName());
 
@@ -174,7 +174,7 @@ public class FarmingController {
             } else {
                 Item item = new Item(getItemType(seed));
                 item.setLocation(tile.getLocation());
-                currentGame.getAllPlants().put(seed, item);
+                currentGameModel.getAllPlants().put(seed, item);
 
                 tile.setItemInThisTile(item);
                 tile.setMohtaviat("?");
@@ -187,27 +187,27 @@ public class FarmingController {
     }
 
     public Result howMuchWater() {
-        if (!currentGame.currentUser.getBackPack().getCurrentTool().getName().equals("WateringCan")) {
+        if (!currentGameModel.currentUser.getBackPack().getCurrentTool().getName().equals("WateringCan")) {
             return new Result(false, "your tool is not a watering can");
         }
-        WateringCan wateringCan=(WateringCan)currentGame.currentUser.getBackPack().getCurrentTool();
+        WateringCan wateringCan=(WateringCan) currentGameModel.currentUser.getBackPack().getCurrentTool();
         String message=" you have:"+wateringCan.getWaterContains()+"water in your watering can";
         return new Result(true, message);
     }
 
     private Tile getTileByDirection(int direction) {
-        Location location = currentGame.currentUser.getLocation();
+        Location location = currentGameModel.currentUser.getLocation();
         int x = location.getX();
         int y = location.getY();
         return switch (direction) {
-            case 1 -> currentGame.getMap().tiles[y - 1][x - 1];
-            case 2 -> currentGame.getMap().tiles[y - 1][x];
-            case 3 -> currentGame.getMap().tiles[y - 1][x + 1];
-            case 4 -> currentGame.getMap().tiles[y][x + 1];
-            case 5 -> currentGame.getMap().tiles[y + 1][x + 1];
-            case 6 -> currentGame.getMap().tiles[y + 1][x];
-            case 7 -> currentGame.getMap().tiles[y + 1][x - 1];
-            case 8 -> currentGame.getMap().tiles[y][x - 1];
+            case 1 -> currentGameModel.getMap().tiles[y - 1][x - 1];
+            case 2 -> currentGameModel.getMap().tiles[y - 1][x];
+            case 3 -> currentGameModel.getMap().tiles[y - 1][x + 1];
+            case 4 -> currentGameModel.getMap().tiles[y][x + 1];
+            case 5 -> currentGameModel.getMap().tiles[y + 1][x + 1];
+            case 6 -> currentGameModel.getMap().tiles[y + 1][x];
+            case 7 -> currentGameModel.getMap().tiles[y + 1][x - 1];
+            case 8 -> currentGameModel.getMap().tiles[y][x - 1];
             default -> null;
         };
     }

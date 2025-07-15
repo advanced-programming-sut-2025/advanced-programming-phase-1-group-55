@@ -4,13 +4,11 @@ import com.StardewValley.enums.Seasons;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.Item.ItemType;
-import com.StardewValley.model.NPC.Npc;
 import com.StardewValley.model.Result;
 import com.StardewValley.model.Tool.BackPack;
 import com.StardewValley.model.Tool.MilkPair;
 import com.StardewValley.model.Tool.Shears;
 
-import java.time.LocalTime;
 import java.util.HashMap;
 
 public class MarineRanchStore extends Store{
@@ -52,7 +50,7 @@ public class MarineRanchStore extends Store{
         }}, "marnieRanch");
     }
     public Result purchase(int amount , Product product){
-        BackPack backPack= App.currentGame.currentUser.getBackPack();
+        BackPack backPack= App.currentGameModel.currentUser.getBackPack();
        if(product.getItem().getItemType().equals(ItemType.SHEARS)){
            if(backPack.getAvailableTools().containsKey("Shears")){
                return  new Result(false,"you have already owned this item");
@@ -73,7 +71,7 @@ public class MarineRanchStore extends Store{
            return x;
         }
         product.increaseDailySold(1);
-        App.currentGame.currentUser.increaseGold(-amount* product.getGoldCost());
+        App.currentGameModel.currentUser.increaseGold(-amount* product.getGoldCost());
         return new Result(true,"you successfully purchased :"+product.getItem().getItemType().getDisplayName());
     }
 }

@@ -162,7 +162,7 @@ public static FishType getRandomFish(FishingPoleType poleType) {
         case IRIDIUM_ROD: {
             ArrayList<FishType> fishes = getOrdinaryFishTypes(season);
 
-            int fishingLevel = App.currentGame.currentUser.getFishingSkill().getLevel();
+            int fishingLevel = App.currentGameModel.currentUser.getFishingSkill().getLevel();
             if (fishingLevel >= 4) {
                 FishType legendary = getLegendaryFishType(season);
                 if (legendary != null) {

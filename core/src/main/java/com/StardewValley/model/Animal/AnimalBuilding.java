@@ -56,7 +56,7 @@ public class AnimalBuilding extends Item {
         {
             for (int x = 0; x <= width; x++)
             {
-                Tile tile = App.currentGame.currentUser.getFarm().getTile(baseX + x, baseY + y);
+                Tile tile = App.currentGameModel.currentUser.getFarm().getTile(baseX + x, baseY + y);
                 temp.add(tile);
             }
         }

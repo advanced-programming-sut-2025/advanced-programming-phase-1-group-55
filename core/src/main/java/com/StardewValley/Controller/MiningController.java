@@ -6,7 +6,7 @@ import com.StardewValley.model.Skill;
 public class MiningController extends SkillController {
 
     public MiningController() {
-        super(App.currentGame.currentUser.getMiningSkill());
+        super(App.currentGameModel.currentUser.getMiningSkill());
     }
 
 
