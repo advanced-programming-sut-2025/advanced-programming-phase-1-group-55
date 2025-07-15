@@ -1,15 +1,12 @@
 package com.StardewValley.Controller;
 
-import com.StardewValley.model.App;
 import com.StardewValley.model.Map.Location;
 import com.StardewValley.model.Map.Tile;
 import com.StardewValley.model.Result;
-import com.StardewValley.model.User;
 
 import java.util.*;
 
-import static com.StardewValley.model.App.currentGame;
-import static com.StardewValley.model.App.mainUser;
+import static com.StardewValley.model.App.currentGameModel;
 
 
 public class walkController {
@@ -108,7 +105,7 @@ public class walkController {
                 int ny = y + dir[0];
                 int nx = x + dir[1];
 
-                if (ny >= 0 && nx >= 0 && ny < n && nx < m && !visited[ny][nx] && map[ny][nx].isWalkable() && (map[ny][nx].getOwner() == currentGame.currentUser || map[ny][nx].getOwner() == null)) {
+                if (ny >= 0 && nx >= 0 && ny < n && nx < m && !visited[ny][nx] && map[ny][nx].isWalkable() && (map[ny][nx].getOwner() == currentGameModel.currentUser || map[ny][nx].getOwner() == null)) {
                     visited[ny][nx] = true;
                     parent[ny][nx] = map[y][x];
                     queue.add(new int[]{ny, nx});
@@ -128,8 +125,8 @@ public class walkController {
             return new Result(false, "Invalid coordinates");
         }
 
-        int startX = currentGame.currentUser.getLocation().getX();
-        int startY = currentGame.currentUser.getLocation().getY();
+        int startX = currentGameModel.currentUser.getLocation().getX();
+        int startY = currentGameModel.currentUser.getLocation().getY();
 
 
         List<Tile> path = bfs(startX, startY, targetX, targetY, map);
@@ -145,7 +142,7 @@ public class walkController {
 
         System.out.println("Path found! Distance: " + distance + ", Turns: " + turns);
         System.out.println("Energy required: " + totalEnergyNeeded);
-        System.out.println("You currently have: " + currentGame.currentUser.getEnergy() + " energy.");
+        System.out.println("You currently have: " + currentGameModel.currentUser.getEnergy() + " energy.");
         System.out.println("Do you want to proceed? (yes/no)");
 
         Scanner scanner = new Scanner(System.in);
@@ -155,7 +152,7 @@ public class walkController {
             return new Result(false, "Move cancelled by user.");
         }
 
-        double availableEnergy = currentGame.currentUser.getEnergy();
+        double availableEnergy = currentGameModel.currentUser.getEnergy();
         double usedEnergy = 0;
         int stepsCanMove = 1;
 
@@ -181,20 +178,20 @@ public class walkController {
 
         Tile finalTile = path.get(stepsCanMove - 1);
         Location newLocation = new Location(finalTile.getLocation().getY(), finalTile.getLocation().getX());
-        currentGame.currentUser.setLocation(newLocation);
-        currentGame.currentUser.decreaseEnergy((int) Math.ceil(usedEnergy));
+        currentGameModel.currentUser.setLocation(newLocation);
+        currentGameModel.currentUser.decreaseEnergy((int) Math.ceil(usedEnergy));
 
 
         boolean fullMove = stepsCanMove == path.size();
 
         if (!fullMove) {
-            currentGame.currentUser.setFainted(true);
+            currentGameModel.currentUser.setFainted(true);
             return new Result(true, "Not enough energy to reach the destination. You fainted.\n" +
                     "You reached: " + newLocation +
-                    "\nRemaining energy: " + currentGame.currentUser.getEnergy());
+                    "\nRemaining energy: " + currentGameModel.currentUser.getEnergy());
         } else {
             return new Result(true, "Move successful! You will reach: " + newLocation +
-                    "\nRemaining energy: " + currentGame.currentUser.getEnergy());
+                    "\nRemaining energy: " + currentGameModel.currentUser.getEnergy());
         }
     }
 

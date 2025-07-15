@@ -6,7 +6,7 @@ import com.StardewValley.model.Skill;
 public class ForagingController extends SkillController {
 
     public ForagingController() {
-        super(App.currentGame.currentUser.getForagingSkill());
+        super(App.currentGameModel.currentUser.getForagingSkill());
     }
 
 

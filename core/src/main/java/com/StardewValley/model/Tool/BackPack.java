@@ -65,7 +65,7 @@ public class BackPack {
     public void recycleItem(String name){
         //injaa bayad hame noe item ro recycle koni na faghat tools
         // TODO
-        App.currentGame.currentUser.setGold(App.currentGame.currentUser.getGold()+
+        App.currentGameModel.currentUser.setGold(App.currentGameModel.currentUser.getGold()+
                 (int)((availableTools.get(name).getPrice()*availableTools.get("Trashcan").getLevel()*15)/100));
         availableTools.remove(name);
     }
@@ -177,7 +177,7 @@ public class BackPack {
                 return new Result(false,"you don,t have capacity to add more item");
             }
         }
-        App.currentGame.currentUser.increaseGold(-quantity*item.getPrice());
+        App.currentGameModel.currentUser.increaseGold(-quantity*item.getPrice());
         return new Result(true,"you purchased item successfully");
     }
 

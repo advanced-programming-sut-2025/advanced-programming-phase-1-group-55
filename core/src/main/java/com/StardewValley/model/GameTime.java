@@ -11,18 +11,12 @@ import static com.StardewValley.model.weather.*;
 
 import com.StardewValley.enums.WeatherType;
 
-import static com.StardewValley.model.weather.*;
-
-import com.StardewValley.model.Animal.Animal;
 import com.StardewValley.model.Friendship.NpcFriendship;
 import com.StardewValley.model.Friendship.PlayerFriendship;
 import com.StardewValley.model.Item.Item;
-import com.StardewValley.model.Map.Location;
 import com.StardewValley.model.Map.farmBuilder;
 import com.StardewValley.model.Store.Product;
 import com.StardewValley.model.Store.Store;
-
-import java.util.Random;
 
 import static com.StardewValley.model.App.*;
 
@@ -32,13 +26,13 @@ public class GameTime {
     private static DayOfTheWeeks day = saturday;
     private static Seasons currentSeason = fall;
     private static int DayofMonth = 1;
-    private static MainTime mainTime = MainTime.Day;
+    private static MainTime mainTime = MainTime.Night;
 
     public static void setHour(int hour) {
         GameTime.hour = hour;
     }
     public static void friendshipWorks() {
-        for (User user : currentGame.playersInGame) {
+        for (User user : currentGameModel.playersInGame) {
             for (PlayerFriendship friendship : user.getFriendsPlayer().values()) {
                 friendship.setTodayTalked(false);
                 friendship.setTodayGotFlower(false);
@@ -63,14 +57,14 @@ public class GameTime {
             System.out.println("Current Weather is " + weather.getCurrentWeather());
 
         }
-        for (Item plant : currentGame.getAllPlants().values()) {
+        for (Item plant : currentGameModel.getAllPlants().values()) {
             plant.increaseStage(1);
             if (plant.getStage() == 5) {
-                currentGame.getMap().tiles[plant.getLocation().getY()][plant.getLocation().getX()].setMohtaviat("?");
-                currentGame.getAllPlants().remove(plant.getItemType().getDisplayName());
+                currentGameModel.getMap().tiles[plant.getLocation().getY()][plant.getLocation().getX()].setMohtaviat("?");
+                currentGameModel.getAllPlants().remove(plant.getItemType().getDisplayName());
             }
         }
-        for (User player : currentGame.playersInGame) {
+        for (User player : currentGameModel.playersInGame) {
             //in moheme paak nakonid faghat baraaye saadegi tahvil comment kardim!!!!!!!!!!!!!!
 //            if (!player.isFainted()) {
 //
@@ -88,18 +82,18 @@ public class GameTime {
             DayofMonth = 1;
             currentSeason = currentSeason.nextSeason();
         }
-        for (User user : currentGame.playersInGame) {
+        for (User user : currentGameModel.playersInGame) {
             user.increaseGold(user.getDailyMoney());
             user.setDailyMoney(0);
-            farmBuilder.placeRandomForaggings(user.getFarm(),currentGame.getMap(),2,2,1,false);
+            farmBuilder.placeRandomForaggings(user.getFarm(), currentGameModel.getMap(),2,2,1,false);
         }
-        for (Store store : currentGame.getMap().getVillage().getStores().values()) {
+        for (Store store : currentGameModel.getMap().getVillage().getStores().values()) {
             for (Product product : store.getProductsOfStore().values()) {
                 product.setTodaySell(0);
             }
         }
         friendshipWorks();
-        for (User user : currentGame.playersInGame) {
+        for (User user : currentGameModel.playersInGame) {
             for (NpcFriendship friendship : user.getFriendsNpc().values()) {
                 friendship.increaseDayOfBeingFriend();
                 friendship.setTodayMet(false);

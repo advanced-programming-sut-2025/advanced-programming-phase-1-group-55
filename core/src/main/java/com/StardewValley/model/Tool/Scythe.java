@@ -48,6 +48,6 @@ public class Scythe extends  Tools{
     }
     @Override
     public void useTool() {
-        currentGame.currentUser.decreaseEnergy((int) (energyCost() * getEnergyLoser()));
+        currentGameModel.currentUser.decreaseEnergy((int) (energyCost() * getEnergyLoser()));
     }
 }

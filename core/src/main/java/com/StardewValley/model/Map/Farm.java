@@ -139,7 +139,7 @@ public class Farm {
         if (!isInBounds(x, y)) return null;
 //        if (isInBounds(x, y))
 //        {
-            return App.currentGame.getMap().tiles[x][y];
+            return App.currentGameModel.getMap().tiles[x][y];
 //        }
 //        return null;
     }

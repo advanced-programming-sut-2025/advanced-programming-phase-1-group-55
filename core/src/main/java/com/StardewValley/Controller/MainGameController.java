@@ -1,10 +1,9 @@
 package com.StardewValley.Controller;
 
 
+import com.StardewValley.View.MainGameGraphicView;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Item.Item;
-import com.StardewValley.model.Map.GameMap;
-import com.StardewValley.model.Map.GreenHouse;
 import com.StardewValley.model.Map.Location;
 import com.StardewValley.enums.WeatherType;
 import com.StardewValley.model.Map.MainLocation;
@@ -12,7 +11,7 @@ import com.StardewValley.model.Tool.Tools;
 import com.StardewValley.model.Tool.Trashcan;
 import com.StardewValley.model.Tool.WateringCan;
 import com.StardewValley.model.Result;
-import com.StardewValley.enums.AnsiColor;
+
 
 
 import static com.StardewValley.model.Item.ItemType.*;
@@ -26,23 +25,38 @@ import static com.StardewValley.model.App.*;
 import static com.StardewValley.model.GameTime.*;
 
 public class MainGameController {
+    private MainGameGraphicView view;
+    private PlayerController playerController;
+    public void setView(MainGameGraphicView view) {
+        this.view = view;
+       //todo ino bade zadan menu haa tavasot arshia ok kn
+        // playerController = new PlayerController(currentGameModel.currentUser);
+        playerController=new PlayerController(new User());
+    }
+    public void handleInput(){}
+    public void updateGame(float delta) {
+        if (view != null) {
+            handleInput();
+            playerController.update();
+        }
+    }
     public Result equipToolFromBackPack(String toolsName) {
-        if (currentGame.currentUser.getBackPack() == null || !currentGame.currentUser.getBackPack().getAvailableTools().containsKey(toolsName)) {
+        if (currentGameModel.currentUser.getBackPack() == null || !currentGameModel.currentUser.getBackPack().getAvailableTools().containsKey(toolsName)) {
             return new Result(false, "you don't have this tool :(");
         }
-        currentGame.currentUser.getBackPack().setCurrentTool(currentGame.currentUser.getBackPack().getAvailableTools().get(toolsName));
+        currentGameModel.currentUser.getBackPack().setCurrentTool(currentGameModel.currentUser.getBackPack().getAvailableTools().get(toolsName));
         return new Result(true, "you equipped " + toolsName);
     }
 
     public Result showCurrentTools() {
-        return new Result(true, currentGame.currentUser.getBackPack().showCurrentTool());
+        return new Result(true, currentGameModel.currentUser.getBackPack().showCurrentTool());
     }
 
     public Result showAvailableTools() {
-        if (currentGame.currentUser.getBackPack() == null || currentGame.currentUser.getBackPack().getAvailableTools().isEmpty()) {
+        if (currentGameModel.currentUser.getBackPack() == null || currentGameModel.currentUser.getBackPack().getAvailableTools().isEmpty()) {
             return new Result(false, "your backpackis empty:(");
         }
-        return new Result(true, currentGame.currentUser.getBackPack().showAvailableTools());
+        return new Result(true, currentGameModel.currentUser.getBackPack().showAvailableTools());
     }
 
     public Result time() {
@@ -99,9 +113,9 @@ public class MainGameController {
         } catch (Exception e) {
             return new Result(false, "invalid cheat Thor");
         }
-        if (currentGame.getMap().tiles[y][x].getMohtaviat().equals("T")) {
-            currentGame.getMap().tiles[y][x].setMohtaviat("Z");
-            currentGame.getMap().tiles[y][x].setItemInThisTile(new Item(COAL));
+        if (currentGameModel.getMap().tiles[y][x].getMohtaviat().equals("T")) {
+            currentGameModel.getMap().tiles[y][x].setMohtaviat("Z");
+            currentGameModel.getMap().tiles[y][x].setItemInThisTile(new Item(COAL));
 
         }
         return new Result(true, "cheat Thor " + x + " " + y + " confirmed");
@@ -113,12 +127,12 @@ public class MainGameController {
     }
 
     public Result showEnergy() {
-        return new Result(true, "your energy : " + currentGame.currentUser.getEnergy());
+        return new Result(true, "your energy : " + currentGameModel.currentUser.getEnergy());
     }
 
     public Result setEnergy(String energy) {
         try {
-            currentGame.currentUser.setEnergy(Integer.parseInt(energy));
+            currentGameModel.currentUser.setEnergy(Integer.parseInt(energy));
         } catch (Exception e) {
             return new Result(false, "invalid energy");
         }
@@ -127,7 +141,7 @@ public class MainGameController {
     }
 
     public Result unlimitedEnergy() {
-        currentGame.currentUser.setEnergy(Double.MAX_VALUE * 2);
+        currentGameModel.currentUser.setEnergy(Double.MAX_VALUE * 2);
         return new Result(true, "your energy unlimited");
     }
 
@@ -156,8 +170,8 @@ public class MainGameController {
     }
 
     public Result levelUpTool(String name) {
-        Tools tool = currentGame.currentUser.getBackPack().getAvailableTools().get(name);
-        if (!currentGame.currentUser.getMainLocation().equals(MainLocation.BlackSmithStore)) {
+        Tools tool = currentGameModel.currentUser.getBackPack().getAvailableTools().get(name);
+        if (!currentGameModel.currentUser.getMainLocation().equals(MainLocation.BlackSmithStore)) {
             return new Result(false, "you should go to blacksmith store to upgrade your tool!");
         }
         if (tool.getLevel() == 5) {
@@ -165,25 +179,25 @@ public class MainGameController {
         }
 
         if (name.equals("trashcan")) {
-            Trashcan can = currentGame.currentUser.getBackPack().getTrashcan();
-            if (can.getPriceToLevelUp() > currentGame.currentUser.getGold()) {
+            Trashcan can = currentGameModel.currentUser.getBackPack().getTrashcan();
+            if (can.getPriceToLevelUp() > currentGameModel.currentUser.getGold()) {
                 return new Result(false, "you don't have enough money to levelUp your tool");
             } else {
-                currentGame.currentUser.setGold(currentGame.currentUser.getGold() - can.getPriceToLevelUp());
+                currentGameModel.currentUser.setGold(currentGameModel.currentUser.getGold() - can.getPriceToLevelUp());
                 can.increaseLevel(1);
             }
         } else if (tool instanceof WateringCan can) {
-            if (can.getPriceToLevelUp() > currentGame.currentUser.getGold()) {
+            if (can.getPriceToLevelUp() > currentGameModel.currentUser.getGold()) {
                 return new Result(false, "you don't have enough money to levelUp your tool");
             } else {
-                currentGame.currentUser.setGold(currentGame.currentUser.getGold() - can.getPriceToLevelUp());
+                currentGameModel.currentUser.setGold(currentGameModel.currentUser.getGold() - can.getPriceToLevelUp());
                 can.increaseLevel(1);
             }
         } else {
-            if (tool.getPriceToLevelUp() > currentGame.currentUser.getGold()) {
+            if (tool.getPriceToLevelUp() > currentGameModel.currentUser.getGold()) {
                 return new Result(false, "you don't have enough money to levelUp your tool");
             } else {
-                currentGame.currentUser.setGold(currentGame.currentUser.getGold() - tool.getPriceToLevelUp());
+                currentGameModel.currentUser.setGold(currentGameModel.currentUser.getGold() - tool.getPriceToLevelUp());
                 tool.increaseLevel(1);
             }
         }
@@ -201,21 +215,21 @@ public class MainGameController {
     }
 
     public Result showFullMap() {
-        return new Result(true, currentGame.getMap().printMap(new Location(0, 0), 160, 41));
+        return new Result(true, currentGameModel.getMap().printMap(new Location(0, 0), 160, 41));
     }
 
     public Result showMap(int x, int y, int size) {
-        return new Result(true, currentGame.getMap().printMap(new Location(y, x), size, size));
+        return new Result(true, currentGameModel.getMap().printMap(new Location(y, x), size, size));
     }
 
     //cheat code baraye test map hamintori zadam trlrport kone;
     public Result teleport(int x, int y) {
-        currentGame.currentUser.setLocation(new Location(y, x));
+        currentGameModel.currentUser.setLocation(new Location(y, x));
         return new Result(true, " you teleported to " + "y:" + y + " x:" + x);
     }
 
     public Result buildGreenHouse() {
-        User user = currentGame.currentUser;
+        User user = currentGameModel.currentUser;
         if (user.getGold() < 1000 || user.getBackPack().getInventory().get("wood") == null || user.getBackPack().getInventory().get("wood").getNumber() < 500) {
             return new Result(false, "you dont have enough material to build green house");
         } else {
@@ -229,10 +243,10 @@ public class MainGameController {
     }
 
     public Result showOwner(int x, int y) {
-        if (currentGame.getMap().tiles[y][x].getOwner() == null) {
+        if (currentGameModel.getMap().tiles[y][x].getOwner() == null) {
             return new Result(false, "Default tile");
         }
-        return new Result(true, "this tile is in " + currentGame.getMap().tiles[y][x].getOwner().getUsername() + "'s farm" + "Mohtaviat :" + currentGame.getMap().tiles[y][x].getMohtaviat());
+        return new Result(true, "this tile is in " + currentGameModel.getMap().tiles[y][x].getOwner().getUsername() + "'s farm" + "Mohtaviat :" + currentGameModel.getMap().tiles[y][x].getMohtaviat());
     }
 
     public Result changePlayer(String username) {
@@ -240,24 +254,24 @@ public class MainGameController {
         if (user == null) {
             return new Result(false, "user not found!");
         }
-        currentGame.currentUser = user;
+        currentGameModel.currentUser = user;
         StringBuilder message = new StringBuilder();
-        if (currentGame.currentUser.isHasGiftToday()) {
+        if (currentGameModel.currentUser.isHasGiftToday()) {
             message.append("you received new gift!\n");
-            currentGame.currentUser.setHasGiftToday(false);
+            currentGameModel.currentUser.setHasGiftToday(false);
         }
-        if (currentGame.currentUser.isHasMessageToday()) {
+        if (currentGameModel.currentUser.isHasMessageToday()) {
             message.append("you received new message!");
-            currentGame.currentUser.setHasMessageToday(false);
+            currentGameModel.currentUser.setHasMessageToday(false);
         }
         return new Result(true, username + " is now the main player\n" + message);
     }
 
     public Result trashItem(String name, int amount) {
-        if (!App.currentGame.currentUser.getBackPack().getInventory().containsKey(name)) {
+        if (!App.currentGameModel.currentUser.getBackPack().getInventory().containsKey(name)) {
             return new Result(false, "you don't have this item");
         }
-        Item item = App.currentGame.currentUser.getBackPack().getInventory().get(name);
+        Item item = App.currentGameModel.currentUser.getBackPack().getInventory().get(name);
         if (item.getNumber() < amount) {
             return new Result(false, "you don't have enough item to trash");
         }
@@ -265,10 +279,16 @@ public class MainGameController {
         if (item.getPrice()==0) {
             item.setPrice(150);
         }
-        App.currentGame.currentUser.getBackPack().removeAmountFromInventory(item.getItemType(), amount);
-        double sum=(amount * item.getPrice() * currentGame.currentUser.getBackPack().getTrashcan().getRatio());
-        App.currentGame.currentUser.increaseGold
+        App.currentGameModel.currentUser.getBackPack().removeAmountFromInventory(item.getItemType(), amount);
+        double sum=(amount * item.getPrice() * currentGameModel.currentUser.getBackPack().getTrashcan().getRatio());
+        App.currentGameModel.currentUser.increaseGold
                 ((int) (sum/100));
         return new Result(true, "you sold " + name + "successfully!");
     }
+
+    public MainGameGraphicView getView() {
+        return view;
+    }
+
+
 }

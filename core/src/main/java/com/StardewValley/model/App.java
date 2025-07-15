@@ -1,5 +1,6 @@
 package com.StardewValley.model;
 
+import com.StardewValley.GameApp;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -14,8 +15,69 @@ public class App {
     public static Scanner scanner = new Scanner(System.in);
     public static Menu currentMenu = Menu.Register;
     public static HashMap<String, User> AllUsers = new HashMap<>();
-    public static Game currentGame;
+    public static GameModel currentGameModel;
     public static Random rand=new Random();
+    public static GameApp gameApp;
+
+    public static User getMainUser() {
+        return mainUser;
+    }
+
+    public static void setMainUser(User mainUser) {
+        App.mainUser = mainUser;
+    }
+
+    public static Scanner getScanner() {
+        return scanner;
+    }
+
+    public static void setScanner(Scanner scanner) {
+        App.scanner = scanner;
+    }
+
+    public static void setCurrentMenu(Menu currentMenu) {
+        App.currentMenu = currentMenu;
+    }
+
+    public static HashMap<String, User> getAllUsers() {
+        return AllUsers;
+    }
+
+    public static void setAllUsers(HashMap<String, User> allUsers) {
+        AllUsers = allUsers;
+    }
+
+    public static GameModel getCurrentGameModel() {
+        return currentGameModel;
+    }
+
+    public static void setCurrentGameModel(GameModel currentGameModel) {
+        App.currentGameModel = currentGameModel;
+    }
+
+    public static Random getRand() {
+        return rand;
+    }
+
+    public static void setRand(Random rand) {
+        App.rand = rand;
+    }
+
+    public static GameApp getGameApp() {
+        return gameApp;
+    }
+
+    public static void setGameApp(GameApp gameApp) {
+        App.gameApp = gameApp;
+    }
+
+    public static Map<Integer, String> getQuestionsList() {
+        return questionsList;
+    }
+
+    public static void setQuestionsList(Map<Integer, String> questionsList) {
+        App.questionsList = questionsList;
+    }
 
     public static Menu getCurrentMenu() {
         return currentMenu;

@@ -80,15 +80,15 @@ public class MainGameView implements AppMenu {
         } else if ((matcher = mainGameCommands.teleport.getMatcher(input)) != null) {
             System.out.println(controller.teleport(Integer.parseInt(matcher.group("x")),
                     Integer.parseInt(matcher.group("y"))));
-            System.out.println("you are now in: " + currentGame.currentUser.getMainLocation());
+            System.out.println("you are now in: " + currentGameModel.currentUser.getMainLocation());
         } else if ((matcher = inHouseGameMenuCommands.ShowLearnedCratingRecipes.getMatcher(input)) != null) {
-            if (MainLocation.House.equals(currentGame.currentUser.getMainLocation())) {
+            if (MainLocation.House.equals(currentGameModel.currentUser.getMainLocation())) {
                 System.out.println(inHouseController.ShowCraftingRecipe());
             } else {
                 System.out.println("You must be at home for this.");
             }
         } else if ((matcher = inHouseGameMenuCommands.CraftItem.getMatcher(input)) != null) {
-            if (MainLocation.House.equals(currentGame.currentUser.getMainLocation())) {
+            if (MainLocation.House.equals(currentGameModel.currentUser.getMainLocation())) {
                 String itemName = matcher.group("itemName");
                 System.out.println(inHouseController.CraftItem(itemName));
             } else {
@@ -111,55 +111,55 @@ public class MainGameView implements AppMenu {
 //                System.out.println("You must be at home for this.");
 //            }
         } else if ((matcher = inHouseGameMenuCommands.PutInRefrigerator.getMatcher(input)) != null) {
-            if (MainLocation.House.equals(currentGame.currentUser.getMainLocation())) {
+            if (MainLocation.House.equals(currentGameModel.currentUser.getMainLocation())) {
                 String item = matcher.group("item");
                 System.out.println(inHouseController.PutInRefrigerator(item));
             } else {
                 System.out.println("You must be at home for this.");
             }
         } else if ((matcher = inHouseGameMenuCommands.PickFromRefrigerator.getMatcher(input)) != null) {
-            if (MainLocation.House.equals(currentGame.currentUser.getMainLocation())) {
+            if (MainLocation.House.equals(currentGameModel.currentUser.getMainLocation())) {
                 String item = matcher.group("item");
                 System.out.println(inHouseController.PickFromRefrigerator(item));
             } else {
                 System.out.println("You must be at home for this.");
             }
         } else if ((matcher = inHouseGameMenuCommands.ShowLearnedCookingRecipes.getMatcher(input)) != null) {
-            if (MainLocation.House.equals(currentGame.currentUser.getMainLocation())) {
+            if (MainLocation.House.equals(currentGameModel.currentUser.getMainLocation())) {
                 System.out.println(inHouseController.ShowCookingRecipe());
             } else {
                 System.out.println("You must be at home for this.");
             }
         } else if ((matcher = inHouseGameMenuCommands.CookItem.getMatcher(input)) != null) {
-            if (MainLocation.House.equals(currentGame.currentUser.getMainLocation())) {
+            if (MainLocation.House.equals(currentGameModel.currentUser.getMainLocation())) {
                 String recipeName = matcher.group("recipeName");
                 System.out.println(inHouseController.CookItem(recipeName));
             } else {
                 System.out.println("You must be at home for this.");
             }
         } else if ((matcher = inHouseGameMenuCommands.Eat.getMatcher(input)) != null) {
-            if (MainLocation.House.equals(currentGame.currentUser.getMainLocation())) {
+            if (MainLocation.House.equals(currentGameModel.currentUser.getMainLocation())) {
                 String feed = matcher.group("feed");
                 System.out.println(inHouseController.Eat(feed));
             } else {
                 System.out.println("You must be at home for this.");
             }
         } else if ((matcher = inHouseGameMenuCommands.CHEAT_ADD_CRAFTING_RECIPE.getMatcher(input)) != null) {
-            if (MainLocation.House.equals(currentGame.currentUser.getMainLocation())) {
+            if (MainLocation.House.equals(currentGameModel.currentUser.getMainLocation())) {
                 String recipeName = matcher.group("recipeName");
                 System.out.println(inHouseController.cheatAddCraftingRecipe(recipeName));
             } else {
                 System.out.println("You must be at home for this.");
             }
         } else if ((matcher = AnimalCommands.BUILD_ANIMAL_HOUSE.getMatcher(input)) != null) {
-            if (MainLocation.CarpenterShop.equals(currentGame.currentUser.getMainLocation())) {
+            if (MainLocation.CarpenterShop.equals(currentGameModel.currentUser.getMainLocation())) {
 
             System.out.println(animalController.buildAnimalBuilding(input));
             } else {
                 System.out.println("You must be at carpenter shop for this.");
             }
         } else if ((matcher = AnimalCommands.BUY_ANIMAL.getMatcher(input)) != null) {
-            if (MainLocation.MarineRanchStore.equals(currentGame.currentUser.getMainLocation())) {
+            if (MainLocation.MarineRanchStore.equals(currentGameModel.currentUser.getMainLocation())) {
 
             System.out.println(animalController.buyAnimal(input));
             } else {
@@ -212,7 +212,7 @@ public class MainGameView implements AppMenu {
 
         }
         else if (input.matches("\\s*next\\s+turn\\s*")) {
-            currentGame.nextTurn();
+            currentGameModel.nextTurn();
 
 
         } else if (input.matches("exit")) {
@@ -224,7 +224,7 @@ public class MainGameView implements AppMenu {
         } else if (StoreCommands.showAllProducts.getMatcher(input) != null) {
             System.out.println(controller3.showAllProducts());
         } else if ((matcher = mainGameCommands.walk.getMatcher(input)) != null) {
-            System.out.println(controller4.walk(matcher.group("x"), matcher.group("y"), currentGame.getMap().tiles));
+            System.out.println(controller4.walk(matcher.group("x"), matcher.group("y"), currentGameModel.getMap().tiles));
         } else if ((matcher = mainGameCommands.cheatThor.getMatcher(input)) != null) {
             System.out.println(controller.cheatThor(matcher.group("X"), matcher.group("Y")));
 
@@ -254,7 +254,7 @@ public class MainGameView implements AppMenu {
             System.out.println(controller5.tradeResponse(matcher.group("answer"), matcher.group("id")));
 
         } else if (input.matches("\\s*inv\\s*")) {
-            for (Item item : currentGame.currentUser.getBackPack().getInventory().values()) {
+            for (Item item : currentGameModel.currentUser.getBackPack().getInventory().values()) {
                 if (item.getNumber() == 0) {
                     continue;
                 }
@@ -273,11 +273,11 @@ public class MainGameView implements AppMenu {
             System.out.println(controller5.NotAnswerdTrades());
         } else if (input.matches("\\s*gold\\s*")) {
 
-            System.out.println(currentGame.currentUser.getGold());
+            System.out.println(currentGameModel.currentUser.getGold());
         } else if ((matcher = FriendshipCommands.showFriends.getMatcher(input)) != null) {
             System.out.println(controller6.showFriends());
         } else if (input.matches("^\\s*show\\s+money\\s*$")) {
-            System.out.println(currentGame.currentUser.getGold());
+            System.out.println(currentGameModel.currentUser.getGold());
         } else if ((matcher = mainGameCommands.changePlayer.getMatcher(input)) != null) {
             System.out.println(controller.changePlayer(matcher.group("username")));
         } else if ((matcher = FriendshipCommands.talkHistory.getMatcher(input)) != null) {
@@ -323,12 +323,12 @@ public class MainGameView implements AppMenu {
             int x = Integer.parseInt(matcher.group("x"));
             int y = Integer.parseInt(matcher.group("y"));
             System.out.println(MainLocation.isNearATile(new Location(y, x)));
-            System.out.println("mohtaviat" + currentGame.getMap().tiles[y][x].getMohtaviat());
-            System.out.println("owner" + currentGame.getMap().tiles[y][x].getOwner().getUsername());
-            System.out.println(currentGame.getMap().tiles[y][x].getType());
-            System.out.println("item :" + currentGame.getMap().tiles[y][x].getItemInThisTile());
-            System.out.println("empty " + currentGame.getMap().tiles[y][x].isEmpty());
-            System.out.println("shokhm " + currentGame.getMap().tiles[y][x].isShokhmed());
+            System.out.println("mohtaviat" + currentGameModel.getMap().tiles[y][x].getMohtaviat());
+            System.out.println("owner" + currentGameModel.getMap().tiles[y][x].getOwner().getUsername());
+            System.out.println(currentGameModel.getMap().tiles[y][x].getType());
+            System.out.println("item :" + currentGameModel.getMap().tiles[y][x].getItemInThisTile());
+            System.out.println("empty " + currentGameModel.getMap().tiles[y][x].isEmpty());
+            System.out.println("shokhm " + currentGameModel.getMap().tiles[y][x].isShokhmed());
 
         } else if ((matcher = mainGameCommands.useTool.getMatcher(input)) != null) {
             System.out.println(controller7.useTool(matcher.group("direction").trim()));

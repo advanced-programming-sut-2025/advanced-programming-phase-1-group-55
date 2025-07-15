@@ -4,11 +4,9 @@ import com.StardewValley.enums.Seasons;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.Item.ItemType;
-import com.StardewValley.model.NPC.Npc;
 import com.StardewValley.model.Result;
 
 
-import java.time.LocalTime;
 import java.util.HashMap;
 
 
@@ -36,7 +34,7 @@ public class CarpenterShop extends Store{
 //          } else if (product.getItem().getItemType().equals(ItemType.STONE)) {
 //              App.currentGame.currentUser.setStone(App.currentGame.currentUser.getStone()+amount);
 //          } else  {
-              Result x=App.currentGame.currentUser.getBackPack().addItemToInventory(product.getItem(),amount);
+              Result x=App.currentGameModel.currentUser.getBackPack().addItemToInventory(product.getItem(),amount);
             if(x.IsSuccess()){
                 product.increaseDailySold(amount);
             }

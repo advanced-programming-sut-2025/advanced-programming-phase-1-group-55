@@ -1,17 +1,14 @@
 package com.StardewValley.model.Store;
 
-import com.StardewValley.enums.CraftingItemType;
 import com.StardewValley.enums.Seasons;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.Item.ItemType;
-import com.StardewValley.model.NPC.Npc;
 import com.StardewValley.model.Result;
 import com.StardewValley.model.Tool.BackPack;
 import com.StardewValley.model.Tool.FishingPole;
 import com.StardewValley.model.Tool.FishingPoleType;
 
-import java.time.LocalTime;
 import java.util.HashMap;
 
 public class FishingStore extends Store{
@@ -32,7 +29,7 @@ public class FishingStore extends Store{
         }}, "FishShop");
     }
     public Result purchase(int amount , Product product){
-        BackPack backPack=App.currentGame.currentUser.getBackPack();
+        BackPack backPack=App.currentGameModel.currentUser.getBackPack();
         String message="you upgraded your fishing pole successfully";
         if(product.getItem().getItemType().equals(ItemType.FISH_SMOKER_RECIPE)){
             //TODO ADD RECIPE
@@ -51,7 +48,7 @@ public class FishingStore extends Store{
             message="you successfully purchased  your first pole";
         }
         product.increaseDailySold(amount);
-        App.currentGame.currentUser.increaseGold(-amount* product.getGoldCost());
+        App.currentGameModel.currentUser.increaseGold(-amount* product.getGoldCost());
         return new Result(true,message);
     }
 }

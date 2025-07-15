@@ -1,4 +1,4 @@
-
+package com.StardewValley;
 
 import com.StardewValley.View.oldView.AppView;
 

@@ -4,10 +4,8 @@ import com.StardewValley.enums.Seasons;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.Item.ItemType;
-import com.StardewValley.model.NPC.Npc;
 import com.StardewValley.model.Result;
 
-import java.time.LocalTime;
 import java.util.HashMap;
 
 public class OjaMartStore extends Store{
@@ -132,7 +130,7 @@ public class OjaMartStore extends Store{
         }}, "OjaMart");
     }
     public Result purchase(int amount , Product product){
-      Result x=App.currentGame.currentUser.getBackPack().addItemToInventory(product.getItem(),amount);
+      Result x=App.currentGameModel.currentUser.getBackPack().addItemToInventory(product.getItem(),amount);
       if (x.IsSuccess()){
          product.increaseDailySold(amount);
       }

@@ -17,7 +17,7 @@ import java.util.HashMap;
 
 public class inHouseController {
     public Result ShowCraftingRecipe() {
-        ArrayList<CraftingItemType> recipes = App.currentGame.currentUser.getBackPack().getCraftingRecipes();
+        ArrayList<CraftingItemType> recipes = App.currentGameModel.currentUser.getBackPack().getCraftingRecipes();
         if (recipes == null || recipes.isEmpty()) {
             return new Result(false, "No recipe found");
         }
@@ -30,12 +30,12 @@ public class inHouseController {
         return new Result(true, result.toString().trim());
     }
     public Result cheatAddCraftingRecipe(String itemName) {
-        User user = App.currentGame.currentUser;
+        User user = App.currentGameModel.currentUser;
         CraftingItemType recipe = CraftingItemType.getRecipeFromItemName(itemName);
         if (recipe == null) {
             return new Result(false, "Recipe not found");
         }
-        ArrayList<CraftingItemType> recipes = App.currentGame.currentUser.getBackPack().getCraftingRecipes();
+        ArrayList<CraftingItemType> recipes = App.currentGameModel.currentUser.getBackPack().getCraftingRecipes();
         if (recipes.contains(recipe)) {
             return new Result(false, "there is no crafting recipe with this name");
         }
@@ -43,7 +43,7 @@ public class inHouseController {
         return new Result(true, "Added crafting recipe with this name");
     }
     public Result CraftItem(String itemName) {
-        User user = App.currentGame.currentUser;
+        User user = App.currentGameModel.currentUser;
         CraftingItemType recipe = CraftingItemType.getRecipeFromItemName(itemName);
         if (recipe == null) {
             return new Result(false, "No recipe found");
@@ -79,7 +79,7 @@ public class inHouseController {
         return new Result(true, recipe.getProductName() + " has been crafted");
     }
     public Result CheatAddItem(String itemName, String amount) {
-        User user = App.currentGame.currentUser;
+        User user = App.currentGameModel.currentUser;
         ItemType type = ItemType.getItemType(itemName);
         if (type == null) {
             return new Result(false, "No item found");
@@ -95,7 +95,7 @@ public class inHouseController {
         return new Result(true, itemName + " has been cheated");
     }
     public Result PlaceItem(String itemName, String direction) {
-        User user = App.currentGame.currentUser;
+        User user = App.currentGameModel.currentUser;
         ItemType type = ItemType.getItemType(itemName);
         if (type == null) {
             return new Result(false, "No item found");
@@ -104,7 +104,7 @@ public class inHouseController {
         if (item == null) {
             return new Result(false, "you dont have dis item now!");
         }
-        Tile tile = App.currentGame.getTileFromDirection(direction);
+        Tile tile = App.currentGameModel.getTileFromDirection(direction);
         if (tile == null) {
             return new Result(false, "this tile does not exist");
         }
@@ -121,7 +121,7 @@ public class inHouseController {
     }
 
     public Result PutInRefrigerator(String itemName) {
-        User user = App.currentGame.currentUser;
+        User user = App.currentGameModel.currentUser;
         ItemType type = ItemType.getItemType(itemName);
         if (type == null) {
             return new Result(false, "No item found");
@@ -140,7 +140,7 @@ public class inHouseController {
         return new Result(true, itemName + " has been put into refrigerator");
     }
     public Result PickFromRefrigerator(String itemName) {
-        User user = App.currentGame.currentUser;
+        User user = App.currentGameModel.currentUser;
         ItemType type = ItemType.getItemType(itemName);
         if (type == null) {
             return new Result(false, "No item found");
@@ -163,7 +163,7 @@ public class inHouseController {
         return new Result(true, itemName + " has been picked from refrigerator");
     }
     public Result ShowCookingRecipe() {
-        ArrayList<CookingItemType> recipes = App.currentGame.currentUser.getBackPack().getCookingRecipes();
+        ArrayList<CookingItemType> recipes = App.currentGameModel.currentUser.getBackPack().getCookingRecipes();
 //        if (recipes == null || recipes.isEmpty()) {
 //            return new Result(false, "No recipe found");
 //        }
@@ -177,7 +177,7 @@ public class inHouseController {
         return new Result(true, result.toString().trim());
     }
     public Result CookItem(String itemName) {
-        User user = App.currentGame.currentUser;
+        User user = App.currentGameModel.currentUser;
         ItemType type = ItemType.getItemType(itemName);
         if (type == null) {
             return new Result(false, "No item found");
@@ -186,7 +186,7 @@ public class inHouseController {
         if (recipe == null) {
             return new Result(false, "this item does not have cooking recipe");
         }
-        ArrayList<CookingItemType> recipes = App.currentGame.currentUser.getBackPack().getCookingRecipes();
+        ArrayList<CookingItemType> recipes = App.currentGameModel.currentUser.getBackPack().getCookingRecipes();
         if (!recipes.contains(recipe)) {
             return new Result(false, "you dont have this item recipe");
         }
@@ -225,7 +225,7 @@ public class inHouseController {
         return new Result(true, food.getItemType().getDisplayName() + " was cooked and added to inventory.");
     }
     public Result Eat(String itemName) {
-        User user = App.currentGame.currentUser;
+        User user = App.currentGameModel.currentUser;
         ItemType type = ItemType.getItemType(itemName);
         if (type == null) {
             return new Result(false, "No item found");

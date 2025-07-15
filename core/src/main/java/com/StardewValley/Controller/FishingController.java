@@ -6,7 +6,7 @@ import com.StardewValley.model.Skill;
 public class FishingController extends SkillController {
 
     public FishingController() {
-        super(App.currentGame.currentUser.getFishingSkill());
+        super(App.currentGameModel.currentUser.getFishingSkill());
     }
 
 

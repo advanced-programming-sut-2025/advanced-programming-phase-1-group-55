@@ -4,11 +4,9 @@ import com.StardewValley.enums.Seasons;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.Item.ItemType;
-import com.StardewValley.model.NPC.Npc;
 import com.StardewValley.model.Result;
 import com.StardewValley.model.Tool.BackPack;
 
-import java.time.LocalTime;
 import java.util.HashMap;
 
 public class GeneralStore extends Store {
@@ -130,21 +128,21 @@ public class GeneralStore extends Store {
         }}, "Generalstore");
     }
     public Result purchase(int amount , Product product){
-       BackPack backPack= App.currentGame.currentUser.getBackPack();
+       BackPack backPack= App.currentGameModel.currentUser.getBackPack();
          if(product.getItem().getItemType().equals(ItemType.LARGE_PACK)){
              if(backPack.getLevel()==2){
                  return new Result(false,"you already owned this item");
              }
              backPack.setLevel(2);
              product.increaseDailySold(1);
-             App.currentGame.currentUser.increaseGold(-amount* product.getGoldCost());
+             App.currentGameModel.currentUser.increaseGold(-amount* product.getGoldCost());
          } else if (product.getItem().getItemType().equals(ItemType.DELUXE_PACK)) {
              if(backPack.getLevel()==3){
                  return new Result(false,"you already owned this item");
              }
              backPack.setLevel(3);
              product.increaseDailySold(1);
-             App.currentGame.currentUser.increaseGold(-amount* product.getGoldCost());
+             App.currentGameModel.currentUser.increaseGold(-amount* product.getGoldCost());
          }else {
              Result x=backPack.addItemToInventory(product.getItem(),amount);
              if (x.IsSuccess()){

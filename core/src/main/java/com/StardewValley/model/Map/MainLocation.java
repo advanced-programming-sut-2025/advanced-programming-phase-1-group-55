@@ -1,11 +1,9 @@
 package com.StardewValley.model.Map;
 
-import com.StardewValley.enums.Menu;
 import com.StardewValley.model.App;
 import com.StardewValley.model.User;
 
 import static java.lang.Math.max;
-import static com.StardewValley.model.App.*;
 
 public enum MainLocation {
     House,
@@ -27,7 +25,7 @@ public enum MainLocation {
     , nearROBIN
     ,nearTheBin;
     public static boolean isNearTheWater(Location location){
-        GameMap map=App.currentGame.getMap();
+        GameMap map=App.currentGameModel.getMap();
         if(map.tiles[location.getY()+1][location.getX()+1].getType().equals(TileType.water)){
             return true;
         }else if(map.tiles[location.getY()][location.getX()+1].getType().equals(TileType.water)){
@@ -45,7 +43,7 @@ public enum MainLocation {
         }else return map.tiles[max(0,location.getY() - 1)][location.getX()].getType().equals(TileType.water);
     }
     public static Boolean isNearTheShippingBin(Location location){
-        GameMap map=App.currentGame.getMap();
+        GameMap map=App.currentGameModel.getMap();
         if(map.tiles[location.getY()+1][location.getX()+1].getMohtaviat().equals("@")){
             return true;
         }else if(map.tiles[location.getY()][location.getX()+1].getMohtaviat().equals("@")){
@@ -63,7 +61,7 @@ public enum MainLocation {
         }else return map.tiles[max(0,location.getY() - 1)][location.getX()].getMohtaviat().equals("@");
     }
     public static MainLocation findLocation(Location location){
-        Farm farm=App.currentGame.currentUser.getFarm();
+        Farm farm=App.currentGameModel.currentUser.getFarm();
         if (location.isBetween(farm.getHouse().getLocation(),farm.getHouse().getWidth(),farm.getHouse().getHeight())){
             return House;
         } else if (location.isBetween(farm.getQuarry().getLocation(),farm.getQuarry().getWidth(),farm.getQuarry().getHeight())) {
@@ -104,7 +102,7 @@ public enum MainLocation {
     }
 
     public static boolean isNearATile(Location location) {
-        User user = App.currentGame.getCurrentUser();
+        User user = App.currentGameModel.getCurrentUser();
         int x = user.getLocation().getX();
         int y = user.getLocation().getY();
         for (int i = x - 1; i <= x + 1; i++) {
