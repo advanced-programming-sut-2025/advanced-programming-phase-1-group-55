@@ -26,6 +26,20 @@ import static com.StardewValley.model.GameTime.*;
 
 public class MainGameController {
     private MainGameGraphicView view;
+    private PlayerController playerController;
+    public void setView(MainGameGraphicView view) {
+        this.view = view;
+       //todo ino bade zadan menu haa tavasot arshia ok kn
+        // playerController = new PlayerController(currentGameModel.currentUser);
+        playerController=new PlayerController(new User());
+    }
+    public void handleInput(){}
+    public void updateGame(float delta) {
+        if (view != null) {
+            handleInput();
+            playerController.update();
+        }
+    }
     public Result equipToolFromBackPack(String toolsName) {
         if (currentGameModel.currentUser.getBackPack() == null || !currentGameModel.currentUser.getBackPack().getAvailableTools().containsKey(toolsName)) {
             return new Result(false, "you don't have this tool :(");
@@ -276,7 +290,5 @@ public class MainGameController {
         return view;
     }
 
-    public void setView(MainGameGraphicView view) {
-        this.view = view;
-    }
+
 }

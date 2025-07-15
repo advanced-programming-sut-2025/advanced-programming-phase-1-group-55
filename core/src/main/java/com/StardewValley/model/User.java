@@ -15,6 +15,9 @@ import  com.StardewValley.model.Item.ItemType;
 import  com.StardewValley.model.Map.*;
 import  com.StardewValley.model.NPC.Quest;
 import  com.StardewValley.model.Tool.BackPack;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 
 import java.util.*;
 
@@ -24,6 +27,7 @@ public class User {
     private String username;
     private String password;
     private String nickName;
+    private Sprite sprite;
     private String gender;
     private String email;
     private boolean isSad=false;
@@ -130,7 +134,9 @@ public class User {
     public void setPlayerTommorowLocation(Location playerTommorowLocation) {
         this.playerTommorowLocation = playerTommorowLocation;
     }
-
+    public Sprite getPlayerSprite(){
+        return sprite;
+    }
     public boolean isFainted() {
         return fainted;
     }
@@ -228,17 +234,10 @@ public class User {
         this.numberOfSecurityQuestion = numberOfSecurityQuestion;
         this.securityQuestion = securityQuestion;
         this.gold = 10000;
-//        this.cookingItem = new CookingItem(CookingItemType.DISH_O_THE_SEA);
+        sprite=new Sprite(new Texture(Gdx.files.internal("sprites/Mariner.png")));
         this.refrigerator = new ArrayList<>();
 
-//        learnRecipe(CraftingItemType.FURNACE);
-//        learnRecipe(CraftingItemType.SCARECROW);
-//        learnRecipe(CraftingItemType.MAYONNAISE_MACHINE);
     }
-//    public ArrayList<Item> getRefrigerator() {
-//        return refrigerator;
-//    }
-
 
     public double getEnergy() {
         int zarib=1;
@@ -562,19 +561,13 @@ public class User {
         }
         return null;
     }
+    //todo ino bade zadan menu haa tavasot arshia hazf kn
+    public User( ){
+
+    }
 
 
-    //    public void learnRecipe(CraftingItemType recipe) {
-//        learnedCraftingRecipes.add(recipe);
-//    }
-//
-//    public boolean hasLearnedRecipe(CraftingItemType recipe) {
-//        return learnedCraftingRecipes.contains(recipe);
-//    }
-//
-//    public Set<CraftingItemType> getLearnedCraftingRecipes() {
-//        return Collections.unmodifiableSet(learnedCraftingRecipes);
-//    }
+
 
 
 }
