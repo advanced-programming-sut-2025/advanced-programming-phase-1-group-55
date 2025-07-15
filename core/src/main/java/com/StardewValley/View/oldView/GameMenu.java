@@ -1,9 +1,8 @@
-package com.StardewValley.View;
+package com.StardewValley.View.oldView;
 
 import  com.StardewValley.Controller.GameMenuController;
 import  com.StardewValley.enums.Menu;
 
-import  com.StardewValley.model.Map.*;
 import  com.StardewValley.enums.mainGameCommands;
 
 import java.util.regex.Matcher;

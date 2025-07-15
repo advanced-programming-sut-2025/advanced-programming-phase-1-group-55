@@ -1,6 +1,5 @@
-package com.StardewValley.View;
+package com.StardewValley.View.oldView;
 
-import java.util.*;
 public interface AppMenu {
     void check(String input);
 

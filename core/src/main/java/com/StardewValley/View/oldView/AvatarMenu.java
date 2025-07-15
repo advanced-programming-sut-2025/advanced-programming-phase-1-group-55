@@ -1,6 +1,4 @@
-package com.StardewValley.View;
-
-import java.util.Scanner;
+package com.StardewValley.View.oldView;
 
 public class AvatarMenu  extends AppView implements AppMenu{
     @Override
