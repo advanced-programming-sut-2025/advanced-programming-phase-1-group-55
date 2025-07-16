@@ -14,7 +14,7 @@ public enum inHouseGameMenuCommands {
     PickFromRefrigerator("cooking\\s+refrigerator\\s+pick\\s+(?<item>.*)"),
     ShowLearnedCookingRecipes("cooking\\s+show\\s+recipes"),
     CookItem("cooking\\s+prepare\\s+(?<recipeName>.*)"),
-    Eat("eat\\s+(?<feed>.*)");
+    Eat("eat\\s+(?<recipeName>.*)");
 
     private final String pattern;
 

@@ -326,7 +326,7 @@ public enum ItemType {
     PALE_ALE("pale ale"),
     WINE("wine"),
     COFFEE_BEAN("coffee bean"),
-    HOPS_CROP("hops crop"),
+    HOPS("hops"),
     MAYONNAISE("mayonnaise"),
     DUCK_MAYONNAISE("duck mayonnaise"),
     DINOSAUR_MAYONNAISE("dinosaur mayonnaise"),
@@ -338,6 +338,42 @@ public enum ItemType {
     SUNFLOWER("sunflower"),
     JELLY("jelly"),
     SMOKED_FISH("smoothed fish"),
+    BLUE_JAZZ("Blue Jazz"),
+    CAULIFLOWER("Cauliflower"),
+    GARLIC("Garlic"),
+    GREEN_BEAN("Green Bean corp"),
+
+    RHUBARB("Rhubarb"),
+    STRAWBERRY("Strawberry"),
+    TULIP("Tulip"),
+    UNMILLED_RICE("Unmilled Rice"),
+
+    HOT_PEPPER("Hot Pepper"),
+
+    POPPY("Poppy"),
+
+    STARFRUIT("Starfruit"),
+    SUMMER_SPANGLE("Summer Spangle"),
+    SUMMER_SQUASH("Summer Squash"),
+
+    ARTICHOKE("Artichoke"),
+
+    BOK_CHOY("Bok Choy"),
+    BROCCOLI("Broccoli"),
+    CRANBERRIES("Cranberries"),
+
+    FAIRY_ROSE("Fairy Rose"),
+
+    YAM("Yam"),
+    SWEET_GEM_BERRY("Sweet Gem Berry"),
+    POWDERMELON("Powdermelon"),
+    ANCIENT_FRUIT("Ancient Fruit corp"),
+
+
+
+
+    FERTILIZER("fertilizer"),
+    HOPS_CROP("Hops Crop"),
     ;
 
 

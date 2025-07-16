@@ -5,10 +5,11 @@ import com.StardewValley.model.Item.Item;
 
 import java.util.List;
 
-public class Crop {
+public class Crop extends Item implements Fertilizable {
     private AllCrops cropType;
     private Location location;
-
+    private boolean isWatered = false;
+    private boolean isFertilized = false;
     public Crop(AllCrops cropType, Location location) {
         this.cropType = cropType;
         this.location = location;
@@ -29,7 +30,25 @@ public class Crop {
     public void setCropType(AllCrops cropType) {
         this.cropType = cropType;
     }
+    @Override
+    public boolean isWatered() {
+        return isWatered;
+    }
 
+    @Override
+    public void setWatered(boolean watered) {
+        this.isWatered = watered;
+    }
+
+    @Override
+    public boolean isFertilized() {
+        return isFertilized;
+    }
+
+    @Override
+    public void setFertilized(boolean fertilized) {
+        this.isFertilized = fertilized;
+    }
     @Override
     public String toString() {
         return "Crop{" +
@@ -43,6 +62,8 @@ public class Crop {
                 ", baseEnergy=" + cropType.getBaseEnergy() +
                 ", season='" + cropType.getSeed().getSeason() + '\'' +
                 ", canBecomeGiant=" + cropType.isCanBecomeGiant() +
+            ", isWatered=" + isWatered +
+            ", isFertilized=" + isFertilized +
                 '}';
     }
 }

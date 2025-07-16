@@ -95,4 +95,17 @@ public class Tile {
     public void setWalkable(boolean walkable) {
         this.walkable = walkable;
     }
+    public boolean isFarmable() {
+        return this.type == TileType.grass;
+    }
+
+
+
+    public boolean isPlowed() {
+        return this.isShokhmed;
+    }
+
+    public void setPlowed(boolean value) {
+        this.isShokhmed = value;
+    }
 }
