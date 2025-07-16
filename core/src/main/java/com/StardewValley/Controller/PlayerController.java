@@ -2,6 +2,8 @@ package com.StardewValley.Controller;
 
 import com.StardewValley.GameApp;
 import com.StardewValley.model.App;
+import com.StardewValley.model.Map.GameMap;
+import com.StardewValley.model.Map.Location;
 import com.StardewValley.model.User;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -30,16 +32,27 @@ public class PlayerController {
     public void handlePlayerInput(){
         if (Gdx.input.isKeyPressed(Input.Keys.W)){
             player.getLocation().setY(player.getLocation().getY() + 1);
+            if (!GameMap.isInsideFence(player.getLocation().getX(), player.getLocation().getY())) {
+                player.getLocation().setY(player.getLocation().getY() - 1);
+            }
         }
         if (Gdx.input.isKeyPressed(Input.Keys.D)){
             player.getLocation().setX(player.getLocation().getX() + 1);
+            if (!GameMap.isInsideFence(player.getLocation().getX(), player.getLocation().getY())){
+                player.getLocation().setX(player.getLocation().getX() - 1);
+            }
         }
         if (Gdx.input.isKeyPressed(Input.Keys.S)){
             player.getLocation().setY(player.getLocation().getY() - 1);
+            if (!GameMap.isInsideFence(player.getLocation().getX(), player.getLocation().getY())){
+                player.getLocation().setY(player.getLocation().getY() + 1);
+            }
         }
         if (Gdx.input.isKeyPressed(Input.Keys.A)){
             player.getLocation().setX(player.getLocation().getX() - 1);
-
+            if (!GameMap.isInsideFence(player.getLocation().getX(), player.getLocation().getY())){
+                player.getLocation().setX(player.getLocation().getX() + 1);
+            }
         }
     }
 }

@@ -290,5 +290,11 @@ public class MainGameController {
         return view;
     }
 
+    public PlayerController getPlayerController() {
+        return playerController;
+    }
 
+    public void setPlayerController(PlayerController playerController) {
+        this.playerController = playerController;
+    }
 }
