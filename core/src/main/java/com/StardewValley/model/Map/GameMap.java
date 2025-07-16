@@ -1,6 +1,7 @@
 package com.StardewValley.model.Map;
 
 import com.StardewValley.enums.AnsiColor;
+import com.StardewValley.model.AssetManager;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,6 +18,9 @@ public class GameMap {
     private Farm farm3;
     private Farm farm4;
     private NpcVillage village;
+    private static final int WORLD_WIDTH = (int)(1920*1.5);
+    private static final int WORLD_HEIGHT = (int)(1080*1.5);
+
 
     public GameMap(Farm farm1, Farm farm2, Farm farm3, Farm farm4, NpcVillage village) {
 
@@ -43,6 +47,29 @@ public class GameMap {
 
     }
 
+    public static boolean  isInsideFence(int x, int y) {
+        int left = -WORLD_WIDTH / 2 + AssetManager.stoneFenceTexture.getWidth()/2;
+        int right = WORLD_WIDTH / 2 - AssetManager.stoneFenceTexture.getWidth()/2;
+        int bottom = -WORLD_HEIGHT / 2 + AssetManager.stoneFenceTexture.getHeight()/2;
+        int top = WORLD_HEIGHT / 2 -  AssetManager.stoneFenceTexture.getHeight()/2;
+        return x >= left+25 && x <= right && y >= bottom+36 && y <= top-10;
+    }
+
+    public Tile[][] getTiles() {
+        return tiles;
+    }
+
+    public void setTiles(Tile[][] tiles) {
+        this.tiles = tiles;
+    }
+
+    public int getWORLD_WIDTH() {
+        return WORLD_WIDTH;
+    }
+
+    public int getWORLD_HEIGHT() {
+        return WORLD_HEIGHT;
+    }
 
     public Farm getFarm1() {
         return farm1;

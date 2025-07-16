@@ -1,31 +1,27 @@
 package com.StardewValley.View;
 
 import com.StardewValley.Controller.MainGameController;
+import com.StardewValley.model.App;
 import com.StardewValley.model.GameTime;
 import com.StardewValley.model.MainTime;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.badlogic.gdx.utils.ScreenUtils;
 
 import static com.StardewValley.model.AssetManager.*;
 
-
-public class MainGameGraphicView implements Screen, InputProcessor {
+public class MainGameGraphicView implements Screen {
     private final MainGameController controller;
     private OrthographicCamera camera;
+
     private Texture bgTexture;
     private Texture fenceTexture;
-    private SpriteBatch batch;
-    private Stage stage;
 
-    private final int WORLD_WIDTH = 5000;
-    private final int WORLD_HEIGHT = 5000;
+    private final int WORLD_WIDTH =(int)( 1920*1.5);
+    private final int WORLD_HEIGHT = (int)( 1080*1.5);
 
     public MainGameGraphicView(MainGameController controller) {
         this.controller = controller;
@@ -41,73 +37,81 @@ public class MainGameGraphicView implements Screen, InputProcessor {
     @Override
     public void show() {
         setupCamera();
-        Gdx.input.setInputProcessor(this);
+        Gdx.input.setInputProcessor(null);
 
+        updateBackgroundTexture();
 
-        if (GameTime.getMainTime().equals(MainTime.Night)) {
-            bgTexture = NightBackGround;
-        } else {
-            bgTexture = DayBackGround;
-        }
-        bgTexture.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
-
-
-        fenceTexture =stoneFenceTexture;
+        fenceTexture = stoneFenceTexture;
         fenceTexture.setWrap(Texture.TextureWrap.ClampToEdge, Texture.TextureWrap.ClampToEdge);
+    }
 
-        batch = new SpriteBatch();
-        stage = new Stage(new ScreenViewport());
+    private void updateBackgroundTexture() {
+        Texture newTexture = GameTime.getMainTime().equals(MainTime.Night) ? NightBackGround : DayBackGround;
+        if (bgTexture != newTexture) {
+            bgTexture = newTexture;
+            bgTexture.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
+        }
     }
 
     @Override
     public void render(float delta) {
-        if (GameTime.getMainTime().equals(MainTime.Night)) {
-            bgTexture = NightBackGround;
-        } else {
-            bgTexture = DayBackGround;
-        }
-        bgTexture.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
+        ScreenUtils.clear(0, 0, 0, 1);
+        updateBackgroundTexture();
 
         camera.update();
-        batch.setProjectionMatrix(camera.combined);
+        controller.getPlayerController().centerPlayerOnCamera(camera);
+        App.gameApp.getBatch().setProjectionMatrix(camera.combined);
 
-        batch.begin();
+        App.gameApp.getBatch().begin();
 
+        drawBackground();
+        controller.updateGame(delta);
+        drawFences();
 
-        TextureRegion backgroundRegion = new TextureRegion(bgTexture);
-        backgroundRegion.setRegion(0, 0, WORLD_WIDTH, WORLD_HEIGHT);
-        batch.draw(backgroundRegion, 0, 0, WORLD_WIDTH, WORLD_HEIGHT);
-
-
-        if (fenceTexture != null) {
-            int fenceWidth = fenceTexture.getWidth();
-            int fenceHeight = fenceTexture.getHeight();
-
-
-            for (int x = 0; x < WORLD_WIDTH; x += fenceWidth) {
-                batch.draw(fenceTexture, x, WORLD_HEIGHT - fenceHeight);
-            }
-
-
-            for (int x = 0; x < WORLD_WIDTH; x += fenceWidth) {
-                batch.draw(fenceTexture, x, 0);
-            }
-
-
-            for (int y = 0; y < WORLD_HEIGHT; y += fenceHeight) {
-                batch.draw(fenceTexture, 0, y);
-            }
-
-
-            for (int y = 0; y < WORLD_HEIGHT; y += fenceHeight) {
-                batch.draw(fenceTexture, WORLD_WIDTH - fenceWidth, y);
-            }
-        }
-
-        batch.end();
+        App.gameApp.getBatch().end();
     }
 
-    @Override public void resize(int width, int height) {
+    private void drawBackground() {
+        float camX = camera.position.x - camera.viewportWidth / 2;
+        float camY = camera.position.y - camera.viewportHeight / 2;
+
+        TextureRegion backgroundRegion = new TextureRegion(bgTexture);
+
+        int texWidth = bgTexture.getWidth();
+        int texHeight = bgTexture.getHeight();
+
+
+        int offsetX = ((int) camX) % texWidth;
+        if (offsetX < 0) offsetX += texWidth;
+
+        int offsetY = 0;
+
+        backgroundRegion.setRegion(offsetX, offsetY, (int) camera.viewportWidth, (int) camera.viewportHeight);
+
+        App.gameApp.getBatch().draw(backgroundRegion, camX, camY, camera.viewportWidth, camera.viewportHeight);
+    }
+
+    private void drawFences() {
+        if (fenceTexture == null) return;
+
+        int fenceWidth = fenceTexture.getWidth()/2;
+        int fenceHeight = fenceTexture.getHeight()/2;
+
+
+        for (int x = -WORLD_WIDTH / 2; x < WORLD_WIDTH / 2; x += fenceWidth) {
+            App.gameApp.getBatch().draw(fenceTexture, x, WORLD_HEIGHT / 2 - fenceHeight);
+            App.gameApp.getBatch().draw(fenceTexture, x, -WORLD_HEIGHT / 2);
+        }
+
+
+        for (int y = -WORLD_HEIGHT / 2; y < WORLD_HEIGHT / 2; y += fenceHeight) {
+            App.gameApp.getBatch().draw(fenceTexture, -WORLD_WIDTH / 2, y);
+            App.gameApp.getBatch().draw(fenceTexture, WORLD_WIDTH / 2 - fenceWidth, y);
+        }
+    }
+
+    @Override
+    public void resize(int width, int height) {
         camera.setToOrtho(false, width, height);
         camera.update();
     }
@@ -116,20 +120,10 @@ public class MainGameGraphicView implements Screen, InputProcessor {
     @Override public void resume() {}
     @Override public void hide() {}
 
-    @Override public void dispose() {
-        batch.dispose();
+    @Override
+    public void dispose() {
 
     }
-
-    @Override public boolean keyDown(int i) { return false; }
-    @Override public boolean keyUp(int i) { return false; }
-    @Override public boolean keyTyped(char c) { return false; }
-    @Override public boolean touchDown(int i, int i1, int i2, int i3) { return false; }
-    @Override public boolean touchUp(int i, int i1, int i2, int i3) { return false; }
-    @Override public boolean touchCancelled(int i, int i1, int i2, int i3) { return false; }
-    @Override public boolean touchDragged(int i, int i1, int i2) { return false; }
-    @Override public boolean mouseMoved(int i, int i1) { return false; }
-    @Override public boolean scrolled(float v, float v1) { return false; }
 
     public MainGameController getController() {
         return controller;

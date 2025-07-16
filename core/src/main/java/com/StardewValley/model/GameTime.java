@@ -26,7 +26,7 @@ public class GameTime {
     private static DayOfTheWeeks day = saturday;
     private static Seasons currentSeason = fall;
     private static int DayofMonth = 1;
-    private static MainTime mainTime = MainTime.Night;
+    private static MainTime mainTime = MainTime.Day;
 
     public static void setHour(int hour) {
         GameTime.hour = hour;

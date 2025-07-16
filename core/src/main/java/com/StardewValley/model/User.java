@@ -22,12 +22,13 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import java.util.*;
 
 import static  com.StardewValley.model.App.currentGameModel;
+import static com.StardewValley.model.AssetManager.*;
 
 public class User {
     private String username;
     private String password;
     private String nickName;
-    private Sprite sprite;
+    private Sprite sprite=playerSprite;
     private String gender;
     private String email;
     private boolean isSad=false;
