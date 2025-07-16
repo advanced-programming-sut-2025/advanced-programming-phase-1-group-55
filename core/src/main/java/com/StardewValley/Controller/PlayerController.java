@@ -30,29 +30,37 @@ public class PlayerController {
 
 
     public void handlePlayerInput(){
+        boolean movedSuccessfully=true;
         if (Gdx.input.isKeyPressed(Input.Keys.W)){
             player.getLocation().setY(player.getLocation().getY() + 1);
             if (!GameMap.isInsideFence(player.getLocation().getX(), player.getLocation().getY())) {
                 player.getLocation().setY(player.getLocation().getY() - 1);
+                movedSuccessfully=false;
             }
         }
         if (Gdx.input.isKeyPressed(Input.Keys.D)){
             player.getLocation().setX(player.getLocation().getX() + 1);
             if (!GameMap.isInsideFence(player.getLocation().getX(), player.getLocation().getY())){
                 player.getLocation().setX(player.getLocation().getX() - 1);
+                movedSuccessfully=false;
             }
         }
         if (Gdx.input.isKeyPressed(Input.Keys.S)){
             player.getLocation().setY(player.getLocation().getY() - 1);
             if (!GameMap.isInsideFence(player.getLocation().getX(), player.getLocation().getY())){
                 player.getLocation().setY(player.getLocation().getY() + 1);
+                movedSuccessfully=false;
             }
         }
         if (Gdx.input.isKeyPressed(Input.Keys.A)){
             player.getLocation().setX(player.getLocation().getX() - 1);
             if (!GameMap.isInsideFence(player.getLocation().getX(), player.getLocation().getY())){
                 player.getLocation().setX(player.getLocation().getX() + 1);
+                movedSuccessfully=false;
             }
+        }
+        if(movedSuccessfully){
+            //todo  energy kam beshe  arshia bezn ino
         }
     }
 }
