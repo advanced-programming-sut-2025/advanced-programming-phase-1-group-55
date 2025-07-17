@@ -2,6 +2,7 @@ package com.StardewValley.View;
 
 import com.StardewValley.Controller.MainGameController;
 import com.StardewValley.model.App;
+import com.StardewValley.model.AssetManager;
 import com.StardewValley.model.GameTime;
 import com.StardewValley.model.MainTime;
 import com.badlogic.gdx.Gdx;
@@ -41,12 +42,12 @@ public class MainGameGraphicView implements Screen {
 
         updateBackgroundTexture();
 
-        fenceTexture = stoneFenceTexture;
+        fenceTexture = STONE_FENCE.getTexture();
         fenceTexture.setWrap(Texture.TextureWrap.ClampToEdge, Texture.TextureWrap.ClampToEdge);
     }
 
     private void updateBackgroundTexture() {
-        Texture newTexture = GameTime.getMainTime().equals(MainTime.Night) ? NightBackGround : DayBackGround;
+        Texture newTexture = GameTime.getMainTime().equals(MainTime.Night) ? NIGHT_BACKGROUND.getTexture() : DAY_BACKGROUND.getTexture();
         if (bgTexture != newTexture) {
             bgTexture = newTexture;
             bgTexture.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);

@@ -28,7 +28,7 @@ public class User {
     private String username;
     private String password;
     private String nickName;
-    private Sprite sprite=playerSprite;
+    private Sprite sprite=new Sprite(PLAYER.getTexture());
     private String gender;
     private String email;
     private boolean isSad=false;

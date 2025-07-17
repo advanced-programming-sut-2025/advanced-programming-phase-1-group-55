@@ -48,10 +48,10 @@ public class GameMap {
     }
 
     public static boolean  isInsideFence(int x, int y) {
-        int left = -WORLD_WIDTH / 2 + AssetManager.stoneFenceTexture.getWidth()/2;
-        int right = WORLD_WIDTH / 2 - AssetManager.stoneFenceTexture.getWidth()/2;
-        int bottom = -WORLD_HEIGHT / 2 + AssetManager.stoneFenceTexture.getHeight()/2;
-        int top = WORLD_HEIGHT / 2 -  AssetManager.stoneFenceTexture.getHeight()/2;
+        int left = -WORLD_WIDTH / 2 + AssetManager.STONE_FENCE.getTexture().getWidth()/2;
+        int right = WORLD_WIDTH / 2 - AssetManager.STONE_FENCE.getTexture().getWidth()/2;
+        int bottom = -WORLD_HEIGHT / 2 + AssetManager.STONE_FENCE.getTexture().getHeight()/2;
+        int top = WORLD_HEIGHT / 2 -  AssetManager.STONE_FENCE.getTexture().getHeight()/2;
         return x >= left+25 && x <= right && y >= bottom+36 && y <= top-10;
     }
 
