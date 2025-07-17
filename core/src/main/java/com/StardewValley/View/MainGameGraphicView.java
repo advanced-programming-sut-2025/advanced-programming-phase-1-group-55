@@ -2,15 +2,21 @@ package com.StardewValley.View;
 
 import com.StardewValley.Controller.MainGameController;
 import com.StardewValley.model.App;
-import com.StardewValley.model.AssetManager;
 import com.StardewValley.model.GameTime;
 import com.StardewValley.model.MainTime;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 import static com.StardewValley.model.AssetManager.*;
 
@@ -20,9 +26,12 @@ public class MainGameGraphicView implements Screen {
 
     private Texture bgTexture;
     private Texture fenceTexture;
+    private ProgressBar energyBar;
+    private Table tableTop;
+    private Stage stage;
 
-    private final int WORLD_WIDTH =(int)( 1920*1.5);
-    private final int WORLD_HEIGHT = (int)( 1080*1.5);
+    private final int WORLD_WIDTH = (int) (1920 * 1.5);
+    private final int WORLD_HEIGHT = (int) (1080 * 1.5);
 
     public MainGameGraphicView(MainGameController controller) {
         this.controller = controller;
@@ -38,16 +47,47 @@ public class MainGameGraphicView implements Screen {
     @Override
     public void show() {
         setupCamera();
-        Gdx.input.setInputProcessor(null);
+
+
+        stage = new Stage(new ScreenViewport());
+        Gdx.input.setInputProcessor(stage);
 
         updateBackgroundTexture();
+
+
+        ProgressBar.ProgressBarStyle progressBarStyle = new ProgressBar.ProgressBarStyle();
+
+        Pixmap bgPixmap = new Pixmap(200, 20, Pixmap.Format.RGBA8888);
+        bgPixmap.setColor(Color.DARK_GRAY);
+        bgPixmap.fill();
+        progressBarStyle.background = new TextureRegionDrawable(new Texture(bgPixmap));
+
+        Pixmap knobPixmap = new Pixmap(1, 20, Pixmap.Format.RGBA8888);
+        knobPixmap.setColor(Color.GREEN);
+        knobPixmap.fill();
+        progressBarStyle.knobBefore = new TextureRegionDrawable(new Texture(knobPixmap));
+
+        energyBar = new ProgressBar(0f, 100f, 1f, false, progressBarStyle);
+        energyBar.setValue(50f);
+
+
+        tableTop = new Table();
+        tableTop.top().left();
+        tableTop.setFillParent(true);
+        tableTop.add(energyBar).pad(10).padRight(50).left();
+
+
+        stage.addActor(tableTop);
+
 
         fenceTexture = STONE_FENCE.getTexture();
         fenceTexture.setWrap(Texture.TextureWrap.ClampToEdge, Texture.TextureWrap.ClampToEdge);
     }
 
     private void updateBackgroundTexture() {
-        Texture newTexture = GameTime.getMainTime().equals(MainTime.Night) ? NIGHT_BACKGROUND.getTexture() : DAY_BACKGROUND.getTexture();
+        Texture newTexture = GameTime.getMainTime().equals(MainTime.Night)
+            ? NIGHT_BACKGROUND.getTexture()
+            : DAY_BACKGROUND.getTexture();
         if (bgTexture != newTexture) {
             bgTexture = newTexture;
             bgTexture.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
@@ -70,6 +110,9 @@ public class MainGameGraphicView implements Screen {
         drawFences();
 
         App.gameApp.getBatch().end();
+
+        stage.act(delta);
+        stage.draw();
     }
 
     private void drawBackground() {
@@ -80,7 +123,6 @@ public class MainGameGraphicView implements Screen {
 
         int texWidth = bgTexture.getWidth();
         int texHeight = bgTexture.getHeight();
-
 
         int offsetX = ((int) camX) % texWidth;
         if (offsetX < 0) offsetX += texWidth;
@@ -95,15 +137,13 @@ public class MainGameGraphicView implements Screen {
     private void drawFences() {
         if (fenceTexture == null) return;
 
-        int fenceWidth = fenceTexture.getWidth()/2;
-        int fenceHeight = fenceTexture.getHeight()/2;
-
+        int fenceWidth = fenceTexture.getWidth() / 2;
+        int fenceHeight = fenceTexture.getHeight() / 2;
 
         for (int x = -WORLD_WIDTH / 2; x < WORLD_WIDTH / 2; x += fenceWidth) {
             App.gameApp.getBatch().draw(fenceTexture, x, WORLD_HEIGHT / 2 - fenceHeight);
             App.gameApp.getBatch().draw(fenceTexture, x, -WORLD_HEIGHT / 2);
         }
-
 
         for (int y = -WORLD_HEIGHT / 2; y < WORLD_HEIGHT / 2; y += fenceHeight) {
             App.gameApp.getBatch().draw(fenceTexture, -WORLD_WIDTH / 2, y);
@@ -115,6 +155,7 @@ public class MainGameGraphicView implements Screen {
     public void resize(int width, int height) {
         camera.setToOrtho(false, width, height);
         camera.update();
+        stage.getViewport().update(width, height, true);
     }
 
     @Override public void pause() {}
@@ -123,7 +164,7 @@ public class MainGameGraphicView implements Screen {
 
     @Override
     public void dispose() {
-
+        stage.dispose();
     }
 
     public MainGameController getController() {
