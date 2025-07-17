@@ -110,7 +110,7 @@ public class MainGameGraphicView implements Screen {
         drawFences();
 
         App.gameApp.getBatch().end();
-
+        //todo energy bar.setvalue-->> player.getEnergy  alan chon plyer==null nmishod zad intori
         stage.act(delta);
         stage.draw();
     }
