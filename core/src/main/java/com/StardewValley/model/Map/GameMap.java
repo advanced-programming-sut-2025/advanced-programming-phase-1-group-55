@@ -20,6 +20,7 @@ public class GameMap {
     private NpcVillage village;
     private static final int WORLD_WIDTH = (int)(1920*1.5);
     private static final int WORLD_HEIGHT = (int)(1080*1.5);
+    private mapBuilder mapBuilder = new mapBuilder();
 
 
     public GameMap(Farm farm1, Farm farm2, Farm farm3, Farm farm4, NpcVillage village) {
@@ -53,6 +54,13 @@ public class GameMap {
         int bottom = -WORLD_HEIGHT / 2 + AssetManager.STONE_FENCE.getTexture().getHeight()/2;
         int top = WORLD_HEIGHT / 2 -  AssetManager.STONE_FENCE.getTexture().getHeight()/2;
         return x >= left+25 && x <= right && y >= bottom+36 && y <= top-10;
+    }
+    public void BuildMap(){
+
+    }
+    public static void DrawMap(){
+        com.StardewValley.model.Map.mapBuilder mapBuilder1 = new com.StardewValley.model.Map.mapBuilder();
+        mapBuilder1.drawFences(WORLD_WIDTH,WORLD_HEIGHT,AssetManager.STONE_FENCE.getTexture());
     }
 
     public Tile[][] getTiles() {
