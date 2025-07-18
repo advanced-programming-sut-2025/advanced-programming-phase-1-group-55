@@ -2,6 +2,7 @@ package com.StardewValley.Controller;
 
 import com.StardewValley.GameApp;
 import com.StardewValley.model.App;
+import com.StardewValley.model.Item.CollisionRect;
 import com.StardewValley.model.Map.GameMap;
 import com.StardewValley.model.Map.Location;
 import com.StardewValley.model.User;
@@ -14,6 +15,7 @@ public class PlayerController {
     private User player;
     public PlayerController(User player) {
         this.player = player;
+        player.setCollisionRect(new CollisionRect(player.getLocation().getX(),player.getLocation().getY(),player.getSprite().getWidth(),player.getSprite().getHeight()));
     }
     public void centerPlayerOnCamera(OrthographicCamera camera) {
         camera.position.set(player.getLocation().getX(), player.getLocation().getY(), 0);
@@ -33,29 +35,37 @@ public class PlayerController {
         boolean movedSuccessfully=true;
         if (Gdx.input.isKeyPressed(Input.Keys.W)){
             player.getLocation().setY(player.getLocation().getY() + 1);
-            if (!GameMap.isInsideFence(player.getLocation().getX(), player.getLocation().getY())) {
+            player.getCollisionRect().updateCollisionRect(player.getLocation().getX(), player.getLocation().getY());
+            if (!GameMap.canMove(player.getCollisionRect())) {
                 player.getLocation().setY(player.getLocation().getY() - 1);
+                player.getCollisionRect().updateCollisionRect(player.getLocation().getX(), player.getLocation().getY());
                 movedSuccessfully=false;
             }
         }
         if (Gdx.input.isKeyPressed(Input.Keys.D)){
             player.getLocation().setX(player.getLocation().getX() + 1);
-            if (!GameMap.isInsideFence(player.getLocation().getX(), player.getLocation().getY())){
+            player.getCollisionRect().updateCollisionRect(player.getLocation().getX(), player.getLocation().getY());
+            if (!GameMap.canMove(player.getCollisionRect())){
                 player.getLocation().setX(player.getLocation().getX() - 1);
+                player.getCollisionRect().updateCollisionRect(player.getLocation().getX(), player.getLocation().getY());
                 movedSuccessfully=false;
             }
         }
         if (Gdx.input.isKeyPressed(Input.Keys.S)){
             player.getLocation().setY(player.getLocation().getY() - 1);
-            if (!GameMap.isInsideFence(player.getLocation().getX(), player.getLocation().getY())){
+            player.getCollisionRect().updateCollisionRect(player.getLocation().getX(), player.getLocation().getY());
+            if (!GameMap.canMove(player.getCollisionRect())){
                 player.getLocation().setY(player.getLocation().getY() + 1);
+                player.getCollisionRect().updateCollisionRect(player.getLocation().getX(), player.getLocation().getY());
                 movedSuccessfully=false;
             }
         }
         if (Gdx.input.isKeyPressed(Input.Keys.A)){
             player.getLocation().setX(player.getLocation().getX() - 1);
-            if (!GameMap.isInsideFence(player.getLocation().getX(), player.getLocation().getY())){
+            player.getCollisionRect().updateCollisionRect(player.getLocation().getX(), player.getLocation().getY());
+            if (!GameMap.canMove(player.getCollisionRect())){
                 player.getLocation().setX(player.getLocation().getX() + 1);
+                player.getCollisionRect().updateCollisionRect(player.getLocation().getX(), player.getLocation().getY());
                 movedSuccessfully=false;
             }
         }

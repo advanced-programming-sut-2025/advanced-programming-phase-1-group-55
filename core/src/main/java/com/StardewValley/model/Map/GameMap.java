@@ -2,7 +2,9 @@ package com.StardewValley.model.Map;
 
 import com.StardewValley.enums.AnsiColor;
 import com.StardewValley.model.AssetManager;
+import com.StardewValley.model.Item.CollisionRect;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,7 +22,8 @@ public class GameMap {
     private NpcVillage village;
     private static final int WORLD_WIDTH = (int)(1920*1.5);
     private static final int WORLD_HEIGHT = (int)(1080*1.5);
-    private mapBuilder mapBuilder = new mapBuilder();
+    //todo feln baa static kaar miknm taa choose map dorost she
+    public static ArrayList<Fence> fences = new ArrayList<>();
 
 
     public GameMap(Farm farm1, Farm farm2, Farm farm3, Farm farm4, NpcVillage village) {
@@ -48,19 +51,21 @@ public class GameMap {
 
     }
 
-    public static boolean  isInsideFence(int x, int y) {
-        int left = -WORLD_WIDTH / 2 + AssetManager.STONE_FENCE.getTexture().getWidth()/2;
-        int right = WORLD_WIDTH / 2 - AssetManager.STONE_FENCE.getTexture().getWidth()/2;
-        int bottom = -WORLD_HEIGHT / 2 + AssetManager.STONE_FENCE.getTexture().getHeight()/2;
-        int top = WORLD_HEIGHT / 2 -  AssetManager.STONE_FENCE.getTexture().getHeight()/2;
-        return x >= left+25 && x <= right && y >= bottom+36 && y <= top-10;
+    public static boolean  canMove(CollisionRect collisionRect) {
+        for (Fence fence : fences) {
+            if (fence.getCollisionRect().collidesWith(collisionRect)) {
+                return false;
+            }
+        }
+        return true;
     }
-    public void BuildMap(){
-
+    public static void BuildMap(){
+        mapBuilder mapBuilder1 = new com.StardewValley.model.Map.mapBuilder();
+        mapBuilder1.BuildFences(WORLD_WIDTH, WORLD_HEIGHT);
     }
     public static void DrawMap(){
-        com.StardewValley.model.Map.mapBuilder mapBuilder1 = new com.StardewValley.model.Map.mapBuilder();
-        mapBuilder1.drawFences(WORLD_WIDTH,WORLD_HEIGHT,AssetManager.STONE_FENCE.getTexture());
+        mapBuilder mapBuilder1 = new com.StardewValley.model.Map.mapBuilder();
+        mapBuilder1.drawFences();
     }
 
     public Tile[][] getTiles() {
@@ -179,5 +184,14 @@ public class GameMap {
             map.append("\n");
         }
         return map.toString();
+    }
+
+
+    public ArrayList<Fence> getFences() {
+        return fences;
+    }
+
+    public void setFences(ArrayList<Fence> fences) {
+        this.fences = fences;
     }
 }

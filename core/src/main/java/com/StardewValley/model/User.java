@@ -11,6 +11,7 @@ import com.StardewValley.model.CookingItems.CookingItem;
 import com.StardewValley.model.Friendship.Gift;
 import com.StardewValley.model.Friendship.NpcFriendship;
 import com.StardewValley.model.Friendship.PlayerFriendship;
+import com.StardewValley.model.Item.CollisionRect;
 import  com.StardewValley.model.Item.ItemType;
 import  com.StardewValley.model.Map.*;
 import  com.StardewValley.model.NPC.Quest;
@@ -28,6 +29,7 @@ public class User {
     private String username;
     private String password;
     private String nickName;
+    private CollisionRect collisionRect;
     private Sprite sprite=new Sprite(PLAYER.getTexture());
     private String gender;
     private String email;
@@ -61,6 +63,38 @@ public class User {
     private boolean hasMessageToday = false;
     private Map<Integer, Quest> quest = new HashMap<>();
     private GreenHouse greenHouse;
+
+    public CollisionRect getCollisionRect() {
+        return collisionRect;
+    }
+
+    public void setCollisionRect(CollisionRect collisionRect) {
+        this.collisionRect = collisionRect;
+    }
+
+    public Sprite getSprite() {
+        return sprite;
+    }
+
+    public void setSprite(Sprite sprite) {
+        this.sprite = sprite;
+    }
+
+    public GameModel getPlayedGameModel() {
+        return playedGameModel;
+    }
+
+    public void setPlayedGameModel(GameModel playedGameModel) {
+        this.playedGameModel = playedGameModel;
+    }
+
+    public ArrayList<ArtisanMachine> getArtisanMachines() {
+        return artisanMachines;
+    }
+
+    public void setArtisanMachines(ArrayList<ArtisanMachine> artisanMachines) {
+        this.artisanMachines = artisanMachines;
+    }
 
     public GreenHouse getGreenHouse() {
         return greenHouse;
