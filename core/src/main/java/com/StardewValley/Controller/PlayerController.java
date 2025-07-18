@@ -34,37 +34,37 @@ public class PlayerController {
     public void handlePlayerInput(){
         boolean movedSuccessfully=true;
         if (Gdx.input.isKeyPressed(Input.Keys.W)){
-            player.getLocation().setY(player.getLocation().getY() + 1);
+            player.getLocation().setY(player.getLocation().getY() + 10);
             player.getCollisionRect().updateCollisionRect(player.getLocation().getX(), player.getLocation().getY());
             if (!GameMap.canMove(player.getCollisionRect())) {
-                player.getLocation().setY(player.getLocation().getY() - 1);
+                player.getLocation().setY(player.getLocation().getY() - 10);
                 player.getCollisionRect().updateCollisionRect(player.getLocation().getX(), player.getLocation().getY());
                 movedSuccessfully=false;
             }
         }
         if (Gdx.input.isKeyPressed(Input.Keys.D)){
-            player.getLocation().setX(player.getLocation().getX() + 1);
+            player.getLocation().setX(player.getLocation().getX() + 10);
             player.getCollisionRect().updateCollisionRect(player.getLocation().getX(), player.getLocation().getY());
             if (!GameMap.canMove(player.getCollisionRect())){
-                player.getLocation().setX(player.getLocation().getX() - 1);
+                player.getLocation().setX(player.getLocation().getX() - 10);
                 player.getCollisionRect().updateCollisionRect(player.getLocation().getX(), player.getLocation().getY());
                 movedSuccessfully=false;
             }
         }
         if (Gdx.input.isKeyPressed(Input.Keys.S)){
-            player.getLocation().setY(player.getLocation().getY() - 1);
+            player.getLocation().setY(player.getLocation().getY() - 10);
             player.getCollisionRect().updateCollisionRect(player.getLocation().getX(), player.getLocation().getY());
             if (!GameMap.canMove(player.getCollisionRect())){
-                player.getLocation().setY(player.getLocation().getY() + 1);
+                player.getLocation().setY(player.getLocation().getY() + 10);
                 player.getCollisionRect().updateCollisionRect(player.getLocation().getX(), player.getLocation().getY());
                 movedSuccessfully=false;
             }
         }
         if (Gdx.input.isKeyPressed(Input.Keys.A)){
-            player.getLocation().setX(player.getLocation().getX() - 1);
+            player.getLocation().setX(player.getLocation().getX() - 10);
             player.getCollisionRect().updateCollisionRect(player.getLocation().getX(), player.getLocation().getY());
             if (!GameMap.canMove(player.getCollisionRect())){
-                player.getLocation().setX(player.getLocation().getX() + 1);
+                player.getLocation().setX(player.getLocation().getX() + 10);
                 player.getCollisionRect().updateCollisionRect(player.getLocation().getX(), player.getLocation().getY());
                 movedSuccessfully=false;
             }

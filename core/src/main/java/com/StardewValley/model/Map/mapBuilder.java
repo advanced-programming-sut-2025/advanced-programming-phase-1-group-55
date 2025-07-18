@@ -172,19 +172,33 @@ public class mapBuilder {
     }
     public void drawFences() {
         for (Fence fence:GameMap.fences){
-            App.gameApp.getBatch().draw(fence.fenceType.getTexture(),fence.collisionRect.getX(),fence.collisionRect.getY());
+            App.gameApp.getBatch().draw(fence.fenceType.getTexture(),fence.collisionRect.getX()-fence.getCollisionRect().getWidth()/2,fence.collisionRect.getY()-fence.collisionRect.getHeight()/2);
         }
     }
     public void BuildFences(int WORLD_WIDTH, int WORLD_HEIGHT) {
         for (int x = -WORLD_WIDTH / 2; x < WORLD_WIDTH / 2; x += FenceType.stone.getTexture().getWidth()/2) {
-            GameMap.fences.add(new Fence(FenceType.stone,new CollisionRect(x,  -WORLD_HEIGHT /2,FenceType.stone.getTexture().getWidth(),FenceType.stone.getTexture().getHeight())));
-            GameMap.fences.add(new Fence(FenceType.stone,new CollisionRect(x,  WORLD_HEIGHT /2,FenceType.stone.getTexture().getWidth(),FenceType.stone.getTexture().getHeight())));
+            GameMap.fences.add(new Fence(FenceType.stone,new CollisionRect(x,
+                -WORLD_HEIGHT /2,FenceType.stone.getTexture().getWidth()/2,FenceType.stone.getTexture().getHeight()/2)));
+            GameMap.fences.add(new Fence(FenceType.stone,new CollisionRect(x,
+                WORLD_HEIGHT /2,FenceType.stone.getTexture().getWidth()/2,FenceType.stone.getTexture().getHeight()/2)));
 
         }
 
         for (int y = -WORLD_HEIGHT / 2; y < WORLD_HEIGHT / 2; y += FenceType.stone.getTexture().getHeight()/2) {
-            GameMap.fences.add(new Fence(FenceType.stone,new CollisionRect( -WORLD_WIDTH /2,y,FenceType.stone.getTexture().getWidth(),FenceType.stone.getTexture().getHeight())));
-            GameMap.fences.add(new Fence(FenceType.stone,new CollisionRect( +WORLD_WIDTH /2,y,FenceType.stone.getTexture().getWidth(),FenceType.stone.getTexture().getHeight())));
+            GameMap.fences.add(new Fence(FenceType.stone,new CollisionRect(
+                -WORLD_WIDTH /2,y,FenceType.stone.getTexture().getWidth()/2,FenceType.stone.getTexture().getHeight()/2)));
+            GameMap.fences.add(new Fence(FenceType.stone,new CollisionRect(
+                +WORLD_WIDTH /2,y,FenceType.stone.getTexture().getWidth()/2,FenceType.stone.getTexture().getHeight()/2)));
+        }
+        for (int x=-WORLD_WIDTH/2+FenceType.wood.getTexture().getWidth()/2;x<-WORLD_WIDTH/2+2*WORLD_WIDTH/7;x+=FenceType.wood.getTexture().getWidth()/2) {
+            GameMap.fences.add(new Fence(FenceType.wood,new CollisionRect(
+                x,0,FenceType.wood.getTexture().getWidth()/2,FenceType.wood.getTexture().getHeight()/2)));
+            GameMap.fences.add(new Fence(FenceType.wood,new CollisionRect(
+                x,FenceType.wood.getTexture().getHeight(),FenceType.wood.getTexture().getWidth()/2,FenceType.wood.getTexture().getHeight()/2)));
+            GameMap.fences.add(new Fence(FenceType.wood,new CollisionRect(
+                x+5*WORLD_WIDTH/7,0,FenceType.wood.getTexture().getWidth()/2,FenceType.wood.getTexture().getHeight()/2)));
+            GameMap.fences.add(new Fence(FenceType.wood,new CollisionRect(
+                x+5*WORLD_WIDTH/7,FenceType.wood.getTexture().getHeight(),FenceType.wood.getTexture().getWidth()/2,FenceType.wood.getTexture().getHeight()/2)));
         }
 
     }
