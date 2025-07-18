@@ -4,6 +4,7 @@ import com.StardewValley.Controller.MainGameController;
 import com.StardewValley.model.App;
 import com.StardewValley.model.GameTime;
 import com.StardewValley.model.MainTime;
+import com.StardewValley.model.Map.GameMap;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
@@ -30,8 +31,6 @@ public class MainGameGraphicView implements Screen {
     private Table tableTop;
     private Stage stage;
 
-    private final int WORLD_WIDTH = (int) (1920 * 1.5);
-    private final int WORLD_HEIGHT = (int) (1080 * 1.5);
 
     public MainGameGraphicView(MainGameController controller) {
         this.controller = controller;
@@ -46,6 +45,7 @@ public class MainGameGraphicView implements Screen {
 
     @Override
     public void show() {
+
         setupCamera();
 
 
@@ -79,9 +79,6 @@ public class MainGameGraphicView implements Screen {
 
         stage.addActor(tableTop);
 
-
-        fenceTexture = STONE_FENCE.getTexture();
-        fenceTexture.setWrap(Texture.TextureWrap.ClampToEdge, Texture.TextureWrap.ClampToEdge);
     }
 
     private void updateBackgroundTexture() {
@@ -97,17 +94,19 @@ public class MainGameGraphicView implements Screen {
     @Override
     public void render(float delta) {
         ScreenUtils.clear(0, 0, 0, 1);
-        updateBackgroundTexture();
+
 
         camera.update();
         controller.getPlayerController().centerPlayerOnCamera(camera);
         App.gameApp.getBatch().setProjectionMatrix(camera.combined);
 
         App.gameApp.getBatch().begin();
-
         drawBackground();
+        updateBackgroundTexture();
+        //todo bade zadan choose map tavasot arshia az App.current game estefaade kn
+        GameMap.DrawMap();
+
         controller.updateGame(delta);
-        drawFences();
 
         App.gameApp.getBatch().end();
         //todo energy bar.setvalue-->> player.getEnergy  alan chon plyer==null nmishod zad intori
@@ -134,22 +133,7 @@ public class MainGameGraphicView implements Screen {
         App.gameApp.getBatch().draw(backgroundRegion, camX, camY, camera.viewportWidth, camera.viewportHeight);
     }
 
-    private void drawFences() {
-        if (fenceTexture == null) return;
 
-        int fenceWidth = fenceTexture.getWidth() / 2;
-        int fenceHeight = fenceTexture.getHeight() / 2;
-
-        for (int x = -WORLD_WIDTH / 2; x < WORLD_WIDTH / 2; x += fenceWidth) {
-            App.gameApp.getBatch().draw(fenceTexture, x, WORLD_HEIGHT / 2 - fenceHeight);
-            App.gameApp.getBatch().draw(fenceTexture, x, -WORLD_HEIGHT / 2);
-        }
-
-        for (int y = -WORLD_HEIGHT / 2; y < WORLD_HEIGHT / 2; y += fenceHeight) {
-            App.gameApp.getBatch().draw(fenceTexture, -WORLD_WIDTH / 2, y);
-            App.gameApp.getBatch().draw(fenceTexture, WORLD_WIDTH / 2 - fenceWidth, y);
-        }
-    }
 
     @Override
     public void resize(int width, int height) {

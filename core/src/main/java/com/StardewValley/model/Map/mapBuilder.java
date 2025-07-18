@@ -1,6 +1,9 @@
 package com.StardewValley.model.Map;
 
 
+import com.StardewValley.model.App;
+import com.badlogic.gdx.graphics.Texture;
+
 public class mapBuilder {
     public void fillOtherTiles(GameMap map) {
         //hesaar haaye mazrae
@@ -165,5 +168,21 @@ public class mapBuilder {
         map.tiles[20][115]=new Tile(new Location(20,115),"@",true,false, TileType.building);
         placeStore(map);
 
+    }
+    public void drawFences(int WORLD_WIDTH, int WORLD_HEIGHT, Texture fenceTexture) {
+        if (fenceTexture == null) return;
+        fenceTexture.setWrap(Texture.TextureWrap.ClampToEdge, Texture.TextureWrap.ClampToEdge);
+        int fenceWidth = fenceTexture.getWidth() / 2;
+        int fenceHeight = fenceTexture.getHeight() / 2;
+
+        for (int x = -WORLD_WIDTH / 2; x < WORLD_WIDTH / 2; x += fenceWidth) {
+            App.gameApp.getBatch().draw(fenceTexture, x, WORLD_HEIGHT / 2 - fenceHeight);
+            App.gameApp.getBatch().draw(fenceTexture, x, -WORLD_HEIGHT / 2);
+        }
+
+        for (int y = -WORLD_HEIGHT / 2; y < WORLD_HEIGHT / 2; y += fenceHeight) {
+            App.gameApp.getBatch().draw(fenceTexture, -WORLD_WIDTH / 2, y);
+            App.gameApp.getBatch().draw(fenceTexture, WORLD_WIDTH / 2 - fenceWidth, y);
+        }
     }
 }
