@@ -78,6 +78,7 @@ public class MainGameGraphicView implements Screen {
 
 
         stage.addActor(tableTop);
+        GameMap.BuildMap();
 
     }
 
