@@ -4,9 +4,8 @@ package com.StardewValley.Controller;
 import com.StardewValley.View.MainGameGraphicView;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Item.Item;
-import com.StardewValley.model.Map.Location;
+import com.StardewValley.model.Map.*;
 import com.StardewValley.enums.WeatherType;
-import com.StardewValley.model.Map.MainLocation;
 import com.StardewValley.model.Tool.Tools;
 import com.StardewValley.model.Tool.Trashcan;
 import com.StardewValley.model.Tool.WateringCan;
@@ -17,6 +16,8 @@ import com.StardewValley.model.Result;
 import static com.StardewValley.model.Item.ItemType.*;
 
 import com.StardewValley.model.User;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 
 import static com.StardewValley.model.weather.*;
 
@@ -33,7 +34,40 @@ public class MainGameController {
         // playerController = new PlayerController(currentGameModel.currentUser);
         playerController=new PlayerController(new User());
     }
-    public void handleInput(){}
+    public void handleInput() {
+        //todo handle if the gate was not your farm gate -->>message box -->>send error -->> you can not enter other player,s farm
+        if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+            for (Fence fence : GameMap.fences) {
+                if (fence.getFenceType().equals(FenceType.door)) {
+                    float playerX = playerController.getPlayer().getCollisionRect().getX();
+                    float playerY = playerController.getPlayer().getCollisionRect().getY();
+
+                    float fenceX = fence.getCollisionRect().getX();
+                    float fenceY = fence.getCollisionRect().getY();
+
+                    float dx = playerX - fenceX;
+                    float dy = playerY - fenceY;
+                    float distance = (float)Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < 60) {
+                        if (playerX < fenceX) {
+                            playerController.getPlayer().getLocation().setX((int)playerX + 75);
+                        } else {
+                            playerController.getPlayer().getLocation().setX((int)playerX - 75);
+                        }
+
+
+                        playerController.getPlayer().getCollisionRect().updateCollisionRect(
+                            playerController.getPlayer().getLocation().getX(),
+                            playerController.getPlayer().getLocation().getY()
+                        );
+                        return;
+                    }
+                }
+            }
+        }
+    }
+
     public void updateGame(float delta) {
         if (view != null) {
             handleInput();
