@@ -239,25 +239,43 @@ public class MapBuilder {
                 fenceType.getTexture().getWidth()/2, fenceType.getTexture().getHeight()/2)));
         }
     }
-    private void VillageFences(int WORLD_WIDTH,int WORLD_HEIGHT, FenceType fenceType) {
-        for (int x=-WORLD_WIDTH/2+WORLD_WIDTH/3+100;x<WORLD_WIDTH/2-WORLD_WIDTH/3-100;x+=fenceType.getTexture().getWidth()) {
-            GameMap.fences.add(new Fence(fenceType,new CollisionRect
-                (x,-WORLD_HEIGHT/2+400,
-                    fenceType.getTexture().getWidth(),fenceType.getTexture().getHeight()/2)));
-            GameMap.fences.add(new Fence(fenceType,new CollisionRect
-                (x,+WORLD_HEIGHT/2-400,
-                    fenceType.getTexture().getWidth(),fenceType.getTexture().getHeight()/2)));
+    private void VillageFences(int WORLD_WIDTH, int WORLD_HEIGHT, FenceType fenceType) {
+        int texW = fenceType.getTexture().getWidth();
+        int texH = fenceType.getTexture().getHeight();
+        int startX = -WORLD_WIDTH / 2 + WORLD_WIDTH / 3 + 100;
+        int endX = WORLD_WIDTH / 2 - WORLD_WIDTH / 3 - 100;
+        int middleX = (startX + endX) / 2;
+        int gapX = texW * 5;
+        for (int x = startX; x < endX; x += texW) {
+
+            if (x >= middleX - gapX / 2 && x <= middleX + gapX / 2) continue;
+
+            GameMap.fences.add(new Fence(fenceType, new CollisionRect(
+                x, -WORLD_HEIGHT / 2 + 400,
+                texW, texH / 2)));
+
+            GameMap.fences.add(new Fence(fenceType, new CollisionRect(
+                x, WORLD_HEIGHT / 2 - 400,
+                texW, texH / 2)));
         }
-        for (int y=-WORLD_HEIGHT/2+400+fenceType.getTexture().getHeight()/2;
-             y<+WORLD_HEIGHT/2-400+fenceType.getTexture().getHeight()/2;y+=fenceType.getTexture().getHeight()) {
-            GameMap.fences.add(new Fence(fenceType,
-                new CollisionRect(-WORLD_WIDTH/2+100+WORLD_WIDTH/3,y,
-                    fenceType.getTexture().getWidth(), fenceType.getTexture().getHeight())));
-            GameMap.fences.add(new Fence(fenceType,
-                new CollisionRect(WORLD_WIDTH/2-WORLD_WIDTH/3-100,y,
-                    fenceType.getTexture().getWidth(), fenceType.getTexture().getHeight())));
+        int startY = -WORLD_HEIGHT / 2 + 400 + texH / 2;
+        int endY = WORLD_HEIGHT / 2 - 400 + texH / 2;
+        int middleY = (startY + endY) / 2;
+        int gapY = texH * 5;
+        for (int y = startY; y < endY; y += texH) {
+
+            if (y >= middleY - gapY / 2 && y <= middleY + gapY / 2) continue;
+
+            GameMap.fences.add(new Fence(fenceType, new CollisionRect(
+                -WORLD_WIDTH / 2 + 100 + WORLD_WIDTH / 3, y,
+                texW, texH)));
+
+            GameMap.fences.add(new Fence(fenceType, new CollisionRect(
+                WORLD_WIDTH / 2 - WORLD_WIDTH / 3 - 100, y,
+                texW, texH)));
         }
     }
+
     private void outSideFences(int WORLD_WIDTH, int WORLD_HEIGHT, FenceType fenceType) {
         for (int x = -WORLD_WIDTH / 2; x < WORLD_WIDTH / 2; x += fenceType.getTexture().getWidth()/2) {
             GameMap.fences.add(new Fence(fenceType,new CollisionRect(x,
