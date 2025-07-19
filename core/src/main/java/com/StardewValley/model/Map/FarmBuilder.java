@@ -1,17 +1,15 @@
 package com.StardewValley.model.Map;
 
 import com.StardewValley.enums.RockType;
-import com.StardewValley.model.App;
 import com.StardewValley.model.FarmingProdocts.*;
 import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.Rock;
 
 import java.util.Objects;
-import java.util.Random;
 
 import static com.StardewValley.model.App.rand;
 
-public class farmBuilder {
+public class FarmBuilder {
     private Farm farm1, farm1_copy, farm2, farm2_copy;
 
     public Farm getFarm1() {

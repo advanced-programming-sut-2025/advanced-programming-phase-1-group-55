@@ -1,7 +1,6 @@
 package com.StardewValley.model.Map;
 
 import com.StardewValley.enums.AnsiColor;
-import com.StardewValley.model.AssetManager;
 import com.StardewValley.model.Item.CollisionRect;
 
 import java.util.ArrayList;
@@ -60,11 +59,11 @@ public class GameMap {
         return true;
     }
     public static void BuildMap(){
-        mapBuilder mapBuilder1 = new com.StardewValley.model.Map.mapBuilder();
+        MapBuilder mapBuilder1 = new MapBuilder();
         mapBuilder1.BuildFences(WORLD_WIDTH, WORLD_HEIGHT);
     }
     public static void DrawMap(){
-        mapBuilder mapBuilder1 = new com.StardewValley.model.Map.mapBuilder();
+        MapBuilder mapBuilder1 = new MapBuilder();
         mapBuilder1.drawFences();
     }
 

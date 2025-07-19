@@ -1,6 +1,6 @@
 package com.StardewValley.model.Map;
 
-public class GreenHouse extends place {
+public class GreenHouse extends Place {
     private Boolean isRepaired = false;
     private final int woodForGreenHouse = 500;
     private final int goldForGreenHouse = 1000;
