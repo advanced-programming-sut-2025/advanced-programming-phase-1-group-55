@@ -73,4 +73,12 @@ public class PlayerController {
             //todo  energy kam beshe  arshia bezn ino
         }
     }
+
+    public User getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(User player) {
+        this.player = player;
+    }
 }

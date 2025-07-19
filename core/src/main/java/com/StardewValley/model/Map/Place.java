@@ -1,11 +1,11 @@
 package com.StardewValley.model.Map;
 
-public class place {
+public class Place {
     private int height;
     private int width;
     private Location location;
 
-    public place(int height, int width, Location location) {
+    public Place(int height, int width, Location location) {
         this.height = height;
         this.width = width;
         this.location = location;
@@ -33,7 +33,7 @@ public class place {
 
 
     public void setLocation(Location location) {
-        this.location = place.this.location;
+        this.location = Place.this.location;
     }
 
 

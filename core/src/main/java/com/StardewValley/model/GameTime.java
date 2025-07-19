@@ -14,7 +14,7 @@ import com.StardewValley.enums.WeatherType;
 import com.StardewValley.model.Friendship.NpcFriendship;
 import com.StardewValley.model.Friendship.PlayerFriendship;
 import com.StardewValley.model.Item.Item;
-import com.StardewValley.model.Map.farmBuilder;
+import com.StardewValley.model.Map.FarmBuilder;
 import com.StardewValley.model.Store.Product;
 import com.StardewValley.model.Store.Store;
 
@@ -85,7 +85,7 @@ public class GameTime {
         for (User user : currentGameModel.playersInGame) {
             user.increaseGold(user.getDailyMoney());
             user.setDailyMoney(0);
-            farmBuilder.placeRandomForaggings(user.getFarm(), currentGameModel.getMap(),2,2,1,false);
+            FarmBuilder.placeRandomForaggings(user.getFarm(), currentGameModel.getMap(),2,2,1,false);
         }
         for (Store store : currentGameModel.getMap().getVillage().getStores().values()) {
             for (Product product : store.getProductsOfStore().values()) {

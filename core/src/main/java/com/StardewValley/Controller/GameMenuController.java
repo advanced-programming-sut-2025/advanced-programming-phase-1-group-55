@@ -93,8 +93,8 @@ public class GameMenuController {
 
         //todo agar bishtar az se nam karbari dashtim
         ArrayList<User> playersInGame = new ArrayList<>();
-        farmBuilder fb = new farmBuilder();
-        mapBuilder mb = new mapBuilder();
+        FarmBuilder fb = new FarmBuilder();
+        MapBuilder mb = new MapBuilder();
         GameMap Map = fb.mapCreator();
         fb.fillFarmTiles(Map, Map.getFarm1());
         fb.fillFarmTiles(Map, Map.getFarm2());

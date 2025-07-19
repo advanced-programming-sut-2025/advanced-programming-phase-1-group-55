@@ -13,6 +13,7 @@ public enum AssetManager {
     STONE_FENCE("Fence/Stone_Fence.png"),
     WOOD_FENCE("Fence/Wood_Fence.png"),
     GATE("Fence/Gate.png"),
+    IRON_FENCE("Fence/Iron_Fence.png"),
 
 
     PLAYER("sprites/Mariner.png"),
