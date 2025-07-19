@@ -19,8 +19,8 @@ public class GameMap {
     private Farm farm3;
     private Farm farm4;
     private NpcVillage village;
-    private static final int WORLD_WIDTH = (int)(1920*3);
-    private static final int WORLD_HEIGHT = (int)(1080*3);
+    private static final int WORLD_WIDTH = (int)(1920*4);
+    private static final int WORLD_HEIGHT = (int)(1080*4);
     //todo feln baa static kaar miknm taa choose map dorost she
     public static ArrayList<Fence> fences = new ArrayList<>();
 

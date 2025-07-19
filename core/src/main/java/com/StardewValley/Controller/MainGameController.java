@@ -37,32 +37,36 @@ public class MainGameController {
     public void handleInput() {
         //todo handle if the gate was not your farm gate -->>message box -->>send error -->> you can not enter other player,s farm
         if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
-            for (Fence fence : GameMap.fences) {
-                if (fence.getFenceType().equals(FenceType.door)) {
-                    float playerX = playerController.getPlayer().getCollisionRect().getX();
-                    float playerY = playerController.getPlayer().getCollisionRect().getY();
+            passTheGate();
+        }
+    }
 
-                    float fenceX = fence.getCollisionRect().getX();
-                    float fenceY = fence.getCollisionRect().getY();
+    private void passTheGate() {
+        for (Fence fence : GameMap.fences) {
+            if (fence.getFenceType().equals(FenceType.door)) {
+                float playerX = playerController.getPlayer().getCollisionRect().getX();
+                float playerY = playerController.getPlayer().getCollisionRect().getY();
 
-                    float dx = playerX - fenceX;
-                    float dy = playerY - fenceY;
-                    float distance = (float)Math.sqrt(dx * dx + dy * dy);
+                float fenceX = fence.getCollisionRect().getX();
+                float fenceY = fence.getCollisionRect().getY();
 
-                    if (distance < 60) {
-                        if (playerX < fenceX) {
-                            playerController.getPlayer().getLocation().setX((int)playerX + 75);
-                        } else {
-                            playerController.getPlayer().getLocation().setX((int)playerX - 75);
-                        }
+                float dx = playerX - fenceX;
+                float dy = playerY - fenceY;
+                float distance = (float)Math.sqrt(dx * dx + dy * dy);
 
-
-                        playerController.getPlayer().getCollisionRect().updateCollisionRect(
-                            playerController.getPlayer().getLocation().getX(),
-                            playerController.getPlayer().getLocation().getY()
-                        );
-                        return;
+                if (distance < 60) {
+                    if (playerX < fenceX) {
+                        playerController.getPlayer().getLocation().setX((int)playerX + 75);
+                    } else {
+                        playerController.getPlayer().getLocation().setX((int)playerX - 75);
                     }
+
+
+                    playerController.getPlayer().getCollisionRect().updateCollisionRect(
+                        playerController.getPlayer().getLocation().getX(),
+                        playerController.getPlayer().getLocation().getY()
+                    );
+                    return;
                 }
             }
         }
