@@ -90,7 +90,10 @@ public enum AssetManager {
 
     CLINT("Npc/Clint/Clint.png"),
     CLINT_2("Npc/Clint/Clint2.png"),
-    CLINT_3("Npc/Clint/Clint3.png");
+    CLINT_3("Npc/Clint/Clint3.png"),
+
+    IRON_LAMP("Craftable_lighting/Iron_Lamp-post.png"),
+    WOOD_LAMP("Craftable_lighting/Wood_Lamp-post.png");
 
 
 

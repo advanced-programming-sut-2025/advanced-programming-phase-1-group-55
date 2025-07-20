@@ -1,6 +1,7 @@
 package com.StardewValley.model.Map;
 
 
+import com.StardewValley.enums.AssetManager;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Item.CollisionRect;
 import com.StardewValley.model.Store.Store;
@@ -178,6 +179,19 @@ public class MapBuilder {
             sprite.setPosition(store.getCollisionRect().getX(), store.getCollisionRect().getY());
 
             sprite.draw(App.gameApp.getBatch());
+            Sprite woodLamp=new Sprite(AssetManager.WOOD_LAMP.getTexture());
+            if (store.getCollisionRect().getX()>0){
+                woodLamp.setPosition(store.getCollisionRect().getX()+store.getCollisionRect().getWidth()+80, store.getCollisionRect().getY());
+                Sprite ironLamp=new Sprite(AssetManager.IRON_LAMP.getTexture());
+                ironLamp.setPosition(store.getCollisionRect().getX()-130, store.getCollisionRect().getY());
+                ironLamp.draw(App.gameApp.getBatch());
+            }else {
+                woodLamp.setPosition(store.getCollisionRect().getX()-130, store.getCollisionRect().getY());
+                Sprite ironLamp=new Sprite(AssetManager.IRON_LAMP.getTexture());
+                ironLamp.setPosition(store.getCollisionRect().getX()+store.getCollisionRect().getWidth()+80, store.getCollisionRect().getY());
+                ironLamp.draw(App.gameApp.getBatch());
+            }
+            woodLamp.draw(App.gameApp.getBatch());
         }
     }
     public void drawFences(GameMap map) {
