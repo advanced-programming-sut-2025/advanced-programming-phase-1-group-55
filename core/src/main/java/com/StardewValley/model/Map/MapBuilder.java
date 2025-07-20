@@ -218,8 +218,28 @@ public class MapBuilder {
 
             sprite.draw(App.gameApp.getBatch());
         }
-    }
+        drawLamps(map, map.getWORLD_HEIGHT(), map.getWORLD_WIDTH());
 
+    }
+    public void drawLamps(GameMap map,int WORLD_HEIGHT,int WORLD_WIDTH) {
+        Sprite iridiumLamp=new Sprite(AssetManager.IRIDIUM_BRAZIER.getTexture());
+        iridiumLamp.setPosition(-WORLD_WIDTH /2+2* WORLD_WIDTH /7+25,-WORLD_HEIGHT /2+20* FenceType.wood.getTexture().getHeight());
+        iridiumLamp.draw(App.gameApp.getBatch());
+        iridiumLamp.setPosition(-WORLD_WIDTH /2+2* WORLD_WIDTH /7+25,-WORLD_HEIGHT /2+24* FenceType.wood.getTexture().getHeight());
+        iridiumLamp.draw(App.gameApp.getBatch());
+        iridiumLamp.setPosition(-WORLD_WIDTH /2+2* WORLD_WIDTH /7+25,-WORLD_HEIGHT /2+65* FenceType.wood.getTexture().getHeight());
+        iridiumLamp.draw(App.gameApp.getBatch());
+        iridiumLamp.setPosition(-WORLD_WIDTH /2+2* WORLD_WIDTH /7+25,-WORLD_HEIGHT /2+69* FenceType.wood.getTexture().getHeight());
+        iridiumLamp.draw(App.gameApp.getBatch());
+        iridiumLamp.setPosition(-WORLD_WIDTH /2+5* WORLD_WIDTH /7-42,-WORLD_HEIGHT /2+20* FenceType.wood.getTexture().getHeight());
+        iridiumLamp.draw(App.gameApp.getBatch());
+        iridiumLamp.setPosition(-WORLD_WIDTH /2+5* WORLD_WIDTH /7-42,-WORLD_HEIGHT /2+24* FenceType.wood.getTexture().getHeight());
+        iridiumLamp.draw(App.gameApp.getBatch());
+        iridiumLamp.setPosition(-WORLD_WIDTH /2+5* WORLD_WIDTH /7-42,-WORLD_HEIGHT /2+65* FenceType.wood.getTexture().getHeight());
+        iridiumLamp.draw(App.gameApp.getBatch());
+        iridiumLamp.setPosition(-WORLD_WIDTH /2+5* WORLD_WIDTH /7-42,-WORLD_HEIGHT /2+69* FenceType.wood.getTexture().getHeight());
+        iridiumLamp.draw(App.gameApp.getBatch());
+    }
     public void BuildFences(int WORLD_WIDTH, int WORLD_HEIGHT,GameMap map) {
         FenceType fenceType=FenceType.stone;
         outSideFences(WORLD_WIDTH, WORLD_HEIGHT, fenceType,map);

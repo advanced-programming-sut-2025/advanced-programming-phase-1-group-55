@@ -11,7 +11,7 @@ public class NpcVillage {
     private final Map<String, Store> stores=new HashMap<>(){{
         put("BlackSmith",new BlackSmithStore());
         put("MarnieRanch",new MarineRanchStore());
-        put("OjaMart",new OjaMartStore());
+        put("OjaMart",new JojaMartStore());
         put("FishShop",new FishingStore());
         put("starDropSaloon",new StarDropSaloon());
         put("CarpenterShop",new CarpenterShop());

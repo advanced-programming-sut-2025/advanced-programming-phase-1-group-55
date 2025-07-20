@@ -10,9 +10,9 @@ import com.StardewValley.model.Result;
 
 import java.util.HashMap;
 
-public class OjaMartStore extends Store{
+public class JojaMartStore extends Store{
 
-    public OjaMartStore() {
+    public JojaMartStore() {
         super(9, 23, new HashMap<>(){{
            put("joja cola",new Product(new Item(ItemType.JOJA_COLA),
                    10000,75,0,0, Seasons.special));

@@ -73,7 +73,7 @@ public class StoreController {
             case CarpenterShop carpenterShop -> carpenterShop.purchase(amount, product);
             case GeneralStore generalStore -> generalStore.purchase(amount, product);
             case MarineRanchStore marineRanchStore -> marineRanchStore.purchase(amount, product);
-            case OjaMartStore ojaMartStore -> ojaMartStore.purchase(amount, product);
+            case JojaMartStore jojaMartStore -> jojaMartStore.purchase(amount, product);
             case StarDropSaloon starDropSaloon->starDropSaloon.purchase(amount,product);
             default -> throw new IllegalStateException("Unexpected value: " + store);
         };
