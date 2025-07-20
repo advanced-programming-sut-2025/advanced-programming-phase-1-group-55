@@ -218,28 +218,64 @@ public class MapBuilder {
 
             sprite.draw(App.gameApp.getBatch());
         }
-        drawLamps(map, map.getWORLD_HEIGHT(), map.getWORLD_WIDTH());
+        drawLamps( map.getWORLD_HEIGHT(), map.getWORLD_WIDTH());
 
     }
-    public void drawLamps(GameMap map,int WORLD_HEIGHT,int WORLD_WIDTH) {
-        Sprite iridiumLamp=new Sprite(AssetManager.IRIDIUM_BRAZIER.getTexture());
-        iridiumLamp.setPosition(-WORLD_WIDTH /2+2* WORLD_WIDTH /7+25,-WORLD_HEIGHT /2+20* FenceType.wood.getTexture().getHeight());
+    public void drawLamps(int WORLD_HEIGHT,int WORLD_WIDTH) {
+        farmEntranceLamps(WORLD_HEIGHT, WORLD_WIDTH);
+
+        villageLamps(WORLD_HEIGHT,WORLD_WIDTH);
+    }
+
+    private void villageLamps(int WORLD_HEIGHT,int WORLD_WIDTH) {
+        Sprite iridiumLamp=AssetManager.IRIDIUM_BRAZIER.getSprite();
+        iridiumLamp.setPosition(-2*FenceType.iron.getTexture().getWidth()
+            ,-WORLD_HEIGHT / 2 + 400-FenceType.iron.getTexture().getHeight()/2);
         iridiumLamp.draw(App.gameApp.getBatch());
-        iridiumLamp.setPosition(-WORLD_WIDTH /2+2* WORLD_WIDTH /7+25,-WORLD_HEIGHT /2+24* FenceType.wood.getTexture().getHeight());
+        iridiumLamp.setPosition(2*FenceType.iron.getTexture().getWidth()
+            ,-WORLD_HEIGHT / 2 + 400-FenceType.iron.getTexture().getHeight()/2);
         iridiumLamp.draw(App.gameApp.getBatch());
-        iridiumLamp.setPosition(-WORLD_WIDTH /2+2* WORLD_WIDTH /7+25,-WORLD_HEIGHT /2+65* FenceType.wood.getTexture().getHeight());
+        iridiumLamp.setPosition(-2*FenceType.iron.getTexture().getWidth()
+            , WORLD_HEIGHT / 2 - 400-FenceType.iron.getTexture().getHeight()/2);
         iridiumLamp.draw(App.gameApp.getBatch());
-        iridiumLamp.setPosition(-WORLD_WIDTH /2+2* WORLD_WIDTH /7+25,-WORLD_HEIGHT /2+69* FenceType.wood.getTexture().getHeight());
+        iridiumLamp.setPosition(2*FenceType.iron.getTexture().getWidth()
+            , WORLD_HEIGHT / 2 - 400-FenceType.iron.getTexture().getHeight()/2);
         iridiumLamp.draw(App.gameApp.getBatch());
-        iridiumLamp.setPosition(-WORLD_WIDTH /2+5* WORLD_WIDTH /7-42,-WORLD_HEIGHT /2+20* FenceType.wood.getTexture().getHeight());
+
+        iridiumLamp.setPosition(-WORLD_WIDTH / 2 + 100 + WORLD_WIDTH / 3-FenceType.iron.getTexture().getWidth()/2
+            ,-2*FenceType.iron.getTexture().getHeight()+20);
         iridiumLamp.draw(App.gameApp.getBatch());
-        iridiumLamp.setPosition(-WORLD_WIDTH /2+5* WORLD_WIDTH /7-42,-WORLD_HEIGHT /2+24* FenceType.wood.getTexture().getHeight());
+        iridiumLamp.setPosition(-WORLD_WIDTH / 2 + 100 + WORLD_WIDTH / 3-FenceType.iron.getTexture().getWidth()/2
+            ,+2*FenceType.iron.getTexture().getHeight()+20);
         iridiumLamp.draw(App.gameApp.getBatch());
-        iridiumLamp.setPosition(-WORLD_WIDTH /2+5* WORLD_WIDTH /7-42,-WORLD_HEIGHT /2+65* FenceType.wood.getTexture().getHeight());
+        iridiumLamp.setPosition(WORLD_WIDTH / 2 - WORLD_WIDTH / 3 - 100-FenceType.iron.getTexture().getWidth()/2
+            ,-2*FenceType.iron.getTexture().getHeight()+20);
         iridiumLamp.draw(App.gameApp.getBatch());
-        iridiumLamp.setPosition(-WORLD_WIDTH /2+5* WORLD_WIDTH /7-42,-WORLD_HEIGHT /2+69* FenceType.wood.getTexture().getHeight());
+        iridiumLamp.setPosition(WORLD_WIDTH / 2 - WORLD_WIDTH / 3 - 100-FenceType.iron.getTexture().getWidth()/2
+            ,+2*FenceType.iron.getTexture().getHeight()+20);
         iridiumLamp.draw(App.gameApp.getBatch());
     }
+
+    private void farmEntranceLamps(int WORLD_HEIGHT, int WORLD_WIDTH) {
+        Sprite stoneBrazier=AssetManager.STONE_BRAZIER.getSprite();
+        stoneBrazier.setPosition(-WORLD_WIDTH /2+2* WORLD_WIDTH /7+25,-WORLD_HEIGHT /2+20* FenceType.wood.getTexture().getHeight());
+        stoneBrazier.draw(App.gameApp.getBatch());
+        stoneBrazier.setPosition(-WORLD_WIDTH /2+2* WORLD_WIDTH /7+25,-WORLD_HEIGHT /2+24* FenceType.wood.getTexture().getHeight());
+        stoneBrazier.draw(App.gameApp.getBatch());
+        stoneBrazier.setPosition(-WORLD_WIDTH /2+2* WORLD_WIDTH /7+25,-WORLD_HEIGHT /2+65* FenceType.wood.getTexture().getHeight());
+        stoneBrazier.draw(App.gameApp.getBatch());
+        stoneBrazier.setPosition(-WORLD_WIDTH /2+2* WORLD_WIDTH /7+25,-WORLD_HEIGHT /2+69* FenceType.wood.getTexture().getHeight());
+        stoneBrazier.draw(App.gameApp.getBatch());
+        stoneBrazier.setPosition(-WORLD_WIDTH /2+5* WORLD_WIDTH /7-42,-WORLD_HEIGHT /2+20* FenceType.wood.getTexture().getHeight());
+        stoneBrazier.draw(App.gameApp.getBatch());
+        stoneBrazier.setPosition(-WORLD_WIDTH /2+5* WORLD_WIDTH /7-42,-WORLD_HEIGHT /2+24* FenceType.wood.getTexture().getHeight());
+        stoneBrazier.draw(App.gameApp.getBatch());
+        stoneBrazier.setPosition(-WORLD_WIDTH /2+5* WORLD_WIDTH /7-42,-WORLD_HEIGHT /2+65* FenceType.wood.getTexture().getHeight());
+        stoneBrazier.draw(App.gameApp.getBatch());
+        stoneBrazier.setPosition(-WORLD_WIDTH /2+5* WORLD_WIDTH /7-42,-WORLD_HEIGHT /2+69* FenceType.wood.getTexture().getHeight());
+        stoneBrazier.draw(App.gameApp.getBatch());
+    }
+
     public void BuildFences(int WORLD_WIDTH, int WORLD_HEIGHT,GameMap map) {
         FenceType fenceType=FenceType.stone;
         outSideFences(WORLD_WIDTH, WORLD_HEIGHT, fenceType,map);
