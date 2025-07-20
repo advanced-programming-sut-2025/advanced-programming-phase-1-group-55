@@ -2,6 +2,7 @@ package com.StardewValley.enums;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 
 public enum AssetManager {
 
@@ -93,7 +94,9 @@ public enum AssetManager {
     CLINT_3("Npc/Clint/Clint3.png"),
 
     IRON_LAMP("Craftable_lighting/Iron_Lamp-post.png"),
-    WOOD_LAMP("Craftable_lighting/Wood_Lamp-post.png");
+    WOOD_LAMP("Craftable_lighting/Wood_Lamp-post.png"),
+    STONE_BRAZIER("Craftable_lighting/Stone_Brazier.png"),
+    IRIDIUM_BRAZIER("Craftable_lighting/Marble_Brazier.png"),;
 
 
 
@@ -109,6 +112,9 @@ public enum AssetManager {
 
     public Texture getTexture() {
         return texture;
+    }
+    public Sprite getSprite() {
+        return new Sprite(texture);
     }
 
     public void dispose() {
