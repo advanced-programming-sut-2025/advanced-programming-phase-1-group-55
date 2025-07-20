@@ -23,7 +23,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import java.util.*;
 
 import static  com.StardewValley.model.App.currentGameModel;
-import static com.StardewValley.model.AssetManager.*;
+import static com.StardewValley.enums.AssetManager.*;
 
 public class User {
     private String username;

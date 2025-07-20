@@ -2,6 +2,7 @@ package com.StardewValley.model.Map;
 
 import com.StardewValley.enums.AnsiColor;
 import com.StardewValley.model.Item.CollisionRect;
+import com.StardewValley.model.Store.Store;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,11 +19,11 @@ public class GameMap {
     private Farm farm2;
     private Farm farm3;
     private Farm farm4;
-    private NpcVillage village;
+    private NpcVillage village=new NpcVillage();
     private static final int WORLD_WIDTH = (int)(1920*4);
     private static final int WORLD_HEIGHT = (int)(1080*4);
     //todo feln baa static kaar miknm taa choose map dorost she
-    public static ArrayList<Fence> fences = new ArrayList<>();
+    public  ArrayList<Fence> fences = new ArrayList<>();
 
 
     public GameMap(Farm farm1, Farm farm2, Farm farm3, Farm farm4, NpcVillage village) {
@@ -49,22 +50,32 @@ public class GameMap {
         this.village = village;
 
     }
+    //todo in constructor bade inke map choose zade shod ,bardaashte beshe
+    public GameMap() {
 
-    public static boolean  canMove(CollisionRect collisionRect) {
+    }
+
+    public  boolean  canMove(CollisionRect collisionRect) {
         for (Fence fence : fences) {
             if (fence.getCollisionRect().collidesWith(collisionRect)) {
                 return false;
             }
         }
+        for (Store store:village.getStores().values()){
+            if (store.getCollisionRect().collidesWith(collisionRect)) {
+                return false;
+            }
+        }
         return true;
     }
-    public static void BuildMap(){
+    public void BuildMap(){
         MapBuilder mapBuilder1 = new MapBuilder();
-        mapBuilder1.BuildFences(WORLD_WIDTH, WORLD_HEIGHT);
+        mapBuilder1.BuildFences(WORLD_WIDTH, WORLD_HEIGHT,this);
     }
-    public static void DrawMap(){
+    public void DrawMap(){
         MapBuilder mapBuilder1 = new MapBuilder();
-        mapBuilder1.drawFences();
+        mapBuilder1.drawFences(this);
+        mapBuilder1.drawStores(this);
     }
 
     public Tile[][] getTiles() {

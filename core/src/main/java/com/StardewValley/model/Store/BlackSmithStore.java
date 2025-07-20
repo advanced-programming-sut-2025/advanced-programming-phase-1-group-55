@@ -2,6 +2,8 @@ package com.StardewValley.model.Store;
 
 import com.StardewValley.enums.Seasons;
 import com.StardewValley.model.App;
+import com.StardewValley.enums.AssetManager;
+import com.StardewValley.model.Item.CollisionRect;
 import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.Item.ItemType;
 import com.StardewValley.model.Result;
@@ -37,7 +39,10 @@ public class BlackSmithStore extends Store {
                             100000,5000,0,0, Seasons.special));
                     put("iridium trashcan",new Product(new Item(ItemType.IRIDIUM_TRASHCAN),
                             100000,12500,0,0, Seasons.special));
-                }}, "Blacksmith");
+                }}, "Blacksmith", AssetManager.BLACKSMITH_STORE.getTexture(),new CollisionRect(
+                    -394,-1258,
+                AssetManager.BLACKSMITH_STORE.getTexture().getWidth()
+                ,AssetManager.BLACKSMITH_STORE.getTexture().getHeight()));
     }
     public Result purchase(int amount , Product product){
             return App.currentGameModel.currentUser.getBackPack().addItemToInventory(product.getItem(),amount);

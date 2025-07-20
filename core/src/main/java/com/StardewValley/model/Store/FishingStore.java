@@ -1,7 +1,9 @@
 package com.StardewValley.model.Store;
 
+import com.StardewValley.enums.AssetManager;
 import com.StardewValley.enums.Seasons;
 import com.StardewValley.model.App;
+import com.StardewValley.model.Item.CollisionRect;
 import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.Item.ItemType;
 import com.StardewValley.model.Result;
@@ -26,7 +28,8 @@ public class FishingStore extends Store{
                     1, 1800, 0, 0, Seasons.special));
             put("iridium rod", new Product(new Item(ItemType.IRIDIUM_ROD),
                     1, 7500, 0, 0, Seasons.special));
-        }}, "FishShop");
+        }}, "FishShop", AssetManager.FISHING_STORE.getTexture(), new CollisionRect(-394, -756
+            ,AssetManager.FISHING_STORE.getTexture().getWidth(), AssetManager.FISHING_STORE.getTexture().getHeight()));
     }
     public Result purchase(int amount , Product product){
         BackPack backPack=App.currentGameModel.currentUser.getBackPack();

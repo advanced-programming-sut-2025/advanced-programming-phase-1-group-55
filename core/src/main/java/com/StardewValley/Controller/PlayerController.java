@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 
 public class PlayerController {
     private User player;
+    private GameMap gameMap;
     public PlayerController(User player) {
         this.player = player;
         player.setCollisionRect(new CollisionRect(player.getLocation().getX(),player.getLocation().getY(),player.getSprite().getWidth(),player.getSprite().getHeight()));
@@ -36,7 +37,7 @@ public class PlayerController {
         if (Gdx.input.isKeyPressed(Input.Keys.W)){
             player.getLocation().setY(player.getLocation().getY() + 10);
             player.getCollisionRect().updateCollisionRect(player.getLocation().getX(), player.getLocation().getY());
-            if (!GameMap.canMove(player.getCollisionRect())) {
+            if (!gameMap.canMove(player.getCollisionRect())) {
                 player.getLocation().setY(player.getLocation().getY() - 10);
                 player.getCollisionRect().updateCollisionRect(player.getLocation().getX(), player.getLocation().getY());
                 movedSuccessfully=false;
@@ -45,7 +46,7 @@ public class PlayerController {
         if (Gdx.input.isKeyPressed(Input.Keys.D)){
             player.getLocation().setX(player.getLocation().getX() + 10);
             player.getCollisionRect().updateCollisionRect(player.getLocation().getX(), player.getLocation().getY());
-            if (!GameMap.canMove(player.getCollisionRect())){
+            if (!gameMap.canMove(player.getCollisionRect())){
                 player.getLocation().setX(player.getLocation().getX() - 10);
                 player.getCollisionRect().updateCollisionRect(player.getLocation().getX(), player.getLocation().getY());
                 movedSuccessfully=false;
@@ -54,7 +55,7 @@ public class PlayerController {
         if (Gdx.input.isKeyPressed(Input.Keys.S)){
             player.getLocation().setY(player.getLocation().getY() - 10);
             player.getCollisionRect().updateCollisionRect(player.getLocation().getX(), player.getLocation().getY());
-            if (!GameMap.canMove(player.getCollisionRect())){
+            if (!gameMap.canMove(player.getCollisionRect())){
                 player.getLocation().setY(player.getLocation().getY() + 10);
                 player.getCollisionRect().updateCollisionRect(player.getLocation().getX(), player.getLocation().getY());
                 movedSuccessfully=false;
@@ -63,7 +64,7 @@ public class PlayerController {
         if (Gdx.input.isKeyPressed(Input.Keys.A)){
             player.getLocation().setX(player.getLocation().getX() - 10);
             player.getCollisionRect().updateCollisionRect(player.getLocation().getX(), player.getLocation().getY());
-            if (!GameMap.canMove(player.getCollisionRect())){
+            if (!gameMap.canMove(player.getCollisionRect())){
                 player.getLocation().setX(player.getLocation().getX() + 10);
                 player.getCollisionRect().updateCollisionRect(player.getLocation().getX(), player.getLocation().getY());
                 movedSuccessfully=false;
@@ -72,6 +73,14 @@ public class PlayerController {
         if(movedSuccessfully){
             //todo  energy kam beshe  arshia bezn ino
         }
+    }
+
+    public GameMap getGameMap() {
+        return gameMap;
+    }
+
+    public void setGameMap(GameMap gameMap) {
+        this.gameMap = gameMap;
     }
 
     public User getPlayer() {

@@ -42,7 +42,7 @@ public class MainGameController {
     }
 
     private void passTheGate() {
-        for (Fence fence : GameMap.fences) {
+        for (Fence fence : view.getMap().fences) {
             if (fence.getFenceType().equals(FenceType.door)) {
                 float playerX = playerController.getPlayer().getCollisionRect().getX();
                 float playerY = playerController.getPlayer().getCollisionRect().getY();

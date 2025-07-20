@@ -1,7 +1,9 @@
 package com.StardewValley.model.Store;
 
+import com.StardewValley.enums.AssetManager;
 import com.StardewValley.enums.Seasons;
 import com.StardewValley.model.App;
+import com.StardewValley.model.Item.CollisionRect;
 import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.Item.ItemType;
 import com.StardewValley.model.Result;
@@ -41,7 +43,8 @@ public class StarDropSaloon extends Store{
                     1, 5000, 0, 1, Seasons.special));
             put("cookie recipe", new Product(new Item(ItemType.COOKIE_RECIPE),
                     1, 300, 0, 1, Seasons.special));
-        }}, "starDropSaloon");
+        }}, "starDropSaloon", AssetManager.STAR_DROP_STORE.getTexture(), new CollisionRect(-394,  248,
+            AssetManager.STAR_DROP_STORE.getTexture().getWidth(), AssetManager.STAR_DROP_STORE.getTexture().getHeight()));
     }
     public Result purchase(int amount , Product product){
        if(true){

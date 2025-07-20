@@ -1,7 +1,9 @@
 package com.StardewValley.model.Store;
 
+import com.StardewValley.enums.AssetManager;
 import com.StardewValley.enums.Seasons;
 import com.StardewValley.model.App;
+import com.StardewValley.model.Item.CollisionRect;
 import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.Item.ItemType;
 import com.StardewValley.model.Result;
@@ -25,7 +27,9 @@ public class CarpenterShop extends Store{
                     put("well",new Product(new Item(ItemType.WELL),1,1000,0,75, Seasons.special));
                     put("shipping bin",new Product(new Item(ItemType.SHIPPING_BIN),100000,250,150,0, Seasons.special));
                 }},
-                "CarpenterShop");
+                "CarpenterShop", AssetManager.CARPENTER_STORE.getTexture(), new CollisionRect
+                (392, -1258,AssetManager.CARPENTER_STORE.getTexture().getWidth()
+                    , AssetManager.CARPENTER_STORE.getTexture().getHeight()));
 
     }
     public Result purchase(int amount , Product product){

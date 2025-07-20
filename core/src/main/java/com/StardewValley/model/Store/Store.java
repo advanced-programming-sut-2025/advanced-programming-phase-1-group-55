@@ -1,8 +1,10 @@
 package com.StardewValley.model.Store;
 
 
+import com.StardewValley.model.Item.CollisionRect;
 import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.NPC.Npc;
+import com.badlogic.gdx.graphics.Texture;
 
 import java.time.LocalTime;
 import java.util.HashMap;
@@ -13,14 +15,18 @@ public class Store {
     private final int closingTime;
     private Map<String, Product> productsOfStore=new HashMap<>();
     private final String DisplayName;
+    private final Texture texture;
+    private final CollisionRect collisionRect;
 
 
     public Store(int openingTime, int closingTime, Map<String,
-            Product> productsOfStore, String displayName) {
+            Product> productsOfStore, String displayName, Texture texture, CollisionRect collisionRect) {
         this.openingTime = openingTime;
         this.closingTime = closingTime;
         this.productsOfStore = productsOfStore;
         DisplayName = displayName;
+        this.texture = texture;
+        this.collisionRect = collisionRect;
     }
 
     public int getOpeningTime() {
@@ -44,5 +50,14 @@ public class Store {
     public String getDisplayName() {
         return DisplayName;
     }
+
+    public Texture getTexture() {
+        return texture;
+    }
+
+    public CollisionRect getCollisionRect() {
+        return collisionRect;
+    }
+
 
 }
