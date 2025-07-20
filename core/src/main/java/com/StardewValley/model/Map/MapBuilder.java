@@ -3,6 +3,7 @@ package com.StardewValley.model.Map;
 
 import com.StardewValley.model.App;
 import com.StardewValley.model.Item.CollisionRect;
+import com.StardewValley.model.Store.Store;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
 public class MapBuilder {
@@ -170,8 +171,17 @@ public class MapBuilder {
         placeStore(map);
 
     }
-    public void drawFences() {
-        for (Fence fence : GameMap.fences) {
+    public void drawStores(GameMap map) {
+        for (Store store : map.getVillage().getStores().values()) {
+            Sprite sprite = new Sprite(store.getTexture());
+
+            sprite.setPosition(store.getCollisionRect().getX(), store.getCollisionRect().getY());
+
+            sprite.draw(App.gameApp.getBatch());
+        }
+    }
+    public void drawFences(GameMap map) {
+        for (Fence fence :map.fences) {
             Sprite sprite = new Sprite(fence.fenceType.getTexture());
 
             sprite.setPosition(
@@ -196,17 +206,17 @@ public class MapBuilder {
         }
     }
 
-    public void BuildFences(int WORLD_WIDTH, int WORLD_HEIGHT) {
+    public void BuildFences(int WORLD_WIDTH, int WORLD_HEIGHT,GameMap map) {
         FenceType fenceType=FenceType.stone;
-        outSideFences(WORLD_WIDTH, WORLD_HEIGHT, fenceType);
+        outSideFences(WORLD_WIDTH, WORLD_HEIGHT, fenceType,map);
         fenceType=FenceType.wood;
-        farmFences(WORLD_WIDTH, fenceType);
-        farmGates(WORLD_WIDTH, WORLD_HEIGHT, fenceType);
+        farmFences(WORLD_WIDTH, fenceType,map);
+        farmGates(WORLD_WIDTH, WORLD_HEIGHT, fenceType,map);
         fenceType=FenceType.iron;
-        VillageFences(WORLD_WIDTH,WORLD_HEIGHT, fenceType);
+        VillageFences(WORLD_WIDTH,WORLD_HEIGHT, fenceType,map);
     }
 
-    private void farmGates(int WORLD_WIDTH, int WORLD_HEIGHT, FenceType fenceType) {
+    private void farmGates(int WORLD_WIDTH, int WORLD_HEIGHT, FenceType fenceType,GameMap map) {
         for (int y = -WORLD_HEIGHT / 2+ fenceType.getTexture().getHeight(); y < WORLD_HEIGHT / 2; y += fenceType.getTexture().getHeight()) {
             fenceType =FenceType.wood;
             if (y==-WORLD_HEIGHT /2+21* fenceType.getTexture().getHeight()||
@@ -217,29 +227,29 @@ public class MapBuilder {
                 y==-WORLD_HEIGHT /2+67* fenceType.getTexture().getHeight()) {
                 fenceType =FenceType.door;
             }
-            GameMap.fences.add(new Fence(fenceType,new CollisionRect(
+           map.fences.add(new Fence(fenceType,new CollisionRect(
                 -WORLD_WIDTH /2+2* WORLD_WIDTH /7,y, fenceType.getTexture().getWidth()/2, fenceType.getTexture().getHeight()/2)));
-            GameMap.fences.add(new Fence(fenceType,new CollisionRect(
+           map.fences.add(new Fence(fenceType,new CollisionRect(
                 -WORLD_WIDTH /2+5* WORLD_WIDTH /7,y, fenceType.getTexture().getWidth()/2, fenceType.getTexture().getHeight()/2)));
         }
     }
 
-    private void farmFences(int WORLD_WIDTH, FenceType fenceType) {
+    private void farmFences(int WORLD_WIDTH, FenceType fenceType,GameMap map) {
         for (int x = -WORLD_WIDTH /2+ fenceType.getTexture().getWidth()/2;
              x<-WORLD_WIDTH /2+2* WORLD_WIDTH /7; x+= fenceType.getTexture().getWidth()/2) {
-            GameMap.fences.add(new Fence(fenceType,new CollisionRect(
+           map.fences.add(new Fence(fenceType,new CollisionRect(
                 x,0, fenceType.getTexture().getWidth()/2, fenceType.getTexture().getHeight()/2)));
-            GameMap.fences.add(new Fence(fenceType,new CollisionRect(
+           map.fences.add(new Fence(fenceType,new CollisionRect(
                 x, fenceType.getTexture().getHeight(),
                 fenceType.getTexture().getWidth()/2, fenceType.getTexture().getHeight()/2)));
-            GameMap.fences.add(new Fence(fenceType,new CollisionRect(
+           map.fences.add(new Fence(fenceType,new CollisionRect(
                 x+5* WORLD_WIDTH /7,0, fenceType.getTexture().getWidth()/2, fenceType.getTexture().getHeight()/2)));
-            GameMap.fences.add(new Fence(fenceType,new CollisionRect(
+           map.fences.add(new Fence(fenceType,new CollisionRect(
                 x+5* WORLD_WIDTH /7, fenceType.getTexture().getHeight(),
                 fenceType.getTexture().getWidth()/2, fenceType.getTexture().getHeight()/2)));
         }
     }
-    private void VillageFences(int WORLD_WIDTH, int WORLD_HEIGHT, FenceType fenceType) {
+    private void VillageFences(int WORLD_WIDTH, int WORLD_HEIGHT, FenceType fenceType,GameMap map) {
         int texW = fenceType.getTexture().getWidth();
         int texH = fenceType.getTexture().getHeight();
         int startX = -WORLD_WIDTH / 2 + WORLD_WIDTH / 3 + 100;
@@ -250,11 +260,11 @@ public class MapBuilder {
 
             if (x >= middleX - gapX / 2 && x <= middleX + gapX / 2) continue;
 
-            GameMap.fences.add(new Fence(fenceType, new CollisionRect(
+           map.fences.add(new Fence(fenceType, new CollisionRect(
                 x, -WORLD_HEIGHT / 2 + 400,
                 texW, texH / 2)));
 
-            GameMap.fences.add(new Fence(fenceType, new CollisionRect(
+           map.fences.add(new Fence(fenceType, new CollisionRect(
                 x, WORLD_HEIGHT / 2 - 400,
                 texW, texH / 2)));
         }
@@ -266,29 +276,29 @@ public class MapBuilder {
 
             if (y >= middleY - gapY / 2 && y <= middleY + gapY / 2) continue;
 
-            GameMap.fences.add(new Fence(fenceType, new CollisionRect(
+           map.fences.add(new Fence(fenceType, new CollisionRect(
                 -WORLD_WIDTH / 2 + 100 + WORLD_WIDTH / 3, y,
                 texW, texH)));
 
-            GameMap.fences.add(new Fence(fenceType, new CollisionRect(
+           map.fences.add(new Fence(fenceType, new CollisionRect(
                 WORLD_WIDTH / 2 - WORLD_WIDTH / 3 - 100, y,
                 texW, texH)));
         }
     }
 
-    private void outSideFences(int WORLD_WIDTH, int WORLD_HEIGHT, FenceType fenceType) {
+    private void outSideFences(int WORLD_WIDTH, int WORLD_HEIGHT, FenceType fenceType,GameMap map) {
         for (int x = -WORLD_WIDTH / 2; x < WORLD_WIDTH / 2; x += fenceType.getTexture().getWidth()/2) {
-            GameMap.fences.add(new Fence(fenceType,new CollisionRect(x,
+           map.fences.add(new Fence(fenceType,new CollisionRect(x,
                 -WORLD_HEIGHT /2, fenceType.getTexture().getWidth()/2, fenceType.getTexture().getHeight()/2)));
-            GameMap.fences.add(new Fence(fenceType,new CollisionRect(x,
+           map.fences.add(new Fence(fenceType,new CollisionRect(x,
                 WORLD_HEIGHT /2, fenceType.getTexture().getWidth()/2, fenceType.getTexture().getHeight()/2)));
 
         }
 
         for (int y = -WORLD_HEIGHT / 2; y < WORLD_HEIGHT / 2; y += fenceType.getTexture().getHeight()) {
-            GameMap.fences.add(new Fence(fenceType,new CollisionRect(
+           map.fences.add(new Fence(fenceType,new CollisionRect(
                 -WORLD_WIDTH /2,y, fenceType.getTexture().getWidth()/2, fenceType.getTexture().getHeight()/2)));
-            GameMap.fences.add(new Fence(fenceType,new CollisionRect(
+           map.fences.add(new Fence(fenceType,new CollisionRect(
                 +WORLD_WIDTH /2,y, fenceType.getTexture().getWidth()/2, fenceType.getTexture().getHeight()/2)));
 
         }

@@ -25,27 +25,11 @@ public class NpcVillage {
         put("Robin",new Npc(NpcType.ROBIN));
         put("Leah",new Npc(NpcType.LEAH));
     }};
-    private final Location location=new Location(10,35);
-    private final int width=20;
-    private  final int height=89;
+
 
     public Map<String, Store> getStores() {
         return stores;
     }
-
-
-    public Location getLocation() {
-        return location;
-    }
-
-    public int getWidth() {
-        return width;
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
     public Map<String, Npc> getNpss() {
         return nps;
     }

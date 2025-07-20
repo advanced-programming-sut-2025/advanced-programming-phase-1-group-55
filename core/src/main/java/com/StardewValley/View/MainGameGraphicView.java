@@ -19,7 +19,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
-import static com.StardewValley.model.AssetManager.*;
+import static com.StardewValley.enums.AssetManager.*;
 
 public class MainGameGraphicView implements Screen {
     private final MainGameController controller;
@@ -30,6 +30,8 @@ public class MainGameGraphicView implements Screen {
     private ProgressBar energyBar;
     private Table tableTop;
     private Stage stage;
+    //todo field paayin baayad beshe App.currentGame.map
+    private GameMap map=new GameMap();
 
 
     public MainGameGraphicView(MainGameController controller) {
@@ -78,7 +80,8 @@ public class MainGameGraphicView implements Screen {
 
 
         stage.addActor(tableTop);
-        GameMap.BuildMap();
+        map.BuildMap();
+        controller.getPlayerController().setGameMap(map);
 
     }
 
@@ -98,6 +101,7 @@ public class MainGameGraphicView implements Screen {
 
 
         camera.update();
+
         controller.getPlayerController().centerPlayerOnCamera(camera);
         App.gameApp.getBatch().setProjectionMatrix(camera.combined);
 
@@ -105,7 +109,7 @@ public class MainGameGraphicView implements Screen {
         drawBackground();
         updateBackgroundTexture();
         //todo bade zadan choose map tavasot arshia az App.current game estefaade kn
-        GameMap.DrawMap();
+        map.DrawMap();
 
         controller.updateGame(delta);
 
@@ -134,7 +138,13 @@ public class MainGameGraphicView implements Screen {
         App.gameApp.getBatch().draw(backgroundRegion, camX, camY, camera.viewportWidth, camera.viewportHeight);
     }
 
+    public GameMap getMap() {
+        return map;
+    }
 
+    public void setMap(GameMap map) {
+        this.map = map;
+    }
 
     @Override
     public void resize(int width, int height) {

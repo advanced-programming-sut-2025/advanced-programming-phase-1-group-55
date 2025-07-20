@@ -1,6 +1,6 @@
 package com.StardewValley.model.Map;
 
-import com.StardewValley.model.AssetManager;
+import com.StardewValley.enums.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 
 public enum FenceType {

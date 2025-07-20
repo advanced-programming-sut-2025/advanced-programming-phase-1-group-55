@@ -1,4 +1,4 @@
-package com.StardewValley.model;
+package com.StardewValley.enums;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;

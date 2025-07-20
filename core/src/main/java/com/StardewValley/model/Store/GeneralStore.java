@@ -1,7 +1,9 @@
 package com.StardewValley.model.Store;
 
+import com.StardewValley.enums.AssetManager;
 import com.StardewValley.enums.Seasons;
 import com.StardewValley.model.App;
+import com.StardewValley.model.Item.CollisionRect;
 import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.Item.ItemType;
 import com.StardewValley.model.Result;
@@ -125,7 +127,8 @@ public class GeneralStore extends Store {
                     Integer.MAX_VALUE, 100, 0, 0, Seasons.special));
             put("quality retaining soil", new Product(new Item(ItemType.QUALITY_RETAINING_SOIL),
                     Integer.MAX_VALUE, 150, 0, 0, Seasons.special));
-        }}, "Generalstore");
+        }}, "Generalstore", AssetManager.GENERAL_STORE.getTexture(), new CollisionRect( 392, -756,
+            AssetManager.GENERAL_STORE.getTexture().getWidth(), AssetManager.GENERAL_STORE.getTexture().getHeight()));
     }
     public Result purchase(int amount , Product product){
        BackPack backPack= App.currentGameModel.currentUser.getBackPack();

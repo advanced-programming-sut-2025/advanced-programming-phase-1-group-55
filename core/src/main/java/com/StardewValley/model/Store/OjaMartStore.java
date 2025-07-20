@@ -1,7 +1,9 @@
 package com.StardewValley.model.Store;
 
+import com.StardewValley.enums.AssetManager;
 import com.StardewValley.enums.Seasons;
 import com.StardewValley.model.App;
+import com.StardewValley.model.Item.CollisionRect;
 import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.Item.ItemType;
 import com.StardewValley.model.Result;
@@ -127,7 +129,8 @@ public class OjaMartStore extends Store{
                     10, 20, 0, 0, Seasons.winter));
 
 
-        }}, "OjaMart");
+        }}, "OjaMart", AssetManager.JOJA_MART_STORE.getTexture(), new CollisionRect(392, -254,
+            AssetManager.JOJA_MART_STORE.getTexture().getWidth(), AssetManager.JOJA_MART_STORE.getTexture().getHeight()));
     }
     public Result purchase(int amount , Product product){
       Result x=App.currentGameModel.currentUser.getBackPack().addItemToInventory(product.getItem(),amount);

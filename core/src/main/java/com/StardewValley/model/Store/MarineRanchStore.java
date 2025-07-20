@@ -1,7 +1,9 @@
 package com.StardewValley.model.Store;
 
+import com.StardewValley.enums.AssetManager;
 import com.StardewValley.enums.Seasons;
 import com.StardewValley.model.App;
+import com.StardewValley.model.Item.CollisionRect;
 import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.Item.ItemType;
 import com.StardewValley.model.Result;
@@ -47,7 +49,8 @@ public class MarineRanchStore extends Store{
                     1, 16000, 0, 0, Seasons.special));
 
 
-        }}, "marnieRanch");
+        }}, "marnieRanch", AssetManager.MARINE_RANCH_STORE.getTexture(), new CollisionRect(-394, -254,
+            AssetManager.GENERAL_STORE.getTexture().getWidth(), AssetManager.GENERAL_STORE.getTexture().getHeight()));
     }
     public Result purchase(int amount , Product product){
         BackPack backPack= App.currentGameModel.currentUser.getBackPack();
