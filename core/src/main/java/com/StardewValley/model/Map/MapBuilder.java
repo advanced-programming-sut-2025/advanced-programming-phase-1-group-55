@@ -179,7 +179,21 @@ public class MapBuilder {
             Sprite sprite=npc.getType().getHouse().getSprite();
             sprite.setPosition(npc.getType().getHouse().getCollisionRect().getX(),npc.getType().getHouse().getCollisionRect().getY());
             sprite.draw(App.gameApp.getBatch());
+            Sprite woodLamp=new Sprite(AssetManager.WOOD_LAMP.getTexture());
+            if (npc.getType().getHouse().getCollisionRect().getX()>0){
+                woodLamp.setPosition(npc.getType().getHouse().getCollisionRect().getX()+npc.getType().getHouse().getCollisionRect().getWidth()+80, npc.getType().getHouse().getCollisionRect().getY());
+                Sprite ironLamp=new Sprite(AssetManager.IRON_LAMP.getTexture());
+                ironLamp.setPosition(npc.getType().getHouse().getCollisionRect().getX()-130, npc.getType().getHouse().getCollisionRect().getY());
+                ironLamp.draw(App.gameApp.getBatch());
+            }else {
+                woodLamp.setPosition(npc.getType().getHouse().getCollisionRect().getX()-130, npc.getType().getHouse().getCollisionRect().getY());
+                Sprite ironLamp=new Sprite(AssetManager.IRON_LAMP.getTexture());
+                ironLamp.setPosition(npc.getType().getHouse().getCollisionRect().getX()+npc.getType().getHouse().getCollisionRect().getWidth()+80, npc.getType().getHouse().getCollisionRect().getY());
+                ironLamp.draw(App.gameApp.getBatch());
+            }
+            woodLamp.draw(App.gameApp.getBatch());
         }
+
     }
     public void drawStores(GameMap map) {
         for (Store store : map.getVillage().getStores().values()) {

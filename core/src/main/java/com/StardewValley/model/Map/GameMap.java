@@ -2,6 +2,7 @@ package com.StardewValley.model.Map;
 
 import com.StardewValley.enums.AnsiColor;
 import com.StardewValley.model.Item.CollisionRect;
+import com.StardewValley.model.NPC.Npc;
 import com.StardewValley.model.Store.Store;
 
 import java.util.ArrayList;
@@ -63,6 +64,11 @@ public class GameMap {
         }
         for (Store store:village.getStores().values()){
             if (store.getCollisionRect().collidesWith(collisionRect)) {
+                return false;
+            }
+        }
+        for (Npc npc:village.getNpss().values()){
+            if (npc.getType().getHouse().getCollisionRect().collidesWith(collisionRect)) {
                 return false;
             }
         }
