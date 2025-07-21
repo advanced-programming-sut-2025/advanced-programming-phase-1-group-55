@@ -31,7 +31,7 @@ public class RegisterScreen extends ScreenAdapter {
         skin = new Skin(Gdx.files.internal("skin/golden-ui-skin.json"));
 
 
-        Table table = new Table();
+        Table table = new Table(skin);
         table.setFillParent(true);
         table.defaults().pad(10);
         stage.addActor(table);
