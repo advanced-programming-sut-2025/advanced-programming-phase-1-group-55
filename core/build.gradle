@@ -1,3 +1,14 @@
+java {
+  toolchain {
+    languageVersion.set(JavaLanguageVersion.of(23))
+  }
+}
+
+tasks.withType(JavaCompile).configureEach {
+  options.release.set(23)
+}
+
+
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 eclipse.project.name = appName + '-core'
 
@@ -7,7 +18,7 @@ dependencies {
   api "com.github.MrStahlfelge.gdx-websockets:core:$websocketVersion"
   implementation 'com.google.code.gson:gson:2.10.1'
 
-  if(enableGraalNative == 'true') {
+  if (enableGraalNative == 'true') {
     implementation "io.github.berstanio:gdx-svmhelper-annotations:$graalHelperVersion"
   }
 }
