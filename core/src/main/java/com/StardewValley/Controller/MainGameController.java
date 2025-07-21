@@ -1,7 +1,7 @@
 package com.StardewValley.Controller;
 
 
-import com.StardewValley.View.MainGameGraphicView;
+import com.StardewValley.View.newView.MainGameGraphicView;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.Map.*;
