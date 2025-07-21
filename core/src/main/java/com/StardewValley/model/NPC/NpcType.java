@@ -1,5 +1,6 @@
 package com.StardewValley.model.NPC;
 
+import com.StardewValley.enums.AssetManager;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.Item.ItemType;
@@ -8,6 +9,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import com.StardewValley.model.App.*;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.utils.Array;
+
 public enum NpcType {
     SEBASTIAN(
             new HashMap<>(){{
@@ -19,7 +25,7 @@ public enum NpcType {
                 put(0,new Quest(0,new ReadyItem(ItemType.IRON,50),new ReadyItem(ItemType.DIAMOND,2),1));
                 put(1,new Quest(1,new ReadyItem(ItemType.STONE,150),new ReadyItem(ItemType.QUARTZ,50),2));
                 put(2,new Quest(2,new ReadyItem(ItemType.PUMPKIN_PIE,1),new ReadyItem(ItemType.GOLD,5000), 3));
-            }},"Sebastian"),
+            }},"Sebastian","Npc/Sebastian/Sebastian"),
 
     ABIGAIL(
             new HashMap<>(){{
@@ -34,7 +40,7 @@ public enum NpcType {
                         ,2));
                 put(5,new Quest(5,new ReadyItem(ItemType.WHEAT,50),new ReadyItem(ItemType.IRIDIUM_SPRINKLER,1)
                        ,3));
-            }},"Abigail"),
+            }},"Abigail","Npc/Abigail/Abigail"),
 
     HARVEY(
             new HashMap<>(){{
@@ -49,7 +55,7 @@ public enum NpcType {
                         ,2));
                 put(8,new Quest(8,new ReadyItem(ItemType.BEER,1),new ReadyItem(ItemType.SALAD,5)
                         ,3));
-            }},"Harvey"),
+            }},"Harvey","Npc/Harvey/Harvey"),
 
     LEAH(
             new HashMap<>(){{
@@ -64,7 +70,7 @@ public enum NpcType {
                         ,2));
                 put(11,new Quest(11,new ReadyItem(ItemType.WOOD,200),new ReadyItem(ItemType.DELUXE_SCARECROW,1)
                         ,3));
-            }},"Leah"),
+            }},"Leah","Npc/Leah/Leah"),
 
     ROBIN(
             new HashMap<>(){{
@@ -76,17 +82,20 @@ public enum NpcType {
                 put(12,new Quest(12,new ReadyItem(ItemType.WOOD,80),new ReadyItem(ItemType.GOLD,1000), 1));
                 put(13,new Quest(13,new ReadyItem(ItemType.IRON_BAR,10),new ReadyItem(ItemType.BEE_HOUSE,3), 2));
                 put(14,new Quest(14,new ReadyItem(ItemType.WOOD,1000),new ReadyItem(ItemType.GOLD,25000), 3));
-            }},"Robin");
+            }},"Robin","Npc/Robin/Robin");
     private final String DisplayName;
     private final Map<String, Item> favorites;
     private final Map<Integer,Quest> quests;
     private ArrayList<Dialog> dialogs; //todo taghir be shey dialog va ezafe kardan ertebaat baa fasl
     private  String job;
-    NpcType( Map<String,Item> favorites, Map<Integer,Quest> quest,String names) {
+    private Animation<TextureRegion> animation;
+    NpcType( Map<String,Item> favorites, Map<Integer,Quest> quest,String names,String nameToFindAnimation) {
         this.favorites = favorites;
         this.quests =quest;
         this.DisplayName=names;
+        this.animation= AssetManager.animation(nameToFindAnimation);
     }
+
 
 
     public Map<String,Item> getFavorites() {
