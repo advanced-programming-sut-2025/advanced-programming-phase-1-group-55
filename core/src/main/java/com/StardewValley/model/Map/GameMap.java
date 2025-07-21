@@ -2,6 +2,7 @@ package com.StardewValley.model.Map;
 
 import com.StardewValley.enums.AnsiColor;
 import com.StardewValley.model.Item.CollisionRect;
+import com.StardewValley.model.NPC.Npc;
 import com.StardewValley.model.Store.Store;
 
 import java.util.ArrayList;
@@ -22,7 +23,6 @@ public class GameMap {
     private NpcVillage village=new NpcVillage();
     private static final int WORLD_WIDTH = (int)(1920*4);
     private static final int WORLD_HEIGHT = (int)(1080*4);
-    //todo feln baa static kaar miknm taa choose map dorost she
     public  ArrayList<Fence> fences = new ArrayList<>();
 
 
@@ -66,6 +66,11 @@ public class GameMap {
                 return false;
             }
         }
+        for (Npc npc:village.getNpss().values()){
+            if (npc.getType().getHouse().getCollisionRect().collidesWith(collisionRect)) {
+                return false;
+            }
+        }
         return true;
     }
     public void BuildMap(){
@@ -76,6 +81,8 @@ public class GameMap {
         MapBuilder mapBuilder1 = new MapBuilder();
         mapBuilder1.drawFences(this);
         mapBuilder1.drawStores(this);
+        mapBuilder1.drawNpcHouses(this);
+        mapBuilder1.drawNpc(this);
     }
 
     public Tile[][] getTiles() {

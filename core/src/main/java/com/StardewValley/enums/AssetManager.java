@@ -2,7 +2,10 @@ package com.StardewValley.enums;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.utils.Array;
 
 public enum AssetManager {
 
@@ -102,13 +105,29 @@ public enum AssetManager {
 
     private final String path;
     private final Texture texture;
+    private final TextureRegion textureRegion;
 
 
     AssetManager(String path) {
         this.path = path;
         this.texture = new Texture(Gdx.files.internal(path));
+        this.textureRegion = new TextureRegion(texture);
     }
 
+    public String getPath() {
+        return path;
+    }
+    public  static TextureRegion getByPath(String path) {
+        for (AssetManager assetManager:AssetManager.values()){
+            if (assetManager.path.equals(path)){
+                return assetManager.textureRegion;
+            }
+        }
+        return null;
+    }
+    public TextureRegion getTextureRegion() {
+        return textureRegion;
+    }
 
     public Texture getTexture() {
         return texture;
@@ -119,5 +138,17 @@ public enum AssetManager {
 
     public void dispose() {
         texture.dispose();
+    }
+    public static Animation<TextureRegion> animation(String name) {
+        TextureRegion frame1 = new TextureRegion(getByPath(name+".png"));
+        TextureRegion frame2 = new TextureRegion(getByPath(name+"2.png"));
+        TextureRegion frame3 = new TextureRegion(getByPath(name+".png"));
+        TextureRegion frame4 = new TextureRegion(getByPath(name+"3.png"));
+        Array<TextureRegion> frames = new Array<>();
+        frames.add(frame1);
+        frames.add(frame2);
+        frames.add(frame3);
+        frames.add(frame4);
+        return new Animation<>(3f, frames, Animation.PlayMode.LOOP);
     }
 }

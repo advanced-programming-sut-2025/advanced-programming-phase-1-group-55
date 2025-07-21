@@ -4,8 +4,13 @@ package com.StardewValley.model.Map;
 import com.StardewValley.enums.AssetManager;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Item.CollisionRect;
+import com.StardewValley.model.NPC.Npc;
+import com.StardewValley.model.NPC.NpcHouse;
 import com.StardewValley.model.Store.Store;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class MapBuilder {
     public void fillOtherTiles(GameMap map) {
@@ -170,6 +175,41 @@ public class MapBuilder {
         map.tiles[20][104]=new Tile(new Location(20,104),"@",true,false, TileType.building);
         map.tiles[20][115]=new Tile(new Location(20,115),"@",true,false, TileType.building);
         placeStore(map);
+
+    }
+    public void drawNpc(GameMap map) {
+        for (Npc npc : map.getVillage().getNpss().values()) {
+            npc.update(Gdx.graphics.getDeltaTime());
+            TextureRegion frame = npc.getType().getAnimation().getKeyFrame(npc.getStateTime(), true);
+
+            float x = npc.getCollisionRect().getX();
+            float y = npc.getCollisionRect().getY();
+            float width = frame.getRegionWidth() * 2f;
+            float height = frame.getRegionHeight() * 2f;
+
+            App.gameApp.getBatch().draw(frame, x, y, width, height);
+        }
+
+    }
+    public void drawNpcHouses(GameMap map) {
+        for (Npc npc:map.getVillage().getNpss().values()){
+            Sprite sprite=npc.getType().getHouse().getSprite();
+            sprite.setPosition(npc.getType().getHouse().getCollisionRect().getX(),npc.getType().getHouse().getCollisionRect().getY());
+            sprite.draw(App.gameApp.getBatch());
+            Sprite woodLamp=new Sprite(AssetManager.WOOD_LAMP.getTexture());
+            if (npc.getType().getHouse().getCollisionRect().getX()>0){
+                woodLamp.setPosition(npc.getType().getHouse().getCollisionRect().getX()+npc.getType().getHouse().getCollisionRect().getWidth()+80, npc.getType().getHouse().getCollisionRect().getY());
+                Sprite ironLamp=new Sprite(AssetManager.IRON_LAMP.getTexture());
+                ironLamp.setPosition(npc.getType().getHouse().getCollisionRect().getX()-130, npc.getType().getHouse().getCollisionRect().getY());
+                ironLamp.draw(App.gameApp.getBatch());
+            }else {
+                woodLamp.setPosition(npc.getType().getHouse().getCollisionRect().getX()-130, npc.getType().getHouse().getCollisionRect().getY());
+                Sprite ironLamp=new Sprite(AssetManager.IRON_LAMP.getTexture());
+                ironLamp.setPosition(npc.getType().getHouse().getCollisionRect().getX()+npc.getType().getHouse().getCollisionRect().getWidth()+80, npc.getType().getHouse().getCollisionRect().getY());
+                ironLamp.draw(App.gameApp.getBatch());
+            }
+            woodLamp.draw(App.gameApp.getBatch());
+        }
 
     }
     public void drawStores(GameMap map) {
