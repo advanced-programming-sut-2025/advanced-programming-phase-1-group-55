@@ -4,6 +4,8 @@ package com.StardewValley.model.Map;
 import com.StardewValley.enums.AssetManager;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Item.CollisionRect;
+import com.StardewValley.model.NPC.Npc;
+import com.StardewValley.model.NPC.NpcHouse;
 import com.StardewValley.model.Store.Store;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
@@ -171,6 +173,13 @@ public class MapBuilder {
         map.tiles[20][115]=new Tile(new Location(20,115),"@",true,false, TileType.building);
         placeStore(map);
 
+    }
+    public void drawNpcHouses(GameMap map) {
+        for (Npc npc:map.getVillage().getNpss().values()){
+            Sprite sprite=npc.getType().getHouse().getSprite();
+            sprite.setPosition(npc.getType().getHouse().getCollisionRect().getX(),npc.getType().getHouse().getCollisionRect().getY());
+            sprite.draw(App.gameApp.getBatch());
+        }
     }
     public void drawStores(GameMap map) {
         for (Store store : map.getVillage().getStores().values()) {

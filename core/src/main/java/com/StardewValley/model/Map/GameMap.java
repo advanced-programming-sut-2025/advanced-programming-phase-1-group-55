@@ -76,6 +76,7 @@ public class GameMap {
         MapBuilder mapBuilder1 = new MapBuilder();
         mapBuilder1.drawFences(this);
         mapBuilder1.drawStores(this);
+        mapBuilder1.drawNpcHouses(this);
     }
 
     public Tile[][] getTiles() {

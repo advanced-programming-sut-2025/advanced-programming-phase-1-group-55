@@ -2,6 +2,7 @@ package com.StardewValley.model.NPC;
 
 import com.StardewValley.enums.AssetManager;
 import com.StardewValley.model.App;
+import com.StardewValley.model.Item.CollisionRect;
 import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.Item.ItemType;
 
@@ -25,7 +26,9 @@ public enum NpcType {
                 put(0,new Quest(0,new ReadyItem(ItemType.IRON,50),new ReadyItem(ItemType.DIAMOND,2),1));
                 put(1,new Quest(1,new ReadyItem(ItemType.STONE,150),new ReadyItem(ItemType.QUARTZ,50),2));
                 put(2,new Quest(2,new ReadyItem(ItemType.PUMPKIN_PIE,1),new ReadyItem(ItemType.GOLD,5000), 3));
-            }},"Sebastian","Npc/Sebastian/Sebastian"),
+            }},"Sebastian","Npc/Sebastian/Sebastian",new NpcHouse( new CollisionRect(392, 1252,
+        AssetManager.SEBASTIAN_HOUSE.getTexture().getWidth(),
+        AssetManager.SEBASTIAN_HOUSE.getTexture().getHeight()),AssetManager.SEBASTIAN_HOUSE.getSprite())),
 
     ABIGAIL(
             new HashMap<>(){{
@@ -40,7 +43,9 @@ public enum NpcType {
                         ,2));
                 put(5,new Quest(5,new ReadyItem(ItemType.WHEAT,50),new ReadyItem(ItemType.IRIDIUM_SPRINKLER,1)
                        ,3));
-            }},"Abigail","Npc/Abigail/Abigail"),
+            }},"Abigail","Npc/Abigail/Abigail",new NpcHouse(new CollisionRect(-394, 1252,
+        AssetManager.ABIGAIL_HOUSE.getTexture().getWidth(),
+        AssetManager.ABIGAIL_HOUSE.getTexture().getHeight()),AssetManager.ABIGAIL_HOUSE.getSprite())),
 
     HARVEY(
             new HashMap<>(){{
@@ -55,7 +60,9 @@ public enum NpcType {
                         ,2));
                 put(8,new Quest(8,new ReadyItem(ItemType.BEER,1),new ReadyItem(ItemType.SALAD,5)
                         ,3));
-            }},"Harvey","Npc/Harvey/Harvey"),
+            }},"Harvey","Npc/Harvey/Harvey",new NpcHouse(new CollisionRect(392,  750,
+        AssetManager.HARVEY_HOUSE.getTexture().getWidth(),
+        AssetManager.HARVEY_HOUSE.getTexture().getHeight()),AssetManager.HARVEY_HOUSE.getSprite())),
 
     LEAH(
             new HashMap<>(){{
@@ -70,7 +77,9 @@ public enum NpcType {
                         ,2));
                 put(11,new Quest(11,new ReadyItem(ItemType.WOOD,200),new ReadyItem(ItemType.DELUXE_SCARECROW,1)
                         ,3));
-            }},"Leah","Npc/Leah/Leah"),
+            }},"Leah","Npc/Leah/Leah",new NpcHouse(new CollisionRect(-394,  750,
+        AssetManager.LEAH_HOUSE.getTexture().getWidth(),
+        AssetManager.LEAH_HOUSE.getTexture().getHeight()),AssetManager.LEAH_HOUSE.getSprite())),
 
     ROBIN(
             new HashMap<>(){{
@@ -82,21 +91,37 @@ public enum NpcType {
                 put(12,new Quest(12,new ReadyItem(ItemType.WOOD,80),new ReadyItem(ItemType.GOLD,1000), 1));
                 put(13,new Quest(13,new ReadyItem(ItemType.IRON_BAR,10),new ReadyItem(ItemType.BEE_HOUSE,3), 2));
                 put(14,new Quest(14,new ReadyItem(ItemType.WOOD,1000),new ReadyItem(ItemType.GOLD,25000), 3));
-            }},"Robin","Npc/Robin/Robin");
+            }},"Robin","Npc/Robin/Robin",
+        new NpcHouse(new CollisionRect(392,  248,
+            AssetManager.ROBIN_HOUSE.getTexture().getWidth(),
+            AssetManager.ROBIN_HOUSE.getTexture().getHeight()),AssetManager.ROBIN_HOUSE.getSprite()));
     private final String DisplayName;
     private final Map<String, Item> favorites;
     private final Map<Integer,Quest> quests;
     private ArrayList<Dialog> dialogs; //todo taghir be shey dialog va ezafe kardan ertebaat baa fasl
     private  String job;
     private Animation<TextureRegion> animation;
-    NpcType( Map<String,Item> favorites, Map<Integer,Quest> quest,String names,String nameToFindAnimation) {
+    private final NpcHouse house;
+    NpcType( Map<String,Item> favorites, Map<Integer,Quest> quest,String names,String nameToFindAnimation,NpcHouse house) {
         this.favorites = favorites;
         this.quests =quest;
         this.DisplayName=names;
         this.animation= AssetManager.animation(nameToFindAnimation);
+        this.house=house;
     }
 
 
+    public Animation<TextureRegion> getAnimation() {
+        return animation;
+    }
+
+    public void setAnimation(Animation<TextureRegion> animation) {
+        this.animation = animation;
+    }
+
+    public NpcHouse getHouse() {
+        return house;
+    }
 
     public Map<String,Item> getFavorites() {
         return favorites;
