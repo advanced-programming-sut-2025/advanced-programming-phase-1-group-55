@@ -149,6 +149,6 @@ public enum AssetManager {
         frames.add(frame2);
         frames.add(frame3);
         frames.add(frame4);
-        return new Animation<>(1.5f, frames, Animation.PlayMode.LOOP);
+        return new Animation<>(3f, frames, Animation.PlayMode.LOOP);
     }
 }

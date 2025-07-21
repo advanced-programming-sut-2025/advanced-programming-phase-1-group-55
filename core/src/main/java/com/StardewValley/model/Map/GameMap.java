@@ -23,7 +23,6 @@ public class GameMap {
     private NpcVillage village=new NpcVillage();
     private static final int WORLD_WIDTH = (int)(1920*4);
     private static final int WORLD_HEIGHT = (int)(1080*4);
-    //todo feln baa static kaar miknm taa choose map dorost she
     public  ArrayList<Fence> fences = new ArrayList<>();
 
 
@@ -83,6 +82,7 @@ public class GameMap {
         mapBuilder1.drawFences(this);
         mapBuilder1.drawStores(this);
         mapBuilder1.drawNpcHouses(this);
+        mapBuilder1.drawNpc(this);
     }
 
     public Tile[][] getTiles() {

@@ -28,7 +28,8 @@ public enum NpcType {
                 put(2,new Quest(2,new ReadyItem(ItemType.PUMPKIN_PIE,1),new ReadyItem(ItemType.GOLD,5000), 3));
             }},"Sebastian","Npc/Sebastian/Sebastian",new NpcHouse( new CollisionRect(392, 1252,
         AssetManager.SEBASTIAN_HOUSE.getTexture().getWidth(),
-        AssetManager.SEBASTIAN_HOUSE.getTexture().getHeight()),AssetManager.SEBASTIAN_HOUSE.getSprite())),
+        AssetManager.SEBASTIAN_HOUSE.getTexture().getHeight()),AssetManager.SEBASTIAN_HOUSE.getSprite()),
+        AssetManager.SEBASTIAN.getSprite()),
 
     ABIGAIL(
             new HashMap<>(){{
@@ -45,7 +46,8 @@ public enum NpcType {
                        ,3));
             }},"Abigail","Npc/Abigail/Abigail",new NpcHouse(new CollisionRect(-394, 1252,
         AssetManager.ABIGAIL_HOUSE.getTexture().getWidth(),
-        AssetManager.ABIGAIL_HOUSE.getTexture().getHeight()),AssetManager.ABIGAIL_HOUSE.getSprite())),
+        AssetManager.ABIGAIL_HOUSE.getTexture().getHeight()),AssetManager.ABIGAIL_HOUSE.getSprite()),
+        AssetManager.ABIGAIL.getSprite()),
 
     HARVEY(
             new HashMap<>(){{
@@ -62,7 +64,8 @@ public enum NpcType {
                         ,3));
             }},"Harvey","Npc/Harvey/Harvey",new NpcHouse(new CollisionRect(392,  750,
         AssetManager.HARVEY_HOUSE.getTexture().getWidth(),
-        AssetManager.HARVEY_HOUSE.getTexture().getHeight()),AssetManager.HARVEY_HOUSE.getSprite())),
+        AssetManager.HARVEY_HOUSE.getTexture().getHeight()),AssetManager.HARVEY_HOUSE.getSprite()),
+        AssetManager.HARVEY.getSprite()),
 
     LEAH(
             new HashMap<>(){{
@@ -79,7 +82,8 @@ public enum NpcType {
                         ,3));
             }},"Leah","Npc/Leah/Leah",new NpcHouse(new CollisionRect(-394,  750,
         AssetManager.LEAH_HOUSE.getTexture().getWidth(),
-        AssetManager.LEAH_HOUSE.getTexture().getHeight()),AssetManager.LEAH_HOUSE.getSprite())),
+        AssetManager.LEAH_HOUSE.getTexture().getHeight()),AssetManager.LEAH_HOUSE.getSprite())
+        ,AssetManager.LEAH.getSprite()),
 
     ROBIN(
             new HashMap<>(){{
@@ -94,7 +98,8 @@ public enum NpcType {
             }},"Robin","Npc/Robin/Robin",
         new NpcHouse(new CollisionRect(392,  248,
             AssetManager.ROBIN_HOUSE.getTexture().getWidth(),
-            AssetManager.ROBIN_HOUSE.getTexture().getHeight()),AssetManager.ROBIN_HOUSE.getSprite()));
+            AssetManager.ROBIN_HOUSE.getTexture().getHeight()),AssetManager.ROBIN_HOUSE.getSprite()),
+        AssetManager.ROBIN.getSprite());
     private final String DisplayName;
     private final Map<String, Item> favorites;
     private final Map<Integer,Quest> quests;
@@ -102,14 +107,19 @@ public enum NpcType {
     private  String job;
     private Animation<TextureRegion> animation;
     private final NpcHouse house;
-    NpcType( Map<String,Item> favorites, Map<Integer,Quest> quest,String names,String nameToFindAnimation,NpcHouse house) {
+    private final Sprite sprite;
+    NpcType( Map<String,Item> favorites, Map<Integer,Quest> quest,String names,String nameToFindAnimation,NpcHouse house,Sprite sprite) {
         this.favorites = favorites;
         this.quests =quest;
         this.DisplayName=names;
         this.animation= AssetManager.animation(nameToFindAnimation);
         this.house=house;
+        this.sprite=sprite;
     }
 
+    public Sprite getSprite() {
+        return sprite;
+    }
 
     public Animation<TextureRegion> getAnimation() {
         return animation;
