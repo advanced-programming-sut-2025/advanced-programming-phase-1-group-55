@@ -6,6 +6,8 @@ import com.StardewValley.model.GameTime;
 import com.StardewValley.model.MainTime;
 import com.StardewValley.model.Map.GameMap;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -21,7 +23,7 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 import static com.StardewValley.enums.AssetManager.*;
 
-public class MainGameGraphicView implements Screen {
+public class MainGameGraphicView implements Screen, InputProcessor {
     private final MainGameController controller;
     private OrthographicCamera camera;
 
@@ -82,6 +84,10 @@ public class MainGameGraphicView implements Screen {
         stage.addActor(tableTop);
         map.BuildMap();
         controller.getPlayerController().setGameMap(map);
+        InputMultiplexer multiplexer = new InputMultiplexer();
+        multiplexer.addProcessor(this);
+        multiplexer.addProcessor(stage);
+        Gdx.input.setInputProcessor(multiplexer);
 
     }
 
@@ -164,5 +170,51 @@ public class MainGameGraphicView implements Screen {
 
     public MainGameController getController() {
         return controller;
+    }
+
+    @Override
+    public boolean keyDown(int i) {
+        return false;
+    }
+
+    @Override
+    public boolean keyUp(int i) {
+        return false;
+    }
+
+    @Override
+    public boolean keyTyped(char c) {
+        return false;
+    }
+
+    @Override
+    public boolean touchDown(int i, int i1, int i2, int i3) {
+        return false;
+    }
+
+    @Override
+    public boolean touchUp(int i, int i1, int i2, int i3) {
+        return false;
+    }
+
+    @Override
+    public boolean touchCancelled(int i, int i1, int i2, int i3) {
+        return false;
+    }
+
+    @Override
+    public boolean touchDragged(int i, int i1, int i2) {
+        return false;
+    }
+
+    @Override
+    public boolean mouseMoved(int screenX, int screenY) {
+        controller.getToolController().handleToolRotation(screenX, screenY);
+        return false;
+    }
+
+    @Override
+    public boolean scrolled(float v, float v1) {
+        return false;
     }
 }

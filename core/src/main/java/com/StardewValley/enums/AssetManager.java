@@ -99,7 +99,54 @@ public enum AssetManager {
     IRON_LAMP("Craftable_lighting/Iron_Lamp-post.png"),
     WOOD_LAMP("Craftable_lighting/Wood_Lamp-post.png"),
     STONE_BRAZIER("Craftable_lighting/Stone_Brazier.png"),
-    IRIDIUM_BRAZIER("Craftable_lighting/Marble_Brazier.png"),;
+    IRIDIUM_BRAZIER("Craftable_lighting/Marble_Brazier.png"),
+
+
+    SHEARS("Tools/Shears/Shears.png"),
+
+    MILK_PAIL("Tools/Milk_Pail/Milk_Pail.png"),
+
+    HOE("Tools/Hoe/Hoe.png"),
+    COPPER_HOE("Tools/Hoe/Copper_Hoe.png"),
+    STEEL_HOE("Tools/Hoe/Steel_Hoe.png"),
+    GOLD_HOE("Tools/Hoe/Gold_Hoe.png"),
+    IRIDIUM_HOE("Tools/Hoe/Iridium_Hoe.png"),
+
+    AXE("Tools/Axe/Axe.png"),
+    COPPER_AXE("Tools/Axe/Copper_Axe.png"),
+    STEEL_AXE("Tools/Axe/Steel_Axe.png"),
+    GOLD_AXE("Tools/Axe/Gold_Axe.png"),
+    IRIDIUM_AXE("Tools/Axe/Iridium_Axe.png"),
+
+    PICKAXE("Tools/Pickaxe/Pickaxe.png"),
+    COPPER_PICKAXE("Tools/Pickaxe/Copper_Pickaxe.png"),
+    STEEL_PICKAXE("Tools/Pickaxe/Steel_Pickaxe.png"),
+    GOLD_PICKAXE("Tools/Pickaxe/Gold_Pickaxe.png"),
+    IRIDIUM_PICKAXE("Tools/Pickaxe/Iridium_Pickaxe.png"),
+
+    SCYTHE("Tools/Scythe/Scythe.png"),
+    COPPER_SCYTHE("Tools/Scythe/Golden_Scythe.png"),
+    STEEL_SCYTHE("Tools/Scythe/Scythe.png"),
+    GOLD_SCYTHE("Tools/Scythe/Golden_Scythe.png"),
+    IRIDIUM_SCYTHE("Tools/Scythe/Iridium_Scythe.png"),
+
+    WATERING_CAN("Tools/Watering_Can/Watering_Can.png"),
+    COPPER_WATERING_CAN("Tools/Watering_Can/Copper_Watering_Can.png"),
+    STEEL_WATERING_CAN("Tools/Watering_Can/Steel_Watering_Can.png"),
+    GOLD_WATERING_CAN("Tools/Watering_Can/Gold_Watering_Can.png"),
+    IRIDIUM_WATERING_CAN("Tools/Watering_Can/Iridium_Watering_Can.png"),
+
+    COPPER_TRASHCAN("Tools/TrashCan/Trash_Can_Copper.png"),
+    STEEL_TRASHCAN("Tools/TrashCan/Trash_Can_Steel.png"),
+    GOLD_TRASHCAN("Tools/TrashCan/Trash_Can_Gold.png"),
+    IRIDIUM_TRASHCAN("Tools/TrashCan/Trash_Can_Iridium.png"),
+
+    SIMPLE_FISHING_POLE("Tools/Fishing_Pole/Training_Rod.png"),
+    BAMBOO_FISHING_POLE("Tools/Fishing_Pole/Bamboo_Pole.png"),
+    FIBER_FISHING_POLE("Tools/Fishing_Pole/Fiberglass_Rod.png"),
+    IRIDIUM_FISHING_POLE("Tools/Fishing_Pole/Iridium_Rod.png"),
+
+    ;
 
 
 

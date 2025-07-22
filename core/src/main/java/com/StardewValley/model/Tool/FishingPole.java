@@ -1,7 +1,9 @@
 package com.StardewValley.model.Tool;
 
+import com.StardewValley.enums.AssetManager;
 import com.StardewValley.model.Store.FishingStore;
 import com.StardewValley.model.Store.Store;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 
 import static java.lang.Math.max;
 import static com.StardewValley.model.App.currentGameModel;
@@ -30,6 +32,16 @@ public class FishingPole extends Tools {
 
     public boolean canUse(int fishingLevel) {
         return fishingLevel >= type.getRequiredLevel();
+    }
+
+    @Override
+    public Sprite getSprite() {
+        return switch (type) {
+            case TRAINING_ROD -> AssetManager.SIMPLE_FISHING_POLE.getSprite();
+            case BAMBOO_ROD -> AssetManager.BAMBOO_FISHING_POLE.getSprite();
+            case FIBERGLASS_ROD -> AssetManager.FIBER_FISHING_POLE.getSprite();
+            default -> AssetManager.IRIDIUM_FISHING_POLE.getSprite();
+        };
     }
 
     @Override

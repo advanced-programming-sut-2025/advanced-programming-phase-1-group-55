@@ -1,7 +1,9 @@
 package com.StardewValley.model.Tool;
 
+import com.StardewValley.enums.AssetManager;
 import com.StardewValley.model.Store.MarineRanchStore;
 import com.StardewValley.model.Store.Store;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 
 import static java.lang.Math.max;
 import static com.StardewValley.model.App.*;
@@ -23,6 +25,12 @@ public class Shears extends  Tools{
     public Store getStore(){
         return new MarineRanchStore();
     }
+
+    @Override
+    public Sprite getSprite() {
+        return AssetManager.SHEARS.getSprite();
+    }
+
     public String getName(){
         return "shears";
     }
