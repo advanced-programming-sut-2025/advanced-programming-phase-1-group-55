@@ -28,11 +28,14 @@ import static com.StardewValley.model.GameTime.*;
 public class MainGameController {
     private MainGameGraphicView view;
     private PlayerController playerController;
+    private ToolController toolController;
+    private User currentPlayer=new User();
     public void setView(MainGameGraphicView view) {
         this.view = view;
        //todo ino bade zadan menu haa tavasot arshia ok kn
-        // playerController = new PlayerController(currentGameModel.currentUser);
-        playerController=new PlayerController(new User());
+        // currenPlayer=App.currentplayer
+        playerController=new PlayerController(currentPlayer);
+        toolController=new ToolController(currentPlayer);
     }
     public void handleInput() {
         //todo handle if the gate was not your farm gate -->>message box -->>send error -->> you can not enter other player,s farm
@@ -76,6 +79,7 @@ public class MainGameController {
         if (view != null) {
             handleInput();
             playerController.update();
+            toolController.update(delta);
         }
     }
     public Result equipToolFromBackPack(String toolsName) {
@@ -330,6 +334,22 @@ public class MainGameController {
 
     public PlayerController getPlayerController() {
         return playerController;
+    }
+
+    public ToolController getToolController() {
+        return toolController;
+    }
+
+    public void setToolController(ToolController toolController) {
+        this.toolController = toolController;
+    }
+
+    public User getCurrentPlayer() {
+        return currentPlayer;
+    }
+
+    public void setCurrentPlayer(User currentPlayer) {
+        this.currentPlayer = currentPlayer;
     }
 
     public void setPlayerController(PlayerController playerController) {

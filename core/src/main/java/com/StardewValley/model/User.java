@@ -271,6 +271,7 @@ public class User {
         this.gold = 10000;
         sprite=new Sprite(new Texture(Gdx.files.internal("sprites/Mariner.png")));
         this.refrigerator = new ArrayList<>();
+        this.backPack=new BackPack();
 
     }
 
