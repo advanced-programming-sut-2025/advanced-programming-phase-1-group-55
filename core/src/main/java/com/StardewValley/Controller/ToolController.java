@@ -46,7 +46,7 @@ public class ToolController {
         angle = (float) Math.atan2(y - toolCenterY, x - toolCenterX);
     }
     public void UseTool(){
-
+      //todo handle energy usage and using tool
     }
 
     public User getPlayer() {
