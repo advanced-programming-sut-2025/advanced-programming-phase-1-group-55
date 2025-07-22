@@ -16,7 +16,7 @@ public class ToolController {
         Sprite sprite=tool.getSprite();
         sprite.setScale(0.7f);
         sprite.setPosition(player.getCollisionRect().getX()-player.getCollisionRect().getWidth()/2,
-            player.getCollisionRect().getY()-player.getCollisionRect().getHeight()/2);
+            player.getCollisionRect().getY()-2*player.getCollisionRect().getHeight()/3);
        sprite.draw(App.gameApp.getBatch());
     }
     public void UseTool(){
