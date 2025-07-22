@@ -8,7 +8,7 @@ import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.Item.ItemType;
 import com.StardewValley.model.Result;
 import com.StardewValley.model.Tool.BackPack;
-import com.StardewValley.model.Tool.MilkPair;
+import com.StardewValley.model.Tool.MilkPail;
 import com.StardewValley.model.Tool.Shears;
 
 import java.util.HashMap;
@@ -63,7 +63,7 @@ public class MarineRanchStore extends Store{
            if(backPack.getAvailableTools().containsKey("MilkPair")){
                return  new Result(false,"you have already owned this item");
            }
-           backPack.getAvailableTools().put("MilkPair",new MilkPair());
+           backPack.getAvailableTools().put("MilkPair",new MilkPail());
        }else if (product.getItem().getItemType().equals("g")){
            //todo  animals
        }else{

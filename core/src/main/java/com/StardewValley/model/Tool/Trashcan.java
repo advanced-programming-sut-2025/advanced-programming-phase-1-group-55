@@ -1,10 +1,23 @@
 package com.StardewValley.model.Tool;
 
+import com.StardewValley.enums.AssetManager;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+
 import static java.lang.Math.max;
 import static com.StardewValley.model.App.*;
 import static com.StardewValley.model.weather.getEnergyLoser;
 
 public class Trashcan extends Tools{
+
+    @Override
+    public Sprite getSprite() {
+        return switch (level) {
+            case 1 -> AssetManager.STEEL_TRASHCAN.getSprite();
+            case 2 -> AssetManager.GOLD_TRASHCAN.getSprite();
+            case 3 -> AssetManager.IRIDIUM_TRASHCAN.getSprite();
+            default -> AssetManager.COPPER_TRASHCAN.getSprite();
+        };
+    }
 
     public String getName() {
         return "Trashcan";

@@ -1,13 +1,15 @@
 package com.StardewValley.model.Tool;
 
+import com.StardewValley.enums.AssetManager;
 import com.StardewValley.model.Store.MarineRanchStore;
 import com.StardewValley.model.Store.Store;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 
 import static java.lang.Math.max;
 import static com.StardewValley.model.App.*;
 import static com.StardewValley.model.weather.getEnergyLoser;
 
-public class MilkPair extends  Tools{
+public class MilkPail extends  Tools{
     private final String names="MilkPair";
     public int getPriceToLevelUp(){
         if(level==1){
@@ -21,6 +23,12 @@ public class MilkPair extends  Tools{
         }
         return 0;
     }
+
+    @Override
+    public Sprite getSprite() {
+        return AssetManager.MILK_PAIL.getSprite();
+    }
+
     public String getName(){
         return "MilkPair";
     }

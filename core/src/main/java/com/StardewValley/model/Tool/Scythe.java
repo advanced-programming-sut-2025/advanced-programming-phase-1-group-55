@@ -1,7 +1,9 @@
 package com.StardewValley.model.Tool;
 
+import com.StardewValley.enums.AssetManager;
 import com.StardewValley.model.Store.BlackSmithStore;
 import com.StardewValley.model.Store.Store;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 
 import static java.lang.Math.max;
 import static com.StardewValley.model.App.*;
@@ -33,6 +35,17 @@ public class Scythe extends  Tools{
             return 25000;
         }
         return 1000;
+    }
+
+    @Override
+    public Sprite getSprite() {
+        return switch (level) {
+            case 1 -> AssetManager.COPPER_SCYTHE.getSprite();
+            case 2 -> AssetManager.STEEL_SCYTHE.getSprite();
+            case 3 -> AssetManager.GOLD_SCYTHE.getSprite();
+            case 4 -> AssetManager.IRIDIUM_SCYTHE.getSprite();
+            default -> AssetManager.SCYTHE.getSprite();
+        };
     }
 
     public String getName(){
