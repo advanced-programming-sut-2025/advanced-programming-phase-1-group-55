@@ -1,6 +1,9 @@
 package com.StardewValley.model;
 
 import com.StardewValley.GameApp;
+import com.StardewValley.View.MainGameGraphicView;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -16,6 +19,8 @@ public class App {
     public static Menu currentMenu = Menu.Register;
     public static HashMap<String, User> AllUsers = new HashMap<>();
     public static GameModel currentGameModel;
+    //todo ino badan ke game create shod bardaar
+    public static MainGameGraphicView currentGameGraphicView;
     public static Random rand=new Random();
     public static GameApp gameApp;
 
@@ -82,7 +87,9 @@ public class App {
     public static Menu getCurrentMenu() {
         return currentMenu;
     }
-
+    public static Skin getSkin() {
+        return new Skin(Gdx.files.internal("Skinl/NzSkin.json"));
+    }
     public static void readfile() {
 
         try {

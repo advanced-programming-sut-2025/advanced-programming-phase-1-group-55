@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Array;
 
 public enum AssetManager {
@@ -146,6 +147,7 @@ public enum AssetManager {
     FIBER_FISHING_POLE("Tools/Fishing_Pole/Fiberglass_Rod.png"),
     IRIDIUM_FISHING_POLE("Tools/Fishing_Pole/Iridium_Rod.png"),
 
+
     ;
 
 
@@ -160,7 +162,6 @@ public enum AssetManager {
         this.texture = new Texture(Gdx.files.internal(path));
         this.textureRegion = new TextureRegion(texture);
     }
-
     public String getPath() {
         return path;
     }

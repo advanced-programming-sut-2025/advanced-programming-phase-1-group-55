@@ -39,6 +39,7 @@ public class MainGameGraphicView implements Screen, InputProcessor {
     public MainGameGraphicView(MainGameController controller) {
         this.controller = controller;
         controller.setView(this);
+        App.currentGameGraphicView=this;
     }
 
     private void setupCamera() {
