@@ -147,7 +147,6 @@ public enum AssetManager {
     FIBER_FISHING_POLE("Tools/Fishing_Pole/Fiberglass_Rod.png"),
     IRIDIUM_FISHING_POLE("Tools/Fishing_Pole/Iridium_Rod.png"),
 
-    MainSkin("Skin/NzSkin.json")
 
     ;
 
@@ -162,9 +161,6 @@ public enum AssetManager {
         this.path = path;
         this.texture = new Texture(Gdx.files.internal(path));
         this.textureRegion = new TextureRegion(texture);
-    }
-    public Skin getSkin() {
-       return new Skin(Gdx.files.internal(path));
     }
     public String getPath() {
         return path;

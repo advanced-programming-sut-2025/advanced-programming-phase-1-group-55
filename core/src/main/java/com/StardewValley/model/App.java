@@ -1,6 +1,8 @@
 package com.StardewValley.model;
 
 import com.StardewValley.GameApp;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -82,7 +84,9 @@ public class App {
     public static Menu getCurrentMenu() {
         return currentMenu;
     }
-
+    public static Skin getSkin() {
+        return new Skin(Gdx.files.internal("Skinl/NzSkin.json"));
+    }
     public static void readfile() {
 
         try {

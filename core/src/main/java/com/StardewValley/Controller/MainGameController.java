@@ -2,6 +2,7 @@ package com.StardewValley.Controller;
 
 
 import com.StardewValley.View.MainGameGraphicView;
+import com.StardewValley.View.PauseMenuView;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.Map.*;
@@ -41,6 +42,9 @@ public class MainGameController {
         //todo handle if the gate was not your farm gate -->>message box -->>send error -->> you can not enter other player,s farm
         if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
             passTheGate();
+        }
+        else if(Gdx.input.isKeyJustPressed(Input.Keys.P)){
+            gameApp.setScreen(new PauseMenuView(new PauseMenuController(),currentPlayer));
         }
     }
 
