@@ -176,5 +176,79 @@ public class PauseMenuView implements Screen {
         return user;
     }
 
+    public Skin getSkin() {
+        return skin;
+    }
 
+    public TextButton getResumeButton() {
+        return ResumeButton;
+    }
+
+    public void setResumeButton(TextButton resumeButton) {
+        ResumeButton = resumeButton;
+    }
+
+    public TextButton getSocialMenuButton() {
+        return SocialMenuButton;
+    }
+
+    public void setSocialMenuButton(TextButton socialMenuButton) {
+        SocialMenuButton = socialMenuButton;
+    }
+
+    public TextButton getMapMenuButton() {
+        return MapMenuButton;
+    }
+
+    public void setMapMenuButton(TextButton mapMenuButton) {
+        MapMenuButton = mapMenuButton;
+    }
+
+    public TextButton getInventoryMenuButton() {
+        return InventoryMenuButton;
+    }
+
+    public void setInventoryMenuButton(TextButton inventoryMenuButton) {
+        InventoryMenuButton = inventoryMenuButton;
+    }
+
+    public TextButton getToolsMenuButton() {
+        return toolsMenuButton;
+    }
+
+    public void setToolsMenuButton(TextButton toolsMenuButton) {
+        this.toolsMenuButton = toolsMenuButton;
+    }
+
+    public TextButton getSkillsButton() {
+        return skillsButton;
+    }
+
+    public void setSkillsButton(TextButton skillsButton) {
+        this.skillsButton = skillsButton;
+    }
+
+    public Label getErrorLabel() {
+        return errorLabel;
+    }
+
+    public Timer.Task getClearErrorTask() {
+        return clearErrorTask;
+    }
+
+    public void setClearErrorTask(Timer.Task clearErrorTask) {
+        this.clearErrorTask = clearErrorTask;
+    }
+
+    public Label getSuccessMessageLabel() {
+        return SuccessMessageLabel;
+    }
+
+    public Timer.Task getClearErrorTask2() {
+        return clearErrorTask2;
+    }
+
+    public void setClearErrorTask2(Timer.Task clearErrorTask2) {
+        this.clearErrorTask2 = clearErrorTask2;
+    }
 }
