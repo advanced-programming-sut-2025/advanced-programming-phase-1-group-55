@@ -29,7 +29,7 @@ public class MainMenuScreen extends ScreenAdapter {
         Image background = new Image(bgTexture);
         background.setFillParent(true);
         stage.addActor(background);
-        skin = new Skin(Gdx.files.internal("skin/golden-ui-skin.json"));
+        skin = new Skin(Gdx.files.internal("skin/LibGdx-Skin-main/LibGdx-Skin-main/NzSkin.json"));
 
 
         Table table = new Table();

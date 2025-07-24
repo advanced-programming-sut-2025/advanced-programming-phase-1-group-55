@@ -1,11 +1,14 @@
 package com.StardewValley.View.newView;
 
 import com.StardewValley.Controller.LoginMenuController;
+import com.StardewValley.model.App;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 public class LoginScreen extends ScreenAdapter {
@@ -18,7 +21,7 @@ public class LoginScreen extends ScreenAdapter {
         Gdx.input.setInputProcessor(stage);
         controller = new LoginMenuController();
 
-        skin = new Skin(Gdx.files.internal("skin/golden-ui-skin.json"));
+        skin = new Skin(Gdx.files.internal("skin/LibGdx-Skin-main/LibGdx-Skin-main/NzSkin.json"));
 
         Table table = new Table();
         table.setFillParent(true);
@@ -37,6 +40,7 @@ public class LoginScreen extends ScreenAdapter {
 
         TextButton loginButton = new TextButton("Login", skin);
         TextButton forgetButton = new TextButton("Forget Password", skin);
+        TextButton backButton = new TextButton("Back to MainMenu", skin);
         Label resultLabel = new Label("", skin);
 
         loginButton.addListener(event -> {
@@ -59,12 +63,20 @@ public class LoginScreen extends ScreenAdapter {
             return true;
         });
 
+        backButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                App.getGameApp().setScreen(new MainMenuScreen());
+            }
+        });
+
         table.add(titleLabel).colspan(2).padBottom(20).row();
         table.add(usernameField).colspan(2).width(300).padBottom(10).row();
         table.add(passwordField).colspan(2).width(300).padBottom(10).row();
         table.add(stayLoggedIn).colspan(2).padBottom(10).row();
         table.add(loginButton).padRight(10);
         table.add(forgetButton).padLeft(10).row();
+        table.add(backButton).center().row();
         table.add(resultLabel).colspan(2).padTop(20);
 
     }

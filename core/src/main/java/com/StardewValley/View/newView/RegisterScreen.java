@@ -28,7 +28,7 @@ public class RegisterScreen extends ScreenAdapter {
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
 
-        skin = new Skin(Gdx.files.internal("skin/golden-ui-skin.json"));
+        skin = new Skin(Gdx.files.internal("skin/LibGdx-Skin-main/LibGdx-Skin-main/NzSkin.json"));
 
 
         Table table = new Table(skin);
@@ -50,7 +50,7 @@ public class RegisterScreen extends ScreenAdapter {
         confirmPasswordField.setPasswordMode(true);
 
         TextButton registerButton = new TextButton("Register", skin);
-        TextButton backButton = new TextButton("Back to Login", skin);
+        TextButton backButton = new TextButton("Back to MainMenu", skin);
         messageLabel = new Label("", skin);
 
         registerButton.addListener(new ChangeListener() {
@@ -71,7 +71,7 @@ public class RegisterScreen extends ScreenAdapter {
         backButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                App.getGameApp().setScreen(new LoginScreen());
+                App.getGameApp().setScreen(new MainMenuScreen());
             }
         });
 
