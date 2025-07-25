@@ -27,7 +27,12 @@ public class CollisionRect {
         this.x = x;
         this.y = y;
     }
-
+    public boolean isNear(CollisionRect rect1) {
+        float dx = Math.max(0, Math.max(rect1.x - (this.x + this.width), this.x - (rect1.x + rect1.width)));
+        float dy = Math.max(0, Math.max(rect1.y - (this.y + this.height), this.y - (rect1.y + rect1.height)));
+        float distance = (float)Math.sqrt(dx * dx + dy * dy);
+        return distance <= 20;
+    }
     public float getX() {
         return x;
     }
