@@ -1,6 +1,7 @@
 package com.StardewValley.Controller;
 
 import com.StardewValley.View.NpcMenuView;
+import com.StardewValley.model.App;
 import com.StardewValley.model.Map.GameMap;
 import com.StardewValley.model.NPC.Npc;
 import com.StardewValley.model.User;
@@ -15,9 +16,15 @@ public class NpcMenuController {
         this.map = map;
         this.npc = npc;
     }
-    public void update(float delta) {
-
+    public void handleButtonClicked() {
+        if (view!=null){
+            if (view.getBackButton().isChecked()){
+                view.getBackButton().setChecked(false);
+                App.gameApp.setScreen(App.currentGameGraphicView);
+            }
+        }
     }
+
     public NpcMenuView getView() {
         return view;
     }

@@ -14,6 +14,8 @@ public enum AssetManager {
     DAY_BACKGROUND("Flooring/Flooring_86.png"),
     NIGHT_BACKGROUND("Flooring/Flooring_61.png"),
 
+    PinkBackground("background/pastel-pink.jpg"),
+
 
     STONE_FENCE("Fence/Stone_Fence.png"),
     WOOD_FENCE("Fence/Wood_Fence.png"),
