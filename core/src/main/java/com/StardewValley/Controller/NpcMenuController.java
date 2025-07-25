@@ -1,0 +1,52 @@
+package com.StardewValley.Controller;
+
+import com.StardewValley.View.NpcMenuView;
+import com.StardewValley.model.Map.GameMap;
+import com.StardewValley.model.NPC.Npc;
+import com.StardewValley.model.User;
+
+public class NpcMenuController {
+    private NpcMenuView view;
+    private User player;
+    private GameMap map;
+    private Npc npc;
+    public NpcMenuController( User user, GameMap map, Npc npc) {
+        this.player = user;
+        this.map = map;
+        this.npc = npc;
+    }
+    public void update(float delta) {
+
+    }
+    public NpcMenuView getView() {
+        return view;
+    }
+
+    public void setView(NpcMenuView view) {
+        this.view = view;
+    }
+
+    public User getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(User player) {
+        this.player = player;
+    }
+
+    public GameMap getMap() {
+        return map;
+    }
+
+    public void setMap(GameMap map) {
+        this.map = map;
+    }
+
+    public Npc getNpc() {
+        return npc;
+    }
+
+    public void setNpc(Npc npc) {
+        this.npc = npc;
+    }
+}
