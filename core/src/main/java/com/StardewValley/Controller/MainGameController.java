@@ -30,6 +30,7 @@ public class MainGameController {
     private MainGameGraphicView view;
     private PlayerController playerController;
     private ToolController toolController;
+    private NpcController npcController;
     private User currentPlayer=new User();
     public void setView(MainGameGraphicView view) {
         this.view = view;
@@ -37,6 +38,7 @@ public class MainGameController {
         // currenPlayer=App.currentplayer
         playerController=new PlayerController(currentPlayer);
         toolController=new ToolController(currentPlayer);
+        npcController=new NpcController(currentPlayer,view.getMap());
     }
     public void handleInput() {
         //todo handle if the gate was not your farm gate -->>message box -->>send error -->> you can not enter other player,s farm
@@ -84,6 +86,7 @@ public class MainGameController {
             handleInput();
             playerController.update();
             toolController.update(delta);
+            npcController.update();
         }
     }
     public Result equipToolFromBackPack(String toolsName) {
@@ -330,6 +333,14 @@ public class MainGameController {
         App.currentGameModel.currentUser.increaseGold
                 ((int) (sum/100));
         return new Result(true, "you sold " + name + "successfully!");
+    }
+
+    public NpcController getNpcController() {
+        return npcController;
+    }
+
+    public void setNpcController(NpcController npcController) {
+        this.npcController = npcController;
     }
 
     public MainGameGraphicView getView() {
