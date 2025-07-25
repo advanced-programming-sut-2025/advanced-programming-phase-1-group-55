@@ -82,7 +82,6 @@ public class GameMap {
         mapBuilder1.drawFences(this);
         mapBuilder1.drawStores(this);
         mapBuilder1.drawNpcHouses(this);
-        mapBuilder1.drawNpc(this);
     }
 
     public Tile[][] getTiles() {

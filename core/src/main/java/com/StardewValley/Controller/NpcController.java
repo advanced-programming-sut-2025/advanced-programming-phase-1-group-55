@@ -5,17 +5,44 @@ import com.StardewValley.model.*;
 import com.StardewValley.model.Friendship.NpcFriendship;
 import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.Item.ItemType;
+import com.StardewValley.model.Map.GameMap;
 import com.StardewValley.model.Map.MainLocation;
 import com.StardewValley.model.NPC.Dialog;
 import com.StardewValley.model.NPC.Npc;
 import com.StardewValley.model.NPC.Quest;
 import com.StardewValley.model.Tool.BackPack;
 import com.StardewValley.model.Tool.Tools;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class NpcController {
-    public static String getDialogMessage(int friendshipLevel, WeatherType weather, MainTime time) {
+    private User player;
+    private GameMap map;
+    public NpcController (User player, GameMap map) {
+        this.player=player;
+        this.map=map;
+    }
+    public void update(){
+        drawNpc(map);
+    }
+    public void drawNpc(GameMap map) {
+        for (Npc npc : map.getVillage().getNpss().values()) {
+            npc.update(Gdx.graphics.getDeltaTime());
+            TextureRegion frame = npc.getType().getAnimation().getKeyFrame(npc.getStateTime(), true);
+
+            float x = npc.getCollisionRect().getX();
+            float y = npc.getCollisionRect().getY();
+            float width = frame.getRegionWidth() * 2f;
+            float height = frame.getRegionHeight() * 2f;
+
+            App.gameApp.getBatch().draw(frame, x, y, width, height);
+        }
+
+    }
+    public static String getDialogMessage(/*int friendshipLevel,*/ WeatherType weather, MainTime time) {
+        //todo add friendship effect on dialog after arshia done game setup
         for (Dialog dialog : App.currentGameModel.getAllDialogs()) {
-            if (dialog.getFriendshipLevel() == friendshipLevel &&
+            if (//dialog.getFriendshipLevel() == friendshipLevel &&
                     dialog.getWeatherType().equals( weather) &&
                     dialog.getMainTime().equals(time)) {
                 return dialog.getMessage();
@@ -58,23 +85,23 @@ public class NpcController {
         }
         return new Result(true,friends.toString());
     }
-    public Result meetNpc(String name){
-        if(!npcIsValid(name)){
-            return new Result(false,"npc doesn't exist");
-        }
-        Npc npc=findNpc(name);
-        if(npc==null){
-            return new Result(false,"you are not near the "+name+" to speak!");
-        }
-        String dialog=getDialogMessage(App.currentGameModel.currentUser.getFriendsNpc().get(name).getLevel()
-                , weather.getCurrentWeather(),GameTime.getMainTime());
-        NpcFriendship  friendship=App.currentGameModel.currentUser.getFriendsNpc().get(name);
-        if(!friendship.isTodayMet()){
-            friendship.increaseXp(20);
-            friendship.setTodayMet(true);
-        }
-        return new Result(true,"i'm "+name+"; "+dialog);
-    }
+//    public Result meetNpc(String name){
+//        if(!npcIsValid(name)){
+//            return new Result(false,"npc doesn't exist");
+//        }
+//        Npc npc=findNpc(name);
+//        if(npc==null){
+//            return new Result(false,"you are not near the "+name+" to speak!");
+//        }
+//        String dialog=getDialogMessage(App.currentGameModel.currentUser.getFriendsNpc().get(name).getLevel()
+//                , weather.getCurrentWeather(),GameTime.getMainTime());
+//        NpcFriendship  friendship=App.currentGameModel.currentUser.getFriendsNpc().get(name);
+//        if(!friendship.isTodayMet()){
+//            friendship.increaseXp(20);
+//            friendship.setTodayMet(true);
+//        }
+//        return new Result(true,"i'm "+name+"; "+dialog);
+//    }
     public Result giftNpc(String name,String item){
         if(!npcIsValid(name)){
             return new Result(false,"npc doesn't exist");
@@ -151,5 +178,13 @@ public class NpcController {
         }
         quest.setHasAlreadyFinished(true);
         return new Result(true,"quest successfully finished");
+    }
+
+    public User getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(User player) {
+        this.player = player;
     }
 }

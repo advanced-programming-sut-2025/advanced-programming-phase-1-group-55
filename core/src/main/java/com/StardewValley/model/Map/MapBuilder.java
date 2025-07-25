@@ -177,20 +177,7 @@ public class MapBuilder {
         placeStore(map);
 
     }
-    public void drawNpc(GameMap map) {
-        for (Npc npc : map.getVillage().getNpss().values()) {
-            npc.update(Gdx.graphics.getDeltaTime());
-            TextureRegion frame = npc.getType().getAnimation().getKeyFrame(npc.getStateTime(), true);
 
-            float x = npc.getCollisionRect().getX();
-            float y = npc.getCollisionRect().getY();
-            float width = frame.getRegionWidth() * 2f;
-            float height = frame.getRegionHeight() * 2f;
-
-            App.gameApp.getBatch().draw(frame, x, y, width, height);
-        }
-
-    }
     public void drawNpcHouses(GameMap map) {
         for (Npc npc:map.getVillage().getNpss().values()){
             Sprite sprite=npc.getType().getHouse().getSprite();
