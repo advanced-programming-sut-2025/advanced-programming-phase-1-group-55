@@ -26,28 +26,34 @@ public class NpcController {
     public NpcController (User player, GameMap map) {
         this.player=player;
         this.map=map;
+        font.getData().setScale(0.8f);
     }
     public void update(){
         drawNpc(map);
 
     }
     public void updateDialog(Npc npc){
-        if (player.getCollisionRect().isNear(npc.getCollisionRect())){
-            npc.getDialogBox().setStatus(DialogStatus.Ready);
-        }else {
+        if (!player.getCollisionRect().isNear(npc.getCollisionRect())) {
             npc.getDialogBox().setStatus(DialogStatus.InActive);
         }
-        if (npc.getDialogBox().getStatus().equals(DialogStatus.Ready)){
-            if(Gdx.input.isKeyPressed(Input.Keys.LEFT)){
+        else  {
+            if (npc.getDialogBox().getStatus() == DialogStatus.InActive) {
+                npc.getDialogBox().setStatus(DialogStatus.Ready);
+            }
+            if( Gdx.input.isButtonPressed(Input.Buttons.LEFT)){
+                if (npc.getDialogBox().getStatus() == DialogStatus.Ready) {
+                    npc.getDialogBox().setStatus(DialogStatus.InProgress);
+                    return;
+                }
+            }
+            if (npc.getDialogBox().getStatus().equals(DialogStatus.InProgress)&&npc.getDialogBox().update(Gdx.graphics.getDeltaTime())) {
                 npc.getDialogBox().setStatus(DialogStatus.InProgress);
             }
         }
-        drawDialog(npc,Gdx.graphics.getDeltaTime());
+        drawDialog(npc);
     }
-    public void drawDialog(Npc npc, float deltaTime) {
+    public void drawDialog(Npc npc) {
         DialogBox dialog = npc.getDialogBox();
-        dialog.update(deltaTime);
-
         if (dialog.getStatus().equals(DialogStatus.Ready)) {
             dialog.getSprite().draw(App.gameApp.getBatch());
         } else if (dialog.getStatus().equals(DialogStatus.InProgress)) {
@@ -84,7 +90,7 @@ public class NpcController {
     }
     public static String getDialogMessage(/*int friendshipLevel,*/ WeatherType weather, MainTime time) {
         //todo add friendship effect on dialog after arshia done game setup
-        for (Dialog dialog : App.currentGameModel.getAllDialogs()) {
+        for (Dialog dialog : Dialog.values()) {
             if (//dialog.getFriendshipLevel() == friendshipLevel &&
                     dialog.getWeatherType().equals( weather) &&
                     dialog.getMainTime().equals(time)) {

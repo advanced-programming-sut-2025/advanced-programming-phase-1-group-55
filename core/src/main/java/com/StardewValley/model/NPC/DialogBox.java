@@ -23,14 +23,13 @@ public class DialogBox {
        rect=new CollisionRect(npc.getCollisionRect().getX()+5,npc.getCollisionRect().getY()+10, texture.getWidth(), texture.getHeight());
 
     }
-    public void update(float deltaTime) {
-        if (status == DialogStatus.InProgress) {
-            timeSinceStart += deltaTime;
-            if (timeSinceStart >= 4f) {
-                status = DialogStatus.InActive;
-                timeSinceStart = 0;
-            }
+    public boolean update(float delta) {
+        timeSinceStart+=delta;
+        if (timeSinceStart>4f){
+            timeSinceStart=0;
+            return true;
         }
+        return false;
     }
     public Sprite getSprite() {
         if (status == DialogStatus.InActive) {
@@ -43,8 +42,8 @@ public class DialogBox {
             sprite.setSize(texture.getWidth()/3, texture.getHeight()/3);
             sprite.setPosition(rect.getX()-20, rect.getY()+30);
         } else if (status == DialogStatus.InProgress) {
-            sprite.setSize(texture.getHeight()  , texture.getHeight() );
-            sprite.setPosition(rect.getX()- texture.getHeight() * 0.25f, rect.getY() - texture.getHeight() * 0.25f);
+            sprite.setSize((float) (texture.getHeight()*1.15), (float) (texture.getHeight()*1.15));
+            sprite.setPosition(rect.getX()- texture.getHeight() * 0.25f, rect.getY() + texture.getHeight() * 0.25f);
         }
 
         return sprite;
