@@ -193,10 +193,7 @@ public class MainGameGraphicView implements Screen, InputProcessor {
             Vector3 click = new Vector3(screenX, screenY, 0);
             camera.unproject(click); // تبدیل مختصات به مختصات دنیای بازی
 
-//            if (collisionRect.contains(click.x, click.y)) {
-//                System.out.println("روی اسپریت کلیک شد!");
-//                // اینجا هر کاری خواستی انجام بده (مثلاً تغییر وضعیت، اجرا انیمیشن و ...)
-//            }
+            controller.getNpcController().checkIfClickedOnNpc(click.x, click.y);
         }
         return true;
     }

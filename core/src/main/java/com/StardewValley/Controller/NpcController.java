@@ -1,5 +1,6 @@
 package com.StardewValley.Controller;
 
+import com.StardewValley.View.NpcMenuView;
 import com.StardewValley.enums.WeatherType;
 import com.StardewValley.model.*;
 import com.StardewValley.model.Friendship.NpcFriendship;
@@ -30,7 +31,13 @@ public class NpcController {
     }
     public void update(){
         drawNpc(map);
-
+    }
+    public void checkIfClickedOnNpc(float x, float y){
+        for (Npc npc:map.getVillage().getNpss().values()){
+            if (npc.getCollisionRect().isInside(x, y)){
+                App.gameApp.setScreen(new NpcMenuView(new NpcMenuController(player,map,npc),npc,player,map));
+            }
+        }
     }
     public void updateDialog(Npc npc){
         if (!player.getCollisionRect().isNear(npc.getCollisionRect())) {
