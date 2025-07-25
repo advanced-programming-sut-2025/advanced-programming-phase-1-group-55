@@ -15,12 +15,22 @@ public class DialogBox {
     private DialogStatus status;
     private  final Texture texture;
     private CollisionRect rect;
+    private float timeSinceStart = 0;
     public DialogBox(Npc npc, DialogStatus status) {
        this.npc = npc;
        this.status = status;
        texture= AssetManager.Dialog.getTexture();
        rect=new CollisionRect(npc.getCollisionRect().getX()+5,npc.getCollisionRect().getY()+10, texture.getWidth(), texture.getHeight());
 
+    }
+    public void update(float deltaTime) {
+        if (status == DialogStatus.InProgress) {
+            timeSinceStart += deltaTime;
+            if (timeSinceStart >= 4f) {
+                status = DialogStatus.InActive;
+                timeSinceStart = 0;
+            }
+        }
     }
     public Sprite getSprite() {
         if (status == DialogStatus.InActive) {
@@ -30,10 +40,10 @@ public class DialogBox {
         Sprite sprite = new Sprite(texture);
 
         if (status == DialogStatus.Ready) {
-            sprite.setSize(texture.getWidth(), texture.getHeight());
-            sprite.setPosition(rect.getX(), rect.getY());
+            sprite.setSize(texture.getWidth()/3, texture.getHeight()/3);
+            sprite.setPosition(rect.getX()-20, rect.getY()+30);
         } else if (status == DialogStatus.InProgress) {
-            sprite.setSize(texture.getHeight() * 1.5f, texture.getHeight() * 1.5f);
+            sprite.setSize(texture.getHeight()  , texture.getHeight() );
             sprite.setPosition(rect.getX()- texture.getHeight() * 0.25f, rect.getY() - texture.getHeight() * 0.25f);
         }
 
@@ -46,6 +56,14 @@ public class DialogBox {
 
     public void setNpc(Npc npc) {
         this.npc = npc;
+    }
+
+    public float getTimeSinceStart() {
+        return timeSinceStart;
+    }
+
+    public void setTimeSinceStart(float timeSinceStart) {
+        this.timeSinceStart = timeSinceStart;
     }
 
     public String getMessage() {

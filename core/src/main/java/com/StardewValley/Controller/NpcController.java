@@ -7,24 +7,66 @@ import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.Item.ItemType;
 import com.StardewValley.model.Map.GameMap;
 import com.StardewValley.model.Map.MainLocation;
-import com.StardewValley.model.NPC.Dialog;
-import com.StardewValley.model.NPC.Npc;
-import com.StardewValley.model.NPC.Quest;
+import com.StardewValley.model.NPC.*;
 import com.StardewValley.model.Tool.BackPack;
 import com.StardewValley.model.Tool.Tools;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.utils.Align;
 
 public class NpcController {
     private User player;
     private GameMap map;
+    private final BitmapFont font = new BitmapFont();
     public NpcController (User player, GameMap map) {
         this.player=player;
         this.map=map;
     }
     public void update(){
         drawNpc(map);
+
     }
+    public void updateDialog(Npc npc){
+        if (player.getCollisionRect().isNear(npc.getCollisionRect())){
+            npc.getDialogBox().setStatus(DialogStatus.Ready);
+        }else {
+            npc.getDialogBox().setStatus(DialogStatus.InActive);
+        }
+        if (npc.getDialogBox().getStatus().equals(DialogStatus.Ready)){
+            if(Gdx.input.isKeyPressed(Input.Keys.LEFT)){
+                npc.getDialogBox().setStatus(DialogStatus.InProgress);
+            }
+        }
+        drawDialog(npc,Gdx.graphics.getDeltaTime());
+    }
+    public void drawDialog(Npc npc, float deltaTime) {
+        DialogBox dialog = npc.getDialogBox();
+        dialog.update(deltaTime);
+
+        if (dialog.getStatus().equals(DialogStatus.Ready)) {
+            dialog.getSprite().draw(App.gameApp.getBatch());
+        } else if (dialog.getStatus().equals(DialogStatus.InProgress)) {
+            Sprite sprite = dialog.getSprite();
+            sprite.draw(App.gameApp.getBatch());
+
+            GlyphLayout layout = new GlyphLayout();
+            float textBoxWidth = sprite.getWidth() - 20f;
+
+            layout.setText(font, dialog.getMessage(), Color.BLACK, textBoxWidth, Align.center, true);
+
+            float textX = sprite.getX() + (sprite.getWidth() - textBoxWidth) / 2f;
+            float textY = sprite.getY() + sprite.getHeight() - 20f;
+
+            font.draw(App.gameApp.getBatch(), layout, textX, textY);
+        }
+    }
+
+
     public void drawNpc(GameMap map) {
         for (Npc npc : map.getVillage().getNpss().values()) {
             npc.update(Gdx.graphics.getDeltaTime());
@@ -36,6 +78,7 @@ public class NpcController {
             float height = frame.getRegionHeight() * 2f;
 
             App.gameApp.getBatch().draw(frame, x, y, width, height);
+            updateDialog(npc);
         }
 
     }
