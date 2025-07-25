@@ -12,13 +12,15 @@ public class Npc {
     private NpcType type;
     private Map<User, FriendShip> friends=new HashMap<>();
     private CollisionRect collisionRect;
+    private  DialogBox dialogBox;
     private float stateTime = 0f;
-    public Npc(NpcType ty){
+    public Npc(NpcType ty) {
         this.type=ty;
         collisionRect=new CollisionRect(
             ty.getHouse().getCollisionRect().getX()+ty.getHouse().getCollisionRect().getWidth()/2
             ,ty.getHouse().getCollisionRect().getY()-20
             ,ty.getSprite().getWidth()*2,ty.getSprite().getHeight()*2);
+        dialogBox=new DialogBox(this,DialogStatus.InActive);
     }
 
     public CollisionRect getCollisionRect() {
@@ -61,6 +63,19 @@ public class Npc {
     public  void receiveGift(){
 
     }
+
+    public DialogBox getDialogBox() {
+        return dialogBox;
+    }
+
+    public void setDialogBox(DialogBox dialogBox) {
+        this.dialogBox = dialogBox;
+    }
+
+    public void setStateTime(float stateTime) {
+        this.stateTime = stateTime;
+    }
+
     public  void  sendGift(){
 
     }

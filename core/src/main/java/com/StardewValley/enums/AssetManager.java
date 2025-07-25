@@ -147,6 +147,8 @@ public enum AssetManager {
     FIBER_FISHING_POLE("Tools/Fishing_Pole/Fiberglass_Rod.png"),
     IRIDIUM_FISHING_POLE("Tools/Fishing_Pole/Iridium_Rod.png"),
 
+    Dialog("dialog/images.png")
+
 
     ;
 
