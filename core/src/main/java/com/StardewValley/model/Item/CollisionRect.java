@@ -33,6 +33,9 @@ public class CollisionRect {
         float distance = (float)Math.sqrt(dx * dx + dy * dy);
         return distance <= 70;
     }
+    public boolean isInside(float x, float y){
+        return x>this.getX()&&x<this.getX()+this.width&&y>this.getY()&&y<this.getY()+this.height;
+    }
     public float getX() {
         return x;
     }

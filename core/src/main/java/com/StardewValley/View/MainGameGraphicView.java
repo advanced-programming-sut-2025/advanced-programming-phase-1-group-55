@@ -5,15 +5,13 @@ import com.StardewValley.model.App;
 import com.StardewValley.model.GameTime;
 import com.StardewValley.model.MainTime;
 import com.StardewValley.model.Map.GameMap;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputMultiplexer;
-import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -189,9 +187,20 @@ public class MainGameGraphicView implements Screen, InputProcessor {
     }
 
     @Override
-    public boolean touchDown(int i, int i1, int i2, int i3) {
-        return false;
+
+    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        if (button == Input.Buttons.LEFT) {
+            Vector3 click = new Vector3(screenX, screenY, 0);
+            camera.unproject(click); // تبدیل مختصات به مختصات دنیای بازی
+
+//            if (collisionRect.contains(click.x, click.y)) {
+//                System.out.println("روی اسپریت کلیک شد!");
+//                // اینجا هر کاری خواستی انجام بده (مثلاً تغییر وضعیت، اجرا انیمیشن و ...)
+//            }
+        }
+        return true;
     }
+
 
     @Override
     public boolean touchUp(int i, int i1, int i2, int i3) {
