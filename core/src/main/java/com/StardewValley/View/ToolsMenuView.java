@@ -77,7 +77,7 @@ public class ToolsMenuView implements Screen {
             Sprite toolSprite = new Sprite(tool.getSprite());
 
             if (tool.equals(chosenTool)) {
-                toolSprite.setColor(0.8f, 1f, 0.8f, 1f); // Highlight selected tool
+                toolSprite.setColor(0.8f, 1f, 0.8f, 1f);
                 toolSprite.setScale(1.3f);
             } else {
                 toolSprite.setColor(1f, 1f, 1f, 1f);

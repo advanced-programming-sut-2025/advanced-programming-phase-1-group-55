@@ -1,131 +1,55 @@
 package com.StardewValley.Controller;
 
+import com.StardewValley.View.StoreMenuView;
 import com.StardewValley.enums.Seasons;
 import com.StardewValley.model.App;
 import com.StardewValley.model.GameTime;
 import com.StardewValley.model.Item.Item;
+import com.StardewValley.model.Map.GameMap;
 import com.StardewValley.model.Map.MainLocation;
 import com.StardewValley.model.Result;
 import com.StardewValley.model.Store.*;
+import com.StardewValley.model.User;
 
 public class StoreController {
-    public Store findStore(){
-        MainLocation location=App.currentGameModel.currentUser.getMainLocation();
-        if(location.equals(MainLocation.BlackSmithStore)){
-            return App.currentGameModel.getMap().getVillage().getStores().get("BlackSmith");
-        } else if (location.equals(MainLocation.FishingStore)) {
-            return App.currentGameModel.getMap().getVillage().getStores().get("FishShop");
-        }else if (location.equals(MainLocation.GeneralStore)) {
-            return App.currentGameModel.getMap().getVillage().getStores().get("Generalstore");
-        }else if (location.equals(MainLocation.CarpenterShop)) {
-            return App.currentGameModel.getMap().getVillage().getStores().get("CarpenterShop");
-        }else if (location.equals(MainLocation.MarineRanchStore)) {
-            return App.currentGameModel.getMap().getVillage().getStores().get("MarnieRanch");
-        }else if (location.equals(MainLocation.OjaMartStore)) {
-            return App.currentGameModel.getMap().getVillage().getStores().get("OjaMart");
-        }else if (location.equals(MainLocation.StarDropSaloon)) {
-            return App.currentGameModel.getMap().getVillage().getStores().get("StarDropSaloon");
-        }
-        return  null;
+    private Store store;
+    private User player;
+    private StoreMenuView view;
+    private GameMap map;
+    public Boolean productIsAvailable(Product product) {
+        return store.getDisplayName().equals("OjaMart") ||
+            product.getSeason().equals(GameTime.getSeason())
+            || product.getSeason().equals(Seasons.special);
     }
-    public Result showAllProducts(){
-        Store store=findStore();
-        if(store==null){
-            return new Result(false,"you are not in the store!");
-        }
-        if(!(GameTime.getHour()>=store.getOpeningTime()&&GameTime.getHour()< store.getClosingTime())){
-            return  new Result(false,"Sorry , the store is not open;\nworking hours: "
-                    +store.getOpeningTime()+"-"+store.getClosingTime()+" current time: "+GameTime.getHour());
-        }
-        StringBuilder message=new StringBuilder();
-        for(Product product:store.getProductsOfStore().values()){
-            message.append("name:").append(product.getItem().getItemType().getDisplayName())
-                    .append(" price:").append(product.getGoldCost()).append("\n");
-        }
-        return new Result(true,message.toString());
-    }
-    public Result showAvailableProducts(){
-        Store store=findStore();
-        if(store==null){
-            return new Result(false,"you are not in the store!");
-        }
-        if(!(GameTime.getHour()>=store.getOpeningTime()&&GameTime.getHour()< store.getClosingTime())){
-            return  new Result(false,"Sorry , the store is not open;\nworking hours: "
-                    +store.getOpeningTime()+"-"+store.getClosingTime()+" current time: "+GameTime.getHour());
-        }
-        StringBuilder message=new StringBuilder();
-        for(Product product:store.getProductsOfStore().values()){
-            if(product.getDailyLimit()> product.getTodaySell()){
-                if(!store.getDisplayName().equals("OjaMart") ||
-                        product.getSeason().equals(GameTime.getSeason())
-                        ||product.getSeason().equals(Seasons.special)){
-                    message.append("name:").append(product.getItem().getItemType().getDisplayName())
-                            .append(" price:").append(product.getGoldCost()).append("\n");
-                }
-            }
-        }
-        return new Result(true,message.toString());
-    }
-    public  Result purchaseItemSuccessFully(Store store,Product product,int amount){
-        return switch (store) {
-            case BlackSmithStore blackSmithStore -> blackSmithStore.purchase(amount, product);
-            case FishingStore fishingStore -> fishingStore.purchase(amount, product);
-            case CarpenterShop carpenterShop -> carpenterShop.purchase(amount, product);
-            case GeneralStore generalStore -> generalStore.purchase(amount, product);
-            case MarineRanchStore marineRanchStore -> marineRanchStore.purchase(amount, product);
-            case JojaMartStore jojaMartStore -> jojaMartStore.purchase(amount, product);
-            case StarDropSaloon starDropSaloon->starDropSaloon.purchase(amount,product);
-            default -> throw new IllegalStateException("Unexpected value: " + store);
-        };
-    }
-    public Result sellItem(int amount,String name){
-        if(!App.currentGameModel.currentUser.getMainLocation().equals(MainLocation.nearTheBin)){
-            return  new Result(false,"you must be near a shipping bin to sell your items");
-        }
-        if(!App.currentGameModel.currentUser.getBackPack().getInventory().containsKey(name)){
-            return  new Result(false,"you don't have this item");
-        }
-        Item item=App.currentGameModel.currentUser.getBackPack().getInventory().get(name);
-        if(item.getNumber()<amount){
-            return new Result(false,"you dont have enough item to sell");
-        }
-        App.currentGameModel.currentUser.getBackPack().removeAmountFromInventory(item.getItemType(),amount);
-        if(item.getPrice()==0){
-            item.setPrice(150);
-        }
-        App.currentGameModel.currentUser.increaseDailyMoney(amount* item.getPrice());
-        return new Result(true,"you sold "+name+"successfully!");
+    public void  setView(StoreMenuView view) {
+        this.view = view;
     }
 
-    public Result purchaseItem(int amount , String name){
-        Store store=findStore();
-        if(store==null){
-            return new Result(false,"you are not in the store!");
-        }
-        if(!(GameTime.getHour()>=store.getOpeningTime()&&GameTime.getHour()< store.getClosingTime())){
-            return  new Result(false,"Sorry , the store is not open;\nworking hours: "
-                    +store.getOpeningTime()+"-"+store.getClosingTime()+" current time: "+GameTime.getHour());
-        }if(!store.getProductsOfStore().containsKey(name)){
-            return  new Result(false,"this store doesn't have this item");
-        }
-        Product product=store.getProductsOfStore().get(name);
-        if(!(product.getDailyLimit()< product.getTodaySell()+amount)){
-            if(!(store.getDisplayName().equals("OjaMart") ||
-                    product.getSeason().equals(GameTime.getSeason())
-                    ||product.getSeason().equals(Seasons.special))){
-                return  new Result(false,"This product is not available.");
-            }
-        }else {
-            return new Result(false,"this item is not available today");
-        }
-        if(App.currentGameModel.currentUser.getGold()<product.getGoldCost()*amount){
-            return  new Result(false,"you don't have enough money:(");
-        }
-
-        return purchaseItemSuccessFully(store,product,amount);
+    public Store getStore() {
+        return store;
     }
-    public Result cheatAddMoney(int amount){
-        App.currentGameModel.currentUser.setGold(App.currentGameModel.currentUser.getGold()+amount);
-        return  new Result(true,amount +" added to your account:)");
+
+    public void setStore(Store store) {
+        this.store = store;
+    }
+
+    public User getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(User player) {
+        this.player = player;
+    }
+
+    public StoreMenuView getView() {
+        return view;
+    }
+
+    public GameMap getMap() {
+        return map;
+    }
+
+    public void setMap(GameMap map) {
+        this.map = map;
     }
 }

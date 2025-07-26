@@ -191,7 +191,7 @@ public class MainGameGraphicView implements Screen, InputProcessor {
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         if (button == Input.Buttons.LEFT) {
             Vector3 click = new Vector3(screenX, screenY, 0);
-            camera.unproject(click); // تبدیل مختصات به مختصات دنیای بازی
+            camera.unproject(click);
 
             controller.getNpcController().checkIfClickedOnNpc(click.x, click.y);
         }
