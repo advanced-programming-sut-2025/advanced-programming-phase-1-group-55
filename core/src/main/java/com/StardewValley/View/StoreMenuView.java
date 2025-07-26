@@ -50,18 +50,28 @@ public class StoreMenuView implements Screen {
     @Override
     public void show() {
         Gdx.input.setInputProcessor(stage);
-        Texture backgroundTexture = AssetManager.Wood_background.getTexture();
+
+
+        Texture backgroundTexture = AssetManager.Wood_background2.getTexture();
         Image backgroundImage = new Image(backgroundTexture);
         backgroundImage.setFillParent(true);
         stage.addActor(backgroundImage);
+
         Table mainTable = new Table();
         mainTable.setFillParent(true);
         stage.addActor(mainTable);
 
+        Table titleTable = new Table();
+        Label title = new Label("Welcome to " + store.getDisplayName(), skin);
+        title.setFontScale(1.4f);
 
-        Label title = new Label("Store", skin);
-        title.setFontScale(2);
-        mainTable.add(title).colspan(2).center().pad(20);
+        Texture heartTexture =AssetManager.heart.getTexture();
+        Image heartImage = new Image(heartTexture);
+        heartImage.setSize(85, 85);
+
+        titleTable.add(title).padRight(10);
+        titleTable.add(heartImage).size(85);
+        mainTable.add(titleTable).colspan(2).center().pad(20);
         mainTable.row();
 
 
@@ -90,7 +100,6 @@ public class StoreMenuView implements Screen {
                     if (selectedButton[0] != null) {
                         selectedButton[0].setColor(Color.WHITE);
                     }
-
                     selectedButton[0] = productButton;
                     selectedProduct[0] = product;
                     productButton.setColor(Color.LIGHT_GRAY);
@@ -109,10 +118,12 @@ public class StoreMenuView implements Screen {
         mainTable.add(scrollPane).colspan(2).expand().fill().pad(20);
         mainTable.row();
 
+
         Table buttonTable = new Table();
         buttonTable.add(purchaseButton).pad(10).width(120).height(50);
         buttonTable.add(backButton).pad(10).width(120).height(50);
         mainTable.add(buttonTable).colspan(2).center().padBottom(20);
+
 
     }
 
@@ -143,7 +154,7 @@ public class StoreMenuView implements Screen {
         stage.dispose();
     }
 
-
+    // Getter و Setterها
     public StoreMenuController getController() { return controller; }
     public void setController(StoreMenuController controller) { this.controller = controller; }
     public Stage getStage() { return stage; }

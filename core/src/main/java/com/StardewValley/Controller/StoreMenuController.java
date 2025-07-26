@@ -14,7 +14,7 @@ public class StoreMenuController {
     private StoreMenuView view;
     private GameMap map;
     public Boolean productIsAvailable(Product product) {
-        return store.getDisplayName().equals("OjaMart") ||
+        return store.getDisplayName().equals("JojaMart") ||
             product.getSeason().equals(GameTime.getSeason())
             || product.getSeason().equals(Seasons.special);
     }
