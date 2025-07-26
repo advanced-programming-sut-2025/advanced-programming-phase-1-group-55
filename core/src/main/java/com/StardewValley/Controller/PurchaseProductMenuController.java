@@ -4,6 +4,7 @@ import com.StardewValley.View.PurchaseProductMenuView;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Map.GameMap;
 import com.StardewValley.model.Store.Product;
+import com.StardewValley.model.Store.Store;
 import com.StardewValley.model.User;
 
 public class PurchaseProductMenuController {
@@ -11,10 +12,18 @@ public class PurchaseProductMenuController {
     private User player;
     private GameMap map;
     private Product product;
-    public PurchaseProductMenuController(  User user, GameMap map, Product product) {
+    private Store store;
+    public PurchaseProductMenuController(  User user, GameMap map, Product product, Store store) {
         this.player = user;
         this.map = map;
         this.product = product;
+        this.store = store;
+    }
+    public void purchaseProduct(int price,int amount) {
+        player.setGold(player.getGold()-price);
+        player.getBackPack().addItemToInventory(product.getItem(), amount);
+        product.setTodaySell(product.getTodaySell()+amount);
+
     }
     public void handleInput(){
          if (view!=null){
@@ -22,7 +31,11 @@ public class PurchaseProductMenuController {
                  view.getBackButton().setChecked(false);
                  App.gameApp.setScreen(view.getStoreMenuView());
              } else if (view.getPurchaseButton().isChecked()) {
-                 //todo purchase check
+                 int price= view.getTotalPrice();
+                 int amount =view.getSelectedQuantity();
+                 if(player.getGold()>=price){
+                    purchaseProduct(price,amount);
+                 }
              }
          }
     }

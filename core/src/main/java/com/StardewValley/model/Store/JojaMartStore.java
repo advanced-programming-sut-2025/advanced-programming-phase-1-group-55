@@ -132,12 +132,10 @@ public class JojaMartStore extends Store{
         }}, "JojaMart", AssetManager.JOJA_MART_STORE.getTexture(), new CollisionRect(392, -254,
             AssetManager.JOJA_MART_STORE.getTexture().getWidth(), AssetManager.JOJA_MART_STORE.getTexture().getHeight()));
     }
-    public Result purchase(int amount , Product product){
-      Result x=App.currentGameModel.currentUser.getBackPack().addItemToInventory(product.getItem(),amount);
-      if (x.IsSuccess()){
-         product.increaseDailySold(amount);
-      }
-      return x;
+
+    @Override
+    public void Purchase(Product product,int amount) {
+
     }
 }
 

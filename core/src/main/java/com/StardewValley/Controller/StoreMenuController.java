@@ -35,7 +35,7 @@ public class StoreMenuController {
             } else if (view.getPurchaseButton().isChecked()) {
                 view.getPurchaseButton().setChecked(false);
                 Product product=view.getSelectedProduct();
-                App.gameApp.setScreen(new PurchaseProductMenuView(new PurchaseProductMenuController(player,map,product),player,map,product,view));
+                App.gameApp.setScreen(new PurchaseProductMenuView(new PurchaseProductMenuController(player,map,product,store),player,map,product,view));
             }
         }
     }

@@ -46,16 +46,9 @@ public class StarDropSaloon extends Store{
         }}, "starDropSaloon", AssetManager.STAR_DROP_STORE.getTexture(), new CollisionRect(-394,  248,
             AssetManager.STAR_DROP_STORE.getTexture().getWidth(), AssetManager.STAR_DROP_STORE.getTexture().getHeight()));
     }
-    public Result purchase(int amount , Product product){
-       if(true){
-           //todo  add recipes
-       }else {
-           Result x= App.currentGameModel.currentUser.getBackPack().addItemToInventory(product.getItem(),amount);
-           if (x.IsSuccess()){
-               product.increaseDailySold(1);
-           }
-           return x;
-       }
-       return new Result(true,"you purchased this item successfully");
+
+    @Override
+    public void Purchase(Product product, int amount) {
+
     }
 }

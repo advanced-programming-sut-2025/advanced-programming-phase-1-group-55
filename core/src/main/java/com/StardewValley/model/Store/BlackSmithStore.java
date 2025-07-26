@@ -44,7 +44,9 @@ public class BlackSmithStore extends Store {
                 AssetManager.BLACKSMITH_STORE.getTexture().getWidth()
                 ,AssetManager.BLACKSMITH_STORE.getTexture().getHeight()));
     }
-    public Result purchase(int amount , Product product){
-            return App.currentGameModel.currentUser.getBackPack().addItemToInventory(product.getItem(),amount);
+
+    @Override
+    public void Purchase(Product product, int amount) {
+
     }
 }

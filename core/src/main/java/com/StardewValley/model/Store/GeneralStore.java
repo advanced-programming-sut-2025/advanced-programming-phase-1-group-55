@@ -130,30 +130,10 @@ public class GeneralStore extends Store {
         }}, "Generalstore", AssetManager.GENERAL_STORE.getTexture(), new CollisionRect( 392, -756,
             AssetManager.GENERAL_STORE.getTexture().getWidth(), AssetManager.GENERAL_STORE.getTexture().getHeight()));
     }
-    public Result purchase(int amount , Product product){
-       BackPack backPack= App.currentGameModel.currentUser.getBackPack();
-         if(product.getItem().getItemType().equals(ItemType.LARGE_PACK)){
-             if(backPack.getLevel()==2){
-                 return new Result(false,"you already owned this item");
-             }
-             backPack.setLevel(2);
-             product.increaseDailySold(1);
-             App.currentGameModel.currentUser.increaseGold(-amount* product.getGoldCost());
-         } else if (product.getItem().getItemType().equals(ItemType.DELUXE_PACK)) {
-             if(backPack.getLevel()==3){
-                 return new Result(false,"you already owned this item");
-             }
-             backPack.setLevel(3);
-             product.increaseDailySold(1);
-             App.currentGameModel.currentUser.increaseGold(-amount* product.getGoldCost());
-         }else {
-             Result x=backPack.addItemToInventory(product.getItem(),amount);
-             if (x.IsSuccess()){
-                 product.increaseDailySold(1);
-             }
-             return x;
-         }
-         return new Result(true,"you upgraded your backPack successfully");
+
+    @Override
+    public void Purchase(Product product, int amount) {
+
     }
 }
 

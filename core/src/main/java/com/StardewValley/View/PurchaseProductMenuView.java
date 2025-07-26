@@ -3,13 +3,11 @@ package com.StardewValley.View;
 import com.StardewValley.Controller.PurchaseProductMenuController;
 import com.StardewValley.enums.AssetManager;
 import com.StardewValley.model.App;
-import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.Map.GameMap;
 import com.StardewValley.model.Store.Product;
 import com.StardewValley.model.User;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -31,6 +29,7 @@ public class PurchaseProductMenuView implements Screen {
     private Label totalPriceLabel;
     private final int[] quantity = {1};
     private StoreMenuView storeMenuView;
+    private int totalPrice;
 
     public PurchaseProductMenuView(PurchaseProductMenuController controller, User user, GameMap map, Product product, StoreMenuView storeMenuView) {
         this.controller = controller;
@@ -126,7 +125,8 @@ public class PurchaseProductMenuView implements Screen {
 
 
     private void updateTotalPrice() {
-        totalPriceLabel.setText("Total: " + (product.getGoldCost() * quantity[0]) + " G");
+        totalPrice=product.getGoldCost() * quantity[0];
+        totalPriceLabel.setText("Total: " + (totalPrice) + " G");
     }
 
     @Override
@@ -180,5 +180,13 @@ public class PurchaseProductMenuView implements Screen {
 
     public void setStoreMenuView(StoreMenuView storeMenuView) {
         this.storeMenuView = storeMenuView;
+    }
+
+    public int getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(int totalPrice) {
+        this.totalPrice = totalPrice;
     }
 }

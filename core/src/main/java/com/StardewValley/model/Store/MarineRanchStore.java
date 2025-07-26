@@ -52,29 +52,10 @@ public class MarineRanchStore extends Store{
         }}, "marnieRanch", AssetManager.MARINE_RANCH_STORE.getTexture(), new CollisionRect(-394, -254,
             AssetManager.GENERAL_STORE.getTexture().getWidth(), AssetManager.GENERAL_STORE.getTexture().getHeight()));
     }
-    public Result purchase(int amount , Product product){
-        BackPack backPack= App.currentGameModel.currentUser.getBackPack();
-       if(product.getItem().getItemType().equals(ItemType.SHEARS)){
-           if(backPack.getAvailableTools().containsKey("Shears")){
-               return  new Result(false,"you have already owned this item");
-           }
-           backPack.getAvailableTools().put("Shears",new Shears());
-       } else if (product.getItem().getItemType().equals(ItemType.MILK_PAIR)) {
-           if(backPack.getAvailableTools().containsKey("MilkPair")){
-               return  new Result(false,"you have already owned this item");
-           }
-           backPack.getAvailableTools().put("MilkPair",new MilkPail());
-       }else if (product.getItem().getItemType().equals("g")){
-           //todo  animals
-       }else{
-           Result x=backPack.addItemToInventory(product.getItem(),amount);
-           if (x.IsSuccess()){
-               product.increaseDailySold(amount);
-           }
-           return x;
-        }
-        product.increaseDailySold(1);
-        App.currentGameModel.currentUser.increaseGold(-amount* product.getGoldCost());
-        return new Result(true,"you successfully purchased :"+product.getItem().getItemType().getDisplayName());
+
+
+    @Override
+    public void Purchase(Product product, int amount) {
+
     }
 }
