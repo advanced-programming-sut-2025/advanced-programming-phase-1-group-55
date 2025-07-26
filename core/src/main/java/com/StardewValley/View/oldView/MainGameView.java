@@ -13,7 +13,6 @@ import static com.StardewValley.model.App.*;
 public class MainGameView implements AppMenu {
     private final MainGameController controller = new MainGameController();
     private final CropController controller2 = new CropController();
-    private final StoreController controller3 = new StoreController();
     private final walkController controller4 = new walkController();
     private final FriendshipController controller6 = new FriendshipController();
     private final TradeController controller5 = new TradeController();
@@ -216,12 +215,6 @@ public class MainGameView implements AppMenu {
 
         } else if (input.matches("exit")) {
             currentMenu = Menu.ExitMenu;
-        } else if ((matcher = StoreCommands.cheatMoney.getMatcher(input)) != null) {
-            System.out.println(controller3.cheatAddMoney(Integer.parseInt(matcher.group("count").trim())));
-        } else if (StoreCommands.showAllAvailableProducts.getMatcher(input) != null) {
-            System.out.println(controller3.showAvailableProducts());
-        } else if (StoreCommands.showAllProducts.getMatcher(input) != null) {
-            System.out.println(controller3.showAllProducts());
         } else if ((matcher = mainGameCommands.walk.getMatcher(input)) != null) {
             System.out.println(controller4.walk(matcher.group("x"), matcher.group("y"), currentGameModel.getMap().tiles));
         } else if ((matcher = mainGameCommands.cheatThor.getMatcher(input)) != null) {
@@ -229,12 +222,6 @@ public class MainGameView implements AppMenu {
 
         } else if ((matcher = mainGameCommands.showOwner.getMatcher(input)) != null) {
             System.out.println(controller.showOwner(Integer.parseInt(matcher.group("x")), Integer.parseInt(matcher.group("y"))));
-        } else if ((matcher = StoreCommands.sellItem.getMatcher(input)) != null) {
-            if (matcher.group("count") != null) {
-                System.out.println(controller3.sellItem(Integer.parseInt(matcher.group("count")), matcher.group("name")));
-            } else {
-                System.out.println(controller3.sellItem(1, matcher.group("name")));
-            }
         } else if (input.matches("\\s*start\\s+trade\\s*")) {
             System.out.println(controller5.TradeMenu());
 
@@ -243,12 +230,6 @@ public class MainGameView implements AppMenu {
 
         } else if (input.matches("\\s*trade\\s+list\\s*")) {
             System.out.println(controller5.tradeList());
-        } else if ((matcher = StoreCommands.purchaseItem.getMatcher(input)) != null) {
-            if (matcher.group("count") != null) {
-                System.out.println(controller3.purchaseItem(Integer.parseInt(matcher.group("count")), matcher.group("name")));
-            } else {
-                System.out.println(controller3.purchaseItem(1, matcher.group("name")));
-            }
         } else if ((matcher = mainGameCommands.TradeResponse.getMatcher(input)) != null) {
             System.out.println(controller5.tradeResponse(matcher.group("answer"), matcher.group("id")));
 

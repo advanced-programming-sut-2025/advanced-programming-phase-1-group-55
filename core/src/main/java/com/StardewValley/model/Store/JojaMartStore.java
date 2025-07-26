@@ -129,7 +129,7 @@ public class JojaMartStore extends Store{
                     10, 20, 0, 0, Seasons.winter));
 
 
-        }}, "OjaMart", AssetManager.JOJA_MART_STORE.getTexture(), new CollisionRect(392, -254,
+        }}, "JojaMart", AssetManager.JOJA_MART_STORE.getTexture(), new CollisionRect(392, -254,
             AssetManager.JOJA_MART_STORE.getTexture().getWidth(), AssetManager.JOJA_MART_STORE.getTexture().getHeight()));
     }
     public Result purchase(int amount , Product product){
