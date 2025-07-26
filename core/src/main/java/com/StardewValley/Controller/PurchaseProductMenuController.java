@@ -1,6 +1,7 @@
 package com.StardewValley.Controller;
 
 import com.StardewValley.View.PurchaseProductMenuView;
+import com.StardewValley.model.App;
 import com.StardewValley.model.Map.GameMap;
 import com.StardewValley.model.Store.Product;
 import com.StardewValley.model.User;
@@ -15,8 +16,15 @@ public class PurchaseProductMenuController {
         this.map = map;
         this.product = product;
     }
-    private void handleInput(){
-
+    public void handleInput(){
+         if (view!=null){
+             if (view.getBackButton().isChecked()){
+                 view.getBackButton().setChecked(false);
+                 App.gameApp.setScreen(view.getStoreMenuView());
+             } else if (view.getPurchaseButton().isChecked()) {
+                 //todo purchase check
+             }
+         }
     }
     public void  setView(PurchaseProductMenuView view) {
         this.view = view;
@@ -49,4 +57,5 @@ public class PurchaseProductMenuController {
     public void setProduct(Product product) {
         this.product = product;
     }
+
 }

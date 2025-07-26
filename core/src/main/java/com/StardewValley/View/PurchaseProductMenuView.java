@@ -30,8 +30,9 @@ public class PurchaseProductMenuView implements Screen {
     private Product product;
     private Label totalPriceLabel;
     private final int[] quantity = {1};
+    private StoreMenuView storeMenuView;
 
-    public PurchaseProductMenuView(PurchaseProductMenuController controller, User user, GameMap map, Product product) {
+    public PurchaseProductMenuView(PurchaseProductMenuController controller, User user, GameMap map, Product product, StoreMenuView storeMenuView) {
         this.controller = controller;
         this.user = user;
         this.map = map;
@@ -40,6 +41,7 @@ public class PurchaseProductMenuView implements Screen {
         this.skin = App.getSkin();
         this.stage = new Stage();
         Gdx.input.setInputProcessor(stage);
+        this.storeMenuView = storeMenuView;
 
         this.backButton = new TextButton("Back", skin);
         this.purchaseButton = new TextButton("Purchase", skin);
@@ -93,7 +95,7 @@ public class PurchaseProductMenuView implements Screen {
         plusButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                if (quantity[0] < 5) {
+                if (quantity[0] < product.getDailyLimit()-product.getTodaySell()) {
                     quantity[0]++;
                     quantityLabel.setText(String.valueOf(quantity[0]));
                     updateTotalPrice();
@@ -129,6 +131,7 @@ public class PurchaseProductMenuView implements Screen {
 
     @Override
     public void render(float delta) {
+        controller.handleInput();
         ScreenUtils.clear(0.2f, 0.2f, 0.25f, 1);
         stage.act(delta);
         stage.draw();
@@ -158,4 +161,24 @@ public class PurchaseProductMenuView implements Screen {
     public Product getProduct() { return product; }
     public void setProduct(Product product) { this.product = product; }
     public int getSelectedQuantity() { return quantity[0]; }
+
+    public Label getTotalPriceLabel() {
+        return totalPriceLabel;
+    }
+
+    public void setTotalPriceLabel(Label totalPriceLabel) {
+        this.totalPriceLabel = totalPriceLabel;
+    }
+
+    public int[] getQuantity() {
+        return quantity;
+    }
+
+    public StoreMenuView getStoreMenuView() {
+        return storeMenuView;
+    }
+
+    public void setStoreMenuView(StoreMenuView storeMenuView) {
+        this.storeMenuView = storeMenuView;
+    }
 }
