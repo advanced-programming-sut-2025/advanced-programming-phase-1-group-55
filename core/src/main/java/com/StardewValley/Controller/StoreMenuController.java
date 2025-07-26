@@ -20,9 +20,9 @@ public class StoreMenuController {
         this.map = map;
     }
     public Boolean productIsAvailable(Product product) {
-        return store.getDisplayName().equals("JojaMart") ||
+        return (store.getDisplayName().equals("JojaMart") ||
             product.getSeason().equals(GameTime.getSeason())
-            || product.getSeason().equals(Seasons.special)||(product.getDailyLimit()<=product.getTodaySell());
+            || product.getSeason().equals(Seasons.special))&&(product.getDailyLimit()>product.getTodaySell());
     }
     public void handleButton() {
         if (view!=null){

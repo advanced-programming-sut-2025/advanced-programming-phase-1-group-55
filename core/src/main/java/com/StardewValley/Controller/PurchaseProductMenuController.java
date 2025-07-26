@@ -21,7 +21,7 @@ public class PurchaseProductMenuController {
     }
     public void purchaseProduct(int price,int amount) {
         player.setGold(player.getGold()-price);
-        player.getBackPack().addItemToInventory(product.getItem(), amount);
+        //player.getBackPack().addItemToInventory(product.getItem(), amount);
         product.setTodaySell(product.getTodaySell()+amount);
 
     }
@@ -35,6 +35,7 @@ public class PurchaseProductMenuController {
                  int price= view.getTotalPrice();
                  int amount =view.getSelectedQuantity();
                  if(player.getGold()>=price){
+                     view.setSuccessMessage("You purchased the product successfully!");
                     purchaseProduct(price,amount);
                  }else {
                      view.setErrorMessage("You don't have enough money!");

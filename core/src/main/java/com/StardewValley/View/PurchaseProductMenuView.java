@@ -34,6 +34,8 @@ public class PurchaseProductMenuView implements Screen {
     private int totalPrice;
     private final Label ErrorLabel;
     private com.badlogic.gdx.utils.Timer.Task clearErrorTask;
+    private final Label SuccessMessageLabel;
+    private com.badlogic.gdx.utils.Timer.Task clearErrorTask2;
 
     public PurchaseProductMenuView(PurchaseProductMenuController controller, User user, GameMap map, Product product, StoreMenuView storeMenuView) {
         this.controller = controller;
@@ -50,6 +52,8 @@ public class PurchaseProductMenuView implements Screen {
         this.purchaseButton = new TextButton("Purchase", skin);
         ErrorLabel = new Label("", skin);
         ErrorLabel.setColor(Color.RED);
+        SuccessMessageLabel = new Label("", skin);
+        SuccessMessageLabel.setColor(Color.GREEN);
         totalPrice=product.getGoldCost();
     }
 
@@ -129,6 +133,7 @@ public class PurchaseProductMenuView implements Screen {
 
         rootTable.add(buttonTable).colspan(2).padBottom(20).row();
         rootTable.add(ErrorLabel).colspan(2).center().row();
+        rootTable.add(SuccessMessageLabel).colspan(2).center().row();
     }
 
 
@@ -156,6 +161,19 @@ public class PurchaseProductMenuView implements Screen {
             }
         };
         Timer.schedule(clearErrorTask, 5);
+    }
+    public void setSuccessMessage(String message) {
+        SuccessMessageLabel.setText(message);
+        if (clearErrorTask2 != null) {
+            clearErrorTask2.cancel();
+        }
+        clearErrorTask2 = new Timer.Task() {
+            @Override
+            public void run() {
+                SuccessMessageLabel.setText("");
+            }
+        };
+        Timer.schedule(clearErrorTask2, 5);
     }
 
     @Override public void resize(int width, int height) {}
