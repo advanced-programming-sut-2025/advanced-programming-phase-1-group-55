@@ -1,8 +1,7 @@
 package com.StardewValley.View;
 
-import com.StardewValley.Controller.StoreController;
+import com.StardewValley.Controller.StoreMenuController;
 import com.StardewValley.model.App;
-import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.Map.GameMap;
 import com.StardewValley.model.Store.Product;
 import com.StardewValley.model.Store.Store;
@@ -20,7 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class StoreMenuView implements Screen {
-    private StoreController controller;
+    private StoreMenuController controller;
     private Stage stage;
     private Store store;
     private User user;
@@ -31,7 +30,7 @@ public class StoreMenuView implements Screen {
     private String sortBy;
     private Map<String, Product> products;
 
-    public StoreMenuView(StoreController controller, User user, GameMap map, String sortBy, Store store) {
+    public StoreMenuView(StoreMenuController controller, User user, GameMap map, String sortBy, Store store) {
         this.controller = controller;
         controller.setView(this);
         this.user = user;
@@ -155,8 +154,8 @@ public class StoreMenuView implements Screen {
     }
 
 
-    public StoreController getController() { return controller; }
-    public void setController(StoreController controller) { this.controller = controller; }
+    public StoreMenuController getController() { return controller; }
+    public void setController(StoreMenuController controller) { this.controller = controller; }
     public Stage getStage() { return stage; }
     public void setStage(Stage stage) { this.stage = stage; }
     public Store getStore() { return store; }

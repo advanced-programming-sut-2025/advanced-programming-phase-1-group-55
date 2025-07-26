@@ -2,16 +2,12 @@ package com.StardewValley.Controller;
 
 import com.StardewValley.View.StoreMenuView;
 import com.StardewValley.enums.Seasons;
-import com.StardewValley.model.App;
 import com.StardewValley.model.GameTime;
-import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.Map.GameMap;
-import com.StardewValley.model.Map.MainLocation;
-import com.StardewValley.model.Result;
 import com.StardewValley.model.Store.*;
 import com.StardewValley.model.User;
 
-public class StoreController {
+public class StoreMenuController {
     private Store store;
     private User player;
     private StoreMenuView view;

@@ -192,8 +192,8 @@ public class MainGameGraphicView implements Screen, InputProcessor {
         if (button == Input.Buttons.LEFT) {
             Vector3 click = new Vector3(screenX, screenY, 0);
             camera.unproject(click);
-
             controller.getNpcController().checkIfClickedOnNpc(click.x, click.y);
+            controller.getStoreController().checkIfClickedOnStores(click.x, click.y);
         }
         return true;
     }
