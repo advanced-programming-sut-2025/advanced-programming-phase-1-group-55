@@ -385,6 +385,10 @@ public enum ItemType {
         this.DisplayName = DisplayName;
         this.texture = texture;
     }
+    ItemType(String DisplayName) {
+        this.DisplayName = DisplayName;
+        texture=null;
+    }
 
     public Texture getTexture() {
         return texture;
