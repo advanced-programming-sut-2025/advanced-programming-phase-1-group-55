@@ -385,6 +385,7 @@ public enum ItemType {
         this.DisplayName = DisplayName;
         this.texture = texture;
     }
+    //todo after completing all of the items texture , remove this
     ItemType(String DisplayName) {
         this.DisplayName = DisplayName;
         texture=null;
