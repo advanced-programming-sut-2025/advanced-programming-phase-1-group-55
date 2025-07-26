@@ -3,9 +3,11 @@ package com.StardewValley.model.Item;
 import com.StardewValley.enums.Seasons;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Map.Tile;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 
 public enum ItemType {
-    CHERRY_BOMB("Cherry Bomb"),
+    CHERRY_BOMB("Cherry Bomb",new Texture(Gdx.files.internal("Crafting/Cherry_Bomb.png"))),
     BOMB("Bomb"),
     MEGA_BOMB("Mega Bomb"),
     SPRINKLER("Sprinkler"),
@@ -376,12 +378,16 @@ public enum ItemType {
     HOPS_CROP("Hops Crop"),
     ;
 
-
-
+    private final Texture texture;
     private final String DisplayName;
 
-    ItemType(String DisplayName) {
+    ItemType(String DisplayName, Texture texture) {
         this.DisplayName = DisplayName;
+        this.texture = texture;
+    }
+
+    public Texture getTexture() {
+        return texture;
     }
 
     @Override
