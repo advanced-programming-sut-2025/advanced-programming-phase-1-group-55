@@ -21,6 +21,7 @@ public class PurchaseProductMenuController {
     }
     public void purchaseProduct(int price,int amount) {
         player.setGold(player.getGold()-price);
+        //TODO HANDLE ADDING ITEM TO INVENTORY
         //player.getBackPack().addItemToInventory(product.getItem(), amount);
         product.setTodaySell(product.getTodaySell()+amount);
 
