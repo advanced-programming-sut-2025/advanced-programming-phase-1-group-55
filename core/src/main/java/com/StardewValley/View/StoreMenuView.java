@@ -35,6 +35,7 @@ public class StoreMenuView implements Screen {
 
     private SelectBox<String> sortSelectBox;
     private TextButton sortConfirmButton;
+    private  Product selectedProduct;
 
     public StoreMenuView(StoreMenuController controller, User user, GameMap map, String sortBy, Store store) {
         this.controller = controller;
@@ -99,7 +100,7 @@ public class StoreMenuView implements Screen {
 
         Map<TextButton, Product> buttonProductMap = new HashMap<>();
         final TextButton[] selectedButton = {null};
-        final Product[] selectedProduct = {null};
+
 
         for (Map.Entry<String, Product> entry : products.entrySet()) {
             Product product = entry.getValue();
@@ -125,7 +126,7 @@ public class StoreMenuView implements Screen {
                             selectedButton[0].setColor(Color.WHITE);
                         }
                         selectedButton[0] = productButton;
-                        selectedProduct[0] = product;
+                        selectedProduct = product;
                         productButton.setColor(Color.CYAN);
                     }
                 });
@@ -210,5 +211,13 @@ public class StoreMenuView implements Screen {
 
     public void setSortConfirmButton(TextButton sortConfirmButton) {
         this.sortConfirmButton = sortConfirmButton;
+    }
+
+    public Product getSelectedProduct() {
+        return selectedProduct;
+    }
+
+    public void setSelectedProduct(Product selectedProduct) {
+        this.selectedProduct = selectedProduct;
     }
 }
