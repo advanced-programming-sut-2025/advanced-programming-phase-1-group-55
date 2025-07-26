@@ -2,6 +2,7 @@ package com.StardewValley.Controller;
 
 import com.StardewValley.View.StoreMenuView;
 import com.StardewValley.enums.Seasons;
+import com.StardewValley.model.App;
 import com.StardewValley.model.GameTime;
 import com.StardewValley.model.Map.GameMap;
 import com.StardewValley.model.Store.*;
@@ -16,6 +17,14 @@ public class StoreMenuController {
         return store.getDisplayName().equals("OjaMart") ||
             product.getSeason().equals(GameTime.getSeason())
             || product.getSeason().equals(Seasons.special);
+    }
+    public void handleButton() {
+        if (view!=null){
+            if (view.getBackButton().isChecked()){
+                view.getBackButton().setChecked(false);
+                App.gameApp.setScreen(App.currentGameGraphicView);
+            }
+        }
     }
     public void  setView(StoreMenuView view) {
         this.view = view;

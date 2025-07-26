@@ -1,6 +1,7 @@
 package com.StardewValley.View;
 
 import com.StardewValley.Controller.StoreMenuController;
+import com.StardewValley.enums.AssetManager;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Map.GameMap;
 import com.StardewValley.model.Store.Product;
@@ -9,10 +10,12 @@ import com.StardewValley.model.User;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 import java.util.HashMap;
@@ -47,7 +50,10 @@ public class StoreMenuView implements Screen {
     @Override
     public void show() {
         Gdx.input.setInputProcessor(stage);
-
+        Texture backgroundTexture = AssetManager.Wood_background.getTexture();
+        Image backgroundImage = new Image(backgroundTexture);
+        backgroundImage.setFillParent(true);
+        stage.addActor(backgroundImage);
         Table mainTable = new Table();
         mainTable.setFillParent(true);
         stage.addActor(mainTable);
@@ -103,33 +109,17 @@ public class StoreMenuView implements Screen {
         mainTable.add(scrollPane).colspan(2).expand().fill().pad(20);
         mainTable.row();
 
-        // Bottom Buttons
         Table buttonTable = new Table();
         buttonTable.add(purchaseButton).pad(10).width(120).height(50);
         buttonTable.add(backButton).pad(10).width(120).height(50);
         mainTable.add(buttonTable).colspan(2).center().padBottom(20);
 
-        backButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                //controller.goBack();
-            }
-        });
-
-        purchaseButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                if (selectedProduct[0] != null) {
-                    //controller.purchaseProduct(selectedProduct[0], user);
-                } else {
-                    System.out.println("No product selected.");
-                }
-            }
-        });
     }
 
     @Override
     public void render(float delta) {
+        ScreenUtils.clear(0, 0, 0, 1);
+        controller.handleButton();
         stage.act(delta);
         stage.draw();
     }
