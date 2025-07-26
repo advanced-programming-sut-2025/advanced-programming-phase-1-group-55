@@ -13,6 +13,11 @@ public class StoreMenuController {
     private User player;
     private StoreMenuView view;
     private GameMap map;
+    public StoreMenuController(Store store, User player, GameMap map) {
+        this.store = store;
+        this.player = player;
+        this.map = map;
+    }
     public Boolean productIsAvailable(Product product) {
         return store.getDisplayName().equals("JojaMart") ||
             product.getSeason().equals(GameTime.getSeason())

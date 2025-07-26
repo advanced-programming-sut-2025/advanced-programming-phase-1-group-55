@@ -18,7 +18,7 @@ public class StoresStatusController {
     public void checkIfClickedOnStores(float x, float y){
         for (Store store:map.getVillage().getStores().values()){
             if (store.getCollisionRect().isInside(x, y)){
-                App.gameApp.setScreen(new StoreMenuView(new StoreMenuController(),player,map,"All",store));
+                App.gameApp.setScreen(new StoreMenuView(new StoreMenuController(store,player,map),player,map,"All",store));
             }
         }
     }
