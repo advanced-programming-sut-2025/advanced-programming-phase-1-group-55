@@ -31,10 +31,13 @@ public class PurchaseProductMenuController {
                  view.getBackButton().setChecked(false);
                  App.gameApp.setScreen(view.getStoreMenuView());
              } else if (view.getPurchaseButton().isChecked()) {
+                 view.getPurchaseButton().setChecked(false);
                  int price= view.getTotalPrice();
                  int amount =view.getSelectedQuantity();
                  if(player.getGold()>=price){
                     purchaseProduct(price,amount);
+                 }else {
+                     view.setErrorMessage("You don't have enough money!");
                  }
              }
          }

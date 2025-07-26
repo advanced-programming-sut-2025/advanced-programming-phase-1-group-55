@@ -8,6 +8,7 @@ import com.StardewValley.model.Store.Product;
 import com.StardewValley.model.User;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -16,6 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.badlogic.gdx.utils.Timer;
 
 public class PurchaseProductMenuView implements Screen {
     private User user;
@@ -30,6 +32,8 @@ public class PurchaseProductMenuView implements Screen {
     private final int[] quantity = {1};
     private StoreMenuView storeMenuView;
     private int totalPrice;
+    private final Label ErrorLabel;
+    private com.badlogic.gdx.utils.Timer.Task clearErrorTask;
 
     public PurchaseProductMenuView(PurchaseProductMenuController controller, User user, GameMap map, Product product, StoreMenuView storeMenuView) {
         this.controller = controller;
@@ -44,6 +48,9 @@ public class PurchaseProductMenuView implements Screen {
 
         this.backButton = new TextButton("Back", skin);
         this.purchaseButton = new TextButton("Purchase", skin);
+        ErrorLabel = new Label("", skin);
+        ErrorLabel.setColor(Color.RED);
+        totalPrice=product.getGoldCost();
     }
 
     @Override
@@ -121,6 +128,7 @@ public class PurchaseProductMenuView implements Screen {
         buttonTable.add(purchaseButton).width(130).height(55);
 
         rootTable.add(buttonTable).colspan(2).padBottom(20).row();
+        rootTable.add(ErrorLabel).colspan(2).center().row();
     }
 
 
@@ -135,6 +143,19 @@ public class PurchaseProductMenuView implements Screen {
         ScreenUtils.clear(0.2f, 0.2f, 0.25f, 1);
         stage.act(delta);
         stage.draw();
+    }
+    public void setErrorMessage(String message) {
+        ErrorLabel.setText(message);
+        if (clearErrorTask != null) {
+            clearErrorTask.cancel();
+        }
+        clearErrorTask = new Timer.Task() {
+            @Override
+            public void run() {
+                ErrorLabel.setText("");
+            }
+        };
+        Timer.schedule(clearErrorTask, 5);
     }
 
     @Override public void resize(int width, int height) {}

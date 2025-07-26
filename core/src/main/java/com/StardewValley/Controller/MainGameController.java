@@ -41,6 +41,7 @@ public class MainGameController {
         toolController=new ToolController(currentPlayer);
         npcController=new NpcController(currentPlayer,view.getMap());
         storeController=new StoresStatusController(currentPlayer,view.getMap());
+        currentPlayer.setGold(5000);
     }
     public void handleInput() {
         //todo handle if the gate was not your farm gate -->>message box -->>send error -->> you can not enter other player,s farm
