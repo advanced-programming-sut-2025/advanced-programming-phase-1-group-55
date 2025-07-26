@@ -53,7 +53,6 @@ public class StoreMenuView implements Screen {
 
     @Override
     public void show() {
-        sortBy="All";
         Gdx.input.setInputProcessor(stage);
         stage.clear();
 
@@ -196,4 +195,20 @@ public class StoreMenuView implements Screen {
     public void setSortBy(String sortBy) { this.sortBy = sortBy; }
     public Map<String, Product> getProducts() { return products; }
     public void setProducts(Map<String, Product> products) { this.products = products; }
+
+    public SelectBox<String> getSortSelectBox() {
+        return sortSelectBox;
+    }
+
+    public void setSortSelectBox(SelectBox<String> sortSelectBox) {
+        this.sortSelectBox = sortSelectBox;
+    }
+
+    public TextButton getSortConfirmButton() {
+        return sortConfirmButton;
+    }
+
+    public void setSortConfirmButton(TextButton sortConfirmButton) {
+        this.sortConfirmButton = sortConfirmButton;
+    }
 }

@@ -21,13 +21,16 @@ public class StoreMenuController {
     public Boolean productIsAvailable(Product product) {
         return store.getDisplayName().equals("JojaMart") ||
             product.getSeason().equals(GameTime.getSeason())
-            || product.getSeason().equals(Seasons.special);
+            || product.getSeason().equals(Seasons.special)||(product.getDailyLimit()<=product.getTodaySell());
     }
     public void handleButton() {
         if (view!=null){
             if (view.getBackButton().isChecked()){
                 view.getBackButton().setChecked(false);
                 App.gameApp.setScreen(App.currentGameGraphicView);
+            }else if(view.getSortConfirmButton().isChecked()){
+                view.getSortConfirmButton().setChecked(false);
+                App.gameApp.setScreen(new StoreMenuView(new StoreMenuController(store,player,map),player,map, view.getSortSelectBox().getSelected(),store ));
             }
         }
     }
