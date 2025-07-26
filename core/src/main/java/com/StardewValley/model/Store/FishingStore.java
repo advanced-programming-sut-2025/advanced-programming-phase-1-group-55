@@ -31,27 +31,8 @@ public class FishingStore extends Store{
         }}, "FishShop", AssetManager.FISHING_STORE.getTexture(), new CollisionRect(-394, -756
             ,AssetManager.FISHING_STORE.getTexture().getWidth(), AssetManager.FISHING_STORE.getTexture().getHeight()));
     }
-    public Result purchase(int amount , Product product){
-        BackPack backPack=App.currentGameModel.currentUser.getBackPack();
-        String message="you upgraded your fishing pole successfully";
-        if(product.getItem().getItemType().equals(ItemType.FISH_SMOKER_RECIPE)){
-            //TODO ADD RECIPE
-            //App.currentGame.currentUser.getBackPack().getLearnedCraftingRecipes().add(CraftingItemType.);
-        } else if (product.getItem().getItemType().equals(ItemType.FIBERGLASS_ROD)) {
-            backPack.getAvailableTools().remove("FishingPole");
-            backPack.getAvailableTools().put("FishingPole",new FishingPole(FishingPoleType.FIBERGLASS_ROD));
-        }else if (product.getItem().getItemType().equals(ItemType.BAMBOO_POLE)) {
-            backPack.getAvailableTools().remove("FishingPole");
-            backPack.getAvailableTools().put("FishingPole",new FishingPole(FishingPoleType.BAMBOO_ROD));
-        }else if (product.getItem().getItemType().equals(ItemType.IRIDIUM_ROD)) {
-            backPack.getAvailableTools().remove("FishingPole");
-            backPack.getAvailableTools().put("FishingPole",new FishingPole(FishingPoleType.IRIDIUM_ROD));
-        }else if (product.getItem().getItemType().equals(ItemType.TRAINING_ROD)) {
-            backPack.getAvailableTools().put("FishingPole",new FishingPole(FishingPoleType.TRAINING_ROD));
-            message="you successfully purchased  your first pole";
-        }
-        product.increaseDailySold(amount);
-        App.currentGameModel.currentUser.increaseGold(-amount* product.getGoldCost());
-        return new Result(true,message);
+    @Override
+    public void Purchase(Product product, int amount) {
+
     }
 }

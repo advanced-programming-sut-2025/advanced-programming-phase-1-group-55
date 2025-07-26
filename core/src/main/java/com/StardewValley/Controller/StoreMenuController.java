@@ -1,5 +1,6 @@
 package com.StardewValley.Controller;
 
+import com.StardewValley.View.PurchaseProductMenuView;
 import com.StardewValley.View.StoreMenuView;
 import com.StardewValley.enums.Seasons;
 import com.StardewValley.model.App;
@@ -19,9 +20,9 @@ public class StoreMenuController {
         this.map = map;
     }
     public Boolean productIsAvailable(Product product) {
-        return store.getDisplayName().equals("JojaMart") ||
+        return (store.getDisplayName().equals("JojaMart") ||
             product.getSeason().equals(GameTime.getSeason())
-            || product.getSeason().equals(Seasons.special)||(product.getDailyLimit()<=product.getTodaySell());
+            || product.getSeason().equals(Seasons.special))&&(product.getDailyLimit()>product.getTodaySell());
     }
     public void handleButton() {
         if (view!=null){
@@ -31,6 +32,10 @@ public class StoreMenuController {
             }else if(view.getSortConfirmButton().isChecked()){
                 view.getSortConfirmButton().setChecked(false);
                 App.gameApp.setScreen(new StoreMenuView(new StoreMenuController(store,player,map),player,map, view.getSortSelectBox().getSelected(),store ));
+            } else if (view.getPurchaseButton().isChecked()) {
+                view.getPurchaseButton().setChecked(false);
+                Product product=view.getSelectedProduct();
+                App.gameApp.setScreen(new PurchaseProductMenuView(new PurchaseProductMenuController(player,map,product,store),player,map,product,view));
             }
         }
     }

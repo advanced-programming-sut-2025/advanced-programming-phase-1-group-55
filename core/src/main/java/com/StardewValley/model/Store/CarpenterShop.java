@@ -32,21 +32,10 @@ public class CarpenterShop extends Store{
                     , AssetManager.CARPENTER_STORE.getTexture().getHeight()));
 
     }
-    public Result purchase(int amount , Product product){
-//          if(product.getItem().getItemType().equals(ItemType.WOOD)){
-//              App.currentGame.currentUser.setWood(App.currentGame.currentUser.getWood()+amount);
-//          } else if (product.getItem().getItemType().equals(ItemType.STONE)) {
-//              App.currentGame.currentUser.setStone(App.currentGame.currentUser.getStone()+amount);
-//          } else  {
-              Result x=App.currentGameModel.currentUser.getBackPack().addItemToInventory(product.getItem(),amount);
-            if(x.IsSuccess()){
-                product.increaseDailySold(amount);
-            }
-            return x;
-//          }
-//        product.increaseDailySold(amount);
-//          App.currentGame.currentUser.increaseGold(-amount* product.getGoldCost());
-       // return  new Result(true,"you purchased this item successfully");
+
+    @Override
+    public void Purchase(Product product, int amount) {
+
     }
 }
 

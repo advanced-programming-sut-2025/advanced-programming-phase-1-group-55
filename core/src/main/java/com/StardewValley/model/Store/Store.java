@@ -10,7 +10,7 @@ import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Store {
+public abstract class Store {
     private final int openingTime;
     private final int closingTime;
     private Map<String, Product> productsOfStore=new HashMap<>();
@@ -45,7 +45,7 @@ public class Store {
         this.productsOfStore = productsOfStore;
     }
 
-
+    public abstract void Purchase(Product product,int amount);
 
     public String getDisplayName() {
         return DisplayName;
