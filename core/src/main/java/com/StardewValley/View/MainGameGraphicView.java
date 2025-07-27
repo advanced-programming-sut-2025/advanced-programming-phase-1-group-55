@@ -43,6 +43,20 @@ public class MainGameGraphicView implements Screen, InputProcessor {
         this.controller = controller;
         controller.setView(this);
         App.currentGameGraphicView=this;
+        map.BuildMap();
+        controller.getPlayerController().setGameMap(map);
+        //todo remove this after arshia completed pregame menu
+        for (Npc npc:map.getVillage().getNpss().values()){
+            NpcFriendship friendship=new NpcFriendship(player,npc);
+            player.getFriendsNpc().put(npc.getType().getDisplayName(),friendship);
+            for (Quest quest:npc.getType().getQuests().values()){
+                quest.setNpc(npc);
+                if (quest.getLevel()==1){
+                    player.getQuest().put(quest.getId(),quest);
+                }
+            }
+        }
+        //todo remove  baalaayi !!!!!!!!!!!!!!!!
 
     }
 
@@ -87,20 +101,7 @@ public class MainGameGraphicView implements Screen, InputProcessor {
 
 
         stage.addActor(tableTop);
-        map.BuildMap();
-        controller.getPlayerController().setGameMap(map);
-        //todo remove this after arshia completed pregame menu
-        for (Npc npc:map.getVillage().getNpss().values()){
-            NpcFriendship friendship=new NpcFriendship(player,npc);
-            player.getFriendsNpc().put(npc.getType().getDisplayName(),friendship);
-            for (Quest quest:npc.getType().getQuests().values()){
-                quest.setNpc(npc);
-                if (quest.getLevel()==1){
-                    player.getQuest().put(quest.getId(),quest);
-                }
-            }
-        }
-        //todo remove  baalaayi !!!!!!!!!!!!!!!!
+
         InputMultiplexer multiplexer = new InputMultiplexer();
         multiplexer.addProcessor(this);
         multiplexer.addProcessor(stage);

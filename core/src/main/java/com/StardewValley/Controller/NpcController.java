@@ -50,6 +50,7 @@ public class NpcController {
             if( Gdx.input.isButtonPressed(Input.Buttons.LEFT)){
                 if (npc.getDialogBox().getStatus() == DialogStatus.Ready) {
                     npc.getDialogBox().setStatus(DialogStatus.InProgress);
+                    player.getFriendsNpc().get(npc.getType().getDisplayName()).increaseXp(30);
                     return;
                 }
             }
