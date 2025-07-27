@@ -1,0 +1,78 @@
+package com.StardewValley.Controller;
+
+import com.StardewValley.View.GiftItemMenuView;
+import com.StardewValley.View.SellItemView;
+import com.StardewValley.model.App;
+import com.StardewValley.model.Item.Item;
+import com.StardewValley.model.Map.GameMap;
+import com.StardewValley.model.NPC.Npc;
+import com.StardewValley.model.User;
+
+public class GiftItemMenuController {
+    private GiftItemMenuView view;
+    private User player;
+    private GameMap map;
+    private Item item;
+    private Npc npc;
+    public GiftItemMenuController(User user, GameMap map, Item item, Npc npc) {
+        this.player = user;
+        this.map = map;
+        this.item = item;
+        this.npc = npc;
+    }
+
+    public void setView(GiftItemMenuView view) {
+        this.view = view;
+    }
+    public void handleButton(){
+       if (view!=null){
+           if (view.getBackButton().isChecked()){
+               view.getBackButton().setChecked(false);
+               App.gameApp.setScreen(view.getNpcMenuView());
+           } else if (view.getGiftButton().isChecked()) {
+               view.getGiftButton().setChecked(false);
+               handleGift(view.getQuantity());
+           }
+       }
+    }
+    public void handleGift(int quantity){
+        if (quantity>item.getNumber()){
+            view.setErrorMessage("You dont have enough items to sell!\n"+"you just have "+item.getNumber()+" items to sell.");
+        }
+    }
+    public GiftItemMenuView getView() {
+        return view;
+    }
+
+    public User getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(User player) {
+        this.player = player;
+    }
+
+    public GameMap getMap() {
+        return map;
+    }
+
+    public void setMap(GameMap map) {
+        this.map = map;
+    }
+
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
+    }
+
+    public Npc getNpc() {
+        return npc;
+    }
+
+    public void setNpc(Npc npc) {
+        this.npc = npc;
+    }
+}

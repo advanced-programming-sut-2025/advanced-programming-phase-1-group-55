@@ -222,4 +222,20 @@ public class NpcMenuView implements Screen {
     public void setBackButton(TextButton backButton) {
         this.backButton = backButton;
     }
+
+    public Item getSelectedItem() {
+        return selectedItem;
+    }
+
+    public void setSelectedItem(Item selectedItem) {
+        this.selectedItem = selectedItem;
+    }
+
+    public Button getGiftButton() {
+        return giftButton;
+    }
+
+    public void setGiftButton(Button giftButton) {
+        this.giftButton = giftButton;
+    }
 }
