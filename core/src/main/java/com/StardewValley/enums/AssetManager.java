@@ -23,6 +23,8 @@ public enum AssetManager {
     GATE("Fence/Gate.png"),
     IRON_FENCE("Fence/Iron_Fence.png"),
 
+    ShippingBin("Buildings/Shipping Bin.png"),
+
 
     PLAYER("sprites/Mariner.png"),
 

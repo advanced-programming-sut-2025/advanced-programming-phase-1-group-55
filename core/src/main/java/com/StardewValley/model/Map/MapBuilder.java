@@ -6,11 +6,14 @@ import com.StardewValley.model.App;
 import com.StardewValley.model.Item.CollisionRect;
 import com.StardewValley.model.NPC.Npc;
 import com.StardewValley.model.NPC.NpcHouse;
+import com.StardewValley.model.Store.ShippingBin;
 import com.StardewValley.model.Store.Store;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+
+import java.util.ArrayList;
 
 public class MapBuilder {
     public void fillOtherTiles(GameMap map) {
@@ -177,7 +180,13 @@ public class MapBuilder {
         placeStore(map);
 
     }
-
+    public void drawBins(GameMap map) {
+        for (ShippingBin bin:map.getVillage().getShippingBins()){
+            bin.getSprite().setPosition(bin.getCollisionRect().getX(), bin.getCollisionRect().getY());
+            bin.getSprite().setScale(1.6f);
+            bin.getSprite().draw(App.gameApp.getBatch());
+        }
+    }
     public void drawNpcHouses(GameMap map) {
         for (Npc npc:map.getVillage().getNpss().values()){
             Sprite sprite=npc.getType().getHouse().getSprite();
@@ -380,6 +389,26 @@ public class MapBuilder {
            map.fences.add(new Fence(fenceType, new CollisionRect(
                 WORLD_WIDTH / 2 - WORLD_WIDTH / 3 - 100, y,
                 texW, texH)));
+        }
+        placeShippingBins(map);
+
+    }
+    private void placeShippingBins(GameMap map) {
+        ArrayList<ShippingBin> bins=map.getVillage().getShippingBins();
+        Sprite sprite=AssetManager.ShippingBin.getSprite();
+        for(Store store:map.getVillage().getStores().values()) {
+            if (store.getCollisionRect().getX()>0){
+                bins.add(new ShippingBin(new CollisionRect(store.getCollisionRect().getX()+600,store.getCollisionRect().getY()+20, (float) (sprite.getWidth()*1.6), (float) (sprite.getHeight()*1.6))));
+            }else {
+                bins.add(new ShippingBin(new CollisionRect(store.getCollisionRect().getX()-600,store.getCollisionRect().getY()+20, (float) (sprite.getWidth()*1.6), (float) (sprite.getHeight()*1.6))));
+            }
+        }
+        for(Npc npc:map.getVillage().getNpss().values()) {
+            if (npc.getType().getHouse().getCollisionRect().getX()>0){
+                bins.add(new ShippingBin(new CollisionRect(npc.getType().getHouse().getCollisionRect().getX()+600,npc.getType().getHouse().getCollisionRect().getY()+20, (float) (sprite.getWidth()*1.6), (float) (sprite.getHeight()*1.6))));
+            }else {
+                bins.add(new ShippingBin(new CollisionRect(npc.getType().getHouse().getCollisionRect().getX()-600,npc.getType().getHouse().getCollisionRect().getY()+20, (float) (sprite.getWidth()*1.6), (float) (sprite.getHeight()*1.6))));
+            }
         }
     }
 
