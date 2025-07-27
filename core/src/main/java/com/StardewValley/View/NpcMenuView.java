@@ -8,12 +8,14 @@ import com.StardewValley.model.NPC.Npc;
 import com.StardewValley.model.User;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
@@ -24,7 +26,7 @@ public class NpcMenuView implements Screen {
     private GameMap map;
     private Stage stage;
     private final Skin skin;
-    private  TextButton backButton ;
+    private TextButton backButton;
 
     public NpcMenuView(NpcMenuController controller, Npc npc, User player, GameMap map) {
         this.controller = controller;
@@ -44,28 +46,40 @@ public class NpcMenuView implements Screen {
         Image backgroundImage = new Image(backgroundTexture);
         backgroundImage.setFillParent(true);
         stage.addActor(backgroundImage);
+
         Table rootTable = new Table();
         rootTable.setFillParent(true);
         stage.addActor(rootTable);
 
-
         Label titleLabel = new Label(npc.getType().getDisplayName(), skin);
         titleLabel.setFontScale(2f);
         rootTable.top().padTop(20);
-        rootTable.add(titleLabel).colspan(3).center().padBottom(30);
+        rootTable.add(titleLabel).colspan(5).center().padBottom(30);
         rootTable.row();
-
 
         Table leftMenu = createMenuBox("Friendship");
         Table middleMenu = createMenuBox("Quests");
         Table rightMenu = createMenuBox("Send Gifts");
 
+
+        Image verticalLine1 = new Image(createLineDrawable(2, 1, Color.GRAY));
+        Image verticalLine2 = new Image(createLineDrawable(2, 1, Color.GRAY));
+
         rootTable.row().expand().fill();
         rootTable.add(leftMenu).expand().fill().pad(10);
+        rootTable.add(verticalLine1).width(2).fillY().padTop(10).padBottom(10);
         rootTable.add(middleMenu).expand().fill().pad(10);
+        rootTable.add(verticalLine2).width(2).fillY().padTop(10).padBottom(10);
         rootTable.add(rightMenu).expand().fill().pad(10);
 
-        rootTable.row().colspan(3).padTop(20);
+
+        Image horizontalLine = new Image(createLineDrawable(1, 2, Color.GRAY));
+
+        rootTable.row().colspan(5);
+        rootTable.add(horizontalLine).height(2).fillX().padTop(20).padBottom(10);
+
+
+        rootTable.row().colspan(5);
         rootTable.add(backButton).center().padBottom(20);
     }
 
@@ -73,12 +87,10 @@ public class NpcMenuView implements Screen {
         Table menu = new Table(skin);
         menu.top();
 
-
         Label label = new Label(title, skin);
         label.setFontScale(1.5f);
         menu.add(label).center().padTop(10).padBottom(20);
         menu.row();
-
 
         menu.add(new Label("گزینه ۱", skin)).pad(5);
         menu.row();
@@ -87,6 +99,15 @@ public class NpcMenuView implements Screen {
         menu.add(new Label("گزینه ۳", skin)).pad(5);
 
         return menu;
+    }
+
+    private TextureRegionDrawable createLineDrawable(int width, int height, Color color) {
+        Pixmap pixmap = new Pixmap(width, height, Pixmap.Format.RGBA8888);
+        pixmap.setColor(color);
+        pixmap.fill();
+        Texture texture = new Texture(pixmap);
+        pixmap.dispose();
+        return new TextureRegionDrawable(new TextureRegion(texture));
     }
 
     @Override
