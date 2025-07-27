@@ -29,49 +29,49 @@ public class User {
     private  String username;
     private  String password;
     private  String nickName;
-    private transient CollisionRect collisionRect;
-    private transient  Sprite sprite = new Sprite(PLAYER.getTexture());
+    private  CollisionRect collisionRect;
+    private transient    Sprite sprite = new Sprite(PLAYER.getTexture());
     private  String gender;
     private  String email;
-    private transient boolean isSad = false;
-    private transient int timePassedBeingSad = 0;
-    private transient int numberOfSecurityQuestion;
-    private transient String securityQuestion;
-    private transient String answerOfSecurityQuestion;
-    private transient Skill farmingSkill = new Skill(SkillType.Farming);
-    private transient Skill miningSkill = new Skill(SkillType.Mining);
-    private transient Skill foragingSkill = new Skill(SkillType.Foraging);
-    private transient Skill fishingSkill = new Skill(SkillType.Fishing);
-    private transient ArrayList<CookingItem> refrigerator = new ArrayList<>();
-    private transient ArrayList<ArtisanMachine> artisanMachines = new ArrayList<>();
+    private  boolean isSad = false;
+    private  int timePassedBeingSad = 0;
+    private  int numberOfSecurityQuestion;
+    private  String securityQuestion;
+    private  String answerOfSecurityQuestion;
+    private  Skill farmingSkill = new Skill(SkillType.Farming);
+    private  Skill miningSkill = new Skill(SkillType.Mining);
+    private  Skill foragingSkill = new Skill(SkillType.Foraging);
+    private  Skill fishingSkill = new Skill(SkillType.Fishing);
+    private  ArrayList<CookingItem> refrigerator = new ArrayList<>();
+    private  ArrayList<ArtisanMachine> artisanMachines = new ArrayList<>();
 
 
-    private transient BackPack backPack = new BackPack();
-    private transient User wife = null;
-    private transient HashMap<String, NpcFriendship> friendsNpc = new HashMap<>();
+    private  BackPack backPack = new BackPack();
+    private  User wife = null;
+    private  HashMap<String, NpcFriendship> friendsNpc = new HashMap<>();
     private  int gold = 10000;
-    private transient HashMap<User, PlayerFriendship> friendsPlayer = new HashMap<>();
-    private transient int dailyMoney = 0;
-    private transient int wood;
-    private transient double energy = 200;
-    private transient boolean stayLoggedIn = false;
-    private transient int mostAchievedMoney = 0;
-    private transient int matchPlayed = 0;
-    private transient Location location = new Location(0, 0);//todo ino bayad bokonm location aval farmesh
-    private transient boolean fainted = false;
-    private transient Location playerTommorowLocation;
-    private transient GameModel playedGameModel;
-    private transient Farm farm;
-    private transient MainLocation mainLocation = MainLocation.House;
-    private transient HashMap<Integer, Trade> trades = new HashMap<>();
-    private transient CookingItem cookingItem;
-    private transient int stone;
-    private transient Map<Integer, Gift> receivedGifts = new HashMap<>();
-    private transient Map<User, List<Gift>> sentGifts = new HashMap<>();
-    private transient boolean hasGiftToday = false;
-    private transient boolean hasMessageToday = false;
-    private transient Map<Integer, Quest> quest = new HashMap<>();
-    private transient GreenHouse greenHouse;
+    private  HashMap<User, PlayerFriendship> friendsPlayer = new HashMap<>();
+    private  int dailyMoney = 0;
+    private  int wood;
+    private  double energy = 200;
+    private  boolean stayLoggedIn = false;
+    private  int mostAchievedMoney = 0;
+    private  int matchPlayed = 0;
+    private  Location location = new Location(0, 0);//todo ino bayad bokonm location aval farmesh
+    private  boolean fainted = false;
+    private  Location playerTommorowLocation;
+    private  GameModel playedGameModel;
+    private  Farm farm;
+    private  MainLocation mainLocation = MainLocation.House;
+    private  HashMap<Integer, Trade> trades = new HashMap<>();
+    private  CookingItem cookingItem;
+    private  int stone;
+    private  Map<Integer, Gift> receivedGifts = new HashMap<>();
+    private  Map<User, List<Gift>> sentGifts = new HashMap<>();
+    private  boolean hasGiftToday = false;
+    private  boolean hasMessageToday = false;
+    private  Map<Integer, Quest> quest = new HashMap<>();
+    private  GreenHouse greenHouse;
 
 
 

@@ -8,6 +8,8 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import static com.StardewValley.model.App.readfile;
+
 /**
  * {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms.
  */
@@ -20,6 +22,7 @@ public class GameApp extends Game {
         batch = new SpriteBatch();
         App.gameApp = this;
         Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
+        readfile();
         setScreen(new MainMenuScreen());
     }
 

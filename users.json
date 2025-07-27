@@ -1,18 +1,98 @@
 [
   {
-    "username": "arhsia",
-    "password": "55de1e4b50da90d84249ab53f61a99a6959d4c6fd8a6c402670b4115c137beae",
-    "nickName": "asd",
+    "username": "asd",
+    "password": "b573929ab5a65cb72798b2a4063ab0f1126b69fb05dd8244e24cb7944f44a99e",
+    "nickName": "asdasd",
     "gender": "male",
-    "email": "asdas@sdf.fgh",
-    "gold": 10000
-  },
-  {
-    "username": "asdasd",
-    "password": "4a9c20f80c85c5224b53d898059743d26c161e98739024cce643bf17063f7513",
-    "nickName": "asd",
-    "gender": "male",
-    "email": "asd@gmail.com",
-    "gold": 10000
+    "email": "sadas@sdf.rg",
+    "isSad": false,
+    "timePassedBeingSad": 0,
+    "numberOfSecurityQuestion": 0,
+    "securityQuestion": "What was the name of your first-grade teacher?",
+    "answerOfSecurityQuestion": "What was the name of your first-grade teacher?",
+    "farmingSkill": {
+      "type": "Farming",
+      "level": 0,
+      "points": 0
+    },
+    "miningSkill": {
+      "type": "Mining",
+      "level": 0,
+      "points": 0
+    },
+    "foragingSkill": {
+      "type": "Foraging",
+      "level": 0,
+      "points": 0
+    },
+    "fishingSkill": {
+      "type": "Fishing",
+      "level": 0,
+      "points": 0
+    },
+    "refrigerator": [],
+    "artisanMachines": [],
+    "backPack": {
+      "currentTool": {
+        "names": "Hoe",
+        "level": 0
+      },
+      "availableTools": {
+        "WateringCan": {
+          "waterContains": 0,
+          "level": 0
+        },
+        "Scythe": {
+          "level": 0
+        },
+        "Pickaxe": {
+          "usedSuccessfully": false,
+          "level": 0
+        },
+        "Hoe": {
+          "names": "Hoe",
+          "level": 0
+        },
+        "Axe": {
+          "usedSuccessfully": false,
+          "level": 0
+        }
+      },
+      "trashcan": {
+        "level": 0
+      },
+      "inventory": {},
+      "level": 1,
+      "learnedCraftingRecipes": [],
+      "learnedCookingRecipes": [],
+      "craftingRecipes": [],
+      "cookingRecipes": [
+        "FRIED_EGG",
+        "BAKED_FISH",
+        "SALAD"
+      ]
+    },
+    "friendsNpc": {},
+    "gold": 10000,
+    "friendsPlayer": {},
+    "dailyMoney": 0,
+    "wood": 0,
+    "energy": 200.0,
+    "stayLoggedIn": false,
+    "mostAchievedMoney": 0,
+    "matchPlayed": 0,
+    "location": {
+      "y": 0,
+      "x": 0
+    },
+    "fainted": false,
+    "mainLocation": "House",
+    "trades": {},
+    "stone": 0,
+    "receivedGifts": {},
+    "sentGifts": {},
+    "hasGiftToday": false,
+    "hasMessageToday": false,
+    "quest": {}
   }
 ]

@@ -35,6 +35,7 @@ public class LoginMenuController extends RegisterController {
     }
 
     public Result forgetPassword(String username) {
+
         if (!AllUsers.containsKey(username)) {
             return new Result(false, "username doesnt exists");
         }
