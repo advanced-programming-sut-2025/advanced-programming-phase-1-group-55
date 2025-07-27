@@ -23,6 +23,9 @@ public class NpcMenuController {
                 view.getBackButton().setChecked(false);
                 App.gameApp.setScreen(App.currentGameGraphicView);
             } else if (view.getGiftButton().isChecked()) {
+                if (view.getSelectedItem()==null){
+                    return;
+                }
                 view.getGiftButton().setChecked(false);
                 App.gameApp.setScreen(new GiftItemMenuView(new GiftItemMenuController(player,map,view.getSelectedItem(),npc),player,map,view.getSelectedItem(),view));
             }
