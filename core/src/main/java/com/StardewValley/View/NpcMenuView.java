@@ -4,6 +4,7 @@ import com.StardewValley.Controller.NpcMenuController;
 import com.StardewValley.enums.AssetManager;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Friendship.NpcFriendship;
+import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.Map.GameMap;
 import com.StardewValley.model.NPC.Npc;
 
@@ -15,11 +16,15 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+
+import java.util.Map;
 
 public class NpcMenuView implements Screen {
     private NpcMenuController controller;
@@ -29,6 +34,8 @@ public class NpcMenuView implements Screen {
     private Stage stage;
     private final Skin skin;
     private TextButton backButton;
+    private Item selectedItem;
+    private Button giftButton;
 
     public NpcMenuView(NpcMenuController controller, Npc npc, User player, GameMap map) {
         this.controller = controller;
@@ -39,6 +46,7 @@ public class NpcMenuView implements Screen {
         this.skin = App.getSkin();
         controller.setView(this);
         backButton = new TextButton("Back", skin);
+        giftButton = new TextButton("Select Item", skin);
     }
 
     @Override
@@ -95,19 +103,61 @@ public class NpcMenuView implements Screen {
         NpcFriendship friendship=player.getFriendsNpc().get(npc.getType().getDisplayName());
         if (title.equals("Friendship")) {
             if (friendship != null) {
-                menu.add(new Label("Player: " + friendship.getUser().getUsername(), skin)).pad(5).left();
+                menu.add(new Label("Player: " + friendship.getUser().getUsername(), skin)).pad(25).left();
                 menu.row();
-                menu.add(new Label("NPC: " + friendship.getNpc().getType().getDisplayName(), skin)).pad(5).left();
+                menu.add(new Label("NPC: " + friendship.getNpc().getType().getDisplayName(), skin)).pad(25).left();
                 menu.row();
-                menu.add(new Label("Days to be Friend: " + friendship.getDayToBeFriend(), skin)).pad(5).left();
+                menu.add(new Label("Days to be Friend: " + friendship.getDayToBeFriend(), skin)).pad(25).left();
                 menu.row();
-                menu.add(new Label("Friendship Level: " + friendship.getLevel(), skin)).pad(5).left();
+                menu.add(new Label("Friendship Level: " + friendship.getLevel(), skin)).pad(25).left();
                 menu.row();
-                menu.add(new Label("XP: " + friendship.getXp(), skin)).pad(5).left();
+                menu.add(new Label("XP: " + friendship.getXp(), skin)).pad(25).left();
             } else {
-                menu.add(new Label("There is no friendship.", skin)).pad(5);
+                menu.add(new Label("There is no friendship.", skin)).pad(25);
             }
-        } else {
+        } else if (title.equals("Send Gifts")) {
+            Table itemTable = new Table(skin);
+            int columnCount = 3;
+            int i = 0;
+
+            Map<String, Item> inventory = player.getBackPack().getInventory();
+            final TextButton[] selectedButton = {null};
+
+            for (Map.Entry<String, Item> entry : inventory.entrySet()) {
+                Item item = entry.getValue();
+                TextButton itemButton = new TextButton(
+                    item.getItemType().getDisplayName() +
+                        "\nPrice: " + item.getPrice() +
+                        "\nQuantity: " + item.getNumber(), skin);
+                itemButton.getLabel().setFontScale(0.65f);
+                itemButton.pad(10);
+
+                itemButton.addListener(new ClickListener() {
+                    @Override
+                    public void clicked(InputEvent event, float x, float y) {
+                        if (selectedButton[0] != null) {
+                            selectedButton[0].setColor(Color.WHITE);
+                        }
+                        selectedButton[0] = itemButton;
+                        selectedItem=item;
+                        itemButton.setColor(Color.LIME);
+                    }
+                });
+
+                itemTable.add(itemButton).pad(5).width(150).height(100);
+                itemTable.row();
+
+                i++;
+                if (i % columnCount == 0) itemTable.row();
+            }
+
+            ScrollPane scrollPane = new ScrollPane(itemTable, skin);
+            scrollPane.setScrollingDisabled(true, false);
+            scrollPane.setFadeScrollBars(false);
+            menu.add(scrollPane).expand().fill().pad(10);
+            menu.row();
+            menu.add(giftButton).pad(5).width(150).height(100);
+        }else {
             menu.add(new Label("گزینه ۱", skin)).pad(5);
             menu.row();
             menu.add(new Label("گزینه ۲", skin)).pad(5);
