@@ -194,6 +194,7 @@ public class MainGameGraphicView implements Screen, InputProcessor {
             camera.unproject(click);
             controller.getNpcController().checkIfClickedOnNpc(click.x, click.y);
             controller.getStoreController().checkIfClickedOnStores(click.x, click.y);
+            controller.getStoreController().checkIfClickedOnBins(click.x, click.y);
         }
         return true;
     }
