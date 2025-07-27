@@ -83,7 +83,7 @@ public class User {
         this.gender = gender;
         this.email = email;
         this.securityQuestion = securityQuestion;
-        this.answerOfSecurityQuestion = securityQuestion;
+        this.answerOfSecurityQuestion = answerOfSecurityQuestion;
         this.gold = 10000;
         sprite = new Sprite(new Texture(Gdx.files.internal("sprites/Mariner.png")));
         this.refrigerator = new ArrayList<>();

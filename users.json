@@ -1,7 +1,7 @@
 [
   {
     "username": "asd",
-    "password": "b573929ab5a65cb72798b2a4063ab0f1126b69fb05dd8244e24cb7944f44a99e",
+    "password": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "nickName": "asdasd",
     "gender": "male",
     "email": "sadas@sdf.rg",
@@ -34,27 +34,22 @@
     "artisanMachines": [],
     "backPack": {
       "currentTool": {
-        "names": "Hoe",
         "level": 0
       },
       "availableTools": {
         "WateringCan": {
-          "waterContains": 0,
           "level": 0
         },
         "Scythe": {
           "level": 0
         },
         "Pickaxe": {
-          "usedSuccessfully": false,
           "level": 0
         },
         "Hoe": {
-          "names": "Hoe",
           "level": 0
         },
         "Axe": {
-          "usedSuccessfully": false,
           "level": 0
         }
       },

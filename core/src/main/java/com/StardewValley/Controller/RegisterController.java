@@ -181,22 +181,22 @@ public class RegisterController {
     }
 
 
-    protected boolean isValidUsername(String username) {
+    public  boolean isValidUsername(String username) {
         Pattern pattern = Pattern.compile("[a-zA-Z0-9]+");
         return pattern.matcher(username).matches();
     }
 
-    protected boolean isValidPassword(String password) {
+    public  boolean isValidPassword(String password) {
         Pattern pattern = Pattern.compile("[a-zA-Z0-9?><,\"';:/|\\]\\[}{+=)(*&@^%$#!]+");
         return pattern.matcher(password).matches();
     }
 
-    protected boolean isValidEmail(String email) {
+    public  boolean isValidEmail(String email) {
         Pattern pattern = Pattern.compile("^(?!.*\\.\\.)([a-zA-Z0-9][a-zA-Z0-9._-]{0,62}[a-zA-Z0-9])@([a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9])\\.([a-zA-Z]{2,})$");
         return pattern.matcher(email).matches();
     }
 
-    protected boolean isStrongPassword(String password) {
+    public  boolean isStrongPassword(String password) {
         String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[?><,\"';:/|\\\\\\[\\]{}+=)(*&@^%$#!])[A-Za-z\\d?><,\"';:/|\\\\\\[\\]{}+=)(*&@^%$#!]{8,}$";
         return Pattern.matches(regex, password);
     }

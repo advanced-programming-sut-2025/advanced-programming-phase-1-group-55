@@ -61,9 +61,10 @@ public class LoginScreen extends ScreenAdapter {
 
         forgetButton.addListener(event -> {
             if (event.toString().equals("touchDown")) {
-                String username = usernameField.getText().trim();
-                String result = controller.forgetPassword(username).Message();
-                resultLabel.setText(result);
+//                String username = usernameField.getText().trim();
+//                String result = controller.forgetPassword(username).Message();
+//                resultLabel.setText(result);
+                App.getGameApp().setScreen(new ForgetPasswordScreen());
             }
             return true;
         });
