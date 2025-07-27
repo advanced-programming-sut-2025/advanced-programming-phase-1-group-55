@@ -27,6 +27,7 @@ public class LoginScreen extends ScreenAdapter {
         table.setFillParent(true);
         stage.addActor(table);
 
+
         Label titleLabel = new Label("Login Menu", skin);
         TextField usernameField = new TextField("", skin);
         usernameField.setMessageText("Username");
@@ -41,6 +42,10 @@ public class LoginScreen extends ScreenAdapter {
         TextButton loginButton = new TextButton("Login", skin);
         TextButton forgetButton = new TextButton("Forget Password", skin);
         TextButton backButton = new TextButton("Back to MainMenu", skin);
+        backButton.setPosition(
+            stage.getWidth() - backButton.getWidth() - 20,
+            stage.getHeight() - backButton.getHeight() - 20
+        );
         Label resultLabel = new Label("", skin);
 
         loginButton.addListener(event -> {
@@ -76,7 +81,8 @@ public class LoginScreen extends ScreenAdapter {
         table.add(stayLoggedIn).colspan(2).padBottom(10).row();
         table.add(loginButton).padRight(10);
         table.add(forgetButton).padLeft(10).row();
-        table.add(backButton).center().row();
+//        table.add(backButton).center().row();
+        stage.addActor(backButton);
         table.add(resultLabel).colspan(2).padTop(20);
 
     }
