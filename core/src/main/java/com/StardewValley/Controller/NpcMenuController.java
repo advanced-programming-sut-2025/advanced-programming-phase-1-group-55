@@ -1,5 +1,6 @@
 package com.StardewValley.Controller;
 
+import com.StardewValley.View.GiftItemMenuView;
 import com.StardewValley.View.NpcMenuView;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Map.GameMap;
@@ -21,6 +22,12 @@ public class NpcMenuController {
             if (view.getBackButton().isChecked()){
                 view.getBackButton().setChecked(false);
                 App.gameApp.setScreen(App.currentGameGraphicView);
+            } else if (view.getGiftButton().isChecked()) {
+                if (view.getSelectedItem()==null){
+                    return;
+                }
+                view.getGiftButton().setChecked(false);
+                App.gameApp.setScreen(new GiftItemMenuView(new GiftItemMenuController(player,map,view.getSelectedItem(),npc),player,map,view.getSelectedItem(),view));
             }
         }
     }

@@ -50,6 +50,7 @@ public class NpcController {
             if( Gdx.input.isButtonPressed(Input.Buttons.LEFT)){
                 if (npc.getDialogBox().getStatus() == DialogStatus.Ready) {
                     npc.getDialogBox().setStatus(DialogStatus.InProgress);
+                    player.getFriendsNpc().get(npc.getType().getDisplayName()).increaseXp(30);
                     return;
                 }
             }
@@ -141,23 +142,6 @@ public class NpcController {
         }
         return new Result(true,friends.toString());
     }
-//    public Result meetNpc(String name){
-//        if(!npcIsValid(name)){
-//            return new Result(false,"npc doesn't exist");
-//        }
-//        Npc npc=findNpc(name);
-//        if(npc==null){
-//            return new Result(false,"you are not near the "+name+" to speak!");
-//        }
-//        String dialog=getDialogMessage(App.currentGameModel.currentUser.getFriendsNpc().get(name).getLevel()
-//                , weather.getCurrentWeather(),GameTime.getMainTime());
-//        NpcFriendship  friendship=App.currentGameModel.currentUser.getFriendsNpc().get(name);
-//        if(!friendship.isTodayMet()){
-//            friendship.increaseXp(20);
-//            friendship.setTodayMet(true);
-//        }
-//        return new Result(true,"i'm "+name+"; "+dialog);
-//    }
     public Result giftNpc(String name,String item){
         if(!npcIsValid(name)){
             return new Result(false,"npc doesn't exist");

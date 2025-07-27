@@ -32,9 +32,10 @@ public class MainGameController {
     private ToolController toolController;
     private NpcController npcController;
     private StoresStatusController storeController;
-    private User currentPlayer=new User();
+    private User currentPlayer;
     public void setView(MainGameGraphicView view) {
         this.view = view;
+        currentPlayer=view.getPlayer();
        //todo ino bade zadan menu haa tavasot arshia ok kn
         // currenPlayer=App.currentplayer
         playerController=new PlayerController(currentPlayer);

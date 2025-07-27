@@ -103,7 +103,6 @@ public enum NpcType {
     private final String DisplayName;
     private final Map<String, Item> favorites;
     private final Map<Integer,Quest> quests;
-    private ArrayList<Dialog> dialogs; //todo taghir be shey dialog va ezafe kardan ertebaat baa fasl
     private  String job;
     private Animation<TextureRegion> animation;
     private final NpcHouse house;
@@ -139,15 +138,6 @@ public enum NpcType {
 
     public Map<Integer,Quest> getRequest() {
         return quests;
-    }
-
-
-    public ArrayList<Dialog> getDialogs() {
-        return dialogs;
-    }
-
-    public void setDialogs(ArrayList<Dialog> dialogs) {
-        this.dialogs = dialogs;
     }
 
     public String getJob() {

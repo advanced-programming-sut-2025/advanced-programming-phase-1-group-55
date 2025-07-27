@@ -51,14 +51,17 @@ public class NpcFriendship extends FriendShip {
 
     @Override
     public String toString() {
-        return "NpcFriendship{" +
-                "user=" + user.getUsername() +
-                ", npc=" + npc.getType().getDisplayName() +
-                ", dayToBeFriend=" + dayToBeFriend +
-                ", level=" + (level) +
-                ", xp=" + xp +
-                '}';
+        StringBuilder sb = new StringBuilder();
+        sb.append("==== Friendship Info ====\n");
+        sb.append("👤 Player: ").append(user.getUsername()).append("\n");
+        sb.append("🤝 NPC: ").append(npc.getType().getDisplayName()).append("\n");
+        sb.append("📅 Days to Become Friend: ").append(dayToBeFriend).append("\n");
+        sb.append("⭐ Friendship Level: ").append(level).append("\n");
+        sb.append("📈 Friendship XP: ").append(xp).append("\n");
+        sb.append("=========================");
+        return sb.toString();
     }
+
     public void increaseDayOfBeingFriend(){
         dayToBeFriend++;
     }

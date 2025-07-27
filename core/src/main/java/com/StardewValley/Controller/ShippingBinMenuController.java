@@ -23,6 +23,9 @@ public class ShippingBinMenuController {
                App.gameApp.setScreen(App.currentGameGraphicView);
            } else if (view.getSellButton().isChecked()) {
                view.getSellButton().setChecked(false);
+               if (view.getSelectedItem()==null){
+                   return;
+               }
                App.gameApp.setScreen(new SellItemView(new SellItemController(player,map,view.getSelectedItem()),player,map,view.getSelectedItem(),view));
            }
        }

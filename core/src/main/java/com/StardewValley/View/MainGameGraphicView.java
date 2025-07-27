@@ -2,9 +2,13 @@ package com.StardewValley.View;
 
 import com.StardewValley.Controller.MainGameController;
 import com.StardewValley.model.App;
+import com.StardewValley.model.Friendship.NpcFriendship;
 import com.StardewValley.model.GameTime;
 import com.StardewValley.model.MainTime;
 import com.StardewValley.model.Map.GameMap;
+import com.StardewValley.model.NPC.Npc;
+import com.StardewValley.model.NPC.Quest;
+import com.StardewValley.model.User;
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -30,6 +34,7 @@ public class MainGameGraphicView implements Screen, InputProcessor {
     private ProgressBar energyBar;
     private Table tableTop;
     private Stage stage;
+    private User player=new User();
     //todo field paayin baayad beshe App.currentGame.map
     private GameMap map=new GameMap();
 
@@ -38,6 +43,21 @@ public class MainGameGraphicView implements Screen, InputProcessor {
         this.controller = controller;
         controller.setView(this);
         App.currentGameGraphicView=this;
+        map.BuildMap();
+        controller.getPlayerController().setGameMap(map);
+        //todo remove this after arshia completed pregame menu
+        for (Npc npc:map.getVillage().getNpss().values()){
+            NpcFriendship friendship=new NpcFriendship(player,npc);
+            player.getFriendsNpc().put(npc.getType().getDisplayName(),friendship);
+            for (Quest quest:npc.getType().getQuests().values()){
+                quest.setNpc(npc);
+                if (quest.getLevel()==1){
+                    player.getQuest().put(quest.getId(),quest);
+                }
+            }
+        }
+        //todo remove  baalaayi !!!!!!!!!!!!!!!!
+
     }
 
     private void setupCamera() {
@@ -81,8 +101,7 @@ public class MainGameGraphicView implements Screen, InputProcessor {
 
 
         stage.addActor(tableTop);
-        map.BuildMap();
-        controller.getPlayerController().setGameMap(map);
+
         InputMultiplexer multiplexer = new InputMultiplexer();
         multiplexer.addProcessor(this);
         multiplexer.addProcessor(stage);
@@ -224,5 +243,61 @@ public class MainGameGraphicView implements Screen, InputProcessor {
     @Override
     public boolean scrolled(float v, float v1) {
         return false;
+    }
+
+    public OrthographicCamera getCamera() {
+        return camera;
+    }
+
+    public void setCamera(OrthographicCamera camera) {
+        this.camera = camera;
+    }
+
+    public Texture getBgTexture() {
+        return bgTexture;
+    }
+
+    public void setBgTexture(Texture bgTexture) {
+        this.bgTexture = bgTexture;
+    }
+
+    public Texture getFenceTexture() {
+        return fenceTexture;
+    }
+
+    public void setFenceTexture(Texture fenceTexture) {
+        this.fenceTexture = fenceTexture;
+    }
+
+    public ProgressBar getEnergyBar() {
+        return energyBar;
+    }
+
+    public void setEnergyBar(ProgressBar energyBar) {
+        this.energyBar = energyBar;
+    }
+
+    public Table getTableTop() {
+        return tableTop;
+    }
+
+    public void setTableTop(Table tableTop) {
+        this.tableTop = tableTop;
+    }
+
+    public Stage getStage() {
+        return stage;
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
+    public User getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(User player) {
+        this.player = player;
     }
 }
