@@ -25,7 +25,7 @@ public class RegisterController {
 
     Scanner scanner = new Scanner(System.in);
 
-    public Result Register(String username, String password, String passwordConfirmation, String nickname, String email, String gender,String question ,String answer) {
+    public Result Register(String username, String password, String passwordConfirmation, String nickname, String email, String gender, String question, String answer) {
         if (!isUniqueUsername(username)) {
             System.out.println("Username is already in use");
 
@@ -62,18 +62,12 @@ public class RegisterController {
         }
 
 
-
-
-
-
-
-
         User user = new User(username, convertToSHA(password), nickname, email, gender, question, answer);
         mainUser = user;
         saveUserToJson(user);
         readfile();
         currentMenu = Menu.MainMenu;
-        return new Result(true, "Registered Successfully :)" + "\nusername:" + username + "\npassword: " + password + "\nnickname: " + nickname + "\nemail: " + email + "\ngender: " + gender );
+        return new Result(true, "Registered Successfully");
 
     }
 
