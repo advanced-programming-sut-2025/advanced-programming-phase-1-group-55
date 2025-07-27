@@ -3,6 +3,7 @@ package com.StardewValley.model.Map;
 import com.StardewValley.enums.AnsiColor;
 import com.StardewValley.model.Item.CollisionRect;
 import com.StardewValley.model.NPC.Npc;
+import com.StardewValley.model.Store.ShippingBin;
 import com.StardewValley.model.Store.Store;
 
 import java.util.ArrayList;
@@ -71,6 +72,11 @@ public class GameMap {
                 return false;
             }
         }
+        for (ShippingBin bin:village.getShippingBins()){
+            if (bin.getCollisionRect().collidesWith(collisionRect)) {
+                return false;
+            }
+        }
         return true;
     }
     public void BuildMap(){
@@ -82,6 +88,7 @@ public class GameMap {
         mapBuilder1.drawFences(this);
         mapBuilder1.drawStores(this);
         mapBuilder1.drawNpcHouses(this);
+        mapBuilder1.drawBins(this);
     }
 
     public Tile[][] getTiles() {

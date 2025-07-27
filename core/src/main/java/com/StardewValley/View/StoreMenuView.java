@@ -175,7 +175,7 @@ public class StoreMenuView implements Screen {
         stage.dispose();
     }
 
-    // Getters & Setters
+
     public StoreMenuController getController() { return controller; }
     public void setController(StoreMenuController controller) { this.controller = controller; }
     public Stage getStage() { return stage; }

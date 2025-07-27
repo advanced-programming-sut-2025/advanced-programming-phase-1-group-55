@@ -165,20 +165,14 @@ public class BackPack {
     }
 
 
-    public Result addItemToInventory(Item item, int quantity) {
+    public void addItemToInventory(Item item, int quantity) {
         Item itemx = getItemInInventory(item.getItemType());
         if (itemx != null) {
             itemx.addNumber(quantity);
         } else {
-            if (inventoryHasCapacity()) {
-                item.setNumber(quantity);
-                inventory.put(item.getItemType().getDisplayName(),item);
-            }else {
-                return new Result(false,"you don,t have capacity to add more item");
-            }
+            item.setNumber(quantity);
+            inventory.put(item.getItemType().getDisplayName(),item);
         }
-        App.currentGameModel.currentUser.increaseGold(-quantity*item.getPrice());
-        return new Result(true,"you purchased item successfully");
     }
 
     public int getInventoryCapacity() {

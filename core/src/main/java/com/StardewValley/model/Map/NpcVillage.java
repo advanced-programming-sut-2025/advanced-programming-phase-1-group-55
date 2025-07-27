@@ -1,9 +1,11 @@
 package com.StardewValley.model.Map;
 
+import com.StardewValley.model.Item.CollisionRect;
 import com.StardewValley.model.NPC.Npc;
 import com.StardewValley.model.NPC.NpcType;
 import com.StardewValley.model.Store.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,7 +13,7 @@ public class NpcVillage {
     private final Map<String, Store> stores=new HashMap<>(){{
         put("BlackSmith",new BlackSmithStore());
         put("MarnieRanch",new MarineRanchStore());
-        put("OjaMart",new JojaMartStore());
+        put("JOjaMart",new JojaMartStore());
         put("FishShop",new FishingStore());
         put("starDropSaloon",new StarDropSaloon());
         put("CarpenterShop",new CarpenterShop());
@@ -25,7 +27,15 @@ public class NpcVillage {
         put("Robin",new Npc(NpcType.ROBIN));
         put("Leah",new Npc(NpcType.LEAH));
     }};
+    private final ArrayList<ShippingBin> shippingBins=new ArrayList<>();
 
+    public Map<String, Npc> getNps() {
+        return nps;
+    }
+
+    public ArrayList<ShippingBin> getShippingBins() {
+        return shippingBins;
+    }
 
     public Map<String, Store> getStores() {
         return stores;

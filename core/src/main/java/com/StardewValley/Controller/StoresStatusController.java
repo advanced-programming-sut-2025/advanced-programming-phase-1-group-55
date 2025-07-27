@@ -1,10 +1,12 @@
 package com.StardewValley.Controller;
 
 import com.StardewValley.View.NpcMenuView;
+import com.StardewValley.View.ShippingBinMenuView;
 import com.StardewValley.View.StoreMenuView;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Map.GameMap;
 import com.StardewValley.model.NPC.Npc;
+import com.StardewValley.model.Store.ShippingBin;
 import com.StardewValley.model.Store.Store;
 import com.StardewValley.model.User;
 
@@ -19,6 +21,13 @@ public class StoresStatusController {
         for (Store store:map.getVillage().getStores().values()){
             if (store.getCollisionRect().isInside(x, y)){
                 App.gameApp.setScreen(new StoreMenuView(new StoreMenuController(store,player,map),player,map,"All",store));
+            }
+        }
+    }
+    public void checkIfClickedOnBins(float x, float y){
+        for(ShippingBin bin:map.getVillage().getShippingBins()){
+            if (bin.getCollisionRect().isInside(x, y)){
+                App.gameApp.setScreen(new ShippingBinMenuView(new ShippingBinMenuController(player,map),player,map));
             }
         }
     }
