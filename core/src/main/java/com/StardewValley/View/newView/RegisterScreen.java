@@ -19,6 +19,8 @@ public class RegisterScreen extends ScreenAdapter {
     private Skin skin;
     private TextField usernameField, passwordField, confirmPasswordField, nicknameField, emailField;
     private SelectBox<String> genderBox;
+    private SelectBox<String> securityQuestionBox;
+    private TextField securityAnswerField;
     private Label messageLabel;
 
     private RegisterController controller = new RegisterController();
@@ -41,6 +43,14 @@ public class RegisterScreen extends ScreenAdapter {
         confirmPasswordField = new TextField("", skin);
         nicknameField = new TextField("", skin);
         emailField = new TextField("", skin);
+        securityQuestionBox = new SelectBox<>(skin);
+        securityQuestionBox.setItems(
+            "What was the name of your first-grade teacher?",
+            "What was the first phone number you ever memorized?",
+            "What is the name of your childhood best friend?"
+        );
+
+        securityAnswerField = new TextField("", skin);
         genderBox = new SelectBox<>(skin);
         genderBox.setItems("male", "female");
 
@@ -63,7 +73,9 @@ public class RegisterScreen extends ScreenAdapter {
                 String email = emailField.getText().trim();
                 String gender = genderBox.getSelected();
 
-                Result result = controller.Register(username, password, confirm, nickname, email, gender);
+                String selectedQuestion = securityQuestionBox.getSelected();
+                String answer = securityAnswerField.getText().trim();
+                Result result = controller.Register(username, password, confirm, nickname, email, gender,selectedQuestion,answer);
                 messageLabel.setText(result.Message());
             }
         });
@@ -87,6 +99,10 @@ public class RegisterScreen extends ScreenAdapter {
         table.add(emailField).width(300).row();
         table.add("Gender:").left();
         table.add(genderBox).width(300).row();
+        table.add("Security Question:").left();
+        table.add(securityQuestionBox).width(300).row();
+        table.add("Your Answer:").left();
+        table.add(securityAnswerField).width(300).row();
 
         table.add(registerButton).colspan(2).center().row();
         table.add(backButton).colspan(2).center().row();
