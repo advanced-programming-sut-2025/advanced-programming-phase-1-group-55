@@ -42,6 +42,10 @@ public class SellItemController {
         }
     }
     public void handleSellingItem(int quantity,int totalPrice){
+        if (item==null){
+            view.setErrorMessage("You need to select an item first!");
+            return;
+        }
         if (quantity>item.getNumber()){
             view.setErrorMessage("You dont have enough items to sell!\n"+"you just have "+item.getNumber()+" items to sell.");
         }else {

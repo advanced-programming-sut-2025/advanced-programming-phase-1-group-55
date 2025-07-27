@@ -36,8 +36,16 @@ public class GiftItemMenuController {
        }
     }
     public void handleGift(int quantity){
+        if (item==null){
+            view.setErrorMessage("You need to select a gift item first!");
+            return;
+        }
         if (quantity>item.getNumber()){
-            view.setErrorMessage("You dont have enough items to sell!\n"+"you just have "+item.getNumber()+" items to sell.");
+            view.setErrorMessage("You dont have enough items to gift!\n"+"you just have "+item.getNumber()+" items to gift.");
+        }else {
+            player.getBackPack().removeAmountFromInventory(item.getItemType(),quantity);
+            view.setSuccessMessage("you gifted "+quantity+" "+item.getItemType().getDisplayName()+" successfully!");
+            player.getFriendsNpc().get(npc.getType().getDisplayName()).increaseXp(npc.getType().isFavorite(item.getItemType())?200:50);
         }
     }
     public GiftItemMenuView getView() {
