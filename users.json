@@ -1,46 +1,10 @@
 [
   {
-    "username": "arshiaY5",
-    "password": "1efb4ef0da0b46701287a19814214eee4518e892f954d4c2d71fd5e89b411b18",
-    "nickName": "arshix",
-    "sprite": {
-      "vertices": [
-        0.0,
-        0.0,
-        -1.7014117E38,
-        0.0,
-        1.0,
-        0.0,
-        0.0,
-        -1.7014117E38,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        -1.7014117E38,
-        1.0,
-        0.0,
-        0.0,
-        0.0,
-        -1.7014117E38,
-        1.0,
-        1.0
-      ],
-      "color": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0,
-        "a": 1.0
-      },
-      "packedColor": -1.7014117E38,
-      "x": 0.0,
-      "y": 0.0,
-      "width": 16.0,
-      "height": 32.0,
-      "originX": 8.0,
-      "originY": 16.0,
-      "rotation": 0.0,
-      "scaleX": 1.0,
-      "scaleY": 1.0,
-      "dirty": true,
-      "texture": {
+    "username": "arhsia",
+    "password": "55de1e4b50da90d84249ab53f61a99a6959d4c6fd8a6c402670b4115c137beae",
+    "nickName": "asd",
+    "gender": "male",
+    "email": "asdas@sdf.fgh",
+    "gold": 10000
+  }
+]
