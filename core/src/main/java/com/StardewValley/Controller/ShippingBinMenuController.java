@@ -1,6 +1,8 @@
 package com.StardewValley.Controller;
 
+import com.StardewValley.View.SellItemView;
 import com.StardewValley.View.ShippingBinMenuView;
+import com.StardewValley.model.App;
 import com.StardewValley.model.Map.GameMap;
 import com.StardewValley.model.User;
 
@@ -15,7 +17,15 @@ public class ShippingBinMenuController {
     }
 
     public void handleButton() {
-
+       if(view!=null){
+           if (view.getBackButton().isChecked()){
+               view.getBackButton().setChecked(false);
+               App.gameApp.setScreen(App.currentGameGraphicView);
+           } else if (view.getSellButton().isChecked()) {
+               view.getSellButton().setChecked(false);
+               App.gameApp.setScreen(new SellItemView(new SellItemController(player,map,view.getSelectedItem()),player,map,view.getSelectedItem(),view));
+           }
+       }
     }
     public void setView(ShippingBinMenuView view) {
         this.view = view;

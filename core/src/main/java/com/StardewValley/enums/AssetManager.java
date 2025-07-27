@@ -25,6 +25,7 @@ public enum AssetManager {
     IRON_FENCE("Fence/Iron_Fence.png"),
 
     ShippingBin("Buildings/Shipping Bin.png"),
+    TrashCan("sprites/trashcan.png"),
 
 
     PLAYER("sprites/Mariner.png"),

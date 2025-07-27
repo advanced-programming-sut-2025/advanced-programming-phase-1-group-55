@@ -66,7 +66,7 @@ public class ShippingBinMenuView implements Screen {
         Label title = new Label("Shipping Bin Menu", skin);
         title.setFontScale(1.4f);
 
-        Texture heartTexture = AssetManager.heart.getTexture();
+        Texture heartTexture = AssetManager.TrashCan.getTexture();
         Image heartImage = new Image(heartTexture);
         heartImage.setSize(85, 85);
 
@@ -98,8 +98,8 @@ public class ShippingBinMenuView implements Screen {
             String itemName = item.getItemType().getDisplayName();
             int price = item.getPrice();
 
-            TextButton itemButton = new TextButton(itemName + "\nPrice: " + price, skin);
-            itemButton.getLabel().setFontScale(0.8f);
+            TextButton itemButton = new TextButton(itemName + "\nPrice: " + price+"\nQuantity: "+item.getNumber(), skin);
+            itemButton.getLabel().setFontScale(0.65f);
             itemButton.pad(10);
 
 
@@ -169,7 +169,7 @@ public class ShippingBinMenuView implements Screen {
     public void setSkin(Skin skin) { this.skin = skin; }
     public Button getBackButton() { return backButton; }
     public void setBackButton(Button backButton) { this.backButton = backButton; }
-    public Button getPurchaseButton() { return sellButton; }
+    public Button getSellButton() { return sellButton; }
     public void setPurchaseButton(Button sellButton) { this.sellButton = sellButton; }
     public Map<String, Item> getItems() { return items; }
     public void setItems(Map<String, Item> items) { this.items = items; }
