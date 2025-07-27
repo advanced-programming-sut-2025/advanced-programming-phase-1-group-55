@@ -22,6 +22,7 @@ public class RegisterScreen extends ScreenAdapter {
     private SelectBox<String> securityQuestionBox;
     private TextField securityAnswerField;
     private Label messageLabel;
+    private TextButton randomPasswordButton;
 
     private RegisterController controller = new RegisterController();
 
@@ -49,6 +50,16 @@ public class RegisterScreen extends ScreenAdapter {
             "What was the first phone number you ever memorized?",
             "What is the name of your childhood best friend?"
         );
+        randomPasswordButton = new TextButton("Random password", skin);
+
+        randomPasswordButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                String randomPassword = controller.RandomPasswordGenerator();
+                passwordField.setText(randomPassword);
+                confirmPasswordField.setText(randomPassword);
+            }
+        });
 
         securityAnswerField = new TextField("", skin);
         genderBox = new SelectBox<>(skin);
@@ -75,7 +86,7 @@ public class RegisterScreen extends ScreenAdapter {
 
                 String selectedQuestion = securityQuestionBox.getSelected();
                 String answer = securityAnswerField.getText().trim();
-                Result result = controller.Register(username, password, confirm, nickname, email, gender,selectedQuestion,answer);
+                Result result = controller.Register(username, password, confirm, nickname, email, gender, selectedQuestion, answer);
                 messageLabel.setText(result.Message());
             }
         });
@@ -89,10 +100,17 @@ public class RegisterScreen extends ScreenAdapter {
 
         table.add("Username:").left();
         table.add(usernameField).width(300).row();
+
+
         table.add("Password:").left();
         table.add(passwordField).width(300).row();
+
         table.add("Confirm Password:").left();
         table.add(confirmPasswordField).width(300).row();
+        table.add("random password").left();
+        table.add(randomPasswordButton).width(300).row();
+
+
         table.add("Nickname:").left();
         table.add(nicknameField).width(300).row();
         table.add("Email:").left();

@@ -47,11 +47,6 @@ public class RegisterController {
         if (!isValidEmail(email)) {
             return new Result(false, "Email is not valid");
 
-        }
-        if (password.equals("r") && passwordConfirmation.equals("r")) {
-
-            System.out.println("random password : " + (password = RandomPasswordGenerator()));
-
         } else if (!password.equals(passwordConfirmation)) {
             return new Result(false, "Passwords do not match");
         } else if (!isValidPassword(password)) {
@@ -152,7 +147,7 @@ public class RegisterController {
         return true;
     }
 
-    protected String RandomPasswordGenerator() {
+    public String RandomPasswordGenerator() {
         final String UPPER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         final String LOWER = "abcdefghijklmnopqrstuvwxyz";
         final String DIGITS = "0123456789";
