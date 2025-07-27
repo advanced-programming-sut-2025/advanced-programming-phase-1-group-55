@@ -3,8 +3,10 @@ package com.StardewValley.View;
 import com.StardewValley.Controller.NpcMenuController;
 import com.StardewValley.enums.AssetManager;
 import com.StardewValley.model.App;
+import com.StardewValley.model.Friendship.NpcFriendship;
 import com.StardewValley.model.Map.GameMap;
 import com.StardewValley.model.NPC.Npc;
+
 import com.StardewValley.model.User;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -74,7 +76,6 @@ public class NpcMenuView implements Screen {
 
 
         Image horizontalLine = new Image(createLineDrawable(1, 2, Color.GRAY));
-
         rootTable.row().colspan(5);
         rootTable.add(horizontalLine).height(2).fillX().padTop(20).padBottom(10);
 
@@ -91,12 +92,28 @@ public class NpcMenuView implements Screen {
         label.setFontScale(1.5f);
         menu.add(label).center().padTop(10).padBottom(20);
         menu.row();
-
-        menu.add(new Label("گزینه ۱", skin)).pad(5);
-        menu.row();
-        menu.add(new Label("گزینه ۲", skin)).pad(5);
-        menu.row();
-        menu.add(new Label("گزینه ۳", skin)).pad(5);
+        NpcFriendship friendship=player.getFriendsNpc().get(npc.getType().getDisplayName());
+        if (title.equals("Friendship")) {
+            if (friendship != null) {
+                menu.add(new Label("Player: " + friendship.getUser().getUsername(), skin)).pad(5).left();
+                menu.row();
+                menu.add(new Label("NPC: " + friendship.getNpc().getType().getDisplayName(), skin)).pad(5).left();
+                menu.row();
+                menu.add(new Label("Days to be Friend: " + friendship.getDayToBeFriend(), skin)).pad(5).left();
+                menu.row();
+                menu.add(new Label("Friendship Level: " + friendship.getLevel(), skin)).pad(5).left();
+                menu.row();
+                menu.add(new Label("XP: " + friendship.getXp(), skin)).pad(5).left();
+            } else {
+                menu.add(new Label("There is no friendship.", skin)).pad(5);
+            }
+        } else {
+            menu.add(new Label("گزینه ۱", skin)).pad(5);
+            menu.row();
+            menu.add(new Label("گزینه ۲", skin)).pad(5);
+            menu.row();
+            menu.add(new Label("گزینه ۳", skin)).pad(5);
+        }
 
         return menu;
     }
