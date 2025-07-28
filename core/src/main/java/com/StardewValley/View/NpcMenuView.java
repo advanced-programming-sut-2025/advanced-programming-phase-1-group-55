@@ -44,6 +44,9 @@ public class NpcMenuView implements Screen {
     private Texture boltTexture = AssetManager.progressTexture.getTexture();
     private Texture tickTexture = AssetManager.Completed.getTexture();
     private Texture unlockTexture = AssetManager.Unlocked.getTexture();
+    private Button[] finishQuestButtons = new Button[3];
+    private Button[] receiveQuestButtons = new Button[3];
+
 
     public NpcMenuView(NpcMenuController controller, Npc npc, User player, GameMap map) {
         this.controller = controller;
@@ -55,6 +58,10 @@ public class NpcMenuView implements Screen {
         controller.setView(this);
         backButton = new TextButton("Back", skin);
         giftButton = new TextButton("Select Item", skin);
+        for (int i = 0; i < 3; i++) {
+            receiveQuestButtons[i] = new TextButton("Receive",skin);
+            finishQuestButtons[i] = new TextButton("Complete",skin);
+        }
     }
 
     @Override
@@ -168,30 +175,38 @@ public class NpcMenuView implements Screen {
             menu.row();
             menu.add(giftButton).pad(5).width(150).height(100);
         }else {
-            int number=0;
+            int number = 0;
             for (Quest quest : npc.getType().getQuests().values()) {
                 HorizontalGroup rowGroup = new HorizontalGroup();
-                rowGroup.align(Align.left);
+                rowGroup.align(Align.left).space(10);
 
                 Label questLabel = new Label(quest.toString(), skin);
 
-                Image icon = switch (player.getFriendsNpc().get(npc.getType().getDisplayName()).getQuestStatus()[number]) {
-                    case QuestStatus.Locked -> new Image(lockTexture);
-                    case QuestStatus.InProgress -> new Image(boltTexture);
-                    case QuestStatus.Completed -> new Image(tickTexture);
-                    case QuestStatus.Unlocked -> new Image(unlockTexture);
-                };
+                QuestStatus status = player.getFriendsNpc().get(npc.getType().getDisplayName()).getQuestStatus()[number];
 
+                Image icon = switch (status) {
+                    case Locked -> new Image(lockTexture);
+                    case InProgress -> new Image(boltTexture);
+                    case Completed -> new Image(tickTexture);
+                    case Unlocked -> new Image(unlockTexture);
+                };
                 icon.setScale(0.5f);
                 rowGroup.addActor(icon);
-
                 rowGroup.addActor(questLabel);
+
+
+                if (status == QuestStatus.InProgress) {
+                    Button finishButton = finishQuestButtons[number];
+                    rowGroup.addActor(finishButton);
+                } else if (status == QuestStatus.Unlocked) {
+                    Button receiveButton = receiveQuestButtons[number];
+                    rowGroup.addActor(receiveButton);
+                }
 
                 menu.add(rowGroup).padBottom(40).left();
                 menu.row();
                 number++;
             }
-
 
         }
 
@@ -272,5 +287,53 @@ public class NpcMenuView implements Screen {
 
     public void setGiftButton(Button giftButton) {
         this.giftButton = giftButton;
+    }
+
+    public Texture getLockTexture() {
+        return lockTexture;
+    }
+
+    public void setLockTexture(Texture lockTexture) {
+        this.lockTexture = lockTexture;
+    }
+
+    public Texture getBoltTexture() {
+        return boltTexture;
+    }
+
+    public void setBoltTexture(Texture boltTexture) {
+        this.boltTexture = boltTexture;
+    }
+
+    public Texture getTickTexture() {
+        return tickTexture;
+    }
+
+    public void setTickTexture(Texture tickTexture) {
+        this.tickTexture = tickTexture;
+    }
+
+    public Texture getUnlockTexture() {
+        return unlockTexture;
+    }
+
+    public void setUnlockTexture(Texture unlockTexture) {
+        this.unlockTexture = unlockTexture;
+    }
+
+    public Button[] getFinishQuestButtons() {
+        return finishQuestButtons;
+    }
+
+    public void setFinishQuestButtons(Button[] finishQuestButtons) {
+        this.finishQuestButtons = finishQuestButtons;
+    }
+
+    public Button[] getReceiveQuestButtons() {
+        return receiveQuestButtons;
+    }
+
+    public void setReceiveQuestButtons(Button[] receiveQuestButtons) {
+        this.receiveQuestButtons = receiveQuestButtons;
     }
 }

@@ -5,7 +5,11 @@ import com.StardewValley.View.NpcMenuView;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Map.GameMap;
 import com.StardewValley.model.NPC.Npc;
+import com.StardewValley.model.NPC.Quest;
+import com.StardewValley.model.NPC.QuestStatus;
 import com.StardewValley.model.User;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 
 public class NpcMenuController {
     private NpcMenuView view;
@@ -28,6 +32,22 @@ public class NpcMenuController {
                 }
                 view.getGiftButton().setChecked(false);
                 App.gameApp.setScreen(new GiftItemMenuView(new GiftItemMenuController(player,map,view.getSelectedItem(),npc),player,map,view.getSelectedItem(),view));
+            }
+            for (int i=0;i<3;i++){
+                Button button=view.getReceiveQuestButtons()[i];
+                if (button.isChecked()){
+                    button.setChecked(false);
+                    player.getFriendsNpc().get(npc.getType().getDisplayName()).getQuestStatus()[i]= QuestStatus.InProgress;
+                    return;
+                }
+            }
+            for (int i=0;i<3;i++){
+                Button button=view.getFinishQuestButtons()[i];
+                if (button.isChecked()){
+                    button.setChecked(false);
+                    Quest quest=npc.getType().getQuests().get(i+npc.getType().getFirstQuestIndex());
+
+                }
             }
         }
     }
