@@ -160,7 +160,8 @@ public class NpcMenuView implements Screen {
             menu.add(giftButton).pad(5).width(150).height(100);
         }else {
            for(Quest quest:npc.getType().getQuests().values()) {
-
+               menu.add(new Label(quest.toString(), skin)).padBottom(40).left();
+               menu.row();
            }
         }
 
