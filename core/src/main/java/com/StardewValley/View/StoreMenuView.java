@@ -77,6 +77,9 @@ public class StoreMenuView implements Screen {
 
         titleTable.add(title).padRight(10);
         titleTable.add(heartImage).size(85);
+        titleTable.row();
+        String gold=user.getGold()+"";
+        titleTable.add(new Label((gold), skin)).colspan(2);
         mainTable.add(titleTable).colspan(2).center().pad(20);
         mainTable.row();
 

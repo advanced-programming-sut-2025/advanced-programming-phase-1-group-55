@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Array;
 
 public enum AssetManager {
@@ -154,7 +153,15 @@ public enum AssetManager {
     FIBER_FISHING_POLE("Tools/Fishing_Pole/Fiberglass_Rod.png"),
     IRIDIUM_FISHING_POLE("Tools/Fishing_Pole/Iridium_Rod.png"),
 
-    Dialog("dialog/pngtree-pixel-art-text-box-game-dialog-png-image_3132975.png")
+    Dialog("dialog/pngtree-pixel-art-text-box-game-dialog-png-image_3132975.png"),
+    LockTexture("Emoji/lock.png"),
+    progressTexture("Emoji/runner.png"),
+    Completed("Emoji/white_check_mark.png"),
+    Unlocked("Emoji/heavy_check_mark.png"),
+
+    Gift("Emoji/gift.png"),
+    Balloon("Emoji/balloon.png")
+    ,Star("Emoji/star2.png")
 
 
     ;

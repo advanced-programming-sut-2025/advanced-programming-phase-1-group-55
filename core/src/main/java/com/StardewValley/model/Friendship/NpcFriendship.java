@@ -2,6 +2,7 @@ package com.StardewValley.model.Friendship;
 
 import com.StardewValley.model.NPC.Npc;
 import com.StardewValley.model.NPC.Quest;
+import com.StardewValley.model.NPC.QuestStatus;
 import com.StardewValley.model.User;
 
 import static java.lang.Math.min;
@@ -12,6 +13,7 @@ public class NpcFriendship extends FriendShip {
     private int dayToBeFriend=0;
     private boolean todayMet=false;
     private boolean todayHadGift=false;
+    private QuestStatus[] questStatus=new QuestStatus[]{QuestStatus.Unlocked,QuestStatus.Locked,QuestStatus.Locked};
     public User getUser() {
         return user;
     }
@@ -78,9 +80,15 @@ public class NpcFriendship extends FriendShip {
         xp=min(amount+xp,799);
         if (xp>=200){
             level=1;
+            if (!(questStatus[1].equals(QuestStatus.Completed)||questStatus[1].equals(QuestStatus.InProgress))){
+                questStatus[1]=QuestStatus.Unlocked;
+            }
         }
         if (xp>=400){
             level=2;
+            if (!(questStatus[2].equals(QuestStatus.Completed)||questStatus[2].equals(QuestStatus.InProgress))){
+                questStatus[2]=QuestStatus.Unlocked;
+            }
         }
         if (xp>=600){
             level=3;
@@ -94,5 +102,13 @@ public class NpcFriendship extends FriendShip {
 
     public void setTodayMet(boolean todayMet) {
         this.todayMet = todayMet;
+    }
+
+    public QuestStatus[] getQuestStatus() {
+        return questStatus;
+    }
+
+    public void setQuestStatus(QuestStatus[] questStatus) {
+        this.questStatus = questStatus;
     }
 }
