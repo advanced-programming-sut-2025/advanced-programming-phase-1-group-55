@@ -8,6 +8,7 @@ import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.Map.GameMap;
 import com.StardewValley.model.NPC.Npc;
 
+import com.StardewValley.model.NPC.Quest;
 import com.StardewValley.model.User;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -158,11 +159,9 @@ public class NpcMenuView implements Screen {
             menu.row();
             menu.add(giftButton).pad(5).width(150).height(100);
         }else {
-            menu.add(new Label("گزینه ۱", skin)).pad(5);
-            menu.row();
-            menu.add(new Label("گزینه ۲", skin)).pad(5);
-            menu.row();
-            menu.add(new Label("گزینه ۳", skin)).pad(5);
+           for(Quest quest:npc.getType().getQuests().values()) {
+
+           }
         }
 
         return menu;
