@@ -42,6 +42,7 @@ public class NpcMenuController {
                 if (button.isChecked()){
                     button.setChecked(false);
                     player.getFriendsNpc().get(npc.getType().getDisplayName()).getQuestStatus()[i]= QuestStatus.InProgress;
+                    view.show();
                     return;
                 }
             }

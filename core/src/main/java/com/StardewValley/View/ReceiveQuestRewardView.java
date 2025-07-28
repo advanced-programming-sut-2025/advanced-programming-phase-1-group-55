@@ -51,7 +51,7 @@ public class ReceiveQuestRewardView implements Screen {
 
         String text = "You successfully completed the quest!\n\n\nyour rewards: "
             + quest.getReward().getAmount() + " "
-            + quest.getReward().getItem().getDisplayName();
+            + quest.getReward().getItem().getDisplayName()+"\n\n";
 
         Label titleLabel = new Label(text, skin);
         titleLabel.setColor(Color.CYAN);
