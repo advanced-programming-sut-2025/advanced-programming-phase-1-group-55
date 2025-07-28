@@ -22,10 +22,10 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 import java.util.Map;
@@ -46,6 +46,9 @@ public class NpcMenuView implements Screen {
     private Texture unlockTexture = AssetManager.Unlocked.getTexture();
     private Button[] finishQuestButtons = new Button[3];
     private Button[] receiveQuestButtons = new Button[3];
+    private final Label ErrorLabel;
+    private com.badlogic.gdx.utils.Timer.Task clearErrorTask;
+
 
 
     public NpcMenuView(NpcMenuController controller, Npc npc, User player, GameMap map) {
@@ -62,6 +65,21 @@ public class NpcMenuView implements Screen {
             receiveQuestButtons[i] = new TextButton("Receive",skin);
             finishQuestButtons[i] = new TextButton("Complete",skin);
         }
+        ErrorLabel = new Label("", skin);
+        ErrorLabel.setColor(Color.RED);
+    }
+    public void setErrorMessage(String message) {
+        ErrorLabel.setText(message);
+        if (clearErrorTask != null) {
+            clearErrorTask.cancel();
+        }
+        clearErrorTask = new Timer.Task() {
+            @Override
+            public void run() {
+                ErrorLabel.setText("");
+            }
+        };
+        Timer.schedule(clearErrorTask, 5);
     }
 
     @Override
@@ -207,6 +225,7 @@ public class NpcMenuView implements Screen {
                 menu.row();
                 number++;
             }
+            menu.add(ErrorLabel).colspan(2).center().row();
 
         }
 
