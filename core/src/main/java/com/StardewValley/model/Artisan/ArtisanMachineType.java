@@ -91,7 +91,7 @@ public enum ArtisanMachineType {
     private final ItemType entryItem;
     private final String description;
     private final int energy;
-    private final int processTime; // hours (each day is 14 hours)
+    private final int processTime;
     private final Map<ItemType, Integer> ingredients;
     private final int sellPrice;
     private final Texture texture;
@@ -186,6 +186,11 @@ public enum ArtisanMachineType {
         return null;
     }
 
+    public ItemType getProduct() {
+        return product;
+    }
 
-
+    public Texture getTexture() {
+        return texture;
+    }
 }

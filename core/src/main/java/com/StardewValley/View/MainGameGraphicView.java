@@ -2,6 +2,7 @@ package com.StardewValley.View;
 
 import com.StardewValley.Controller.MainGameController;
 import com.StardewValley.model.App;
+import com.StardewValley.model.Artisan.ArtisanMachineType;
 import com.StardewValley.model.Friendship.NpcFriendship;
 import com.StardewValley.model.GameTime;
 import com.StardewValley.model.Item.Item;
@@ -16,6 +17,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -37,6 +39,9 @@ public class MainGameGraphicView implements Screen, InputProcessor {
     private Table tableTop;
     private Stage stage;
     private User player=new User();
+    private boolean isChoosingPlace=true;
+    private ArtisanMachineType chosenArtisanType=ArtisanMachineType.BEER;
+    private Sprite chosenArtisanSprite;
     //todo field paayin baayad beshe App.currentGame.map
     private GameMap map=new GameMap();
 
@@ -65,6 +70,7 @@ public class MainGameGraphicView implements Screen, InputProcessor {
         item2.setPrice(3000);
         player.getBackPack().addItemToInventory(item2,20);
         //todo remove  baalaayi !!!!!!!!!!!!!!!!
+        chosenArtisanSprite=new Sprite(chosenArtisanType.getTexture());
 
     }
 
@@ -138,10 +144,15 @@ public class MainGameGraphicView implements Screen, InputProcessor {
         App.gameApp.getBatch().setProjectionMatrix(camera.combined);
 
         App.gameApp.getBatch().begin();
+
+
         drawBackground();
         updateBackgroundTexture();
         //todo bade zadan choose map tavasot arshia az App.current game estefaade kn
         map.DrawMap();
+        if (isChoosingPlace){
+            chosenArtisanSprite.draw(App.gameApp.getBatch());
+        }
 
         controller.updateGame(delta);
 
@@ -222,6 +233,9 @@ public class MainGameGraphicView implements Screen, InputProcessor {
             controller.getNpcController().checkIfClickedOnNpc(click.x, click.y);
             controller.getStoreController().checkIfClickedOnStores(click.x, click.y);
             controller.getStoreController().checkIfClickedOnBins(click.x, click.y);
+            if (isChoosingPlace){
+                controller.choosingPlace( click.x, click.y);
+            }
         }
         return true;
     }
@@ -245,6 +259,7 @@ public class MainGameGraphicView implements Screen, InputProcessor {
     @Override
     public boolean mouseMoved(int screenX, int screenY) {
         controller.getToolController().handleToolRotation(screenX, screenY);
+
         return false;
     }
 
@@ -307,5 +322,29 @@ public class MainGameGraphicView implements Screen, InputProcessor {
 
     public void setPlayer(User player) {
         this.player = player;
+    }
+
+    public boolean isChoosingPlace() {
+        return isChoosingPlace;
+    }
+
+    public void setChoosingPlace(boolean choosingPlace) {
+        isChoosingPlace = choosingPlace;
+    }
+
+    public ArtisanMachineType getChosenArtisanType() {
+        return chosenArtisanType;
+    }
+
+    public void setChosenArtisanType(ArtisanMachineType chosenArtisanType) {
+        this.chosenArtisanType = chosenArtisanType;
+    }
+
+    public Sprite getChosenArtisanSprite() {
+        return chosenArtisanSprite;
+    }
+
+    public void setChosenArtisanSprite(Sprite chosenArtisanSprite) {
+        this.chosenArtisanSprite = chosenArtisanSprite;
     }
 }
