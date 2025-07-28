@@ -17,6 +17,9 @@ public enum AssetManager {
     Wood_background("Flooring/Flooring_35.png"),
     Wood_background2("Flooring/Flooring_51.png"),
     Stone_background("Flooring/Flooring_55.png"),
+    blueBackground("Flooring/Flooring_45.png"),
+
+
     heart("Heart/Secret_Heart.png"),
     STONE_FENCE("Fence/Stone_Fence.png"),
     WOOD_FENCE("Fence/Wood_Fence.png"),
@@ -161,7 +164,8 @@ public enum AssetManager {
 
     Gift("Emoji/gift.png"),
     Balloon("Emoji/balloon.png")
-    ,Star("Emoji/star2.png")
+    ,Star("Emoji/star2.png"),
+    gear("Emoji/gear.png")
 
 
     ;

@@ -1,6 +1,7 @@
 package com.StardewValley.Controller;
 
 
+import com.StardewValley.View.ChooseArtisanMenuView;
 import com.StardewValley.View.MainGameGraphicView;
 import com.StardewValley.View.PauseMenuView;
 import com.StardewValley.model.App;
@@ -98,6 +99,8 @@ public class MainGameController {
         }
         else if(Gdx.input.isKeyJustPressed(Input.Keys.P)){
             gameApp.setScreen(new PauseMenuView(new PauseMenuController(),currentPlayer));
+        } else if (Gdx.input.isKeyJustPressed(Input.Keys.K)) {
+            gameApp.setScreen(new ChooseArtisanMenuView(currentPlayer,view.getMap(),new ChooseArtisanController(currentPlayer,view.getMap())));
         }
     }
 

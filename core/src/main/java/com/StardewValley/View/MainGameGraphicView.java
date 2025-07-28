@@ -233,9 +233,6 @@ public class MainGameGraphicView implements Screen, InputProcessor {
             controller.getNpcController().checkIfClickedOnNpc(click.x, click.y);
             controller.getStoreController().checkIfClickedOnStores(click.x, click.y);
             controller.getStoreController().checkIfClickedOnBins(click.x, click.y);
-            if (isChoosingPlace){
-                controller.choosingPlace( click.x, click.y);
-            }
         }
         return true;
     }
@@ -259,7 +256,12 @@ public class MainGameGraphicView implements Screen, InputProcessor {
     @Override
     public boolean mouseMoved(int screenX, int screenY) {
         controller.getToolController().handleToolRotation(screenX, screenY);
+        Vector3 worldCoordinates = new Vector3(screenX, screenY, 0);
+        camera.unproject(worldCoordinates);
 
+        if (isChoosingPlace){
+            controller.choosingPlace( worldCoordinates.x, worldCoordinates.y);
+        }
         return false;
     }
 
