@@ -2,6 +2,9 @@ package com.StardewValley.model.Artisan;
 
 import com.StardewValley.enums.CraftingItemType;
 import com.StardewValley.model.Item.ItemType;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,111 +12,78 @@ import java.util.Random;
 
 public enum ArtisanMachineType {
 
-    HONEY(ItemType.HONEY, CraftingItemType.BEE_HOUSE_RECIPE, "It's a sweet syrup produced by bees.", 75, 56, null, 350),
+    HONEY(ItemType.HONEY, CraftingItemType.BEE_HOUSE_RECIPE, "It's a sweet syrup produced by bees.", 75, 56, null, 350,new Texture(Gdx.files.internal("Craftable_item/Bee_House.png"))),
 
     CHEESE_1(ItemType.CHEESE, CraftingItemType.CHEESE_PRESS_RECIPE, "It's your basic cheese.", 100, 3,
             new HashMap<>() {{
                 put(ItemType.MILK, 1);
-            }}, 230),
-
-    CHEESE_2(ItemType.CHEESE, CraftingItemType.CHEESE_PRESS_RECIPE, "It's your basic cheese.", 100, 3,
-            new HashMap<>() {{
-                put(ItemType.MILK, 1);
-            }}, 345),
-
-    GOAT_CHEESE_1(ItemType.GOAT_CHEESE, CraftingItemType.CHEESE_PRESS_RECIPE, "Soft cheese made from goat's milk.", 100, 3,
-            new HashMap<>() {{
-                put(ItemType.GOAT_MILK, 1);
-            }}, 400),
-
-    GOAT_CHEESE_2(ItemType.GOAT_CHEESE, CraftingItemType.CHEESE_PRESS_RECIPE, "Soft cheese made from goat's milk.", 100, 3,
-            new HashMap<>() {{
-                put(ItemType.LARGE_GOAT_MILK, 1);
-            }}, 600),
+            }}, 230,new Texture(Gdx.files.internal("Craftable_item/Cheese_Press.png"))),
 
     BEER(ItemType.BEER, CraftingItemType.KEG_RECIPE, "Drink in moderation.", 50, 14,
             new HashMap<>() {{
                 put(ItemType.WHEAT, 1);
-            }}, 200),
+            }}, 200,new Texture(Gdx.files.internal("Craftable_item/Charcoal_Kiln.png"))),
 
     VINEGAR(ItemType.VINEGAR, CraftingItemType.KEG_RECIPE, "An aged fermented liquid used in many cooking recipes.", 13, 10,
             new HashMap<>() {{
                 put(ItemType.RICE, 1);
-            }}, 100),
+            }}, 100,new Texture(Gdx.files.internal("Craftable_item/Crab_Pot.png"))),
 
     COFFEE(ItemType.COFFEE, CraftingItemType.KEG_RECIPE, "It smells delicious. This is sure to give you a boost.", 75, 2,
             new HashMap<>() {{
                 put(ItemType.COFFEE_BEAN, 5);
-            }}, 150),
+            }}, 150,new Texture(Gdx.files.internal("Craftable_item/Crystalarium.png"))),
 
     MEAD(ItemType.MEAD, CraftingItemType.KEG_RECIPE, "A fermented beverage made from honey. Drink in moderation.", 100, 10,
             new HashMap<>() {{
                 put(ItemType.HONEY, 1);
-            }}, 300),
+            }}, 300,new Texture(Gdx.files.internal("Craftable_item/Deluxe_Worm_Bin.png"))),
 
     PALE_ALE(ItemType.PALE_ALE, CraftingItemType.KEG_RECIPE, "Drink in moderation.", 50, 42,
             new HashMap<>() {{
                 put(ItemType.HOPS_CROP, 1);
-            }}, 300),
+            }}, 300,new Texture(Gdx.files.internal("Craftable_item/Farm_Computer.png"))),
 
     RAISINS(ItemType.RAISIN, CraftingItemType.DEHYDRATOR_RECIPE, "It's said to be the Junimos' favorite food.", 125, -1,
             new HashMap<>() {{
                 put(ItemType.GRAPE, 5);
-            }}, 600),
+            }}, 600,new Texture(Gdx.files.internal("Craftable_item/Furnace_On.png"))),
 
     COAL(ItemType.COAL, CraftingItemType.CHARCOAL_KILN_RECIPE, "Turns 10 pieces of wood into one piece of coal.", -1, 1,
             new HashMap<>() {{
                 put(ItemType.WOOD, 10);
-            }}, 50),
+            }}, 50,new Texture(Gdx.files.internal("Craftable_item/Geode_Crusher_On.png"))),
 
     CLOTH(ItemType.CLOTH, CraftingItemType.LOOM_RECIPE, "A bolt of fine wool cloth.", -1, 4,
             new HashMap<>() {{
                 put(ItemType.WOOL, 1);
-            }}, 470),
+            }}, 470,new Texture(Gdx.files.internal("Craftable_item/Heavy_Furnace.png"))),
 
     MAYONNAISE_1(ItemType.MAYONNAISE, CraftingItemType.MAYONNAISE_MACHINE_RECIPE, "It looks spreadable.", 50, 3,
             new HashMap<>() {{
                 put(ItemType.EGG, 1);
-            }}, 190),
+            }}, 190,new Texture(Gdx.files.internal("Craftable_item/Hopper.png"))),
 
-    MAYONNAISE_2(ItemType.MAYONNAISE, CraftingItemType.MAYONNAISE_MACHINE_RECIPE, "It looks spreadable.", 50, 3,
-            new HashMap<>() {{
-                put(ItemType.LARGE_EGG, 1);
-            }}, 237),
 
     DUCK_MAYONNAISE(ItemType.DUCK_MAYONNAISE, CraftingItemType.MAYONNAISE_MACHINE_RECIPE, "It's a rich, yellow mayonnaise.", 75, 3,
             new HashMap<>() {{
                 put(ItemType.DUCK_EGG, 1);
-            }}, 37),
+            }}, 37,new Texture(Gdx.files.internal("Craftable_item/Loom.png"))),
 
     DINOSAUR_MAYONNAISE(ItemType.DINOSAUR_MAYONNAISE, CraftingItemType.MAYONNAISE_MACHINE_RECIPE, "It's thick and creamy, with a vivid green hue. It smells like grass and leather.", 125, 3,
             new HashMap<>() {{
                 put(ItemType.DINOSAUR_EGG, 1);
-            }}, 800),
+            }}, 800,new Texture(Gdx.files.internal("Craftable_item/Mini-Jukebox_Off.png"))),
 
     TRUFFLE_OIL(ItemType.TRUFFLE_OIL, CraftingItemType.OIL_MAKER_RECIPE, "A gourmet cooking ingredient.", 38, 6,
             new HashMap<>() {{
                 put(ItemType.TRUFFLE, 1);
-            }}, 1065),
+            }}, 1065,new Texture(Gdx.files.internal("Craftable_item/Oil_Maker.png"))),
 
-    OIL_1(ItemType.OIL, CraftingItemType.OIL_MAKER_RECIPE, "All purpose cooking oil.", 13, 6,
-            new HashMap<>() {{
-                put(ItemType.CORN, 1);
-            }}, 100),
 
-    OIL_2(ItemType.OIL, CraftingItemType.OIL_MAKER_RECIPE, "All purpose cooking oil.", 13, 28,
-            new HashMap<>() {{
-                put(ItemType.SUNFLOWER_SEEDS, 1);
-            }}, 100),
 
-    OIL_3(ItemType.OIL, CraftingItemType.OIL_MAKER_RECIPE, "All purpose cooking oil.", 13, 1,
-            new HashMap<>() {{
-                put(ItemType.SUNFLOWER, 1);
-            }}, 100),
+    SMOKED_FISH(ItemType.SMOKED_FISH, CraftingItemType.FISH_SMOKER_RECIPE, "A whole fish, smoked to perfection.", -1, 1, null, -1,new Texture(Gdx.files.internal("Craftable_item/Fish_Smoker_On.png"))),
 
-    SMOKED_FISH(ItemType.SMOKED_FISH, CraftingItemType.FISH_SMOKER_RECIPE, "A whole fish, smoked to perfection.", -1, 1, null, -1),
-
-    ANY_METAL_BAR(null, CraftingItemType.FURNACE_RECIPE, "Turns ore and coal into metal bars.", -1, 4, null, -1);
 
     ;
 
@@ -125,8 +95,9 @@ public enum ArtisanMachineType {
     private final int processTime; // hours (each day is 14 hours)
     private final Map<ItemType, Integer> ingredients;
     private final int sellPrice;
+    private final Texture texture;
 
-    ArtisanMachineType(ItemType type, CraftingItemType device, String description, int energy, int processTime, Map<ItemType, Integer> ingredients, int sellPrice) {
+    ArtisanMachineType(ItemType type, CraftingItemType device, String description, int energy, int processTime, Map<ItemType, Integer> ingredients, int sellPrice, Texture texture) {
         this.type = type;
         this.device = device;
         this.description = description;
@@ -134,6 +105,7 @@ public enum ArtisanMachineType {
         this.processTime = processTime;
         this.ingredients = ingredients;
         this.sellPrice = sellPrice;
+        this.texture = texture;
     }
 
     public CraftingItemType getDevice() {
