@@ -1,6 +1,7 @@
 package com.StardewValley.model.Map;
 
 import com.StardewValley.enums.AnsiColor;
+import com.StardewValley.model.Artisan.ArtisanMachine;
 import com.StardewValley.model.Item.CollisionRect;
 import com.StardewValley.model.NPC.Npc;
 import com.StardewValley.model.Store.ShippingBin;
@@ -22,6 +23,7 @@ public class GameMap {
     private Farm farm3;
     private Farm farm4;
     private NpcVillage village=new NpcVillage();
+    private ArrayList<ArtisanMachine> artisanMachines=new ArrayList<>();
     private static final int WORLD_WIDTH = (int)(1920*4);
     private static final int WORLD_HEIGHT = (int)(1080*4);
     public  ArrayList<Fence> fences = new ArrayList<>();
@@ -216,5 +218,13 @@ public class GameMap {
 
     public void setFences(ArrayList<Fence> fences) {
         this.fences = fences;
+    }
+
+    public ArrayList<ArtisanMachine> getArtisanMachines() {
+        return artisanMachines;
+    }
+
+    public void setArtisanMachines(ArrayList<ArtisanMachine> artisanMachines) {
+        this.artisanMachines = artisanMachines;
     }
 }

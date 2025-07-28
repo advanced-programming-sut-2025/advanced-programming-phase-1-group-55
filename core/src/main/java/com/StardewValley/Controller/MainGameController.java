@@ -1,12 +1,18 @@
 package com.StardewValley.Controller;
 
 
+import com.StardewValley.View.ChooseArtisanMenuView;
 import com.StardewValley.View.MainGameGraphicView;
 import com.StardewValley.View.PauseMenuView;
 import com.StardewValley.model.App;
+import com.StardewValley.model.Artisan.ArtisanMachineType;
+import com.StardewValley.model.Item.CollisionRect;
 import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.Map.*;
 import com.StardewValley.enums.WeatherType;
+import com.StardewValley.model.NPC.Npc;
+import com.StardewValley.model.Store.ShippingBin;
+import com.StardewValley.model.Store.Store;
 import com.StardewValley.model.Tool.Tools;
 import com.StardewValley.model.Tool.Trashcan;
 import com.StardewValley.model.Tool.WateringCan;
@@ -19,6 +25,8 @@ import static com.StardewValley.model.Item.ItemType.*;
 import com.StardewValley.model.User;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 
 import static com.StardewValley.model.weather.*;
 
@@ -44,6 +52,46 @@ public class MainGameController {
         storeController=new StoresStatusController(currentPlayer,view.getMap());
         currentPlayer.setGold(5000);
     }
+    public boolean canPlace(Sprite sprite,float x,float y) {
+        CollisionRect collisionRect=new CollisionRect(x,y,sprite.getWidth(),sprite.getHeight());
+        if (x>view.getMap().getWORLD_WIDTH()/2||x<-view.getMap().getWORLD_WIDTH()/2||
+            y>view.getMap().getWORLD_HEIGHT()/2||y<-view.getMap().getWORLD_HEIGHT()/2) {
+            return false;
+        }
+        for(Fence fence:view.getMap().getFences()){
+            if (collisionRect.collidesWith(fence.getCollisionRect())){
+                return false;
+            }
+        }
+        for (Store store:view.getMap().getVillage().getStores().values()){
+            if (collisionRect.collidesWith(store.getCollisionRect())){
+                return false;
+            }
+        }
+        for (Npc npc:view.getMap().getVillage().getNpss().values()){
+            if (collisionRect.collidesWith(npc.getCollisionRect())){
+                return false;
+            }
+            if (collisionRect.collidesWith(npc.getType().getHouse().getCollisionRect())){
+                return false;
+            }
+        }
+        for (ShippingBin bin :view.getMap().getVillage().getShippingBins()){
+            if (collisionRect.collidesWith(bin.getCollisionRect())){
+                return false;
+            }
+        }
+        return true;
+    }
+    public void choosingPlace(float x,float y){
+        Sprite sprite =view.getChosenArtisanSprite();
+        sprite.setPosition(x,y);
+        if (canPlace(sprite,x,y)){
+            sprite.setColor(Color.GREEN);
+        }else {
+            sprite.setColor(Color.RED);
+        }
+    }
     public void handleInput() {
         //todo handle if the gate was not your farm gate -->>message box -->>send error -->> you can not enter other player,s farm
         if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
@@ -51,6 +99,8 @@ public class MainGameController {
         }
         else if(Gdx.input.isKeyJustPressed(Input.Keys.P)){
             gameApp.setScreen(new PauseMenuView(new PauseMenuController(),currentPlayer));
+        } else if (Gdx.input.isKeyJustPressed(Input.Keys.K)) {
+            gameApp.setScreen(new ChooseArtisanMenuView(currentPlayer,view.getMap(),new ChooseArtisanController(currentPlayer,view.getMap())));
         }
     }
 
