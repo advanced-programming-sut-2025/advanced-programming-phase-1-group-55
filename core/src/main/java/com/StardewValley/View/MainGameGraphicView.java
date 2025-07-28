@@ -39,8 +39,8 @@ public class MainGameGraphicView implements Screen, InputProcessor {
     private Table tableTop;
     private Stage stage;
     private User player=new User();
-    private boolean isChoosingPlace=true;
-    private ArtisanMachineType chosenArtisanType=ArtisanMachineType.BEER;
+    private boolean isChoosingPlace=false;
+    private ArtisanMachineType chosenArtisanType;
     private Sprite chosenArtisanSprite;
     //todo field paayin baayad beshe App.currentGame.map
     private GameMap map=new GameMap();
@@ -70,7 +70,7 @@ public class MainGameGraphicView implements Screen, InputProcessor {
         item2.setPrice(3000);
         player.getBackPack().addItemToInventory(item2,20);
         //todo remove  baalaayi !!!!!!!!!!!!!!!!
-        chosenArtisanSprite=new Sprite(chosenArtisanType.getTexture());
+
 
     }
 

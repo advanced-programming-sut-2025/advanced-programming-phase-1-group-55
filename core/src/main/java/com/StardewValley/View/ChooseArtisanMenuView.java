@@ -28,7 +28,7 @@ public class ChooseArtisanMenuView implements Screen {
     private TextButton confirmButton;
     private Stage stage;
     private Skin skin;
-    private ArtisanMachineType selected;
+    private ArtisanMachineType selected=ArtisanMachineType.BEER;
     private ChooseArtisanController controller;
 
     public ChooseArtisanMenuView(User player, GameMap map, ChooseArtisanController controller) {
@@ -47,7 +47,7 @@ public class ChooseArtisanMenuView implements Screen {
         Gdx.input.setInputProcessor(stage);
         stage.clear();
 
-        // Background
+
         Texture backgroundTexture = AssetManager.blueBackground.getTexture();
         Image backgroundImage = new Image(backgroundTexture);
         backgroundImage.setFillParent(true);
@@ -57,7 +57,7 @@ public class ChooseArtisanMenuView implements Screen {
         mainTable.setFillParent(true);
         stage.addActor(mainTable);
 
-        // Title
+
         Table titleTable = new Table();
         Label title = new Label("Choose one of these machines", skin);
         title.setFontScale(1.4f);
@@ -69,7 +69,7 @@ public class ChooseArtisanMenuView implements Screen {
         mainTable.add(titleTable).colspan(2).center().pad(20);
         mainTable.row();
 
-        // Create colored drawables
+
         final Drawable defaultBackground = createColorDrawable(Color.LIGHT_GRAY);
         final Drawable selectedBackground = createColorDrawable(Color.GREEN);
 
@@ -112,7 +112,7 @@ public class ChooseArtisanMenuView implements Screen {
         mainTable.add(scrollPane).colspan(2).expand().fill().pad(20);
         mainTable.row();
 
-        // Buttons
+
         Table buttonTable = new Table();
         buttonTable.add(backButton).pad(10).width(140).height(60);
         buttonTable.add(confirmButton).pad(10).width(140).height(60);
@@ -133,7 +133,7 @@ public class ChooseArtisanMenuView implements Screen {
     @Override public void hide() {}
     @Override public void dispose() {}
 
-    // ========= Utility: Create Colored Drawable =========
+
     private Drawable createColorDrawable(Color color) {
         Pixmap pixmap = new Pixmap(1, 1, Pixmap.Format.RGBA8888);
         pixmap.setColor(color);
@@ -143,7 +143,7 @@ public class ChooseArtisanMenuView implements Screen {
         return new TextureRegionDrawable(new TextureRegion(texture));
     }
 
-    // ========= Getters & Setters =========
+
     public User getPlayer() { return player; }
     public void setPlayer(User player) { this.player = player; }
     public GameMap getMap() { return map; }
