@@ -2,6 +2,7 @@ package com.StardewValley.Controller;
 
 import com.StardewValley.View.GiftItemMenuView;
 import com.StardewValley.View.NpcMenuView;
+import com.StardewValley.View.ReceiveQuestRewardView;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.Item.ItemType;
@@ -74,6 +75,7 @@ public class NpcMenuController {
 //                        user.getQuest().remove(quest.getId());
 //                    }
                     quest.setHasAlreadyFinished(true);
+                    App.gameApp.setScreen(new ReceiveQuestRewardView(player,quest,view,map));
                 }
             }
         }

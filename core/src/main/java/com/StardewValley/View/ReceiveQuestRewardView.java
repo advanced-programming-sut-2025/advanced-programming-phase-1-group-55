@@ -1,0 +1,164 @@
+package com.StardewValley.View;
+
+import com.StardewValley.enums.AssetManager;
+import com.StardewValley.model.App;
+import com.StardewValley.model.Map.GameMap;
+import com.StardewValley.model.NPC.Quest;
+import com.StardewValley.model.User;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.ScreenUtils;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
+
+public class ReceiveQuestRewardView implements Screen {
+    private Stage stage;
+    private Skin skin;
+    private User user;
+    private Quest quest;
+    private NpcMenuView npcMenuView;
+    private GameMap map;
+    private final Button backButton;
+
+    public ReceiveQuestRewardView(User user, Quest quest, NpcMenuView npcMenuView, GameMap map) {
+        this.user = user;
+        this.quest = quest;
+        this.npcMenuView = npcMenuView;
+        this.map = map;
+        stage = new Stage(new ScreenViewport());
+        skin= App.getSkin();
+        backButton=new TextButton("Collect Rewards", skin);
+    }
+
+    @Override
+    public void show() {
+        Gdx.input.setInputProcessor(stage);
+        Texture backgroundTexture = AssetManager.PinkBackground.getTexture();
+        Image backgroundImage = new Image(backgroundTexture);
+        backgroundImage.setFillParent(true);
+        stage.addActor(backgroundImage);
+        Table table = new Table();
+        table.setFillParent(true);
+        table.top().padTop(80);
+        String text="You successfully completed the quest!\n\n\nyour rewards: "+quest.getReward().getAmount()+" "+quest.getReward().getItem().getDisplayName();
+        //todo add reward texture
+        Label titleLabel = new Label(text, skin);
+        titleLabel.setColor(Color.CYAN);
+        titleLabel.setFontScale(2f);titleLabel.setAlignment(Align.center);
+        table.add(titleLabel).colspan(2).center().padBottom(40);
+
+        table.row();
+        table.add(backButton).colspan(2).center().padTop(80).width(250).height(70);
+
+        backButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                App.gameApp.setScreen(npcMenuView);
+            }
+        });
+
+
+        stage.addActor(table);
+        Image star = new Image(new Texture("stars/gold-star.png"));
+        star.setPosition(Gdx.graphics.getWidth() / 2f - 64, Gdx.graphics.getHeight() / 1.5f); // وسط
+        star.setSize(128, 128);
+        star.getColor().a = 0;
+
+        star.addAction(Actions.sequence(
+            Actions.fadeIn(1f),
+            Actions.scaleBy(0.5f, 0.5f, 0.5f),
+            Actions.fadeOut(1f)
+        ));
+
+        stage.addActor(star);
+
+
+    }
+
+    @Override
+    public void render(float delta) {
+        ScreenUtils.clear(0, 0, 0, 1);
+        stage.act(Math.min(delta, 1 / 30f));
+        stage.draw();
+    }
+
+    @Override
+    public void resize(int i, int i1) {
+
+    }
+
+    @Override
+    public void pause() {
+
+    }
+
+    @Override
+    public void resume() {
+
+    }
+
+    @Override
+    public void hide() {
+
+    }
+
+    @Override
+    public void dispose() {
+
+    }
+
+    public Stage getStage() {
+        return stage;
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
+    public Skin getSkin() {
+        return skin;
+    }
+
+    public void setSkin(Skin skin) {
+        this.skin = skin;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Quest getQuest() {
+        return quest;
+    }
+
+    public void setQuest(Quest quest) {
+        this.quest = quest;
+    }
+
+    public NpcMenuView getNpcMenuView() {
+        return npcMenuView;
+    }
+
+    public void setNpcMenuView(NpcMenuView npcMenuView) {
+        this.npcMenuView = npcMenuView;
+    }
+
+    public GameMap getMap() {
+        return map;
+    }
+
+    public void setMap(GameMap map) {
+        this.map = map;
+    }
+}

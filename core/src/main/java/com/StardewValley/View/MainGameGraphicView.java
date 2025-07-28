@@ -4,6 +4,8 @@ import com.StardewValley.Controller.MainGameController;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Friendship.NpcFriendship;
 import com.StardewValley.model.GameTime;
+import com.StardewValley.model.Item.Item;
+import com.StardewValley.model.Item.ItemType;
 import com.StardewValley.model.MainTime;
 import com.StardewValley.model.Map.GameMap;
 import com.StardewValley.model.NPC.Npc;
@@ -56,6 +58,12 @@ public class MainGameGraphicView implements Screen, InputProcessor {
                 }
             }
         }
+        Item item=new Item(ItemType.WOOD);
+        item.setPrice(10);
+        player.getBackPack().addItemToInventory(item,200);
+        Item item2=new Item(ItemType.GOLD_BAR);
+        item2.setPrice(3000);
+        player.getBackPack().addItemToInventory(item2,20);
         //todo remove  baalaayi !!!!!!!!!!!!!!!!
 
     }
