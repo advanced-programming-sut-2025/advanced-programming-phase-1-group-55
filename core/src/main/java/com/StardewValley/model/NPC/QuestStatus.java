@@ -4,4 +4,5 @@ public enum QuestStatus {
     InProgress,
     Completed,
     Locked,
+    Unlocked,
 }

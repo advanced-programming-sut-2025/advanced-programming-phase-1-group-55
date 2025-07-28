@@ -9,6 +9,7 @@ import com.StardewValley.model.Map.GameMap;
 import com.StardewValley.model.NPC.Npc;
 
 import com.StardewValley.model.NPC.Quest;
+import com.StardewValley.model.NPC.QuestStatus;
 import com.StardewValley.model.User;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -21,7 +22,9 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
@@ -37,6 +40,10 @@ public class NpcMenuView implements Screen {
     private TextButton backButton;
     private Item selectedItem;
     private Button giftButton;
+    private Texture lockTexture = AssetManager.LockTexture.getTexture();
+    private Texture boltTexture = AssetManager.progressTexture.getTexture();
+    private Texture tickTexture = AssetManager.Completed.getTexture();
+    private Texture unlockTexture = AssetManager.Unlocked.getTexture();
 
     public NpcMenuView(NpcMenuController controller, Npc npc, User player, GameMap map) {
         this.controller = controller;
@@ -94,6 +101,8 @@ public class NpcMenuView implements Screen {
     }
 
     private Table createMenuBox(String title) {
+
+
         Table menu = new Table(skin);
         menu.top();
 
@@ -159,10 +168,31 @@ public class NpcMenuView implements Screen {
             menu.row();
             menu.add(giftButton).pad(5).width(150).height(100);
         }else {
-           for(Quest quest:npc.getType().getQuests().values()) {
-               menu.add(new Label(quest.toString(), skin)).padBottom(40).left();
-               menu.row();
-           }
+            int number=0;
+            for (Quest quest : npc.getType().getQuests().values()) {
+                HorizontalGroup rowGroup = new HorizontalGroup();
+                rowGroup.align(Align.left);
+
+                Label questLabel = new Label(quest.toString(), skin);
+
+                Image icon = switch (player.getFriendsNpc().get(npc.getType().getDisplayName()).getQuestStatus()[number]) {
+                    case QuestStatus.Locked -> new Image(lockTexture);
+                    case QuestStatus.InProgress -> new Image(boltTexture);
+                    case QuestStatus.Completed -> new Image(tickTexture);
+                    case QuestStatus.Unlocked -> new Image(unlockTexture);
+                };
+
+                icon.setScale(0.5f);
+                rowGroup.addActor(icon);
+
+                rowGroup.addActor(questLabel);
+
+                menu.add(rowGroup).padBottom(40).left();
+                menu.row();
+                number++;
+            }
+
+
         }
 
         return menu;
@@ -198,6 +228,11 @@ public class NpcMenuView implements Screen {
     public void dispose() {
         stage.dispose();
         skin.dispose();
+        lockTexture.dispose();
+        boltTexture.dispose();
+        tickTexture.dispose();
+        unlockTexture.dispose();
+
     }
 
     public NpcMenuController getController() { return controller; }
