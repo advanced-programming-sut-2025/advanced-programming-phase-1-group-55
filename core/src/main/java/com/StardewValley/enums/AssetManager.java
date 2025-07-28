@@ -157,7 +157,11 @@ public enum AssetManager {
     LockTexture("Emoji/lock.png"),
     progressTexture("Emoji/runner.png"),
     Completed("Emoji/white_check_mark.png"),
-    Unlocked("Emoji/heavy_check_mark.png")
+    Unlocked("Emoji/heavy_check_mark.png"),
+
+    Gift("Emoji/gift.png"),
+    Balloon("Emoji/balloon.png")
+    ,Star("Emoji/star2.png")
 
 
     ;

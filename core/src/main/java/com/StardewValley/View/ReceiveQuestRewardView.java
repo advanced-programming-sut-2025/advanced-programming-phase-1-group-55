@@ -44,16 +44,21 @@ public class ReceiveQuestRewardView implements Screen {
         Image backgroundImage = new Image(backgroundTexture);
         backgroundImage.setFillParent(true);
         stage.addActor(backgroundImage);
+
         Table table = new Table();
         table.setFillParent(true);
         table.top().padTop(80);
-        String text="You successfully completed the quest!\n\n\nyour rewards: "+quest.getReward().getAmount()+" "+quest.getReward().getItem().getDisplayName();
-        //todo add reward texture
+
+        String text = "You successfully completed the quest!\n\n\nyour rewards: "
+            + quest.getReward().getAmount() + " "
+            + quest.getReward().getItem().getDisplayName();
+
         Label titleLabel = new Label(text, skin);
         titleLabel.setColor(Color.CYAN);
-        titleLabel.setFontScale(2f);titleLabel.setAlignment(Align.center);
-        table.add(titleLabel).colspan(2).center().padBottom(40);
+        titleLabel.setFontScale(2f);
+        titleLabel.setAlignment(Align.center);
 
+        table.add(titleLabel).colspan(2).center().padBottom(40);
         table.row();
         table.add(backButton).colspan(2).center().padTop(80).width(250).height(70);
 
@@ -64,23 +69,59 @@ public class ReceiveQuestRewardView implements Screen {
             }
         });
 
-
         stage.addActor(table);
-        Image star = new Image(new Texture("stars/gold-star.png"));
-        star.setPosition(Gdx.graphics.getWidth() / 2f - 64, Gdx.graphics.getHeight() / 1.5f); // وسط
-        star.setSize(128, 128);
-        star.getColor().a = 0;
 
-        star.addAction(Actions.sequence(
-            Actions.fadeIn(1f),
+
+        Image centerStar = new Image(AssetManager.Gift.getTexture());
+        centerStar.setSize(128, 128);
+        centerStar.setOrigin(Align.center);
+        centerStar.setPosition(Gdx.graphics.getWidth() / 2f - 64, 100);
+        centerStar.getColor().a = 0;
+
+        centerStar.addAction(Actions.sequence(
+            Actions.fadeIn(4f),
             Actions.scaleBy(0.5f, 0.5f, 0.5f),
-            Actions.fadeOut(1f)
+            Actions.fadeOut(1000f)
         ));
+        stage.addActor(centerStar);
 
-        stage.addActor(star);
+
+        Image leftStar = new Image(AssetManager.Balloon.getTexture());
+        leftStar.setSize(64, 64);
+        leftStar.setPosition(100, 50);
+        leftStar.getColor().a = 0;
+        leftStar.addAction(Actions.sequence(
+            Actions.fadeIn(0.7f),
+            Actions.sequence(
+                Actions.moveBy(30, 130, 0.3f),
+                Actions.moveBy(-30, 130, 0.3f),
+                Actions.moveBy(30, 130, 0.3f),
+                Actions.moveBy(-30, 130, 0.3f),
+                Actions.moveBy(0, 130, 0.3f)
+            ),
+            Actions.fadeOut(2f)
+        ));
+        stage.addActor(leftStar);
 
 
+        Image rightStar = new Image(AssetManager.Balloon.getTexture());
+        rightStar.setSize(64, 64);
+        rightStar.setPosition(Gdx.graphics.getWidth() - 164, 50);
+        rightStar.getColor().a = 0;
+        rightStar.addAction(Actions.sequence(
+            Actions.fadeIn(0.7f),
+            Actions.sequence(
+                Actions.moveBy(-30, 130, 0.3f),
+                Actions.moveBy(30, 130, 0.3f),
+                Actions.moveBy(-30, 130, 0.3f),
+                Actions.moveBy(30, 130, 0.3f),
+                Actions.moveBy(0, 130, 0.3f)
+            ),
+            Actions.fadeOut(2f)
+        ));
+        stage.addActor(rightStar);
     }
+
 
     @Override
     public void render(float delta) {
