@@ -64,7 +64,6 @@ public class ToolController {
         return new Location((int) resultY, (int) resultX);
     }
     public void UseTool(float x, float y) {
-      //todo handle energy usage and using tool
       player.decreaseEnergy(2);
       Location location=getUsedLocation(x, y);
       int PointX=location.getX();

@@ -72,7 +72,7 @@ public class PlayerController {
             }
         }
         if(movedSuccessfully){
-            //todo  energy kam beshe  arshia bezn ino
+            player.decreaseEnergy(1);
         }
     }
 
