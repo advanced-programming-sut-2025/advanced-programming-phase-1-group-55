@@ -18,9 +18,7 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 public class MainMenuScreen implements Screen {
 
     private Stage stage;
-    private Skin skin=App.skin;
-
-
+    private Skin skin = App.skin;
 
 
     @Override
@@ -35,9 +33,9 @@ public class MainMenuScreen implements Screen {
         stage.addActor(table);
 
         Label title = new Label("Main Menu", skin);
-        TextButton profileBtn = new TextButton("Enter Profile", skin);
-        TextButton avatarBtn = new TextButton("Enter Avatar", skin);
-        TextButton gameBtn = new TextButton("Enter Game", skin);
+        TextButton profileBtn = new TextButton("Profile Menu", skin);
+        TextButton avatarBtn = new TextButton("Avatar Menu", skin);
+        TextButton gameBtn = new TextButton("PreGame Menu", skin);
         TextButton logoutBtn = new TextButton("Logout", skin);
 
         table.add(title).padBottom(40).row();
@@ -49,31 +47,22 @@ public class MainMenuScreen implements Screen {
         profileBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                System.out.println("going to Profile menu");
                 App.getGameApp().setScreen(new ProfileMenuScreen());
             }
         });
 
-//        avatarBtn.addListener(new ClickListener() {
-//            @Override
-//            public void clicked(InputEvent event, float x, float y) {
-//                System.out.println("going to Avatar menu");
-//                App.getGameApp().setScreen(new AvatarScreen());
-//            }
-//        });
 
-//        gameBtn.addListener(new ClickListener() {
-//            @Override
-//            public void clicked(InputEvent event, float x, float y) {
-//                System.out.println("going to Game menu");
-//                App.getGameApp().setScreen(new GameScreen());
-//            }
-//        });
+        gameBtn.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+
+                App.getGameApp().setScreen(new StartGameScreen());
+            }
+        });
 
         logoutBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                System.out.println("going to Register menu");
                 App.getGameApp().setScreen(new RegisterScreen());
             }
         });
@@ -86,9 +75,25 @@ public class MainMenuScreen implements Screen {
         stage.draw();
     }
 
-    @Override public void resize(int width, int height) { stage.getViewport().update(width, height, true); }
-    @Override public void pause() {}
-    @Override public void resume() {}
-    @Override public void hide() {}
-    @Override public void dispose() { stage.dispose(); }
+    @Override
+    public void resize(int width, int height) {
+        stage.getViewport().update(width, height, true);
+    }
+
+    @Override
+    public void pause() {
+    }
+
+    @Override
+    public void resume() {
+    }
+
+    @Override
+    public void hide() {
+    }
+
+    @Override
+    public void dispose() {
+        stage.dispose();
+    }
 }

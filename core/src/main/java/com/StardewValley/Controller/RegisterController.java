@@ -151,7 +151,7 @@ public class RegisterController {
         final String UPPER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         final String LOWER = "abcdefghijklmnopqrstuvwxyz";
         final String DIGITS = "0123456789";
-        final String SPECIAL = "!@#$%^&*()-_=+<>?/{}[]";
+        final String SPECIAL = "*&@^%$#!";
         final String ALL_CHARS = UPPER + LOWER + DIGITS + SPECIAL;
         SecureRandom rand = new SecureRandom();
         StringBuilder RandomPassword = new StringBuilder(10);

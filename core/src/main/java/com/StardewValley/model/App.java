@@ -93,15 +93,14 @@ public class App {
     }
 
     public static void readfile() {
-
         try {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            FileReader reader = new FileReader("users.json");
 
-            Type userListType = new TypeToken<List<User>>() {
-            }.getType();
+            String json = Gdx.files.internal("users.json").readString("UTF-8");
 
-            List<User> userList = gson.fromJson(reader, userListType);
+            Type userListType = new TypeToken<List<User>>() {}.getType();
+            List<User> userList = gson.fromJson(json, userListType);
+
             if (userList != null) {
                 for (User user : userList) {
                     if (user.getGold() == 0) {
@@ -109,9 +108,8 @@ public class App {
                     }
                     AllUsers.put(user.getUsername(), user);
                 }
-
-
             }
+
             for (User user : AllUsers.values()) {
                 if (user.isStayLoggedIn()) {
                     mainUser = user;
@@ -119,14 +117,12 @@ public class App {
                     break;
                 }
             }
-            reader.close();
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
     }
+
 
     public static Map<Integer, String> questionsList = new HashMap<>();
 

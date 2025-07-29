@@ -1,7 +1,10 @@
 package com.StardewValley.View.newView;
 
 import com.StardewValley.model.App;
+import com.StardewValley.model.User;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -16,7 +19,7 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 public class FirstMenu extends ScreenAdapter {
     private Stage stage;
-    private Skin skin=App.skin;
+    private Skin skin = App.skin;
 
     @Override
     public void show() {
@@ -28,12 +31,10 @@ public class FirstMenu extends ScreenAdapter {
         stage.addActor(background);
 
 
-
         Table table = new Table();
         table.setFillParent(true);
         table.bottom();
         stage.addActor(table);
-
 
 
         TextButton registerBtn = new TextButton("Register", skin);
@@ -56,6 +57,17 @@ public class FirstMenu extends ScreenAdapter {
         exitBtn.addListener(new ChangeListener() {
             public void changed(ChangeEvent event, Actor actor) {
                 Gdx.app.exit();
+            }
+        });
+        Gdx.input.setInputProcessor(new InputAdapter() {
+            @Override
+            public boolean keyDown(int keycode) {
+                if (keycode == Input.Keys.G) {
+                    App.mainUser = App.getAllUsers().get("asdas");
+                    App.getGameApp().setScreen(new MainMenuScreen());
+
+                }
+                return true;
             }
         });
 
