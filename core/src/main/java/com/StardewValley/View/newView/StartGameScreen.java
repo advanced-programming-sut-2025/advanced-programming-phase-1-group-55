@@ -37,7 +37,7 @@ public class StartGameScreen implements Screen {
         table.pad(20);
         stage.addActor(table);
 
-        table.add(new Label("Start New Game", skin, "title")).colspan(2).padBottom(20).row();
+//        table.add(new Label("Start New Game", skin, "title")).colspan(2).padBottom(20).row();
 
         table.add(new Label("Number of Players (1-3):", skin));
         playerCountBox = new SelectBox<>(skin);
