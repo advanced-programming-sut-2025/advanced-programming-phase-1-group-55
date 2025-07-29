@@ -110,8 +110,7 @@ public class MainGameGraphicView implements Screen, InputProcessor {
         knobPixmap.fill();
         progressBarStyle.knobBefore = new TextureRegionDrawable(new Texture(knobPixmap));
 
-        energyBar = new ProgressBar(0f, 100f, 1f, false, progressBarStyle);
-        energyBar.setValue(50f);
+        energyBar = new ProgressBar(0, 200, 1f, false, progressBarStyle);
 
 
         tableTop = new Table();
@@ -164,6 +163,7 @@ public class MainGameGraphicView implements Screen, InputProcessor {
 
         App.gameApp.getBatch().end();
         //todo energy bar.setvalue-->> player.getEnergy  alan chon plyer==null nmishod zad intori
+        energyBar.setValue((float) player.getEnergy());
         stage.act(delta);
         stage.draw();
     }
@@ -240,6 +240,7 @@ public class MainGameGraphicView implements Screen, InputProcessor {
             controller.getStoreController().checkIfClickedOnStores(click.x, click.y);
             controller.getStoreController().checkIfClickedOnBins(click.x, click.y);
             controller.checkIfClickedOnMachine(click.x, click.y);
+            controller.getToolController().UseTool(click.x, click.y);
         }
         return true;
     }
