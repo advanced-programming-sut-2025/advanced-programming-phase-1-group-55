@@ -3,6 +3,7 @@ package com.StardewValley.model.Map;
 
 import com.StardewValley.enums.AssetManager;
 import com.StardewValley.model.App;
+import com.StardewValley.model.Artisan.ArtisanMachine;
 import com.StardewValley.model.Item.CollisionRect;
 import com.StardewValley.model.NPC.Npc;
 import com.StardewValley.model.NPC.NpcHouse;
@@ -228,6 +229,13 @@ public class MapBuilder {
                 ironLamp.draw(App.gameApp.getBatch());
             }
             woodLamp.draw(App.gameApp.getBatch());
+        }
+    }
+    public void drawArtisans(GameMap map) {
+        for (ArtisanMachine artisanMachine : map.getArtisanMachines()) {
+            Sprite sprite=new Sprite(artisanMachine.getArtisanType().getTexture());
+            sprite.setPosition(artisanMachine.getCollisionRect().getX(), artisanMachine.getCollisionRect().getY());
+            sprite.draw(App.gameApp.getBatch());
         }
     }
     public void drawFences(GameMap map) {

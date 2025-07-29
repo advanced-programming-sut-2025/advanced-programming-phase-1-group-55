@@ -69,6 +69,12 @@ public class MainGameGraphicView implements Screen, InputProcessor {
         Item item2=new Item(ItemType.GOLD_BAR);
         item2.setPrice(3000);
         player.getBackPack().addItemToInventory(item2,20);
+        Item item3=new Item(ItemType.KEG_RECIPE);
+        item3.setPrice(450);
+        player.getBackPack().addItemToInventory(item3,20);
+        Item item4=new Item(ItemType.LOOM_RECIPE);
+        item4.setPrice(500);
+        player.getBackPack().addItemToInventory(item4,20);
         //todo remove  baalaayi !!!!!!!!!!!!!!!!
 
 
@@ -233,6 +239,7 @@ public class MainGameGraphicView implements Screen, InputProcessor {
             controller.getNpcController().checkIfClickedOnNpc(click.x, click.y);
             controller.getStoreController().checkIfClickedOnStores(click.x, click.y);
             controller.getStoreController().checkIfClickedOnBins(click.x, click.y);
+            controller.checkIfClickedOnMachine(click.x, click.y);
         }
         return true;
     }

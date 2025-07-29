@@ -9,6 +9,7 @@ public class ArtisanMachine extends Item {
     private int lastStartedToWork = 0;
     private User owner;
     private CollisionRect collisionRect;
+    private ArtisanStatus status=ArtisanStatus.off;
 
     public ArtisanMachine(ArtisanMachineType artisanType, User owner, CollisionRect collisionRect) {
         super(artisanType.getType());
@@ -35,5 +36,21 @@ public class ArtisanMachine extends Item {
 
     public void setOwner(User owner) {
         this.owner = owner;
+    }
+
+    public CollisionRect getCollisionRect() {
+        return collisionRect;
+    }
+
+    public void setCollisionRect(CollisionRect collisionRect) {
+        this.collisionRect = collisionRect;
+    }
+
+    public ArtisanStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(ArtisanStatus status) {
+        this.status = status;
     }
 }

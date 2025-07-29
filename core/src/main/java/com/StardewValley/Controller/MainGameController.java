@@ -1,10 +1,12 @@
 package com.StardewValley.Controller;
 
 
+import com.StardewValley.View.ArtisanMachineMenuView;
 import com.StardewValley.View.ChooseArtisanMenuView;
 import com.StardewValley.View.MainGameGraphicView;
 import com.StardewValley.View.PauseMenuView;
 import com.StardewValley.model.App;
+import com.StardewValley.model.Artisan.ArtisanMachine;
 import com.StardewValley.model.Artisan.ArtisanMachineType;
 import com.StardewValley.model.Item.CollisionRect;
 import com.StardewValley.model.Item.Item;
@@ -52,6 +54,14 @@ public class MainGameController {
         storeController=new StoresStatusController(currentPlayer,view.getMap());
         currentPlayer.setGold(5000);
     }
+    public void checkIfClickedOnMachine(float dx, float dy){
+        for (ArtisanMachine artisanMachine:view.getMap().getArtisanMachines()){
+            if (artisanMachine.getCollisionRect().isInside(dx,dy)&&artisanMachine.getOwner().equals(currentPlayer)){
+                gameApp.setScreen(new ArtisanMachineMenuView(currentPlayer,view.getMap(),artisanMachine,
+                    new ArtisanMachineMenuController(currentPlayer,view.getMap(),artisanMachine)));
+            }
+        }
+    }
     public boolean canPlace(Sprite sprite,float x,float y) {
         CollisionRect collisionRect=new CollisionRect(x,y,sprite.getWidth(),sprite.getHeight());
         if (x>view.getMap().getWORLD_WIDTH()/2||x<-view.getMap().getWORLD_WIDTH()/2||
@@ -81,6 +91,11 @@ public class MainGameController {
                 return false;
             }
         }
+        for (ArtisanMachine artisanMachine:view.getMap().getArtisanMachines()){
+            if (artisanMachine.getCollisionRect().collidesWith(collisionRect)) {
+                return false;
+            }
+        }
         return true;
     }
     public void choosingPlace(float x,float y){
@@ -101,6 +116,16 @@ public class MainGameController {
             gameApp.setScreen(new PauseMenuView(new PauseMenuController(),currentPlayer));
         } else if (Gdx.input.isKeyJustPressed(Input.Keys.K)) {
             gameApp.setScreen(new ChooseArtisanMenuView(currentPlayer,view.getMap(),new ChooseArtisanController(currentPlayer,view.getMap())));
+        } else if (Gdx.input.isKeyJustPressed(Input.Keys.J)) {
+            if (view.isChoosingPlace()){
+                if (view.getChosenArtisanSprite().getColor().equals(Color.GREEN)) {
+                    Sprite sprite =new Sprite(view.getChosenArtisanSprite());
+                    ArtisanMachine artisanMachine=new ArtisanMachine(view.getChosenArtisanType(),currentPlayer,
+                        new CollisionRect(sprite.getX(),sprite.getY(),sprite.getWidth(),sprite.getHeight()));
+                    view.getMap().getArtisanMachines().add(artisanMachine);
+                    view.setChoosingPlace(false);
+                }
+            }
         }
     }
 
