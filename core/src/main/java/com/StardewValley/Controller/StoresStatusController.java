@@ -27,7 +27,7 @@ public class StoresStatusController {
     public void checkIfClickedOnBins(float x, float y){
         for(ShippingBin bin:map.getVillage().getShippingBins()){
             if (bin.getCollisionRect().isInside(x, y)){
-                App.gameApp.setScreen(new ShippingBinMenuView(new ShippingBinMenuController(player,map),player,map));
+                App.gameApp.setScreen(new ShippingBinMenuView(new ShippingBinMenuController(player,map),player,map,"store"));
             }
         }
     }

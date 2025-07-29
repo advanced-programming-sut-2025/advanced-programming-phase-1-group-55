@@ -31,6 +31,9 @@ public class PauseMenuView implements Screen {
     private TextButton InventoryMenuButton ;
     private TextButton toolsMenuButton ;
     private TextButton skillsButton;
+    private TextButton settingButton;
+    private TextButton recycleBinButton;
+    private TextButton questsButton;
     private final Label errorLabel;
     private Timer.Task clearErrorTask;
     private final Label SuccessMessageLabel;
@@ -48,6 +51,9 @@ public class PauseMenuView implements Screen {
         InventoryMenuButton = new TextButton("Inventory", skin);
         toolsMenuButton = new TextButton("Tools", skin);
         skillsButton= new TextButton("Skills", skin);
+        settingButton = new TextButton("Settings", skin);
+        recycleBinButton = new TextButton("Recycle Bin", skin);
+        questsButton = new TextButton("Quests", skin);
 
         errorLabel = new Label("", skin);
         errorLabel.setColor(Color.RED);
@@ -75,14 +81,16 @@ public class PauseMenuView implements Screen {
         menuTable.add(ResumeButton).row();
         menuTable.add(SocialMenuButton).row();
         menuTable.add(InventoryMenuButton).row();
+        menuTable.add(recycleBinButton).row();
         menuTable.add(toolsMenuButton).row();
         menuTable.add(skillsButton).row();
+        menuTable.add(settingButton).row();
         menuTable.add(errorLabel).row();
         menuTable.add(SuccessMessageLabel).row();
 
 
         Table centerTable = new Table();
-        centerTable.add(menuTable).top().left().padRight(50);
+        centerTable.add(menuTable).top().left().padRight(50).padTop(100);
         rootTable.top().padTop(20);
         rootTable.add(centerTable).expand().center().row();
     }
@@ -250,5 +258,29 @@ public class PauseMenuView implements Screen {
 
     public void setClearErrorTask2(Timer.Task clearErrorTask2) {
         this.clearErrorTask2 = clearErrorTask2;
+    }
+
+    public TextButton getSettingButton() {
+        return settingButton;
+    }
+
+    public void setSettingButton(TextButton settingButton) {
+        this.settingButton = settingButton;
+    }
+
+    public TextButton getRecycleBinButton() {
+        return recycleBinButton;
+    }
+
+    public void setRecycleBinButton(TextButton recycleBinButton) {
+        this.recycleBinButton = recycleBinButton;
+    }
+
+    public TextButton getQuestsButton() {
+        return questsButton;
+    }
+
+    public void setQuestsButton(TextButton questsButton) {
+        this.questsButton = questsButton;
     }
 }

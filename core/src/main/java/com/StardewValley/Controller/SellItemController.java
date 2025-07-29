@@ -1,5 +1,6 @@
 package com.StardewValley.Controller;
 
+import com.StardewValley.View.PauseMenuView;
 import com.StardewValley.View.SellItemView;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Item.Item;
@@ -32,7 +33,12 @@ public class SellItemController {
         if (view!=null){
             if (view.getBackButton().isChecked()){
                 view.getBackButton().setChecked(false);
-                App.gameApp.setScreen(view.getShippingBinMenuView());
+                if (view.getShippingBinMenuView().getFrom().equals("store")){
+                    App.gameApp.setScreen(view.getShippingBinMenuView());
+                }else {
+                    App.gameApp.setScreen(new PauseMenuView(new PauseMenuController(),player));
+                }
+
             } else if (view.getSellButton().isChecked()) {
                 view.getSellButton().setChecked(false);
                 int quantity=view.getQuantity();

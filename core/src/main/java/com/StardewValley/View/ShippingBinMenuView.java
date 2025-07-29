@@ -28,6 +28,7 @@ public class ShippingBinMenuView implements Screen {
     private Stage stage;
     private User user;
     private GameMap map;
+    private String from;
     private Skin skin;
     private Button backButton;
     private Button sellButton;
@@ -35,9 +36,10 @@ public class ShippingBinMenuView implements Screen {
 
     private  Item selectedItem;
 
-    public ShippingBinMenuView(ShippingBinMenuController controller, User user, GameMap map) {
+    public ShippingBinMenuView(ShippingBinMenuController controller, User user, GameMap map, String from) {
         this.controller = controller;
         controller.setView(this);
+        this.from = from;
         this.user = user;
         this.map = map;
         this.items = user.getBackPack().getInventory();
@@ -180,5 +182,25 @@ public class ShippingBinMenuView implements Screen {
 
     public void setSelectedItem(Item selectedItem) {
         this.selectedItem = selectedItem;
+    }
+
+    public ShippingBinMenuController getController() {
+        return controller;
+    }
+
+    public void setController(ShippingBinMenuController controller) {
+        this.controller = controller;
+    }
+
+    public String getFrom() {
+        return from;
+    }
+
+    public void setFrom(String from) {
+        this.from = from;
+    }
+
+    public void setSellButton(Button sellButton) {
+        this.sellButton = sellButton;
     }
 }
