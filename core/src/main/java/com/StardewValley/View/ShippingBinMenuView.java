@@ -46,7 +46,13 @@ public class ShippingBinMenuView implements Screen {
         this.skin = App.getSkin();
         this.stage = new Stage(new ScreenViewport());
         this.backButton = new TextButton("Back", skin);
-        this.sellButton = new TextButton("Sell", skin);
+        if(from.equals("store")){
+            this.sellButton = new TextButton("Sell", skin);
+        }
+        else {
+            this.sellButton = new TextButton("Recycle Item", skin);
+        }
+
     }
 
     @Override
@@ -65,11 +71,16 @@ public class ShippingBinMenuView implements Screen {
 
 
         Table titleTable = new Table();
-        Label title = new Label("Shipping Bin Menu", skin);
+        String titleText = "Inventory";
+        Texture imageTexture =new Texture(Gdx.files.internal("Tools/36_Backpack.png"));
+        if(from.equals("store")){
+            titleText="Shipping Bin Menu";
+            imageTexture=AssetManager.TrashCan.getTexture();
+        }
+        Label title = new Label(titleText, skin);
         title.setFontScale(1.4f);
 
-        Texture heartTexture = AssetManager.TrashCan.getTexture();
-        Image heartImage = new Image(heartTexture);
+        Image heartImage = new Image(imageTexture);
         heartImage.setSize(85, 85);
 
         titleTable.add(title).padRight(10);

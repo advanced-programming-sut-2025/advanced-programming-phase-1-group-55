@@ -48,11 +48,10 @@ public class PauseMenuView implements Screen {
         ResumeButton = new TextButton("Resume Game", skin);
         SocialMenuButton = new TextButton("Social", skin);
         MapMenuButton = new TextButton("Map", skin);
-        InventoryMenuButton = new TextButton("Inventory", skin);
         toolsMenuButton = new TextButton("Tools", skin);
         skillsButton= new TextButton("Skills", skin);
         settingButton = new TextButton("Settings", skin);
-        recycleBinButton = new TextButton("Recycle Bin", skin);
+        recycleBinButton = new TextButton("Inventory", skin);
         questsButton = new TextButton("Quests", skin);
 
         errorLabel = new Label("", skin);
@@ -77,10 +76,11 @@ public class PauseMenuView implements Screen {
         stage.addActor(rootTable);
 
         Table menuTable = new Table();
-        menuTable.defaults().width(500).height(90).pad(14);
+        menuTable.defaults().width(400).height(80).pad(14);
         menuTable.add(ResumeButton).row();
         menuTable.add(SocialMenuButton).row();
-        menuTable.add(InventoryMenuButton).row();
+        menuTable.add(questsButton).row();
+        menuTable.add(MapMenuButton).row();
         menuTable.add(recycleBinButton).row();
         menuTable.add(toolsMenuButton).row();
         menuTable.add(skillsButton).row();
@@ -90,7 +90,7 @@ public class PauseMenuView implements Screen {
 
 
         Table centerTable = new Table();
-        centerTable.add(menuTable).top().left().padRight(50).padTop(100);
+        centerTable.add(menuTable).top().left().padRight(50).padTop(40);
         rootTable.top().padTop(20);
         rootTable.add(centerTable).expand().center().row();
     }
