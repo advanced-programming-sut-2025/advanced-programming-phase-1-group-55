@@ -2,6 +2,7 @@ package com.StardewValley.View.newView;
 
 import com.StardewValley.Controller.LoginMenuController;
 import com.StardewValley.model.App;
+import com.StardewValley.model.Result;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
@@ -13,7 +14,7 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 public class LoginScreen extends ScreenAdapter {
     private Stage stage;
-    private Skin skin;
+    private Skin skin =App.skin;
     private LoginMenuController controller;
 
     public LoginScreen() {
@@ -21,7 +22,7 @@ public class LoginScreen extends ScreenAdapter {
         Gdx.input.setInputProcessor(stage);
         controller = new LoginMenuController();
 
-        skin = new Skin(Gdx.files.internal("skin/LibGdx-Skin-main/LibGdx-Skin-main/NzSkin.json"));
+
 
         Table table = new Table();
         table.setFillParent(true);
@@ -53,8 +54,11 @@ public class LoginScreen extends ScreenAdapter {
                 String username = usernameField.getText().trim();
                 String password = passwordField.getText().trim();
                 String stay = stayLoggedIn.isChecked() ? "yes" : "no";
-                String result = controller.login(username, password, stay).Message();
-                resultLabel.setText(result);
+                Result result = controller.login(username, password, stay);
+                resultLabel.setText(result.Message());
+                if (result.IsSuccess()){
+                    App.getGameApp().setScreen(new MainMenuScreen());
+                }
             }
             return true;
         });
@@ -72,7 +76,7 @@ public class LoginScreen extends ScreenAdapter {
         backButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                App.getGameApp().setScreen(new MainMenuScreen());
+                App.getGameApp().setScreen(new FirstMenu());
             }
         });
 

@@ -1,83 +1,94 @@
 package com.StardewValley.View.newView;
 
+
+import com.badlogic.gdx.Screen;
+import com.StardewValley.Controller.LoginMenuController;
 import com.StardewValley.model.App;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
-import java.awt.*;
+public class MainMenuScreen implements Screen {
 
-public class MainMenuScreen extends ScreenAdapter {
     private Stage stage;
-    private Skin skin;
+    private Skin skin=App.skin;
+
+
+
 
     @Override
     public void show() {
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
-        Texture bgTexture = new Texture(Gdx.files.internal("backgrounds/rpg-stardew-valley-logo-71h23ye38y48aaiq.jpg"));
-        Image background = new Image(bgTexture);
-        background.setFillParent(true);
-        stage.addActor(background);
-        skin = new Skin(Gdx.files.internal("skin/LibGdx-Skin-main/LibGdx-Skin-main/NzSkin.json"));
 
 
         Table table = new Table();
         table.setFillParent(true);
-        table.bottom();
+        table.center();
         stage.addActor(table);
 
+        Label title = new Label("Main Menu", skin);
+        TextButton profileBtn = new TextButton("Enter Profile", skin);
+        TextButton avatarBtn = new TextButton("Enter Avatar", skin);
+        TextButton gameBtn = new TextButton("Enter Game", skin);
+        TextButton logoutBtn = new TextButton("Logout", skin);
 
+        table.add(title).padBottom(40).row();
+        table.add(profileBtn).pad(10).row();
+        table.add(avatarBtn).pad(10).row();
+        table.add(gameBtn).pad(10).row();
+        table.add(logoutBtn).pad(10).row();
 
-        TextButton registerBtn = new TextButton("Register", skin);
-        TextButton loginBtn = new TextButton("Login", skin);
-        TextButton exitBtn = new TextButton("Exit", skin);
+        profileBtn.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                System.out.println("going to Profile menu");
+                App.getGameApp().setScreen(new ProfileMenuScreen());
+            }
+        });
 
-        registerBtn.addListener(new ChangeListener() {
-            public void changed(ChangeEvent event, Actor actor) {
+//        avatarBtn.addListener(new ClickListener() {
+//            @Override
+//            public void clicked(InputEvent event, float x, float y) {
+//                System.out.println("going to Avatar menu");
+//                App.getGameApp().setScreen(new AvatarScreen());
+//            }
+//        });
 
+//        gameBtn.addListener(new ClickListener() {
+//            @Override
+//            public void clicked(InputEvent event, float x, float y) {
+//                System.out.println("going to Game menu");
+//                App.getGameApp().setScreen(new GameScreen());
+//            }
+//        });
+
+        logoutBtn.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                System.out.println("going to Register menu");
                 App.getGameApp().setScreen(new RegisterScreen());
             }
         });
-
-        loginBtn.addListener(new ChangeListener() {
-            public void changed(ChangeEvent event, Actor actor) {
-                App.getGameApp().setScreen(new LoginScreen());
-            }
-        });
-
-        exitBtn.addListener(new ChangeListener() {
-            public void changed(ChangeEvent event, Actor actor) {
-                Gdx.app.exit();
-            }
-        });
-
-        table.add(registerBtn).size(400, 100).padBottom(20).row();
-        table.add(loginBtn).size(400, 100).padBottom(20).row();
-        table.add(exitBtn).size(400, 100);
-
     }
 
     @Override
     public void render(float delta) {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        stage.act();
+        stage.act(delta);
         stage.draw();
     }
 
-    @Override
-    public void dispose() {
-        stage.dispose();
-        skin.dispose();
-    }
+    @Override public void resize(int width, int height) { stage.getViewport().update(width, height, true); }
+    @Override public void pause() {}
+    @Override public void resume() {}
+    @Override public void hide() {}
+    @Override public void dispose() { stage.dispose(); }
 }

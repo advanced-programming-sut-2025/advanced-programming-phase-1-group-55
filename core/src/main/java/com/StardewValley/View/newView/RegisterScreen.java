@@ -16,7 +16,8 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 public class RegisterScreen extends ScreenAdapter {
     private Stage stage;
-    private Skin skin;
+    private Skin skin=App.skin;
+
     private TextField usernameField, passwordField, confirmPasswordField, nicknameField, emailField;
     private SelectBox<String> genderBox;
     private SelectBox<String> securityQuestionBox;
@@ -31,7 +32,7 @@ public class RegisterScreen extends ScreenAdapter {
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
 
-        skin = new Skin(Gdx.files.internal("skin/LibGdx-Skin-main/LibGdx-Skin-main/NzSkin.json"));
+
 
 
         Table table = new Table(skin);
@@ -88,13 +89,16 @@ public class RegisterScreen extends ScreenAdapter {
                 String answer = securityAnswerField.getText().trim();
                 Result result = controller.Register(username, password, confirm, nickname, email, gender, selectedQuestion, answer);
                 messageLabel.setText(result.Message());
+                if (result.IsSuccess()){
+                    App.getGameApp().setScreen(new MainMenuScreen());
+                }
             }
         });
 
         backButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                App.getGameApp().setScreen(new MainMenuScreen());
+                App.getGameApp().setScreen(new FirstMenu());
             }
         });
 

@@ -16,7 +16,8 @@ import static com.StardewValley.model.App.AllUsers;
 
 public class ForgetPasswordScreen extends ScreenAdapter {
     private Stage stage;
-    private Skin skin;
+    private Skin skin=App.skin;
+
 
     private TextField usernameField, answerField, newPasswordField;
     private Label questionLabel, messageLabel;
@@ -30,7 +31,7 @@ public class ForgetPasswordScreen extends ScreenAdapter {
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
 
-        skin = new Skin(Gdx.files.internal("skin/LibGdx-Skin-main/LibGdx-Skin-main/NzSkin.json"));
+
         Table table = new Table();
         table.setFillParent(true);
         table.defaults().pad(10);

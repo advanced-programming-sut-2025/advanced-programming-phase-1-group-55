@@ -1,6 +1,8 @@
 package com.StardewValley.model;
 
 import com.StardewValley.GameApp;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -16,8 +18,15 @@ public class App {
     public static Menu currentMenu = Menu.Register;
     public static HashMap<String, User> AllUsers = new HashMap<>();
     public static GameModel currentGameModel;
-    public static Random rand=new Random();
+    public static Random rand = new Random();
     public static GameApp gameApp;
+    public static Skin skin;
+
+    static {
+        skin = new Skin(Gdx.files.internal("skin/LibGdx-Skin-main/LibGdx-Skin-main/NzSkin.json"));
+    }
+
+
 
     public static User getMainUser() {
         return mainUser;
