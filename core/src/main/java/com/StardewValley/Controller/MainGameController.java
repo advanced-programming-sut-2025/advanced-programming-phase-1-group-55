@@ -53,6 +53,13 @@ public class MainGameController {
         storeController=new StoresStatusController(currentPlayer,view.getMap());
         currentPlayer.setGold(5000);
     }
+    public void checkIfClickedOnMachine(float dx, float dy){
+        for (ArtisanMachine artisanMachine:view.getMap().getArtisanMachines()){
+            if (artisanMachine.getCollisionRect().isInside(dx,dy)&&artisanMachine.getOwner().equals(currentPlayer)){
+
+            }
+        }
+    }
     public boolean canPlace(Sprite sprite,float x,float y) {
         CollisionRect collisionRect=new CollisionRect(x,y,sprite.getWidth(),sprite.getHeight());
         if (x>view.getMap().getWORLD_WIDTH()/2||x<-view.getMap().getWORLD_WIDTH()/2||
