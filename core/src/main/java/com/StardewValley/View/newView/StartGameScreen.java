@@ -25,6 +25,8 @@ public class StartGameScreen implements Screen {
 
     private SelectBox<Integer> playerCountBox;
     private TextField username1Field, username2Field, username3Field;
+    private SelectBox<String> map1Box, map2Box, map3Box;
+
     private Label resultLabel;
 
     @Override
@@ -37,30 +39,40 @@ public class StartGameScreen implements Screen {
         table.pad(20);
         stage.addActor(table);
 
-//        table.add(new Label("Start New Game", skin, "title")).colspan(2).padBottom(20).row();
-
         table.add(new Label("Number of Players (1-3):", skin));
         playerCountBox = new SelectBox<>(skin);
         playerCountBox.setItems(1, 2, 3);
         table.add(playerCountBox).width(100).row();
 
+        // Player 1
         table.add(new Label("Username 1:", skin));
         username1Field = new TextField("", skin);
-        table.add(username1Field).width(200).row();
+        table.add(username1Field).width(150);
+        map1Box = new SelectBox<>(skin);
+        map1Box.setItems("Map1", "Map2");
+        table.add(map1Box).width(100).row();
 
+        // Player 2
         table.add(new Label("Username 2:", skin));
         username2Field = new TextField("", skin);
-        table.add(username2Field).width(200).row();
+        table.add(username2Field).width(150);
+        map2Box = new SelectBox<>(skin);
+        map2Box.setItems("Map1", "Map2");
+        table.add(map2Box).width(100).row();
 
+        // Player 3
         table.add(new Label("Username 3:", skin));
         username3Field = new TextField("", skin);
-        table.add(username3Field).width(200).row();
+        table.add(username3Field).width(150);
+        map3Box = new SelectBox<>(skin);
+        map3Box.setItems("Map1", "Map2");
+        table.add(map3Box).width(100).row();
 
         resultLabel = new Label("", skin);
-        table.add(resultLabel).colspan(2).pad(10).row();
+        table.add(resultLabel).colspan(3).pad(10).row();
 
         TextButton startButton = new TextButton("Start Game", skin);
-        table.add(startButton).colspan(2).padTop(20).row();
+        table.add(startButton).colspan(3).padTop(20).row();
 
         playerCountBox.addListener(new ChangeListener() {
             @Override
@@ -78,7 +90,12 @@ public class StartGameScreen implements Screen {
                 String u2 = playerCountBox.getSelected() >= 2 ? username2Field.getText().trim() : null;
                 String u3 = playerCountBox.getSelected() >= 3 ? username3Field.getText().trim() : null;
 
-                Result result = controller.newGame(u1, u2, u3);
+                String m1 = map1Box.getSelected();
+                String m2 = playerCountBox.getSelected() >= 2 ? map2Box.getSelected() : null;
+                String m3 = playerCountBox.getSelected() >= 3 ? map3Box.getSelected() : null;
+
+
+                Result result = controller.newGame(u1, u2, u3, m1, m2, m3);
                 resultLabel.setText(result.Message());
 
                 if (result.IsSuccess()) {
@@ -90,38 +107,32 @@ public class StartGameScreen implements Screen {
 
     private void updateFieldsVisibility() {
         int count = playerCountBox.getSelected();
+
         username1Field.setVisible(true);
+        map1Box.setVisible(true);
+
         username2Field.setVisible(count >= 2);
+        map2Box.setVisible(count >= 2);
+
         username3Field.setVisible(count == 3);
+        map3Box.setVisible(count == 3);
     }
 
-    @Override
-    public void render(float delta) {
+    @Override public void render(float delta) {
         Gdx.gl.glClearColor(0.1f, 0.1f, 0.2f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act(delta);
         stage.draw();
     }
 
-    @Override
-    public void resize(int width, int height) {
+    @Override public void resize(int width, int height) {
         stage.getViewport().update(width, height, true);
     }
 
-    @Override
-    public void pause() {
-    }
-
-    @Override
-    public void resume() {
-    }
-
-    @Override
-    public void hide() {
-    }
-
-    @Override
-    public void dispose() {
+    @Override public void pause() {}
+    @Override public void resume() {}
+    @Override public void hide() {}
+    @Override public void dispose() {
         stage.dispose();
     }
 }
