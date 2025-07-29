@@ -5,6 +5,7 @@ import com.StardewValley.View.ChooseArtisanMenuView;
 import com.StardewValley.View.MainGameGraphicView;
 import com.StardewValley.View.PauseMenuView;
 import com.StardewValley.model.App;
+import com.StardewValley.model.Artisan.ArtisanMachine;
 import com.StardewValley.model.Artisan.ArtisanMachineType;
 import com.StardewValley.model.Item.CollisionRect;
 import com.StardewValley.model.Item.Item;
@@ -81,6 +82,11 @@ public class MainGameController {
                 return false;
             }
         }
+        for (ArtisanMachine artisanMachine:view.getMap().getArtisanMachines()){
+            if (artisanMachine.getCollisionRect().collidesWith(collisionRect)) {
+                return false;
+            }
+        }
         return true;
     }
     public void choosingPlace(float x,float y){
@@ -101,6 +107,16 @@ public class MainGameController {
             gameApp.setScreen(new PauseMenuView(new PauseMenuController(),currentPlayer));
         } else if (Gdx.input.isKeyJustPressed(Input.Keys.K)) {
             gameApp.setScreen(new ChooseArtisanMenuView(currentPlayer,view.getMap(),new ChooseArtisanController(currentPlayer,view.getMap())));
+        } else if (Gdx.input.isKeyJustPressed(Input.Keys.J)) {
+            if (view.isChoosingPlace()){
+                if (view.getChosenArtisanSprite().getColor().equals(Color.GREEN)) {
+                    Sprite sprite =new Sprite(view.getChosenArtisanSprite());
+                    ArtisanMachine artisanMachine=new ArtisanMachine(view.getChosenArtisanType(),currentPlayer,
+                        new CollisionRect(sprite.getX(),sprite.getY(),sprite.getWidth(),sprite.getHeight()));
+                    view.getMap().getArtisanMachines().add(artisanMachine);
+                    view.setChoosingPlace(false);
+                }
+            }
         }
     }
 

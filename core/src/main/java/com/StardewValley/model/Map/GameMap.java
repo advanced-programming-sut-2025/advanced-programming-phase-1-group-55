@@ -79,6 +79,11 @@ public class GameMap {
                 return false;
             }
         }
+        for (ArtisanMachine artisanMachine:artisanMachines){
+            if (artisanMachine.getCollisionRect().collidesWith(collisionRect)) {
+                return false;
+            }
+        }
         return true;
     }
     public void BuildMap(){
@@ -91,6 +96,7 @@ public class GameMap {
         mapBuilder1.drawStores(this);
         mapBuilder1.drawNpcHouses(this);
         mapBuilder1.drawBins(this);
+        mapBuilder1.drawArtisans(this);
     }
 
     public Tile[][] getTiles() {

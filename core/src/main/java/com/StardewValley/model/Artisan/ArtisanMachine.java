@@ -36,4 +36,12 @@ public class ArtisanMachine extends Item {
     public void setOwner(User owner) {
         this.owner = owner;
     }
+
+    public CollisionRect getCollisionRect() {
+        return collisionRect;
+    }
+
+    public void setCollisionRect(CollisionRect collisionRect) {
+        this.collisionRect = collisionRect;
+    }
 }
