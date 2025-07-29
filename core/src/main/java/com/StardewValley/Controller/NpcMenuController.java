@@ -42,6 +42,7 @@ public class NpcMenuController {
                 if (button.isChecked()){
                     button.setChecked(false);
                     player.getFriendsNpc().get(npc.getType().getDisplayName()).getQuestStatus()[i]= QuestStatus.InProgress;
+                    player.getQuest().put(npc.getType().getFirstQuestIndex()+i,npc.getType().getQuests().get(npc.getType().getFirstQuestIndex()+i));
                     view.show();
                     return;
                 }
@@ -72,6 +73,7 @@ public class NpcMenuController {
                     backPack.removeAmountFromInventory(quest.getWant().getItem(),quest.getWant().getAmount());
                     //todo remove comment after arshia finished menus
                     player.getFriendsNpc().get(npc.getType().getDisplayName()).getQuestStatus()[i]= QuestStatus.Completed;
+                    player.getQuest().remove(npc.getType().getFirstQuestIndex()+i);
 //                    for(User user:App.currentGame.playersInGame){
 //                        user.getQuest().remove(quest.getId());
 //                    }

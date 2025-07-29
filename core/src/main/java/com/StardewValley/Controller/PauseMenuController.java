@@ -1,6 +1,7 @@
 package com.StardewValley.Controller;
 
 import com.StardewValley.View.PauseMenuView;
+import com.StardewValley.View.QuestMenuView;
 import com.StardewValley.View.ShippingBinMenuView;
 import com.StardewValley.View.ToolsMenuView;
 import com.StardewValley.model.App;
@@ -27,6 +28,9 @@ public class PauseMenuController {
                 App.gameApp.setScreen(new ShippingBinMenuView(new ShippingBinMenuController
                     (view.getUser(),App.currentGameGraphicView.getMap()),
                     view.getUser(),App.currentGameGraphicView.getMap(),"menu"));
+            } else if (view.getQuestsButton().isChecked()) {
+                view.getQuestsButton().setChecked(false);
+                App.gameApp.setScreen(new QuestMenuView());
             }
         }
     }

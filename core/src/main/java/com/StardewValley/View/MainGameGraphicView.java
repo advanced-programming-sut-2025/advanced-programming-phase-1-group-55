@@ -58,9 +58,9 @@ public class MainGameGraphicView implements Screen, InputProcessor {
             player.getFriendsNpc().put(npc.getType().getDisplayName(),friendship);
             for (Quest quest:npc.getType().getQuests().values()){
                 quest.setNpc(npc);
-                if (quest.getLevel()==1){
-                    player.getQuest().put(quest.getId(),quest);
-                }
+//                if (quest.getLevel()==1){
+//                    player.getQuest().put(quest.getId(),quest);
+//                }
             }
         }
         Item item=new Item(ItemType.WOOD);

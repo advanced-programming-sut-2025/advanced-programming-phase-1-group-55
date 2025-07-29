@@ -74,6 +74,6 @@ public class Quest {
         return
                 "id: " + id +
                 "\nwant: " + want.toString() +
-                "\nreward: " + reward.toString() ;
+                "\nreward: " + reward.toString()+"\n" ;
     }
 }
