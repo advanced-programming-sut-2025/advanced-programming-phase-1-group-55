@@ -1,6 +1,7 @@
 package com.StardewValley.Controller;
 
 import com.StardewValley.View.ArtisanMachineMenuView;
+import com.StardewValley.model.App;
 import com.StardewValley.model.Artisan.ArtisanMachine;
 import com.StardewValley.model.Map.GameMap;
 import com.StardewValley.model.User;
@@ -17,7 +18,12 @@ public class ArtisanMachineMenuController {
         this.artisanMachine = artisanMachine;
     }
     public void handleButton(){
-
+        if (view!=null){
+            if (view.getBackButton().isChecked()){
+                view.getBackButton().setChecked(false);
+                App.gameApp.setScreen(App.currentGameGraphicView);
+            }
+        }
     }
     public void setView(ArtisanMachineMenuView view) {
         this.view = view;

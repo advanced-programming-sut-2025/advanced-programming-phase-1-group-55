@@ -95,4 +95,9 @@ public class Item {
     public void addNumber(int number) {
         this.number += number;
     }
+
+    @Override
+    public String toString() {
+        return itemType.getDisplayName();
+    }
 }

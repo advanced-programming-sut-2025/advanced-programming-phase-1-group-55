@@ -18,6 +18,7 @@ public enum AssetManager {
     Wood_background2("Flooring/Flooring_51.png"),
     Stone_background("Flooring/Flooring_55.png"),
     blueBackground("Flooring/Flooring_45.png"),
+    ArtisanBackground("Flooring/Flooring_94.png"),
 
 
     heart("Heart/Secret_Heart.png"),

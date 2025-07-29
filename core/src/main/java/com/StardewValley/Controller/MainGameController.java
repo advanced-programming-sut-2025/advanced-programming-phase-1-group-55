@@ -1,6 +1,7 @@
 package com.StardewValley.Controller;
 
 
+import com.StardewValley.View.ArtisanMachineMenuView;
 import com.StardewValley.View.ChooseArtisanMenuView;
 import com.StardewValley.View.MainGameGraphicView;
 import com.StardewValley.View.PauseMenuView;
@@ -56,7 +57,8 @@ public class MainGameController {
     public void checkIfClickedOnMachine(float dx, float dy){
         for (ArtisanMachine artisanMachine:view.getMap().getArtisanMachines()){
             if (artisanMachine.getCollisionRect().isInside(dx,dy)&&artisanMachine.getOwner().equals(currentPlayer)){
-
+                gameApp.setScreen(new ArtisanMachineMenuView(currentPlayer,view.getMap(),artisanMachine,
+                    new ArtisanMachineMenuController(currentPlayer,view.getMap(),artisanMachine)));
             }
         }
     }
