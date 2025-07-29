@@ -1,6 +1,7 @@
 package com.StardewValley.Controller;
 
 import com.StardewValley.model.App;
+import com.StardewValley.model.Map.Location;
 import com.StardewValley.model.Tool.Tools;
 import com.StardewValley.model.User;
 import com.badlogic.gdx.Gdx;
@@ -45,8 +46,30 @@ public class ToolController {
 
         angle = (float) Math.atan2(y - toolCenterY, x - toolCenterX);
     }
-    public void UseTool(){
+    public Location getUsedLocation(float x, float y) {
+        float centerX = Gdx.graphics.getWidth() / 2f;
+        float centerY = Gdx.graphics.getHeight() / 2f;
+
+        float dx = x - centerX;
+        float dy = y - centerY;
+
+        float length = (float) Math.sqrt(dx * dx + dy * dy);
+
+
+        float unitX = dx / length;
+        float unitY = dy / length;
+
+        float resultX = centerX + unitX * 20;
+        float resultY = centerY + unitY * 20;
+        return new Location((int) resultY, (int) resultX);
+    }
+    public void UseTool(float x, float y) {
       //todo handle energy usage and using tool
+      player.decreaseEnergy(2);
+      Location location=getUsedLocation(x, y);
+      int PointX=location.getX();
+      int PointY=location.getY();
+      //sina in pointx va pointy oon noghte ee hastesh ke tool gharare roosh estefaade beshe
     }
 
     public User getPlayer() {
