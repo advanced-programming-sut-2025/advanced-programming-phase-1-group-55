@@ -18,6 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 import java.util.List;
@@ -36,11 +37,14 @@ public class ArtisanMachineMenuView implements Screen {
     private final TextButton cancelButton;
     private final TextButton collectButton;
     private final SelectBox<Item> selectBox;
-    private final Label errorLabel;
-    private final Label successMessageLabel;
+    private final Label ErrorLabel;
+    private com.badlogic.gdx.utils.Timer.Task clearErrorTask;
+    private final Label SuccessMessageLabel;
+    private com.badlogic.gdx.utils.Timer.Task clearErrorTask2;
     private ProgressBar energyBar;
 
     public ArtisanMachineMenuView(User player, GameMap map, ArtisanMachine artisanMachine, ArtisanMachineMenuController controller) {
+        //todo artisan kaamel ok shod , faghat handle kardn navar pishraft moonde
         this.player = player;
         this.map = map;
         this.artisanMachine = artisanMachine;
@@ -49,11 +53,11 @@ public class ArtisanMachineMenuView implements Screen {
         this.stage = new Stage(new ScreenViewport());
         this.selectBox = new SelectBox<>(skin);
 
-        this.errorLabel = new Label("", skin);
-        errorLabel.setColor(Color.RED);
+        this.ErrorLabel = new Label("", skin);
+        ErrorLabel.setColor(Color.RED);
 
-        this.successMessageLabel = new Label("", skin);
-        successMessageLabel.setColor(Color.GREEN);
+        this.SuccessMessageLabel = new Label("", skin);
+        SuccessMessageLabel.setColor(Color.GREEN);
 
         this.backButton = new TextButton("Back", skin);
         this.startProgressButton = new TextButton("Start", skin);
@@ -91,7 +95,7 @@ public class ArtisanMachineMenuView implements Screen {
         knobPixmap.fill();
         progressBarStyle.knobBefore = new TextureRegionDrawable(new Texture(knobPixmap));
 
-        energyBar = new ProgressBar(0f, 100f, 1f, false, progressBarStyle);
+        energyBar = new ProgressBar(0f, artisanMachine.getArtisanType().getProcessTime(), 1f, false, progressBarStyle);
         energyBar.setValue(50f);
         root.add(energyBar).width(200).padBottom(200).center().row();
 
@@ -137,8 +141,8 @@ public class ArtisanMachineMenuView implements Screen {
         root.add(buttonRow).bottom().padBottom(30).padTop(50).row();
 
 
-        root.add(errorLabel).padTop(10).center().row();
-        root.add(successMessageLabel).padTop(5).center().row();
+        root.add(ErrorLabel).padTop(10).center().row();
+        root.add(SuccessMessageLabel).padTop(5).center().row();
     }
 
 
@@ -149,6 +153,34 @@ public class ArtisanMachineMenuView implements Screen {
         stage.act(delta);
         stage.draw();
     }
+    public void setErrorMessage(String message) {
+        ErrorLabel.setText(message);
+        if (clearErrorTask != null) {
+            clearErrorTask.cancel();
+        }
+        clearErrorTask = new Timer.Task() {
+            @Override
+            public void run() {
+                ErrorLabel.setText("");
+            }
+        };
+        Timer.schedule(clearErrorTask, 5);
+    }
+
+    public void setSuccessMessage(String message) {
+        SuccessMessageLabel.setText(message);
+        if (clearErrorTask2 != null) {
+            clearErrorTask2.cancel();
+        }
+        clearErrorTask2 = new Timer.Task() {
+            @Override
+            public void run() {
+                SuccessMessageLabel.setText("");
+            }
+        };
+        Timer.schedule(clearErrorTask2, 5);
+    }
+
 
     @Override
     public void resize(int width, int height) {
@@ -171,14 +203,6 @@ public class ArtisanMachineMenuView implements Screen {
 
     public Item getSelectedItem() {
         return selectBox.getSelected();
-    }
-
-    public void showError(String message) {
-        errorLabel.setText(message);
-    }
-
-    public void showSuccess(String message) {
-        successMessageLabel.setText(message);
     }
 
     public Stage getStage() {
@@ -227,14 +251,6 @@ public class ArtisanMachineMenuView implements Screen {
 
     public SelectBox<Item> getSelectBox() {
         return selectBox;
-    }
-
-    public Label getErrorLabel() {
-        return errorLabel;
-    }
-
-    public Label getSuccessMessageLabel() {
-        return successMessageLabel;
     }
 
     public ProgressBar getEnergyBar() {
