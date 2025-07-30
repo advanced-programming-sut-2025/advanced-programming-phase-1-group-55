@@ -7,6 +7,7 @@ import com.StardewValley.model.App;
 import com.StardewValley.model.FarmingProdocts.ForagingCrops;
 import com.StardewValley.model.FarmingProdocts.ForagingSeed;
 import com.StardewValley.model.FarmingProdocts.Tree;
+import com.StardewValley.model.Item.CollisionRect;
 import com.StardewValley.model.Rock;
 
 import java.util.ArrayList;
@@ -14,39 +15,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Farm {
-    private Location location;
+
     private House house;
     private Lake lake;
     private GreenHouse greenHouse;
-    private int HEIGHT = 20;
-    private int WIDTH = 20;
+    private CollisionRect collisionRect;
     private int numberOfRocksInTheQuery=0;
     private ArrayList<AnimalBuilding> animalBuildings = new ArrayList<>();
 
-    public int getHEIGHT() {
-        return HEIGHT;
-    }
-
-    public void setHEIGHT(int HEIGHT) {
-        this.HEIGHT = HEIGHT;
-    }
-
-    public int getWIDTH() {
-        return WIDTH;
-    }
-
-    public void setWIDTH(int WIDTH) {
-        this.WIDTH = WIDTH;
-    }
-
-
-    public Location getLocation() {
-        return location;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
-    }
 
     private Quarry quarry;
     private Map<Location, Rock> rocks = new HashMap<>();
@@ -54,12 +30,13 @@ public class Farm {
     private Map<Location, ForagingCrops> crobs = new HashMap<>();
     private Map<Location, ForagingSeed> seeds=new HashMap<>();
 
-    public Farm(House house, Lake lake, GreenHouse greenHouse, Quarry quarry, Location location) {
+    public Farm(House house, Lake lake, GreenHouse greenHouse, Quarry quarry, CollisionRect collisionRect) {
         this.house = house;
         this.lake = lake;
         this.greenHouse = greenHouse;
         this.quarry = quarry;
-        this.location = location;
+        this.collisionRect = collisionRect;
+
     }
    public void increaseRocks(){
         numberOfRocksInTheQuery++;
@@ -159,22 +136,6 @@ public class Farm {
             }
         }
         return true;
-    }
-    public ArrayList<Tile> getStartTileForAnimalBuilding(int width, int height)
-    {
-        ArrayList<Tile> startTiles = new ArrayList<>();
-        for (int y = 0; y < HEIGHT - height; y++)
-        {
-            for (int x = 0; x < WIDTH - width; x++)
-            {
-                Tile tile = getTile(x, y);
-                if (isGoodForAnimalBuilding(tile, width, height))
-                {
-                    startTiles.add(tile);
-                }
-            }
-        }
-        return startTiles;
     }
     public void buildAnimalBuilding(AnimalBuilding building)
     {

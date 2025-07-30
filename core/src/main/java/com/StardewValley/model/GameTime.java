@@ -85,7 +85,7 @@ public class GameTime {
         for (User user : currentGameModel.playersInGame) {
             user.increaseGold(user.getDailyMoney());
             user.setDailyMoney(0);
-            FarmBuilder.placeRandomForaggings(user.getFarm(), currentGameModel.getMap(),2,2,1,false);
+           // FarmBuilder.placeRandomForaggings(user.getFarm(), currentGameModel.getMap(),2,2,1,false);
         }
         for (Store store : currentGameModel.getMap().getVillage().getStores().values()) {
             for (Product product : store.getProductsOfStore().values()) {
