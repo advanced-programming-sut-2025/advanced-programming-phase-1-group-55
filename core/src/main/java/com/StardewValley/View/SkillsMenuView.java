@@ -1,5 +1,4 @@
 package com.StardewValley.View;
-
 import com.StardewValley.enums.AssetManager;
 import com.StardewValley.enums.SkillType;
 import com.StardewValley.model.App;
@@ -7,13 +6,23 @@ import com.StardewValley.model.Skill;
 import com.StardewValley.model.User;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.ScreenUtils;
+
+
+
+
+
 
 public class SkillsMenuView implements Screen {
 
@@ -32,23 +41,17 @@ public class SkillsMenuView implements Screen {
     public void show() {
         stage = new Stage();
         Gdx.input.setInputProcessor(stage);
-
         table = new Table();
         table.setFillParent(true);
-
         ScrollPane scrollPane = new ScrollPane(table, skin);
         scrollPane.setFillParent(true);
         stage.addActor(scrollPane);
-
         backBtn = new TextButton("Back", skin);
-
         Label title = new Label("Your Skills", skin);
         table.add(title).colspan(2).padBottom(20).row();
 
         for (SkillType skillType : SkillType.values()) {
             if (skillType == SkillType.Max_Energy) continue;
-
-            // آیکون
             Sprite iconSprite;
             try {
                 iconSprite = AssetManager.valueOf(skillType.name().toUpperCase()).getSprite();
@@ -56,8 +59,6 @@ public class SkillsMenuView implements Screen {
                 iconSprite = AssetManager.gear.getSprite();
             }
             Image icon = new Image(new SpriteDrawable(iconSprite));
-
-            // Tooltip ساده بدون background سفارشی
             String tooltipText = SkillType.skillDescriptions.getOrDefault(
                 skillType,
                 "No description available."
@@ -65,11 +66,20 @@ public class SkillsMenuView implements Screen {
             Tooltip<Label> tooltip = new Tooltip<>(new Label(tooltipText, skin));
             tooltip.setInstant(true);
             tooltip.setAlways(true);
+            Pixmap pixmap = new Pixmap(1, 1, Pixmap.Format.RGBA8888);
+            pixmap.setColor(1f, 1f, 1f, 0.8f);
+            pixmap.fill();
+            Texture texture = new Texture(pixmap);
+            Drawable background = new TextureRegionDrawable(new TextureRegion(texture));
+            tooltip.getContainer().pad(10).background(background).top();
+
+
+
+
+
 
             icon.addListener(tooltip);
             stage.addActor(tooltip.getContainer());
-
-            // سطح مهارت
             Skill skill = switch (skillType) {
                 case Farming -> user.getFarmingSkill();
                 case Mining -> user.getMiningSkill();
@@ -77,17 +87,13 @@ public class SkillsMenuView implements Screen {
                 case Foraging -> user.getForagingSkill();
                 default -> null;
             };
-
             int level = (skill != null) ? skill.getLevel() : 0;
             Label skillLabel = new Label(skillType.name() + " - Level: " + level, skin);
-
             table.add(icon).pad(10).width(64).height(64);
             table.add(skillLabel).pad(10).left().row();
         }
-
         table.row();
         table.add(backBtn).colspan(2).padTop(20);
-
         backBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -95,14 +101,12 @@ public class SkillsMenuView implements Screen {
             }
         });
     }
-
     @Override
     public void render(float delta) {
         ScreenUtils.clear(0, 0, 0, 1);
         stage.act(delta);
         stage.draw();
     }
-
     @Override public void resize(int width, int height) {}
     @Override public void pause() {}
     @Override public void resume() {}
