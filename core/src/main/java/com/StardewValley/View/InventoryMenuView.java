@@ -1,17 +1,21 @@
 package com.StardewValley.View;
 
+import com.StardewValley.enums.AssetManager;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.User;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 import java.util.Map;
@@ -26,6 +30,9 @@ public class InventoryMenuView implements Screen {
     private Item selectedItem;
     private Label itemInfoLabel;
     private Image backgroundImage;
+    private ImageButton trashButton;
+    private Label messageLabel;
+
 
     public InventoryMenuView(User user) {
         this.user = user;
@@ -59,6 +66,13 @@ public class InventoryMenuView implements Screen {
             System.out.println("❌ Error in rebuildInventoryDisplay: " + e.getMessage());
             e.printStackTrace(); // برای دیباگ
         }
+        Texture trashTexture = AssetManager.TrashCan.getTexture();  // از enum خودت
+        ImageButton.ImageButtonStyle trashStyle = new ImageButton.ImageButtonStyle();
+        trashStyle.imageUp = new TextureRegionDrawable(new TextureRegion(trashTexture));
+        trashButton = new ImageButton(trashStyle);
+
+        messageLabel = new Label("", skin);
+
     }
 
 
@@ -116,6 +130,24 @@ public class InventoryMenuView implements Screen {
 
         useBtn.addListener(useListener());
         backBtn.addListener(backListener());
+        table.add(trashButton).padTop(10).colspan(inventory.size()).row();
+        table.add(messageLabel).padTop(10).colspan(inventory.size()).row();
+        trashButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                if (selectedItem != null) {
+                    user.getBackPack().removeItemFromInventory(selectedItem);
+                    selectedItem = null;
+                    messageLabel.setColor(Color.GREEN);
+                    messageLabel.setText("Item successfully removed!");
+                    rebuildInventoryDisplay();
+                } else {
+                    messageLabel.setColor(Color.RED);
+                    messageLabel.setText("Please select an item to remove.");
+                }
+            }
+        });
+
     }
 
     private ClickListener backListener() {
