@@ -49,7 +49,11 @@ public class PurchaseProductMenuController {
         } else if (product.getItem().getItemType().equals(ItemType.MILK_PAIR)) {
             backPack.getAvailableTools().remove("MilkPail");
             backPack.getAvailableTools().put("MilkPail",new MilkPail());
-        }else {
+        } else if (product.getItem().getItemType().equals(ItemType.LARGE_PACK)) {
+            backPack.setLevel(2);
+        } else if (product.getItem().getItemType().equals(ItemType.DELUXE_PACK)) {
+            backPack.setLevel(3);
+        } else {
             player.getBackPack().addItemToInventory(product.getItem(), amount);
         }
     }
@@ -62,6 +66,10 @@ public class PurchaseProductMenuController {
                  view.getPurchaseButton().setChecked(false);
                  int price= view.getTotalPrice();
                  int amount =view.getSelectedQuantity();
+                 if (!player.getBackPack().inventoryHasCapacity()){
+                     view.setErrorMessage("your backpack is full!");
+                     return;
+                 }
                  if(player.getGold()>=price){
                      view.setSuccessMessage("You purchased the product successfully!");
                     purchaseProduct(price,amount);

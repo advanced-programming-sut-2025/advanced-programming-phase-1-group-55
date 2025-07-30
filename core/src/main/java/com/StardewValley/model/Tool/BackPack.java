@@ -27,12 +27,6 @@ public class BackPack {
         return availableTools;
     }
 
-    public void setAvailableTools(Map<String, Tools> availableTools) {
-        this.availableTools = availableTools;
-    }
-    private Set<CraftingItemType> learnedCraftingRecipes = new HashSet<>();
-    private Set<CookingItemType> learnedCookingRecipes = new HashSet<>();
-
     public Tools getCurrentTool() {
         return currentTool;
     }
@@ -63,14 +57,6 @@ public class BackPack {
     public int getSize() {
         return level==1?12:level==2?24:10000000;
     }
-    public void recycleItem(String name){
-        //injaa bayad hame noe item ro recycle koni na faghat tools
-        // TODO
-        App.currentGameModel.currentUser.setGold(App.currentGameModel.currentUser.getGold()+
-                (int)((availableTools.get(name).getPrice()*availableTools.get("Trashcan").getLevel()*15)/100));
-        availableTools.remove(name);
-    }
-
 
     public void addToInventory(Item item){
         if (inventory.size() < getSize()) {
@@ -79,19 +65,6 @@ public class BackPack {
                 item.setNumber(1);
             }
         }
-    }
-    public void removeFromInventory(Item item){
-         inventory.remove(item.getItemType().getDisplayName());
-    }
-    public String ShowInventory(){
-        if (inventory.isEmpty()) {
-            return "inventory is empty";
-        }
-        StringBuilder message = new StringBuilder("Inventory:\n");
-        for(Item item:inventory.values()){
-            message.append("- ").append(item.getItemType()).append("\n");
-        }
-        return message.toString().trim();
     }
     public int getInventorySize() {
         return inventory.size();
@@ -109,46 +82,16 @@ public class BackPack {
             Arrays.asList(CookingItemType.FRIED_EGG, CookingItemType.BAKED_FISH, CookingItemType.SALAD)
     );
 
-    public void setCraftingRecipes(ArrayList<CraftingItemType> craftingRecipes) {
-        this.craftingRecipes = craftingRecipes;
-    }
-    public void setCookingRecipes(ArrayList<CookingItemType> cookingRecipes) {
-        this.cookingRecipes = cookingRecipes;
-    }
-
-    public Set<CraftingItemType> getLearnedCraftingRecipes() {
-        return learnedCraftingRecipes;
-    }
-
-    public void setLearnedCraftingRecipes(Set<CraftingItemType> learnedCraftingRecipes) {
-        this.learnedCraftingRecipes = learnedCraftingRecipes;
-    }
 
     public ArrayList<CraftingItemType> getCraftingRecipes() {
         return craftingRecipes;
     }
 
-    public void learnCraftingRecipe(CraftingItemType recipe) {
-        if (!craftingRecipes.contains(recipe)) {
-            craftingRecipes.add(recipe);
-        }
-    }
-    public Set<CookingItemType> getLearnedCookingRecipes() {
-        return getLearnedCookingRecipes();
-    }
-    public void setLearnedCookingRecipes(Set<CookingItemType> learnedCookingRecipes) {
-        this.learnedCookingRecipes = learnedCookingRecipes;
-    }
+
+
     public ArrayList<CookingItemType> getCookingRecipes() {
         return cookingRecipes;
     }
-    public void learnCookingRecipe(CookingItemType recipe) {
-        if (!cookingRecipes.contains(recipe)) {
-            cookingRecipes.add(recipe);
-        }
-    }
-
-
 
     public Item getItemInInventory(ItemType itemType) {
         for (Item item : inventory.values()) {
@@ -174,14 +117,6 @@ public class BackPack {
             item.setNumber(quantity);
             inventory.put(item.getItemType().getDisplayName(),item);
         }
-    }
-
-    public int getInventoryCapacity() {
-        int capacity = getSize();
-        if (capacity == -1) {
-            return -1;
-        }
-        return capacity - getInventorySize();
     }
 
     public boolean hasEnoughInInventory(ItemType itemType, int quantity) {
