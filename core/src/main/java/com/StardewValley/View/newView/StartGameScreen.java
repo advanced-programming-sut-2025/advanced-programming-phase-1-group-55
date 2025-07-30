@@ -102,7 +102,7 @@ public class StartGameScreen implements Screen {
 //                if (result.IsSuccess()) {
 //                }
             }
-        });
+        });;
     }
 
     private void updateFieldsVisibility() {
