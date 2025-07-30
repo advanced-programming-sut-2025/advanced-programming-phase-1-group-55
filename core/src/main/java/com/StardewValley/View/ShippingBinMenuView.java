@@ -28,6 +28,7 @@ public class ShippingBinMenuView implements Screen {
     private Stage stage;
     private User user;
     private GameMap map;
+    private String from;
     private Skin skin;
     private Button backButton;
     private Button sellButton;
@@ -35,16 +36,23 @@ public class ShippingBinMenuView implements Screen {
 
     private  Item selectedItem;
 
-    public ShippingBinMenuView(ShippingBinMenuController controller, User user, GameMap map) {
+    public ShippingBinMenuView(ShippingBinMenuController controller, User user, GameMap map, String from) {
         this.controller = controller;
         controller.setView(this);
+        this.from = from;
         this.user = user;
         this.map = map;
         this.items = user.getBackPack().getInventory();
         this.skin = App.getSkin();
         this.stage = new Stage(new ScreenViewport());
         this.backButton = new TextButton("Back", skin);
-        this.sellButton = new TextButton("Sell", skin);
+        if(from.equals("store")){
+            this.sellButton = new TextButton("Sell", skin);
+        }
+        else {
+            this.sellButton = new TextButton("Recycle Item", skin);
+        }
+
     }
 
     @Override
@@ -63,11 +71,16 @@ public class ShippingBinMenuView implements Screen {
 
 
         Table titleTable = new Table();
-        Label title = new Label("Shipping Bin Menu", skin);
+        String titleText = "Inventory";
+        Texture imageTexture =new Texture(Gdx.files.internal("Tools/36_Backpack.png"));
+        if(from.equals("store")){
+            titleText="Shipping Bin Menu";
+            imageTexture=AssetManager.TrashCan.getTexture();
+        }
+        Label title = new Label(titleText, skin);
         title.setFontScale(1.4f);
 
-        Texture heartTexture = AssetManager.TrashCan.getTexture();
-        Image heartImage = new Image(heartTexture);
+        Image heartImage = new Image(imageTexture);
         heartImage.setSize(85, 85);
 
         titleTable.add(title).padRight(10);
@@ -180,5 +193,25 @@ public class ShippingBinMenuView implements Screen {
 
     public void setSelectedItem(Item selectedItem) {
         this.selectedItem = selectedItem;
+    }
+
+    public ShippingBinMenuController getController() {
+        return controller;
+    }
+
+    public void setController(ShippingBinMenuController controller) {
+        this.controller = controller;
+    }
+
+    public String getFrom() {
+        return from;
+    }
+
+    public void setFrom(String from) {
+        this.from = from;
+    }
+
+    public void setSellButton(Button sellButton) {
+        this.sellButton = sellButton;
     }
 }

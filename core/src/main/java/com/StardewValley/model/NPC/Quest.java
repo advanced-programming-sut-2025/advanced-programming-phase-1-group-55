@@ -72,8 +72,9 @@ public class Quest {
     @Override
     public String toString() {
         return
-                "id: " + id +
-                "\nwant: " + want.toString() +
-                "\nreward: " + reward.toString() ;
+                "Id: " + id +
+                "\nRequest: " + want.toString() +
+                "\nReward: " + reward.toString()+
+                    "\nNPC: "+npc.getType().getDisplayName()+"\n-------------------------" ;
     }
 }

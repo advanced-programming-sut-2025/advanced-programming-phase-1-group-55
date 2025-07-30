@@ -43,7 +43,7 @@ public enum ArtisanMachineType {
                 put(ItemType.HOPS_CROP, 1);
             }}, 300,new Texture(Gdx.files.internal("Craftable_item/Farm_Computer.png"))),
 
-    RAISINS(ItemType.RAISIN, ItemType.DEHYDRATOR_RECIPE, "It's said to be the Junimos' favorite food.", 125, -1,
+    RAISINS(ItemType.RAISIN, ItemType.DEHYDRATOR_RECIPE, "It's said to be the Junimos' favorite food.", 125, 3,
             new HashMap<>() {{
                 put(ItemType.GRAPE, 5);
             }}, 600,new Texture(Gdx.files.internal("Craftable_item/Furnace_On.png"))),
