@@ -2,9 +2,11 @@ package com.StardewValley.Controller;
 
 import com.StardewValley.View.PurchaseProductMenuView;
 import com.StardewValley.model.App;
+import com.StardewValley.model.Item.ItemType;
 import com.StardewValley.model.Map.GameMap;
 import com.StardewValley.model.Store.Product;
 import com.StardewValley.model.Store.Store;
+import com.StardewValley.model.Tool.*;
 import com.StardewValley.model.User;
 
 public class PurchaseProductMenuController {
@@ -21,9 +23,39 @@ public class PurchaseProductMenuController {
     }
     public void purchaseProduct(int price,int amount) {
         player.setGold(player.getGold()-price);
-        player.getBackPack().addItemToInventory(product.getItem(), amount);
         product.setTodaySell(product.getTodaySell()+amount);
-
+        BackPack backPack=player.getBackPack();
+        if (product.getItem().getItemType().equals(ItemType.FIBERGLASS_ROD)) {
+            backPack.getAvailableTools().remove("FishingPole");
+            backPack.getAvailableTools().put("FishingPole",new FishingPole(FishingPoleType.FIBERGLASS_ROD));
+        }else if (product.getItem().getItemType().equals(ItemType.BAMBOO_POLE)) {
+            backPack.getAvailableTools().remove("FishingPole");
+            backPack.getAvailableTools().put("FishingPole",new FishingPole(FishingPoleType.BAMBOO_ROD));
+        }else if (product.getItem().getItemType().equals(ItemType.IRIDIUM_ROD)) {
+            backPack.getAvailableTools().remove("FishingPole");
+            backPack.getAvailableTools().put("FishingPole",new FishingPole(FishingPoleType.IRIDIUM_ROD));
+        }else if (product.getItem().getItemType().equals(ItemType.TRAINING_ROD)) {
+            backPack.getAvailableTools().remove("FishingPole");
+            backPack.getAvailableTools().put("FishingPole",new FishingPole(FishingPoleType.TRAINING_ROD));
+        }else if (product.getItem().getItemType().equals(ItemType.STEEL_TOOL)) {
+            backPack.getCurrentTool().setLevel(2);
+        }else if (product.getItem().getItemType().equals(ItemType.GOLD_TOOL)) {
+            backPack.getCurrentTool().setLevel(3);
+        }else if (product.getItem().getItemType().equals(ItemType.IRIDIUM_TOOL)) {
+            backPack.getCurrentTool().setLevel(4);
+        } else if(product.getItem().getItemType().equals(ItemType.SHEARS)){
+            backPack.getAvailableTools().remove("Shears");
+            backPack.getAvailableTools().put("Shears",new Shears());
+        } else if (product.getItem().getItemType().equals(ItemType.MILK_PAIR)) {
+            backPack.getAvailableTools().remove("MilkPail");
+            backPack.getAvailableTools().put("MilkPail",new MilkPail());
+        } else if (product.getItem().getItemType().equals(ItemType.LARGE_PACK)) {
+            backPack.setLevel(2);
+        } else if (product.getItem().getItemType().equals(ItemType.DELUXE_PACK)) {
+            backPack.setLevel(3);
+        } else {
+            player.getBackPack().addItemToInventory(product.getItem(), amount);
+        }
     }
     public void handleInput(){
          if (view!=null){
@@ -34,6 +66,10 @@ public class PurchaseProductMenuController {
                  view.getPurchaseButton().setChecked(false);
                  int price= view.getTotalPrice();
                  int amount =view.getSelectedQuantity();
+                 if (!player.getBackPack().inventoryHasCapacity()){
+                     view.setErrorMessage("your backpack is full!");
+                     return;
+                 }
                  if(player.getGold()>=price){
                      view.setSuccessMessage("You purchased the product successfully!");
                     purchaseProduct(price,amount);

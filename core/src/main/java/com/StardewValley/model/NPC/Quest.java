@@ -1,10 +1,5 @@
 package com.StardewValley.model.NPC;
 
-import com.StardewValley.model.ItemOfMap;
-
-import java.util.HashMap;
-import java.util.Map;
-
 public class Quest {
     private  int id;
     private ReadyItem want;
