@@ -11,8 +11,8 @@ import com.StardewValley.model.Result;
 import java.util.*;
 
 public class BackPack {
-    private  Tools currentTool=new Hoe();
-    private Map<String, Tools> availableTools = new HashMap<>() {{
+    private  transient Tools currentTool=new Hoe();
+    private transient Map<String, Tools> availableTools = new HashMap<>() {{
         put("Hoe", new Hoe());
         put("Pickaxe", new Pickaxe());
         put("Axe", new Axe());
@@ -20,7 +20,7 @@ public class BackPack {
         put("Scythe", new Scythe());
         put("FishingPole",new FishingPole(FishingPoleType.TRAINING_ROD));
     }};
-    private Trashcan trashcan=new Trashcan();
+    private transient Trashcan trashcan=new Trashcan();
     private Map<String,Item> inventory = new HashMap<>();
     private int level = 1;
     public Map<String, Tools> getAvailableTools() {

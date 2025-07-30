@@ -24,9 +24,8 @@ public class GameModel {
     private int numberOfAllGifts = 0;
     private final List<Dialog> allDialogs = new ArrayList<>(Arrays.asList(Dialog.values()));
 
-    public GameModel(User currentUser, ArrayList<User> playersInGame, GameMap map) {
+    public GameModel(User currentUser, GameMap map) {
         this.currentUser = currentUser;
-        this.playersInGame = playersInGame;
         this.map = map;
     }
 

@@ -86,7 +86,7 @@ public class GameMap {
         }
         return true;
     }
-    public void BuildMap(){
+    public void BuildMap(String map1,String map2, String map3, String map4) {
         MapBuilder mapBuilder1 = new MapBuilder();
         mapBuilder1.BuildFences(WORLD_WIDTH, WORLD_HEIGHT,this);
     }

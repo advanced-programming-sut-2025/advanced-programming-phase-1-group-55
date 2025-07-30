@@ -46,8 +46,6 @@ public class MainGameController {
     public void setView(MainGameGraphicView view) {
         this.view = view;
         currentPlayer=view.getPlayer();
-       //todo ino bade zadan menu haa tavasot arshia ok kn
-        // currenPlayer=App.currentplayer
         playerController=new PlayerController(currentPlayer);
         toolController=new ToolController(currentPlayer);
         npcController=new NpcController(currentPlayer,view.getMap());
@@ -126,9 +124,26 @@ public class MainGameController {
                     view.setChoosingPlace(false);
                 }
             }
+        } else if (Gdx.input.isKeyJustPressed(Input.Keys.N)) {
+            nextTurn();
         }
     }
-
+    public void nextTurn(){
+        int i=0;
+        int lastIndex= getCurrentGameModel().playersInGame.size()-1;
+        for (User user: getCurrentGameModel().playersInGame){
+            if (user.getUsername().equals(currentPlayer.getUsername())){
+                if (i==lastIndex){
+                    currentPlayer=App.getCurrentGameModel().playersInGame.getFirst();
+                }else {
+                    currentPlayer=App.getCurrentGameModel().playersInGame.get(i+1);
+                }
+                view.setPlayer(currentPlayer);
+                return;
+            }
+            i++;
+        }
+    }
     private void passTheGate() {
         for (Fence fence : view.getMap().fences) {
             if (fence.getFenceType().equals(FenceType.door)) {
