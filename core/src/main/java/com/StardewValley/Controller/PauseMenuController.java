@@ -1,5 +1,6 @@
 package com.StardewValley.Controller;
 
+import com.StardewValley.View.newView.SkillsMenuView;
 import com.StardewValley.View.newView.PauseMenuView;
 import com.StardewValley.View.newView.QuestMenuView;
 import com.StardewValley.View.newView.ShippingBinMenuView;

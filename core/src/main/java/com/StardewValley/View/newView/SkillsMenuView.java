@@ -1,4 +1,4 @@
-package com.StardewValley.View;
+package com.StardewValley.View.newView;
 import com.StardewValley.enums.AssetManager;
 import com.StardewValley.enums.SkillType;
 import com.StardewValley.model.App;
@@ -34,7 +34,7 @@ public class SkillsMenuView implements Screen {
 
     public SkillsMenuView(User user) {
         this.user = user;
-        this.skin = App.getSkin();
+        this.skin = App.skin;
     }
 
     @Override
