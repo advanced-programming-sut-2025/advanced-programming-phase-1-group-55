@@ -37,49 +37,49 @@ public class PlayerController {
     }
 
 
-    public void handlePlayerInput(){
-        boolean movedSuccessfully=false;
-        if (Gdx.input.isKeyPressed(Input.Keys.W)){
-            player.getLocation().setY(player.getLocation().getY() + 10);
+    public void handlePlayerInput() {
+        boolean movedSuccessfully = false;
+        if (Gdx.input.isKeyPressed(Input.Keys.W)) {
+            player.getLocation().setY(player.getLocation().getY() + speed);
             player.getCollisionRect().updateCollisionRect(player.getLocation().getX(), player.getLocation().getY());
-            movedSuccessfully=true;
+            movedSuccessfully = true;
             if (!gameMap.canMove(player.getCollisionRect())) {
-                player.getLocation().setY(player.getLocation().getY() - 10);
+                player.getLocation().setY(player.getLocation().getY() - speed);
                 player.getCollisionRect().updateCollisionRect(player.getLocation().getX(), player.getLocation().getY());
-                movedSuccessfully=false;
+                movedSuccessfully = false;
             }
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.D)){
-            player.getLocation().setX(player.getLocation().getX() + 10);
+        if (Gdx.input.isKeyPressed(Input.Keys.D)) {
+            player.getLocation().setX(player.getLocation().getX() + speed);
             player.getCollisionRect().updateCollisionRect(player.getLocation().getX(), player.getLocation().getY());
-            movedSuccessfully=true;
-            if (!gameMap.canMove(player.getCollisionRect())){
-                player.getLocation().setX(player.getLocation().getX() - 10);
+            movedSuccessfully = true;
+            if (!gameMap.canMove(player.getCollisionRect())) {
+                player.getLocation().setX(player.getLocation().getX() - speed);
                 player.getCollisionRect().updateCollisionRect(player.getLocation().getX(), player.getLocation().getY());
-                movedSuccessfully=false;
+                movedSuccessfully = false;
             }
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.S)){
-            player.getLocation().setY(player.getLocation().getY() - 10);
+        if (Gdx.input.isKeyPressed(Input.Keys.S)) {
+            player.getLocation().setY(player.getLocation().getY() - speed);
             player.getCollisionRect().updateCollisionRect(player.getLocation().getX(), player.getLocation().getY());
-            movedSuccessfully=true;
-            if (!gameMap.canMove(player.getCollisionRect())){
-                player.getLocation().setY(player.getLocation().getY() + 10);
+            movedSuccessfully = true;
+            if (!gameMap.canMove(player.getCollisionRect())) {
+                player.getLocation().setY(player.getLocation().getY() + speed);
                 player.getCollisionRect().updateCollisionRect(player.getLocation().getX(), player.getLocation().getY());
-                movedSuccessfully=false;
+                movedSuccessfully = false;
             }
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.A)){
-            player.getLocation().setX(player.getLocation().getX() - 10);
+        if (Gdx.input.isKeyPressed(Input.Keys.A)) {
+            player.getLocation().setX(player.getLocation().getX() - speed);
             player.getCollisionRect().updateCollisionRect(player.getLocation().getX(), player.getLocation().getY());
-            movedSuccessfully=true;
-            if (!gameMap.canMove(player.getCollisionRect())){
-                player.getLocation().setX(player.getLocation().getX() + 10);
+            movedSuccessfully = true;
+            if (!gameMap.canMove(player.getCollisionRect())) {
+                player.getLocation().setX(player.getLocation().getX() + speed);
                 player.getCollisionRect().updateCollisionRect(player.getLocation().getX(), player.getLocation().getY());
-                movedSuccessfully=false;
+                movedSuccessfully = false;
             }
         }
-        if(movedSuccessfully){
+        if (movedSuccessfully) {
             player.decreaseEnergy(1);
         }
     }
