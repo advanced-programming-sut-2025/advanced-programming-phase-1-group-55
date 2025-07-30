@@ -64,6 +64,10 @@ public class GameMap {
                 return false;
             }
         }
+        if (farm1.getLake().getCollisionRect().collidesWith(collisionRect)||
+            farm1.getHouse().getCollisionRect().collidesWith(collisionRect)) {
+            return false;
+        }
         return true;
     }
 
@@ -84,6 +88,7 @@ public class GameMap {
         mapBuilder1.drawNpcHouses(this);
         mapBuilder1.drawBins(this);
         mapBuilder1.drawArtisans(this);
+        mapBuilder1.drawFarms(this);
     }
 
     public Tile[][] getTiles() {

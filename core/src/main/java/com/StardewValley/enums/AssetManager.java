@@ -11,7 +11,7 @@ public enum AssetManager {
     House("farm/house.png"),
     GreenHouse("farm/Greenhouse/greenhouse.png"),
     Lake("farm/Untitled design.png"),
-    Quarry("Flooring/Flooring_72.png"),
+    Quarry("farm/mine_dark.png"),
 
 
     DAY_BACKGROUND("Flooring/Flooring_86.png"),

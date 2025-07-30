@@ -204,4 +204,14 @@ public class Farm {
     public void setNumberOfRocksInTheQuery(int numberOfRocksInTheQuery) {
         this.numberOfRocksInTheQuery = numberOfRocksInTheQuery;
     }
+    public void draw(){
+        lake.getSprite().setPosition(lake.getCollisionRect().getX(), lake.getCollisionRect().getY());
+        quarry.getSprite().setPosition(quarry.getCollisionRect().getX(), quarry.getCollisionRect().getY());
+        house.getSprite().setPosition(house.getCollisionRect().getX(), house.getCollisionRect().getY());
+        greenHouse.getSprite().setPosition(greenHouse.getCollisionRect().getX(), greenHouse.getCollisionRect().getY());
+        lake.getSprite().draw(App.gameApp.getBatch());
+        quarry.getSprite().draw(App.gameApp.getBatch());
+        house.getSprite().draw(App.gameApp.getBatch());
+        greenHouse.getSprite().draw(App.gameApp.getBatch());
+    }
 }

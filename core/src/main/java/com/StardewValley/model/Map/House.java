@@ -9,7 +9,7 @@ public class House extends Place {
 
     public House(CollisionRect collisionRect) {
         super(collisionRect);
-        sprite= AssetManager.GreenHouse.getSprite();
+        sprite= AssetManager.House.getSprite();
     }
 
     public Sprite getSprite() {
