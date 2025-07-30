@@ -47,26 +47,26 @@ public class StartGameScreen implements Screen {
         // Player 1
         table.add(new Label("Username 1:", skin));
         username1Field = new TextField("", skin);
-        table.add(username1Field).width(150);
+        table.add(username1Field).width(250);
         map1Box = new SelectBox<>(skin);
         map1Box.setItems("Map1", "Map2");
-        table.add(map1Box).width(100).row();
+        table.add(map1Box).width(200).row();
 
         // Player 2
         table.add(new Label("Username 2:", skin));
         username2Field = new TextField("", skin);
-        table.add(username2Field).width(150);
+        table.add(username2Field).width(250);
         map2Box = new SelectBox<>(skin);
         map2Box.setItems("Map1", "Map2");
-        table.add(map2Box).width(100).row();
+        table.add(map2Box).width(200).row();
 
         // Player 3
         table.add(new Label("Username 3:", skin));
         username3Field = new TextField("", skin);
-        table.add(username3Field).width(150);
+        table.add(username3Field).width(250);
         map3Box = new SelectBox<>(skin);
         map3Box.setItems("Map1", "Map2");
-        table.add(map3Box).width(100).row();
+        table.add(map3Box).width(200).row();
 
         resultLabel = new Label("", skin);
         table.add(resultLabel).colspan(3).pad(10).row();

@@ -67,11 +67,7 @@ public class FirstMenu extends ScreenAdapter {
                     App.getGameApp().setScreen(new MainMenuScreen());
 
                 }
-                if (keycode == Input.Keys.A) {
-                    App.mainUser = App.getAllUsers().get("asdas");
-                    App.getGameApp().setScreen(new MapSelectionScreen());
 
-                }
                 return true;
             }
         });

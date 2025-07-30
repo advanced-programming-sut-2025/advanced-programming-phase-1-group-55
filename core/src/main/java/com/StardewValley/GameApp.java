@@ -19,7 +19,7 @@ public class GameApp extends Game {
     public void create() {
         batch = new SpriteBatch();
         App.gameApp = this;
-        Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
+//        Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
         readfile();
         setScreen(new FirstMenu());
     }
