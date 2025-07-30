@@ -1,6 +1,8 @@
 package com.StardewValley.enums;
 
 import java.util.HashMap;
+import java.util.Map;
+
 import static javax.swing.UIManager.put;
 
 public enum SkillType {
@@ -58,4 +60,16 @@ public enum SkillType {
     public HashMap<CookingItemType, Integer> getCookingRecipes() {
         return cookingRecipes;
     }
+
+    private final static Map<SkillType, String> skillDescriptions = Map.of(
+        SkillType.Farming, "Farming: Unlock sprinklers, scarecrows, and artisan machines.",
+        SkillType.Mining, "Mining: Craft bombs and mine deeper for rare ores.",
+        SkillType.Fishing, "Fishing: Catch better fish and use special bait.",
+        SkillType.Foraging, "Foraging: Collect wild items and unlock nature tools."
+//       , SkillType.Max_Energy, "Max Energy: Boosts your overall stamina capacity."
+    );
+
+
+
+
 }
