@@ -1,4 +1,4 @@
-package com.StardewValley.View;
+package com.StardewValley.View.newView;
 
 import com.StardewValley.Controller.NpcMenuController;
 import com.StardewValley.enums.AssetManager;
@@ -57,7 +57,7 @@ public class NpcMenuView implements Screen {
         this.player = player;
         this.map = map;
         this.stage = new Stage(new ScreenViewport());
-        this.skin = App.getSkin();
+        this.skin = App.skin;
         controller.setView(this);
         backButton = new TextButton("Back", skin);
         giftButton = new TextButton("Select Item", skin);

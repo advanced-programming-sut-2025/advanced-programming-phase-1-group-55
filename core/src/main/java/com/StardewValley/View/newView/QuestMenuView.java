@@ -1,9 +1,8 @@
-package com.StardewValley.View;
+package com.StardewValley.View.newView;
 
 import com.StardewValley.Controller.PauseMenuController;
 import com.StardewValley.enums.AssetManager;
 import com.StardewValley.model.App;
-import com.StardewValley.model.Friendship.NpcFriendship;
 import com.StardewValley.model.NPC.Quest;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -26,7 +25,7 @@ public class QuestMenuView implements Screen {
     private final Skin skin;
 
     public QuestMenuView() {
-        this.skin = App.getSkin();
+        this.skin = App.skin;
         backButton = new TextButton("Back", skin);
         stage = new Stage(new ScreenViewport());
 

@@ -1,13 +1,10 @@
-package com.StardewValley.View;
+package com.StardewValley.View.newView;
 
 import com.StardewValley.Controller.ShippingBinMenuController;
-import com.StardewValley.Controller.StoreMenuController;
 import com.StardewValley.enums.AssetManager;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.Map.GameMap;
-import com.StardewValley.model.Store.Product;
-import com.StardewValley.model.Store.Store;
 import com.StardewValley.model.User;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -43,7 +40,7 @@ public class ShippingBinMenuView implements Screen {
         this.user = user;
         this.map = map;
         this.items = user.getBackPack().getInventory();
-        this.skin = App.getSkin();
+        this.skin = App.skin;
         this.stage = new Stage(new ScreenViewport());
         this.backButton = new TextButton("Back", skin);
         if(from.equals("store")){

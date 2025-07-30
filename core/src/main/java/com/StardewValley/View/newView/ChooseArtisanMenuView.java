@@ -1,4 +1,4 @@
-package com.StardewValley.View;
+package com.StardewValley.View.newView;
 
 import com.StardewValley.Controller.ChooseArtisanController;
 import com.StardewValley.enums.AssetManager;
@@ -35,7 +35,7 @@ public class ChooseArtisanMenuView implements Screen {
         this.player = player;
         this.map = map;
         this.controller = controller;
-        this.skin = App.getSkin();
+        this.skin = App.skin;
         this.stage = new Stage();
         this.backButton = new TextButton("Back", skin);
         this.confirmButton = new TextButton("Confirm", skin);

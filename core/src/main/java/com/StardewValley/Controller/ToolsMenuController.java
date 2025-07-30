@@ -1,14 +1,9 @@
 package com.StardewValley.Controller;
 
-import com.StardewValley.View.PauseMenuView;
-import com.StardewValley.View.ToolsMenuView;
+import com.StardewValley.View.newView.PauseMenuView;
+import com.StardewValley.View.newView.ToolsMenuView;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Tool.Tools;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 
 public class ToolsMenuController {
    private ToolsMenuView view;

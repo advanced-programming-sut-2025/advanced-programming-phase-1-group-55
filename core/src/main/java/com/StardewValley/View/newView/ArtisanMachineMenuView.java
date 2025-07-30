@@ -1,4 +1,4 @@
-package com.StardewValley.View;
+package com.StardewValley.View.newView;
 
 import com.StardewValley.Controller.ArtisanMachineMenuController;
 import com.StardewValley.enums.AssetManager;
@@ -15,13 +15,11 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
-import java.util.List;
 import java.util.Map;
 
 public class ArtisanMachineMenuView implements Screen {
@@ -49,7 +47,7 @@ public class ArtisanMachineMenuView implements Screen {
         this.map = map;
         this.artisanMachine = artisanMachine;
         this.controller = controller;
-        this.skin = App.getSkin();
+        this.skin = App.skin;
         this.stage = new Stage(new ScreenViewport());
         this.selectBox = new SelectBox<>(skin);
 

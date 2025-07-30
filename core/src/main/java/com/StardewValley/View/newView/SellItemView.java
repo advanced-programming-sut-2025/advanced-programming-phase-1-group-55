@@ -1,6 +1,6 @@
-package com.StardewValley.View;
+package com.StardewValley.View.newView;
 
-import com.StardewValley.Controller.GiftItemMenuController;
+import com.StardewValley.Controller.SellItemController;
 import com.StardewValley.enums.AssetManager;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Item.Item;
@@ -19,39 +19,42 @@ import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.Timer;
 
-public class GiftItemMenuView implements Screen {
+public class SellItemView implements Screen {
     private User user;
     private GameMap map;
     private Skin skin;
     private Button backButton;
-    private Button GiftButton;
-    private GiftItemMenuController controller;
+    private Button sellButton;
+    private SellItemController controller;
     private Stage stage;
     private Item item;
+    private Label totalPriceLabel;
     private final int[] quantity = {1};
-    private NpcMenuView npcMenuView;
+    private ShippingBinMenuView shippingBinMenuView;
+    private int totalPrice;
     private final Label ErrorLabel;
     private com.badlogic.gdx.utils.Timer.Task clearErrorTask;
     private final Label SuccessMessageLabel;
     private com.badlogic.gdx.utils.Timer.Task clearErrorTask2;
 
-    public GiftItemMenuView(GiftItemMenuController controller, User user, GameMap map, Item item, NpcMenuView npcMenuView) {
+    public SellItemView(SellItemController controller, User user, GameMap map, Item item, ShippingBinMenuView shippingBinMenuView) {
         this.controller = controller;
         this.user = user;
         this.map = map;
         this.item = item;
         this.controller.setView(this);
-        this.skin = App.getSkin();
+        this.skin = App.skin;
         this.stage = new Stage();
         Gdx.input.setInputProcessor(stage);
-        this.npcMenuView = npcMenuView;
+        this.shippingBinMenuView = shippingBinMenuView;
 
         this.backButton = new TextButton("Back", skin);
-        this.GiftButton = new TextButton("Confirm", skin);
+        this.sellButton = new TextButton("Confirm", skin);
         ErrorLabel = new Label("", skin);
         ErrorLabel.setColor(Color.RED);
         SuccessMessageLabel = new Label("", skin);
         SuccessMessageLabel.setColor(Color.GREEN);
+        totalPrice = item.getPrice();
     }
 
     @Override
@@ -70,8 +73,11 @@ public class GiftItemMenuView implements Screen {
 
         Label nameLabel = new Label(item.getItemType().getDisplayName(), skin);
         nameLabel.setFontScale(1.4f);
-        rootTable.add(nameLabel).colspan(2).padBottom(200).row();
+        rootTable.add(nameLabel).colspan(2).padBottom(40).row();
 
+        Label priceLabel = new Label("Price per unit: " + item.getPrice() + " G", skin);
+        priceLabel.setFontScale(1.1f);
+        rootTable.add(priceLabel).colspan(2).padBottom(60).row();
 
 
         Label quantityTitleLabel = new Label("Quantity:", skin);
@@ -89,6 +95,7 @@ public class GiftItemMenuView implements Screen {
                 if (quantity[0] > 1) {
                     quantity[0]--;
                     quantityLabel.setText(String.valueOf(quantity[0]));
+                    updateTotalPrice();
                 }
             }
         });
@@ -98,8 +105,9 @@ public class GiftItemMenuView implements Screen {
         plusButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                quantity[0]++;
-                quantityLabel.setText(String.valueOf(quantity[0]));
+                    quantity[0]++;
+                    quantityLabel.setText(String.valueOf(quantity[0]));
+                    updateTotalPrice();
             }
         });
 
@@ -108,25 +116,34 @@ public class GiftItemMenuView implements Screen {
         quantityTable.add(quantityLabel).width(60);
         quantityTable.add(plusButton).width(10).height(40).padLeft(50);
 
-        rootTable.add(quantityTitleLabel).padRight(90).padBottom(300);
-        rootTable.add(quantityTable).padBottom(300).row();
+        rootTable.add(quantityTitleLabel).padRight(90).padBottom(100);
+        rootTable.add(quantityTable).padBottom(100).row();
 
 
+        totalPriceLabel = new Label("Total: " + item.getPrice() * quantity[0] + " G", skin);
+        totalPriceLabel.setFontScale(1.2f);
+        rootTable.add(totalPriceLabel).colspan(2).padTop(30).padBottom(100).row();
 
 
         Table buttonTable = new Table();
         buttonTable.add(backButton).width(130).height(55).padRight(30);
-        buttonTable.add(GiftButton).width(130).height(55);
+        buttonTable.add(sellButton).width(130).height(55);
 
         rootTable.add(buttonTable).colspan(2).padBottom(20).row();
         rootTable.add(ErrorLabel).colspan(2).center().row();
         rootTable.add(SuccessMessageLabel).colspan(2).center().row();
     }
 
+
+    private void updateTotalPrice() {
+        totalPrice = item.getPrice() * quantity[0];
+        totalPriceLabel.setText("Total: " + (totalPrice) + " G");
+    }
+
     @Override
     public void render(float delta) {
         controller.handleButton();
-        ScreenUtils.clear(0.1f, 0.2f, 0.1f, 1);
+        ScreenUtils.clear(0.2f, 0.2f, 0.25f, 1);
         stage.act(delta);
         stage.draw();
     }
@@ -212,19 +229,19 @@ public class GiftItemMenuView implements Screen {
         this.backButton = backButton;
     }
 
-    public Button getGiftButton() {
-        return GiftButton;
+    public Button getSellButton() {
+        return sellButton;
     }
 
-    public void setGiftButton(Button giftButton) {
-        GiftButton = giftButton;
+    public void setSellButton(Button sellButton) {
+        this.sellButton = sellButton;
     }
 
-    public GiftItemMenuController getController() {
+    public SellItemController getController() {
         return controller;
     }
 
-    public void setController(GiftItemMenuController controller) {
+    public void setController(SellItemController controller) {
         this.controller = controller;
     }
 
@@ -244,16 +261,32 @@ public class GiftItemMenuView implements Screen {
         this.item = item;
     }
 
+    public Label getTotalPriceLabel() {
+        return totalPriceLabel;
+    }
+
+    public void setTotalPriceLabel(Label totalPriceLabel) {
+        this.totalPriceLabel = totalPriceLabel;
+    }
+
     public int getQuantity() {
         return quantity[0];
     }
 
-    public NpcMenuView getNpcMenuView() {
-        return npcMenuView;
+    public ShippingBinMenuView getShippingBinMenuView() {
+        return shippingBinMenuView;
     }
 
-    public void setNpcMenuView(NpcMenuView npcMenuView) {
-        this.npcMenuView = npcMenuView;
+    public void setShippingBinMenuView(ShippingBinMenuView shippingBinMenuView) {
+        this.shippingBinMenuView = shippingBinMenuView;
+    }
+
+    public int getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(int totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
     public Label getErrorLabel() {

@@ -1,4 +1,4 @@
-package com.StardewValley.View;
+package com.StardewValley.View.newView;
 
 import com.StardewValley.enums.AssetManager;
 import com.StardewValley.model.App;
@@ -33,7 +33,7 @@ public class ReceiveQuestRewardView implements Screen {
         this.npcMenuView = npcMenuView;
         this.map = map;
         stage = new Stage(new ScreenViewport());
-        skin= App.getSkin();
+        skin= App.skin;
         backButton=new TextButton("Collect Rewards", skin);
     }
 

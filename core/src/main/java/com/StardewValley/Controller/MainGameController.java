@@ -2,13 +2,12 @@ package com.StardewValley.Controller;
 
 
 import com.StardewValley.View.newView.MainGameGraphicView;
-import com.StardewValley.View.ArtisanMachineMenuView;
-import com.StardewValley.View.ChooseArtisanMenuView;
-import com.StardewValley.View.MainGameGraphicView;
-import com.StardewValley.View.PauseMenuView;
+import com.StardewValley.View.newView.ArtisanMachineMenuView;
+import com.StardewValley.View.newView.ChooseArtisanMenuView;
+//import com.StardewValley.View.MainGameGraphicView;
+import com.StardewValley.View.newView.PauseMenuView;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Artisan.ArtisanMachine;
-import com.StardewValley.model.Artisan.ArtisanMachineType;
 import com.StardewValley.model.Item.CollisionRect;
 import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.Map.*;

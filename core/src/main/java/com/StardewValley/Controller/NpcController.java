@@ -1,6 +1,6 @@
 package com.StardewValley.Controller;
 
-import com.StardewValley.View.NpcMenuView;
+import com.StardewValley.View.newView.NpcMenuView;
 import com.StardewValley.enums.WeatherType;
 import com.StardewValley.model.*;
 import com.StardewValley.model.Friendship.NpcFriendship;

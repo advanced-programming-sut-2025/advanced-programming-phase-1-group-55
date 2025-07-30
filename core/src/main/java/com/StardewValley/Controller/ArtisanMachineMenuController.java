@@ -1,6 +1,6 @@
 package com.StardewValley.Controller;
 
-import com.StardewValley.View.ArtisanMachineMenuView;
+import com.StardewValley.View.newView.ArtisanMachineMenuView;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Artisan.ArtisanMachine;
 import com.StardewValley.model.Artisan.ArtisanStatus;

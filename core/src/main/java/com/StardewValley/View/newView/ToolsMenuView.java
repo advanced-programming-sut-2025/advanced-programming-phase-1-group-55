@@ -1,4 +1,4 @@
-package com.StardewValley.View;
+package com.StardewValley.View.newView;
 
 import com.StardewValley.Controller.ToolsMenuController;
 import com.StardewValley.model.App;
@@ -36,7 +36,7 @@ public class ToolsMenuView implements Screen {
         this.controller = controller;
         this.user = user;
         controller.setView(this);
-        this.skin = App.getSkin();
+        this.skin = App.skin;
         this.table = new Table();
         this.backBtn = new TextButton("Back", skin);
         this.confirmBtn = new TextButton("Confirm", skin);

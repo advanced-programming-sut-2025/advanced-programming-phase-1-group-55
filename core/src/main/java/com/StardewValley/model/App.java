@@ -1,6 +1,7 @@
 package com.StardewValley.model;
 
 import com.StardewValley.GameApp;
+import com.StardewValley.View.newView.MainGameGraphicView;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.google.gson.Gson;
@@ -21,6 +22,7 @@ public class App {
     public static Random rand = new Random();
     public static GameApp gameApp;
     public static Skin skin;
+    public static MainGameGraphicView currentGameGraphicView ;
 
     static {
         skin = new Skin(Gdx.files.internal("skin/LibGdx-Skin-main/LibGdx-Skin-main/NzSkin.json"));

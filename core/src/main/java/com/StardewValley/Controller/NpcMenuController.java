@@ -1,8 +1,8 @@
 package com.StardewValley.Controller;
 
-import com.StardewValley.View.GiftItemMenuView;
-import com.StardewValley.View.NpcMenuView;
-import com.StardewValley.View.ReceiveQuestRewardView;
+import com.StardewValley.View.newView.GiftItemMenuView;
+import com.StardewValley.View.newView.NpcMenuView;
+import com.StardewValley.View.newView.ReceiveQuestRewardView;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.Item.ItemType;
@@ -13,7 +13,6 @@ import com.StardewValley.model.NPC.QuestStatus;
 import com.StardewValley.model.Tool.BackPack;
 import com.StardewValley.model.User;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 
 public class NpcMenuController {
     private NpcMenuView view;

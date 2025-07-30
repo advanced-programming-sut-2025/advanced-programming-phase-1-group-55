@@ -1,9 +1,9 @@
 package com.StardewValley.Controller;
 
-import com.StardewValley.View.PauseMenuView;
-import com.StardewValley.View.QuestMenuView;
-import com.StardewValley.View.ShippingBinMenuView;
-import com.StardewValley.View.ToolsMenuView;
+import com.StardewValley.View.newView.PauseMenuView;
+import com.StardewValley.View.newView.QuestMenuView;
+import com.StardewValley.View.newView.ShippingBinMenuView;
+import com.StardewValley.View.newView.ToolsMenuView;
 import com.StardewValley.model.App;
 
 public class PauseMenuController {

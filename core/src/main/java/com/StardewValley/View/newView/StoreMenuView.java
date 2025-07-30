@@ -1,4 +1,4 @@
-package com.StardewValley.View;
+package com.StardewValley.View.newView;
 
 import com.StardewValley.Controller.StoreMenuController;
 import com.StardewValley.enums.AssetManager;
@@ -45,7 +45,7 @@ public class StoreMenuView implements Screen {
         this.sortBy = sortBy;
         this.store = store;
         this.products = store.getProductsOfStore();
-        this.skin = App.getSkin();
+        this.skin = App.skin;
         this.stage = new Stage(new ScreenViewport());
         this.backButton = new TextButton("Back", skin);
         this.purchaseButton = new TextButton("Purchase", skin);

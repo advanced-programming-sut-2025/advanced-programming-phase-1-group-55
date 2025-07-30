@@ -1,6 +1,6 @@
 package com.StardewValley.Controller;
 
-import com.StardewValley.View.PurchaseProductMenuView;
+import com.StardewValley.View.newView.PurchaseProductMenuView;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Item.ItemType;
 import com.StardewValley.model.Map.GameMap;
