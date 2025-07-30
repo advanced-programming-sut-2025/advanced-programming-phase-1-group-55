@@ -9,6 +9,7 @@ import com.StardewValley.model.User;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -64,7 +65,10 @@ public class SellItemView implements Screen {
         rootTable.top().padTop(50);
         stage.addActor(rootTable);
 
-        TextureRegion itemImage = AssetManager.heart.getTextureRegion();
+        Texture itemImage=item.getItemType().getTexture();
+        if (itemImage==null){
+            itemImage = AssetManager.heart.getTexture();
+        }
         if (itemImage != null) {
             Image image = new Image(itemImage);
             image.setScaling(Scaling.fit);

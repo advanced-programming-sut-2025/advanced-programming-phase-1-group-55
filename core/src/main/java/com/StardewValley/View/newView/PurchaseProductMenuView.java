@@ -9,6 +9,7 @@ import com.StardewValley.model.User;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -64,7 +65,10 @@ public class PurchaseProductMenuView implements Screen {
         rootTable.top().padTop(50);
         stage.addActor(rootTable);
 
-        TextureRegion productImage = AssetManager.heart.getTextureRegion();
+        Texture productImage = product.getItem().getItemType().getTexture();
+        if (productImage == null) {
+            productImage = AssetManager.heart.getTexture();
+        }
         if (productImage != null) {
             Image image = new Image(productImage);
             image.setScaling(Scaling.fit);
