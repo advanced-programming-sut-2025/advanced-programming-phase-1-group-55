@@ -31,26 +31,6 @@ public class GameMap {
 
     public GameMap(Farm farm1, Farm farm2, Farm farm3, Farm farm4, NpcVillage village) {
 
-        farm2.setLocation(new Location(farm2.getLocation().getY() + 21, farm2.getLocation().getX()));
-        farm2.getQuarry().getLocation().changeLocation(21, 0);
-        farm2.getLake().getLocation().changeLocation(21, 0);
-        farm2.getGreenHouse().getLocation().changeLocation(21, 0);
-        farm2.getHouse().getLocation().changeLocation(21, 0);
-        farm3.setLocation(new Location(farm3.getLocation().getY(), farm3.getLocation().getX() + 140));
-        farm3.getQuarry().getLocation().changeLocation(0, 140);
-        farm3.getLake().getLocation().changeLocation(0, 140);
-        farm3.getGreenHouse().getLocation().changeLocation(0, 140);
-        farm3.getHouse().getLocation().changeLocation(0, 140);
-        farm4.setLocation(new Location(farm4.getLocation().getY() + 21, farm4.getLocation().getX() + 140));
-        farm4.getQuarry().getLocation().changeLocation(21, 140);
-        farm4.getLake().getLocation().changeLocation(21, 140);
-        farm4.getGreenHouse().getLocation().changeLocation(21, 140);
-        farm4.getHouse().getLocation().changeLocation(21, 140);
-        this.farm1 = farm1;
-        this.farm2 = farm2;
-        this.farm3 = farm3;
-        this.farm4 = farm4;
-        this.village = village;
 
     }
     //todo in constructor bade inke map choose zade shod ,bardaashte beshe
@@ -84,11 +64,22 @@ public class GameMap {
                 return false;
             }
         }
+        if (farm1.getLake().getCollisionRect().collidesWith(collisionRect)||
+            farm1.getHouse().getCollisionRect().collidesWith(collisionRect)) {
+            return false;
+        }
         return true;
     }
-    public void BuildMap(String map1,String map2, String map3, String map4) {
+
+    public void BuildMap() {
         MapBuilder mapBuilder1 = new MapBuilder();
         mapBuilder1.BuildFences(WORLD_WIDTH, WORLD_HEIGHT,this);
+
+
+    }
+    public void BuildFarm(String map1,String map2, String map3, String map4){
+        MapBuilder mapBuilder1 = new MapBuilder();
+        mapBuilder1.BuildFarms(map1,map2,map3,map4,this,WORLD_WIDTH,WORLD_HEIGHT);
     }
     public void DrawMap(){
         MapBuilder mapBuilder1 = new MapBuilder();
@@ -97,6 +88,7 @@ public class GameMap {
         mapBuilder1.drawNpcHouses(this);
         mapBuilder1.drawBins(this);
         mapBuilder1.drawArtisans(this);
+        mapBuilder1.drawFarms(this);
     }
 
     public Tile[][] getTiles() {

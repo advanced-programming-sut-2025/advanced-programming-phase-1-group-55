@@ -98,7 +98,7 @@ public class StartGameScreen implements Screen {
                controller.newGame(u1, u2, u3, m1, m2, m3);
 
 
-              App.getGameApp().setScreen(new MainGameGraphicView(new MainGameController()));
+              App.getGameApp().setScreen(new MainGameGraphicView(new MainGameController(),App.currentGameModel.getMap()));
 
             }
         });;;

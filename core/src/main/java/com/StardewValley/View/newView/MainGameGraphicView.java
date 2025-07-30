@@ -42,17 +42,15 @@ public class MainGameGraphicView implements Screen, InputProcessor {
     private boolean isChoosingPlace=false;
     private ArtisanMachineType chosenArtisanType;
     private Sprite chosenArtisanSprite;
-    //todo field paayin baayad beshe App.currentGame.map
     private GameMap map=new GameMap();
 
 
-    public MainGameGraphicView(MainGameController controller) {
+    public MainGameGraphicView(MainGameController controller,GameMap map) {
         this.controller = controller;
+        this.map = map;
         controller.setView(this);
         App.currentGameGraphicView=this;
-        map=App.currentGameModel.getMap();
         controller.getPlayerController().setGameMap(map);
-
 
     }
 
@@ -129,7 +127,6 @@ public class MainGameGraphicView implements Screen, InputProcessor {
 
         drawBackground();
         updateBackgroundTexture();
-        //todo bade zadan choose map tavasot arshia az App.current game estefaade kn
         map.DrawMap();
         if (isChoosingPlace){
             chosenArtisanSprite.draw(App.gameApp.getBatch());
@@ -138,7 +135,6 @@ public class MainGameGraphicView implements Screen, InputProcessor {
         controller.updateGame(delta);
 
         App.gameApp.getBatch().end();
-        //todo energy bar.setvalue-->> player.getEnergy  alan chon plyer==null nmishod zad intori
         energyBar.setValue((float) player.getEnergy());
         stage.act(delta);
         stage.draw();

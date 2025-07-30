@@ -8,6 +8,10 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
 
 public enum AssetManager {
+    House("farm/house.png"),
+    GreenHouse("farm/Greenhouse/greenhouse.png"),
+    Lake("farm/Untitled design.png"),
+    Quarry("farm/mine_dark.png"),
 
 
     DAY_BACKGROUND("Flooring/Flooring_86.png"),

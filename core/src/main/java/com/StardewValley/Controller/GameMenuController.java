@@ -28,6 +28,18 @@ public class GameMenuController {
             user.setQuest(new HashMap<>());
             user.setEnergy(10000);
             user.setFriendsNpc(new HashMap<>());
+            Item item=new Item(ItemType.WOOD);
+            item.setPrice(10);
+            user.getBackPack().addItemToInventory(item,200);
+            Item item2=new Item(ItemType.GOLD_BAR);
+            item2.setPrice(3000);
+            user.getBackPack().addItemToInventory(item2,20);
+            Item item3=new Item(ItemType.KEG_RECIPE);
+            item3.setPrice(450);
+            user.getBackPack().addItemToInventory(item3,20);
+            Item item4=new Item(ItemType.LOOM_RECIPE);
+            item4.setPrice(500);
+            user.getBackPack().addItemToInventory(item4,20);
             for (Npc npc : map.getVillage().getNpss().values()) {
                 NpcFriendship friendship = new NpcFriendship(user, npc);
                 user.getFriendsNpc().put(npc.getType().getDisplayName(), friendship);
@@ -39,20 +51,7 @@ public class GameMenuController {
 
     }
 
-    public void setTileOwner(User user, Farm farm, GameMap map) {
-//        System.out.println(user.getUsername() + mainUser.getUsername());
-//        System.out.println(farm.getLocation().toString());
-//        System.out.println(farm.getHeight());
-//        System.out.println(farm.getWidth());
-        for (int i = farm.getLocation().getY(); i < farm.getWIDTH() + farm.getLocation().getY(); i++) {
-            for (int j = farm.getLocation().getX(); j < farm.getHEIGHT() + farm.getLocation().getX(); j++) {
-//                System.out.println(i + "  " + j);
-                map.tiles[i][j].setOwner(user);
-            }
-        }
-    }
 
-    //todo gereftan mazrae va map az player haa va pass dadn be mapbuilder
     public Result newGame(String Username1, String Username2, String Username3,
                           String Map1, String Map2, String Map3) {
 
@@ -68,12 +67,13 @@ public class GameMenuController {
 
 
         GameMap map = new GameMap();
-        map.BuildMap("Map1",Map1,Map2,Map3);
+        map.BuildMap();
         currentGameModel = new GameModel(mainUser, map);
         currentGameModel.playersInGame.add(player0);
         currentGameModel.playersInGame.add( player1);
         if (player2 != null) currentGameModel.playersInGame.add(player2);
         if (player3 != null) currentGameModel.playersInGame.add(player3);
+        map.BuildFarm("Map1",Map1,Map2,Map3);
         setFriendships(map);
 
         return new Result(true, "Game has been created successfully!");
