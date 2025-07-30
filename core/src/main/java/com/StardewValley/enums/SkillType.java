@@ -61,13 +61,17 @@ public enum SkillType {
         return cookingRecipes;
     }
 
-    private final static Map<SkillType, String> skillDescriptions = Map.of(
+    public final static Map<SkillType, String> skillDescriptions = Map.of(
         SkillType.Farming, "Farming: Unlock sprinklers, scarecrows, and artisan machines.",
         SkillType.Mining, "Mining: Craft bombs and mine deeper for rare ores.",
         SkillType.Fishing, "Fishing: Catch better fish and use special bait.",
         SkillType.Foraging, "Foraging: Collect wild items and unlock nature tools."
-//       , SkillType.Max_Energy, "Max Energy: Boosts your overall stamina capacity."
+       , SkillType.Max_Energy, "Max Energy: Boosts your overall stamina capacity."
     );
+
+    public static String getDescription(SkillType skill) {
+        return skillDescriptions.getOrDefault(skill, "No description available.");
+    }
 
 
 

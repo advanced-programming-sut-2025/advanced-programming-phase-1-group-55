@@ -2,9 +2,9 @@ package com.StardewValley.View;
 
 import com.StardewValley.enums.AssetManager;
 import com.StardewValley.enums.SkillType;
+import com.StardewValley.model.App;
 import com.StardewValley.model.Skill;
 import com.StardewValley.model.User;
-import com.StardewValley.model.App;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -16,6 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 public class SkillsMenuView implements Screen {
+
     private final User user;
     private final Skin skin;
     private Stage stage;
@@ -47,16 +48,28 @@ public class SkillsMenuView implements Screen {
         for (SkillType skillType : SkillType.values()) {
             if (skillType == SkillType.Max_Energy) continue;
 
-
+            // آیکون
             Sprite iconSprite;
             try {
                 iconSprite = AssetManager.valueOf(skillType.name().toUpperCase()).getSprite();
             } catch (Exception e) {
                 iconSprite = AssetManager.gear.getSprite();
             }
-
             Image icon = new Image(new SpriteDrawable(iconSprite));
 
+            // Tooltip ساده بدون background سفارشی
+            String tooltipText = SkillType.skillDescriptions.getOrDefault(
+                skillType,
+                "No description available."
+            );
+            Tooltip<Label> tooltip = new Tooltip<>(new Label(tooltipText, skin));
+            tooltip.setInstant(true);
+            tooltip.setAlways(true);
+
+            icon.addListener(tooltip);
+            stage.addActor(tooltip.getContainer());
+
+            // سطح مهارت
             Skill skill = switch (skillType) {
                 case Farming -> user.getFarmingSkill();
                 case Mining -> user.getMiningSkill();
