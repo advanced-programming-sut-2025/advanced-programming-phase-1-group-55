@@ -62,10 +62,10 @@ public enum SkillType {
     }
 
     public final static Map<SkillType, String> skillDescriptions = Map.of(
-        SkillType.Farming, "Farming: Unlock sprinklers, scarecrows, and artisan machines.",
-        SkillType.Mining, "Mining: Craft bombs and mine deeper for rare ores.",
-        SkillType.Fishing, "Fishing: Catch better fish and use special bait.",
-        SkillType.Foraging, "Foraging: Collect wild items and unlock nature tools."
+        SkillType.Farming, "Farming: kososheraye keshavarzi",
+        SkillType.Mining, "Mining: kososheraye mining",
+        SkillType.Fishing, "Fishing: kososheraye fishing",
+        SkillType.Foraging, "Foraging: kososheraye foraging"
        , SkillType.Max_Energy, "Max Energy: Boosts your overall stamina capacity."
     );
 
