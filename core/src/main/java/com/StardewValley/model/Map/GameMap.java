@@ -67,11 +67,15 @@ public class GameMap {
         return true;
     }
 
-    public void BuildMap(String map1,String map2, String map3, String map4) {
+    public void BuildMap() {
         MapBuilder mapBuilder1 = new MapBuilder();
         mapBuilder1.BuildFences(WORLD_WIDTH, WORLD_HEIGHT,this);
-        mapBuilder1.BuildFarms(map1,map2,map3,map4,this);
 
+
+    }
+    public void BuildFarm(String map1,String map2, String map3, String map4){
+        MapBuilder mapBuilder1 = new MapBuilder();
+        mapBuilder1.BuildFarms(map1,map2,map3,map4,this,WORLD_WIDTH,WORLD_HEIGHT);
     }
     public void DrawMap(){
         MapBuilder mapBuilder1 = new MapBuilder();
