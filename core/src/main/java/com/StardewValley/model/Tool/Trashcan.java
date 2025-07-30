@@ -12,9 +12,9 @@ public class Trashcan extends Tools{
     @Override
     public Sprite getSprite() {
         return switch (level) {
-            case 1 -> AssetManager.STEEL_TRASHCAN.getSprite();
-            case 2 -> AssetManager.GOLD_TRASHCAN.getSprite();
-            case 3 -> AssetManager.IRIDIUM_TRASHCAN.getSprite();
+            case 2 -> AssetManager.STEEL_TRASHCAN.getSprite();
+            case 3 -> AssetManager.GOLD_TRASHCAN.getSprite();
+            case 4 -> AssetManager.IRIDIUM_TRASHCAN.getSprite();
             default -> AssetManager.COPPER_TRASHCAN.getSprite();
         };
     }

@@ -52,7 +52,7 @@ public class MainGameController {
         toolController=new ToolController(currentPlayer);
         npcController=new NpcController(currentPlayer,view.getMap());
         storeController=new StoresStatusController(currentPlayer,view.getMap());
-        currentPlayer.setGold(5000);
+        currentPlayer.setGold(40000);
     }
     public void checkIfClickedOnMachine(float dx, float dy){
         for (ArtisanMachine artisanMachine:view.getMap().getArtisanMachines()){

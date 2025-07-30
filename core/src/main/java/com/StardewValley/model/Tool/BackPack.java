@@ -18,6 +18,7 @@ public class BackPack {
         put("Axe", new Axe());
         put("WateringCan", new WateringCan());
         put("Scythe", new Scythe());
+        put("FishingPole",new FishingPole(FishingPoleType.TRAINING_ROD));
     }};
     private Trashcan trashcan=new Trashcan();
     private Map<String,Item> inventory = new HashMap<>();
