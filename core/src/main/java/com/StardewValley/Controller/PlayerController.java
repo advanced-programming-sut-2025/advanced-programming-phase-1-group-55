@@ -34,10 +34,11 @@ public class PlayerController {
 
 
     public void handlePlayerInput(){
-        boolean movedSuccessfully=true;
+        boolean movedSuccessfully=false;
         if (Gdx.input.isKeyPressed(Input.Keys.W)){
             player.getLocation().setY(player.getLocation().getY() + 10);
             player.getCollisionRect().updateCollisionRect(player.getLocation().getX(), player.getLocation().getY());
+            movedSuccessfully=true;
             if (!gameMap.canMove(player.getCollisionRect())) {
                 player.getLocation().setY(player.getLocation().getY() - 10);
                 player.getCollisionRect().updateCollisionRect(player.getLocation().getX(), player.getLocation().getY());
@@ -47,6 +48,7 @@ public class PlayerController {
         if (Gdx.input.isKeyPressed(Input.Keys.D)){
             player.getLocation().setX(player.getLocation().getX() + 10);
             player.getCollisionRect().updateCollisionRect(player.getLocation().getX(), player.getLocation().getY());
+            movedSuccessfully=true;
             if (!gameMap.canMove(player.getCollisionRect())){
                 player.getLocation().setX(player.getLocation().getX() - 10);
                 player.getCollisionRect().updateCollisionRect(player.getLocation().getX(), player.getLocation().getY());
@@ -56,6 +58,7 @@ public class PlayerController {
         if (Gdx.input.isKeyPressed(Input.Keys.S)){
             player.getLocation().setY(player.getLocation().getY() - 10);
             player.getCollisionRect().updateCollisionRect(player.getLocation().getX(), player.getLocation().getY());
+            movedSuccessfully=true;
             if (!gameMap.canMove(player.getCollisionRect())){
                 player.getLocation().setY(player.getLocation().getY() + 10);
                 player.getCollisionRect().updateCollisionRect(player.getLocation().getX(), player.getLocation().getY());
@@ -65,6 +68,7 @@ public class PlayerController {
         if (Gdx.input.isKeyPressed(Input.Keys.A)){
             player.getLocation().setX(player.getLocation().getX() - 10);
             player.getCollisionRect().updateCollisionRect(player.getLocation().getX(), player.getLocation().getY());
+            movedSuccessfully=true;
             if (!gameMap.canMove(player.getCollisionRect())){
                 player.getLocation().setX(player.getLocation().getX() + 10);
                 player.getCollisionRect().updateCollisionRect(player.getLocation().getX(), player.getLocation().getY());

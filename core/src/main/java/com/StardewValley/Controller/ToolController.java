@@ -64,7 +64,7 @@ public class ToolController {
         return new Location((int) resultY, (int) resultX);
     }
     public void UseTool(float x, float y) {
-      player.decreaseEnergy(2);
+      player.decreaseEnergy(20);
       Location location=getUsedLocation(x, y);
       int PointX=location.getX();
       int PointY=location.getY();

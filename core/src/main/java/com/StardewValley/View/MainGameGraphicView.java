@@ -110,7 +110,7 @@ public class MainGameGraphicView implements Screen, InputProcessor {
         knobPixmap.fill();
         progressBarStyle.knobBefore = new TextureRegionDrawable(new Texture(knobPixmap));
 
-        energyBar = new ProgressBar(0, 200, 1f, false, progressBarStyle);
+        energyBar = new ProgressBar(0, 10000, 1, false, progressBarStyle);
 
 
         tableTop = new Table();
