@@ -31,6 +31,9 @@ public class PauseMenuController {
             } else if (view.getQuestsButton().isChecked()) {
                 view.getQuestsButton().setChecked(false);
                 App.gameApp.setScreen(new QuestMenuView());
+            }else if (view.getSkillsButton().isChecked()) {
+                view.getSkillsButton().setChecked(false);
+                App.gameApp.setScreen(new SkillsMenuView(view.getUser()));
             }
         }
     }
