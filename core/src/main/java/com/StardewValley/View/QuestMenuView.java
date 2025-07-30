@@ -43,30 +43,38 @@ public class QuestMenuView implements Screen {
         rootTable.setFillParent(true);
         stage.addActor(rootTable);
 
-        Table scrollContent = new Table();
-        scrollContent.top().bottom().pad(10);
-
         Label titleLabel = new Label("Your Quests", skin);
         titleLabel.setColor(Color.BLACK);
-        rootTable.add(titleLabel).center().padBottom(40).row();
-        for (Quest quest:App.currentGameGraphicView.getPlayer().getQuest().values()){
-            Label label=new Label(quest.toString(), skin);
-            rootTable.add(label);
-            rootTable.row();
+        rootTable.add(titleLabel).center().padTop(20).padBottom(20).row();
+
+
+        Table scrollContent = new Table();
+        scrollContent.top().center().pad(10);
+        scrollContent.defaults().padBottom(10).width(600);
+
+        for (Quest quest : App.currentGameGraphicView.getPlayer().getQuest().values()) {
+            Label label = new Label(quest.toString(), skin);
+            label.setWrap(true);
+            label.setColor(Color.BLACK);
+            scrollContent.add(label).expandX().fillX().row();
         }
 
-        rootTable.add(backButton).bottom().padTop(70);
+        ScrollPane scrollPane = new ScrollPane(scrollContent, skin);
+        scrollPane.setFadeScrollBars(false);
+        scrollPane.setScrollingDisabled(true, false);
 
+        rootTable.add(scrollPane).expand().fill().padLeft(20).padRight(20).row();
 
-        stage.addActor(rootTable);
+        rootTable.add(backButton).padTop(20).padBottom(30).center();
 
         backButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                App.gameApp.setScreen(new PauseMenuView(new PauseMenuController(),App.currentGameGraphicView.getPlayer()));
+                App.gameApp.setScreen(new PauseMenuView(new PauseMenuController(), App.currentGameGraphicView.getPlayer()));
             }
         });
     }
+
 
     public Stage getStage() {
         return stage;
