@@ -17,8 +17,8 @@ public class Register extends AppView implements AppMenu {
         Matcher Register = RegisterCommands.Register.getMatcher(input);
         if (Register != null) {
 
-            Result result = controller.Register(Register.group("username").trim(), Register.group("password").trim(), Register.group("passwordConfirmation").trim(), Register.group("nickname").trim(), Register.group("email").trim(), Register.group("gender").trim());
-            System.out.println(result);
+//            Result result = controller.Register(Register.group("username").trim(), Register.group("password").trim(), Register.group("passwordConfirmation").trim(), Register.group("nickname").trim(), Register.group("email").trim(), Register.group("gender").trim());
+//            System.out.println(result);
 
 
         } else if (input.matches("\\s*menu\\s+exit\\s*")) {

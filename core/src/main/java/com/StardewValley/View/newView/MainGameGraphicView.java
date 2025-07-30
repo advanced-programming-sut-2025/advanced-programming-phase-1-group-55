@@ -1,4 +1,4 @@
-package com.StardewValley.View;
+package com.StardewValley.View.newView;
 
 import com.StardewValley.Controller.MainGameController;
 import com.StardewValley.model.App;
@@ -357,4 +357,6 @@ public class MainGameGraphicView implements Screen, InputProcessor {
     public void setChosenArtisanSprite(Sprite chosenArtisanSprite) {
         this.chosenArtisanSprite = chosenArtisanSprite;
     }
+
+
 }

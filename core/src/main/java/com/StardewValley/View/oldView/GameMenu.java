@@ -18,7 +18,7 @@ public class GameMenu extends AppView implements AppMenu {
         Matcher gameNew = mainGameCommands.gameNew.getMatcher(input);
         if (gameNew != null) {
 
-            System.out.println(controller.newGame(gameNew.group("user1"), gameNew.group("user2"), gameNew.group("user3")));
+//            System.out.println(controller.newGame(gameNew.group("user1"), gameNew.group("user2"), gameNew.group("user3")));
 
         } else if (input.equals("back")) {
             currentMenu = Menu.MainMenu;

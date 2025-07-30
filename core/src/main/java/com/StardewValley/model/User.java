@@ -12,17 +12,17 @@ import com.StardewValley.model.Friendship.Gift;
 import com.StardewValley.model.Friendship.NpcFriendship;
 import com.StardewValley.model.Friendship.PlayerFriendship;
 import com.StardewValley.model.Item.CollisionRect;
-import  com.StardewValley.model.Item.ItemType;
-import  com.StardewValley.model.Map.*;
-import  com.StardewValley.model.NPC.Quest;
-import  com.StardewValley.model.Tool.BackPack;
+import com.StardewValley.model.Item.ItemType;
+import com.StardewValley.model.Map.*;
+import com.StardewValley.model.NPC.Quest;
+import com.StardewValley.model.Tool.BackPack;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
 import java.util.*;
 
-import static  com.StardewValley.model.App.currentGameModel;
+import static com.StardewValley.model.App.currentGameModel;
 import static com.StardewValley.enums.AssetManager.*;
 
 public class User {
@@ -30,13 +30,22 @@ public class User {
     private String password;
     private String nickName;
     private CollisionRect collisionRect;
-    private Sprite sprite=new Sprite(PLAYER.getTexture());
+    private transient Sprite sprite = new Sprite(PLAYER.getTexture());
     private String gender;
     private String email;
-    private boolean isSad=false;
-    private int timePassedBeingSad=0;
+    private boolean isSad = false;
+    private int timePassedBeingSad = 0;
     private int numberOfSecurityQuestion;
     private String securityQuestion;
+    private String answerOfSecurityQuestion;
+    private Skill farmingSkill = new Skill(SkillType.Farming);
+    private Skill miningSkill = new Skill(SkillType.Mining);
+    private Skill foragingSkill = new Skill(SkillType.Foraging);
+    private Skill fishingSkill = new Skill(SkillType.Fishing);
+    private ArrayList<CookingItem> refrigerator = new ArrayList<>();
+    private ArrayList<ArtisanMachine> artisanMachines = new ArrayList<>();
+
+
     private BackPack backPack = new BackPack();
     private User wife = null;
     private HashMap<String, NpcFriendship> friendsNpc = new HashMap<>();
@@ -63,6 +72,22 @@ public class User {
     private boolean hasMessageToday = false;
     private Map<Integer, Quest> quest = new HashMap<>();
     private GreenHouse greenHouse;
+
+
+    public User(String username, String password, String nickName, String email, String gender, String securityQuestion, String answerOfSecurityQuestion) {
+        this.username = username;
+        this.password = password;
+        this.nickName = nickName;
+        this.gender = gender;
+        this.email = email;
+        this.securityQuestion = securityQuestion;
+        this.answerOfSecurityQuestion = answerOfSecurityQuestion;
+        this.gold = 10000;
+        sprite = new Sprite(new Texture(Gdx.files.internal("sprites/Mariner.png")));
+        this.refrigerator = new ArrayList<>();
+
+    }
+
 
     public CollisionRect getCollisionRect() {
         return collisionRect;
@@ -112,19 +137,15 @@ public class User {
         this.stone = stone;
     }
 
-    private Skill farmingSkill = new Skill(SkillType.Farming);
-    private Skill miningSkill = new Skill(SkillType.Mining);
-    private Skill foragingSkill = new Skill(SkillType.Foraging);
-    private Skill fishingSkill = new Skill(SkillType.Fishing);
-    private ArrayList<CookingItem> refrigerator = new ArrayList<>();
-    private ArrayList<ArtisanMachine> artisanMachines = new ArrayList<>();
 
     public boolean isSad() {
         return isSad;
     }
-    public void increaseTimeToBeSad(){
+
+    public void increaseTimeToBeSad() {
         timePassedBeingSad++;
     }
+
     public void setSad(boolean sad) {
         isSad = sad;
     }
@@ -169,9 +190,11 @@ public class User {
     public void setPlayerTommorowLocation(Location playerTommorowLocation) {
         this.playerTommorowLocation = playerTommorowLocation;
     }
-    public Sprite getPlayerSprite(){
+
+    public Sprite getPlayerSprite() {
         return sprite;
     }
+
     public boolean isFainted() {
         return fainted;
     }
@@ -269,18 +292,25 @@ public class User {
         this.numberOfSecurityQuestion = numberOfSecurityQuestion;
         this.securityQuestion = securityQuestion;
         this.gold = 10000;
-        sprite=new Sprite(new Texture(Gdx.files.internal("sprites/Mariner.png")));
+        sprite = new Sprite(new Texture(Gdx.files.internal("sprites/Mariner.png")));
         this.refrigerator = new ArrayList<>();
-        this.backPack=new BackPack();
+        this.backPack = new BackPack();
+    }
 
+    public String getAnswerOfSecurityQuestion() {
+        return answerOfSecurityQuestion;
+    }
+
+    public void setAnswerOfSecurityQuestion(String answerOfSecurityQuestion) {
+        this.answerOfSecurityQuestion = answerOfSecurityQuestion;
     }
 
     public double getEnergy() {
-        int zarib=1;
-        if (isSad){
-            zarib=2;
+        int zarib = 1;
+        if (isSad) {
+            zarib = 2;
         }
-        return (this.energy)/zarib;
+        return (this.energy) / zarib;
     }
 
     public void setEnergy(double energy) {
@@ -514,61 +544,50 @@ public class User {
     public void setQuest(Map<Integer, Quest> quest) {
         this.quest = quest;
     }
-    public ArrayList<Animal> getAnimals()
-    {
+
+    public ArrayList<Animal> getAnimals() {
         ArrayList<Animal> animals = new ArrayList<>();
-        for (AnimalBuilding animalBuilding : farm.getAnimalBuildings())
-        {
-            for (Animal animal : animalBuilding.getAnimals())
-            {
+        for (AnimalBuilding animalBuilding : farm.getAnimalBuildings()) {
+            for (Animal animal : animalBuilding.getAnimals()) {
                 animals.add(animal);
             }
         }
         return animals;
     }
-    public Animal findAnimal(String name)
-    {
-        for (Animal animal : getAnimals())
-        {
-            if (animal.getName().equalsIgnoreCase(name))
-            {
+
+    public Animal findAnimal(String name) {
+        for (Animal animal : getAnimals()) {
+            if (animal.getName().equalsIgnoreCase(name)) {
                 return animal;
             }
         }
         return null;
     }
-    public boolean validAnimalName(String name)
-    {
-        for (Animal animal : getAnimals())
-        {
-            if (animal.getName().equalsIgnoreCase(name))
-            {
+
+    public boolean validAnimalName(String name) {
+        for (Animal animal : getAnimals()) {
+            if (animal.getName().equalsIgnoreCase(name)) {
                 return false;
             }
         }
         return true;
     }
-    public boolean isNearAnimal(Animal animal)
-    {
-        for (Animal anim : getAnimals())
-        {
-            if (anim.getName().equalsIgnoreCase(animal.getName()))
-            {
+
+    public boolean isNearAnimal(Animal animal) {
+        for (Animal anim : getAnimals()) {
+            if (anim.getName().equalsIgnoreCase(animal.getName())) {
                 Tile tile = anim.getTile();
 
-                if (tile == null)
-                {
+                if (tile == null) {
                     return false;
                 }
 
                 Location p = tile.getLocation();
                 ArrayList<Location> neighbors = currentGameModel.currentUser.getFarm().getNeighbors(
-                        currentGameModel.currentUser.getLocation());
+                    currentGameModel.currentUser.getLocation());
 
-                for (Location neighbor : neighbors)
-                {
-                    if (neighbor.equals(p))
-                    {
+                for (Location neighbor : neighbors) {
+                    if (neighbor.equals(p)) {
                         return true;
                     }
                 }
@@ -577,8 +596,8 @@ public class User {
 
         return false;
     }
-    public boolean isNear(Location otherLocation)
-    {
+
+    public boolean isNear(Location otherLocation) {
 
         Location location = this.location;
         int dx = Math.abs(location.getX() - otherLocation.getX());
@@ -586,24 +605,21 @@ public class User {
 
         return (dx <= 1 && dy <= 1) && !(dx == 0 && dy == 0);
     }
-    public ArtisanMachine getArtisan(ArtisanMachineType type)
-    {
-        for (ArtisanMachine good : artisanMachines)
-        {
-            if (good.getArtisanType() == type)
-            {
+
+    public ArtisanMachine getArtisan(ArtisanMachineType type) {
+        for (ArtisanMachine good : artisanMachines) {
+            if (good.getArtisanType() == type) {
                 return good;
             }
         }
         return null;
     }
+
+
     //todo ino bade zadan menu haa tavasot arshia hazf kn
-    public User( ){
+    public User() {
 
     }
-
-
-
 
 
 }

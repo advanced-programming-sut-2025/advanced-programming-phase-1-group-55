@@ -25,7 +25,7 @@ public class RegisterController {
 
     Scanner scanner = new Scanner(System.in);
 
-    public Result Register(String username, String password, String passwordConfirmation, String nickname, String email, String gender) {
+    public Result Register(String username, String password, String passwordConfirmation, String nickname, String email, String gender, String question, String answer) {
         if (!isUniqueUsername(username)) {
             System.out.println("Username is already in use");
 
@@ -47,11 +47,6 @@ public class RegisterController {
         if (!isValidEmail(email)) {
             return new Result(false, "Email is not valid");
 
-        }
-        if (password.equals("r") && passwordConfirmation.equals("r")) {
-
-            System.out.println("random password : " + (password = RandomPasswordGenerator()));
-
         } else if (!password.equals(passwordConfirmation)) {
             return new Result(false, "Passwords do not match");
         } else if (!isValidPassword(password)) {
@@ -60,40 +55,14 @@ public class RegisterController {
 
             return new Result(false, "Password is not strong");
         }
-        System.out.println("select one of these questions and answer it");
-        for (Map.Entry<Integer, String> question : questionsList.entrySet()) {
-            System.out.println(question.getKey() + ": " + question.getValue());
-        }
 
 
-        String input = scanner.nextLine();
-        Pattern pattern = Pattern.compile("pick\\s+question\\s+-q\\s+(?<number>\\S+)\\s+-a\\s+(?<answer>\\S+)\\s+-c\\s+(?<confirm>\\S+)\\s*");
-        int number;
-        Matcher matcher = pattern.matcher(input);
-
-        if (!matcher.matches()) {
-            return new Result(false, "wrong answer type");
-        } else if (!matcher.group("confirm").trim().equals(matcher.group("answer").trim())) {
-
-            return new Result(false, "wrong confirm answer ");
-
-        }
-        try {
-            number = Integer.parseInt(matcher.group("number"));
-        } catch (IllegalStateException e) {
-            return new Result(false, "Invalid number");
-        }
-        if (number > 3) {
-            return new Result(false, "wrong number number should be between 1 up to 3");
-        }
-
-
-        User user = new User(username, convertToSHA(password), nickname, email, gender, number, matcher.group("answer"));
+        User user = new User(username, convertToSHA(password), nickname, email, gender, question, answer);
         mainUser = user;
         saveUserToJson(user);
         readfile();
         currentMenu = Menu.MainMenu;
-        return new Result(true, "Registered Successfully :)" + "\nusername:" + username + "\npassword: " + password + "\nnickname: " + nickname + "\nemail: " + email + "\ngender: " + gender + "\nchoice: " + number + "\nanswer: " + matcher.group("answer"));
+        return new Result(true, "Registered Successfully");
 
     }
 
@@ -178,11 +147,11 @@ public class RegisterController {
         return true;
     }
 
-    protected String RandomPasswordGenerator() {
+    public String RandomPasswordGenerator() {
         final String UPPER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         final String LOWER = "abcdefghijklmnopqrstuvwxyz";
         final String DIGITS = "0123456789";
-        final String SPECIAL = "!@#$%^&*()-_=+<>?/{}[]";
+        final String SPECIAL = "*&@^%$#!";
         final String ALL_CHARS = UPPER + LOWER + DIGITS + SPECIAL;
         SecureRandom rand = new SecureRandom();
         StringBuilder RandomPassword = new StringBuilder(10);
@@ -212,23 +181,23 @@ public class RegisterController {
     }
 
 
-    protected boolean isValidUsername(String username) {
+    public  boolean isValidUsername(String username) {
         Pattern pattern = Pattern.compile("[a-zA-Z0-9]+");
         return pattern.matcher(username).matches();
     }
 
-    protected boolean isValidPassword(String password) {
-        Pattern pattern = Pattern.compile("[a-zA-Z0-9?><,\"';:/|\\]\\[}{+=)(*&^%$#!]+");
+    public  boolean isValidPassword(String password) {
+        Pattern pattern = Pattern.compile("[a-zA-Z0-9?><,\"';:/|\\]\\[}{+=)(*&@^%$#!]+");
         return pattern.matcher(password).matches();
     }
 
-    protected boolean isValidEmail(String email) {
+    public  boolean isValidEmail(String email) {
         Pattern pattern = Pattern.compile("^(?!.*\\.\\.)([a-zA-Z0-9][a-zA-Z0-9._-]{0,62}[a-zA-Z0-9])@([a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9])\\.([a-zA-Z]{2,})$");
         return pattern.matcher(email).matches();
     }
 
-    protected boolean isStrongPassword(String password) {
-        String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[?><,\"';:/|\\\\\\[\\]{}+=)(*&^%$#!])[A-Za-z\\d?><,\"';:/|\\\\\\[\\]{}+=)(*&^%$#!]{8,}$";
+    public  boolean isStrongPassword(String password) {
+        String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[?><,\"';:/|\\\\\\[\\]{}+=)(*&@^%$#!])[A-Za-z\\d?><,\"';:/|\\\\\\[\\]{}+=)(*&@^%$#!]{8,}$";
         return Pattern.matches(regex, password);
     }
 }

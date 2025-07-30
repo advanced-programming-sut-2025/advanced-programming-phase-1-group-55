@@ -1,12 +1,37 @@
 [
   {
-    "username": "arshiaY5",
-    "password": "1efb4ef0da0b46701287a19814214eee4518e892f954d4c2d71fd5e89b411b18",
-    "nickName": "arshix",
+    "username": "asdas",
+    "password": "e3f4fc452a27c094df6a72f7a5c16aea80657426182435f11c72bd8f3b620300",
+    "nickName": "asd",
     "gender": "male",
-    "email": "arshia@gmail.com",
-    "numberOfSecurityQuestion": 1,
-    "securityQuestion": "soltani",
+    "email": "asd@gmail.com",
+    "isSad": false,
+    "timePassedBeingSad": 0,
+    "numberOfSecurityQuestion": 0,
+    "securityQuestion": "What was the name of your first-grade teacher?",
+    "answerOfSecurityQuestion": "asd",
+    "farmingSkill": {
+      "type": "Farming",
+      "level": 0,
+      "points": 0
+    },
+    "miningSkill": {
+      "type": "Mining",
+      "level": 0,
+      "points": 0
+    },
+    "foragingSkill": {
+      "type": "Foraging",
+      "level": 0,
+      "points": 0
+    },
+    "fishingSkill": {
+      "type": "Fishing",
+      "level": 0,
+      "points": 0
+    },
+    "refrigerator": [],
+    "artisanMachines": [],
     "backPack": {
       "currentTool": {
         "level": 0
@@ -18,13 +43,7 @@
         "Scythe": {
           "level": 0
         },
-        "FishingPole": {
-          "level": 0
-        },
         "Pickaxe": {
-          "level": 0
-        },
-        "Trashcan": {
           "level": 0
         },
         "Hoe": {
@@ -69,6 +88,19 @@
     "sentGifts": {},
     "hasGiftToday": false,
     "hasMessageToday": false,
+    "quest": {}
+  },
+  {
+    "username": "a",
+    "password": "082eb3bdc23b028b2291e782e8dff884b89b3a40c7f9e537f6e223757b7a42ef",
+    "nickName": "asd",
+    "gender": "male",
+    "email": "asd@gm.com",
+    "isSad": false,
+    "timePassedBeingSad": 0,
+    "numberOfSecurityQuestion": 0,
+    "securityQuestion": "What was the name of your first-grade teacher?",
+    "answerOfSecurityQuestion": "asd",
     "farmingSkill": {
       "type": "Farming",
       "level": 0,
@@ -89,16 +121,8 @@
       "level": 0,
       "points": 0
     },
-    "refrigerator": []
-  },
-  {
-    "username": "arshiaJ3",
-    "password": "1efb4ef0da0b46701287a19814214eee4518e892f954d4c2d71fd5e89b411b18",
-    "nickName": "arshix",
-    "gender": "male",
-    "email": "arshia@gmail.com",
-    "numberOfSecurityQuestion": 1,
-    "securityQuestion": "soltani",
+    "refrigerator": [],
+    "artisanMachines": [],
     "backPack": {
       "currentTool": {
         "level": 0
@@ -110,13 +134,7 @@
         "Scythe": {
           "level": 0
         },
-        "FishingPole": {
-          "level": 0
-        },
         "Pickaxe": {
-          "level": 0
-        },
-        "Trashcan": {
           "level": 0
         },
         "Hoe": {
@@ -161,6 +179,19 @@
     "sentGifts": {},
     "hasGiftToday": false,
     "hasMessageToday": false,
+    "quest": {}
+  },
+  {
+    "username": "b",
+    "password": "9a629b995e869b62d12b788b188b22d9be0a9bfb3133d37a89a899eae700cac1",
+    "nickName": "arshix",
+    "gender": "male",
+    "email": "arshia@gmail.com",
+    "isSad": false,
+    "timePassedBeingSad": 0,
+    "numberOfSecurityQuestion": 0,
+    "securityQuestion": "What was the name of your first-grade teacher?",
+    "answerOfSecurityQuestion": "soltani",
     "farmingSkill": {
       "type": "Farming",
       "level": 0,
@@ -181,16 +212,8 @@
       "level": 0,
       "points": 0
     },
-    "refrigerator": []
-  },
-  {
-    "username": "arshiaO2",
-    "password": "1efb4ef0da0b46701287a19814214eee4518e892f954d4c2d71fd5e89b411b18",
-    "nickName": "arshix",
-    "gender": "female",
-    "email": "arshia@gmail.com",
-    "numberOfSecurityQuestion": 1,
-    "securityQuestion": "soltani",
+    "refrigerator": [],
+    "artisanMachines": [],
     "backPack": {
       "currentTool": {
         "level": 0
@@ -202,13 +225,7 @@
         "Scythe": {
           "level": 0
         },
-        "FishingPole": {
-          "level": 0
-        },
         "Pickaxe": {
-          "level": 0
-        },
-        "Trashcan": {
           "level": 0
         },
         "Hoe": {
@@ -253,6 +270,19 @@
     "sentGifts": {},
     "hasGiftToday": false,
     "hasMessageToday": false,
+    "quest": {}
+  },
+  {
+    "username": "c",
+    "password": "31f8b258dc45bbf772651d027737f6cc05f626148f756b7bf154b389e397fda0",
+    "nickName": "asdf",
+    "gender": "male",
+    "email": "asd@gmail.com",
+    "isSad": false,
+    "timePassedBeingSad": 0,
+    "numberOfSecurityQuestion": 0,
+    "securityQuestion": "What was the name of your first-grade teacher?",
+    "answerOfSecurityQuestion": "asdf",
     "farmingSkill": {
       "type": "Farming",
       "level": 0,
@@ -273,16 +303,8 @@
       "level": 0,
       "points": 0
     },
-    "refrigerator": []
-  },
-  {
-    "username": "arshiaE6",
-    "password": "1efb4ef0da0b46701287a19814214eee4518e892f954d4c2d71fd5e89b411b18",
-    "nickName": "arshix",
-    "gender": "male",
-    "email": "arshia@gmail.com",
-    "numberOfSecurityQuestion": 1,
-    "securityQuestion": "soltani",
+    "refrigerator": [],
+    "artisanMachines": [],
     "backPack": {
       "currentTool": {
         "level": 0
@@ -294,13 +316,7 @@
         "Scythe": {
           "level": 0
         },
-        "FishingPole": {
-          "level": 0
-        },
         "Pickaxe": {
-          "level": 0
-        },
-        "Trashcan": {
           "level": 0
         },
         "Hoe": {
@@ -345,6 +361,19 @@
     "sentGifts": {},
     "hasGiftToday": false,
     "hasMessageToday": false,
+    "quest": {}
+  },
+  {
+    "username": "asasdf",
+    "password": "51f5a4347bf156b959321b8018a1b0aba0c152bec687b397c518313fd17e5fbd",
+    "nickName": "sadf",
+    "gender": "male",
+    "email": "sadfasd@gmail.com",
+    "isSad": false,
+    "timePassedBeingSad": 0,
+    "numberOfSecurityQuestion": 0,
+    "securityQuestion": "What was the name of your first-grade teacher?",
+    "answerOfSecurityQuestion": "asdf",
     "farmingSkill": {
       "type": "Farming",
       "level": 0,
@@ -365,108 +394,8 @@
       "level": 0,
       "points": 0
     },
-    "refrigerator": []
-  },
-  {
-    "username": "arshia",
-    "password": "b04adcdf946e2fdf3b8a10bc1e15d512a03959c17476e989b93ca59564851d93",
-    "nickName": "arshix",
-    "gender": "male",
-    "email": "arshia@gmail.com",
-    "numberOfSecurityQuestion": 1,
-    "securityQuestion": "soltani",
-    "backPack": {
-      "currentTool": {
-        "level": 0
-      },
-      "availableTools": {
-        "WateringCan": {
-          "level": 0
-        },
-        "Scythe": {
-          "level": 0
-        },
-        "FishingPole": {
-          "level": 0
-        },
-        "Pickaxe": {
-          "level": 0
-        },
-        "Trashcan": {
-          "level": 0
-        },
-        "Hoe": {
-          "level": 0
-        },
-        "Axe": {
-          "level": 0
-        }
-      },
-      "trashcan": {
-        "level": 0
-      },
-      "inventory": {},
-      "level": 1,
-      "learnedCraftingRecipes": [],
-      "learnedCookingRecipes": [],
-      "craftingRecipes": [],
-      "cookingRecipes": [
-        "FRIED_EGG",
-        "BAKED_FISH",
-        "SALAD"
-      ]
-    },
-    "friendsNpc": {},
-    "gold": 10000,
-    "friendsPlayer": {},
-    "dailyMoney": 0,
-    "wood": 0,
-    "energy": 200.0,
-    "stayLoggedIn": true,
-    "mostAchievedMoney": 0,
-    "matchPlayed": 0,
-    "location": {
-      "y": 0,
-      "x": 0
-    },
-    "fainted": false,
-    "mainLocation": "House",
-    "trades": {},
-    "stone": 0,
-    "receivedGifts": {},
-    "sentGifts": {},
-    "hasGiftToday": false,
-    "hasMessageToday": false,
-    "farmingSkill": {
-      "type": "Farming",
-      "level": 0,
-      "points": 0
-    },
-    "miningSkill": {
-      "type": "Mining",
-      "level": 0,
-      "points": 0
-    },
-    "foragingSkill": {
-      "type": "Foraging",
-      "level": 0,
-      "points": 0
-    },
-    "fishingSkill": {
-      "type": "Fishing",
-      "level": 0,
-      "points": 0
-    },
-    "refrigerator": []
-  },
-  {
-    "username": "arshia132",
-    "password": "1efb4ef0da0b46701287a19814214eee4518e892f954d4c2d71fd5e89b411b18",
-    "nickName": "arshix",
-    "gender": "male",
-    "email": "arshia@gmail.com",
-    "numberOfSecurityQuestion": 1,
-    "securityQuestion": "soltani",
+    "refrigerator": [],
+    "artisanMachines": [],
     "backPack": {
       "currentTool": {
         "names": "Hoe",
@@ -474,14 +403,10 @@
       },
       "availableTools": {
         "WateringCan": {
-          "capacityUsed": 0,
+          "waterContains": 0,
           "level": 0
         },
         "Scythe": {
-          "level": 0
-        },
-        "FishingPole": {
-          "type": "TRAINING_ROD",
           "level": 0
         },
         "Pickaxe": {
@@ -532,26 +457,6 @@
     "sentGifts": {},
     "hasGiftToday": false,
     "hasMessageToday": false,
-    "farmingSkill": {
-      "type": "Farming",
-      "level": 0,
-      "points": 0
-    },
-    "miningSkill": {
-      "type": "Mining",
-      "level": 0,
-      "points": 0
-    },
-    "foragingSkill": {
-      "type": "Foraging",
-      "level": 0,
-      "points": 0
-    },
-    "fishingSkill": {
-      "type": "Fishing",
-      "level": 0,
-      "points": 0
-    },
-    "refrigerator": []
+    "quest": {}
   }
 ]

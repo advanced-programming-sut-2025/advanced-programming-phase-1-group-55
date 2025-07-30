@@ -12,7 +12,7 @@ public class AppView {
 
 
     public void run() {
-        readfile();
+//        readfile();
         do {
             String input = App.scanner.nextLine();
             getCurrentMenu().checkCommand(input);

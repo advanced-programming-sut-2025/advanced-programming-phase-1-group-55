@@ -12,12 +12,15 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
 public class PlayerController {
+    private int speed = 5;
     private User player;
     private GameMap gameMap;
+
     public PlayerController(User player) {
         this.player = player;
-        player.setCollisionRect(new CollisionRect(player.getLocation().getX(),player.getLocation().getY(),player.getSprite().getWidth(),player.getSprite().getHeight()));
+        player.setCollisionRect(new CollisionRect(player.getLocation().getX(), player.getLocation().getY(), player.getSprite().getWidth(), player.getSprite().getHeight()));
     }
+
     public void centerPlayerOnCamera(OrthographicCamera camera) {
         camera.position.set(player.getLocation().getX(), player.getLocation().getY(), 0);
         Sprite sprite = player.getPlayerSprite();
@@ -26,7 +29,8 @@ public class PlayerController {
         float centerY = camera.position.y - sprite.getHeight() / 2f;
         sprite.setPosition(centerX, centerY);
     }
-    public void update(){
+
+    public void update() {
         player.getPlayerSprite().draw(App.gameApp.getBatch());
 
         handlePlayerInput();

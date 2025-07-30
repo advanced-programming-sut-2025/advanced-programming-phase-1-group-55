@@ -1,6 +1,7 @@
 package com.StardewValley.Controller;
 
 
+import com.StardewValley.View.newView.MainGameGraphicView;
 import com.StardewValley.View.ArtisanMachineMenuView;
 import com.StardewValley.View.ChooseArtisanMenuView;
 import com.StardewValley.View.MainGameGraphicView;

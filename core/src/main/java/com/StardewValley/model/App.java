@@ -1,7 +1,6 @@
 package com.StardewValley.model;
 
 import com.StardewValley.GameApp;
-import com.StardewValley.View.MainGameGraphicView;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.google.gson.Gson;
@@ -19,10 +18,15 @@ public class App {
     public static Menu currentMenu = Menu.Register;
     public static HashMap<String, User> AllUsers = new HashMap<>();
     public static GameModel currentGameModel;
-    //todo ino badan ke game create shod bardaar
-    public static MainGameGraphicView currentGameGraphicView;
-    public static Random rand=new Random();
+    public static Random rand = new Random();
     public static GameApp gameApp;
+    public static Skin skin;
+
+    static {
+        skin = new Skin(Gdx.files.internal("skin/LibGdx-Skin-main/LibGdx-Skin-main/NzSkin.json"));
+    }
+
+
 
     public static User getMainUser() {
         return mainUser;
@@ -87,19 +91,16 @@ public class App {
     public static Menu getCurrentMenu() {
         return currentMenu;
     }
-    public static Skin getSkin() {
-        return new Skin(Gdx.files.internal("Skinl/NzSkin.json"));
-    }
-    public static void readfile() {
 
+    public static void readfile() {
         try {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            FileReader reader = new FileReader("users.json");
 
-            Type userListType = new TypeToken<List<User>>() {
-            }.getType();
+            String json = Gdx.files.internal("users.json").readString("UTF-8");
 
-            List<User> userList = gson.fromJson(reader, userListType);
+            Type userListType = new TypeToken<List<User>>() {}.getType();
+            List<User> userList = gson.fromJson(json, userListType);
+
             if (userList != null) {
                 for (User user : userList) {
                     if (user.getGold() == 0) {
@@ -107,9 +108,8 @@ public class App {
                     }
                     AllUsers.put(user.getUsername(), user);
                 }
-
-
             }
+
             for (User user : AllUsers.values()) {
                 if (user.isStayLoggedIn()) {
                     mainUser = user;
@@ -117,14 +117,12 @@ public class App {
                     break;
                 }
             }
-            reader.close();
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
     }
+
 
     public static Map<Integer, String> questionsList = new HashMap<>();
 
