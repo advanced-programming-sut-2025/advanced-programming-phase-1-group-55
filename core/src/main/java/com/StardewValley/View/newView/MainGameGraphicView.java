@@ -38,7 +38,7 @@ public class MainGameGraphicView implements Screen, InputProcessor {
     private ProgressBar energyBar;
     private Table tableTop;
     private Stage stage;
-    private User player=new User();
+    private User player=App.mainUser;
     private boolean isChoosingPlace=false;
     private ArtisanMachineType chosenArtisanType;
     private Sprite chosenArtisanSprite;
@@ -50,32 +50,8 @@ public class MainGameGraphicView implements Screen, InputProcessor {
         this.controller = controller;
         controller.setView(this);
         App.currentGameGraphicView=this;
-        map.BuildMap();
+        map=App.currentGameModel.getMap();
         controller.getPlayerController().setGameMap(map);
-        //todo remove this after arshia completed pregame menu
-        for (Npc npc:map.getVillage().getNpss().values()){
-            NpcFriendship friendship=new NpcFriendship(player,npc);
-            player.getFriendsNpc().put(npc.getType().getDisplayName(),friendship);
-            for (Quest quest:npc.getType().getQuests().values()){
-                quest.setNpc(npc);
-//                if (quest.getLevel()==1){
-//                    player.getQuest().put(quest.getId(),quest);
-//                }
-            }
-        }
-        Item item=new Item(ItemType.WOOD);
-        item.setPrice(10);
-        player.getBackPack().addItemToInventory(item,200);
-        Item item2=new Item(ItemType.GOLD_BAR);
-        item2.setPrice(3000);
-        player.getBackPack().addItemToInventory(item2,20);
-        Item item3=new Item(ItemType.KEG_RECIPE);
-        item3.setPrice(450);
-        player.getBackPack().addItemToInventory(item3,20);
-        Item item4=new Item(ItemType.LOOM_RECIPE);
-        item4.setPrice(500);
-        player.getBackPack().addItemToInventory(item4,20);
-        //todo remove  baalaayi !!!!!!!!!!!!!!!!
 
 
     }
