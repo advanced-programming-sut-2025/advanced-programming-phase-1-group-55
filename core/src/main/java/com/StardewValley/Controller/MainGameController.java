@@ -127,12 +127,12 @@ public class MainGameController {
         } else if (Gdx.input.isKeyJustPressed(Input.Keys.N)) {
             nextTurn();
         }
-//        else if (Gdx.input.isKeyJustPressed(Input.Keys.B)) {
-//
-//            CraftingMenuController craftingController = new CraftingMenuController();
-//            CraftingMenuView craftingView = new CraftingMenuView(craftingController, currentPlayer);
-//            gameApp.setScreen(craftingView);
-//        }
+        else if (Gdx.input.isKeyJustPressed(Input.Keys.B)) {
+
+            CraftingMenuController craftingController = new CraftingMenuController();
+            CraftingMenuView craftingView = new CraftingMenuView(craftingController, currentPlayer);
+            gameApp.setScreen(craftingView);
+        }
 
     }
     public void nextTurn(){
