@@ -97,7 +97,7 @@ public class SkillsMenuView implements Screen {
         backBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                App.gameApp.setScreen(App.currentGameGraphicView);
+                App.gameApp.setScreen(new PauseMenuView(new com.StardewValley.Controller.PauseMenuController(), user));
             }
         });
     }
