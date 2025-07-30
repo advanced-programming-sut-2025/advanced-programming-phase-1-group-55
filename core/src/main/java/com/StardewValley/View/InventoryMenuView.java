@@ -53,7 +53,7 @@ public class InventoryMenuView implements Screen {
             backgroundImage.setFillParent(true);
             stage.addActor(backgroundImage);
         } catch (Exception e) {
-            System.out.println("⚠️ Background not loaded: " + e.getMessage());
+            System.out.println("Background not loaded: " + e.getMessage());
         }
 
         stage.addActor(table);
@@ -63,10 +63,10 @@ public class InventoryMenuView implements Screen {
         try {
             rebuildInventoryDisplay();
         } catch (Exception e) {
-            System.out.println("❌ Error in rebuildInventoryDisplay: " + e.getMessage());
-            e.printStackTrace(); // برای دیباگ
+            System.out.println("Error in rebuildInventoryDisplay: " + e.getMessage());
+            e.printStackTrace();
         }
-        Texture trashTexture = AssetManager.TrashCan.getTexture();  // از enum خودت
+        Texture trashTexture = AssetManager.TrashCan.getTexture();
         ImageButton.ImageButtonStyle trashStyle = new ImageButton.ImageButtonStyle();
         trashStyle.imageUp = new TextureRegionDrawable(new TextureRegion(trashTexture));
         trashButton = new ImageButton(trashStyle);
@@ -99,7 +99,7 @@ public class InventoryMenuView implements Screen {
         for (Item item : inventory.values()) {
             Sprite sprite = new Sprite(item.getItemType().getTexture());
             if (item == selectedItem) {
-                sprite.setColor(1f, 1f, 0.5f, 1f); // زرد کم‌رنگ برای انتخاب
+                sprite.setColor(1f, 1f, 0.5f, 1f);
                 sprite.setScale(1.3f);
             }
 
@@ -108,7 +108,7 @@ public class InventoryMenuView implements Screen {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
                     selectedItem = item;
-                    rebuildInventoryDisplay(); // Refresh برای هایلایت مجدد
+                    rebuildInventoryDisplay();
                 }
             });
 
@@ -164,7 +164,7 @@ public class InventoryMenuView implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if (selectedItem != null) {
-                    // TODO: منطق استفاده از آیتم (مثلاً غذا بخوره، ابزار فعال شه و ...)
+                    //use inventory chikar mikone joz to satl ashghal andakhtan
                     System.out.println("Used: " + selectedItem.getItemType());
                 }
             }
