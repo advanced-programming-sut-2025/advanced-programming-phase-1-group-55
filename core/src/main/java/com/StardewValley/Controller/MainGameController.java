@@ -1,11 +1,8 @@
 package com.StardewValley.Controller;
 
 
-import com.StardewValley.View.newView.MainGameGraphicView;
-import com.StardewValley.View.newView.ArtisanMachineMenuView;
-import com.StardewValley.View.newView.ChooseArtisanMenuView;
+import com.StardewValley.View.newView.*;
 //import com.StardewValley.View.MainGameGraphicView;
-import com.StardewValley.View.newView.PauseMenuView;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Artisan.ArtisanMachine;
 import com.StardewValley.model.Item.CollisionRect;
@@ -19,6 +16,9 @@ import com.StardewValley.model.Tool.Tools;
 import com.StardewValley.model.Tool.Trashcan;
 import com.StardewValley.model.Tool.WateringCan;
 import com.StardewValley.model.Result;
+//import com.StardewValley.Controller.CraftingMenuController;
+//import com.StardewValley.View.newView.CraftingMenuView;
+
 
 
 
@@ -127,6 +127,13 @@ public class MainGameController {
         } else if (Gdx.input.isKeyJustPressed(Input.Keys.N)) {
             nextTurn();
         }
+//        else if (Gdx.input.isKeyJustPressed(Input.Keys.B)) {
+//
+//            CraftingMenuController craftingController = new CraftingMenuController();
+//            CraftingMenuView craftingView = new CraftingMenuView(craftingController, currentPlayer);
+//            gameApp.setScreen(craftingView);
+//        }
+
     }
     public void nextTurn(){
         int i=0;
