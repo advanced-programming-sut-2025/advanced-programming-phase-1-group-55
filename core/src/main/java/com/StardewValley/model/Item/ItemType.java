@@ -380,6 +380,11 @@ public enum ItemType {
 
     FERTILIZER("fertilizer", new Texture(Gdx.files.internal("Crafting/Basic_Fertilizer.png"))),
     HOPS_CROP("Hops Crop"),
+    FARMING("farming skill icon", new Texture(Gdx.files.internal("Skill/Farming_Skill_Icon.png"))),
+    MINING("mining skill icon", new Texture(Gdx.files.internal("Skill/Mining_Skill_Icon.png"))),
+    FISHING("fishing skill icon", new Texture(Gdx.files.internal("Skill/Fishing_Skill_Icon.png"))),
+    FORAGING("foraging skill icon", new Texture(Gdx.files.internal("Skill/Foraging_Skill_Icon.png"))),
+
     ;
 
 

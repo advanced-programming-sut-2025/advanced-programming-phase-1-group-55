@@ -2,6 +2,7 @@ package com.StardewValley.Controller;
 
 import com.StardewValley.View.InventoryMenuView;
 import com.StardewValley.View.PauseMenuView;
+import com.StardewValley.View.SkillsMenuView;
 import com.StardewValley.View.ToolsMenuView;
 import com.StardewValley.model.App;
 
@@ -25,7 +26,11 @@ public class PauseMenuController {
             } else if (view.getInventoryMenuButton().isChecked()) {
                 view.getInventoryMenuButton().setChecked(false);
                 App.gameApp.setScreen(new InventoryMenuView(view.getUser()));
+            } else if (view.getSkillsButton().isChecked()) {
+                view.getSkillsButton().setChecked(false);
+                App.gameApp.setScreen(new SkillsMenuView(view.getUser()));
             }
+
 
         }
     }

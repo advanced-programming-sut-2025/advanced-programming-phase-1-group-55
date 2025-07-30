@@ -165,7 +165,13 @@ public enum AssetManager {
     Gift("Emoji/gift.png"),
     Balloon("Emoji/balloon.png")
     ,Star("Emoji/star2.png"),
-    gear("Emoji/gear.png")
+    gear("Emoji/gear.png"),
+
+    FARMING("Skill/Farming_Skill_Icon.png"),
+    MINING("Skill/Mining_Skill_Icon.png"),
+    FISHING("Skill/Fishing_Skill_Icon.png"),
+    FORAGING("Skill/Foraging_Skill_Icon.png"),
+
 
 
     ;
