@@ -148,6 +148,10 @@ public class MainGameController {
                     currentPlayer=App.getCurrentGameModel().playersInGame.get(i+1);
                 }
                 view.setPlayer(currentPlayer);
+                playerController.setPlayer(currentPlayer);
+                toolController.setPlayer(currentPlayer);
+                npcController.setPlayer(currentPlayer);
+                storeController.setPlayer(currentPlayer);
                 return;
             }
             i++;

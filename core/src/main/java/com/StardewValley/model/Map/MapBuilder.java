@@ -408,7 +408,7 @@ public class MapBuilder {
     }
 
     private void farm1(GameMap map, int WORLD_WIDTH, int WORLD_HEIGHT) {
-        CollisionRect collisionRect1 = new CollisionRect(-WORLD_WIDTH /2,WORLD_HEIGHT/2 ,2* WORLD_WIDTH /7, WORLD_HEIGHT /2);
+        CollisionRect collisionRect1 = new CollisionRect(-WORLD_WIDTH /2,0 ,2* WORLD_WIDTH /7, WORLD_HEIGHT /2);
         House house1 = new House(new CollisionRect(-WORLD_WIDTH /2+30, WORLD_HEIGHT /2-AssetManager.House.getTexture().getHeight()-20,
             AssetManager.House.getTexture().getWidth(),AssetManager.House.getTexture().getHeight()));
         Lake lake1 = new Lake(new CollisionRect(-WORLD_WIDTH /2+2* WORLD_WIDTH /7-AssetManager.Lake.getTexture().getWidth(),

@@ -18,7 +18,7 @@ public class PlayerController {
 
     public PlayerController(User player) {
         this.player = player;
-        player.setCollisionRect(new CollisionRect(player.getLocation().getX(), player.getLocation().getY(), player.getSprite().getWidth(), player.getSprite().getHeight()));
+        //player.setCollisionRect(new CollisionRect(player.getLocation().getX(), player.getLocation().getY(), player.getSprite().getWidth(), player.getSprite().getHeight()));
     }
 
     public void centerPlayerOnCamera(OrthographicCamera camera) {
