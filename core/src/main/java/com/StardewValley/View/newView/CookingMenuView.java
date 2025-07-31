@@ -1,5 +1,4 @@
 package com.StardewValley.View.newView;
-
 import com.StardewValley.Controller.CookingMenuController;
 import com.StardewValley.enums.CookingItemType;
 import com.StardewValley.model.App;
@@ -63,7 +62,7 @@ public class CookingMenuView implements Screen {
                 if (i < parts.length - 1) fileNameBuilder.append("_");
             }
             String fileName = fileNameBuilder.toString() + ".png";
-            String imagePath = "Cooking/" + fileName; // فایل‌ها را در assets/Cooking قرار دهید
+            String imagePath = "Recipe/" + fileName;
             boolean isUnlocked = learned.contains(recipe);
             com.badlogic.gdx.files.FileHandle handle = Gdx.files.internal(imagePath);
             Table cell = new Table();
@@ -114,13 +113,6 @@ public class CookingMenuView implements Screen {
         backBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                // بازگشت به PauseMenuView
-//                App.gameApp.setScreen(
-//                    new PauseMenuView(
-//                        new com.StardewValley.Controller.PauseMenuController(),
-//                        user
-//                    )
-//                );
                 App.gameApp.setScreen(App.currentGameGraphicView);
             }
         });
