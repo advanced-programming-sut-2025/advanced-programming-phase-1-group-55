@@ -80,7 +80,7 @@ public class CookingMenuController {
             }
             return;
         }
-        backPack.removeAmountFromInventory(itemType, amountToMove);
+
 
         CookingItemType cookingType = null;
         for (CookingItemType ct : CookingItemType.values()) {
@@ -97,6 +97,7 @@ public class CookingMenuController {
         }
         CookingItem existing = user.getFromRefrigerator(itemType);
         if (existing == null) {
+            backPack.removeAmountFromInventory(itemType, amountToMove);
             CookingItem newItem = new CookingItem(cookingType);
             newItem.setNumber(amountToMove);
             user.getRefrigerator().add(newItem);
