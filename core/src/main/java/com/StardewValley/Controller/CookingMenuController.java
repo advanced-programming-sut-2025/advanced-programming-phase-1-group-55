@@ -1,6 +1,7 @@
 package com.StardewValley.Controller;
 import com.StardewValley.enums.CookingItemType;
 import com.StardewValley.model.App;
+import com.StardewValley.model.CookingItems.CookingItem;
 import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.User;
 import com.StardewValley.model.Tool.BackPack;
@@ -30,7 +31,6 @@ public class CookingMenuController {
         }
 
 
-
         HashMap<ItemType, Integer> ingredients = recipe.getIngredients();
         for (Map.Entry<ItemType, Integer> entry : ingredients.entrySet()) {
             if (!backPack.hasEnoughInInventory(entry.getKey(), entry.getValue())) {
@@ -42,7 +42,6 @@ public class CookingMenuController {
         }
 
 
-
         if (!backPack.inventoryHasCapacity()) {
             if (view != null) {
                 view.setErrorMessage("dont have enough inventory");
@@ -51,11 +50,9 @@ public class CookingMenuController {
         }
 
 
-
         for (Map.Entry<ItemType, Integer> entry : ingredients.entrySet()) {
             backPack.removeAmountFromInventory(entry.getKey(), entry.getValue());
         }
-
 
 
         ItemType productType = recipe.getProductName();
@@ -68,5 +65,56 @@ public class CookingMenuController {
         if (view != null) {
             view.setSuccessMessage(productType.getDisplayName() + "cooked");
         }
+    }
+
+
+    public void moveItemToFridge(ItemType itemType) {
+        User user = App.currentGameModel.currentUser;
+        BackPack backPack = user.getBackPack();
+
+        int amountToMove = 1;
+
+        if (!backPack.hasEnoughInInventory(itemType, amountToMove)) {
+            if (view != null) {
+                view.setErrorMessage("به اندازه کافی از " + itemType.getDisplayName() + " در کوله ندارید.");
+            }
+            return;
+        }
+
+        // برداشت از کوله
+        backPack.removeAmountFromInventory(itemType, amountToMove);
+
+        // یافتن CookingItemType متناظر با این ItemType
+        CookingItemType cookingType = null;
+        for (CookingItemType ct : CookingItemType.values()) {
+            if (ct.getProductName().equals(itemType)) {
+                cookingType = ct;
+                break;
+            }
+        }
+        if (cookingType == null) {
+            if (view != null) {
+                view.setErrorMessage("برای این آیتم CookingItemType متناظر پیدا نشد.");
+            }
+            return;
+        }
+
+        // بررسی اینکه آیا آیتم از قبل در یخچال وجود دارد
+        CookingItem existing = user.getFromRefrigerator(itemType);
+        if (existing == null) {
+            CookingItem newItem = new CookingItem(cookingType);
+            // تنظیم تعداد
+            newItem.setNumber(amountToMove);
+            user.getRefrigerator().add(newItem);
+        } else {
+            existing.setNumber(existing.getNumber() + amountToMove);
+        }
+
+        if (view != null) {
+            view.setSuccessMessage(itemType.getDisplayName() + " به یخچال منتقل شد.");
+            view.refreshFridgeDialog();
+        }
+
+
     }
 }
