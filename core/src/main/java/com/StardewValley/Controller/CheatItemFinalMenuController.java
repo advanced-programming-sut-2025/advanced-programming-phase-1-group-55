@@ -2,6 +2,7 @@ package com.StardewValley.Controller;
 
 import com.StardewValley.View.newView.CheatItemFinalView;
 import com.StardewValley.enums.CookingItemType;
+import com.StardewValley.enums.CraftingItemType;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.Item.ItemType;
@@ -30,21 +31,42 @@ public class CheatItemFinalMenuController {
                 user.getBackPack().addItemToInventory(new Item(addedType), quantity);
                 String typeName = addedType.name();
                 if (typeName.endsWith("_RECIPE")) {
-                    String recipeName = typeName.substring(0, typeName.length() - "_RECIPE".length());
+                    String baseName = typeName.substring(0, typeName.length() - "_RECIPE".length());
                     try {
-                        CookingItemType cookingRecipe = CookingItemType.valueOf(recipeName);
-                        if (!user.getBackPack().getCookingRecipes().contains(cookingRecipe)) {
-                            user.getBackPack().getCookingRecipes().add(cookingRecipe);
-                            view.setSuccessMessage("You have learned the recipe for " + cookingRecipe.getProductName().getDisplayName());
+                        CookingItemType cookingEnum = CookingItemType.valueOf(baseName);
+                        if (!user.getBackPack().getCookingRecipes().contains(cookingEnum)) {
+                            user.getBackPack().getCookingRecipes().add(cookingEnum);
                         }
                     } catch (IllegalArgumentException e) {
                     }
+                    try {
+                        com.StardewValley.enums.CraftingItemType craftingEnum =
+                            com.StardewValley.enums.CraftingItemType.valueOf(baseName);
+                        if (!user.getBackPack().getCraftingRecipes().contains(craftingEnum)) {
+                            user.getBackPack().getCraftingRecipes().add(craftingEnum);
+                        }
+                    } catch (IllegalArgumentException e) {
+                    }
+                } else {
+                    for (com.StardewValley.enums.CraftingItemType ct :
+                        com.StardewValley.enums.CraftingItemType.values()) {
+                        if (ct.getProductName().equals(addedType)) {
+                            if (!user.getBackPack().getCraftingRecipes().contains(ct)) {
+                                user.getBackPack().getCraftingRecipes().add(ct);
+                            }
+                            break;
+                        }
+                    }
                 }
 
-                view.setSuccessMessage("You successfully added " + quantity + " " + addedType.getDisplayName() + " to the inventory");
+                view.setSuccessMessage("You successfully added " + quantity + " " +
+                    addedType.getDisplayName() + " to the inventory");
             }
         }
     }
+
+
+
 
     public CheatItemFinalView getView() {
         return view;
