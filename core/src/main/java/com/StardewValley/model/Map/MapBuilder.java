@@ -6,13 +6,9 @@ import com.StardewValley.model.App;
 import com.StardewValley.model.Artisan.ArtisanMachine;
 import com.StardewValley.model.Item.CollisionRect;
 import com.StardewValley.model.NPC.Npc;
-import com.StardewValley.model.NPC.NpcHouse;
 import com.StardewValley.model.Store.ShippingBin;
 import com.StardewValley.model.Store.Store;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import java.util.ArrayList;
 
@@ -201,6 +197,12 @@ public class MapBuilder {
     public void drawFarms(GameMap map) {
         map.getFarm1().draw();
         map.getFarm2().draw();
+        if (App.getCurrentGameModel().playersInGame.size()>2){
+            map.getFarm3().draw();
+            if (App.getCurrentGameModel().playersInGame.size()>3){
+                map.getFarm4().draw();
+            }
+        }
     }
 
     private void villageLamps(int WORLD_HEIGHT,int WORLD_WIDTH) {
@@ -296,18 +298,11 @@ public class MapBuilder {
 
         }
     }
-    public void BuildFarms(String map1,String map2,String map3,String map4,GameMap map,int WORLD_WIDTH,int WORLD_HEIGHT) {
+    public void BuildFarms(String map2, String map3, String map4, GameMap map, int WORLD_WIDTH, int WORLD_HEIGHT) {
         farm1(map, WORLD_WIDTH, WORLD_HEIGHT);
         farm2(map2, map, WORLD_WIDTH, WORLD_HEIGHT);
-//        if (App.getCurrentGameModel().playersInGame.size()>2){
-//            CollisionRect collisionRect3 = new CollisionRect(-WORLD_WIDTH/2,WORLD_HEIGHT/2,2* WORLD_WIDTH /7,WORLD_HEIGHT /2);
-//            House house3 = new House(collisionRect3);
-//            Lake lake3 = new Lake(collisionRect3);
-//            Quarry quarry3 = new Quarry(collisionRect3);
-//            GreenHouse greenHouse3 = new GreenHouse(collisionRect3);
-//            Farm farm3=new Farm(house3,lake3,greenHouse3,quarry3,collisionRect3);
-//            App.getCurrentGameModel().playersInGame.get(2).setFarm(farm3);
-//            map.setFarm3(farm3);
+        if (App.getCurrentGameModel().playersInGame.size()>2){
+            farm3(map3, map, WORLD_WIDTH, WORLD_HEIGHT);
 //            if (App.getCurrentGameModel().playersInGame.size()>3){
 //                CollisionRect collisionRect4 = new CollisionRect(-WORLD_WIDTH/2,WORLD_HEIGHT/2,2* WORLD_WIDTH /7,WORLD_HEIGHT /2);
 //                House house4 = new House(collisionRect4);
@@ -318,8 +313,35 @@ public class MapBuilder {
 //                App.getCurrentGameModel().playersInGame.get(3).setFarm(farm4);
 //                map.setFarm4(farm4);
 //            }
-//        }
+        }
 
+    }
+
+    private void farm3(String map3, GameMap map, int WORLD_WIDTH, int WORLD_HEIGHT) {
+        CollisionRect collisionRect3 = new CollisionRect(-WORLD_WIDTH /2+5*WORLD_WIDTH/7,0,2* WORLD_WIDTH /7, WORLD_HEIGHT /2);
+        CollisionRect collisionRectHouse;
+        CollisionRect collisionRectLake;
+        if (map3.equals("Map1")){
+            collisionRectHouse=new CollisionRect(-WORLD_WIDTH /2+30+5*WORLD_WIDTH/7,WORLD_HEIGHT /2-AssetManager.House.getTexture().getHeight()-20,
+                AssetManager.House.getTexture().getWidth(),AssetManager.House.getTexture().getHeight());
+            collisionRectLake=new CollisionRect(WORLD_WIDTH/2-AssetManager.Lake.getTexture().getWidth(),
+                WORLD_HEIGHT /2-AssetManager.Lake.getTexture().getHeight()-10,AssetManager.Lake.getTexture().getWidth(),AssetManager.Lake.getTexture().getHeight());
+        } else  {
+            collisionRectHouse=new CollisionRect(WORLD_WIDTH/2-AssetManager.House.getTexture().getWidth(),
+                WORLD_HEIGHT /2-AssetManager.House.getTexture().getHeight()-10,AssetManager.House.getTexture().getWidth(),AssetManager.House.getTexture().getHeight());
+            collisionRectLake=new CollisionRect(-WORLD_WIDTH /2+30+5*WORLD_WIDTH/7,WORLD_HEIGHT /2-AssetManager.Lake.getTexture().getHeight()-20,
+                AssetManager.Lake.getTexture().getWidth(),AssetManager.Lake.getTexture().getHeight());
+        }
+        House house3 = new House(collisionRectHouse);
+        Lake lake3 = new Lake(collisionRectLake);
+        Quarry quarry3 = new Quarry(new CollisionRect(-WORLD_WIDTH /2+30+5*WORLD_WIDTH/7,85
+            ,AssetManager.Quarry.getTexture().getWidth(),AssetManager.Quarry.getTexture().getHeight()));
+        GreenHouse greenHouse3 = new GreenHouse(new CollisionRect(WORLD_WIDTH/2
+            -AssetManager.GreenHouse.getTexture().getWidth()-20,85
+            ,AssetManager.GreenHouse.getTexture().getWidth(),AssetManager.GreenHouse.getTexture().getHeight()));
+        Farm farm3=new Farm(house3,lake3,greenHouse3,quarry3,collisionRect3);
+        App.getCurrentGameModel().playersInGame.get(2).setFarm(farm3);
+        map.setFarm3(farm3);
     }
 
     private void farm2(String map2, GameMap map, int WORLD_WIDTH, int WORLD_HEIGHT) {
