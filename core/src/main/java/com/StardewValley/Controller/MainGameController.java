@@ -91,6 +91,12 @@ public class MainGameController {
                 return false;
             }
         }
+        if (collisionRect.collidesWith(currentPlayer.getFarm().getHouse().getCollisionRect())||
+            collisionRect.collidesWith(currentPlayer.getFarm().getGreenHouse().getCollisionRect())||
+            collisionRect.collidesWith(currentPlayer.getFarm().getLake().getCollisionRect())||
+            collisionRect.collidesWith(currentPlayer.getFarm().getQuarry().getCollisionRect())) {
+            return false;
+        }
         return true;
     }
     public void choosingPlace(float x,float y){
@@ -148,6 +154,11 @@ public class MainGameController {
                     currentPlayer=App.getCurrentGameModel().playersInGame.get(i+1);
                 }
                 view.setPlayer(currentPlayer);
+                playerController.setPlayer(currentPlayer);
+                toolController.setPlayer(currentPlayer);
+                npcController.setPlayer(currentPlayer);
+                storeController.setPlayer(currentPlayer);
+                App.getCurrentGameModel().setCurrentUser(currentPlayer);
                 return;
             }
             i++;
@@ -191,10 +202,18 @@ public class MainGameController {
             }
         }
     }
-
+    public void drawOtherPlayers() {
+        for (User user: getCurrentGameModel().playersInGame){
+            if (user.getUsername().equals(currentPlayer.getUsername())){
+                continue;
+            }
+            user.getSprite().draw(gameApp.getBatch());
+        }
+    }
     public void updateGame(float delta) {
         if (view != null) {
             handleInput();
+            drawOtherPlayers();
             playerController.update();
             toolController.update(delta);
             npcController.update();

@@ -5,7 +5,10 @@ import com.StardewValley.Controller.GameMenuController;
 import com.StardewValley.Controller.MainGameController;
 import com.StardewValley.model.App;
 
+import com.StardewValley.model.Item.CollisionRect;
+import com.StardewValley.model.Map.Location;
 import com.StardewValley.model.Result;
+import com.StardewValley.model.User;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
@@ -97,7 +100,11 @@ public class StartGameScreen implements Screen {
 
                controller.newGame(u1, u2, u3, m1, m2, m3);
 
-
+               for (User user:App.getCurrentGameModel().playersInGame){
+                  user.setCollisionRect(new CollisionRect(user.getFarm().getCollisionRect().getX()+150,
+                      user.getFarm().getCollisionRect().getY()+150,user.getSprite().getWidth(),user.getSprite().getHeight()));
+                  user.setLocation(new Location((int) (user.getFarm().getCollisionRect().getY()+150), (int) (user.getFarm().getCollisionRect().getX()+150)));
+               }
               App.getGameApp().setScreen(new MainGameGraphicView(new MainGameController(),App.currentGameModel.getMap()));
 
             }
