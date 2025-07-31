@@ -62,8 +62,9 @@ public enum ItemType {
     PINE_CONE("pine cone", new Texture(Gdx.files.internal("Trees/Pine_Cone.png"))),
     MAHOGANY_SEED("mahogany seed", new Texture(Gdx.files.internal("Trees/Mahogany_seed.png"))),
     WOOL("Wool", new Texture(Gdx.files.internal("Animals/Wool.png"))),
-    CHERRY_BOMB_RECIPE("Cherry Bomb"),
 
+
+    CHERRY_BOMB_RECIPE("Cherry Bomb"),
     BOMB_RECIPE("Bomb"),
     MEGA_BOMB_RECIPE("Mega Bomb"),
     SPRINKLER_RECIPE("Sprinkler"),

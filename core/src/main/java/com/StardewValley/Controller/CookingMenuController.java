@@ -63,7 +63,7 @@ public class CookingMenuController {
         backPack.addItemToInventory(cookedItem, 1);
 
         if (view != null) {
-            view.setSuccessMessage(productType.getDisplayName() + "cooked");
+            view.setSuccessMessage(productType.getDisplayName() + " cooked");
         }
     }
 
@@ -105,7 +105,7 @@ public class CookingMenuController {
             existing.setNumber(existing.getNumber() + amountToMove);
         }
         if (view != null) {
-            view.setSuccessMessage(itemType.getDisplayName() + "moved to fridge");
+            view.setSuccessMessage(itemType.getDisplayName() + " moved to fridge");
             view.refreshFridgeDialog();
         }
 
