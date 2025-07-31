@@ -125,6 +125,16 @@ public class MainGameController {
             nextTurn();
         } else if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)) {
             gameApp.setScreen(new CheatItemMenuView(new CheatItemMenuController(view.getPlayer())));
+        }else if (Gdx.input.isKeyJustPressed(Input.Keys.B)) {
+
+            CraftingMenuController craftingController = new CraftingMenuController();
+            CraftingMenuView craftingView = new CraftingMenuView(craftingController, currentPlayer);
+            gameApp.setScreen(craftingView);
+        }
+        else if (Gdx.input.isKeyJustPressed(Input.Keys.C)) {
+            CookingMenuController cookingController = new CookingMenuController();
+            CookingMenuView cookingView = new CookingMenuView(cookingController, currentPlayer);
+            App.gameApp.setScreen(cookingView);
         }
     }
     public void nextTurn(){
