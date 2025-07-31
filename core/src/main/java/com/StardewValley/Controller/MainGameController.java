@@ -91,6 +91,12 @@ public class MainGameController {
                 return false;
             }
         }
+        if (collisionRect.collidesWith(currentPlayer.getFarm().getHouse().getCollisionRect())||
+            collisionRect.collidesWith(currentPlayer.getFarm().getGreenHouse().getCollisionRect())||
+            collisionRect.collidesWith(currentPlayer.getFarm().getLake().getCollisionRect())||
+            collisionRect.collidesWith(currentPlayer.getFarm().getQuarry().getCollisionRect())) {
+            return false;
+        }
         return true;
     }
     public void choosingPlace(float x,float y){
