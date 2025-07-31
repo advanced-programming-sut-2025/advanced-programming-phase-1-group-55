@@ -1,11 +1,8 @@
 package com.StardewValley.Controller;
 
 
-import com.StardewValley.View.newView.MainGameGraphicView;
-import com.StardewValley.View.newView.ArtisanMachineMenuView;
-import com.StardewValley.View.newView.ChooseArtisanMenuView;
+import com.StardewValley.View.newView.*;
 //import com.StardewValley.View.MainGameGraphicView;
-import com.StardewValley.View.newView.PauseMenuView;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Artisan.ArtisanMachine;
 import com.StardewValley.model.Item.CollisionRect;
@@ -126,6 +123,8 @@ public class MainGameController {
             }
         } else if (Gdx.input.isKeyJustPressed(Input.Keys.N)) {
             nextTurn();
+        } else if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)) {
+            gameApp.setScreen(new CheatItemMenuView(new CheatItemMenuController(view.getPlayer())));
         }
     }
     public void nextTurn(){

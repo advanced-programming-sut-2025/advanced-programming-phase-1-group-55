@@ -20,6 +20,7 @@ public enum AssetManager {
     PinkBackground("background/pastel-pink.jpg"),
     Wood_background("Flooring/Flooring_35.png"),
     Wood_background2("Flooring/Flooring_51.png"),
+    CheatBackground("backgrounds/8.png"),
     Stone_background("Flooring/Flooring_55.png"),
     blueBackground("Flooring/Flooring_45.png"),
     ArtisanBackground("Flooring/Flooring_94.png"),

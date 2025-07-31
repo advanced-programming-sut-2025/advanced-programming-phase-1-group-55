@@ -1,5 +1,6 @@
 package com.StardewValley.model.Item;
 
+import com.StardewValley.model.App;
 import com.StardewValley.model.Map.Location;
 
 public class Item {
@@ -55,6 +56,10 @@ public class Item {
     }
 
     public int getPrice() {
+        if (price==0){
+            int x= App.rand.nextInt(100);
+            price=x*25;
+        }
         return price;
     }
 
