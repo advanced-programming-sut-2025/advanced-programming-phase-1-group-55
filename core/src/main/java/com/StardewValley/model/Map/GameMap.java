@@ -64,8 +64,9 @@ public class GameMap {
                 return false;
             }
         }
+        //todo ino bade inke vorood player be mazrae digaran mamnoo shod bardaar
         if (farm1.getLake().getCollisionRect().collidesWith(collisionRect)||
-            farm1.getHouse().getCollisionRect().collidesWith(collisionRect)) {
+            farm1.getHouse().getCollisionRect().collidesWith(collisionRect)||farm2.getLake().getCollisionRect().collidesWith(collisionRect)||farm2.getHouse().getCollisionRect().collidesWith(collisionRect)) {
             return false;
         }
         return true;
