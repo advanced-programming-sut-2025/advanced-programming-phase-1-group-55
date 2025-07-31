@@ -63,7 +63,7 @@ public class CookingMenuController {
         backPack.addItemToInventory(cookedItem, 1);
 
         if (view != null) {
-            view.setSuccessMessage(productType.getDisplayName() + "cooked");
+            view.setSuccessMessage(productType.getDisplayName() + " cooked");
         }
     }
 
