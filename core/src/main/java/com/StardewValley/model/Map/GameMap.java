@@ -7,6 +7,7 @@ import com.StardewValley.model.Item.CollisionRect;
 import com.StardewValley.model.NPC.Npc;
 import com.StardewValley.model.Store.ShippingBin;
 import com.StardewValley.model.Store.Store;
+import com.StardewValley.model.User;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -82,6 +83,11 @@ public class GameMap {
                     farm4.getHouse().getCollisionRect().collidesWith(collisionRect)){
                     return false;
                 }
+            }
+        }
+        for (User user:App.currentGameModel.playersInGame){
+            if (user.getCollisionRect().collidesWith(collisionRect)&&!user.getUsername().equals(currentGameModel.currentUser.getUsername())){
+                return false;
             }
         }
         return true;
