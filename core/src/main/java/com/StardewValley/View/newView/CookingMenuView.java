@@ -52,7 +52,6 @@ public class CookingMenuView implements Screen {
 
         for (final CookingItemType recipe : CookingItemType.values()) {
             String itemName = recipe.getProductName().name();
-            // تبدیل نام به فرمت فایل: FRIED_EGG -> Fried_Egg.png
             String[] parts = itemName.split("_");
             StringBuilder fileNameBuilder = new StringBuilder();
             for (int i = 0; i < parts.length; i++) {
