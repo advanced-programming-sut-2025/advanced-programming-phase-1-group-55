@@ -1,12 +1,11 @@
 package com.StardewValley.View.newView;
 
-import com.StardewValley.Controller.CraftingMenuController;
-import com.StardewValley.enums.CraftingItemType;
+import com.StardewValley.Controller.CookingMenuController;
+import com.StardewValley.enums.CookingItemType;
 import com.StardewValley.model.App;
 import com.StardewValley.model.User;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -16,25 +15,27 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
-
 import java.util.HashSet;
 import java.util.Set;
 
-public class CraftingMenuView implements Screen {
+
+
+
+public class CookingMenuView implements Screen {
     private Stage stage;
     private Table table;
     private final Skin skin = App.skin;
     private final User user;
-    private final CraftingMenuController controller;
+    private final CookingMenuController controller;
     private TextButton backBtn;
 
-    public CraftingMenuView(CraftingMenuController controller, User user) {
+    public CookingMenuView(CookingMenuController controller, User user) {
         this.controller = controller;
         this.user = user;
         controller.setView(this);
     }
+
+
 
     @Override
     public void show() {
@@ -46,15 +47,13 @@ public class CraftingMenuView implements Screen {
         scrollPane.setFillParent(true);
         stage.addActor(scrollPane);
         backBtn = new TextButton("Back", skin);
-
-
-        Set<CraftingItemType> learned = new HashSet<>(user.getBackPack().getCraftingRecipes());
+        Set<CookingItemType> learned = new HashSet<>(user.getBackPack().getCookingRecipes());
         final int columns = 4;
         int colCount = 0;
 
-
-        for (final CraftingItemType recipe : CraftingItemType.values()) {
+        for (final CookingItemType recipe : CookingItemType.values()) {
             String itemName = recipe.getProductName().name();
+            // تبدیل نام به فرمت فایل: FRIED_EGG -> Fried_Egg.png
             String[] parts = itemName.split("_");
             StringBuilder fileNameBuilder = new StringBuilder();
             for (int i = 0; i < parts.length; i++) {
@@ -64,9 +63,9 @@ public class CraftingMenuView implements Screen {
                 if (i < parts.length - 1) fileNameBuilder.append("_");
             }
             String fileName = fileNameBuilder.toString() + ".png";
-            String imagePath = "Crafting/" + fileName;
+            String imagePath = "Cooking/" + fileName; // فایل‌ها را در assets/Cooking قرار دهید
             boolean isUnlocked = learned.contains(recipe);
-            FileHandle handle = Gdx.files.internal(imagePath);
+            com.badlogic.gdx.files.FileHandle handle = Gdx.files.internal(imagePath);
             Table cell = new Table();
             if (handle.exists()) {
                 Texture texture = new Texture(handle);
@@ -108,19 +107,26 @@ public class CraftingMenuView implements Screen {
             }
             table.add(cell).pad(10);
             colCount++;
-            if (colCount % columns == 0) {
-                table.row();
-            }
+            if (colCount % columns == 0) table.row();
         }
         table.row().padTop(20);
         table.add(backBtn).colspan(columns).center().padBottom(10);
         backBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                // بازگشت به PauseMenuView
+//                App.gameApp.setScreen(
+//                    new PauseMenuView(
+//                        new com.StardewValley.Controller.PauseMenuController(),
+//                        user
+//                    )
+//                );
                 App.gameApp.setScreen(App.currentGameGraphicView);
             }
         });
     }
+
+
     public void setErrorMessage(String error) {
         Dialog dialog = new Dialog("Error", skin);
         dialog.text(error);
@@ -148,7 +154,5 @@ public class CraftingMenuView implements Screen {
     @Override public void pause() {}
     @Override public void resume() {}
     @Override public void hide() {}
-    @Override public void dispose() {
-        if (stage != null) stage.dispose();
-    }
+    @Override public void dispose() { if (stage != null) stage.dispose(); }
 }

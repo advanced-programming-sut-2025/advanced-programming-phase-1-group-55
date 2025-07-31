@@ -133,6 +133,12 @@ public class MainGameController {
             CraftingMenuView craftingView = new CraftingMenuView(craftingController, currentPlayer);
             gameApp.setScreen(craftingView);
         }
+        else if (Gdx.input.isKeyJustPressed(Input.Keys.C)) {
+            CookingMenuController cookingController = new CookingMenuController();
+            CookingMenuView cookingView = new CookingMenuView(cookingController, currentPlayer);
+            App.gameApp.setScreen(cookingView);
+        }
+
 
     }
     public void nextTurn(){
