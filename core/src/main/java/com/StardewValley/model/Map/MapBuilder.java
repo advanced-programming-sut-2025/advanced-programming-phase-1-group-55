@@ -303,18 +303,38 @@ public class MapBuilder {
         farm2(map2, map, WORLD_WIDTH, WORLD_HEIGHT);
         if (App.getCurrentGameModel().playersInGame.size()>2){
             farm3(map3, map, WORLD_WIDTH, WORLD_HEIGHT);
-//            if (App.getCurrentGameModel().playersInGame.size()>3){
-//                CollisionRect collisionRect4 = new CollisionRect(-WORLD_WIDTH/2,WORLD_HEIGHT/2,2* WORLD_WIDTH /7,WORLD_HEIGHT /2);
-//                House house4 = new House(collisionRect4);
-//                Lake lake4 = new Lake(collisionRect4);
-//                Quarry quarry4 = new Quarry(collisionRect4);
-//                GreenHouse greenHouse4 = new GreenHouse(collisionRect4);
-//                Farm farm4=new Farm(house4,lake4,greenHouse4,quarry4,collisionRect4);
-//                App.getCurrentGameModel().playersInGame.get(3).setFarm(farm4);
-//                map.setFarm4(farm4);
-//            }
+            if (App.getCurrentGameModel().playersInGame.size()>3){
+                farm4(map, WORLD_WIDTH, WORLD_HEIGHT,map4);
+            }
         }
 
+    }
+
+    private void farm4(GameMap map, int WORLD_WIDTH, int WORLD_HEIGHT,String map4) {
+        CollisionRect collisionRect4 = new CollisionRect(-WORLD_WIDTH /2+5*WORLD_WIDTH/7,-WORLD_HEIGHT /2,2* WORLD_WIDTH /7, WORLD_HEIGHT /2);
+        CollisionRect collisionRectHouse;
+        CollisionRect collisionRectLake;
+        if (map4.equals("Map1")){
+            collisionRectHouse=new CollisionRect(-WORLD_WIDTH /2+30+5*WORLD_WIDTH/7,-AssetManager.House.getTexture().getHeight()-20,
+                AssetManager.House.getTexture().getWidth(),AssetManager.House.getTexture().getHeight());
+            collisionRectLake=new CollisionRect(WORLD_WIDTH/2-AssetManager.Lake.getTexture().getWidth(),
+                -AssetManager.Lake.getTexture().getHeight()-10,AssetManager.Lake.getTexture().getWidth(),AssetManager.Lake.getTexture().getHeight());
+        } else  {
+            collisionRectHouse=new CollisionRect(WORLD_WIDTH/2-AssetManager.House.getTexture().getWidth(),
+                -AssetManager.House.getTexture().getHeight()-10,AssetManager.House.getTexture().getWidth(),AssetManager.House.getTexture().getHeight());
+            collisionRectLake=new CollisionRect(-WORLD_WIDTH /2+30+5*WORLD_WIDTH/7,-AssetManager.Lake.getTexture().getHeight()-20,
+                AssetManager.Lake.getTexture().getWidth(),AssetManager.Lake.getTexture().getHeight());
+        }
+        House house4 = new House(collisionRectHouse);
+        Lake lake4 = new Lake(collisionRectLake);
+        Quarry quarry4 = new Quarry(new CollisionRect(-WORLD_WIDTH /2+30+5*WORLD_WIDTH/7,35-WORLD_HEIGHT/2
+            ,AssetManager.Quarry.getTexture().getWidth(),AssetManager.Quarry.getTexture().getHeight()));
+        GreenHouse greenHouse4 = new GreenHouse(new CollisionRect(WORLD_WIDTH/2
+            -AssetManager.GreenHouse.getTexture().getWidth()-20,35-WORLD_HEIGHT/2
+            ,AssetManager.GreenHouse.getTexture().getWidth(),AssetManager.GreenHouse.getTexture().getHeight()));
+        Farm farm4=new Farm(house4,lake4,greenHouse4,quarry4,collisionRect4);
+        App.getCurrentGameModel().playersInGame.get(3).setFarm(farm4);
+        map.setFarm4(farm4);
     }
 
     private void farm3(String map3, GameMap map, int WORLD_WIDTH, int WORLD_HEIGHT) {
