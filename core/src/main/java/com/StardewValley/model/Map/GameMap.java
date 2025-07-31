@@ -1,6 +1,7 @@
 package com.StardewValley.model.Map;
 
 import com.StardewValley.enums.AnsiColor;
+import com.StardewValley.model.App;
 import com.StardewValley.model.Artisan.ArtisanMachine;
 import com.StardewValley.model.Item.CollisionRect;
 import com.StardewValley.model.NPC.Npc;
@@ -64,9 +65,24 @@ public class GameMap {
                 return false;
             }
         }
+        //todo ino bade inke vorood player be mazrae digaran mamnoo shod bardaar
         if (farm1.getLake().getCollisionRect().collidesWith(collisionRect)||
-            farm1.getHouse().getCollisionRect().collidesWith(collisionRect)) {
+            farm1.getHouse().getCollisionRect().collidesWith(collisionRect)||
+            farm2.getLake().getCollisionRect().collidesWith(collisionRect)||
+            farm2.getHouse().getCollisionRect().collidesWith(collisionRect)) {
             return false;
+        }
+        if (App.currentGameModel.playersInGame.size()>2){
+            if (farm3.getLake().getCollisionRect().collidesWith(collisionRect)||
+                farm3.getHouse().getCollisionRect().collidesWith(collisionRect)){
+                return false;
+            }
+            if (App.getCurrentGameModel().playersInGame.size()>3){
+                if (farm4.getLake().getCollisionRect().collidesWith(collisionRect)||
+                    farm4.getHouse().getCollisionRect().collidesWith(collisionRect)){
+                    return false;
+                }
+            }
         }
         return true;
     }
@@ -77,9 +93,9 @@ public class GameMap {
 
 
     }
-    public void BuildFarm(String map1,String map2, String map3, String map4){
+    public void BuildFarm(String map2, String map3, String map4){
         MapBuilder mapBuilder1 = new MapBuilder();
-        mapBuilder1.BuildFarms(map1,map2,map3,map4,this,WORLD_WIDTH,WORLD_HEIGHT);
+        mapBuilder1.BuildFarms(map2,map3,map4,this,WORLD_WIDTH,WORLD_HEIGHT);
     }
     public void DrawMap(){
         MapBuilder mapBuilder1 = new MapBuilder();
