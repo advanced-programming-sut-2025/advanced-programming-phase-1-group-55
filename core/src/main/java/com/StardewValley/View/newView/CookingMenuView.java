@@ -186,7 +186,7 @@ public class CookingMenuView implements Screen {
         ScrollPane scrollPane = new ScrollPane(content, skin);
         scrollPane.setFadeScrollBars(false);
         scrollPane.setScrollingDisabled(true, false);
-        dialog.getContentTable().add(scrollPane).width(450).height(350);
+        dialog.getContentTable().add(scrollPane).width(650).height(350);
         dialog.button("Close");
         dialog.show(stage);
         currentFridgeDialog = dialog;
