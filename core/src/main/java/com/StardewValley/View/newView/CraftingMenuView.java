@@ -1,28 +1,23 @@
 package com.StardewValley.View.newView;
 
-import com.StardewValley.enums.CraftingItemType;
 import com.StardewValley.Controller.CraftingMenuController;
+import com.StardewValley.enums.CraftingItemType;
 import com.StardewValley.model.App;
 import com.StardewValley.model.User;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -33,6 +28,7 @@ public class CraftingMenuView implements Screen {
     private final Skin skin = App.skin;
     private final User user;
     private final CraftingMenuController controller;
+    private TextButton backBtn;
 
     public CraftingMenuView(CraftingMenuController controller, User user) {
         this.controller = controller;
@@ -40,22 +36,33 @@ public class CraftingMenuView implements Screen {
         controller.setView(this);
     }
 
-
-
     @Override
     public void show() {
-        stage = new Stage(new ScreenViewport());
+        stage = new Stage();
         Gdx.input.setInputProcessor(stage);
 
+        // جدول اصلی منو
         table = new Table();
         table.setFillParent(true);
-        stage.addActor(table);
 
+        // ScrollPane برای اسکرول‌کردن لیست آیتم‌ها
+        ScrollPane scrollPane = new ScrollPane(table, skin);
+        scrollPane.setFillParent(true);
+        stage.addActor(scrollPane);
+
+        backBtn = new TextButton("Back", skin);
+
+        // به‌دست آوردن لیست دستورالعمل‌های باز شده
         Set<CraftingItemType> learned = new HashSet<>(user.getBackPack().getCraftingRecipes());
 
+        // تعداد ستون‌هایی که می‌خواهید در هر ردیف نمایش دهید
+        final int columns = 4;
+        int colCount = 0;
+
+        // ساخت آیتم‌ها با تصویر و نام
         for (final CraftingItemType recipe : CraftingItemType.values()) {
             String itemName = recipe.getProductName().name();
-            // تبدیل enum به فرمت فایل: Cherry_Bomb.png
+            // تبدیل نام enum آیتم به فرمت فایل: CHERRY_BOMB -> Cherry_Bomb.png
             String[] parts = itemName.split("_");
             StringBuilder fileNameBuilder = new StringBuilder();
             for (int i = 0; i < parts.length; i++) {
@@ -68,24 +75,22 @@ public class CraftingMenuView implements Screen {
             String imagePath = "Crafting/" + fileName;
 
             boolean isUnlocked = learned.contains(recipe);
+            FileHandle handle = Gdx.files.internal(imagePath);
 
-            Table cell = new Table(); // جدول کوچک برای هر آیتم
+            // جدول کوچک برای هر آیتم
+            Table cell = new Table();
 
-            // اگر تصویر وجود دارد، آن‌را لود می‌کنیم؛ وگرنه می‌توانیم از تصویر پیش‌فرض یا متن خالی استفاده کنیم
-            com.badlogic.gdx.files.FileHandle handle = Gdx.files.internal(imagePath);
             if (handle.exists()) {
                 Texture texture = new Texture(handle);
-                Image image = new Image(texture);
+                Image image = new Image(new TextureRegionDrawable(new TextureRegion(texture)));
                 image.setSize(64, 64);
                 cell.add(image).width(64).height(64);
                 cell.row();
 
-                // نام قابل نمایش آیتم
                 String displayName = recipe.getProductName().getDisplayName();
                 Label label = new Label(displayName, skin);
                 cell.add(label).padTop(5);
 
-                // اگر recipe قفل است، تصویر و متن را خاکستری کنید
                 if (!isUnlocked) {
                     image.setColor(Color.GRAY);
                     label.setColor(Color.GRAY);
@@ -101,37 +106,62 @@ public class CraftingMenuView implements Screen {
                     }
                 });
             } else {
-                // اگر تصویر وجود ندارد، فقط دکمه متنی می‌سازیم
+                // اگر تصویر وجود ندارد، فقط متن نمایش می‌دهیم
                 String displayName = recipe.getProductName().getDisplayName();
                 TextButton txtBtn = new TextButton(displayName, skin);
                 if (!isUnlocked) {
                     txtBtn.setDisabled(true);
                     txtBtn.getLabel().setColor(Color.GRAY);
                 }
-                txtBtn.addListener(new ChangeListener() {
+                txtBtn.addListener(new ClickListener() {
                     @Override
-                    public void changed(ChangeEvent event, Actor actor) {
-                        controller.handleRecipeClicked(recipe);
+                    public void clicked(InputEvent event, float x, float y) {
+                        if (isUnlocked) {
+                            controller.handleRecipeClicked(recipe);
+                        }
                     }
                 });
-                // به‌جای cell، دکمه متنی را به جدول اصلی اضافه می‌کنیم
-                table.add(txtBtn).width(120).height(50).pad(10);
-                // بعد از افزودن دکمه به جدول اصلی، ادامه می‌دهیم
-                continue;
+                cell.add(txtBtn).width(120).height(50);
             }
 
-            // افزودن جدول کوچک به جدول اصلی
             table.add(cell).pad(10);
-
-            // می‌توانید تعداد ستون‌ها در هر ردیف را کنترل کنید
-            // مثلاً 4 ستون در هر ردیف:
-             if ((recipe.ordinal() + 1) % 4 == 0) table.row();
+            colCount++;
+            if (colCount % columns == 0) {
+                table.row();
+            }
         }
+
+        // افزودن دکمهٔ Back در ردیف جدید با colspan به اندازهٔ تمام ستون‌ها
+        table.row().padTop(20);
+        table.add(backBtn).colspan(columns).center().padBottom(10);
+        backBtn.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                // برگشت به منوی PauseMenuView (همانند SkillsMenuView)
+//                App.gameApp.setScreen(
+//                    new PauseMenuView(
+//                        new com.StardewValley.Controller.PauseMenuController(),
+//                        user
+                App.gameApp.setScreen(App.currentGameGraphicView)
+//                    )
+//                )
+                ;
+            }
+        });
+    }
+    public void setErrorMessage(String error) {
+        Dialog dialog = new Dialog("Error", skin);
+        dialog.text(error);
+        dialog.button("OK");
+        dialog.show(stage);
     }
 
-
-
-
+    public void setSuccessMessage(String message) {
+        Dialog dialog = new Dialog("Success", skin);
+        dialog.text(message);
+        dialog.button("OK");
+        dialog.show(stage);
+    }
 
     @Override
     public void render(float delta) {
@@ -142,18 +172,11 @@ public class CraftingMenuView implements Screen {
         }
     }
 
-    // متدهای دیگر (setErrorMessage و setSuccessMessage و ... ) مثل قبل باقی می‌مانند
-    public void setErrorMessage(String error) {
-        System.out.println(error);
-    }
-
-    public void setSuccessMessage(String message) {
-        System.out.println(message);
-    }
-
     @Override public void resize(int width, int height) {}
     @Override public void pause() {}
     @Override public void resume() {}
     @Override public void hide() {}
-    @Override public void dispose() { if (stage != null) stage.dispose(); }
+    @Override public void dispose() {
+        if (stage != null) stage.dispose();
+    }
 }

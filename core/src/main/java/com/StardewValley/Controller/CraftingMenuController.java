@@ -35,7 +35,7 @@ public class CraftingMenuController {
         // آیا Recipe باز شده است؟
         if (!backPack.getCraftingRecipes().contains(recipe)) {
             if (view != null) {
-                view.setErrorMessage("این دستورالعمل باز نشده است.");
+                view.setErrorMessage("This recipe has not been unlocked.");
             }
             return;
         }
@@ -45,7 +45,7 @@ public class CraftingMenuController {
         for (Map.Entry<ItemType, Integer> entry : ingredients.entrySet()) {
             if (!backPack.hasEnoughInInventory(entry.getKey(), entry.getValue())) {
                 if (view != null) {
-                    view.setErrorMessage("مواد اولیه کافی برای " + entry.getKey().getDisplayName() + " ندارید");
+                    view.setErrorMessage("dont have enough ingredient");
                 }
                 return;
             }
@@ -54,7 +54,7 @@ public class CraftingMenuController {
         // بررسی فضای خالی در کیف
         if (!backPack.inventoryHasCapacity()) {
             if (view != null) {
-                view.setErrorMessage("فضای کافی در موجودی نیست");
+                view.setErrorMessage("dont have enough inventory");
             }
             return;
         }
@@ -70,7 +70,7 @@ public class CraftingMenuController {
 
         // پیام موفقیت
         if (view != null) {
-            view.setSuccessMessage(recipe.getProductName().getDisplayName() + " ساخته شد");
+            view.setSuccessMessage(recipe.getProductName().getDisplayName() + "crafted");
         }
     }
 }
