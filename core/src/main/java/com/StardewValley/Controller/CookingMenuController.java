@@ -76,15 +76,12 @@ public class CookingMenuController {
 
         if (!backPack.hasEnoughInInventory(itemType, amountToMove)) {
             if (view != null) {
-                view.setErrorMessage("به اندازه کافی از " + itemType.getDisplayName() + " در کوله ندارید.");
+                view.setErrorMessage("dont have enough amount of this item in your back pack");
             }
             return;
         }
-
-        // برداشت از کوله
         backPack.removeAmountFromInventory(itemType, amountToMove);
 
-        // یافتن CookingItemType متناظر با این ItemType
         CookingItemType cookingType = null;
         for (CookingItemType ct : CookingItemType.values()) {
             if (ct.getProductName().equals(itemType)) {
@@ -94,16 +91,14 @@ public class CookingMenuController {
         }
         if (cookingType == null) {
             if (view != null) {
-                view.setErrorMessage("برای این آیتم CookingItemType متناظر پیدا نشد.");
+                view.setErrorMessage("No corresponding CookingItemType was found for this item.");
             }
             return;
         }
 
-        // بررسی اینکه آیا آیتم از قبل در یخچال وجود دارد
         CookingItem existing = user.getFromRefrigerator(itemType);
         if (existing == null) {
             CookingItem newItem = new CookingItem(cookingType);
-            // تنظیم تعداد
             newItem.setNumber(amountToMove);
             user.getRefrigerator().add(newItem);
         } else {
@@ -111,7 +106,7 @@ public class CookingMenuController {
         }
 
         if (view != null) {
-            view.setSuccessMessage(itemType.getDisplayName() + " به یخچال منتقل شد.");
+            view.setSuccessMessage(itemType.getDisplayName() + "moved to fridge");
             view.refreshFridgeDialog();
         }
 
