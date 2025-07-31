@@ -10,29 +10,20 @@ import com.StardewValley.model.Tool.BackPack;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Controller class for the crafting menu. This controller responds to recipe
- * selections, checks whether the recipe is unlocked, verifies that the
- * user has the necessary ingredients and inventory space, and then crafts
- * the selected item by deducting resources and adding the new item to
- * the player's inventory. Messages about errors or successes are
- * propagated back to the view via setter methods.
- */
 public class CraftingMenuController {
-    // ارتباط با ویو
     private com.StardewValley.View.newView.CraftingMenuView view;
 
-    // ست کردن ویو برای ارسال پیام
     public void setView(com.StardewValley.View.newView.CraftingMenuView view) {
         this.view = view;
     }
 
-    // متد اصلی فراخوانی هنگام کلیک روی هر Recipe
     public void handleRecipeClicked(CraftingItemType recipe) {
         User user = App.currentGameModel.currentUser;
         BackPack backPack = user.getBackPack();
 
-        // آیا Recipe باز شده است؟
+
+
+
         if (!backPack.getCraftingRecipes().contains(recipe)) {
             if (view != null) {
                 view.setErrorMessage("This recipe has not been unlocked.");
@@ -40,7 +31,8 @@ public class CraftingMenuController {
             return;
         }
 
-        // بررسی وجود مواد اولیه به تعداد کافی
+
+
         HashMap<ItemType, Integer> ingredients = recipe.getIngredients();
         for (Map.Entry<ItemType, Integer> entry : ingredients.entrySet()) {
             if (!backPack.hasEnoughInInventory(entry.getKey(), entry.getValue())) {
@@ -50,25 +42,24 @@ public class CraftingMenuController {
                 return;
             }
         }
-
-        // بررسی فضای خالی در کیف
         if (!backPack.inventoryHasCapacity()) {
             if (view != null) {
                 view.setErrorMessage("dont have enough inventory");
             }
             return;
         }
-
-        // کم کردن مواد اولیه
         for (Map.Entry<ItemType, Integer> entry : ingredients.entrySet()) {
             backPack.removeAmountFromInventory(entry.getKey(), entry.getValue());
         }
 
-        // ساخت محصول و افزودن به موجودی
+
+
+
         CraftingItem product = CraftingItemCreator.create(recipe);
         backPack.addItemToInventory(product, 1);
 
-        // پیام موفقیت
+
+
         if (view != null) {
             view.setSuccessMessage(recipe.getProductName().getDisplayName() + "crafted");
         }

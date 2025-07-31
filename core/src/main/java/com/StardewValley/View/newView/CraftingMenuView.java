@@ -40,29 +40,21 @@ public class CraftingMenuView implements Screen {
     public void show() {
         stage = new Stage();
         Gdx.input.setInputProcessor(stage);
-
-        // جدول اصلی منو
         table = new Table();
         table.setFillParent(true);
-
-        // ScrollPane برای اسکرول‌کردن لیست آیتم‌ها
         ScrollPane scrollPane = new ScrollPane(table, skin);
         scrollPane.setFillParent(true);
         stage.addActor(scrollPane);
-
         backBtn = new TextButton("Back", skin);
 
-        // به‌دست آوردن لیست دستورالعمل‌های باز شده
-        Set<CraftingItemType> learned = new HashSet<>(user.getBackPack().getCraftingRecipes());
 
-        // تعداد ستون‌هایی که می‌خواهید در هر ردیف نمایش دهید
+        Set<CraftingItemType> learned = new HashSet<>(user.getBackPack().getCraftingRecipes());
         final int columns = 4;
         int colCount = 0;
 
-        // ساخت آیتم‌ها با تصویر و نام
+
         for (final CraftingItemType recipe : CraftingItemType.values()) {
             String itemName = recipe.getProductName().name();
-            // تبدیل نام enum آیتم به فرمت فایل: CHERRY_BOMB -> Cherry_Bomb.png
             String[] parts = itemName.split("_");
             StringBuilder fileNameBuilder = new StringBuilder();
             for (int i = 0; i < parts.length; i++) {
@@ -73,30 +65,22 @@ public class CraftingMenuView implements Screen {
             }
             String fileName = fileNameBuilder.toString() + ".png";
             String imagePath = "Crafting/" + fileName;
-
             boolean isUnlocked = learned.contains(recipe);
             FileHandle handle = Gdx.files.internal(imagePath);
-
-            // جدول کوچک برای هر آیتم
             Table cell = new Table();
-
             if (handle.exists()) {
                 Texture texture = new Texture(handle);
                 Image image = new Image(new TextureRegionDrawable(new TextureRegion(texture)));
                 image.setSize(64, 64);
                 cell.add(image).width(64).height(64);
                 cell.row();
-
                 String displayName = recipe.getProductName().getDisplayName();
                 Label label = new Label(displayName, skin);
                 cell.add(label).padTop(5);
-
                 if (!isUnlocked) {
                     image.setColor(Color.GRAY);
                     label.setColor(Color.GRAY);
                 }
-
-                // Listener برای کلیک روی آیتم
                 cell.addListener(new ClickListener() {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
@@ -106,7 +90,6 @@ public class CraftingMenuView implements Screen {
                     }
                 });
             } else {
-                // اگر تصویر وجود ندارد، فقط متن نمایش می‌دهیم
                 String displayName = recipe.getProductName().getDisplayName();
                 TextButton txtBtn = new TextButton(displayName, skin);
                 if (!isUnlocked) {
@@ -123,28 +106,18 @@ public class CraftingMenuView implements Screen {
                 });
                 cell.add(txtBtn).width(120).height(50);
             }
-
             table.add(cell).pad(10);
             colCount++;
             if (colCount % columns == 0) {
                 table.row();
             }
         }
-
-        // افزودن دکمهٔ Back در ردیف جدید با colspan به اندازهٔ تمام ستون‌ها
         table.row().padTop(20);
         table.add(backBtn).colspan(columns).center().padBottom(10);
         backBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                // برگشت به منوی PauseMenuView (همانند SkillsMenuView)
-//                App.gameApp.setScreen(
-//                    new PauseMenuView(
-//                        new com.StardewValley.Controller.PauseMenuController(),
-//                        user
                 App.gameApp.setScreen(App.currentGameGraphicView)
-//                    )
-//                )
                 ;
             }
         });
