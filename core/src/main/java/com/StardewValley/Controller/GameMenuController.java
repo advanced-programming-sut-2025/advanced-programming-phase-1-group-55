@@ -60,13 +60,13 @@ public class GameMenuController {
 
 
         GameMap map = new GameMap();
-        map.BuildMap();
         currentGameModel = new GameModel(mainUser, map);
         currentGameModel.playersInGame.add(player0);
         currentGameModel.playersInGame.add( player1);
         if (player2 != null) currentGameModel.playersInGame.add(player2);
         if (player3 != null) currentGameModel.playersInGame.add(player3);
         map.BuildFarm(Map1,Map2,Map3);
+        map.BuildMap();
         setFriendships(map);
 
         return new Result(true, "Game has been created successfully!");

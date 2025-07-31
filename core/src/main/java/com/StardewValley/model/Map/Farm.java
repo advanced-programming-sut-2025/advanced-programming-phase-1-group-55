@@ -9,6 +9,7 @@ import com.StardewValley.model.FarmingProdocts.ForagingSeed;
 import com.StardewValley.model.FarmingProdocts.Tree;
 import com.StardewValley.model.Item.CollisionRect;
 import com.StardewValley.model.Rock;
+import com.StardewValley.model.User;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,6 +23,7 @@ public class Farm {
     private CollisionRect collisionRect;
     private int numberOfRocksInTheQuery=0;
     private ArrayList<AnimalBuilding> animalBuildings = new ArrayList<>();
+    private ArrayList<Fence> doors = new ArrayList<>();
 
 
     private Quarry quarry;
@@ -213,5 +215,26 @@ public class Farm {
         quarry.getSprite().draw(App.gameApp.getBatch());
         house.getSprite().draw(App.gameApp.getBatch());
         greenHouse.getSprite().draw(App.gameApp.getBatch());
+    }
+
+    public CollisionRect getCollisionRect() {
+        return collisionRect;
+    }
+
+    public void setCollisionRect(CollisionRect collisionRect) {
+        this.collisionRect = collisionRect;
+    }
+
+    public void setAnimalBuildings(ArrayList<AnimalBuilding> animalBuildings) {
+        this.animalBuildings = animalBuildings;
+    }
+
+
+    public ArrayList<Fence> getDoors() {
+        return doors;
+    }
+
+    public void setDoors(ArrayList<Fence> doors) {
+        this.doors = doors;
     }
 }

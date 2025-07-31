@@ -159,9 +159,17 @@ public class MainGameController {
 
                 if (distance < 60) {
                     if (playerX < fenceX) {
+                        if (!playerController.getPlayer().getFarm().getDoors().contains(fence)) {
+                            return;
+                        }
                         playerController.getPlayer().getLocation().setX((int)playerX + 75);
+
                     } else {
+                        if (!playerController.getPlayer().getFarm().getDoors().contains(fence)) {
+                            return;
+                        }
                         playerController.getPlayer().getLocation().setX((int)playerX - 75);
+
                     }
 
 

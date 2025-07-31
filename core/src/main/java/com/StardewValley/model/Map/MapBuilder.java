@@ -275,10 +275,26 @@ public class MapBuilder {
                 y==-WORLD_HEIGHT /2+67* fenceType.getTexture().getHeight()) {
                 fenceType =FenceType.door;
             }
-           map.fences.add(new Fence(fenceType,new CollisionRect(
-                -WORLD_WIDTH /2+2* WORLD_WIDTH /7,y, fenceType.getTexture().getWidth()/2, fenceType.getTexture().getHeight()/2)));
-           map.fences.add(new Fence(fenceType,new CollisionRect(
-                -WORLD_WIDTH /2+5* WORLD_WIDTH /7,y, fenceType.getTexture().getWidth()/2, fenceType.getTexture().getHeight()/2)));
+            Fence fenceLeft=new Fence(fenceType,new CollisionRect(
+                -WORLD_WIDTH /2+2* WORLD_WIDTH /7,y, fenceType.getTexture().getWidth()/2, fenceType.getTexture().getHeight()/2));
+           map.fences.add(fenceLeft);
+            Fence fenceRight=new Fence(fenceType,new CollisionRect(
+                -WORLD_WIDTH /2+5* WORLD_WIDTH /7,y, fenceType.getTexture().getWidth()/2, fenceType.getTexture().getHeight()/2));
+           map.fences.add(fenceRight);
+            if (fenceType==FenceType.door) {
+                if (y<-WORLD_HEIGHT /2+30* fenceType.getTexture().getHeight()){
+                    map.getFarm2().getDoors().add(fenceLeft);
+                    if (App.getCurrentGameModel().playersInGame.size()>3){
+                        map.getFarm4().getDoors().add(fenceRight);
+                    }
+
+                }else {
+                    map.getFarm1().getDoors().add(fenceLeft);
+                    if (App.getCurrentGameModel().playersInGame.size()>2) {
+                        map.getFarm3().getDoors().add(fenceRight);
+                    }
+                }
+            }
         }
     }
     private void outSideFences(int WORLD_WIDTH, int WORLD_HEIGHT, FenceType fenceType,GameMap map) {
@@ -392,7 +408,7 @@ public class MapBuilder {
     }
 
     private void farm1(GameMap map, int WORLD_WIDTH, int WORLD_HEIGHT) {
-        CollisionRect collisionRect1 = new CollisionRect(-WORLD_WIDTH /2,0,2* WORLD_WIDTH /7, WORLD_HEIGHT /2);
+        CollisionRect collisionRect1 = new CollisionRect(-WORLD_WIDTH /2,WORLD_HEIGHT/2 ,2* WORLD_WIDTH /7, WORLD_HEIGHT /2);
         House house1 = new House(new CollisionRect(-WORLD_WIDTH /2+30, WORLD_HEIGHT /2-AssetManager.House.getTexture().getHeight()-20,
             AssetManager.House.getTexture().getWidth(),AssetManager.House.getTexture().getHeight()));
         Lake lake1 = new Lake(new CollisionRect(-WORLD_WIDTH /2+2* WORLD_WIDTH /7-AssetManager.Lake.getTexture().getWidth(),
