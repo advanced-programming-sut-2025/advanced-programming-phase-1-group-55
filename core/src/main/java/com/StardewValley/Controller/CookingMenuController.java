@@ -8,7 +8,7 @@ import com.StardewValley.model.Tool.BackPack;
 import com.StardewValley.model.Item.ItemType;
 import java.util.HashMap;
 import java.util.Map;
-
+import com.StardewValley.enums.CookingItemType;
 
 
 
@@ -110,4 +110,35 @@ public class CookingMenuController {
         }
 
     }
+
+
+
+
+
+
+    public void eatInventoryItem(ItemType itemType) {
+        User user = App.currentGameModel.currentUser;
+        BackPack backPack = user.getBackPack();
+        CookingItemType edibleType = CookingItemType.isEdible(itemType);
+        if (edibleType == null) {
+            view.setErrorMessage(itemType.getDisplayName() + " cannot be eaten.");
+            return;
+        }
+        int amountToEat = 1;
+        if (!backPack.hasEnoughInInventory(itemType, amountToEat)) {
+            view.setErrorMessage("No " + itemType.getDisplayName() + " left in inventory.");
+            return;
+        }
+        backPack.removeAmountFromInventory(itemType, amountToEat);
+        float energyGain = edibleType.getEnergy();
+        user.setEnergy(user.getEnergy() + energyGain);
+        view.refreshFridgeDialog();
+        view.setSuccessMessage("You ate " + itemType.getDisplayName() + " and gained " + energyGain + " energy.");
+    }
+
+
+
+
+
+
 }
