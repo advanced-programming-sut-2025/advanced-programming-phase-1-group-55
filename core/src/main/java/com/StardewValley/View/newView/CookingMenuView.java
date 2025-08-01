@@ -1,4 +1,5 @@
 package com.StardewValley.View.newView;
+
 import com.StardewValley.Controller.CookingMenuController;
 import com.StardewValley.enums.CookingItemType;
 import com.StardewValley.model.App;
@@ -12,14 +13,20 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.ScreenUtils;
+
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-
 
 public class CookingMenuView implements Screen {
     private Stage stage;
@@ -29,9 +36,6 @@ public class CookingMenuView implements Screen {
     private final CookingMenuController controller;
     private TextButton backBtn;
     private Dialog currentFridgeDialog;
-
-
-
 
     public CookingMenuView(CookingMenuController controller, User user) {
         this.controller = controller;
@@ -74,7 +78,6 @@ public class CookingMenuView implements Screen {
         Set<CookingItemType> learned = new HashSet<>(user.getBackPack().getCookingRecipes());
         for (final CookingItemType recipe : CookingItemType.values()) {
             String itemName = recipe.getProductName().name();
-            // Convert to file name: FRIED_EGG -> Fried_Egg.png
             String[] parts = itemName.split("_");
             StringBuilder fileNameBuilder = new StringBuilder();
             for (int i = 0; i < parts.length; i++) {
@@ -140,6 +143,8 @@ public class CookingMenuView implements Screen {
         });
     }
 
+
+
     private void showFridgeDialog() {
         if (currentFridgeDialog != null) {
             currentFridgeDialog.hide();
@@ -178,24 +183,32 @@ public class CookingMenuView implements Screen {
                         showFridgeDialog();
                     }
                 });
+                TextButton eatBtn = new TextButton("Eat", skin);
+                eatBtn.addListener(new ClickListener() {
+                    @Override
+                    public void clicked(InputEvent event, float x, float y) {
+                        controller.eatInventoryItem(itemType);
+                        dialog.hide();
+                        showFridgeDialog();
+                    }
+                });
                 row.add(label).left().padRight(10);
-                row.add(addBtn).right();
+                row.add(addBtn).right().padRight(5);
+                row.add(eatBtn).right();
+
                 content.add(row).left().row();
             }
         }
+
         ScrollPane scrollPane = new ScrollPane(content, skin);
         scrollPane.setFadeScrollBars(false);
         scrollPane.setScrollingDisabled(true, false);
-        dialog.getContentTable().add(scrollPane).width(650).height(350);
+
+        dialog.getContentTable().add(scrollPane).width(850).height(350);
         dialog.button("Close");
         dialog.show(stage);
         currentFridgeDialog = dialog;
     }
-
-
-
-
-
     public void refreshFridgeDialog() {
         Gdx.app.postRunnable(new Runnable() {
             @Override
@@ -211,7 +224,6 @@ public class CookingMenuView implements Screen {
         dialog.button("OK");
         dialog.show(stage);
     }
-
     public void setSuccessMessage(String message) {
         Dialog dialog = new Dialog("Success", skin);
         dialog.text(message);
