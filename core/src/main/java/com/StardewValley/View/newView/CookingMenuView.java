@@ -231,6 +231,14 @@ public class CookingMenuView implements Screen {
         dialog.show(stage);
     }
 
+
+
+
+
+
+
+
+
     @Override
     public void render(float delta) {
         ScreenUtils.clear(0, 0, 0, 1);
