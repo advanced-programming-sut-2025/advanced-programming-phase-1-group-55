@@ -82,6 +82,13 @@ public class ShippingBinMenuView implements Screen {
 
         titleTable.add(title).padRight(10);
         titleTable.add(heartImage).size(85);
+        titleTable.row();
+        if (!from.equals("store")){
+            if (user.isHasGiftToday()){
+                titleTable.add(new Label("You received new gift !", skin)).padRight(10);
+                user.setHasGiftToday(false);
+            }
+        }
         mainTable.add(titleTable).colspan(2).center().pad(20);
         mainTable.row();
 

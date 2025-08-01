@@ -1,5 +1,6 @@
 package com.StardewValley.View.newView;
 
+import com.StardewValley.Controller.SocialMenuController;
 import com.StardewValley.enums.AssetManager;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Friendship.NpcFriendship;
@@ -35,15 +36,23 @@ public class SocialMenuView implements Screen {
     private User selectedFriend;
     private final Label ErrorLabel;
     private com.badlogic.gdx.utils.Timer.Task clearErrorTask;
+    private final Label SuccessLabel;
+    private com.badlogic.gdx.utils.Timer.Task clearErrorTask2;
+    private SocialMenuController controller;
+    private TextField quantityField;
 
     public SocialMenuView(User user) {
         this.user = user;
         stage = new Stage();
+        controller = new SocialMenuController();
+        controller.setView(this);
         skin= App.skin;
         backButton = new TextButton("Back", skin);
         sendGiftButton = new TextButton("Send Gift", skin);
         ErrorLabel = new Label("", skin);
         ErrorLabel.setColor(Color.RED);
+        SuccessLabel = new Label("", skin);
+        SuccessLabel.setColor(Color.GREEN);
     }
     @Override
     public void show() {
@@ -84,6 +93,10 @@ public class SocialMenuView implements Screen {
 
         rootTable.row().colspan(5);
         rootTable.add(backButton).center().padBottom(20);
+        rootTable.row();
+        rootTable.add(ErrorLabel).colspan(5);
+        rootTable.row();
+        rootTable.add(SuccessLabel).colspan(5);
 }
 
 private Table createMenuBox(String title) {
@@ -117,6 +130,7 @@ private Table createMenuBox(String title) {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         selectedFriend = friendUser;
+                        setSuccessMessage("You selected " + selectedFriend.getUsername());
                     }
                 });
 
@@ -180,9 +194,19 @@ private Table createMenuBox(String title) {
         scrollPane.setFadeScrollBars(false);
         menu.add(scrollPane).expand().fill().pad(10);
         menu.row();
+
+
+        Table quantityTable = new Table(skin);
+        Label quantityLabel = new Label("Quantity:", skin);
+        quantityField = new TextField("1", skin);
+        quantityField.setMessageText("Enter count");
+        quantityField.setMaxLength(3);
+        quantityTable.add(quantityLabel).padRight(10);
+        quantityTable.add(quantityField).width(80);
+        menu.add(quantityTable).pad(5).row();
         menu.add(sendGiftButton).pad(5).width(150).height(100);
     }
-        menu.add(ErrorLabel).colspan(2).center().row();
+
     return menu;
 }
     private TextureRegionDrawable createLineDrawable(int width, int height, Color color) {
@@ -196,7 +220,7 @@ private Table createMenuBox(String title) {
 
     @Override
     public void render(float v) {
-//        controller.handleButton();
+        controller.handleButton();
         ScreenUtils.clear(0.2f, 0.2f, 0.25f, 1);
         stage.act(v);
         stage.draw();
@@ -238,6 +262,19 @@ private Table createMenuBox(String title) {
             }
         };
         Timer.schedule(clearErrorTask, 5);
+    }
+    public void setSuccessMessage(String message) {
+        SuccessLabel.setText(message);
+        if (clearErrorTask2 != null) {
+            clearErrorTask2.cancel();
+        }
+        clearErrorTask2 = new Timer.Task() {
+            @Override
+            public void run() {
+                SuccessLabel.setText("");
+            }
+        };
+        Timer.schedule(clearErrorTask2, 5);
     }
     public Item getSelectedItem() {
         return selectedItem;
@@ -293,5 +330,45 @@ private Table createMenuBox(String title) {
 
     public void setSelectedFriend(User selectedFriend) {
         this.selectedFriend = selectedFriend;
+    }
+
+    public Label getErrorLabel() {
+        return ErrorLabel;
+    }
+
+    public Timer.Task getClearErrorTask() {
+        return clearErrorTask;
+    }
+
+    public void setClearErrorTask(Timer.Task clearErrorTask) {
+        this.clearErrorTask = clearErrorTask;
+    }
+
+    public Label getSuccessLabel() {
+        return SuccessLabel;
+    }
+
+    public Timer.Task getClearErrorTask2() {
+        return clearErrorTask2;
+    }
+
+    public void setClearErrorTask2(Timer.Task clearErrorTask2) {
+        this.clearErrorTask2 = clearErrorTask2;
+    }
+
+    public SocialMenuController getController() {
+        return controller;
+    }
+
+    public void setController(SocialMenuController controller) {
+        this.controller = controller;
+    }
+
+    public TextField getQuantityField() {
+        return quantityField;
+    }
+
+    public void setQuantityField(TextField quantityField) {
+        this.quantityField = quantityField;
     }
 }
