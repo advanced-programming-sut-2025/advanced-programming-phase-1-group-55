@@ -102,10 +102,31 @@ private Table createMenuBox(String title) {
 
         Map<User, PlayerFriendship> friendships = user.getFriendsPlayer();
         if (friendships != null && !friendships.isEmpty()) {
-            for (PlayerFriendship friendship : friendships.values()) {
-               Label informationOfFriendship =new Label(friendship.toString(), skin);
-               friendshipTable.add(informationOfFriendship).expandX().fillX().pad(10);
-               friendshipTable.row();
+            for (Map.Entry<User, PlayerFriendship> entry : friendships.entrySet()) {
+                PlayerFriendship friendship = entry.getValue();
+                User friendUser = entry.getKey();
+
+                Table singleFriendTable = new Table(skin);
+                singleFriendTable.left();
+
+                Label infoLabel = new Label(friendship.toString(), skin);
+                infoLabel.setAlignment(Align.left);
+
+                TextButton chooseButton = new TextButton("Select", skin);
+                chooseButton.addListener(new ClickListener() {
+                    @Override
+                    public void clicked(InputEvent event, float x, float y) {
+                        selectedFriend = friendUser;
+                    }
+                });
+
+                singleFriendTable.add(infoLabel).expandX().left().pad(10);
+                singleFriendTable.add(chooseButton).pad(10).width(100);
+                friendshipTable.add(singleFriendTable).expandX().fillX().row();
+
+
+                friendshipTable.add(new Image(createLineDrawable(1, 2, Color.LIGHT_GRAY)))
+                    .colspan(2).expandX().fillX().padBottom(5).row();
             }
         } else {
             friendshipTable.add(new Label("There is no friendship.", skin)).pad(25);
@@ -117,7 +138,8 @@ private Table createMenuBox(String title) {
 
         menu.add(scrollPane).expand().fill().pad(10).row();
     }
- else if (title.equals("Send Gifts")) {
+
+    else if (title.equals("Send Gifts")) {
         Table itemTable = new Table(skin);
         int columnCount = 3;
         int i = 0;
