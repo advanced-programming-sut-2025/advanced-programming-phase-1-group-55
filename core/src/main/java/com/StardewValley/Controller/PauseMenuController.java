@@ -1,10 +1,6 @@
 package com.StardewValley.Controller;
 
-import com.StardewValley.View.newView.SkillsMenuView;
-import com.StardewValley.View.newView.PauseMenuView;
-import com.StardewValley.View.newView.QuestMenuView;
-import com.StardewValley.View.newView.ShippingBinMenuView;
-import com.StardewValley.View.newView.ToolsMenuView;
+import com.StardewValley.View.newView.*;
 import com.StardewValley.model.App;
 
 public class PauseMenuController {
@@ -35,6 +31,9 @@ public class PauseMenuController {
             }else if (view.getSkillsButton().isChecked()) {
                 view.getSkillsButton().setChecked(false);
                 App.gameApp.setScreen(new SkillsMenuView(view.getUser()));
+            } else if (view.getSocialMenuButton().isChecked()) {
+                view.getSocialMenuButton().setChecked(false);
+                App.gameApp.setScreen(new SocialMenuView(view.getUser()));
             }
         }
     }

@@ -146,4 +146,14 @@ public class PlayerFriendship extends FriendShip {
     public void setMarriageRequest(MarriageRequest marriageRequest) {
         this.marriageRequest = marriageRequest;
     }
+
+    @Override
+    public String toString() {
+        return
+            "You: " + user1.getUsername() +
+            "\nYour friend: " + user2.getUsername() +
+            "\nFriendship level: " + level +
+            "\nxp: " + xp +
+            "\nareMarried: " + areMarried+"\n\n";
+    }
 }
