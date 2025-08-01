@@ -53,6 +53,7 @@ public class SocialMenuController {
         friend.getReceivedGifts().put(gift.getId(),gift);
         friend.getFriendsPlayer().get(currentGameModel.currentUser).getGifts().add(gift);
         friend.setHasGiftToday(true);
+        friend.getFriendsPlayer().get(currentGameModel.currentUser).increaseXp(50);
         view.setSuccessMessage("You successfully gifted "+quantity+" "+item.getItemType().getDisplayName()+
             " to "+friend.getUsername());
     }
