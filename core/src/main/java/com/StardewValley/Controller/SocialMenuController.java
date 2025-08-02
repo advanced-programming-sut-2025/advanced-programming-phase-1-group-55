@@ -48,7 +48,8 @@ public class SocialMenuController {
         }
         user.getBackPack().removeAmountFromInventory(item.getItemType(),quantity);
         friend.getBackPack().addItemToInventory(item,quantity);
-        Gift gift=new Gift(user,friend,item,currentGameModel.getNumberOfAllGifts()+1);
+        Item newItem=new Item(item.getItemType(),quantity);
+        Gift gift=new Gift(user,friend,newItem,currentGameModel.getNumberOfAllGifts()+1);
         currentGameModel.increaseNumberOfGifts();
         friend.getReceivedGifts().put(gift.getId(),gift);
         friend.getFriendsPlayer().get(currentGameModel.currentUser).getGifts().add(gift);

@@ -59,13 +59,12 @@ public class Gift {
 
     @Override
     public String toString() {
-        return "Gift{" +
-                "sender=" + sender.getUsername() +
-                ", receiver=" + receiver.getUsername() +
-                ", item=" + item.getItemType().getDisplayName() +
-                ", amount="+item.getNumber()+
-                ", rate=" + rate +
-                ", id=" + id +
-                '}';
+        return
+                "sender:" + sender.getUsername() +
+                "\nreceiver:" + receiver.getUsername() +
+                "\nitem:" + item.getItemType().getDisplayName() +
+                "\namount:"+item.getNumber()+
+                "\nrate:" + rate +
+                "\nid:" + id+"\n\n";
     }
 }

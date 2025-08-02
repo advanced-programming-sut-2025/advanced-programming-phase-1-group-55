@@ -3,6 +3,7 @@ package com.StardewValley.View.newView;
 import com.StardewValley.Controller.SocialMenuController;
 import com.StardewValley.enums.AssetManager;
 import com.StardewValley.model.App;
+import com.StardewValley.model.Friendship.Gift;
 import com.StardewValley.model.Friendship.NpcFriendship;
 import com.StardewValley.model.Friendship.PlayerFriendship;
 import com.StardewValley.model.Item.Item;
@@ -74,15 +75,19 @@ public class SocialMenuView implements Screen {
         rootTable.row();
 
     Table leftMenu = createMenuBox("Friendship");
+    Table middleMenu = createMenuBox("All of your Gifts");
     Table rightMenu = createMenuBox("Send Gifts");
 
 
     Image verticalLine1 = new Image(createLineDrawable(2, 1, Color.GRAY));
+    Image verticalLine2 = new Image(createLineDrawable(2, 1, Color.GRAY));
 
 
         rootTable.row().expand().fill();
         rootTable.add(leftMenu).expand().fill().pad(10);
         rootTable.add(verticalLine1).width(2).fillY().padTop(10).padBottom(10);
+        rootTable.add(middleMenu).expand().fill().pad(10);
+        rootTable.add(verticalLine2).width(2).fillY().padTop(10).padBottom(10);
         rootTable.add(rightMenu).expand().fill().pad(10);
 
 
@@ -205,7 +210,31 @@ private Table createMenuBox(String title) {
         quantityTable.add(quantityField).width(80);
         menu.add(quantityTable).pad(5).row();
         menu.add(sendGiftButton).pad(5).width(150).height(100);
+    }else {
+        Table giftTable = new Table(skin);
+        giftTable.top().left();
+
+        Map<Integer, Gift> receivedGifts = user.getReceivedGifts();
+        if (receivedGifts != null && !receivedGifts.isEmpty()) {
+            for (Gift gift : receivedGifts.values()) {
+                Label giftLabel = new Label(gift.toString(), skin);
+                giftLabel.setAlignment(Align.left);
+                giftTable.add(giftLabel).left().pad(10).row();
+
+                giftTable.add(new Image(createLineDrawable(1, 2, Color.LIGHT_GRAY)))
+                    .colspan(1).expandX().fillX().padBottom(5).row();
+            }
+        } else {
+            giftTable.add(new Label("No gifts received.", skin)).pad(25);
+        }
+
+        ScrollPane scrollPane = new ScrollPane(giftTable, skin);
+        scrollPane.setFadeScrollBars(false);
+        scrollPane.setScrollingDisabled(true, false);
+
+        menu.add(scrollPane).expand().fill().pad(10).row();
     }
+
 
     return menu;
 }
