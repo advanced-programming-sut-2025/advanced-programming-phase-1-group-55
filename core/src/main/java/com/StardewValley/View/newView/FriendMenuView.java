@@ -169,6 +169,9 @@ public class FriendMenuView implements Screen {
             scrollPane.setScrollingDisabled(true, false);
 
             menu.add(scrollPane).expand().fill().pad(10).row();
+            menu.add(rateField).center().row();
+            menu.add(rateButton).center();
+            menu.row();
         }
 
 

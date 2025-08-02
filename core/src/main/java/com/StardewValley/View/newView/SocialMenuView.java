@@ -200,9 +200,7 @@ private Table createMenuBox(String title) {
 
         Table quantityTable = new Table(skin);
         Label quantityLabel = new Label("Quantity:", skin);
-        quantityField = new TextField("1", skin);
-        quantityField.setMessageText("Enter count");
-        quantityField.setMaxLength(3);
+        quantityField = new TextField("", skin);
         quantityTable.add(quantityLabel).padRight(10);
         quantityTable.add(quantityField).width(80);
         menu.add(quantityTable).pad(5).row();
