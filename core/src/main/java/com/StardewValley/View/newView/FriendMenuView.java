@@ -4,7 +4,6 @@ import com.StardewValley.Controller.FriendMenuController;
 import com.StardewValley.enums.AssetManager;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Friendship.Gift;
-import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.User;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -22,7 +21,6 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.Timer;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 public class FriendMenuView implements Screen {
     private Stage stage;
@@ -151,7 +149,7 @@ public class FriendMenuView implements Screen {
                     });
 
                     singleGiftTable.add(infoLabel).expandX().left().pad(10);
-                    if (gift.getSender().equals(friend)) {
+                    if (gift.getSender().equals(friend)&&gift.getRate()==0) {
                         singleGiftTable.add(chooseButton).pad(10).width(100);
                     }
                     giftsTable.add(singleGiftTable).expandX().fillX().row();
@@ -436,6 +434,38 @@ public class FriendMenuView implements Screen {
 
     public TextButton getSendMarriageRequestButton() {
         return sendMarriageRequestButton;
+    }
+
+    public Label getErrorLabel() {
+        return ErrorLabel;
+    }
+
+    public Timer.Task getClearErrorTask() {
+        return clearErrorTask;
+    }
+
+    public void setClearErrorTask(Timer.Task clearErrorTask) {
+        this.clearErrorTask = clearErrorTask;
+    }
+
+    public Label getSuccessLabel() {
+        return SuccessLabel;
+    }
+
+    public Timer.Task getClearErrorTask2() {
+        return clearErrorTask2;
+    }
+
+    public void setClearErrorTask2(Timer.Task clearErrorTask2) {
+        this.clearErrorTask2 = clearErrorTask2;
+    }
+
+    public Gift getSelectedGift() {
+        return selectedGift;
+    }
+
+    public void setSelectedGift(Gift selectedGift) {
+        this.selectedGift = selectedGift;
     }
 
     public void setSendMarriageRequestButton(TextButton sendMarriageRequestButton) {
