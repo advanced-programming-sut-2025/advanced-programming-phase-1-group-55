@@ -99,6 +99,13 @@ public class MainGameController {
         }
         return true;
     }
+    public void checkIfClickedOnPlayer(float dx, float dy){
+        for (User user: currentGameModel.playersInGame){
+            if (user.getCollisionRect().isInside(dx,dy)&&!user.getUsername().equals(currentPlayer.getUsername())){
+                gameApp.setScreen(new FriendMenuView(user,new FriendMenuController(currentPlayer,user)));
+            }
+        }
+    }
     public void choosingPlace(float x,float y){
         Sprite sprite =view.getChosenArtisanSprite();
         sprite.setPosition(x,y);

@@ -1,6 +1,7 @@
 package com.StardewValley.Controller;
 
 import com.StardewValley.View.newView.FriendMenuView;
+import com.StardewValley.model.App;
 import com.StardewValley.model.User;
 
 public class FriendMenuController {
@@ -13,7 +14,12 @@ public class FriendMenuController {
         this.friend = friend;
     }
     public void handleButton(){
-
+        if (view!=null){
+            if (view.getBackButton().isChecked()){
+                view.getBackButton().setChecked(false);
+                App.gameApp.setScreen(App.currentGameGraphicView);
+            }
+        }
     }
 
     public FriendMenuView getView() {
