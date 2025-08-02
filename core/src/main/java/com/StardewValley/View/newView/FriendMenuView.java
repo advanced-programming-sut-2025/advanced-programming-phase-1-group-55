@@ -151,10 +151,12 @@ public class FriendMenuView implements Screen {
                     });
 
                     singleGiftTable.add(infoLabel).expandX().left().pad(10);
-                    singleGiftTable.add(chooseButton).pad(10).width(100);
+                    if (gift.getSender().equals(friend)) {
+                        singleGiftTable.add(chooseButton).pad(10).width(100);
+                    }
                     giftsTable.add(singleGiftTable).expandX().fillX().row();
 
-                    // خط جداکننده
+
                     giftsTable.add(new Image(createLineDrawable(1, 2, Color.LIGHT_GRAY)))
                         .colspan(2).expandX().fillX().padBottom(5).row();
                 }

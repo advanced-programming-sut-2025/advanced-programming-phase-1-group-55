@@ -1,5 +1,6 @@
 package com.StardewValley.model.Friendship;
 
+import com.StardewValley.model.App;
 import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.User;
 
@@ -59,9 +60,10 @@ public class Gift {
 
     @Override
     public String toString() {
+        String message=sender.equals(App.currentGameModel.currentUser)?"You sent this gift to your friend.":"Your friend sent this gift to you.";
+
         return
-                "sender:" + sender.getUsername() +
-                "\nreceiver:" + receiver.getUsername() +
+                message+
                 "\nitem:" + item.getItemType().getDisplayName() +
                 "\namount:"+item.getNumber()+
                 "\nrate:" + rate +
