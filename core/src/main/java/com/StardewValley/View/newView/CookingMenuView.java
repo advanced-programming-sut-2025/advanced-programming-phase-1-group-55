@@ -180,7 +180,7 @@ public class CookingMenuView implements Screen {
                     public void clicked(InputEvent event, float x, float y) {
                         controller.moveItemToFridge(itemType);
                         dialog.hide();
-                        showFridgeDialog();
+//                        showFridgeDialog();
                     }
                 });
                 TextButton eatBtn = new TextButton("Eat", skin);
@@ -189,7 +189,7 @@ public class CookingMenuView implements Screen {
                     public void clicked(InputEvent event, float x, float y) {
                         controller.eatInventoryItem(itemType);
                         dialog.hide();
-                        showFridgeDialog();
+//                        showFridgeDialog();
                     }
                 });
                 row.add(label).left().padRight(10);

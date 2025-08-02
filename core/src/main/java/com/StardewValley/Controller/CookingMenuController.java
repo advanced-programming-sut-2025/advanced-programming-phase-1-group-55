@@ -106,7 +106,7 @@ public class CookingMenuController {
         }
         if (view != null) {
             view.setSuccessMessage(itemType.getDisplayName() + " moved to fridge");
-            view.refreshFridgeDialog();
+//            view.refreshFridgeDialog();
         }
 
     }
@@ -132,7 +132,7 @@ public class CookingMenuController {
         backPack.removeAmountFromInventory(itemType, amountToEat);
         float energyGain = edibleType.getEnergy();
         user.setEnergy(user.getEnergy() + energyGain);
-        view.refreshFridgeDialog();
+//        view.refreshFridgeDialog();
         view.setSuccessMessage("You ate " + itemType.getDisplayName() + " and gained " + energyGain + " energy.");
     }
 
