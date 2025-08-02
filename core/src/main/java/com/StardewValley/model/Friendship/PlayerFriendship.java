@@ -1,5 +1,6 @@
 package com.StardewValley.model.Friendship;
 
+import com.StardewValley.model.App;
 import com.StardewValley.model.User;
 
 import java.util.ArrayList;
@@ -149,9 +150,10 @@ public class PlayerFriendship extends FriendShip {
 
     @Override
     public String toString() {
+        String username=user1.getUsername().equals(App.getCurrentGameModel().getCurrentUser().getUsername())?user2.getUsername():user1.getUsername();
         return
-            "You: " + user1.getUsername() +
-            "\nYour friend: " + user2.getUsername() +
+            "You: " + App.currentGameModel.currentUser.getUsername() +
+            "\nYour friend: " + username +
             "\nFriendship level: " + level +
             "\nxp: " + xp +
             "\nareMarried: " + areMarried+"\n\n";

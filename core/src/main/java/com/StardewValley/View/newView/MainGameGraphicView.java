@@ -213,6 +213,7 @@ public class MainGameGraphicView implements Screen, InputProcessor {
             controller.getStoreController().checkIfClickedOnBins(click.x, click.y);
             controller.checkIfClickedOnMachine(click.x, click.y);
             controller.getToolController().UseTool(click.x, click.y);
+            controller.checkIfClickedOnPlayer(click.x, click.y);
         }
         return true;
     }

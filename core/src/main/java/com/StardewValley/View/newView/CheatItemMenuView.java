@@ -83,7 +83,7 @@ public class CheatItemMenuView implements Screen {
             String itemName = item.getItemType().getDisplayName();
             int price = item.getPrice();
 
-            TextButton itemButton = new TextButton(itemName + "\nPrice: " + price, skin);
+            TextButton itemButton = new TextButton(itemName, skin);
             itemButton.getLabel().setFontScale(0.65f);
             itemButton.pad(10);
 

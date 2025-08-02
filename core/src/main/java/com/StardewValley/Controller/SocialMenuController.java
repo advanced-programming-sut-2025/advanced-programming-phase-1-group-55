@@ -41,14 +41,22 @@ public class SocialMenuController {
             view.setErrorMessage("No item selected");
             return;
         }
-        int quantity=Integer.parseInt(view.getQuantityField().getText().trim());
+        int quantity;
+        try {
+            quantity=Integer.parseInt(view.getQuantityField().getText().trim());
+        }catch (NumberFormatException e){
+            view.setErrorMessage("Invalid quantity");
+            return;
+        }
+
         if (item.getNumber()<quantity){
             view.setErrorMessage("You dont have enough items to gift!");
             return;
         }
         user.getBackPack().removeAmountFromInventory(item.getItemType(),quantity);
         friend.getBackPack().addItemToInventory(item,quantity);
-        Gift gift=new Gift(user,friend,item,currentGameModel.getNumberOfAllGifts()+1);
+        Item newItem=new Item(item.getItemType(),quantity);
+        Gift gift=new Gift(user,friend,newItem,currentGameModel.getNumberOfAllGifts()+1);
         currentGameModel.increaseNumberOfGifts();
         friend.getReceivedGifts().put(gift.getId(),gift);
         friend.getFriendsPlayer().get(currentGameModel.currentUser).getGifts().add(gift);
@@ -56,6 +64,7 @@ public class SocialMenuController {
         friend.getFriendsPlayer().get(currentGameModel.currentUser).increaseXp(50);
         view.setSuccessMessage("You successfully gifted "+quantity+" "+item.getItemType().getDisplayName()+
             " to "+friend.getUsername());
+        view.show();
     }
 
     public SocialMenuView getView() {
