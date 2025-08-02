@@ -5,6 +5,8 @@ import com.StardewValley.enums.AssetManager;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Friendship.Gift;
 import com.StardewValley.model.Friendship.PlayerFriendship;
+import com.StardewValley.model.Item.Item;
+import com.StardewValley.model.Item.ItemType;
 import com.StardewValley.model.User;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
@@ -55,15 +57,36 @@ public class FriendMenuController {
             } else if (view.getHugButton().isChecked()) {
                 view.getHugButton().setChecked(false);
                 handleHugging();
+            } else if (view.getSendFlowerButton().isChecked()) {
+                view.getSendFlowerButton().setChecked(false);
+                handleSendingFlower();
             }
         }
+    }
+    public void handleSendingFlower(){
+        if (!you.getCollisionRect().isNear(friend.getCollisionRect())){
+            view.setErrorMessage("You should be near your friend to send flower.");
+            return;
+        }if (!you.getBackPack().getInventory().containsKey(ItemType.BOUQUET.getDisplayName())){
+            view.setErrorMessage("You don't have flower in your inventory");
+            return;
+        }
+        PlayerFriendship friendship=you.getFriendsPlayer().get(friend);
+        you.getBackPack().removeAmountFromInventory(ItemType.BOUQUET,1);
+        friend.getBackPack().addItemToInventory(new Item(ItemType.BOUQUET),1);
+        friendship.increaseXp(75);
+        playAnimation(AssetManager.Rose.getTexture());
+        view.setSuccessMessage("you have successfully sent flower to your friend.");
     }
     public void handleHugging(){
         if (!you.getCollisionRect().isNear(friend.getCollisionRect())){
             view.setErrorMessage("You should be near your friend to hug.");
             return;
         }
+        PlayerFriendship friendship=you.getFriendsPlayer().get(friend);
+        friendship.increaseXp(45);
         playAnimation(AssetManager.hugging.getTexture());
+        view.setSuccessMessage("You have successfully hugged your friend.");
 
     }
     public void playAnimation(Texture texture){
@@ -95,8 +118,6 @@ public class FriendMenuController {
                 })
             )
         );
-
-        view.setSuccessMessage("You have successfully hugged your friend.");
     }
 
     public FriendMenuView getView() {
