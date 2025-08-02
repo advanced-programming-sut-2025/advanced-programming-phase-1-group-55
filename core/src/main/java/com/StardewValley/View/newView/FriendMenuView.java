@@ -22,8 +22,11 @@ import com.badlogic.gdx.utils.Timer;
 
 import java.util.ArrayList;
 
+import static com.badlogic.gdx.scenes.scene2d.actions.Actions.*;
+
 public class FriendMenuView implements Screen {
     private Stage stage;
+    private  Image animationImage = new Image();
     private Skin skin;
     private User you;
     private User friend;
@@ -173,59 +176,36 @@ public class FriendMenuView implements Screen {
         }
 
 
-        else if (title.equals("Send Gifts")) {
-//            Table itemTable = new Table(skin);
-//            int columnCount = 3;
-//            int i = 0;
-//
-//            Map<String, Item> inventory = user.getBackPack().getInventory();
-//            final TextButton[] selectedButton = {null};
-//
-//            for (Map.Entry<String, Item> entry : inventory.entrySet()) {
-//                Item item = entry.getValue();
-//                TextButton itemButton = new TextButton(
-//                    item.getItemType().getDisplayName() +
-//                        "\nPrice: " + item.getPrice() +
-//                        "\nQuantity: " + item.getNumber(), skin);
-//                itemButton.getLabel().setFontScale(0.65f);
-//                itemButton.pad(10);
-//
-//                itemButton.addListener(new ClickListener() {
-//                    @Override
-//                    public void clicked(InputEvent event, float x, float y) {
-//                        if (selectedButton[0] != null) {
-//                            selectedButton[0].setColor(Color.WHITE);
-//                        }
-//                        selectedButton[0] = itemButton;
-//                        selectedItem=item;
-//                        itemButton.setColor(Color.LIME);
-//                    }
-//                });
-//
-//                itemTable.add(itemButton).pad(5).width(150).height(100);
-//                itemTable.row();
-//
-//                i++;
-//                if (i % columnCount == 0) itemTable.row();
-//            }
-//
-//            ScrollPane scrollPane = new ScrollPane(itemTable, skin);
-//            scrollPane.setScrollingDisabled(true, false);
-//            scrollPane.setFadeScrollBars(false);
-//            menu.add(scrollPane).expand().fill().pad(10);
-//            menu.row();
-//
-//
-//            Table quantityTable = new Table(skin);
-//            Label quantityLabel = new Label("Quantity:", skin);
-//            quantityField = new TextField("1", skin);
-//            quantityField.setMessageText("Enter count");
-//            quantityField.setMaxLength(3);
-//            quantityTable.add(quantityLabel).padRight(10);
-//            quantityTable.add(quantityField).width(80);
-//            menu.add(quantityTable).pad(5).row();
-//            menu.add(sendGiftButton).pad(5).width(150).height(100);
-        }else {
+        else if (title.equals("Actions")) {
+            Table actionTable = new Table(skin);
+            actionTable.top();
+
+
+            actionTable.add(hugButton).pad(10).width(180).height(60).center();
+            actionTable.row();
+
+
+            actionTable.add(sendFlowerButton).pad(10).width(180).height(60).center();
+            actionTable.row();
+
+
+            actionTable.add(sendMarriageRequestButton).pad(10).width(220).height(60).center();
+            actionTable.row();
+
+
+
+            animationImage.setVisible(false);
+            actionTable.add(animationImage).expandY().fillY().padTop(20).row();
+
+
+            ScrollPane scrollPane = new ScrollPane(actionTable, skin);
+            scrollPane.setFadeScrollBars(false);
+            scrollPane.setScrollingDisabled(true, false);
+            menu.add(scrollPane).expand().fill().pad(10).row();
+
+        }
+
+        else {
 //            Table giftTable = new Table(skin);
 //            giftTable.top().left();
 //
@@ -470,5 +450,13 @@ public class FriendMenuView implements Screen {
 
     public void setSendMarriageRequestButton(TextButton sendMarriageRequestButton) {
         this.sendMarriageRequestButton = sendMarriageRequestButton;
+    }
+
+    public Image getAnimationImage() {
+        return animationImage;
+    }
+
+    public void setAnimationImage(Image animationImage) {
+        this.animationImage = animationImage;
     }
 }

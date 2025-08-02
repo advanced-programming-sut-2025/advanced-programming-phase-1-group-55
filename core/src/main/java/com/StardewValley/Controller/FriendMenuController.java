@@ -1,10 +1,19 @@
 package com.StardewValley.Controller;
 
 import com.StardewValley.View.newView.FriendMenuView;
+import com.StardewValley.enums.AssetManager;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Friendship.Gift;
 import com.StardewValley.model.Friendship.PlayerFriendship;
 import com.StardewValley.model.User;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+
+import static com.badlogic.gdx.scenes.scene2d.actions.Actions.*;
+import static com.badlogic.gdx.scenes.scene2d.actions.Actions.run;
 
 public class FriendMenuController {
     private FriendMenuView view;
@@ -43,8 +52,51 @@ public class FriendMenuController {
                 PlayerFriendship friendship=you.getFriendsPlayer().get(friend);
                 friendship.increaseXp((rate-3)*30+15);
                 view.show();
+            } else if (view.getHugButton().isChecked()) {
+                view.getHugButton().setChecked(false);
+                handleHugging();
             }
         }
+    }
+    public void handleHugging(){
+        if (!you.getCollisionRect().isNear(friend.getCollisionRect())){
+            view.setErrorMessage("You should be near your friend to hug.");
+            return;
+        }
+        playAnimation(AssetManager.hugging.getTexture());
+
+    }
+    public void playAnimation(Texture texture){
+        Image animImage = view.getAnimationImage();
+
+        animImage.setDrawable(new TextureRegionDrawable(new TextureRegion(texture)));
+        animImage.setVisible(true);
+        animImage.setColor(1, 1, 1, 0);
+
+        animImage.setScale(1f);
+        animImage.setPosition(
+            (view.getStage().getWidth() - animImage.getWidth()) / 2f,
+            0
+        );
+
+        animImage.addAction(
+            sequence(
+                moveBy(0, 100, 0.8f),
+                parallel(
+                    fadeIn(0.8f),
+                    scaleTo(1.15f, 1.15f, 0.8f)
+                ),
+                delay(1.5f),
+                fadeOut(1.2f),
+                run(() -> {
+                    animImage.setVisible(false);
+                    animImage.setScale(1f);
+                    animImage.setPosition(0, 0);
+                })
+            )
+        );
+
+        view.setSuccessMessage("You have successfully hugged your friend.");
     }
 
     public FriendMenuView getView() {

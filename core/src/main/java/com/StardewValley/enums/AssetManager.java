@@ -174,6 +174,11 @@ public enum AssetManager {
     ,Star("Emoji/star2.png"),
     gear("Emoji/gear.png"),
 
+    hugging("Emoji/hug-removebg-preview.png"),
+    Love("Emoji/sparkling_heart.png"),
+    Rose( "Emoji/rose.png"),
+
+
     FARMING("Skill/Farming_Skill_Icon.png"),
     MINING("Skill/Mining_Skill_Icon.png"),
     FISHING("Skill/Fishing_Skill_Icon.png"),
