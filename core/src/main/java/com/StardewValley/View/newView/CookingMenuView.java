@@ -218,6 +218,37 @@ public class CookingMenuView implements Screen {
         });
     }
 
+
+
+
+    public void showEatingAnimation(ItemType itemType) {
+        final Dialog eatDialog = new Dialog("", skin);
+        Table content = new Table();
+        content.pad(20);
+        String fileName = itemType.name().toLowerCase();
+        fileName = Character.toUpperCase(fileName.charAt(0)) + fileName.substring(1) + ".png";
+        String path = "Recipe/" + fileName;
+        if (Gdx.files.internal(path).exists()) {
+            Texture tex = new Texture(Gdx.files.internal(path));
+            Image image = new Image(new TextureRegionDrawable(new TextureRegion(tex)));
+            image.setSize(64, 64);
+            content.add(image).center().row();
+        }
+        Label eatingLabel = new Label("Eating...", skin);
+        content.add(eatingLabel).padTop(10).center();
+
+        eatDialog.getContentTable().add(content).center();
+        eatDialog.show(stage);
+        Gdx.app.postRunnable(() -> {
+            new Thread(() -> {
+                try {
+                    Thread.sleep(3000);
+                    Gdx.app.postRunnable(() -> eatDialog.hide());
+                } catch (InterruptedException ignored) {}
+            }).start();
+        });
+    }
+
     public void setErrorMessage(String error) {
         Dialog dialog = new Dialog("Error", skin);
         dialog.text(error);
@@ -225,11 +256,22 @@ public class CookingMenuView implements Screen {
         dialog.show(stage);
     }
     public void setSuccessMessage(String message) {
-        Dialog dialog = new Dialog("Success", skin);
-        dialog.text(message);
-        dialog.button("OK");
-        dialog.show(stage);
+        new Thread(() -> {
+            try {
+                Thread.sleep(3100);
+                Gdx.app.postRunnable(() -> {
+                    Dialog dialog = new Dialog("Success", skin);
+                    dialog.text(message);
+                    dialog.button("OK");
+                    dialog.show(stage);
+                });
+            } catch (InterruptedException ignored) {}
+        }).start();
     }
+
+
+
+
 
 
 

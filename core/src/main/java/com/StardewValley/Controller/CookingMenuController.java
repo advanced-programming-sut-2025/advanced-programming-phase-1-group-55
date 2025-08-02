@@ -132,6 +132,7 @@ public class CookingMenuController {
         backPack.removeAmountFromInventory(itemType, amountToEat);
         float energyGain = edibleType.getEnergy();
         user.setEnergy(user.getEnergy() + energyGain);
+        view.showEatingAnimation(itemType);
 //        view.refreshFridgeDialog();
         view.setSuccessMessage("You ate " + itemType.getDisplayName() + " and gained " + energyGain + " energy.");
     }
