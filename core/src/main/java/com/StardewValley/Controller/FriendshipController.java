@@ -45,7 +45,7 @@ public class FriendshipController {
         if(!locationsAreNear(user.getLocation(), currentGameModel.currentUser.getLocation())){
             return  new Result(false,"you must be near the other player to talk!");
         }
-        currentGameModel.currentUser.getFriendsPlayer().get(user).getConversation().add(message);
+        //currentGameModel.currentUser.getFriendsPlayer().get(user).getConversation().add(message);
         if(!user.getFriendsPlayer().get(currentGameModel.currentUser).isTodayTalked()){
             user.getFriendsPlayer().get(currentGameModel.currentUser).increaseXp(20);
             user.getFriendsPlayer().get(currentGameModel.currentUser).setTodayTalked(true);
@@ -63,9 +63,9 @@ public class FriendshipController {
         if(user==null||user.getUsername().equals(currentGameModel.currentUser.getUsername())){
             return  new Result(false,"user not found!");
         }
-        for (String message: currentGameModel.currentUser.getFriendsPlayer().get(user).getConversation()){
-            conversation.append(message).append("\n");
-        }
+//        for (String message: currentGameModel.currentUser.getFriendsPlayer().get(user).getConversation()){
+//            conversation.append(message).append("\n");
+//        }
         return new Result(true,conversation.toString());
     }
     public Result hug(String username){

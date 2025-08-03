@@ -66,10 +66,17 @@ public class SocialMenuView implements Screen {
         stage.addActor(rootTable);
 
     Label titleLabel = new Label("Social Menu", skin);
+
         titleLabel.setFontScale(2f);
         rootTable.top().padTop(20);
         rootTable.add(titleLabel).colspan(5).center().padBottom(30);
         rootTable.row();
+        if (user.isHasMessageToday()){
+            Label messageLabel = new Label("You have new message from  one of your friends.\n check your friends menu!", skin);
+            rootTable.add(messageLabel).right();
+            user.setHasMessageToday(false);
+        }
+
 
     Table leftMenu = createMenuBox("Friendship");
     Table middleMenu = createMenuBox("All of your Gifts");

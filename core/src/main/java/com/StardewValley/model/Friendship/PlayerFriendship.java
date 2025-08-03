@@ -17,7 +17,7 @@ public class PlayerFriendship extends FriendShip {
     private boolean todayGotGift=false;
     private boolean hasReceivedFlower=false;
     private boolean hasMarriage=false;
-    private ArrayList<String> conversation=new ArrayList<>();
+    private ArrayList<Message> conversation=new ArrayList<>();
     private ArrayList<Gift> gifts=new ArrayList<>();
 
     public PlayerFriendship(User user1, User user2) {
@@ -88,11 +88,11 @@ public class PlayerFriendship extends FriendShip {
         this.todayGotGift = todayGotGift;
     }
 
-    public ArrayList<String> getConversation() {
+    public ArrayList<Message> getConversation() {
         return conversation;
     }
 
-    public void setConversation(ArrayList<String> conversation) {
+    public void setConversation(ArrayList<Message> conversation) {
         this.conversation = conversation;
     }
     public void increaseXp(int amount){
