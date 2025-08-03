@@ -29,6 +29,7 @@ public class ShippingBinMenuView implements Screen {
     private Skin skin;
     private Button backButton;
     private Button sellButton;
+    private TextButton selectButton;
     private Map<String, Item> items;
 
     private  Item selectedItem;
@@ -49,6 +50,7 @@ public class ShippingBinMenuView implements Screen {
         else {
             this.sellButton = new TextButton("Recycle Item", skin);
         }
+        selectButton = new TextButton("Select Item", skin);
 
     }
 
@@ -91,12 +93,6 @@ public class ShippingBinMenuView implements Screen {
         }
         mainTable.add(titleTable).colspan(2).center().pad(20);
         mainTable.row();
-
-
-
-
-
-
 
 
         Table itemTable = new Table();
@@ -148,6 +144,9 @@ public class ShippingBinMenuView implements Screen {
         Table buttonTable = new Table();
         buttonTable.add(backButton).pad(10).width(140).height(60);
         buttonTable.add(sellButton).pad(10).width(140).height(60);
+        if (!from.equals("store")){
+            buttonTable.add(selectButton).pad(10).width(140).height(60);
+        }
         mainTable.add(buttonTable).colspan(2).center().padBottom(20);
     }
 
@@ -197,6 +196,14 @@ public class ShippingBinMenuView implements Screen {
 
     public void setSelectedItem(Item selectedItem) {
         this.selectedItem = selectedItem;
+    }
+
+    public TextButton getSelectButton() {
+        return selectButton;
+    }
+
+    public void setSelectButton(TextButton selectButton) {
+        this.selectButton = selectButton;
     }
 
     public ShippingBinMenuController getController() {

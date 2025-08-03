@@ -12,6 +12,7 @@ import java.util.*;
 
 public class BackPack {
     private  transient Tools currentTool=new Hoe();
+    private ItemType selectedItem;
     private transient Map<String, Tools> availableTools = new HashMap<>() {{
         put("Hoe", new Hoe());
         put("Pickaxe", new Pickaxe());
@@ -163,5 +164,25 @@ public class BackPack {
 
     public void setTrashcan(Trashcan trashcan) {
         this.trashcan = trashcan;
+    }
+
+    public ItemType getSelectedItem() {
+        return selectedItem;
+    }
+
+    public void setSelectedItem(ItemType selectedItem) {
+        this.selectedItem = selectedItem;
+    }
+
+    public void setAvailableTools(Map<String, Tools> availableTools) {
+        this.availableTools = availableTools;
+    }
+
+    public void setCraftingRecipes(ArrayList<CraftingItemType> craftingRecipes) {
+        this.craftingRecipes = craftingRecipes;
+    }
+
+    public void setCookingRecipes(ArrayList<CookingItemType> cookingRecipes) {
+        this.cookingRecipes = cookingRecipes;
     }
 }
