@@ -27,6 +27,9 @@ public class ShippingBinMenuController {
                    return;
                }
                App.gameApp.setScreen(new SellItemView(new SellItemController(player,map,view.getSelectedItem()),player,map,view.getSelectedItem(),view));
+           } if (view.getSelectButton().isChecked()) {
+               view.getSelectButton().setChecked(false);
+               player.getBackPack().setSelectedItem(view.getSelectedItem().getItemType());
            }
        }
     }
