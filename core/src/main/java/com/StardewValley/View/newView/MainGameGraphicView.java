@@ -116,7 +116,6 @@ public class MainGameGraphicView implements Screen, InputProcessor {
     public void render(float delta) {
         ScreenUtils.clear(0, 0, 0, 1);
 
-
         camera.update();
 
         controller.getPlayerController().centerPlayerOnCamera(camera);
@@ -124,21 +123,27 @@ public class MainGameGraphicView implements Screen, InputProcessor {
 
         App.gameApp.getBatch().begin();
 
-
         drawBackground();
         updateBackgroundTexture();
+
+        player.getFarm().draw();
+        for (FarmLand land : player.getFarm().getFarmLands()) {
+            land.draw();
+        }
         map.DrawMap();
-        if (isChoosingPlace){
+        if (isChoosingPlace) {
             chosenArtisanSprite.draw(App.gameApp.getBatch());
         }
 
         controller.updateGame(delta);
 
         App.gameApp.getBatch().end();
+
         energyBar.setValue((float) player.getEnergy());
         stage.act(delta);
         stage.draw();
     }
+
 
     private void drawBackground() {
         float camX = camera.position.x - camera.viewportWidth / 2;
@@ -214,6 +219,8 @@ public class MainGameGraphicView implements Screen, InputProcessor {
             controller.checkIfClickedOnMachine(click.x, click.y);
             controller.getToolController().UseTool(click.x, click.y);
             controller.checkIfClickedOnPlayer(click.x, click.y);
+//
+
         }
         return true;
     }

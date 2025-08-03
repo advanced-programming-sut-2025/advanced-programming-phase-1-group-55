@@ -1,6 +1,7 @@
 package com.StardewValley.model.Map;
 
 
+import com.StardewValley.View.newView.FarmLand;
 import com.StardewValley.enums.AssetManager;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Artisan.ArtisanMachine;
@@ -420,6 +421,26 @@ public class MapBuilder {
             ,AssetManager.GreenHouse.getTexture().getWidth(),AssetManager.GreenHouse.getTexture().getHeight()));
         Farm farm1=new Farm(house1,lake1,greenHouse1,quarry1,collisionRect1);
         App.getCurrentGameModel().playersInGame.getFirst().setFarm(farm1);
+        ArrayList<FarmLand> lands = new ArrayList<>();
+        float tileW = 16;
+        float tileH = 16;
+
+        for (float x = collisionRect1.getX(); x < collisionRect1.getX()+collisionRect1.getWidth(); x += tileW) {
+            for (float y = collisionRect1.getY(); y < collisionRect1.getY()+collisionRect1.getHeight(); y += tileH) {
+                CollisionRect landRect = new CollisionRect(x, y, tileW, tileH);
+
+                if (!house1.getCollisionRect().collidesWith(landRect) &&
+                    !lake1.getCollisionRect().collidesWith(landRect) &&
+                    !greenHouse1.getCollisionRect().collidesWith(landRect) &&
+                    !quarry1.getCollisionRect().collidesWith(landRect)) {
+
+                    FarmLand land = new FarmLand(landRect, AssetManager.NIGHT_BACKGROUND.getTexture());
+                    lands.add(land);
+                }
+            }
+        }
+
+        farm1.getFarmLands().addAll(lands);
         map.setFarm1(farm1);
     }
 

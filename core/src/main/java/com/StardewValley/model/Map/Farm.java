@@ -1,5 +1,6 @@
 package com.StardewValley.model.Map;
 
+import com.StardewValley.View.newView.FarmLand;
 import com.StardewValley.model.Animal.Animal;
 import com.StardewValley.model.Animal.AnimalBuilding;
 import com.StardewValley.model.Animal.FarmAnimalType;
@@ -24,6 +25,10 @@ public class Farm {
     private int numberOfRocksInTheQuery=0;
     private ArrayList<AnimalBuilding> animalBuildings = new ArrayList<>();
     private ArrayList<Fence> doors = new ArrayList<>();
+
+    private ArrayList<FarmLand> farmLands = new ArrayList<>();
+    public ArrayList<FarmLand> getFarmLands() { return farmLands; }
+
 
 
     private Quarry quarry;
