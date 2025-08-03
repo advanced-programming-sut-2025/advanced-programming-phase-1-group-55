@@ -3,7 +3,9 @@ package com.StardewValley.Controller;
 import com.StardewValley.View.newView.FriendMenuView;
 import com.StardewValley.enums.AssetManager;
 import com.StardewValley.model.App;
+import com.StardewValley.model.Friendship.Answer;
 import com.StardewValley.model.Friendship.Gift;
+import com.StardewValley.model.Friendship.MarriageRequest;
 import com.StardewValley.model.Friendship.PlayerFriendship;
 import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.Item.ItemType;
@@ -14,6 +16,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
+import static com.StardewValley.model.App.currentGameModel;
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.*;
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.run;
 
@@ -60,8 +63,63 @@ public class FriendMenuController {
             } else if (view.getSendFlowerButton().isChecked()) {
                 view.getSendFlowerButton().setChecked(false);
                 handleSendingFlower();
+            } else if (view.getSendMarriageRequestButton().isChecked()) {
+                view.getSendMarriageRequestButton().setChecked(false);
+                PlayerFriendship friendship=you.getFriendsPlayer().get(friend);
+                if (friendship.getMarriageRequest()!=null){
+                    if (friendship.getMarriageRequest().getMen().equals(you)&&friendship.getMarriageRequest().getAnswer().equals(Answer.unanswered)){
+                        view.setErrorMessage("you have already sent a marriage request. wait for your friend answer!");
+                        return;
+                    } else if (friendship.getMarriageRequest().getMen().equals(you)&&friendship.getMarriageRequest().getAnswer().equals(Answer.accept)) {
+                        view.setErrorMessage("you have already married to your friend!");
+                        return;
+                    }
+                }
+                handleMarriageRequest(friendship);
+            } else if (view.getAcceptButton().isChecked()) {
+                view.getAcceptButton().setChecked(false);
+                playAnimation(AssetManager.Love.getTexture());
+                PlayerFriendship friendship=you.getFriendsPlayer().get(friend);
+                friendship.getMarriageRequest().setAnswer(Answer.accept);
+                friendship.setAreMarried(true);
+                friendship.increaseXp(100);
+                view.setSuccessMessage("congratulation you have successfully married to your friend!");
+                you.getBackPack().addItemToInventory(new Item(friendship.getMarriageRequest().getRing().getItemType()),1);
+                friend.getBackPack().removeAmountFromInventory(friendship.getMarriageRequest().getRing().getItemType(), 1);
+            } else if (view.getRejectButton().isChecked()) {
+                view.getRejectButton().setChecked(false);
+                playAnimation(AssetManager.BrokenHeart.getTexture());
+                PlayerFriendship friendship=you.getFriendsPlayer().get(friend);
+                friendship.getMarriageRequest().setAnswer(Answer.reject);
+                friendship.setXp(0);
+                friendship.setLevel(0);
+                friendship.setMarriageRequest(null);
+                view.setErrorMessage("You broke your friends heart  :(");
             }
         }
+    }
+    public void handleMarriageRequest(PlayerFriendship friendship){
+
+        if (!you.getCollisionRect().isNear(friend.getCollisionRect())){
+            view.setErrorMessage("You should be near your friend to send marriage request.");
+            return;
+        }
+        else if (friendship.getLevel()<3){
+            view.setErrorMessage("your friendship level must be more than 3 to send marriage request!");
+            return;
+        } else if (!(you.getGender().equals("male")&&friend.getGender().equals("female"))) {
+            view.setErrorMessage("A man must make a marriage proposal to a woman!");
+            return;
+
+        } else if (!you.getBackPack().getInventory().containsKey(ItemType.WEDDING_RING.getDisplayName())) {
+            view.setErrorMessage("you dont have a wedding ring to send marriage request!");
+            return;
+        }
+        MarriageRequest marriageRequest=new MarriageRequest
+            (currentGameModel.currentUser,friend,
+                currentGameModel.currentUser.getBackPack().getInventory().get(ItemType.WEDDING_RING.getDisplayName()));
+        friend.getFriendsPlayer().get(currentGameModel.currentUser).setMarriageRequest(marriageRequest);
+        view.setSuccessMessage("You have successfully sent your marriage request.");
     }
     public void handleSendingFlower(){
         if (!you.getCollisionRect().isNear(friend.getCollisionRect())){
@@ -76,6 +134,7 @@ public class FriendMenuController {
         friend.getBackPack().addItemToInventory(new Item(ItemType.BOUQUET),1);
         friendship.increaseXp(75);
         playAnimation(AssetManager.Rose.getTexture());
+        friendship.setHasReceivedFlower(true);
         view.setSuccessMessage("you have successfully sent flower to your friend.");
     }
     public void handleHugging(){

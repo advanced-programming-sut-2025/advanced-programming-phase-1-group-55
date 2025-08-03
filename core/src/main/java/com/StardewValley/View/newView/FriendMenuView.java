@@ -3,7 +3,9 @@ package com.StardewValley.View.newView;
 import com.StardewValley.Controller.FriendMenuController;
 import com.StardewValley.enums.AssetManager;
 import com.StardewValley.model.App;
+import com.StardewValley.model.Friendship.Answer;
 import com.StardewValley.model.Friendship.Gift;
+import com.StardewValley.model.Friendship.PlayerFriendship;
 import com.StardewValley.model.User;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -15,6 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.ScreenUtils;
@@ -187,10 +190,21 @@ public class FriendMenuView implements Screen {
 
             actionTable.add(sendFlowerButton).pad(10).width(180).height(60).center();
             actionTable.row();
+            PlayerFriendship friendship=you.getFriendsPlayer().get(friend);
 
+            if(friendship.getMarriageRequest()==null||friendship.getMarriageRequest().getMen().equals(you)){
+                actionTable.add(sendMarriageRequestButton).pad(10).width(220).height(60).center();
+                actionTable.row();
+            } else if (friendship.getMarriageRequest().getWomen().equals(you)&&
+                friendship.getMarriageRequest().getAnswer().equals(Answer.unanswered)) {
+                Label label1 = new Label("Your friend wants to marry you :>", skin);
+                Image ring = new Image(friendship.getMarriageRequest().getRing().getItemType().getTexture());
 
-            actionTable.add(sendMarriageRequestButton).pad(10).width(220).height(60).center();
-            actionTable.row();
+                actionTable.add(ring).pad(10).colspan(2).center().row();
+                actionTable.add(label1).expandX().fillX().colspan(2).center().row();
+                actionTable.add(rejectButton).pad(10).width(220).height(60).center();
+                actionTable.add(acceptButton).pad(10).width(220).height(60).center().row();
+            }
 
 
 

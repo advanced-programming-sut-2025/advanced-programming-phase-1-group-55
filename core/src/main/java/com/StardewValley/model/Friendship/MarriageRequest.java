@@ -56,4 +56,8 @@ public class MarriageRequest {
                 ", answer=" + answer.getDisplayName() +
                 '}';
     }
+
+    public Answer getAnswer() {
+        return answer;
+    }
 }
