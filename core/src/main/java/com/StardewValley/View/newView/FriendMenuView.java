@@ -50,6 +50,8 @@ public class FriendMenuView implements Screen {
     private final Label SuccessLabel;
     private com.badlogic.gdx.utils.Timer.Task clearErrorTask2;
     private Gift selectedGift;
+    private Table chatTable;
+
 
     public FriendMenuView(User friend, FriendMenuController controller) {
         this.friend = friend;
@@ -221,49 +223,18 @@ public class FriendMenuView implements Screen {
         }
 
         else {
-            Table chatTable = new Table(skin);
+            chatTable = new Table(skin);
             chatTable.top().left();
 
-            PlayerFriendship friendship = you.getFriendsPlayer().get(friend);
-            ArrayList<Message> messages = friendship.getConversation();
-
-            if (messages != null && !messages.isEmpty()) {
-                for (com.StardewValley.model.Friendship.Message message : messages) {
-                    Label msgLabel = new Label(message.getText(), skin);
-                    msgLabel.setWrap(true);
-                    msgLabel.setAlignment(Align.left);
-
-
-                    if (message.getSender().equals(you)) {
-                        msgLabel.setColor(Color.SKY);
-                        Table leftAlign = new Table();
-                        leftAlign.add(msgLabel).left().pad(10).maxWidth(250);
-                        chatTable.add(leftAlign).left().expandX().row();
-                    } else {
-                        msgLabel.setColor(Color.WHITE);
-                        Table rightAlign = new Table();
-                        rightAlign.add(msgLabel).right().pad(10).maxWidth(250);
-                        chatTable.add(rightAlign).right().expandX().row();
-                    }
-
-
-                    chatTable.add(new Image(createLineDrawable(1, 1, Color.LIGHT_GRAY))).colspan(2).expandX().fillX().padBottom(5).row();
-                }
-            } else {
-                chatTable.add(new Label("No messages yet.", skin)).pad(25).left().row();
-            }
+            refreshChat();
 
             ScrollPane scrollPane = new ScrollPane(chatTable, skin);
             scrollPane.setFadeScrollBars(false);
             scrollPane.setScrollingDisabled(true, false);
-
-
             scrollPane.layout();
             scrollPane.setScrollPercentY(1);
 
-
             menu.add(scrollPane).expand().fill().pad(10).row();
-
 
             Table inputTable = new Table();
             messageField.setMessageText("Type your message...");
@@ -271,12 +242,44 @@ public class FriendMenuView implements Screen {
             inputTable.add(sendMessageButton).width(100);
 
             menu.add(inputTable).pad(10).center().row();
+
         }
+
 
 
 
         return menu;
     }
+    public void refreshChat() {
+        if (chatTable == null) return;
+
+        chatTable.clear();
+
+        ArrayList<Message> messages = you.getFriendsPlayer().get(friend).getConversation();
+
+        for (Message message : messages) {
+            Label msgLabel = new Label(message.getText(), skin);
+            msgLabel.setWrap(true);
+            msgLabel.setAlignment(Align.left);
+
+            if (message.getSender().equals(you)) {
+                msgLabel.setColor(Color.BLUE);
+                msgLabel.setAlignment(Align.left);
+                msgLabel.setWrap(true);
+                chatTable.add(msgLabel).left().pad(10).width(400).row();
+            } else {
+                msgLabel.setColor(Color.WHITE);
+                msgLabel.setAlignment(Align.right);
+                msgLabel.setWrap(true);
+                chatTable.add(msgLabel).right().pad(10).width(400).row();
+            }
+
+
+            chatTable.add(new Image(createLineDrawable(1, 1, Color.LIGHT_GRAY)))
+                .colspan(2).expandX().fillX().padBottom(5).row();
+        }
+    }
+
     private TextureRegionDrawable createLineDrawable(int width, int height, Color color) {
         Pixmap pixmap = new Pixmap(width, height, Pixmap.Format.RGBA8888);
         pixmap.setColor(color);

@@ -3,10 +3,7 @@ package com.StardewValley.Controller;
 import com.StardewValley.View.newView.FriendMenuView;
 import com.StardewValley.enums.AssetManager;
 import com.StardewValley.model.App;
-import com.StardewValley.model.Friendship.Answer;
-import com.StardewValley.model.Friendship.Gift;
-import com.StardewValley.model.Friendship.MarriageRequest;
-import com.StardewValley.model.Friendship.PlayerFriendship;
+import com.StardewValley.model.Friendship.*;
 import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.Item.ItemType;
 import com.StardewValley.model.User;
@@ -95,6 +92,16 @@ public class FriendMenuController {
                 friendship.setLevel(0);
                 friendship.setMarriageRequest(null);
                 view.setErrorMessage("You broke your friends heart  :(");
+            } else if (view.getSendMessageButton().isChecked()) {
+                view.getSendMessageButton().setChecked(false);
+                if (view.getMessageField().getText().isEmpty()){
+                    return;
+                }
+                PlayerFriendship friendship=you.getFriendsPlayer().get(friend);
+                friendship.getConversation().add(new Message(view.getMessageField().getText(),you));
+                view.getMessageField().setText("");
+                view.refreshChat();
+                view.setSuccessMessage("Message sent.");
             }
         }
     }
