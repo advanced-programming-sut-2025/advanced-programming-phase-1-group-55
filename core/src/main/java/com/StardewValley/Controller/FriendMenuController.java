@@ -94,6 +94,10 @@ public class FriendMenuController {
                 view.setErrorMessage("You broke your friends heart  :(");
             } else if (view.getSendMessageButton().isChecked()) {
                 view.getSendMessageButton().setChecked(false);
+                if (!you.getCollisionRect().isNear(friend.getCollisionRect())){
+                    view.setErrorMessage("You should be near your friend to send message.");
+                    return;
+                }
                 if (view.getMessageField().getText().isEmpty()){
                     return;
                 }
@@ -101,6 +105,7 @@ public class FriendMenuController {
                 friendship.getConversation().add(new Message(view.getMessageField().getText(),you));
                 view.getMessageField().setText("");
                 view.refreshChat();
+                friend.setHasMessageToday(true);
                 view.setSuccessMessage("Message sent.");
             }
         }
