@@ -5,6 +5,7 @@ import com.StardewValley.enums.AssetManager;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Friendship.Answer;
 import com.StardewValley.model.Friendship.Gift;
+import com.StardewValley.model.Friendship.Message;
 import com.StardewValley.model.Friendship.PlayerFriendship;
 import com.StardewValley.model.User;
 import com.badlogic.gdx.Gdx;
@@ -220,29 +221,58 @@ public class FriendMenuView implements Screen {
         }
 
         else {
-//            Table giftTable = new Table(skin);
-//            giftTable.top().left();
-//
-//            Map<Integer, Gift> receivedGifts = user.getReceivedGifts();
-//            if (receivedGifts != null && !receivedGifts.isEmpty()) {
-//                for (Gift gift : receivedGifts.values()) {
-//                    Label giftLabel = new Label(gift.toString(), skin);
-//                    giftLabel.setAlignment(Align.left);
-//                    giftTable.add(giftLabel).left().pad(10).row();
-//
-//                    giftTable.add(new Image(createLineDrawable(1, 2, Color.LIGHT_GRAY)))
-//                        .colspan(1).expandX().fillX().padBottom(5).row();
-//                }
-//            } else {
-//                giftTable.add(new Label("No gifts received.", skin)).pad(25);
-//            }
-//
-//            ScrollPane scrollPane = new ScrollPane(giftTable, skin);
-//            scrollPane.setFadeScrollBars(false);
-//            scrollPane.setScrollingDisabled(true, false);
-//
-//            menu.add(scrollPane).expand().fill().pad(10).row();
+            Table chatTable = new Table(skin);
+            chatTable.top().left();
+
+            PlayerFriendship friendship = you.getFriendsPlayer().get(friend);
+            ArrayList<Message> messages = friendship.getConversation();
+
+            if (messages != null && !messages.isEmpty()) {
+                for (com.StardewValley.model.Friendship.Message message : messages) {
+                    Label msgLabel = new Label(message.getText(), skin);
+                    msgLabel.setWrap(true);
+                    msgLabel.setAlignment(Align.left);
+
+
+                    if (message.getSender().equals(you)) {
+                        msgLabel.setColor(Color.SKY);
+                        Table leftAlign = new Table();
+                        leftAlign.add(msgLabel).left().pad(10).maxWidth(250);
+                        chatTable.add(leftAlign).left().expandX().row();
+                    } else {
+                        msgLabel.setColor(Color.WHITE);
+                        Table rightAlign = new Table();
+                        rightAlign.add(msgLabel).right().pad(10).maxWidth(250);
+                        chatTable.add(rightAlign).right().expandX().row();
+                    }
+
+
+                    chatTable.add(new Image(createLineDrawable(1, 1, Color.LIGHT_GRAY))).colspan(2).expandX().fillX().padBottom(5).row();
+                }
+            } else {
+                chatTable.add(new Label("No messages yet.", skin)).pad(25).left().row();
+            }
+
+            ScrollPane scrollPane = new ScrollPane(chatTable, skin);
+            scrollPane.setFadeScrollBars(false);
+            scrollPane.setScrollingDisabled(true, false);
+
+
+            scrollPane.layout();
+            scrollPane.setScrollPercentY(1);
+
+
+            menu.add(scrollPane).expand().fill().pad(10).row();
+
+
+            Table inputTable = new Table();
+            messageField.setMessageText("Type your message...");
+            inputTable.add(messageField).width(300).padRight(10);
+            inputTable.add(sendMessageButton).width(100);
+
+            menu.add(inputTable).pad(10).center().row();
         }
+
 
 
         return menu;
