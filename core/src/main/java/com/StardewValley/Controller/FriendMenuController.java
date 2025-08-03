@@ -76,6 +76,25 @@ public class FriendMenuController {
                     }
                 }
                 handleMarriageRequest(friendship);
+            } else if (view.getAcceptButton().isChecked()) {
+                view.getAcceptButton().setChecked(false);
+                playAnimation(AssetManager.Love.getTexture());
+                PlayerFriendship friendship=you.getFriendsPlayer().get(friend);
+                friendship.getMarriageRequest().setAnswer(Answer.accept);
+                friendship.setAreMarried(true);
+                friendship.increaseXp(100);
+                view.setSuccessMessage("congratulation you have successfully married to your friend!");
+                you.getBackPack().addItemToInventory(new Item(friendship.getMarriageRequest().getRing().getItemType()),1);
+                friend.getBackPack().removeAmountFromInventory(friendship.getMarriageRequest().getRing().getItemType(), 1);
+            } else if (view.getRejectButton().isChecked()) {
+                view.getRejectButton().setChecked(false);
+                playAnimation(AssetManager.BrokenHeart.getTexture());
+                PlayerFriendship friendship=you.getFriendsPlayer().get(friend);
+                friendship.getMarriageRequest().setAnswer(Answer.reject);
+                friendship.setXp(0);
+                friendship.setLevel(0);
+                friendship.setMarriageRequest(null);
+                view.setErrorMessage("You broke your friends heart  :(");
             }
         }
     }
