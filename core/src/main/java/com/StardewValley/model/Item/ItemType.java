@@ -387,6 +387,8 @@ public enum ItemType {
     FISHING("fishing skill icon", new Texture(Gdx.files.internal("Skill/Fishing_Skill_Icon.png"))),
     FORAGING("foraging skill icon", new Texture(Gdx.files.internal("Skill/Foraging_Skill_Icon.png"))),
 
+    MUSHROOM_TREE_SEEDS("mushroom tree seeds"),
+
     ;
 
 
