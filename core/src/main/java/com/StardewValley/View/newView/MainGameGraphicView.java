@@ -254,7 +254,7 @@ public class MainGameGraphicView implements Screen, InputProcessor {
         Gdx.app.postRunnable(() -> {
             new Thread(() -> {
                 try {
-                    Thread.sleep(3000);
+                    Thread.sleep(1000);
                     Gdx.app.postRunnable(actionDialog::hide);
                 } catch (InterruptedException ignored) {
                 }

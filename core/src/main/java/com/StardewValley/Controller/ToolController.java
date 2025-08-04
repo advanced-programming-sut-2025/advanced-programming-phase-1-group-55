@@ -82,6 +82,7 @@ public class ToolController {
                         && !land.getSprite().getColor().equals(Color.BLUE)) {
 
                         land.setColor(Color.GREEN);
+//                        land.setTexture(selectedItem.getTexture());
                         land.setPlanted(true);
                         player.decreaseEnergy(tool.energyCost());
                         player.getBackPack().removeAmountFromInventory(selectedItem, 1);
