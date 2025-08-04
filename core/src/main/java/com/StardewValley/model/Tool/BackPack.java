@@ -144,11 +144,17 @@ public class BackPack {
                 item.addNumber(-quantity);
                 if (item.getNumber() <= 0) {
                     this.inventory.remove(item.getItemType().getDisplayName());
+                    if (selectedItem == itemType) {
+                        selectedItem = null;
+                    }
                 }
                 break;
             }
         }
     }
+
+
+
     public void removeItemFromInventory(Item item) {
         if (this.inventory.containsKey(item.getItemType().getDisplayName())) {
             item.addNumber(-1);

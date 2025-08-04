@@ -346,6 +346,7 @@ public enum ItemType {
     JELLY("jelly", new Texture(Gdx.files.internal("Artisan_good/Jelly.png"))),
     SMOKED_FISH("smoothed fish"),
     BLUE_JAZZ("Blue Jazz", new Texture(Gdx.files.internal("Crops/Blue_Jazz.png"))),
+    JAZZ("Blue Jazz", new Texture(Gdx.files.internal("Crops/Blue_Jazz.png"))),
     CAULIFLOWER("Cauliflower", new Texture(Gdx.files.internal("Crops/Cauliflower.png"))),
     GARLIC("Garlic", new Texture(Gdx.files.internal("Crops/Garlic.png"))),
     GREEN_BEAN("Green Bean corp", new Texture(Gdx.files.internal("Crops/Green_Bean.png"))),
