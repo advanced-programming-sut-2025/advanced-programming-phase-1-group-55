@@ -2,6 +2,7 @@ package com.StardewValley.model;
 
 //import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
 
+import com.StardewValley.enums.Direction;
 import com.StardewValley.enums.SkillType;
 import com.StardewValley.model.Animal.Animal;
 import com.StardewValley.model.Animal.AnimalBuilding;
@@ -58,6 +59,7 @@ public class User {
     private int mostAchievedMoney = 0;
     private int matchPlayed = 0;
     private Location location = new Location(0, 0);//todo ino bayad bokonm location aval farmesh
+    private Direction direction = Direction.DOWN;
     private boolean fainted = false;
     private Location playerTommorowLocation;
     private GameModel playedGameModel;
@@ -74,6 +76,7 @@ public class User {
     private GreenHouse greenHouse;
 
 
+
     public User(String username, String password, String nickName, String email, String gender, String securityQuestion, String answerOfSecurityQuestion) {
         this.username = username;
         this.password = password;
@@ -83,11 +86,23 @@ public class User {
         this.securityQuestion = securityQuestion;
         this.answerOfSecurityQuestion = answerOfSecurityQuestion;
         this.gold = 10000;
-        sprite = new Sprite(new Texture(Gdx.files.internal("sprites/Mariner.png")));
+
+//        sprite = new Sprite(new Texture(Gdx.files.internal("sprites/Mariner.png")));
+        sprite = new Sprite(new Texture(Gdx.files.internal("walk/Alex_01.png")));
         this.refrigerator = new ArrayList<>();
+        this.backPack = new BackPack();
 
     }
 
+
+
+    public Direction getDirection() {
+        return direction;
+    }
+
+    public void setDirection(Direction direction) {
+        this.direction = direction;
+    }
 
     public CollisionRect getCollisionRect() {
         return collisionRect;
@@ -98,7 +113,7 @@ public class User {
     }
 
     public Sprite getSprite() {
-        return sprite;
+        return this.sprite;
     }
 
     public void setSprite(Sprite sprite) {
@@ -191,9 +206,7 @@ public class User {
         this.playerTommorowLocation = playerTommorowLocation;
     }
 
-    public Sprite getPlayerSprite() {
-        return sprite;
-    }
+
 
     public boolean isFainted() {
         return fainted;

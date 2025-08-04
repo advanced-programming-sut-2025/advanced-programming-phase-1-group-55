@@ -37,7 +37,7 @@ public enum AssetManager {
     TrashCan("sprites/trashcan.png"),
 
 
-    PLAYER("sprites/Mariner.png"),
+    PLAYER("walk/Alex_01.png"),
 
 
     JOJA_MART_STORE("Stores/jojaMart.png"),

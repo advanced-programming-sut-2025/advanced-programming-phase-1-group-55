@@ -25,8 +25,8 @@ public class ToolController {
         sprite.setScale(0.7f);
         sprite.setOrigin(sprite.getWidth() / 2f, 0);
         sprite.setPosition(
-            player.getCollisionRect().getX() - 4 * sprite.getOriginX() / 5,
-            player.getCollisionRect().getY() - player.getCollisionRect().getHeight() / 3
+            player.getCollisionRect().getX() - 4 * sprite.getOriginX() / 5+5,
+            player.getCollisionRect().getY()
         );
         sprite.setRotation((float) (3.14 - angle * MathUtils.radiansToDegrees));
         sprite.draw(App.gameApp.getBatch());

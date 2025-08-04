@@ -1,87 +1,178 @@
 package com.StardewValley.Controller;
 
-import com.StardewValley.GameApp;
+import com.StardewValley.enums.Direction;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Item.CollisionRect;
 import com.StardewValley.model.Map.GameMap;
-import com.StardewValley.model.Map.Location;
 import com.StardewValley.model.User;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+
+import static com.StardewValley.model.App.gameApp;
+import static com.StardewValley.model.App.getCurrentGameModel;
 
 public class PlayerController {
-    private int speed = 5;
+    private int speed = 10;
     private User player;
     private GameMap gameMap;
+    private final float scale = 2f;
+
+    private Animation<TextureRegion> walkUp, walkDown, walkLeft, walkRight;
+    private Animation<TextureRegion> currentAnimation;
+
+    private float stateTime = 0f;
+    private Direction direction = Direction.DOWN;
 
     public PlayerController(User player) {
         this.player = player;
-        //player.setCollisionRect(new CollisionRect(player.getLocation().getX(), player.getLocation().getY(), player.getSprite().getWidth(), player.getSprite().getHeight()));
+        initializeAnimations();
+
+        // Set initial collision rectangle based on frame size
+        TextureRegion initialFrame = walkDown.getKeyFrame(0);
+        player.setCollisionRect(new CollisionRect(
+            player.getLocation().getX(),
+            player.getLocation().getY(),
+            initialFrame.getRegionWidth() * scale,
+            initialFrame.getRegionHeight() * scale
+        ));
+
+        currentAnimation = walkDown;
+    }
+
+    private void initializeAnimations() {
+        TextureRegion[] down = new TextureRegion[]{
+            new TextureRegion(new Texture("walk/Alex_01.png")),
+            new TextureRegion(new Texture("walk/Alex_02.png")),
+            new TextureRegion(new Texture("walk/Alex_03.png")),
+            new TextureRegion(new Texture("walk/Alex_04.png"))
+        };
+        TextureRegion[] right = new TextureRegion[]{
+            new TextureRegion(new Texture("walk/Alex_05.png")),
+            new TextureRegion(new Texture("walk/Alex_06.png")),
+            new TextureRegion(new Texture("walk/Alex_07.png")),
+            new TextureRegion(new Texture("walk/Alex_08.png"))
+        };
+        TextureRegion[] up = new TextureRegion[]{
+            new TextureRegion(new Texture("walk/Alex_09.png")),
+            new TextureRegion(new Texture("walk/Alex_10.png")),
+            new TextureRegion(new Texture("walk/Alex_11.png")),
+            new TextureRegion(new Texture("walk/Alex_12.png"))
+        };
+        TextureRegion[] left = new TextureRegion[]{
+            new TextureRegion(new Texture("walk/Alex_13.png")),
+            new TextureRegion(new Texture("walk/Alex_14.png")),
+            new TextureRegion(new Texture("walk/Alex_15.png")),
+            new TextureRegion(new Texture("walk/Alex_16.png"))
+        };
+
+        walkDown = new Animation<>(0.1f, down);
+        walkUp = new Animation<>(0.1f, up);
+        walkLeft = new Animation<>(0.1f, left);
+        walkRight = new Animation<>(0.1f, right);
+    }
+
+
+    public void update() {
+        handlePlayerInput();
+
+//        player.getPlayerSprite().draw(App.gameApp.getBatch());
+
+        boolean isMoving =
+            Gdx.input.isKeyPressed(Input.Keys.W) ||
+                Gdx.input.isKeyPressed(Input.Keys.A) ||
+                Gdx.input.isKeyPressed(Input.Keys.S) ||
+                Gdx.input.isKeyPressed(Input.Keys.D);
+
+        TextureRegion currentFrame;
+        if (isMoving) {
+            stateTime += Gdx.graphics.getDeltaTime();
+            currentFrame = currentAnimation.getKeyFrame(stateTime, true);
+        } else {
+            stateTime = 0f;
+            currentFrame = currentAnimation.getKeyFrame(0);
+        }
+
+        App.gameApp.getBatch().draw(
+            currentFrame,
+            player.getLocation().getX(),
+            player.getLocation().getY(),
+            currentFrame.getRegionWidth() * scale,
+            currentFrame.getRegionHeight() * scale
+        );
+        drawOtherPlayers();
+
+
+    }
+    public void drawOtherPlayers() {
+        for (User user: getCurrentGameModel().playersInGame){
+            if (user.getUsername().equals(player.getUsername())){
+                continue;
+            }
+            user.getSprite().setPosition(user.getCollisionRect().getX(), user.getCollisionRect().getY());
+            user.getSprite().setScale(2f);
+            user.getSprite().draw(gameApp.getBatch());
+        }
     }
 
     public void centerPlayerOnCamera(OrthographicCamera camera) {
-        camera.position.set(player.getLocation().getX(), player.getLocation().getY(), 0);
-        Sprite sprite = player.getPlayerSprite();
-        sprite.setScale(2f);
-        float centerX = camera.position.x - sprite.getWidth() / 2f;
-        float centerY = camera.position.y - sprite.getHeight() / 2f;
-        sprite.setPosition(centerX, centerY);
+//        Sprite sprite = player.getPlayerSprite();
+        TextureRegion currentFrame = currentAnimation.getKeyFrame(0);
+        float centerX = player.getLocation().getX() + (currentFrame.getRegionWidth() * scale) / 2f;
+        float centerY = player.getLocation().getY() + (currentFrame.getRegionHeight() * scale) / 2f;
+        camera.position.set(centerX, centerY, 0);
     }
-
-    public void update() {
-        player.getPlayerSprite().draw(App.gameApp.getBatch());
-
-        handlePlayerInput();
-    }
-
 
     public void handlePlayerInput() {
-        boolean movedSuccessfully = false;
+        boolean moved = false;
+
         if (Gdx.input.isKeyPressed(Input.Keys.W)) {
-            player.getLocation().setY(player.getLocation().getY() + speed);
-            player.getCollisionRect().updateCollisionRect(player.getLocation().getX(), player.getLocation().getY());
-            movedSuccessfully = true;
-            if (!gameMap.canMove(player.getCollisionRect())) {
-                player.getLocation().setY(player.getLocation().getY() - speed);
-                player.getCollisionRect().updateCollisionRect(player.getLocation().getX(), player.getLocation().getY());
-                movedSuccessfully = false;
-            }
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.D)) {
-            player.getLocation().setX(player.getLocation().getX() + speed);
-            player.getCollisionRect().updateCollisionRect(player.getLocation().getX(), player.getLocation().getY());
-            movedSuccessfully = true;
-            if (!gameMap.canMove(player.getCollisionRect())) {
-                player.getLocation().setX(player.getLocation().getX() - speed);
-                player.getCollisionRect().updateCollisionRect(player.getLocation().getX(), player.getLocation().getY());
-                movedSuccessfully = false;
-            }
+            direction = Direction.UP;
+            currentAnimation = walkUp;
+            moved |= tryMove(0, speed);
         }
         if (Gdx.input.isKeyPressed(Input.Keys.S)) {
-            player.getLocation().setY(player.getLocation().getY() - speed);
-            player.getCollisionRect().updateCollisionRect(player.getLocation().getX(), player.getLocation().getY());
-            movedSuccessfully = true;
-            if (!gameMap.canMove(player.getCollisionRect())) {
-                player.getLocation().setY(player.getLocation().getY() + speed);
-                player.getCollisionRect().updateCollisionRect(player.getLocation().getX(), player.getLocation().getY());
-                movedSuccessfully = false;
-            }
+            direction = Direction.DOWN;
+            currentAnimation = walkDown;
+            moved |= tryMove(0, -speed);
         }
         if (Gdx.input.isKeyPressed(Input.Keys.A)) {
-            player.getLocation().setX(player.getLocation().getX() - speed);
-            player.getCollisionRect().updateCollisionRect(player.getLocation().getX(), player.getLocation().getY());
-            movedSuccessfully = true;
-            if (!gameMap.canMove(player.getCollisionRect())) {
-                player.getLocation().setX(player.getLocation().getX() + speed);
-                player.getCollisionRect().updateCollisionRect(player.getLocation().getX(), player.getLocation().getY());
-                movedSuccessfully = false;
-            }
+            direction = Direction.LEFT;
+            currentAnimation = walkLeft;
+            moved |= tryMove(-speed, 0);
         }
-        if (movedSuccessfully) {
+        if (Gdx.input.isKeyPressed(Input.Keys.D)) {
+            direction = Direction.RIGHT;
+            currentAnimation = walkRight;
+            moved |= tryMove(speed, 0);
+        }
+
+        if (moved) {
             player.decreaseEnergy(1);
         }
+    }
+
+    //todo chon size player ro bozorg kardam shayad bug bokhore
+    private boolean tryMove(int dx, int dy) {
+        player.getLocation().add(dx, dy);
+        player.getCollisionRect().updateCollisionRect(
+            player.getLocation().getX(),
+            player.getLocation().getY()
+        );
+
+        if (gameMap != null && !gameMap.canMove(player.getCollisionRect())) {
+            player.getLocation().add(-dx, -dy);
+            player.getCollisionRect().updateCollisionRect(
+                player.getLocation().getX(),
+                player.getLocation().getY()
+            );
+            return false;
+        }
+        return true;
     }
 
     public GameMap getGameMap() {

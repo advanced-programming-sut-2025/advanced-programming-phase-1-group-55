@@ -10,7 +10,8 @@ public class Location {
     }
 
     public boolean isBetween(Location location, int width, int height) {
-        return y < location.getY() + width && y > location.getY() && x < location.getX() + height && x > location.getX();
+        return y < location.getY() + width && y > location.getY() &&
+            x < location.getX() + height && x > location.getX();
     }
 
     public int getY() {
@@ -29,11 +30,17 @@ public class Location {
         this.x = x;
     }
 
+    public void add(int dx, int dy) {
+        this.x += dx;
+        this.y += dy;
+    }
+
     public Location changeLocation(int dy, int dx) {
         y += dy;
         x += dx;
         return new Location(y, x);
     }
+
     public Location getAdjacent(String direction) {
         int dx = 0, dy = 0;
 
@@ -52,11 +59,12 @@ public class Location {
 
         return new Location(this.y + dy, this.x + dx);
     }
+
     @Override
     public String toString() {
         return "Location { " +
-                " x = " + x +
-                " , y = " + y +
-                " }";
+            " x = " + x +
+            " , y = " + y +
+            " }";
     }
 }
