@@ -60,6 +60,7 @@ public class ToolController {
 
                         land.setColor(Color.GREEN);
                         player.decreaseEnergy(tool.energyCost());
+                        player.getBackPack().removeAmountFromInventory(selectedItem, 1);
                     }
                 }
             }
