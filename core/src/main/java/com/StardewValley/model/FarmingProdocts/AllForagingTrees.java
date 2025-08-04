@@ -1,18 +1,21 @@
 package com.StardewValley.model.FarmingProdocts;
 
 import com.StardewValley.enums.Seasons;
+import com.StardewValley.model.Item.ItemType;
 
 public enum AllForagingTrees {
-    ACORNS("Acorns", Seasons.special),
-    MAPLE_SEEDS("Maple Seeds", Seasons.special),
-    PINE_CONES("Pine Cones", Seasons.special),
-    MAHOGANY_SEEDS("Mahogany Seeds", Seasons.special),
-    MUSHROOM_TREE_SEEDS("Mushroom Tree Seeds", Seasons.special);
+    ACORNS(ItemType.ACORN, "Acorns", Seasons.special),
+    MAPLE_SEEDS(ItemType.MAPLE_SEED, "Maple Seeds", Seasons.special),
+    PINE_CONES(ItemType.PINE_CONE, "Pine Cones", Seasons.special),
+    MAHOGANY_SEEDS(ItemType.MAHOGANY_SEED, "Mahogany Seeds", Seasons.special),
+    MUSHROOM_TREE_SEEDS(ItemType.MUSHROOM_TREE_SEEDS, "Mushroom Tree Seeds", Seasons.special);
 
+    private final ItemType type;
     private final String name;
     private final Seasons season;
 
-    AllForagingTrees(String name, Seasons season) {
+    AllForagingTrees(ItemType type, String name, Seasons season) {
+        this.type = type;
         this.name = name;
         this.season = season;
     }
@@ -23,5 +26,9 @@ public enum AllForagingTrees {
 
     public Seasons getSeason() {
         return season;
+    }
+
+    public ItemType getType() {
+        return type;
     }
 }
