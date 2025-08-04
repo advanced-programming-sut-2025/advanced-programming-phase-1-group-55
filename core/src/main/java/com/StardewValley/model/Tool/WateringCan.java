@@ -109,4 +109,20 @@ public class WateringCan extends Tools {
     public Store getStore() {
         return new BlackSmithStore();
     }
+    public boolean hasWater() {
+        return waterContains > 0;
+    }
+
+    public void useWater() {
+        if (hasWater()) {
+            waterContains--;
+        }
+    }
+
+
+
+    public void refill() {
+        waterContains = getCapacity();
+    }
+
 }

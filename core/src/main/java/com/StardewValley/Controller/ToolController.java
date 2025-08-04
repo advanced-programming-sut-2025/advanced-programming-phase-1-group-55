@@ -2,8 +2,10 @@ package com.StardewValley.Controller;
 
 import com.StardewValley.model.App;
 import com.StardewValley.model.Item.ItemType;
+import com.StardewValley.model.Map.Lake;
 import com.StardewValley.model.Map.Location;
 import com.StardewValley.model.Tool.Tools;
+import com.StardewValley.model.Tool.WateringCan;
 import com.StardewValley.model.User;
 import com.StardewValley.View.newView.FarmLand;
 import com.badlogic.gdx.Gdx;
@@ -43,6 +45,15 @@ public class ToolController {
         tool = player.getBackPack().getCurrentTool();
         ItemType selectedItem = player.getBackPack().getSelectedItem();
 
+        if (tool instanceof WateringCan wateringCan) {
+            if (player.getFarm().getLake().getCollisionRect().isInside(x, y)
+                && player.getCollisionRect().isNear(player.getFarm().getLake().getCollisionRect())) {
+                wateringCan.refill();
+                System.out.println("WateringCan refilled!");
+                return;
+            }
+        }
+
         for (FarmLand land : player.getFarm().getFarmLands()) {
             if (land.getCollisionRect().isInside(x, y)) {
                 if (player.getCollisionRect().isNear(land.getCollisionRect())) {
@@ -58,7 +69,8 @@ public class ToolController {
                         && selectedItem.getDisplayName().toLowerCase().endsWith("seeds")
                         && land.isPlowed()
                         && !land.getSprite().getColor().equals(Color.GREEN)
-                        && !land.getSprite().getColor().equals(Color.YELLOW)) {
+                        && !land.getSprite().getColor().equals(Color.YELLOW)
+                        && !land.getSprite().getColor().equals(Color.CYAN)) {
 
                         land.setColor(Color.GREEN);
                         player.decreaseEnergy(tool.energyCost());
@@ -74,10 +86,27 @@ public class ToolController {
                         land.setColor(Color.RED);
                         player.getBackPack().removeAmountFromInventory(selectedItem, 1);
                     }
+
+                    else if (tool instanceof WateringCan wateringCanTool
+                        && land.isPlowed()
+                        && (land.getSprite().getColor().equals(Color.GREEN)
+                        || land.getSprite().getColor().equals(Color.YELLOW))) {
+
+                        if (wateringCanTool.hasWater()) {
+                            land.setColor(Color.BLUE);
+                            wateringCanTool.useWater();
+                            player.decreaseEnergy(tool.energyCost());
+                            System.out.println("Watered! Water left: " + wateringCanTool.getWaterContains());
+                        } else {
+                            System.out.println("WateringCan is empty!");
+                        }
+                    }
                 }
             }
         }
     }
+
+
 
 
 
