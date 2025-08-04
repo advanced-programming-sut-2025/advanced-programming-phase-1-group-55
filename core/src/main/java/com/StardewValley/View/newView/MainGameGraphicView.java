@@ -230,6 +230,39 @@ public class MainGameGraphicView implements Screen, InputProcessor {
         return true;
     }
 
+    public void showTemporaryAction(String message, Texture texture) {
+        com.badlogic.gdx.scenes.scene2d.ui.Dialog actionDialog =
+            new com.badlogic.gdx.scenes.scene2d.ui.Dialog("", App.skin);
+
+        com.badlogic.gdx.scenes.scene2d.ui.Table content = new com.badlogic.gdx.scenes.scene2d.ui.Table();
+        content.pad(20);
+
+        if (texture != null) {
+            com.badlogic.gdx.scenes.scene2d.ui.Image image =
+                new com.badlogic.gdx.scenes.scene2d.ui.Image(new TextureRegionDrawable(new TextureRegion(texture)));
+            image.setSize(64, 64);
+            content.add(image).center().row();
+        }
+
+        com.badlogic.gdx.scenes.scene2d.ui.Label label =
+            new com.badlogic.gdx.scenes.scene2d.ui.Label(message, App.skin);
+        content.add(label).padTop(10).center();
+
+        actionDialog.getContentTable().add(content).center();
+        actionDialog.show(stage);
+
+        Gdx.app.postRunnable(() -> {
+            new Thread(() -> {
+                try {
+                    Thread.sleep(3000);
+                    Gdx.app.postRunnable(actionDialog::hide);
+                } catch (InterruptedException ignored) {
+                }
+            }).start();
+        });
+    }
+
+
 
     @Override
     public boolean touchUp(int i, int i1, int i2, int i3) {

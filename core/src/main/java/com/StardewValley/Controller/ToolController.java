@@ -13,6 +13,8 @@ import com.StardewValley.View.newView.FarmLand;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 
 public class ToolController {
     private User player;
@@ -43,6 +45,7 @@ public class ToolController {
         angle = (float) Math.atan2(y - toolCenterY, x - toolCenterX);
     }
 
+
     public void UseTool(float x, float y) {
         tool = player.getBackPack().getCurrentTool();
         ItemType selectedItem = player.getBackPack().getSelectedItem();
@@ -51,7 +54,9 @@ public class ToolController {
             if (player.getFarm().getLake().getCollisionRect().isInside(x, y)
                 && player.getCollisionRect().isNear(player.getFarm().getLake().getCollisionRect())) {
                 wateringCan.refill();
-                System.out.println("WateringCan refilled!");
+//                System.out.println("WateringCan refilled!");
+                App.currentGameGraphicView.showTemporaryAction("Refilling...", AssetManager.WATERING_CAN.getTexture());
+
                 return;
             }
         }
@@ -64,6 +69,8 @@ public class ToolController {
                         land.setPlowed(true);
                         land.setColor(Color.BROWN);
                         player.decreaseEnergy(tool.energyCost());
+                        App.currentGameGraphicView.showTemporaryAction("Plowing...", AssetManager.HOE.getTexture());
+
                     }
 
                     else if (tool.getName().equals("Axe")
@@ -79,6 +86,7 @@ public class ToolController {
                         player.decreaseEnergy(tool.energyCost());
                         player.getBackPack().removeAmountFromInventory(selectedItem, 1);
                         land.setCrop(selectedItem);
+                        App.currentGameGraphicView.showTemporaryAction("Planting...", selectedItem.getTexture());
                     }
 
                     else if (tool.getName().equals("Axe")
@@ -90,6 +98,7 @@ public class ToolController {
                         land.setColor(Color.RED);
                         land.setFertilized(true);
                         player.getBackPack().removeAmountFromInventory(selectedItem, 1);
+                        App.currentGameGraphicView.showTemporaryAction("Fertilizing...", selectedItem.getTexture());
                     }
 
                     else if (tool instanceof WateringCan wateringCanTool
@@ -102,9 +111,10 @@ public class ToolController {
                             land.setWatered(true);
                             wateringCanTool.useWater();
                             player.decreaseEnergy(tool.energyCost());
-                            System.out.println("Watered! Water left: " + wateringCanTool.getWaterContains());
+//                            System.out.println("Watered! Water left: " + wateringCanTool.getWaterContains());
+                            App.currentGameGraphicView.showTemporaryAction("Watering...", AssetManager.WATERING_CAN.getTexture());
                         } else {
-                            System.out.println("WateringCan is empty!");
+//                            System.out.println("WateringCan is empty!");
                         }
                     }
 
@@ -119,7 +129,8 @@ public class ToolController {
 
                         if (harvestedItem != null) {
                             player.getBackPack().addItemToInventory(new Item(harvestedItem, 1), 1);
-                            System.out.println("Harvested: " + harvestedItem.getDisplayName());
+//                            System.out.println("Harvested: " + harvestedItem.getDisplayName());
+                            App.currentGameGraphicView.showTemporaryAction("Harvesting...", AssetManager.SCYTHE.getTexture());
                         }
 
                         land.setPlanted(false);
@@ -150,6 +161,7 @@ public class ToolController {
         }
         return null;
     }
+
 
 
 
