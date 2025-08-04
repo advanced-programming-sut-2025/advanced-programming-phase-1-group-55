@@ -1,6 +1,8 @@
 package com.StardewValley.View.newView;
 
+import com.StardewValley.model.FarmingProdocts.Crop;
 import com.StardewValley.model.Item.CollisionRect;
+import com.StardewValley.model.Item.ItemType;
 import com.StardewValley.model.Map.Location;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -13,6 +15,7 @@ public class FarmLand {
     private boolean isFertilized;
     private boolean isWatered;
     private boolean isPlanted;
+    private ItemType crop;
     private Sprite sprite;
     private Location location;
 
@@ -22,6 +25,7 @@ public class FarmLand {
         this.isFertilized = false;
         this.isWatered = false;
         this.isPlanted = false;
+        this.crop = null;
         this.sprite = new Sprite(texture);
         this.location = new Location((int) rect.getX(), (int) rect.getY());
     }
@@ -56,6 +60,19 @@ public class FarmLand {
     public void setPlanted(boolean planted) {
         isPlanted = planted;
     }
+
+    public ItemType getCrop() {
+        return crop;
+    }
+
+    public void setCrop(ItemType crop) {
+        this.crop = crop;
+    }
+
+    public void setTexture(Texture newTexture) {
+        this.sprite.setRegion(newTexture);
+    }
+
 
     public void draw() {
         sprite.setPosition(collisionRect.getX(), collisionRect.getY());

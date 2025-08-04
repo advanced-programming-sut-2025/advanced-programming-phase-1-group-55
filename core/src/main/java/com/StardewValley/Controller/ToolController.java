@@ -1,6 +1,8 @@
 package com.StardewValley.Controller;
 
+import com.StardewValley.enums.AssetManager;
 import com.StardewValley.model.App;
+import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.Item.ItemType;
 import com.StardewValley.model.Map.Lake;
 import com.StardewValley.model.Map.Location;
@@ -69,13 +71,14 @@ public class ToolController {
                         && selectedItem.getDisplayName().toLowerCase().endsWith("seeds")
                         && land.isPlowed()
                         && !land.getSprite().getColor().equals(Color.GREEN)
-                        && !land.getSprite().getColor().equals(Color.YELLOW)
-                        && !land.getSprite().getColor().equals(Color.CYAN)) {
+                        && !land.getSprite().getColor().equals(Color.RED)
+                        && !land.getSprite().getColor().equals(Color.BLUE)) {
 
                         land.setColor(Color.GREEN);
                         land.setPlanted(true);
                         player.decreaseEnergy(tool.energyCost());
                         player.getBackPack().removeAmountFromInventory(selectedItem, 1);
+                        land.setCrop(selectedItem);
                     }
 
                     else if (tool.getName().equals("Axe")
@@ -104,10 +107,50 @@ public class ToolController {
                             System.out.println("WateringCan is empty!");
                         }
                     }
+
+                    else if (tool.getName().equals("Scythe")
+                        && land.isPlowed()
+                        && land.isPlanted()
+                        && land.isFertilized()
+                        && land.isWatered()
+                        && land.getCrop() != null) {
+
+                        ItemType harvestedItem = getProductFromSeed(land.getCrop());
+
+                        if (harvestedItem != null) {
+                            player.getBackPack().addItemToInventory(new Item(harvestedItem, 1), 1);
+                            System.out.println("Harvested: " + harvestedItem.getDisplayName());
+                        }
+
+                        land.setPlanted(false);
+                        land.setFertilized(false);
+                        land.setWatered(false);
+                        land.setCrop(null);
+                        land.setColor(Color.CLEAR);
+                        land.setTexture(AssetManager.NIGHT_BACKGROUND.getTexture());
+
+                    }
+
+
                 }
             }
         }
     }
+
+
+    public ItemType getProductFromSeed(ItemType seed) {
+        String seedName = seed.name();
+        if (seedName.endsWith("_SEEDS")) {
+            String cropName = seedName.replace("_SEEDS", "");
+            try {
+                return ItemType.valueOf(cropName);
+            } catch (IllegalArgumentException e) {
+                System.out.println("Unknown crop item: " + cropName);
+            }
+        }
+        return null;
+    }
+
 
 
 
