@@ -389,6 +389,21 @@ public enum ItemType {
 
     MUSHROOM_TREE_SEEDS("mushroom tree seeds"),
 
+    APRICOT_TREE("Apricot Tree", new Texture(Gdx.files.internal("Trees/ApricotTreeLightning.png"))),
+    CHERRY_TREE("Cherry tree", new Texture(Gdx.files.internal("Trees/CherryTreeLightning.png"))),
+    BANANA_TREE("Banana tree", new Texture(Gdx.files.internal("Trees/BananaTreeLightning.png"))),
+    MANGO_TREE("Mango tree", new Texture(Gdx.files.internal("Trees/MangoTreeLightning.png"))),
+    ORANGE_TREE("Orange tree", new Texture(Gdx.files.internal("Trees/OrangeTreeLightning.png"))),
+    PEACH_TREE("Peach tree", new Texture(Gdx.files.internal("Trees/PeachTreeLightning.png"))),
+    APPLE_TREE("Apple tree", new Texture(Gdx.files.internal("Trees/AppleTreeLightning.png"))),
+    POMEGRANATE_TREE("Pomegranate tree", new Texture(Gdx.files.internal("Trees/PomegranateTreeLightning.png"))),
+    OAK_TREE("Oak tree", new Texture(Gdx.files.internal("Trees/OakTreeLightning.png"))),
+    MAPLE_TREE("Maple tree", new Texture(Gdx.files.internal("Trees/MapleTreeLightning.png"))),
+    PINE_TREE("Pine tree", new Texture(Gdx.files.internal("Trees/PinTreeLightning.png"))),
+    MAHOGANY_TREE("Mahogany tree", new Texture(Gdx.files.internal("Trees/MahoganyTreeLightning.png"))),
+    MUSHROOM_TREE("Mushroom tree", new Texture(Gdx.files.internal("Trees/MushroomTreeLightning.png"))),
+    MYSTIC_TREE("Mystic tree", new Texture(Gdx.files.internal("Trees/MysticTreeLightning.png"))),
+
     ;
 
 
