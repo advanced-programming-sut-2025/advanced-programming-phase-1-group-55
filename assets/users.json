@@ -1,15 +1,15 @@
 [
   {
     "username": "asdas",
-    "password": "e3f4fc452a27c094df6a72f7a5c16aea80657426182435f11c72bd8f3b620300",
-    "nickName": "asd",
+    "password": "70f69c8901ea0b0f1148ca6debf14c25ddccc82eb20b6a2d8ded5d324a742328",
+    "nickName": "asda",
     "gender": "male",
-    "email": "asd@gmail.com",
+    "email": "asdas@gmail.com",
     "isSad": false,
     "timePassedBeingSad": 0,
     "numberOfSecurityQuestion": 0,
     "securityQuestion": "What was the name of your first-grade teacher?",
-    "answerOfSecurityQuestion": "asd",
+    "answerOfSecurityQuestion": "dsf",
     "farmingSkill": {
       "type": "Farming",
       "level": 0,
@@ -33,33 +33,8 @@
     "refrigerator": [],
     "artisanMachines": [],
     "backPack": {
-      "currentTool": {
-        "level": 0
-      },
-      "availableTools": {
-        "WateringCan": {
-          "level": 0
-        },
-        "Scythe": {
-          "level": 0
-        },
-        "Pickaxe": {
-          "level": 0
-        },
-        "Hoe": {
-          "level": 0
-        },
-        "Axe": {
-          "level": 0
-        }
-      },
-      "trashcan": {
-        "level": 0
-      },
       "inventory": {},
       "level": 1,
-      "learnedCraftingRecipes": [],
-      "learnedCookingRecipes": [],
       "craftingRecipes": [],
       "cookingRecipes": [
         "FRIED_EGG",
@@ -80,6 +55,7 @@
       "y": 0,
       "x": 0
     },
+    "direction": "DOWN",
     "fainted": false,
     "mainLocation": "House",
     "trades": {},
@@ -92,15 +68,15 @@
   },
   {
     "username": "a",
-    "password": "082eb3bdc23b028b2291e782e8dff884b89b3a40c7f9e537f6e223757b7a42ef",
-    "nickName": "asd",
-    "gender": "female",
-    "email": "asd@gm.com",
+    "password": "70f69c8901ea0b0f1148ca6debf14c25ddccc82eb20b6a2d8ded5d324a742328",
+    "nickName": "asda",
+    "gender": "male",
+    "email": "asdas@gmail.com",
     "isSad": false,
     "timePassedBeingSad": 0,
     "numberOfSecurityQuestion": 0,
     "securityQuestion": "What was the name of your first-grade teacher?",
-    "answerOfSecurityQuestion": "asd",
+    "answerOfSecurityQuestion": "dsf",
     "farmingSkill": {
       "type": "Farming",
       "level": 0,
@@ -124,33 +100,8 @@
     "refrigerator": [],
     "artisanMachines": [],
     "backPack": {
-      "currentTool": {
-        "level": 0
-      },
-      "availableTools": {
-        "WateringCan": {
-          "level": 0
-        },
-        "Scythe": {
-          "level": 0
-        },
-        "Pickaxe": {
-          "level": 0
-        },
-        "Hoe": {
-          "level": 0
-        },
-        "Axe": {
-          "level": 0
-        }
-      },
-      "trashcan": {
-        "level": 0
-      },
       "inventory": {},
       "level": 1,
-      "learnedCraftingRecipes": [],
-      "learnedCookingRecipes": [],
       "craftingRecipes": [],
       "cookingRecipes": [
         "FRIED_EGG",
@@ -171,6 +122,7 @@
       "y": 0,
       "x": 0
     },
+    "direction": "DOWN",
     "fainted": false,
     "mainLocation": "House",
     "trades": {},
@@ -183,15 +135,15 @@
   },
   {
     "username": "b",
-    "password": "9a629b995e869b62d12b788b188b22d9be0a9bfb3133d37a89a899eae700cac1",
-    "nickName": "arshix",
+    "password": "70f69c8901ea0b0f1148ca6debf14c25ddccc82eb20b6a2d8ded5d324a742328",
+    "nickName": "asda",
     "gender": "male",
-    "email": "arshia@gmail.com",
+    "email": "asdas@gmail.com",
     "isSad": false,
     "timePassedBeingSad": 0,
     "numberOfSecurityQuestion": 0,
     "securityQuestion": "What was the name of your first-grade teacher?",
-    "answerOfSecurityQuestion": "soltani",
+    "answerOfSecurityQuestion": "dsf",
     "farmingSkill": {
       "type": "Farming",
       "level": 0,
@@ -215,33 +167,8 @@
     "refrigerator": [],
     "artisanMachines": [],
     "backPack": {
-      "currentTool": {
-        "level": 0
-      },
-      "availableTools": {
-        "WateringCan": {
-          "level": 0
-        },
-        "Scythe": {
-          "level": 0
-        },
-        "Pickaxe": {
-          "level": 0
-        },
-        "Hoe": {
-          "level": 0
-        },
-        "Axe": {
-          "level": 0
-        }
-      },
-      "trashcan": {
-        "level": 0
-      },
       "inventory": {},
       "level": 1,
-      "learnedCraftingRecipes": [],
-      "learnedCookingRecipes": [],
       "craftingRecipes": [],
       "cookingRecipes": [
         "FRIED_EGG",
@@ -262,6 +189,7 @@
       "y": 0,
       "x": 0
     },
+    "direction": "DOWN",
     "fainted": false,
     "mainLocation": "House",
     "trades": {},
@@ -274,15 +202,15 @@
   },
   {
     "username": "c",
-    "password": "31f8b258dc45bbf772651d027737f6cc05f626148f756b7bf154b389e397fda0",
-    "nickName": "asdf",
+    "password": "70f69c8901ea0b0f1148ca6debf14c25ddccc82eb20b6a2d8ded5d324a742328",
+    "nickName": "asda",
     "gender": "male",
-    "email": "asd@gmail.com",
+    "email": "asdas@gmail.com",
     "isSad": false,
     "timePassedBeingSad": 0,
     "numberOfSecurityQuestion": 0,
     "securityQuestion": "What was the name of your first-grade teacher?",
-    "answerOfSecurityQuestion": "asdf",
+    "answerOfSecurityQuestion": "dsf",
     "farmingSkill": {
       "type": "Farming",
       "level": 0,
@@ -306,33 +234,8 @@
     "refrigerator": [],
     "artisanMachines": [],
     "backPack": {
-      "currentTool": {
-        "level": 0
-      },
-      "availableTools": {
-        "WateringCan": {
-          "level": 0
-        },
-        "Scythe": {
-          "level": 0
-        },
-        "Pickaxe": {
-          "level": 0
-        },
-        "Hoe": {
-          "level": 0
-        },
-        "Axe": {
-          "level": 0
-        }
-      },
-      "trashcan": {
-        "level": 0
-      },
       "inventory": {},
       "level": 1,
-      "learnedCraftingRecipes": [],
-      "learnedCookingRecipes": [],
       "craftingRecipes": [],
       "cookingRecipes": [
         "FRIED_EGG",
@@ -353,6 +256,7 @@
       "y": 0,
       "x": 0
     },
+    "direction": "DOWN",
     "fainted": false,
     "mainLocation": "House",
     "trades": {},
@@ -397,38 +301,75 @@
     "refrigerator": [],
     "artisanMachines": [],
     "backPack": {
-      "currentTool": {
-        "names": "Hoe",
-        "level": 0
-      },
-      "availableTools": {
-        "WateringCan": {
-          "waterContains": 0,
-          "level": 0
-        },
-        "Scythe": {
-          "level": 0
-        },
-        "Pickaxe": {
-          "usedSuccessfully": false,
-          "level": 0
-        },
-        "Hoe": {
-          "names": "Hoe",
-          "level": 0
-        },
-        "Axe": {
-          "usedSuccessfully": false,
-          "level": 0
-        }
-      },
-      "trashcan": {
-        "level": 0
-      },
       "inventory": {},
       "level": 1,
-      "learnedCraftingRecipes": [],
-      "learnedCookingRecipes": [],
+      "craftingRecipes": [],
+      "cookingRecipes": [
+        "FRIED_EGG",
+        "BAKED_FISH",
+        "SALAD"
+      ]
+    },
+    "friendsNpc": {},
+    "gold": 10000,
+    "friendsPlayer": {},
+    "dailyMoney": 0,
+    "wood": 0,
+    "energy": 200.0,
+    "stayLoggedIn": false,
+    "mostAchievedMoney": 0,
+    "matchPlayed": 0,
+    "location": {
+      "y": 0,
+      "x": 0
+    },
+    "direction": "DOWN",
+    "fainted": false,
+    "mainLocation": "House",
+    "trades": {},
+    "stone": 0,
+    "receivedGifts": {},
+    "sentGifts": {},
+    "hasGiftToday": false,
+    "hasMessageToday": false,
+    "quest": {}
+  },
+  {
+    "username": "shayan",
+    "password": "531d04e9aeb7c23c6cba020b9a4f6a12387890474ab5fbe15221a8e8ef670698",
+    "nickName": "ahgsd",
+    "gender": "male",
+    "email": "asdjags@gmail.com",
+    "isSad": false,
+    "timePassedBeingSad": 0,
+    "numberOfSecurityQuestion": 0,
+    "securityQuestion": "What was the name of your first-grade teacher?",
+    "answerOfSecurityQuestion": "asdf",
+    "farmingSkill": {
+      "type": "Farming",
+      "level": 0,
+      "points": 0
+    },
+    "miningSkill": {
+      "type": "Mining",
+      "level": 0,
+      "points": 0
+    },
+    "foragingSkill": {
+      "type": "Foraging",
+      "level": 0,
+      "points": 0
+    },
+    "fishingSkill": {
+      "type": "Fishing",
+      "level": 0,
+      "points": 0
+    },
+    "refrigerator": [],
+    "artisanMachines": [],
+    "backPack": {
+      "inventory": {},
+      "level": 1,
       "craftingRecipes": [],
       "cookingRecipes": [
         "FRIED_EGG",
@@ -449,6 +390,74 @@
       "y": 0,
       "x": 0
     },
+    "direction": "DOWN",
+    "fainted": false,
+    "mainLocation": "House",
+    "trades": {},
+    "stone": 0,
+    "receivedGifts": {},
+    "sentGifts": {},
+    "hasGiftToday": false,
+    "hasMessageToday": false,
+    "quest": {}
+  },
+  {
+    "username": "ali",
+    "password": "70f69c8901ea0b0f1148ca6debf14c25ddccc82eb20b6a2d8ded5d324a742328",
+    "nickName": "asda",
+    "gender": "male",
+    "email": "asdas@gmail.com",
+    "isSad": false,
+    "timePassedBeingSad": 0,
+    "numberOfSecurityQuestion": 0,
+    "securityQuestion": "What was the name of your first-grade teacher?",
+    "answerOfSecurityQuestion": "dsf",
+    "farmingSkill": {
+      "type": "Farming",
+      "level": 0,
+      "points": 0
+    },
+    "miningSkill": {
+      "type": "Mining",
+      "level": 0,
+      "points": 0
+    },
+    "foragingSkill": {
+      "type": "Foraging",
+      "level": 0,
+      "points": 0
+    },
+    "fishingSkill": {
+      "type": "Fishing",
+      "level": 0,
+      "points": 0
+    },
+    "refrigerator": [],
+    "artisanMachines": [],
+    "backPack": {
+      "inventory": {},
+      "level": 1,
+      "craftingRecipes": [],
+      "cookingRecipes": [
+        "FRIED_EGG",
+        "BAKED_FISH",
+        "SALAD"
+      ]
+    },
+    "friendsNpc": {},
+    "gold": 10000,
+    "friendsPlayer": {},
+    "dailyMoney": 0,
+    "wood": 0,
+    "energy": 10000.0,
+    "stayLoggedIn": false,
+    "mostAchievedMoney": 0,
+    "matchPlayed": 0,
+    "location": {
+      "y": 0,
+      "x": 0
+    },
+    "direction": "DOWN",
     "fainted": false,
     "mainLocation": "House",
     "trades": {},

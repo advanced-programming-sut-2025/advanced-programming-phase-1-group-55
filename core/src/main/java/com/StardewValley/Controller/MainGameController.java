@@ -515,4 +515,5 @@ public class MainGameController {
     public void setStoreController(StoresStatusController storeController) {
         this.storeController = storeController;
     }
+
 }
