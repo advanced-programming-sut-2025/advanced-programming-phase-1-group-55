@@ -13,6 +13,9 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
+import static com.StardewValley.model.App.gameApp;
+import static com.StardewValley.model.App.getCurrentGameModel;
+
 public class PlayerController {
     private int speed = 10;
     private User player;
@@ -101,7 +104,19 @@ public class PlayerController {
             currentFrame.getRegionWidth() * scale,
             currentFrame.getRegionHeight() * scale
         );
+        drawOtherPlayers();
 
+
+    }
+    public void drawOtherPlayers() {
+        for (User user: getCurrentGameModel().playersInGame){
+            if (user.getUsername().equals(player.getUsername())){
+                continue;
+            }
+            user.getSprite().setPosition(user.getCollisionRect().getX(), user.getCollisionRect().getY());
+            user.getSprite().setScale(2f);
+            user.getSprite().draw(gameApp.getBatch());
+        }
     }
 
     public void centerPlayerOnCamera(OrthographicCamera camera) {

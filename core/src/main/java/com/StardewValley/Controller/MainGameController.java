@@ -209,21 +209,13 @@ public class MainGameController {
             }
         }
     }
-    public void drawOtherPlayers() {
-        for (User user: getCurrentGameModel().playersInGame){
-            if (user.getUsername().equals(currentPlayer.getUsername())){
-                continue;
-            }
-            user.getSprite().draw(gameApp.getBatch());
-        }
-    }
     public void updateGame(float delta) {
         if (view != null) {
             handleInput();
-            drawOtherPlayers();
             playerController.update();
             toolController.update(delta);
             npcController.update();
+           // drawOtherPlayers();
         }
     }
     public Result equipToolFromBackPack(String toolsName) {
