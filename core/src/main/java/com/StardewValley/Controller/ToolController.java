@@ -73,6 +73,7 @@ public class ToolController {
                         && !land.getSprite().getColor().equals(Color.CYAN)) {
 
                         land.setColor(Color.GREEN);
+                        land.setPlanted(true);
                         player.decreaseEnergy(tool.energyCost());
                         player.getBackPack().removeAmountFromInventory(selectedItem, 1);
                     }
@@ -84,16 +85,18 @@ public class ToolController {
                         && land.getSprite().getColor().equals(Color.GREEN)) {
 
                         land.setColor(Color.RED);
+                        land.setFertilized(true);
                         player.getBackPack().removeAmountFromInventory(selectedItem, 1);
                     }
 
                     else if (tool instanceof WateringCan wateringCanTool
                         && land.isPlowed()
                         && (land.getSprite().getColor().equals(Color.GREEN)
-                        || land.getSprite().getColor().equals(Color.YELLOW))) {
+                        || land.getSprite().getColor().equals(Color.RED))) {
 
                         if (wateringCanTool.hasWater()) {
                             land.setColor(Color.BLUE);
+                            land.setWatered(true);
                             wateringCanTool.useWater();
                             player.decreaseEnergy(tool.energyCost());
                             System.out.println("Watered! Water left: " + wateringCanTool.getWaterContains());

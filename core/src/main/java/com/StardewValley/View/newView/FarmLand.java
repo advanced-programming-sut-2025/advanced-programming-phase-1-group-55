@@ -10,12 +10,18 @@ import com.StardewValley.model.App;
 public class FarmLand {
     private CollisionRect collisionRect;
     private boolean isPlowed;
+    private boolean isFertilized;
+    private boolean isWatered;
+    private boolean isPlanted;
     private Sprite sprite;
     private Location location;
 
     public FarmLand(CollisionRect rect, Texture texture) {
         this.collisionRect = rect;
         this.isPlowed = false;
+        this.isFertilized = false;
+        this.isWatered = false;
+        this.isPlanted = false;
         this.sprite = new Sprite(texture);
         this.location = new Location((int) rect.getX(), (int) rect.getY());
     }
@@ -26,6 +32,30 @@ public class FarmLand {
     public Sprite getSprite() { return sprite; }
     public Location getLocation() { return location; }
     public void setColor(Color color) { sprite.setColor(color); }
+
+    public boolean isWatered() {
+        return isWatered;
+    }
+
+    public void setWatered(boolean watered) {
+        isWatered = watered;
+    }
+
+    public boolean isFertilized() {
+        return isFertilized;
+    }
+
+    public void setFertilized(boolean fertilized) {
+        isFertilized = fertilized;
+    }
+
+    public boolean isPlanted() {
+        return isPlanted;
+    }
+
+    public void setPlanted(boolean planted) {
+        isPlanted = planted;
+    }
 
     public void draw() {
         sprite.setPosition(collisionRect.getX(), collisionRect.getY());
