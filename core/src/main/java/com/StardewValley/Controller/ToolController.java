@@ -1,6 +1,7 @@
 package com.StardewValley.Controller;
 
 import com.StardewValley.model.App;
+import com.StardewValley.model.Item.ItemType;
 import com.StardewValley.model.Map.Location;
 import com.StardewValley.model.Tool.Tools;
 import com.StardewValley.model.User;
@@ -39,19 +40,33 @@ public class ToolController {
     }
 
     public void UseTool(float x, float y) {
-        Tools tool = player.getBackPack().getCurrentTool();
+        tool = player.getBackPack().getCurrentTool();
+        ItemType selectedItem = player.getBackPack().getSelectedItem();
+
         for (FarmLand land : player.getFarm().getFarmLands()) {
             if (land.getCollisionRect().isInside(x, y)) {
                 if (player.getCollisionRect().isNear(land.getCollisionRect())) {
+
                     if (tool.getName().equals("Hoe") && !land.isPlowed()) {
                         land.setPlowed(true);
                         land.setColor(Color.BROWN);
+                        player.decreaseEnergy(tool.energyCost());
+                    }
+
+                    else if (selectedItem != null
+                        && selectedItem.getDisplayName().toLowerCase().endsWith("seeds")
+                        && land.isPlowed()
+                        && !land.getSprite().getColor().equals(Color.GREEN)) {
+
+                        land.setColor(Color.GREEN);
                         player.decreaseEnergy(tool.energyCost());
                     }
                 }
             }
         }
     }
+
+
 
     public void setPlayer(User player) {
         this.player = player;
