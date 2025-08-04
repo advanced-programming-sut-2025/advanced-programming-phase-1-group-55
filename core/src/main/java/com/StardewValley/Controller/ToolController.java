@@ -53,19 +53,32 @@ public class ToolController {
                         player.decreaseEnergy(tool.energyCost());
                     }
 
-                    else if (selectedItem != null
+                    else if (tool.getName().equals("Axe")
+                        && selectedItem != null
                         && selectedItem.getDisplayName().toLowerCase().endsWith("seeds")
                         && land.isPlowed()
-                        && !land.getSprite().getColor().equals(Color.GREEN)) {
+                        && !land.getSprite().getColor().equals(Color.GREEN)
+                        && !land.getSprite().getColor().equals(Color.YELLOW)) {
 
                         land.setColor(Color.GREEN);
                         player.decreaseEnergy(tool.energyCost());
+                        player.getBackPack().removeAmountFromInventory(selectedItem, 1);
+                    }
+
+                    else if (tool.getName().equals("Axe")
+                        && selectedItem != null
+                        && selectedItem.getDisplayName().toLowerCase().contains("fertilizer")
+                        && land.isPlowed()
+                        && land.getSprite().getColor().equals(Color.GREEN)) {
+
+                        land.setColor(Color.RED);
                         player.getBackPack().removeAmountFromInventory(selectedItem, 1);
                     }
                 }
             }
         }
     }
+
 
 
 
