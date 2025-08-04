@@ -14,8 +14,8 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class PlayerController {
-    private  int speed = 5;
-    private  User player;
+    private int speed = 10;
+    private User player;
     private GameMap gameMap;
     private final float scale = 2f;
 
@@ -76,7 +76,9 @@ public class PlayerController {
 
     public void update() {
         handlePlayerInput();
-        player.getPlayerSprite().draw(App.gameApp.getBatch());
+
+//        player.getPlayerSprite().draw(App.gameApp.getBatch());
+
         boolean isMoving =
             Gdx.input.isKeyPressed(Input.Keys.W) ||
                 Gdx.input.isKeyPressed(Input.Keys.A) ||
@@ -99,10 +101,11 @@ public class PlayerController {
             currentFrame.getRegionWidth() * scale,
             currentFrame.getRegionHeight() * scale
         );
+
     }
 
     public void centerPlayerOnCamera(OrthographicCamera camera) {
-        Sprite sprite = player.getPlayerSprite();
+//        Sprite sprite = player.getPlayerSprite();
         TextureRegion currentFrame = currentAnimation.getKeyFrame(0);
         float centerX = player.getLocation().getX() + (currentFrame.getRegionWidth() * scale) / 2f;
         float centerY = player.getLocation().getY() + (currentFrame.getRegionHeight() * scale) / 2f;

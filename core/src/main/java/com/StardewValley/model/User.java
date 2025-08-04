@@ -113,7 +113,7 @@ public class User {
     }
 
     public Sprite getSprite() {
-        return sprite;
+        return this.sprite;
     }
 
     public void setSprite(Sprite sprite) {
@@ -206,9 +206,7 @@ public class User {
         this.playerTommorowLocation = playerTommorowLocation;
     }
 
-    public Sprite getPlayerSprite() {
-        return sprite;
-    }
+
 
     public boolean isFainted() {
         return fainted;
