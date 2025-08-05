@@ -129,7 +129,8 @@ public class PlayerController {
 
             drawOtherPlayers();
         }
-//        stage.act(Gdx.graphics.getDeltaTime());
+
+        stage.act(Gdx.graphics.getDeltaTime());
 //        stage.draw();
     }
 
