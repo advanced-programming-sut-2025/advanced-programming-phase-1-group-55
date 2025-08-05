@@ -1,5 +1,4 @@
 package com.StardewValley.View.newView;
-
 import com.StardewValley.model.App;
 import com.StardewValley.model.FarmingProdocts.AllCrops;
 import com.StardewValley.model.FarmingProdocts.AllForagingCrops;
@@ -35,7 +34,6 @@ public class FarmingProductMenuView implements Screen {
         mainTable = new Table(skin);
         mainTable.top().padTop(20);
         mainTable.defaults().expandX().fillX();
-
         scrollPane = new ScrollPane(mainTable, skin);
         scrollPane.setFillParent(true);
         scrollPane.setSmoothScrolling(true);
@@ -43,9 +41,7 @@ public class FarmingProductMenuView implements Screen {
         scrollPane.setScrollY(0);
         scrollPane.layout();
         scrollPane.updateVisualScroll();
-
         stage.addActor(scrollPane);
-
         updateCategory(currentCategory);
     }
 
@@ -53,22 +49,20 @@ public class FarmingProductMenuView implements Screen {
         mainTable.clear();
         this.currentCategory = category;
 
-        // دکمه‌های دسته‌بندی
         Table buttonRow = new Table(skin);
         buttonRow.add(createCategoryButton("All Crops", Category.CROPS)).pad(5);
         buttonRow.add(createCategoryButton("Foraging Crops", Category.FORAGING_CROPS)).pad(5);
         buttonRow.add(createCategoryButton("Foraging Trees", Category.FORAGING_TREES)).pad(5);
         buttonRow.add(createCategoryButton("Fruit Trees", Category.TREES)).pad(5);
 
-        mainTable.add(buttonRow).colspan(4).center().padBottom(20).row();
 
+        mainTable.add(buttonRow).colspan(4).center().padBottom(20).row();
         switch (category) {
             case CROPS -> addAllCrops();
             case FORAGING_CROPS -> addAllForagingCrops();
             case FORAGING_TREES -> addAllForagingTrees();
             case TREES -> addAllTrees();
         }
-
         mainTable.row();
         TextButton backBtn = new TextButton("Back", skin);
         backBtn.addListener(new ClickListener() {
@@ -79,6 +73,8 @@ public class FarmingProductMenuView implements Screen {
         });
         mainTable.add(backBtn).colspan(4).center().padTop(30);
     }
+
+
 
     private TextButton createCategoryButton(String label, Category cat) {
         TextButton btn = new TextButton(label, skin);
@@ -103,6 +99,9 @@ public class FarmingProductMenuView implements Screen {
             );
         }
     }
+
+
+
 
     private void addAllForagingCrops() {
         for (AllForagingCrops crop : AllForagingCrops.values()) {
@@ -142,7 +141,6 @@ public class FarmingProductMenuView implements Screen {
 
     private void addItemRow(String name, Texture texture, String line1, String line2) {
         Table row = new Table(skin);
-
         Image image;
         if (texture != null) {
             try {
@@ -154,21 +152,21 @@ public class FarmingProductMenuView implements Screen {
             image = new Image();
         }
         image.setSize(48, 48);
-
         Label nameLabel = new Label(name, skin);
         Label desc1 = new Label(line1, skin);
         Label desc2 = new Label(line2, skin);
-
         Table textTable = new Table();
         textTable.add(nameLabel).left().row();
         textTable.add(desc1).left().row();
         textTable.add(desc2).left();
-
         row.add(image).width(64).height(64).padRight(10);
         row.add(textTable).left();
-
         mainTable.add(row).left().expandX().fillX().pad(5).colspan(4);
     }
+
+
+
+
 
     @Override
     public void render(float delta) {
@@ -176,7 +174,6 @@ public class FarmingProductMenuView implements Screen {
         stage.act(delta);
         stage.draw();
     }
-
     @Override public void resize(int width, int height) {
         stage.getViewport().update(width, height, true);
     }
