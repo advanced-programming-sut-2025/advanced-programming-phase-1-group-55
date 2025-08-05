@@ -89,8 +89,17 @@ public class GameMenuController {
 
         User player0 = mainUser;
         User player1 = AllUsers.get(Username1);
+
         User player2 = Username2 != null ? AllUsers.get(Username2) : null;
         User player3 = Username3 != null ? AllUsers.get(Username3) : null;
+        if (player1 == null) {
+            return new Result(false, "Username not found (player1)");
+        }if (player2 == null) {
+            return new Result(false, "Username not found (player2)");
+        }
+        if (player3 == null) {
+            return new Result(false, "Username not found (player3)");
+        }
 
 
         GameMap map = new GameMap();

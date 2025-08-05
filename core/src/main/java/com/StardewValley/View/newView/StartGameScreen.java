@@ -98,12 +98,18 @@ public class StartGameScreen implements Screen {
                 String m3 = playerCountBox.getSelected() >= 3 ? map3Box.getSelected() : null;
 
 
-               controller.newGame(u1, u2, u3, m1, m2, m3);
+                Result result = controller.newGame(u1, u2, u3, m1, m2, m3);
+                if (result.IsSuccess()) {
+                    App.getGameApp().setScreen(new MainGameGraphicView(new MainGameController(), App.currentGameModel.getMap()));
+                } else {
+                    resultLabel.setText(result.Message());
+                }
 
-              App.getGameApp().setScreen(new MainGameGraphicView(new MainGameController(),App.currentGameModel.getMap()));
 
             }
-        });;;
+        });
+        ;
+        ;
     }
 
     private void updateFieldsVisibility() {
@@ -119,21 +125,33 @@ public class StartGameScreen implements Screen {
         map3Box.setVisible(count == 3);
     }
 
-    @Override public void render(float delta) {
+    @Override
+    public void render(float delta) {
         Gdx.gl.glClearColor(0.1f, 0.1f, 0.2f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act(delta);
         stage.draw();
     }
 
-    @Override public void resize(int width, int height) {
+    @Override
+    public void resize(int width, int height) {
         stage.getViewport().update(width, height, true);
     }
 
-    @Override public void pause() {}
-    @Override public void resume() {}
-    @Override public void hide() {}
-    @Override public void dispose() {
+    @Override
+    public void pause() {
+    }
+
+    @Override
+    public void resume() {
+    }
+
+    @Override
+    public void hide() {
+    }
+
+    @Override
+    public void dispose() {
         stage.dispose();
     }
 }
