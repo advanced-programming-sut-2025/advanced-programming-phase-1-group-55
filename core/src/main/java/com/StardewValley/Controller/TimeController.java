@@ -1,0 +1,161 @@
+package com.StardewValley.Controller;
+
+
+import com.StardewValley.model.App;
+import com.StardewValley.model.GameTime;
+import com.StardewValley.model.User;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.math.Matrix4;
+
+import static com.StardewValley.model.weather.*;
+import static com.StardewValley.model.GameTime.*;
+
+public class TimeController {
+    private BitmapFont hour;
+    private BitmapFont day;
+    private BitmapFont gold;
+    private TextureAtlas textureAtlas;
+    private Sprite rawClock;
+    private Sprite clockArrow;
+    private Sprite Spring;
+    private Sprite Summer;
+    private Sprite Fall;
+    private Sprite Winter;
+    private Sprite Sunny;
+    private Sprite Rain;
+    private Sprite Snow;
+    private Sprite Storm;
+    private int scale;
+
+    public TimeController() {
+        scale = 4;
+        hour = new BitmapFont();
+        hour.setColor(Color.BLACK);
+        hour.getData().setScale(2f);
+        day = new BitmapFont();
+        day.setColor(Color.BLACK);
+        day.getData().setScale(2f);
+        gold = new BitmapFont();
+        gold.setColor(Color.BLACK);
+        gold.getData().setScale(2f);
+        TextureAtlas textureAtlas = new TextureAtlas(Gdx.files.internal("clockSprite/clockAtlas.atlas"));
+
+        rawClock = textureAtlas.createSprite("Raw-Clock");
+        clockArrow = textureAtlas.createSprite("Arrow");
+
+        Spring = textureAtlas.createSprite("Spring");
+        Summer = textureAtlas.createSprite("Summer");
+        Fall = textureAtlas.createSprite("Fall");
+        Winter = textureAtlas.createSprite("Winter");
+
+        Sunny = textureAtlas.createSprite("Sunny");
+        Rain = textureAtlas.createSprite("Rain");
+        Snow = textureAtlas.createSprite("Snow");
+        Storm = textureAtlas.createSprite("Storm");
+
+        rawClock.setSize(rawClock.getWidth() * scale, rawClock.getHeight() * scale);
+        clockArrow.setSize(clockArrow.getWidth() * scale, clockArrow.getHeight() * scale);
+        Spring.setSize(Spring.getWidth() * scale, Spring.getHeight() * scale);
+        Summer.setSize(Summer.getWidth() * scale, Summer.getHeight() * scale);
+        Fall.setSize(Fall.getWidth() * scale, Fall.getHeight() * scale);
+        Winter.setSize(Winter.getWidth() * scale, Winter.getHeight() * scale);
+        Sunny.setSize(Sunny.getWidth() * scale, Sunny.getHeight() * scale);
+        Rain.setSize(Rain.getWidth() * scale, Rain.getHeight() * scale);
+        Snow.setSize(Snow.getWidth() * scale, Snow.getHeight() * scale);
+        Storm.setSize(Storm.getWidth() * scale, Storm.getHeight() * scale);
+
+        clockArrow.setOrigin(clockArrow.getWidth() / 2, 0);
+    }
+
+    public void render(SpriteBatch batch, GameTime dateTime, OrthographicCamera camera) {
+
+        Matrix4 originalMatrix = batch.getProjectionMatrix();
+
+
+        Matrix4 uiMatrix = new Matrix4().setToOrtho2D(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        batch.setProjectionMatrix(uiMatrix);
+
+        float clockX = Gdx.graphics.getWidth() - rawClock.getWidth() - 20;
+        float clockY = Gdx.graphics.getHeight() - rawClock.getHeight() - 20;
+
+        rawClock.setPosition(clockX, clockY);
+        clockArrow.setPosition(clockX + 88 - clockArrow.getWidth() / 2, clockY + 156);
+
+        float weatherX = clockX + 29 * scale;
+        float weatherY = clockY + 35 * scale;
+        float seasonX = clockX + 53 * scale;
+        float seasonY = clockY + 35 * scale;
+
+        Sunny.setPosition(weatherX, weatherY);
+        Rain.setPosition(weatherX, weatherY);
+        Snow.setPosition(weatherX, weatherY);
+        Storm.setPosition(weatherX, weatherY);
+        Summer.setPosition(seasonX, seasonY);
+        Fall.setPosition(seasonX, seasonY);
+        Winter.setPosition(seasonX, seasonY);
+        Spring.setPosition(seasonX, seasonY);
+
+        clockArrow.setRotation(-((dateTime.getHour() - 9) * 12 + 180));
+        rawClock.draw(batch);
+        clockArrow.draw(batch);
+
+        switch (dateTime.getSeason().getName()) {
+            case "Spring":
+                Spring.draw(batch);
+                break;
+            case "Summer":
+                Summer.draw(batch);
+                break;
+            case "Fall":
+                Fall.draw(batch);
+                break;
+            case "Winter":
+                Winter.draw(batch);
+                break;
+        }
+        switch (getCurrentWeather()) {
+            case Rain:
+                Rain.draw(batch);
+                break;
+            case Snow:
+                Snow.draw(batch);
+                break;
+            case Sunny:
+                Sunny.draw(batch);
+                break;
+            case Storm:
+                Storm.draw(batch);
+                break;
+        }
+
+
+        GameMenuController menuController = new GameMenuController();
+        String dayOfWeek = getDay().getName();
+
+
+        hour.draw(batch, dateTime.getHour() + " o'clock",
+                clockX + 27 * scale, clockY + 23 * scale + hour.getLineHeight());
+        day.draw(batch, dayOfWeek + ". " + dateTime.getDay(),
+                clockX + 27 * scale, clockY + 45 * scale + hour.getLineHeight());
+
+        User currentPlayer = App.mainUser;
+        gold.draw(batch, String.valueOf(currentPlayer.getGold()),
+                clockX + 17 * scale, clockY + 3 * scale + gold.getLineHeight());
+
+
+        batch.setProjectionMatrix(originalMatrix);
+    }
+
+    public void dispose() {
+        if (hour != null) hour.dispose();
+        if (day != null) day.dispose();
+        if (gold != null) gold.dispose();
+    }
+}
