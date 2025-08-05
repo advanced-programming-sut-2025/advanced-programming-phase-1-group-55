@@ -256,4 +256,12 @@ public class FishingGameScreen implements Screen {
     public void setSimpleRect(CollisionRect simpleRect) {
         this.simpleRect = simpleRect;
     }
+
+    public CollisionRect getFishRect() {
+        return fishRect;
+    }
+
+    public void setFishRect(CollisionRect fishRect) {
+        this.fishRect = fishRect;
+    }
 }

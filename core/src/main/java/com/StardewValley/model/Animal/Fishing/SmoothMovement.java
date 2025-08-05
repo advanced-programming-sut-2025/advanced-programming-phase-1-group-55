@@ -7,7 +7,7 @@ public class SmoothMovement implements FishMovementPattern {
     @Override
     public int getNextDeltaY() {
         int chance = App.getRand().nextInt(100);
-        if (chance < 60) return lastMove; // 60% احتمال تکرار حرکت قبلی
+        if (chance < 60) return lastMove;
         int[] moves = {-5, 0, 5};
         lastMove = moves[App.getRand().nextInt(3)];
         return lastMove;
