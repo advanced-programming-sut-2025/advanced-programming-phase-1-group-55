@@ -1,15 +1,18 @@
 package com.StardewValley.View.newView;
 
 import com.StardewValley.Controller.PauseMenuController;
+import com.StardewValley.View.oldView.ExitMenu;
 import com.StardewValley.model.App;
 import com.StardewValley.model.User;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
@@ -18,23 +21,25 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 public class PauseMenuView implements Screen {
     private Stage stage;
     public Table table;
-   private final Skin skin= App.skin;
+    private final Skin skin = App.skin;
     private final PauseMenuController controller;
     private final User user;
-    private TextButton ResumeButton ;
-    private TextButton SocialMenuButton ;
-    private TextButton MapMenuButton ;
-    private TextButton InventoryMenuButton ;
-    private TextButton toolsMenuButton ;
+    private TextButton ResumeButton;
+    private TextButton SocialMenuButton;
+    private TextButton MapMenuButton;
+    private TextButton InventoryMenuButton;
+    private TextButton toolsMenuButton;
     private TextButton skillsButton;
-    private TextButton settingButton;
+    private TextButton ExitButton;
     private TextButton recycleBinButton;
     private TextButton questsButton;
+    private TextButton SaveButton;
     private final Label errorLabel;
     private Timer.Task clearErrorTask;
     private final Label SuccessMessageLabel;
     private Timer.Task clearErrorTask2;
-    public PauseMenuView(PauseMenuController controller,User user) {
+
+    public PauseMenuView(PauseMenuController controller, User user) {
         this.controller = controller;
         this.table = new Table();
         this.controller.setView(this);
@@ -45,8 +50,9 @@ public class PauseMenuView implements Screen {
         SocialMenuButton = new TextButton("Social", skin);
         MapMenuButton = new TextButton("Map", skin);
         toolsMenuButton = new TextButton("Tools", skin);
-        skillsButton= new TextButton("Skills", skin);
-        settingButton = new TextButton("Settings", skin);
+        skillsButton = new TextButton("Skills", skin);
+        ExitButton = new TextButton("Exit", skin);
+        SaveButton = new TextButton("Save", skin);
         recycleBinButton = new TextButton("Inventory", skin);
         questsButton = new TextButton("Quests", skin);
 
@@ -57,6 +63,7 @@ public class PauseMenuView implements Screen {
         SuccessMessageLabel.setColor(Color.GREEN);
         SuccessMessageLabel.setWrap(true);
     }
+
     public void show() {
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
@@ -80,7 +87,8 @@ public class PauseMenuView implements Screen {
         menuTable.add(recycleBinButton).row();
         menuTable.add(toolsMenuButton).row();
         menuTable.add(skillsButton).row();
-        menuTable.add(settingButton).row();
+        menuTable.add(ExitButton).row();
+        menuTable.add(SaveButton).row();
         menuTable.add(errorLabel).row();
         menuTable.add(SuccessMessageLabel).row();
 
@@ -89,6 +97,13 @@ public class PauseMenuView implements Screen {
         centerTable.add(menuTable).top().left().padRight(50).padTop(40);
         rootTable.top().padTop(20);
         rootTable.add(centerTable).expand().center().row();
+        ExitButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                Gdx.app.exit();
+            }
+        });
+
     }
 
     @Override
@@ -100,6 +115,7 @@ public class PauseMenuView implements Screen {
         stage.draw();
         controller.handleButtonPressed();
     }
+
     public void setErrorMessage(String error) {
         errorLabel.setText(error);
 
@@ -115,6 +131,7 @@ public class PauseMenuView implements Screen {
             ));
         }
     }
+
     public void setSuccessMessage(String message) {
         SuccessMessageLabel.setText(message);
         if (clearErrorTask2 != null) {
@@ -256,12 +273,20 @@ public class PauseMenuView implements Screen {
         this.clearErrorTask2 = clearErrorTask2;
     }
 
-    public TextButton getSettingButton() {
-        return settingButton;
+    public TextButton getExitButton() {
+        return ExitButton;
     }
 
-    public void setSettingButton(TextButton settingButton) {
-        this.settingButton = settingButton;
+    public void setExitButton(TextButton exitButton) {
+        ExitButton = exitButton;
+    }
+
+    public TextButton getSaveButton() {
+        return SaveButton;
+    }
+
+    public void setSaveButton(TextButton saveButton) {
+        SaveButton = saveButton;
     }
 
     public TextButton getRecycleBinButton() {
