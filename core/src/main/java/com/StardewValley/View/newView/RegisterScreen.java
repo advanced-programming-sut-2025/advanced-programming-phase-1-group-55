@@ -7,6 +7,7 @@ import com.StardewValley.model.Result;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
@@ -31,7 +32,10 @@ public class RegisterScreen extends ScreenAdapter {
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
 
-
+        Texture bgTexture = new Texture(Gdx.files.internal("backgrounds/4.png"));
+        Image image = new Image(bgTexture);
+        image.setFillParent(true);
+        stage.addActor(image);
         Table table = new Table(skin);
         table.setFillParent(true);
         table.defaults().pad(10);
