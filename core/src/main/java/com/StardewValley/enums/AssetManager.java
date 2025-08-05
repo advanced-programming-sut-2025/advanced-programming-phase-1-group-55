@@ -10,6 +10,7 @@ import com.badlogic.gdx.utils.Array;
 public enum AssetManager {
     House("farm/house.png"),
     GreenHouse("farm/Greenhouse/greenhouse.png"),
+    GreenHouse1("farm/Greenhouse/Greenhouse1.png"),
     Lake("farm/Untitled design.png"),
     Quarry("farm/mine_dark.png"),
 
