@@ -14,7 +14,7 @@ public class GreenHouse extends Place {
 
     public GreenHouse(CollisionRect collisionRect) {
         super(collisionRect);
-        sprite=new Sprite(AssetManager.GreenHouse.getTexture());
+        sprite=new Sprite(AssetManager.GreenHouse1.getTexture());
     }
 
     public void setRepaired(Boolean repaired) {

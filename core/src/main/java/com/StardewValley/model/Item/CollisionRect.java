@@ -17,6 +17,12 @@ public class CollisionRect {
         this.x = x;
         this.y = y;
     }
+    public void moveY(float y){
+        this.y += y;
+    }
+    public void moveX(float x){
+        this.x += x;
+    }
     public Rectangle toRectangle() {
         return new Rectangle(x, y, width, height);
     }

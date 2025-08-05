@@ -7,6 +7,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 
 public enum ItemType {
+    SONAR_BOBBER("Sonar Bobber",new Texture(Gdx.files.internal("Tackle/Sonar_Bobber.png"))),
     CHERRY_BOMB("Cherry Bomb",new Texture(Gdx.files.internal("Crafting/Cherry_Bomb.png"))),
     BOMB("Bomb", new Texture(Gdx.files.internal("Crafting/Bomb.png"))),
     MEGA_BOMB("Mega Bomb", new Texture(Gdx.files.internal("Crafting/Mega_Bomb.png"))),

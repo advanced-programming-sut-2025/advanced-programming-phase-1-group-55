@@ -90,6 +90,10 @@ public class GameMap {
                 return false;
             }
         }
+        if (collisionRect.collidesWith(currentGameModel.currentUser.getFarm().getGreenHouse().getCollisionRect())&&
+        !currentGameModel.currentUser.getFarm().getGreenHouse().getRepaired()){
+            return false;
+        }
         return true;
     }
 
