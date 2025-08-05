@@ -38,7 +38,7 @@ public class MainMenuScreen implements Screen {
 
         Label title = new Label("Main Menu", skin);
         TextButton profileBtn = new TextButton("Profile Menu", skin);
-        TextButton avatarBtn = new TextButton("Avatar Menu", skin);
+//        TextButton avatarBtn = new TextButton("Avatar Menu", skin);
         TextButton gameBtn = new TextButton("PreGame Menu", skin);
         TextButton logoutBtn = new TextButton("Logout", skin);
 
@@ -66,9 +66,9 @@ public class MainMenuScreen implements Screen {
 
 
         table.add(title).padBottom(40).row();
-        table.add(profileBtn).pad(10).row();
-        table.add(avatarBtn).pad(10).row();
         table.add(gameBtn).pad(10).row();
+//        table.add(avatarBtn).pad(10).row();
+        table.add(profileBtn).pad(10).row();
         table.add(logoutBtn).pad(10).row();
 
         profileBtn.addListener(new ClickListener() {
