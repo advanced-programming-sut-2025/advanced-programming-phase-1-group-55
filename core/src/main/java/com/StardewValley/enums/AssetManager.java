@@ -13,6 +13,8 @@ public enum AssetManager {
     Lake("farm/Untitled design.png"),
     Quarry("farm/mine_dark.png"),
 
+    chub_fish("Fish/Chub.png"),
+
 
     DAY_BACKGROUND("Flooring/Flooring_86.png"),
     NIGHT_BACKGROUND("Flooring/Flooring_61.png"),
