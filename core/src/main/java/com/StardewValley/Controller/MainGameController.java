@@ -38,13 +38,14 @@ public class MainGameController {
     private ToolController toolController;
     private NpcController npcController;
     private StoresStatusController storeController;
-    private User currentPlayer;
+    private User currentPlayer = App.getMainUser();
 
     public void setView(MainGameGraphicView view) {
+
         this.view = view;
-        currentPlayer = view.getPlayer();
-        playerController = new PlayerController(currentPlayer);
         view.show();
+        currentPlayer = view.getPlayer();
+        playerController = new PlayerController(currentPlayer,this);
         playerController.setStage(view.getStage());
         toolController = new ToolController(currentPlayer);
         npcController = new NpcController(currentPlayer, view.getMap());
@@ -224,6 +225,7 @@ public class MainGameController {
             toolController.update(delta);
             npcController.update();
             // drawOtherPlayers();
+
 
         }
     }

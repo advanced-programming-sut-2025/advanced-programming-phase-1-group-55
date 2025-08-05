@@ -38,18 +38,18 @@ public class MainGameGraphicView implements Screen, InputProcessor {
     private ProgressBar energyBar;
     private Table tableTop;
     private Stage stage;
-    private User player=App.mainUser;
-    private boolean isChoosingPlace=false;
+    private User player = App.mainUser;
+    private boolean isChoosingPlace = false;
     private ArtisanMachineType chosenArtisanType;
     private Sprite chosenArtisanSprite;
-    private GameMap map=new GameMap();
+    private GameMap map = new GameMap();
 
 
-    public MainGameGraphicView(MainGameController controller,GameMap map) {
+    public MainGameGraphicView(MainGameController controller, GameMap map) {
         this.controller = controller;
         this.map = map;
         controller.setView(this);
-        App.currentGameGraphicView=this;
+        App.currentGameGraphicView = this;
         controller.getPlayerController().setGameMap(map);
 
     }
@@ -66,7 +66,7 @@ public class MainGameGraphicView implements Screen, InputProcessor {
         setupCamera();
 
 
-        stage = new Stage(new ScreenViewport());
+            stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
 
         updateBackgroundTexture();
@@ -179,9 +179,17 @@ public class MainGameGraphicView implements Screen, InputProcessor {
         stage.getViewport().update(width, height, true);
     }
 
-    @Override public void pause() {}
-    @Override public void resume() {}
-    @Override public void hide() {}
+    @Override
+    public void pause() {
+    }
+
+    @Override
+    public void resume() {
+    }
+
+    @Override
+    public void hide() {
+    }
 
     @Override
     public void dispose() {
@@ -221,7 +229,7 @@ public class MainGameGraphicView implements Screen, InputProcessor {
             controller.checkIfClickedOnPlayer(click.x, click.y);
             try {
                 System.out.println(player.getBackPack().getSelectedItem().getDisplayName());
-            }catch (NullPointerException e){
+            } catch (NullPointerException e) {
                 System.out.println("you have not selected item");
             }
 //
@@ -263,7 +271,6 @@ public class MainGameGraphicView implements Screen, InputProcessor {
     }
 
 
-
     @Override
     public boolean touchUp(int i, int i1, int i2, int i3) {
         return false;
@@ -285,8 +292,8 @@ public class MainGameGraphicView implements Screen, InputProcessor {
         Vector3 worldCoordinates = new Vector3(screenX, screenY, 0);
         camera.unproject(worldCoordinates);
 
-        if (isChoosingPlace){
-            controller.choosingPlace( worldCoordinates.x, worldCoordinates.y);
+        if (isChoosingPlace) {
+            controller.choosingPlace(worldCoordinates.x, worldCoordinates.y);
         }
         return false;
     }

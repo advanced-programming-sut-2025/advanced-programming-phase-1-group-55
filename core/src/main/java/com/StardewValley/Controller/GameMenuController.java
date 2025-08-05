@@ -150,9 +150,7 @@ public class GameMenuController {
         return null;
     }
 
-    public Result nextTurn() {
-        return null;
-    }
+
 
 
 }

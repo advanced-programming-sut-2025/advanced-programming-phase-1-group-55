@@ -29,16 +29,16 @@ public class PlayerController {
     private Stage stage;
     private Animation<TextureRegion> walkUp, walkDown, walkLeft, walkRight;
     private Animation<TextureRegion> currentAnimation;
-    private GameMenuController gameMenuController;
+    private MainGameController MainGameController;
     private boolean isFainting = false;
     private boolean faintSequenceFinished = false;
     private float stateTime = 0f;
     private Direction direction = Direction.DOWN;
 
-    public PlayerController(User player) {
+    public PlayerController(User player, MainGameController controller) {
         this.player = player;
         initializeAnimations();
-        gameMenuController = new GameMenuController();
+        MainGameController = controller;
 
 
         // Set initial collision rectangle based on frame size
@@ -129,6 +129,8 @@ public class PlayerController {
 
             drawOtherPlayers();
         }
+        stage.act(Gdx.graphics.getDeltaTime());
+        stage.draw();
     }
 
 
@@ -148,7 +150,7 @@ public class PlayerController {
                 Actions.fadeOut(0.3f)
             )),
             Actions.run(() -> {
-                gameMenuController.nextTurn();
+                MainGameController.nextTurn();
                 faintSequenceFinished = true;
                 isFainting = false;
 
