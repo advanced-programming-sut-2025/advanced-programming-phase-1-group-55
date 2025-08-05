@@ -60,14 +60,19 @@ public class MainGameGraphicView implements Screen, InputProcessor {
         camera.update();
     }
 
+    public void setUpStage() {
+        stage = new Stage(new ScreenViewport());
+        Gdx.input.setInputProcessor(stage);
+    }
+
     @Override
     public void show() {
 
         setupCamera();
 
-
-            stage = new Stage(new ScreenViewport());
-        Gdx.input.setInputProcessor(stage);
+        setUpStage();
+//        stage = new Stage(new ScreenViewport());
+//        Gdx.input.setInputProcessor(stage);
 
         updateBackgroundTexture();
 

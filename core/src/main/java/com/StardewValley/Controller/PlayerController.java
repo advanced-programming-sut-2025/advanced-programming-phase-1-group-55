@@ -129,8 +129,8 @@ public class PlayerController {
 
             drawOtherPlayers();
         }
-        stage.act(Gdx.graphics.getDeltaTime());
-        stage.draw();
+//        stage.act(Gdx.graphics.getDeltaTime());
+//        stage.draw();
     }
 
 
@@ -207,7 +207,7 @@ public class PlayerController {
         }
 
         if (moved) {
-            player.decreaseEnergy(100);
+            player.decreaseEnergy(1);
         }
     }
 

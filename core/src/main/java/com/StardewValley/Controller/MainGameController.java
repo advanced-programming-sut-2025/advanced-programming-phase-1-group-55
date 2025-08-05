@@ -43,7 +43,7 @@ public class MainGameController {
     public void setView(MainGameGraphicView view) {
 
         this.view = view;
-        view.show();
+        view.setUpStage();
         currentPlayer = view.getPlayer();
         playerController = new PlayerController(currentPlayer,this);
         playerController.setStage(view.getStage());
