@@ -12,6 +12,11 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+
+import java.awt.*;
 
 import static com.StardewValley.model.App.gameApp;
 import static com.StardewValley.model.App.getCurrentGameModel;
@@ -21,9 +26,10 @@ public class PlayerController {
     private User player;
     private GameMap gameMap;
     private final float scale = 2f;
-
+    private Stage stage;
     private Animation<TextureRegion> walkUp, walkDown, walkLeft, walkRight;
     private Animation<TextureRegion> currentAnimation;
+    private GameMenuController gameMenuController;
 
     private float stateTime = 0f;
     private Direction direction = Direction.DOWN;
@@ -31,6 +37,8 @@ public class PlayerController {
     public PlayerController(User player) {
         this.player = player;
         initializeAnimations();
+        gameMenuController = new GameMenuController();
+
 
         // Set initial collision rectangle based on frame size
         TextureRegion initialFrame = walkDown.getKeyFrame(0);
@@ -105,12 +113,15 @@ public class PlayerController {
             currentFrame.getRegionHeight() * scale
         );
         drawOtherPlayers();
+//        stage.act(Gdx.graphics.getDeltaTime());
+//        stage.draw();
 
 
     }
+
     public void drawOtherPlayers() {
-        for (User user: getCurrentGameModel().playersInGame){
-            if (user.getUsername().equals(player.getUsername())){
+        for (User user : getCurrentGameModel().playersInGame) {
+            if (user.getUsername().equals(player.getUsername())) {
                 continue;
             }
             user.getSprite().setPosition(user.getCollisionRect().getX(), user.getCollisionRect().getY());
@@ -129,31 +140,61 @@ public class PlayerController {
 
     public void handlePlayerInput() {
         boolean moved = false;
+        if (!player.isFainted()) {
 
-        if (Gdx.input.isKeyPressed(Input.Keys.W)) {
-            direction = Direction.UP;
-            currentAnimation = walkUp;
-            moved |= tryMove(0, speed);
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.S)) {
-            direction = Direction.DOWN;
-            currentAnimation = walkDown;
-            moved |= tryMove(0, -speed);
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.A)) {
-            direction = Direction.LEFT;
-            currentAnimation = walkLeft;
-            moved |= tryMove(-speed, 0);
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.D)) {
-            direction = Direction.RIGHT;
-            currentAnimation = walkRight;
-            moved |= tryMove(speed, 0);
-        }
+            if (Gdx.input.isKeyPressed(Input.Keys.W)) {
+                direction = Direction.UP;
+                currentAnimation = walkUp;
+                moved |= tryMove(0, speed);
+            }
+            if (Gdx.input.isKeyPressed(Input.Keys.S)) {
+                direction = Direction.DOWN;
+                currentAnimation = walkDown;
+                moved |= tryMove(0, -speed);
+            }
+            if (Gdx.input.isKeyPressed(Input.Keys.A)) {
+                direction = Direction.LEFT;
+                currentAnimation = walkLeft;
+                moved |= tryMove(-speed, 0);
+            }
+            if (Gdx.input.isKeyPressed(Input.Keys.D)) {
+                direction = Direction.RIGHT;
+                currentAnimation = walkRight;
+                moved |= tryMove(speed, 0);
+            }
 
-        if (moved) {
-            player.decreaseEnergy(1);
+            if (moved) {
+                player.decreaseEnergy(1);
+            }
+        } else {
+            handleFaint();
         }
+    }
+
+    private void handleFaint() {
+        player.setSprite(new Sprite(new Texture("walk/Alex_52.png")));
+
+        Image redOverlay = new Image(new Texture("backgrounds/red-background.png"));
+        redOverlay.setFillParent(true);
+        redOverlay.getColor().a = 0;
+
+
+        redOverlay.addAction(Actions.sequence(
+            Actions.repeat(3, Actions.sequence(
+                Actions.fadeIn(0.3f),
+                Actions.fadeOut(0.3f)
+            )),
+            Actions.run(() -> {
+
+               gameMenuController.nextTurn();
+            })
+        ));
+
+        stage.addActor(redOverlay);
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
     }
 
     //todo chon size player ro bozorg kardam shayad bug bokhore

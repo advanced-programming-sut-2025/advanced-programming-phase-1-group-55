@@ -94,10 +94,11 @@ public class GameMenuController {
         User player3 = Username3 != null ? AllUsers.get(Username3) : null;
         if (player1 == null) {
             return new Result(false, "Username not found (player1)");
-        }if (player2 == null) {
+        }
+        if (Username2 != null && player2 == null) {
             return new Result(false, "Username not found (player2)");
         }
-        if (player3 == null) {
+        if (Username3 != null && player3 == null) {
             return new Result(false, "Username not found (player3)");
         }
 

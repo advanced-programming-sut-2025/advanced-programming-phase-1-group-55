@@ -114,7 +114,7 @@
     "friendsPlayer": {},
     "dailyMoney": 0,
     "wood": 0,
-    "energy": 10000.0,
+    "energy": 100.0,
     "stayLoggedIn": false,
     "mostAchievedMoney": 0,
     "matchPlayed": 0,

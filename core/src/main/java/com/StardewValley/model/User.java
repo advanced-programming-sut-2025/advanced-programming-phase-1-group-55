@@ -54,7 +54,7 @@ public class User {
     private HashMap<User, PlayerFriendship> friendsPlayer = new HashMap<>();
     private int dailyMoney = 0;
     private int wood;
-    private double energy = 10000;
+    private double energy = 100;
     private boolean stayLoggedIn = false;
     private int mostAchievedMoney = 0;
     private int matchPlayed = 0;
@@ -227,7 +227,7 @@ public class User {
 
     public void increaseEnergy(int amount) {
         this.energy += amount;
-        this.energy = Math.min(200, energy);
+        this.energy = Math.min(100, energy);
     }
 
     public int getWood() {

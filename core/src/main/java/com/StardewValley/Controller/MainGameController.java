@@ -18,7 +18,6 @@ import com.StardewValley.model.Tool.WateringCan;
 import com.StardewValley.model.Result;
 
 
-
 import static com.StardewValley.model.Item.ItemType.*;
 
 import com.StardewValley.model.User;
@@ -40,96 +39,103 @@ public class MainGameController {
     private NpcController npcController;
     private StoresStatusController storeController;
     private User currentPlayer;
+
     public void setView(MainGameGraphicView view) {
         this.view = view;
-        currentPlayer=view.getPlayer();
-        playerController=new PlayerController(currentPlayer);
-        toolController=new ToolController(currentPlayer);
-        npcController=new NpcController(currentPlayer,view.getMap());
-        storeController=new StoresStatusController(currentPlayer,view.getMap());
+        currentPlayer = view.getPlayer();
+        playerController = new PlayerController(currentPlayer);
+        view.show();
+        playerController.setStage(view.getStage());
+        toolController = new ToolController(currentPlayer);
+        npcController = new NpcController(currentPlayer, view.getMap());
+        storeController = new StoresStatusController(currentPlayer, view.getMap());
         currentPlayer.setGold(40000);
     }
-    public void checkIfClickedOnMachine(float dx, float dy){
-        for (ArtisanMachine artisanMachine:view.getMap().getArtisanMachines()){
-            if (artisanMachine.getCollisionRect().isInside(dx,dy)&&artisanMachine.getOwner().equals(currentPlayer)){
-                gameApp.setScreen(new ArtisanMachineMenuView(currentPlayer,view.getMap(),artisanMachine,
-                    new ArtisanMachineMenuController(currentPlayer,view.getMap(),artisanMachine)));
+
+    public void checkIfClickedOnMachine(float dx, float dy) {
+        for (ArtisanMachine artisanMachine : view.getMap().getArtisanMachines()) {
+            if (artisanMachine.getCollisionRect().isInside(dx, dy) && artisanMachine.getOwner().equals(currentPlayer)) {
+                gameApp.setScreen(new ArtisanMachineMenuView(currentPlayer, view.getMap(), artisanMachine,
+                    new ArtisanMachineMenuController(currentPlayer, view.getMap(), artisanMachine)));
             }
         }
     }
-    public boolean canPlace(Sprite sprite,float x,float y) {
-        CollisionRect collisionRect=new CollisionRect(x,y,sprite.getWidth(),sprite.getHeight());
-        if (x>view.getMap().getWORLD_WIDTH()/2||x<-view.getMap().getWORLD_WIDTH()/2||
-            y>view.getMap().getWORLD_HEIGHT()/2||y<-view.getMap().getWORLD_HEIGHT()/2) {
+
+    public boolean canPlace(Sprite sprite, float x, float y) {
+        CollisionRect collisionRect = new CollisionRect(x, y, sprite.getWidth(), sprite.getHeight());
+        if (x > view.getMap().getWORLD_WIDTH() / 2 || x < -view.getMap().getWORLD_WIDTH() / 2 ||
+            y > view.getMap().getWORLD_HEIGHT() / 2 || y < -view.getMap().getWORLD_HEIGHT() / 2) {
             return false;
         }
-        for(Fence fence:view.getMap().getFences()){
-            if (collisionRect.collidesWith(fence.getCollisionRect())){
+        for (Fence fence : view.getMap().getFences()) {
+            if (collisionRect.collidesWith(fence.getCollisionRect())) {
                 return false;
             }
         }
-        for (Store store:view.getMap().getVillage().getStores().values()){
-            if (collisionRect.collidesWith(store.getCollisionRect())){
+        for (Store store : view.getMap().getVillage().getStores().values()) {
+            if (collisionRect.collidesWith(store.getCollisionRect())) {
                 return false;
             }
         }
-        for (Npc npc:view.getMap().getVillage().getNpss().values()){
-            if (collisionRect.collidesWith(npc.getCollisionRect())){
+        for (Npc npc : view.getMap().getVillage().getNpss().values()) {
+            if (collisionRect.collidesWith(npc.getCollisionRect())) {
                 return false;
             }
-            if (collisionRect.collidesWith(npc.getType().getHouse().getCollisionRect())){
-                return false;
-            }
-        }
-        for (ShippingBin bin :view.getMap().getVillage().getShippingBins()){
-            if (collisionRect.collidesWith(bin.getCollisionRect())){
+            if (collisionRect.collidesWith(npc.getType().getHouse().getCollisionRect())) {
                 return false;
             }
         }
-        for (ArtisanMachine artisanMachine:view.getMap().getArtisanMachines()){
+        for (ShippingBin bin : view.getMap().getVillage().getShippingBins()) {
+            if (collisionRect.collidesWith(bin.getCollisionRect())) {
+                return false;
+            }
+        }
+        for (ArtisanMachine artisanMachine : view.getMap().getArtisanMachines()) {
             if (artisanMachine.getCollisionRect().collidesWith(collisionRect)) {
                 return false;
             }
         }
-        if (collisionRect.collidesWith(currentPlayer.getFarm().getHouse().getCollisionRect())||
-            collisionRect.collidesWith(currentPlayer.getFarm().getGreenHouse().getCollisionRect())||
-            collisionRect.collidesWith(currentPlayer.getFarm().getLake().getCollisionRect())||
+        if (collisionRect.collidesWith(currentPlayer.getFarm().getHouse().getCollisionRect()) ||
+            collisionRect.collidesWith(currentPlayer.getFarm().getGreenHouse().getCollisionRect()) ||
+            collisionRect.collidesWith(currentPlayer.getFarm().getLake().getCollisionRect()) ||
             collisionRect.collidesWith(currentPlayer.getFarm().getQuarry().getCollisionRect())) {
             return false;
         }
         return true;
     }
-    public void checkIfClickedOnPlayer(float dx, float dy){
-        for (User user: currentGameModel.playersInGame){
-            if (user.getCollisionRect().isInside(dx,dy)&&!user.getUsername().equals(currentPlayer.getUsername())){
-                gameApp.setScreen(new FriendMenuView(user,new FriendMenuController(currentPlayer,user)));
+
+    public void checkIfClickedOnPlayer(float dx, float dy) {
+        for (User user : currentGameModel.playersInGame) {
+            if (user.getCollisionRect().isInside(dx, dy) && !user.getUsername().equals(currentPlayer.getUsername())) {
+                gameApp.setScreen(new FriendMenuView(user, new FriendMenuController(currentPlayer, user)));
             }
         }
     }
-    public void choosingPlace(float x,float y){
-        Sprite sprite =view.getChosenArtisanSprite();
-        sprite.setPosition(x,y);
-        if (canPlace(sprite,x,y)){
+
+    public void choosingPlace(float x, float y) {
+        Sprite sprite = view.getChosenArtisanSprite();
+        sprite.setPosition(x, y);
+        if (canPlace(sprite, x, y)) {
             sprite.setColor(Color.GREEN);
-        }else {
+        } else {
             sprite.setColor(Color.RED);
         }
     }
+
     public void handleInput() {
         //todo handle if the gate was not your farm gate -->>message box -->>send error -->> you can not enter other player,s farm
         if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
             passTheGate();
-        }
-        else if(Gdx.input.isKeyJustPressed(Input.Keys.P)){
-            gameApp.setScreen(new PauseMenuView(new PauseMenuController(),currentPlayer));
+        } else if (Gdx.input.isKeyJustPressed(Input.Keys.P)) {
+            gameApp.setScreen(new PauseMenuView(new PauseMenuController(), currentPlayer));
         } else if (Gdx.input.isKeyJustPressed(Input.Keys.K)) {
-            gameApp.setScreen(new ChooseArtisanMenuView(currentPlayer,view.getMap(),new ChooseArtisanController(currentPlayer,view.getMap())));
+            gameApp.setScreen(new ChooseArtisanMenuView(currentPlayer, view.getMap(), new ChooseArtisanController(currentPlayer, view.getMap())));
         } else if (Gdx.input.isKeyJustPressed(Input.Keys.J)) {
-            if (view.isChoosingPlace()){
+            if (view.isChoosingPlace()) {
                 if (view.getChosenArtisanSprite().getColor().equals(Color.GREEN)) {
-                    Sprite sprite =new Sprite(view.getChosenArtisanSprite());
-                    ArtisanMachine artisanMachine=new ArtisanMachine(view.getChosenArtisanType(),currentPlayer,
-                        new CollisionRect(sprite.getX(),sprite.getY(),sprite.getWidth(),sprite.getHeight()));
+                    Sprite sprite = new Sprite(view.getChosenArtisanSprite());
+                    ArtisanMachine artisanMachine = new ArtisanMachine(view.getChosenArtisanType(), currentPlayer,
+                        new CollisionRect(sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight()));
                     view.getMap().getArtisanMachines().add(artisanMachine);
                     view.setChoosingPlace(false);
                 }
@@ -138,27 +144,27 @@ public class MainGameController {
             nextTurn();
         } else if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)) {
             gameApp.setScreen(new CheatItemMenuView(new CheatItemMenuController(view.getPlayer())));
-        }else if (Gdx.input.isKeyJustPressed(Input.Keys.B)) {
+        } else if (Gdx.input.isKeyJustPressed(Input.Keys.B)) {
 
             CraftingMenuController craftingController = new CraftingMenuController();
             CraftingMenuView craftingView = new CraftingMenuView(craftingController, currentPlayer);
             gameApp.setScreen(craftingView);
-        }
-        else if (Gdx.input.isKeyJustPressed(Input.Keys.C)) {
+        } else if (Gdx.input.isKeyJustPressed(Input.Keys.C)) {
             CookingMenuController cookingController = new CookingMenuController();
             CookingMenuView cookingView = new CookingMenuView(cookingController, currentPlayer);
             App.gameApp.setScreen(cookingView);
         }
     }
-    public void nextTurn(){
-        int i=0;
-        int lastIndex= getCurrentGameModel().playersInGame.size()-1;
-        for (User user: getCurrentGameModel().playersInGame){
-            if (user.getUsername().equals(currentPlayer.getUsername())){
-                if (i==lastIndex){
-                    currentPlayer=App.getCurrentGameModel().playersInGame.getFirst();
-                }else {
-                    currentPlayer=App.getCurrentGameModel().playersInGame.get(i+1);
+
+    public void nextTurn() {
+        int i = 0;
+        int lastIndex = getCurrentGameModel().playersInGame.size() - 1;
+        for (User user : getCurrentGameModel().playersInGame) {
+            if (user.getUsername().equals(currentPlayer.getUsername())) {
+                if (i == lastIndex) {
+                    currentPlayer = App.getCurrentGameModel().playersInGame.getFirst();
+                } else {
+                    currentPlayer = App.getCurrentGameModel().playersInGame.get(i + 1);
                 }
                 view.setPlayer(currentPlayer);
                 playerController.setPlayer(currentPlayer);
@@ -171,6 +177,7 @@ public class MainGameController {
             i++;
         }
     }
+
     private void passTheGate() {
         for (Fence fence : view.getMap().fences) {
             if (fence.getFenceType().equals(FenceType.door)) {
@@ -182,20 +189,20 @@ public class MainGameController {
 
                 float dx = playerX - fenceX;
                 float dy = playerY - fenceY;
-                float distance = (float)Math.sqrt(dx * dx + dy * dy);
+                float distance = (float) Math.sqrt(dx * dx + dy * dy);
 
                 if (distance < 60) {
                     if (playerX < fenceX) {
                         if (!playerController.getPlayer().getFarm().getDoors().contains(fence)) {
                             return;
                         }
-                        playerController.getPlayer().getLocation().setX((int)playerX + 75);
+                        playerController.getPlayer().getLocation().setX((int) playerX + 75);
 
                     } else {
                         if (!playerController.getPlayer().getFarm().getDoors().contains(fence)) {
                             return;
                         }
-                        playerController.getPlayer().getLocation().setX((int)playerX - 75);
+                        playerController.getPlayer().getLocation().setX((int) playerX - 75);
 
                     }
 
@@ -209,15 +216,18 @@ public class MainGameController {
             }
         }
     }
+
     public void updateGame(float delta) {
         if (view != null) {
             handleInput();
             playerController.update();
             toolController.update(delta);
             npcController.update();
-           // drawOtherPlayers();
+            // drawOtherPlayers();
+
         }
     }
+
     public Result equipToolFromBackPack(String toolsName) {
         if (currentGameModel.currentUser.getBackPack() == null || !currentGameModel.currentUser.getBackPack().getAvailableTools().containsKey(toolsName)) {
             return new Result(false, "you don't have this tool :(");
@@ -385,10 +395,10 @@ public class MainGameController {
     public Result helpReadMap() {
         String message = "";
         message += "T: trees\n&: Foraging Crobs\n*: Foraging Seeds\nh: house area\n#: walls\n" +
-                "=: doors\ng: greenhouse area\n" + "W: water area(lake)\n^: quarry area\n" +
-                "0: rocks\n$: starDropSaloon\ns: SEBASTIAN's house\n" + "B: blacksmith store\n" +
-                "O: ojaMart store\nA: ABIGAIL's house\nH: HARVEY's house\n" + "L: LEAH's house\n" +
-                "R: ROBIN's house\n" + "G: General store\nC: Carpenter Shop\nF: fish store\nM: marnieRanch store";
+            "=: doors\ng: greenhouse area\n" + "W: water area(lake)\n^: quarry area\n" +
+            "0: rocks\n$: starDropSaloon\ns: SEBASTIAN's house\n" + "B: blacksmith store\n" +
+            "O: ojaMart store\nA: ABIGAIL's house\nH: HARVEY's house\n" + "L: LEAH's house\n" +
+            "R: ROBIN's house\n" + "G: General store\nC: Carpenter Shop\nF: fish store\nM: marnieRanch store";
         return new Result(true, message);
     }
 
@@ -454,13 +464,13 @@ public class MainGameController {
             return new Result(false, "you don't have enough item to trash");
         }
 
-        if (item.getPrice()==0) {
+        if (item.getPrice() == 0) {
             item.setPrice(150);
         }
         App.currentGameModel.currentUser.getBackPack().removeAmountFromInventory(item.getItemType(), amount);
-        double sum=(amount * item.getPrice() * currentGameModel.currentUser.getBackPack().getTrashcan().getRatio());
+        double sum = (amount * item.getPrice() * currentGameModel.currentUser.getBackPack().getTrashcan().getRatio());
         App.currentGameModel.currentUser.increaseGold
-                ((int) (sum/100));
+            ((int) (sum / 100));
         return new Result(true, "you sold " + name + "successfully!");
     }
 

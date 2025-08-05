@@ -337,7 +337,7 @@ public class MainGameGraphicView implements Screen, InputProcessor {
     }
 
     public Stage getStage() {
-        return stage;
+        return this.stage;
     }
 
     public void setStage(Stage stage) {
