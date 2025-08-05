@@ -155,6 +155,9 @@ public class MainGameController {
             CookingMenuView cookingView = new CookingMenuView(cookingController, currentPlayer);
             App.gameApp.setScreen(cookingView);
         }
+        else if (Gdx.input.isKeyJustPressed(Input.Keys.I)) {
+            App.gameApp.setScreen(new FarmingProductMenuView());
+        }
     }
 
     public void nextTurn() {
