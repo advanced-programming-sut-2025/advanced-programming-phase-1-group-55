@@ -1,11 +1,13 @@
 package com.StardewValley.Controller;
 
+import com.StardewValley.View.newView.FishingGameScreen;
 import com.StardewValley.enums.AssetManager;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.Item.ItemType;
 import com.StardewValley.model.Map.Lake;
 import com.StardewValley.model.Map.Location;
+import com.StardewValley.model.Tool.FishingPole;
 import com.StardewValley.model.Tool.Tools;
 import com.StardewValley.model.Tool.WateringCan;
 import com.StardewValley.model.User;
@@ -15,6 +17,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.utils.Timer;
 
 public class ToolController {
     private User player;
@@ -49,6 +52,18 @@ public class ToolController {
     public void UseTool(float x, float y) {
         tool = player.getBackPack().getCurrentTool();
         ItemType selectedItem = player.getBackPack().getSelectedItem();
+        if (tool instanceof FishingPole fishingPole) {
+            if (player.getFarm().getLake().getCollisionRect().isInside(x, y)
+                && player.getCollisionRect().isNear(player.getFarm().getLake().getCollisionRect())) {
+                App.currentGameGraphicView.showTemporaryAction("Fishing...", fishingPole.getSprite().getTexture());
+                Timer.schedule(new Timer.Task() {
+                    @Override
+                    public void run() {
+                        App.gameApp.setScreen(new FishingGameScreen());
+                    }
+                }, 2f);
+            }
+        }
 
         if (tool instanceof WateringCan wateringCan) {
             if (player.getFarm().getLake().getCollisionRect().isInside(x, y)
