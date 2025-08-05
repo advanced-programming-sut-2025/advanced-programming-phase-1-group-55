@@ -40,6 +40,7 @@ public class FishingGameScreen implements Screen {
 
     private CollisionRect barRect;
     private CollisionRect simpleRect;
+    private CollisionRect fishRect;
 
     public FishingGameScreen(FishType fishType, FishingController controller) {
         this.fishType = fishType;
@@ -49,6 +50,7 @@ public class FishingGameScreen implements Screen {
         skin= App.skin;
         barRect = new CollisionRect(100, 100, 40, 300);
         fishSprite= AssetManager.chub_fish.getSprite();
+
     }
 
     @Override
@@ -71,6 +73,7 @@ public class FishingGameScreen implements Screen {
 
         float simpleHeight = 60;
         simpleRect = new CollisionRect(centerX, centerY, barWidth, simpleHeight);
+        fishRect=new CollisionRect(centerX, centerY,fishSprite.getWidth(),fishSprite.getHeight());
 
 
 
@@ -106,6 +109,7 @@ public class FishingGameScreen implements Screen {
         stage.act(delta);
         stage.draw();
 
+
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
 
         shapeRenderer.setColor(Color.WHITE);
@@ -115,7 +119,19 @@ public class FishingGameScreen implements Screen {
         shapeRenderer.rect(simpleRect.getX(), simpleRect.getY(), simpleRect.getWidth(), simpleRect.getHeight());
 
         shapeRenderer.end();
+
+
+        SpriteBatch batch = new SpriteBatch();
+        batch.begin();
+
+
+        fishSprite.setPosition(fishRect.getX(), fishRect.getY());
+        fishSprite.draw(batch);
+
+        batch.end();
+        batch.dispose();
     }
+
 
 
 
@@ -239,5 +255,13 @@ public class FishingGameScreen implements Screen {
 
     public void setSimpleRect(CollisionRect simpleRect) {
         this.simpleRect = simpleRect;
+    }
+
+    public CollisionRect getFishRect() {
+        return fishRect;
+    }
+
+    public void setFishRect(CollisionRect fishRect) {
+        this.fishRect = fishRect;
     }
 }

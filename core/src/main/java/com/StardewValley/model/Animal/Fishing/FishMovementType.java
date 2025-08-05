@@ -1,5 +1,7 @@
 package com.StardewValley.model.Animal.Fishing;
 
+import java.util.Random;
+
 public enum FishMovementType {
     MIXED {
         @Override
@@ -33,4 +35,11 @@ public enum FishMovementType {
     };
 
     public abstract FishMovementPattern createPattern();
+
+    private static final Random RANDOM = new Random();
+
+    public static FishMovementType getRandomType() {
+        FishMovementType[] values = FishMovementType.values();
+        return values[RANDOM.nextInt(values.length)];
+    }
 }
