@@ -46,7 +46,7 @@ public class User {
     private ArrayList<CookingItem> refrigerator = new ArrayList<>();
     private ArrayList<ArtisanMachine> artisanMachines = new ArrayList<>();
 
-    private transient String avatarPath;
+    private String avatarPath;
 
 
     private BackPack backPack = new BackPack();

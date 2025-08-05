@@ -39,13 +39,14 @@ public class MainMenuScreen implements Screen {
         TextButton gameBtn = new TextButton("PreGame Menu", skin);
         TextButton logoutBtn = new TextButton("Logout", skin);
 
-        Texture avatarTexture = new Texture(App.getMainUser().getAvatarPath());
+        Texture avatarTexture = new Texture(App.mainUser.getAvatarPath());
         Image avatarImage = new Image(avatarTexture);
+
         avatarImage.setSize(100, 100);
 
 
-        table.add(avatarImage).padBottom(20).row();
         table.add(title).padBottom(40).row();
+        table.add(avatarImage).right().padBottom(20).row();
         table.add(profileBtn).pad(10).row();
         table.add(avatarBtn).pad(10).row();
         table.add(gameBtn).pad(10).row();

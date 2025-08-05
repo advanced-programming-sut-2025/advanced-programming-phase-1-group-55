@@ -66,7 +66,7 @@ public class FirstMenu extends ScreenAdapter {
             @Override
             public boolean keyDown(int keycode) {
                 if (keycode == Input.Keys.G) {
-                    App.mainUser = App.getAllUsers().get("asdas");
+                    App.mainUser = App.getAllUsers().get("arshia");
                     App.getGameApp().setScreen(new MainMenuScreen());
                 }
                 return true;
