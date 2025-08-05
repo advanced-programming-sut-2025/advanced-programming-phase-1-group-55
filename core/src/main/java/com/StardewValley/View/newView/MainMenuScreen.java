@@ -7,6 +7,7 @@ import com.StardewValley.model.App;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -38,6 +39,12 @@ public class MainMenuScreen implements Screen {
         TextButton gameBtn = new TextButton("PreGame Menu", skin);
         TextButton logoutBtn = new TextButton("Logout", skin);
 
+        Texture avatarTexture = new Texture(App.getMainUser().getAvatarPath());
+        Image avatarImage = new Image(avatarTexture);
+        avatarImage.setSize(100, 100);
+
+
+        table.add(avatarImage).padBottom(20).row();
         table.add(title).padBottom(40).row();
         table.add(profileBtn).pad(10).row();
         table.add(avatarBtn).pad(10).row();

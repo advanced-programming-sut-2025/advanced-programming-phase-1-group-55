@@ -46,6 +46,8 @@ public class User {
     private ArrayList<CookingItem> refrigerator = new ArrayList<>();
     private ArrayList<ArtisanMachine> artisanMachines = new ArrayList<>();
 
+    private transient String avatarPath;
+
 
     private BackPack backPack = new BackPack();
     private User wife = null;
@@ -76,8 +78,7 @@ public class User {
     private GreenHouse greenHouse;
 
 
-
-    public User(String username, String password, String nickName, String email, String gender, String securityQuestion, String answerOfSecurityQuestion) {
+    public User(String username, String password, String nickName, String email, String gender, String securityQuestion, String answerOfSecurityQuestion, String avatarPath) {
         this.username = username;
         this.password = password;
         this.nickName = nickName;
@@ -92,9 +93,18 @@ public class User {
         this.refrigerator = new ArrayList<>();
         this.backPack = new BackPack();
 
+        this.avatarPath = avatarPath;
+
     }
 
 
+    public String getAvatarPath() {
+        return avatarPath;
+    }
+
+    public void setAvatarPath(String avatarPath) {
+        this.avatarPath = avatarPath;
+    }
 
     public Direction getDirection() {
         return direction;
@@ -205,7 +215,6 @@ public class User {
     public void setPlayerTommorowLocation(Location playerTommorowLocation) {
         this.playerTommorowLocation = playerTommorowLocation;
     }
-
 
 
     public boolean isFainted() {
