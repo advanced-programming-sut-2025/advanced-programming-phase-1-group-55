@@ -39,14 +39,30 @@ public class MainMenuScreen implements Screen {
         TextButton gameBtn = new TextButton("PreGame Menu", skin);
         TextButton logoutBtn = new TextButton("Logout", skin);
 
+        Label username = new Label("", skin);
+        username.setText("Username : " + App.mainUser.getUsername());
+
+
         Texture avatarTexture = new Texture(App.mainUser.getAvatarPath());
         Image avatarImage = new Image(avatarTexture);
 
-        avatarImage.setSize(100, 100);
+        avatarImage.setSize(250, 150);
+
+
+        Table avatarTable = new Table();
+        avatarTable.top().left();
+        avatarTable.setFillParent(true);
+        avatarTable.add(avatarImage).size(250, 150).pad(10);
+        stage.addActor(avatarTable);
+
+        Table usernameLabel = new Table();
+        usernameLabel.top().right();
+        usernameLabel.setFillParent(true);
+        usernameLabel.add(username).pad(10);
+        stage.addActor(usernameLabel);
 
 
         table.add(title).padBottom(40).row();
-        table.add(avatarImage).right().padBottom(20).row();
         table.add(profileBtn).pad(10).row();
         table.add(avatarBtn).pad(10).row();
         table.add(gameBtn).pad(10).row();
@@ -71,7 +87,7 @@ public class MainMenuScreen implements Screen {
         logoutBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                App.getGameApp().setScreen(new RegisterScreen());
+                App.getGameApp().setScreen(new FirstMenu());
             }
         });
     }
