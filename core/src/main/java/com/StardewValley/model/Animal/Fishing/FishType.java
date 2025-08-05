@@ -1,4 +1,4 @@
-package com.StardewValley.model.Animal;
+package com.StardewValley.model.Animal.Fishing;
 
 import com.StardewValley.enums.Seasons;
 import com.StardewValley.model.App;
