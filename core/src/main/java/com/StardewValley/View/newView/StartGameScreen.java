@@ -81,7 +81,9 @@ public class StartGameScreen implements Screen {
         table.add(resultLabel).colspan(3).pad(10).row();
 
         TextButton startButton = new TextButton("Start Game", skin);
+        TextButton backButton = new TextButton("back", skin);
         table.add(startButton).colspan(3).padTop(20).row();
+        table.add(backButton).colspan(3).padTop(20).row();
 
         playerCountBox.addListener(new ChangeListener() {
             @Override
@@ -114,8 +116,12 @@ public class StartGameScreen implements Screen {
 
             }
         });
-        ;
-        ;
+        backButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                App.getGameApp().setScreen(new MainMenuScreen());
+            }
+        });
     }
 
     private void updateFieldsVisibility() {
