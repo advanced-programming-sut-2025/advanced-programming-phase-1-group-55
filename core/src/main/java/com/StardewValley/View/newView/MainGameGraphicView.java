@@ -219,13 +219,6 @@ public class MainGameGraphicView implements Screen, InputProcessor {
             controller.checkIfClickedOnMachine(click.x, click.y);
             controller.getToolController().UseTool(click.x, click.y);
             controller.checkIfClickedOnPlayer(click.x, click.y);
-            try {
-                System.out.println(player.getBackPack().getSelectedItem().getDisplayName());
-            }catch (NullPointerException e){
-                System.out.println("you have not selected item");
-            }
-//
-
         }
         return true;
     }

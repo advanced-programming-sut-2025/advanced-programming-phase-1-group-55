@@ -2,6 +2,7 @@ package com.StardewValley.Controller;
 
 import com.StardewValley.View.newView.FishingGameScreen;
 import com.StardewValley.enums.AssetManager;
+import com.StardewValley.model.Animal.Fishing.FishType;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.Item.ItemType;
@@ -59,7 +60,7 @@ public class ToolController {
                 Timer.schedule(new Timer.Task() {
                     @Override
                     public void run() {
-                        App.gameApp.setScreen(new FishingGameScreen());
+                        App.gameApp.setScreen(new FishingGameScreen(FishType.getRandomFish(fishingPole.getType()),new FishingController()));
                     }
                 }, 2f);
             }
