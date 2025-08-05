@@ -16,6 +16,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.badlogic.gdx.InputMultiplexer;
+
 
 public class FirstMenu extends ScreenAdapter {
     private Stage stage;
@@ -24,7 +26,8 @@ public class FirstMenu extends ScreenAdapter {
     @Override
     public void show() {
         stage = new Stage(new ScreenViewport());
-        Gdx.input.setInputProcessor(stage);
+        InputMultiplexer multiplexer = new InputMultiplexer();
+        multiplexer.addProcessor(stage);
         Texture bgTexture = new Texture(Gdx.files.internal("backgrounds/rpg-stardew-valley-logo-71h23ye38y48aaiq.jpg"));
         Image background = new Image(bgTexture);
         background.setFillParent(true);
@@ -59,19 +62,19 @@ public class FirstMenu extends ScreenAdapter {
                 Gdx.app.exit();
             }
         });
-        Gdx.input.setInputProcessor(new InputAdapter() {
+        multiplexer.addProcessor(new InputAdapter() {
             @Override
             public boolean keyDown(int keycode) {
                 if (keycode == Input.Keys.G) {
-                    App.readfile();
                     App.mainUser = App.getAllUsers().get("asdas");
                     App.getGameApp().setScreen(new MainMenuScreen());
-
                 }
-
                 return true;
             }
         });
+
+
+        Gdx.input.setInputProcessor(multiplexer);
 
         table.add(registerBtn).size(400, 100).padBottom(20).row();
         table.add(loginBtn).size(400, 100).padBottom(20).row();
