@@ -1,10 +1,12 @@
 package com.StardewValley.Controller;
 
+import com.StardewValley.View.newView.EndFishingScreen;
 import com.StardewValley.View.newView.FishingGameScreen;
 import com.StardewValley.model.Animal.Fishing.Fish;
 import com.StardewValley.model.Animal.Fishing.FishMovementPattern;
 import com.StardewValley.model.Animal.Fishing.FishMovementType;
 import com.StardewValley.model.App;
+import com.StardewValley.model.Item.Item;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 
@@ -39,9 +41,10 @@ public class FishingController {
                 view.getProgressBar().setValue(view.getProgressBar().getValue()-6);
             }
             if (view.getProgressBar().getValue()<=0){
-                // todo lose
+               App.gameApp.setScreen(new EndFishingScreen(false,view.getFishType()));
             } else if (view.getProgressBar().getValue()>=100) {
-                //todo won
+                App.getCurrentGameModel().currentUser.getBackPack().addItemToInventory(new Item(view.getFishType().getType()),1);
+                App.gameApp.setScreen(new EndFishingScreen(true,view.getFishType()));
             }
             time=0;
             view.getFishRect().setY(Math.max(bottom, Math.min(top, view.getFishRect().getY()+7*fishMovementPattern.getNextDeltaY())));
