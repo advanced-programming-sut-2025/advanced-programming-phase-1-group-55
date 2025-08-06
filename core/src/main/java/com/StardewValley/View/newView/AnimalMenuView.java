@@ -1,6 +1,7 @@
 package com.StardewValley.View.newView;
 
 import com.StardewValley.Controller.AnimalMenuController;
+import com.StardewValley.Controller.BuyAnimalMenuController;
 import com.StardewValley.model.App;
 import com.StardewValley.model.User;
 import com.badlogic.gdx.Gdx;
@@ -23,10 +24,9 @@ public class AnimalMenuView implements Screen {
     private final User user;
     private TextButton buildBarnButton;
     private TextButton buildCoopButton;
+    private TextButton buyAnimalButton;
     private final Label errorLabel;
-    private Timer.Task clearErrorTask;
     private TextButton backButton;
-
 
     public AnimalMenuView(AnimalMenuController controller, User user) {
         this.controller = controller;
@@ -34,11 +34,11 @@ public class AnimalMenuView implements Screen {
         this.user = user;
         buildBarnButton = new TextButton("Build Barn", skin);
         buildCoopButton = new TextButton("Build Coop", skin);
+        buyAnimalButton = new TextButton("Buy Animal", skin);
         errorLabel = new Label("", skin);
         errorLabel.setColor(Color.RED);
         errorLabel.setWrap(true);
         backButton = new TextButton("Back", skin);
-
     }
 
     @Override
@@ -54,31 +54,45 @@ public class AnimalMenuView implements Screen {
         stage.addActor(rootTable);
         Table menuTable = new Table();
         menuTable.defaults().width(400).height(80).pad(14);
+
         menuTable.add(buildBarnButton).row();
         menuTable.add(buildCoopButton).row();
+        menuTable.add(buyAnimalButton).row(); // 🔽 دکمه خرید حیوان
         menuTable.add(backButton).row();
         menuTable.add(errorLabel).row();
         rootTable.add(menuTable).center();
+
         buildBarnButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 controller.handleBuildRequest("Barn");
             }
         });
+
         buildCoopButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 controller.handleBuildRequest("Coop");
             }
         });
+
+        buyAnimalButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                // اینجا رفتن به منوی خرید حیوانات
+                App.gameApp.setScreen(new BuyAnimalMenuView(
+                    new BuyAnimalMenuController(user), user));
+            }
+        });
+
         backButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 App.gameApp.setScreen(App.currentGameGraphicView);
             }
         });
-
     }
+
     public void setErrorMessage(String message) {
         errorLabel.setText(message);
         errorLabel.clearActions();
@@ -90,14 +104,13 @@ public class AnimalMenuView implements Screen {
         }
     }
 
-
-
     @Override
     public void render(float delta) {
         ScreenUtils.clear(0, 0, 0, 1);
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1/30f));
         stage.draw();
     }
+
     @Override public void resize(int w, int h) { }
     @Override public void pause() { }
     @Override public void resume() { }

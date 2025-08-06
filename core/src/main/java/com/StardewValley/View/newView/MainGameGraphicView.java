@@ -11,6 +11,7 @@ import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.Item.ItemType;
 import com.StardewValley.model.MainTime;
 import com.StardewValley.model.Map.GameMap;
+import com.StardewValley.model.Map.Location;
 import com.StardewValley.model.NPC.Npc;
 import com.StardewValley.model.NPC.Quest;
 import com.StardewValley.model.User;
@@ -216,6 +217,7 @@ public class MainGameGraphicView implements Screen, InputProcessor {
                 land.setColor(Color.RED);
             }
         }
+
     }
 
 

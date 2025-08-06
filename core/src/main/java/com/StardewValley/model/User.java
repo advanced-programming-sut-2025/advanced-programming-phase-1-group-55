@@ -7,6 +7,7 @@ import com.StardewValley.enums.SkillType;
 import com.StardewValley.model.Animal.Animal;
 import com.StardewValley.model.Animal.AnimalBuilding;
 import com.StardewValley.model.Animal.AnimalBuildingOld;
+import com.StardewValley.model.Animal.FarmAnimalType;
 import com.StardewValley.model.Artisan.ArtisanMachine;
 import com.StardewValley.model.Artisan.ArtisanMachineType;
 import com.StardewValley.model.CookingItems.CookingItem;
@@ -611,6 +612,23 @@ public class User {
 
         return false;
     }
+
+    public boolean addAnimalToBuilding(FarmAnimalType type) {
+        for (AnimalBuilding building : farmBuildings) {
+            if (type.getBuildings().contains(building.getFarmBuildingType())) {
+                if (building.getAnimals().size() < building.getCapacity()) {
+                    building.getAnimals().add(new Animal(type));
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+
+
+
+
 
     public boolean isNear(Location otherLocation) {
 

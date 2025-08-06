@@ -5,6 +5,8 @@ import com.StardewValley.model.Item.CollisionRect;
 import com.StardewValley.model.Map.Location;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
+import java.util.ArrayList;
+
 public class AnimalBuilding {
     private final FarmBuildingType farmBuildingType;
     private final int cost;
@@ -14,6 +16,9 @@ public class AnimalBuilding {
     private Location location;
     private CollisionRect collisionRect;
     private Sprite sprite;
+    private ArrayList<Animal> animals = new ArrayList<>();
+
+
 
     public AnimalBuilding(Location location, FarmBuildingType type) {
         this.farmBuildingType = type;
@@ -31,9 +36,14 @@ public class AnimalBuilding {
         } else if (type.getName().equalsIgnoreCase("Coop")) {
             this.sprite = new Sprite(AssetManager.COOP.getTexture());
         } else {
-            this.sprite = new Sprite(AssetManager.BARN.getTexture()); // پیش‌فرض
+            this.sprite = new Sprite(AssetManager.BARN.getTexture());
         }
     }
+
+    public ArrayList<Animal> getAnimals() {
+        return animals;
+    }
+
     public FarmBuildingType getFarmBuildingType() { return farmBuildingType; }
     public Location getLocation() { return location; }
     public CollisionRect getCollisionRect() { return collisionRect; }

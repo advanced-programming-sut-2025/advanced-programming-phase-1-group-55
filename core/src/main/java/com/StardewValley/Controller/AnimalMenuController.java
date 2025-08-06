@@ -1,6 +1,7 @@
 package com.StardewValley.Controller;
 
 import com.StardewValley.View.newView.AnimalMenuView;
+import com.StardewValley.model.Animal.AnimalBuilding;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.Item.ItemType;
@@ -39,7 +40,9 @@ public class AnimalMenuController {
 //            view.setErrorMessage("Not enough materials to build " + buildingName + ".");
 //            return;
 //        }
+        user.getBackPack().removeAmountFromInventory(selectedItem, 1);
         App.currentGameGraphicView.startBuildingMode(buildingType);
         App.gameApp.setScreen(App.currentGameGraphicView);
+
     }
 }

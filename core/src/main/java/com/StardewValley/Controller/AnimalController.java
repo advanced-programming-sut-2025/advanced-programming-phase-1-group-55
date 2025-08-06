@@ -207,24 +207,24 @@ public class AnimalController {
 
 
 
-    public Result collectProducts(String input) {
-        String name = AnimalCommands.COLLECT_PRODUCES.getMatcher(input).group("name").trim();
-        User user = App.currentGameModel.currentUser;
-        Animal animal = user.findAnimal(name);
-        if (animal == null) {
-            return new Result(false, "animal not found");
-        }
-        if (!animal.isHasProduct()) {
-            return new Result(false, "this animal dont have any products");
-        }
-        if (!user.getBackPack().inventoryHasCapacity()) {
-            return new Result(false, "you dont have inventory for collecting products");
-        }
-        Item product = animal.getProduct();
-        user.getBackPack().addItemToInventory(product, 1);
-        return new Result(true, "The product has been collected");
-
-    }
+//    public Result collectProducts(String input) {
+//        String name = AnimalCommands.COLLECT_PRODUCES.getMatcher(input).group("name").trim();
+//        User user = App.currentGameModel.currentUser;
+//        Animal animal = user.findAnimal(name);
+//        if (animal == null) {
+//            return new Result(false, "animal not found");
+//        }
+//        if (!animal.isHasProduct()) {
+//            return new Result(false, "this animal dont have any products");
+//        }
+//        if (!user.getBackPack().inventoryHasCapacity()) {
+//            return new Result(false, "you dont have inventory for collecting products");
+//        }
+//        Item product = animal.getProduct();
+//        user.getBackPack().addItemToInventory(product, 1);
+//        return new Result(true, "The product has been collected");
+//
+//    }
     public Result feedHay(String input) {
         String name = AnimalCommands.FEED_HAY.getMatcher(input).group("name").trim();
         User user = App.currentGameModel.currentUser;
