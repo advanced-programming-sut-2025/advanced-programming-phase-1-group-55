@@ -18,6 +18,11 @@ public class SettingsScreen implements Screen {
 
     private Stage stage;
     private Table table;
+    private PauseMenuView pauseMenuView;
+
+    SettingsScreen(PauseMenuView p) {
+        pauseMenuView = p;
+    }
 
     @Override
     public void show() {
@@ -32,8 +37,8 @@ public class SettingsScreen implements Screen {
         table.setFillParent(true);
         stage.addActor(table);
 
-//        Label title = new Label("Settings", App.skin, "title");
-//        table.add(title).colspan(3).padBottom(20).row();
+        Label title = new Label("Settings", App.skin);
+        table.add(title).colspan(3).padBottom(20).row();
 
         List<User> players = App.getCurrentGameModel().getPlayersInGame();
         for (User player : players) {
@@ -52,14 +57,14 @@ public class SettingsScreen implements Screen {
             table.add(kickButton).width(180);
             table.row().pad(5, 0, 5, 0);
         }
-
+        TextButton backButton = new TextButton("back", App.skin);
         TextButton saveButton = new TextButton("Save", App.skin);
         TextButton exitButton = new TextButton("Exit", App.skin);
 
         saveButton.addListener(new ClickListener() {
             @Override
             public void clicked(com.badlogic.gdx.scenes.scene2d.InputEvent event, float x, float y) {
-//                System.out.println("Game Saved!");
+                System.out.println("Game Saved!");
             }
         });
 
@@ -70,10 +75,18 @@ public class SettingsScreen implements Screen {
 
             }
         });
+        backButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(com.badlogic.gdx.scenes.scene2d.InputEvent event, float x, float y) {
+                App.getGameApp().setScreen(new PauseMenuView(pauseMenuView.getController(), pauseMenuView.getUser()));
+
+            }
+        });
 
         table.row().padTop(20);
         table.add(saveButton).colspan(1).width(120).padRight(10);
         table.add(exitButton).colspan(1).width(120);
+        table.add(backButton).colspan(1).width(120);
     }
 
     @Override

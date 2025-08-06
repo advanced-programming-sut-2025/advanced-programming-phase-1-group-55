@@ -97,7 +97,7 @@ public class PauseMenuView implements Screen {
         SettingButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                App.getGameApp().setScreen(new SettingsScreen());
+                App.getGameApp().setScreen(new SettingsScreen(PauseMenuView.this));
             }
         });
 
@@ -269,7 +269,6 @@ public class PauseMenuView implements Screen {
     public void setClearErrorTask2(Timer.Task clearErrorTask2) {
         this.clearErrorTask2 = clearErrorTask2;
     }
-
 
 
     public TextButton getRecycleBinButton() {
