@@ -43,12 +43,27 @@ public class User {
     private int numberOfSecurityQuestion;
     private String securityQuestion;
     private String answerOfSecurityQuestion;
+    @Expose
+
     private Skill farmingSkill = new Skill(SkillType.Farming);
+    @Expose
+
     private Skill miningSkill = new Skill(SkillType.Mining);
+    @Expose
+
+
     private Skill foragingSkill = new Skill(SkillType.Foraging);
+    @Expose
+
     private Skill fishingSkill = new Skill(SkillType.Fishing);
+    @Expose
+
     private ArrayList<CookingItem> refrigerator = new ArrayList<>();
+    @Expose
+
     private ArrayList<ArtisanMachine> artisanMachines = new ArrayList<>();
+    @Expose
+
 
     private String avatarPath;
 

@@ -1,19 +1,70 @@
 {
   "currentUser": {
     "username": "arshia",
-    "password": "f723cc1d314e07f0ee5c7c0130f4c3f7b9393587cb3eec762ea4caeeb8087236",
-    "energy": 9579.0
+    "farmingSkill": {},
+    "miningSkill": {},
+    "foragingSkill": {},
+    "fishingSkill": {},
+    "refrigerator": [],
+    "artisanMachines": [],
+    "avatarPath": "avatars/vibrent_20.png",
+    "backPack": {},
+    "friendsNpc": {
+      "Abigail": {},
+      "Leah": {},
+      "Harvey": {},
+      "Robin": {},
+      "Sebastian": {}
+    },
+    "gold": 39000,
+    "wood": 39500,
+    "energy": 9409.0,
+    "location": {}
   },
   "playersInGame": [
     {
       "username": "arshia",
-      "password": "f723cc1d314e07f0ee5c7c0130f4c3f7b9393587cb3eec762ea4caeeb8087236",
-      "energy": 9579.0
+      "farmingSkill": {},
+      "miningSkill": {},
+      "foragingSkill": {},
+      "fishingSkill": {},
+      "refrigerator": [],
+      "artisanMachines": [],
+      "avatarPath": "avatars/vibrent_20.png",
+      "backPack": {},
+      "friendsNpc": {
+        "Abigail": {},
+        "Leah": {},
+        "Harvey": {},
+        "Robin": {},
+        "Sebastian": {}
+      },
+      "gold": 39000,
+      "wood": 39500,
+      "energy": 9409.0,
+      "location": {}
     },
     {
       "username": "a",
-      "password": "f723cc1d314e07f0ee5c7c0130f4c3f7b9393587cb3eec762ea4caeeb8087236",
-      "energy": 10000.0
+      "farmingSkill": {},
+      "miningSkill": {},
+      "foragingSkill": {},
+      "fishingSkill": {},
+      "refrigerator": [],
+      "artisanMachines": [],
+      "avatarPath": "avatars/vibrent_20.png",
+      "backPack": {},
+      "friendsNpc": {
+        "Abigail": {},
+        "Leah": {},
+        "Harvey": {},
+        "Robin": {},
+        "Sebastian": {}
+      },
+      "gold": 40000,
+      "wood": 40000,
+      "energy": 10000.0,
+      "location": {}
     }
   ],
   "map": {
@@ -32,13 +83,47 @@
     {
       "user1": {
         "username": "arshia",
-        "password": "f723cc1d314e07f0ee5c7c0130f4c3f7b9393587cb3eec762ea4caeeb8087236",
-        "energy": 9579.0
+        "farmingSkill": {},
+        "miningSkill": {},
+        "foragingSkill": {},
+        "fishingSkill": {},
+        "refrigerator": [],
+        "artisanMachines": [],
+        "avatarPath": "avatars/vibrent_20.png",
+        "backPack": {},
+        "friendsNpc": {
+          "Abigail": {},
+          "Leah": {},
+          "Harvey": {},
+          "Robin": {},
+          "Sebastian": {}
+        },
+        "gold": 39000,
+        "wood": 39500,
+        "energy": 9409.0,
+        "location": {}
       },
       "user2": {
         "username": "a",
-        "password": "f723cc1d314e07f0ee5c7c0130f4c3f7b9393587cb3eec762ea4caeeb8087236",
-        "energy": 10000.0
+        "farmingSkill": {},
+        "miningSkill": {},
+        "foragingSkill": {},
+        "fishingSkill": {},
+        "refrigerator": [],
+        "artisanMachines": [],
+        "avatarPath": "avatars/vibrent_20.png",
+        "backPack": {},
+        "friendsNpc": {
+          "Abigail": {},
+          "Leah": {},
+          "Harvey": {},
+          "Robin": {},
+          "Sebastian": {}
+        },
+        "gold": 40000,
+        "wood": 40000,
+        "energy": 10000.0,
+        "location": {}
       },
       "areMarried": false,
       "todayHugged": false,
