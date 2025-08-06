@@ -25,6 +25,8 @@ public class AnimalMenuView implements Screen {
     private TextButton buildCoopButton;
     private final Label errorLabel;
     private Timer.Task clearErrorTask;
+    private TextButton backButton;
+
 
     public AnimalMenuView(AnimalMenuController controller, User user) {
         this.controller = controller;
@@ -35,6 +37,8 @@ public class AnimalMenuView implements Screen {
         errorLabel = new Label("", skin);
         errorLabel.setColor(Color.RED);
         errorLabel.setWrap(true);
+        backButton = new TextButton("Back", skin);
+
     }
 
     @Override
@@ -52,6 +56,7 @@ public class AnimalMenuView implements Screen {
         menuTable.defaults().width(400).height(80).pad(14);
         menuTable.add(buildBarnButton).row();
         menuTable.add(buildCoopButton).row();
+        menuTable.add(backButton).row();
         menuTable.add(errorLabel).row();
         rootTable.add(menuTable).center();
         buildBarnButton.addListener(new ClickListener() {
@@ -66,6 +71,13 @@ public class AnimalMenuView implements Screen {
                 controller.handleBuildRequest("Coop");
             }
         });
+        backButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                App.gameApp.setScreen(App.currentGameGraphicView);
+            }
+        });
+
     }
     public void setErrorMessage(String message) {
         errorLabel.setText(message);
