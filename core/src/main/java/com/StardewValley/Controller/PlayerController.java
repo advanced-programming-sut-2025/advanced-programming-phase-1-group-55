@@ -214,7 +214,7 @@ public class PlayerController {
             player.decreaseEnergy(1);
         }
         if (Gdx.input.isKeyPressed(Input.Keys.E)) {
-            mainUser.increaseEnergy(10);
+            player.increaseEnergy(10);
         }
         if (player.getCollisionRect().isNear(player.getFarm().getGreenHouse().getCollisionRect())) {
             if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_0)) {
