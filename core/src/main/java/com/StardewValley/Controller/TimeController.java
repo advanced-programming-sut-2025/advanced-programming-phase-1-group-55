@@ -47,8 +47,6 @@ public class TimeController {
     private int scale;
 
 
-    private float lightningTimer = 0;
-    private boolean lightningFlash = false;
     private Sound thunderSound;
 
     public TimeController() {
@@ -91,27 +89,34 @@ public class TimeController {
         clockArrow.setOrigin(clockArrow.getWidth() / 2, 0);
     }
 
-    private boolean hasThunderPlayed = false;
+    private boolean lightningFlash = false;
+    private boolean hasLightningHappened = false;
     private float flashDuration = 0f;
 
     public void update(float delta) {
-        if (getCurrentWeather() == WeatherType.Storm) {
-            if (!hasThunderPlayed) {
-                lightningFlash = true;
-                flashDuration = 0.3f;
-                thunderSound.play();
-                hasThunderPlayed = true;
-            }
-        } else {
-            hasThunderPlayed = false;
+
+        if (Gdx.input.isKeyJustPressed(Input.Keys.L)) {
+            triggerLightning();
+            hasLightningHappened = false;
         }
 
-        if (flashDuration > 0) {
+        if (getCurrentWeather() == WeatherType.Storm && !hasLightningHappened) {
+            triggerLightning();
+        }
+
+        if (lightningFlash) {
             flashDuration -= delta;
             if (flashDuration <= 0) {
                 lightningFlash = false;
             }
         }
+    }
+
+    private void triggerLightning() {
+        lightningFlash = true;
+        flashDuration = 0.2f;
+        thunderSound.play();
+        hasLightningHappened = true;
     }
 
 
