@@ -51,7 +51,12 @@ public class FishingGameScreen implements Screen {
         controller.setView(this);
         skin= App.skin;
         barRect = new CollisionRect(100, 100, 40, 300);
-        fishSprite= AssetManager.chub_fish.getSprite();
+        if (fishType.equals(FishType.LEGEND)){
+            fishSprite= new Sprite(fishType.getTexture());
+        }else {
+            fishSprite= AssetManager.chub_fish.getSprite();
+        }
+
 
     }
 
@@ -98,8 +103,8 @@ public class FishingGameScreen implements Screen {
     topTable.setFillParent(true);
     topTable.add(progressBar).row();
     topTable.padBottom(700);
-        if(App.currentGameModel.currentUser.getBackPack().getInventory().containsKey(ItemType.SONAR_BOBBER.getDisplayName())){
-            topTable.add(new Image(fishType.getType().getTexture())).row();
+        if(App.currentGameModel.currentUser.getBackPack().getInventory().containsKey(ItemType.SONAR_BOBBER.getDisplayName())||fishType.equals(FishType.LEGEND)){
+            topTable.add(new Image(fishType.getTexture())).row();
             topTable.add(new Label(fishType.getDisplayName(), skin)).row();
         }else {
             topTable.add(new Label("use snoar bobber to get information about the fish!", skin)).row();

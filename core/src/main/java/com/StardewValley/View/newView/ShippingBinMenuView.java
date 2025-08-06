@@ -19,6 +19,7 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class ShippingBinMenuView implements Screen {
     private ShippingBinMenuController controller;
@@ -110,8 +111,8 @@ public class ShippingBinMenuView implements Screen {
 
             String itemName = item.getItemType().getDisplayName();
             int price = item.getPrice();
-
-            TextButton itemButton = new TextButton(itemName + "\nPrice: " + price+"\nQuantity: "+item.getNumber(), skin);
+            String text= Objects.equals(from, "store") ?itemName + "\nPrice: " + price+"\nQuantity: "+item.getNumber():itemName+"\nQuantity: "+item.getNumber();
+            TextButton itemButton = new TextButton(text, skin);
             itemButton.getLabel().setFontScale(0.65f);
             itemButton.pad(10);
 

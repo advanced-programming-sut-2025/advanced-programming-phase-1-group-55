@@ -54,7 +54,7 @@ public class EndFishingScreen implements Screen {
         titleLabel.setAlignment(Align.center);
 
 
-        Image fishImage = new Image(fishType.getType().getTexture());
+        Image fishImage = new Image(fishType.getTexture());
         Label fishNameLabel = new Label(fishType.getDisplayName(), skin);
         fishNameLabel.setFontScale(1.5f);
         fishNameLabel.setAlignment(Align.center);
