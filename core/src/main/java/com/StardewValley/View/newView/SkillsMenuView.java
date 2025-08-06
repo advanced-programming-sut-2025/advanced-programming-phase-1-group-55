@@ -88,7 +88,8 @@ public class SkillsMenuView implements Screen {
                 default -> null;
             };
             int level = (skill != null) ? skill.getLevel() : 0;
-            Label skillLabel = new Label(skillType.name() + " - Level: " + level, skin);
+            assert skill != null;
+            Label skillLabel = new Label(skillType.name() + " - Level: " + level+"\n- Point: "+skill.getPoints(), skin);
             table.add(icon).pad(10).width(64).height(64);
             table.add(skillLabel).pad(10).left().row();
         }

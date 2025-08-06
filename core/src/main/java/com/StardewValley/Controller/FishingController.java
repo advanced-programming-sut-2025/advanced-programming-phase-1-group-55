@@ -39,12 +39,17 @@ public class FishingController {
                 view.getProgressBar().setValue(view.getProgressBar().getValue()+2);
             }else {
                 view.getProgressBar().setValue(view.getProgressBar().getValue()-6);
+                view.setPerfectCatch(false);
             }
             if (view.getProgressBar().getValue()<=0){
                App.gameApp.setScreen(new EndFishingScreen(false,view.getFishType()));
             } else if (view.getProgressBar().getValue()>=100) {
                 App.getCurrentGameModel().currentUser.getBackPack().addItemToInventory(new Item(view.getFishType().getType()),1);
                 App.gameApp.setScreen(new EndFishingScreen(true,view.getFishType()));
+                App.getCurrentGameModel().getCurrentUser().getFishingSkill().changePoints(20);
+                if (view.isPerfectCatch()){
+                    App.getCurrentGameModel().getCurrentUser().getFishingSkill().setPoints( (int)(App.getCurrentGameModel().getCurrentUser().getFishingSkill().getPoints()*2.4));
+                }
             }
             time=0;
             view.getFishRect().setY(Math.max(bottom, Math.min(top, view.getFishRect().getY()+7*fishMovementPattern.getNextDeltaY())));

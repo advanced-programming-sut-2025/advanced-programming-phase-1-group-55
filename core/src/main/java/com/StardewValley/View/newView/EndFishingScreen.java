@@ -33,7 +33,7 @@ public class EndFishingScreen implements Screen {
     public void show() {
         Gdx.input.setInputProcessor(stage);
 
-        // پس‌زمینه
+
         Texture backgroundTexture = new Texture(Gdx.files.internal(won ?
             "background/pastel-pink.jpg" :
             "background/vintage-textured-paper-background-vector.jpg"));
@@ -41,25 +41,25 @@ public class EndFishingScreen implements Screen {
         backgroundImage.setFillParent(true);
         stage.addActor(backgroundImage);
 
-        // جدول اصلی
+
         Table table = new Table();
         table.setFillParent(true);
         stage.addActor(table);
 
-        // پیام موفقیت یا شکست
+
         String status = won ? "You successfully caught the fish" : "You couldn't catch the fish, and it escaped!";
         Label titleLabel = new Label(status, skin);
         titleLabel.setColor(won ? Color.CYAN : Color.RED);
         titleLabel.setFontScale(2f);
         titleLabel.setAlignment(Align.center);
 
-        // عکس ماهی و نام آن
+
         Image fishImage = new Image(fishType.getType().getTexture());
         Label fishNameLabel = new Label(fishType.getDisplayName(), skin);
         fishNameLabel.setFontScale(1.5f);
         fishNameLabel.setAlignment(Align.center);
 
-        // دکمه تأیید
+
         okButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -67,7 +67,7 @@ public class EndFishingScreen implements Screen {
             }
         });
 
-        // چینش آیتم‌ها در جدول
+
         table.top().padTop(60);
 
         table.add(titleLabel).center().padBottom(80).row();
