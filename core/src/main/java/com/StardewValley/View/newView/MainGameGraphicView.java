@@ -18,6 +18,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector3;
@@ -46,6 +47,24 @@ public class MainGameGraphicView implements Screen, InputProcessor {
     private GameMap map = new GameMap();
     private TimeController timeController;
     private TextureRegion backgroundRegion;
+
+
+    private String errorMessage = null;
+    private float errorTimer = 0f;
+
+    public void showError(String message, float duration) {
+        errorMessage = message;
+        errorTimer = duration;
+    }
+
+    public void update(float delta) {
+        if (errorTimer > 0) {
+            errorTimer -= delta;
+            if (errorTimer <= 0) {
+                errorMessage = null;
+            }
+        }
+    }
 
 
     public MainGameGraphicView(MainGameController controller, GameMap map) {
@@ -148,6 +167,16 @@ public class MainGameGraphicView implements Screen, InputProcessor {
         controller.updateGame(delta);
         timeController.update(delta);
         timeController.render(App.gameApp.getBatch(), camera);
+        update(delta);
+        if (errorMessage != null) {
+            BitmapFont font = new BitmapFont();
+            font.setColor(Color.RED);
+            font.getData().setScale(2f);
+
+            font.draw(App.gameApp.getBatch(), errorMessage,
+                Gdx.graphics.getWidth() / 2f - 100,
+                Gdx.graphics.getHeight() - 50);
+        }
         App.gameApp.getBatch().end();
 
         energyBar.setValue((float) player.getEnergy());

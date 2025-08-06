@@ -219,13 +219,15 @@ public class PlayerController {
         if (player.getCollisionRect().isNear(player.getFarm().getGreenHouse().getCollisionRect())) {
             if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_0)) {
                 GreenHouse greenhouse = player.getFarm().getGreenHouse();
-                greenhouse.setRepaired(true);
-                greenhouse.setSprite(greenhouse.getSprite_salem());
-                if (player.getGold() > greenhouse.getGoldForGreenHouse() && player.getWood() > greenhouse.getWoodForGreenHouse()) {
+
+
+                if (player.getGold() > greenhouse.getGoldForGreenHouse() && player.getWood() > greenhouse.getWoodForGreenHouse() && !greenhouse.getRepaired()) {
+                    greenhouse.setRepaired(true);
                     player.decreaseWood(greenhouse.getWoodForGreenHouse());
                     player.decreaseGold(greenhouse.getGoldForGreenHouse());
+                    greenhouse.setSprite(greenhouse.getSprite_salem());
                 } else {
-
+                    MainGameController.getView().showError("you dont have enough material", 2f);
                 }
 
             }
