@@ -1,6 +1,8 @@
 package com.StardewValley.View.newView;
 
 
+import com.StardewValley.Controller.MainGameController;
+import com.StardewValley.model.GameModel;
 import com.badlogic.gdx.Screen;
 import com.StardewValley.Controller.LoginMenuController;
 import com.StardewValley.model.App;
@@ -15,6 +17,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import java.io.Reader;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class MainMenuScreen implements Screen {
 
@@ -41,6 +50,7 @@ public class MainMenuScreen implements Screen {
 //        TextButton avatarBtn = new TextButton("Avatar Menu", skin);
         TextButton gameBtn = new TextButton("PreGame Menu", skin);
         TextButton logoutBtn = new TextButton("Logout", skin);
+        TextButton loadButton = new TextButton("Load Game", skin);
 
         Label username = new Label("", skin);
         username.setText("Username : " + App.mainUser.getUsername());
@@ -70,7 +80,48 @@ public class MainMenuScreen implements Screen {
 //        table.add(avatarBtn).pad(10).row();
         table.add(profileBtn).pad(10).row();
         table.add(logoutBtn).pad(10).row();
+        table.add(loadButton).pad(10).row();
+        loadButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                try {
+                    Path savePath = Paths.get("saves", "game_save.json");
 
+                    if (!Files.exists(savePath)) {
+                        System.out.println("No saved game found!");
+                        return;
+                    }
+
+                    Gson gson = new GsonBuilder()
+                        .excludeFieldsWithoutExposeAnnotation()
+                        .setPrettyPrinting()
+                        .create();
+
+                    try (Reader reader = Files.newBufferedReader(savePath)) {
+                        GameModel loadedGame = gson.fromJson(reader, GameModel.class);
+
+                        if (loadedGame.getMap() != null) {
+//                            loadedGame.getMap().loadGraphics();
+                        }
+
+                        App.setCurrentGameModel(loadedGame);
+
+                        App.getGameApp().setScreen(
+                            new MainGameGraphicView(
+                                new MainGameController(),
+                                loadedGame.getMap()
+                            )
+                        );
+
+                        System.out.println("Game loaded successfully!");
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+//                    resultLabel.setText("Error loading saved game!");
+                }
+            }
+        });
         profileBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {

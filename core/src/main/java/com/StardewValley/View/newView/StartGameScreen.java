@@ -5,6 +5,7 @@ import com.StardewValley.Controller.GameMenuController;
 import com.StardewValley.Controller.MainGameController;
 import com.StardewValley.model.App;
 
+import com.StardewValley.model.GameModel;
 import com.StardewValley.model.Item.CollisionRect;
 import com.StardewValley.model.Map.Location;
 import com.StardewValley.model.Result;
@@ -19,6 +20,13 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import java.io.Reader;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 
 public class StartGameScreen implements Screen {
@@ -93,6 +101,7 @@ public class StartGameScreen implements Screen {
         });
 
         updateFieldsVisibility();
+
 
         startButton.addListener(new ClickListener() {
             @Override

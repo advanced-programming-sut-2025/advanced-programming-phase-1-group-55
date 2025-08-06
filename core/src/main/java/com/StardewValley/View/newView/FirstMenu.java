@@ -54,48 +54,7 @@ public class FirstMenu extends ScreenAdapter {
         TextButton registerBtn = new TextButton("Register", skin);
         TextButton loginBtn = new TextButton("Login", skin);
         TextButton exitBtn = new TextButton("Exit", skin);
-        TextButton loadButton = new TextButton("Load Game", skin);
-        loadButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                try {
-                    Path savePath = Paths.get("saves", "game_save.json");
 
-                    if (!Files.exists(savePath)) {
-                        System.out.println("No saved game found!");
-                        return;
-                    }
-
-                    Gson gson = new GsonBuilder()
-                        .excludeFieldsWithoutExposeAnnotation()
-                        .setPrettyPrinting()
-                        .create();
-
-                    try (Reader reader = Files.newBufferedReader(savePath)) {
-                        GameModel loadedGame = gson.fromJson(reader, GameModel.class);
-
-                        if (loadedGame.getMap() != null) {
-//                            loadedGame.getMap().loadGraphics();
-                        }
-
-                        App.setCurrentGameModel(loadedGame);
-
-                        App.getGameApp().setScreen(
-                            new MainGameGraphicView(
-                                new MainGameController(),
-                                loadedGame.getMap()
-                            )
-                        );
-
-                        System.out.println("Game loaded successfully!");
-                    }
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-//                    resultLabel.setText("Error loading saved game!");
-                }
-            }
-        });
 
 
         registerBtn.addListener(new ChangeListener() {
@@ -132,8 +91,7 @@ public class FirstMenu extends ScreenAdapter {
 
         table.add(registerBtn).size(400, 100).padBottom(20).row();
         table.add(loginBtn).size(400, 100).padBottom(20).row();
-        table.add(exitBtn).size(400, 100).row();
-        table.add(loadButton).size(400, 100);
+        table.add(exitBtn).size(400, 100);
 
     }
 

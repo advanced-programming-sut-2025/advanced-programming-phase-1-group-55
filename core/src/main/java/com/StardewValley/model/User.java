@@ -32,7 +32,6 @@ public class User {
 
     @Expose
     private String username;
-    @Expose
     private String password;
     private String nickName;
     private CollisionRect collisionRect;
@@ -53,19 +52,28 @@ public class User {
 
     private String avatarPath;
 
+    @Expose
 
     private BackPack backPack = new BackPack();
     private User wife = null;
+    @Expose
+
     private HashMap<String, NpcFriendship> friendsNpc = new HashMap<>();
+    @Expose
+
     private int gold = 40000;
     private HashMap<User, PlayerFriendship> friendsPlayer = new HashMap<>();
     private int dailyMoney = 0;
+    @Expose
+
     private int wood = 40000;
     @Expose
     private double energy = 1000;
     private boolean stayLoggedIn = false;
     private int mostAchievedMoney = 0;
     private int matchPlayed = 0;
+    @Expose
+
     private Location location = new Location(0, 0);//todo ino bayad bokonm location aval farmesh
     private Direction direction = Direction.DOWN;
     private boolean fainted = false;
