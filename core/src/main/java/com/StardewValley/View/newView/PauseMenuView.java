@@ -30,10 +30,9 @@ public class PauseMenuView implements Screen {
     private TextButton InventoryMenuButton;
     private TextButton toolsMenuButton;
     private TextButton skillsButton;
-    private TextButton ExitButton;
+    private TextButton SettingButton;
     private TextButton recycleBinButton;
     private TextButton questsButton;
-    private TextButton SaveButton;
     private final Label errorLabel;
     private Timer.Task clearErrorTask;
     private final Label SuccessMessageLabel;
@@ -51,8 +50,7 @@ public class PauseMenuView implements Screen {
         MapMenuButton = new TextButton("Map", skin);
         toolsMenuButton = new TextButton("Tools", skin);
         skillsButton = new TextButton("Skills", skin);
-        ExitButton = new TextButton("Exit", skin);
-        SaveButton = new TextButton("Save", skin);
+        SettingButton = new TextButton("Setting", skin);
         recycleBinButton = new TextButton("Inventory", skin);
         questsButton = new TextButton("Quests", skin);
 
@@ -87,8 +85,7 @@ public class PauseMenuView implements Screen {
         menuTable.add(recycleBinButton).row();
         menuTable.add(toolsMenuButton).row();
         menuTable.add(skillsButton).row();
-        menuTable.add(ExitButton).row();
-        menuTable.add(SaveButton).row();
+        menuTable.add(SettingButton).row();
         menuTable.add(errorLabel).row();
         menuTable.add(SuccessMessageLabel).row();
 
@@ -97,10 +94,10 @@ public class PauseMenuView implements Screen {
         centerTable.add(menuTable).top().left().padRight(50).padTop(40);
         rootTable.top().padTop(20);
         rootTable.add(centerTable).expand().center().row();
-        ExitButton.addListener(new ClickListener() {
+        SettingButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                Gdx.app.exit();
+                App.getGameApp().setScreen(new SettingsScreen());
             }
         });
 
@@ -273,21 +270,7 @@ public class PauseMenuView implements Screen {
         this.clearErrorTask2 = clearErrorTask2;
     }
 
-    public TextButton getExitButton() {
-        return ExitButton;
-    }
 
-    public void setExitButton(TextButton exitButton) {
-        ExitButton = exitButton;
-    }
-
-    public TextButton getSaveButton() {
-        return SaveButton;
-    }
-
-    public void setSaveButton(TextButton saveButton) {
-        SaveButton = saveButton;
-    }
 
     public TextButton getRecycleBinButton() {
         return recycleBinButton;
