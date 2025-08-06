@@ -74,7 +74,7 @@ public class TimeController {
         clockArrow.setOrigin(clockArrow.getWidth() / 2, 0);
     }
 
-    public void render(SpriteBatch batch, GameTime dateTime, OrthographicCamera camera) {
+    public void render(SpriteBatch batch, OrthographicCamera camera) {
 
         Matrix4 originalMatrix = batch.getProjectionMatrix();
 
@@ -102,11 +102,11 @@ public class TimeController {
         Winter.setPosition(seasonX, seasonY);
         Spring.setPosition(seasonX, seasonY);
 
-        clockArrow.setRotation(-((dateTime.getHour() - 9) * 12 + 180));
+        clockArrow.setRotation(-((GameTime.getHour() - 9) * 12 + 180));
         rawClock.draw(batch);
         clockArrow.draw(batch);
 
-        switch (dateTime.getSeason().getName()) {
+        switch (GameTime.getSeason().getName()) {
             case "Spring":
                 Spring.draw(batch);
                 break;
@@ -136,13 +136,13 @@ public class TimeController {
         }
 
 
-        GameMenuController menuController = new GameMenuController();
+//        GameMenuController menuController = new GameMenuController();
         String dayOfWeek = getDay().getName();
 
 
-        hour.draw(batch, dateTime.getHour() + " o'clock",
+        hour.draw(batch, GameTime.getHour() + " o'clock",
                 clockX + 27 * scale, clockY + 23 * scale + hour.getLineHeight());
-        day.draw(batch, dayOfWeek + ". " + dateTime.getDay(),
+        day.draw(batch, dayOfWeek + ". ",
                 clockX + 27 * scale, clockY + 45 * scale + hour.getLineHeight());
 
         User currentPlayer = App.mainUser;

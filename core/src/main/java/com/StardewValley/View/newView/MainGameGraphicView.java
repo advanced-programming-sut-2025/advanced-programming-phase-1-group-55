@@ -144,7 +144,7 @@ public class MainGameGraphicView implements Screen, InputProcessor {
         }
 
         controller.updateGame(delta);
-        timeController.render(App.gameApp.getBatch(), new GameTime(), camera);
+        timeController.render(App.gameApp.getBatch(), camera);
         App.gameApp.getBatch().end();
 
         energyBar.setValue((float) player.getEnergy());
