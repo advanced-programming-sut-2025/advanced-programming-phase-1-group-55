@@ -146,6 +146,7 @@ public class MainGameGraphicView implements Screen, InputProcessor {
 
 
         controller.updateGame(delta);
+        timeController.update(delta);
         timeController.render(App.gameApp.getBatch(), camera);
         App.gameApp.getBatch().end();
 
