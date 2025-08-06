@@ -20,6 +20,7 @@ import com.StardewValley.model.Tool.BackPack;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.google.gson.annotations.Expose;
 
 import java.io.Serializable;
 import java.util.*;
@@ -27,8 +28,11 @@ import java.util.*;
 import static com.StardewValley.model.App.currentGameModel;
 import static com.StardewValley.enums.AssetManager.*;
 
-public class User implements Serializable {
+public class User {
+
+    @Expose
     private String username;
+    @Expose
     private String password;
     private String nickName;
     private CollisionRect collisionRect;
@@ -57,7 +61,8 @@ public class User implements Serializable {
     private HashMap<User, PlayerFriendship> friendsPlayer = new HashMap<>();
     private int dailyMoney = 0;
     private int wood = 40000;
-    private double energy = 100;
+    @Expose
+    private double energy = 1000;
     private boolean stayLoggedIn = false;
     private int mostAchievedMoney = 0;
     private int matchPlayed = 0;

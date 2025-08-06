@@ -25,13 +25,13 @@ public class GameModel {
     @Expose
     public ArrayList<User> playersInGame = new ArrayList<>();
 
-//    @Expose
+    @Expose
     private GameMap map;
 
-//    @Expose
+    @Expose
     private ArrayList<PlayerFriendship> allFriendships = new ArrayList<>();
 
-//    @Expose
+    @Expose
     private HashMap<Integer, Trade> AllTrades = new HashMap<>();
     private int numberOfAllGifts = 0;
     private final List<Dialog> allDialogs = new ArrayList<>(Arrays.asList(Dialog.values()));

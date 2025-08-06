@@ -1,6 +1,8 @@
 package com.StardewValley.View.newView;
 
+import com.StardewValley.Controller.MainGameController;
 import com.StardewValley.model.App;
+import com.StardewValley.model.GameModel;
 import com.StardewValley.model.User;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -9,14 +11,23 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.InputMultiplexer;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import java.io.Reader;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 
 public class FirstMenu extends ScreenAdapter {
@@ -43,6 +54,49 @@ public class FirstMenu extends ScreenAdapter {
         TextButton registerBtn = new TextButton("Register", skin);
         TextButton loginBtn = new TextButton("Login", skin);
         TextButton exitBtn = new TextButton("Exit", skin);
+        TextButton loadButton = new TextButton("Load Game", skin);
+        loadButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                try {
+                    Path savePath = Paths.get("saves", "game_save.json");
+
+                    if (!Files.exists(savePath)) {
+                        System.out.println("No saved game found!");
+                        return;
+                    }
+
+                    Gson gson = new GsonBuilder()
+                        .excludeFieldsWithoutExposeAnnotation()
+                        .setPrettyPrinting()
+                        .create();
+
+                    try (Reader reader = Files.newBufferedReader(savePath)) {
+                        GameModel loadedGame = gson.fromJson(reader, GameModel.class);
+
+                        if (loadedGame.getMap() != null) {
+//                            loadedGame.getMap().loadGraphics();
+                        }
+
+                        App.setCurrentGameModel(loadedGame);
+
+                        App.getGameApp().setScreen(
+                            new MainGameGraphicView(
+                                new MainGameController(),
+                                loadedGame.getMap()
+                            )
+                        );
+
+                        System.out.println("Game loaded successfully!");
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+//                    resultLabel.setText("Error loading saved game!");
+                }
+            }
+        });
+
 
         registerBtn.addListener(new ChangeListener() {
             public void changed(ChangeEvent event, Actor actor) {
@@ -78,7 +132,8 @@ public class FirstMenu extends ScreenAdapter {
 
         table.add(registerBtn).size(400, 100).padBottom(20).row();
         table.add(loginBtn).size(400, 100).padBottom(20).row();
-        table.add(exitBtn).size(400, 100);
+        table.add(exitBtn).size(400, 100).row();
+        table.add(loadButton).size(400, 100);
 
     }
 

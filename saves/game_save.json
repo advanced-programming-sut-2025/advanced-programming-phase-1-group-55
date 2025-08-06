@@ -1,7 +1,19 @@
 {
-  "currentUser": {},
+  "currentUser": {
+    "username": "arshia",
+    "password": "f723cc1d314e07f0ee5c7c0130f4c3f7b9393587cb3eec762ea4caeeb8087236",
+    "energy": 9395.0
+  },
   "playersInGame": [
-    {},
-    {}
+    {
+      "username": "arshia",
+      "password": "f723cc1d314e07f0ee5c7c0130f4c3f7b9393587cb3eec762ea4caeeb8087236",
+      "energy": 9395.0
+    },
+    {
+      "username": "a",
+      "password": "f723cc1d314e07f0ee5c7c0130f4c3f7b9393587cb3eec762ea4caeeb8087236",
+      "energy": 10000.0
+    }
   ]
 }
