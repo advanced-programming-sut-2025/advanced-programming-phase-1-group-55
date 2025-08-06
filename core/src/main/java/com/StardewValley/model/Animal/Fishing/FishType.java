@@ -117,7 +117,12 @@ public enum FishType {
 
         return true;
     }
-//    public static FishType getRandomFish(FishingPoleType poleType)
+
+    public Texture getTexture() {
+        return texture;
+    }
+
+    //    public static FishType getRandomFish(FishingPoleType poleType)
 //    {
 //
 //        Seasons season = GameTime.getSeason();
@@ -150,7 +155,21 @@ public static FishType getRandomFish(FishingPoleType poleType) {
 
     switch (poleType) {
         case BAMBOO_ROD:
+            switch (season) {
+                case summer: return FishType.DORADO;
+                case fall: return FishType.CRIMSON_FISH;
+                case winter: return FishType.ANGLER;
+                case spring: return FishType.GHOSTFISH;
+            }
+            break;
         case FIBERGLASS_ROD:
+            switch (season) {
+                case summer: return FishType.LIONFISH;
+                case fall: return FishType.MIDNIGHT_CARP;
+                case winter: return FishType.SALMON;
+                case spring: return FishType.SHAD;
+            }
+            break;
         case TRAINING_ROD:
             switch (season) {
                 case summer: return FishType.TILAPIA;
@@ -162,18 +181,19 @@ public static FishType getRandomFish(FishingPoleType poleType) {
 
 
         case IRIDIUM_ROD: {
-            ArrayList<FishType> fishes = getOrdinaryFishTypes(season);
-
-            int fishingLevel = App.currentGameModel.currentUser.getFishingSkill().getLevel();
-            if (fishingLevel >= 4) {
-                FishType legendary = getLegendaryFishType(season);
-                if (legendary != null) {
-                    fishes.add(legendary);
-                }
+            int random=App.rand.nextInt();
+            if (random%3==0){
+                return FishType.LEGEND;
             }
-
-            Random rand = new Random();
-            return fishes.get(rand.nextInt(fishes.size()));
+            else {
+                switch (season) {
+                    case summer: return FishType.BLUE_DISCUS;
+                    case fall: return FishType.TUNA;
+                    case winter: return FishType.SQUID;
+                    case spring: return FishType.FLOUNDER;
+                }
+                break;
+            }
         }
     }
 

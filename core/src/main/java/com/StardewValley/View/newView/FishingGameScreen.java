@@ -5,6 +5,7 @@ import com.StardewValley.enums.AssetManager;
 import com.StardewValley.model.Animal.Fishing.FishType;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Item.CollisionRect;
+import com.StardewValley.model.Item.ItemType;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
@@ -18,6 +19,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -49,7 +51,12 @@ public class FishingGameScreen implements Screen {
         controller.setView(this);
         skin= App.skin;
         barRect = new CollisionRect(100, 100, 40, 300);
-        fishSprite= AssetManager.chub_fish.getSprite();
+        if (fishType.equals(FishType.LEGEND)){
+            fishSprite= new Sprite(fishType.getTexture());
+        }else {
+            fishSprite= AssetManager.chub_fish.getSprite();
+        }
+
 
     }
 
@@ -92,7 +99,19 @@ public class FishingGameScreen implements Screen {
     progressBar.setSize(300, 40);
     progressBar.setPosition(Gdx.graphics.getWidth() / 2f - 150, Gdx.graphics.getHeight() - 100);
     progressBar.setValue(30);
-    stage.addActor(progressBar);
+    Table topTable = new Table();
+    topTable.setFillParent(true);
+    topTable.add(progressBar).row();
+    topTable.padBottom(700);
+        if(App.currentGameModel.currentUser.getBackPack().getInventory().containsKey(ItemType.SONAR_BOBBER.getDisplayName())||fishType.equals(FishType.LEGEND)){
+            topTable.add(new Image(fishType.getTexture())).row();
+            topTable.add(new Label(fishType.getDisplayName(), skin)).row();
+        }else {
+            topTable.add(new Label("use snoar bobber to get information about the fish!", skin)).row();
+        }
+    stage.addActor(topTable);
+
+
 
 
         shapeRenderer = new ShapeRenderer();
