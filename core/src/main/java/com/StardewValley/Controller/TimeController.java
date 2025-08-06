@@ -5,6 +5,8 @@ import com.StardewValley.model.App;
 import com.StardewValley.model.GameTime;
 import com.StardewValley.model.User;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -134,20 +136,22 @@ public class TimeController {
                 Storm.draw(batch);
                 break;
         }
-
+        if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_2) && Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT)) {
+            GameTime.increaseHour(1);
+        }
 
 //        GameMenuController menuController = new GameMenuController();
         String dayOfWeek = getDay().getName();
 
 
         hour.draw(batch, GameTime.getHour() + " o'clock",
-                clockX + 27 * scale, clockY + 23 * scale + hour.getLineHeight());
+            clockX + 27 * scale, clockY + 23 * scale + hour.getLineHeight());
         day.draw(batch, dayOfWeek + ". ",
-                clockX + 27 * scale, clockY + 45 * scale + hour.getLineHeight());
+            clockX + 27 * scale, clockY + 45 * scale + hour.getLineHeight());
 
         User currentPlayer = App.mainUser;
         gold.draw(batch, String.valueOf(currentPlayer.getGold()),
-                clockX + 17 * scale, clockY + 3 * scale + gold.getLineHeight());
+            clockX + 17 * scale, clockY + 3 * scale + gold.getLineHeight());
 
 
         batch.setProjectionMatrix(originalMatrix);

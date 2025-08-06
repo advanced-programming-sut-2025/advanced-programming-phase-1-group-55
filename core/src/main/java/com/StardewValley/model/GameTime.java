@@ -139,7 +139,6 @@ public class GameTime {
     }
 
     //todo age zaman roo ziyad ezafe kone momkene bug bede
-    //todo mitooni ye tabe bezani be esm rooz bad va karayy ke dar rooz bad bayad bokoni ro too on bezani
     public static void increaseHour(int hour) {
         GameTime.hour += hour;
         if (GameTime.hour >= 22) {
