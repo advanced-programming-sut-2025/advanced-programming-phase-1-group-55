@@ -4,6 +4,7 @@ import com.StardewValley.enums.Direction;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Item.CollisionRect;
 import com.StardewValley.model.Map.GameMap;
+import com.StardewValley.model.Map.GreenHouse;
 import com.StardewValley.model.User;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -130,9 +131,7 @@ public class PlayerController {
 
             drawOtherPlayers();
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.E)){
-            mainUser.increaseEnergy(10);
-        }
+
 
         stage.act(Gdx.graphics.getDeltaTime());
 //        stage.draw();
@@ -213,6 +212,23 @@ public class PlayerController {
 
         if (moved) {
             player.decreaseEnergy(1);
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.E)) {
+            mainUser.increaseEnergy(10);
+        }
+        if (player.getCollisionRect().isNear(player.getFarm().getGreenHouse().getCollisionRect())) {
+            if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_0)) {
+                GreenHouse greenhouse = player.getFarm().getGreenHouse();
+                greenhouse.setRepaired(true);
+                greenhouse.setSprite(greenhouse.getSprite_salem());
+                if (player.getGold() > greenhouse.getGoldForGreenHouse() && player.getWood() > greenhouse.getWoodForGreenHouse()) {
+                    player.decreaseWood(greenhouse.getWoodForGreenHouse());
+                    player.decreaseGold(greenhouse.getGoldForGreenHouse());
+                } else {
+
+                }
+
+            }
         }
     }
 

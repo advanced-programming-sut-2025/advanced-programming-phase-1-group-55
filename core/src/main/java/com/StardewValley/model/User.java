@@ -461,6 +461,21 @@ public class User {
         this.gold += amount;
     }
 
+    public void increaseWood(int amount) {
+        this.wood += amount;
+    }
+
+    public void decreaseGold(int amount) {
+        this.gold -= amount;
+        Math.max(0, gold);
+    }
+
+    public void decreaseWood(int amount) {
+        this.wood -= amount;
+        Math.max(0, wood);
+
+    }
+
 
     public Map<Integer, Gift> getReceivedGifts() {
         return receivedGifts;

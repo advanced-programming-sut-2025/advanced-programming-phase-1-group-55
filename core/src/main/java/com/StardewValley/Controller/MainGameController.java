@@ -51,6 +51,7 @@ public class MainGameController {
         npcController = new NpcController(currentPlayer, view.getMap());
         storeController = new StoresStatusController(currentPlayer, view.getMap());
         currentPlayer.setGold(40000);
+        currentPlayer.setWood(40000);
     }
 
     public void checkIfClickedOnMachine(float dx, float dy) {

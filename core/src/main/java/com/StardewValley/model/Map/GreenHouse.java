@@ -11,10 +11,12 @@ public class GreenHouse extends Place {
     private final int goldForGreenHouse = 1000;
     private int waterSupply;
     private Sprite sprite;
+    private Sprite sprite_kharab = new Sprite(AssetManager.GreenHouse1.getTexture());
+    private Sprite sprite_salem = new Sprite(AssetManager.GreenHouse.getTexture());
 
     public GreenHouse(CollisionRect collisionRect) {
         super(collisionRect);
-        sprite=new Sprite(AssetManager.GreenHouse1.getTexture());
+        sprite = sprite_kharab;
     }
 
     public void setRepaired(Boolean repaired) {
@@ -47,5 +49,13 @@ public class GreenHouse extends Place {
 
     public void setSprite(Sprite sprite) {
         this.sprite = sprite;
+    }
+
+    public Sprite getSprite_kharab() {
+        return sprite_kharab;
+    }
+
+    public Sprite getSprite_salem() {
+        return sprite_salem;
     }
 }
