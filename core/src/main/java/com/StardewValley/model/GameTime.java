@@ -31,6 +31,7 @@ public class GameTime {
     public static void setHour(int hour) {
         GameTime.hour = hour;
     }
+
     public static void friendshipWorks() {
         for (User user : currentGameModel.playersInGame) {
             for (PlayerFriendship friendship : user.getFriendsPlayer().values()) {
@@ -42,10 +43,12 @@ public class GameTime {
             }
         }
     }
+
     public static void roozbad() {
         GameTime.hour = 9;
         weather.setCurrentWeather(weather.getTomorrowWeather());
         weather.RandomWeatherForTommorow();
+        mainTime = MainTime.Day;
         if (weather.getCurrentWeather().equals(WeatherType.Rain)) {
             setEnergyLoser(1.5);
         } else if (weather.getCurrentWeather().equals(WeatherType.Snow)) {
@@ -85,7 +88,7 @@ public class GameTime {
         for (User user : currentGameModel.playersInGame) {
             user.increaseGold(user.getDailyMoney());
             user.setDailyMoney(0);
-           // FarmBuilder.placeRandomForaggings(user.getFarm(), currentGameModel.getMap(),2,2,1,false);
+            // FarmBuilder.placeRandomForaggings(user.getFarm(), currentGameModel.getMap(),2,2,1,false);
         }
         for (Store store : currentGameModel.getMap().getVillage().getStores().values()) {
             for (Product product : store.getProductsOfStore().values()) {
@@ -99,9 +102,9 @@ public class GameTime {
                 friendship.setTodayMet(false);
                 friendship.setTodayHadGift(false);
             }
-            if(user.isSad()){
+            if (user.isSad()) {
                 user.increaseTimeToBeSad();
-                if (user.getTimePassedBeingSad()>=7){
+                if (user.getTimePassedBeingSad() >= 7) {
                     user.setTimePassedBeingSad(0);
                     user.setSad(false);
                 }

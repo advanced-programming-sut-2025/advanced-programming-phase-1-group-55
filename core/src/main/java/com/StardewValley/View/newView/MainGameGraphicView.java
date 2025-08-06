@@ -45,7 +45,7 @@ public class MainGameGraphicView implements Screen, InputProcessor {
     private Sprite chosenArtisanSprite;
     private GameMap map = new GameMap();
     private TimeController timeController;
-
+    private TextureRegion backgroundRegion;
 
 
     public MainGameGraphicView(MainGameController controller, GameMap map) {
@@ -117,6 +117,7 @@ public class MainGameGraphicView implements Screen, InputProcessor {
         if (bgTexture != newTexture) {
             bgTexture = newTexture;
             bgTexture.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
+            backgroundRegion = new TextureRegion(bgTexture);
         }
     }
 
@@ -143,6 +144,7 @@ public class MainGameGraphicView implements Screen, InputProcessor {
             chosenArtisanSprite.draw(App.gameApp.getBatch());
         }
 
+
         controller.updateGame(delta);
         timeController.render(App.gameApp.getBatch(), camera);
         App.gameApp.getBatch().end();
@@ -157,20 +159,17 @@ public class MainGameGraphicView implements Screen, InputProcessor {
         float camX = camera.position.x - camera.viewportWidth / 2;
         float camY = camera.position.y - camera.viewportHeight / 2;
 
-        TextureRegion backgroundRegion = new TextureRegion(bgTexture);
-
         int texWidth = bgTexture.getWidth();
         int texHeight = bgTexture.getHeight();
 
         int offsetX = ((int) camX) % texWidth;
         if (offsetX < 0) offsetX += texWidth;
 
-        int offsetY = 0;
-
-        backgroundRegion.setRegion(offsetX, offsetY, (int) camera.viewportWidth, (int) camera.viewportHeight);
+        backgroundRegion.setRegion(offsetX, 0, (int) camera.viewportWidth, (int) camera.viewportHeight);
 
         App.gameApp.getBatch().draw(backgroundRegion, camX, camY, camera.viewportWidth, camera.viewportHeight);
     }
+
 
     public GameMap getMap() {
         return map;
