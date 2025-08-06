@@ -53,17 +53,17 @@ public class GameTime {
         }
 
         if (weather.getCurrentWeather().equals(WeatherType.Storm)) {
-            System.out.println(RandomThor());
-            System.out.println("Current Weather is " + weather.getCurrentWeather());
+//            System.out.println(RandomThor());
+//            System.out.println("Current Weather is " + weather.getCurrentWeather());
 
         }
-        for (Item plant : currentGameModel.getAllPlants().values()) {
-            plant.increaseStage(1);
-            if (plant.getStage() == 5) {
-                currentGameModel.getMap().tiles[plant.getLocation().getY()][plant.getLocation().getX()].setMohtaviat("?");
-                currentGameModel.getAllPlants().remove(plant.getItemType().getDisplayName());
-            }
-        }
+//        for (Item plant : currentGameModel.getAllPlants().values()) {
+//            plant.increaseStage(1);
+//            if (plant.getStage() == 5) {
+//                currentGameModel.getMap().tiles[plant.getLocation().getY()][plant.getLocation().getX()].setMohtaviat("?");
+//                currentGameModel.getAllPlants().remove(plant.getItemType().getDisplayName());
+//            }
+//        }
         for (User player : currentGameModel.playersInGame) {
             //in moheme paak nakonid faghat baraaye saadegi tahvil comment kardim!!!!!!!!!!!!!!
 //            if (!player.isFainted()) {
