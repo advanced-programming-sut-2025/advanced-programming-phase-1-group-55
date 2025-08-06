@@ -6,6 +6,7 @@ import com.StardewValley.enums.Direction;
 import com.StardewValley.enums.SkillType;
 import com.StardewValley.model.Animal.Animal;
 import com.StardewValley.model.Animal.AnimalBuilding;
+import com.StardewValley.model.Animal.AnimalBuildingOld;
 import com.StardewValley.model.Artisan.ArtisanMachine;
 import com.StardewValley.model.Artisan.ArtisanMachineType;
 import com.StardewValley.model.CookingItems.CookingItem;
@@ -45,6 +46,7 @@ public class User {
     private Skill fishingSkill = new Skill(SkillType.Fishing);
     private ArrayList<CookingItem> refrigerator = new ArrayList<>();
     private ArrayList<ArtisanMachine> artisanMachines = new ArrayList<>();
+    private ArrayList<AnimalBuilding> farmBuildings = new ArrayList<>();
 
 
     private BackPack backPack = new BackPack();
@@ -560,8 +562,8 @@ public class User {
 
     public ArrayList<Animal> getAnimals() {
         ArrayList<Animal> animals = new ArrayList<>();
-        for (AnimalBuilding animalBuilding : farm.getAnimalBuildings()) {
-            for (Animal animal : animalBuilding.getAnimals()) {
+        for (AnimalBuildingOld animalBuildingOld : farm.getAnimalBuildings()) {
+            for (Animal animal : animalBuildingOld.getAnimals()) {
                 animals.add(animal);
             }
         }
@@ -618,6 +620,15 @@ public class User {
 
         return (dx <= 1 && dy <= 1) && !(dx == 0 && dy == 0);
     }
+
+
+    public ArrayList<AnimalBuilding> getFarmBuildings() {
+        return farmBuildings;
+    }
+    public void addFarmBuilding(AnimalBuilding building) {
+        farmBuildings.add(building);
+    }
+
 
     public ArtisanMachine getArtisan(ArtisanMachineType type) {
         for (ArtisanMachine good : artisanMachines) {

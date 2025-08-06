@@ -185,6 +185,9 @@ public enum AssetManager {
     FISHING("Skill/Fishing_Skill_Icon.png"),
     FORAGING("Skill/Foraging_Skill_Icon.png"),
 
+    BARN("Buildings/Barn.png"),
+    COOP("Buildings/Coop.png"),
+
 
 
     ;

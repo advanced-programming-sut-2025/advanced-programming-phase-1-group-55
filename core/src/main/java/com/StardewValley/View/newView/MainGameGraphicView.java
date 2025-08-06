@@ -1,6 +1,8 @@
 package com.StardewValley.View.newView;
 
 import com.StardewValley.Controller.MainGameController;
+import com.StardewValley.model.Animal.AnimalBuilding;
+import com.StardewValley.model.Animal.FarmBuildingType;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Artisan.ArtisanMachineType;
 import com.StardewValley.model.Friendship.NpcFriendship;
@@ -43,6 +45,8 @@ public class MainGameGraphicView implements Screen, InputProcessor {
     private ArtisanMachineType chosenArtisanType;
     private Sprite chosenArtisanSprite;
     private GameMap map=new GameMap();
+    private boolean isPlacingBuilding = false;
+    private FarmBuildingType chosenBuildingType;
 
 
     public MainGameGraphicView(MainGameController controller,GameMap map) {
@@ -134,6 +138,10 @@ public class MainGameGraphicView implements Screen, InputProcessor {
         if (isChoosingPlace) {
             chosenArtisanSprite.draw(App.gameApp.getBatch());
         }
+        for (AnimalBuilding building : player.getFarmBuildings()) {
+            building.getSprite().setPosition(building.getLocation().getX(), building.getLocation().getY());
+            building.getSprite().draw(App.gameApp.getBatch());
+        }
 
         controller.updateGame(delta);
 
@@ -172,6 +180,47 @@ public class MainGameGraphicView implements Screen, InputProcessor {
         this.map = map;
     }
 
+
+    public void startBuildingMode(FarmBuildingType buildingType) {
+        this.isPlacingBuilding = true;
+        this.chosenBuildingType = buildingType;
+        float farmLandWidth = player.getFarm().getFarmLands().get(0).getCollisionRect().getWidth();
+        float farmLandHeight = player.getFarm().getFarmLands().get(0).getCollisionRect().getHeight();
+        int widthInTiles = buildingType.getSize().get(0);
+        int heightInTiles = buildingType.getSize().get(1);
+        for (FarmLand land : player.getFarm().getFarmLands()) {
+            boolean canBuildHere = true;
+            float baseX = land.getCollisionRect().getX();
+            float baseY = land.getCollisionRect().getY();
+            for (int dx = 0; dx < widthInTiles; dx++) {
+                for (int dy = 0; dy < heightInTiles; dy++) {
+                    float checkX = baseX + dx * farmLandWidth;
+                    float checkY = baseY + dy * farmLandHeight;
+                    FarmLand tile = player.getFarm().findFarmLandAt(checkX, checkY);
+                    if (tile == null || tile.isPlanted()) {
+//                        canBuildHere = false;
+                        break;
+                    }
+                    for (AnimalBuilding built : player.getFarmBuildings()) {
+                        if (built.getCollisionRect().overlaps(checkX, checkY, farmLandWidth, farmLandHeight)) {
+//                            canBuildHere = false;
+                            break;
+                        }
+                    }
+                }
+                if (!canBuildHere) break;
+            }
+            if (canBuildHere) {
+                land.setColor(Color.GREEN);
+            } else {
+                land.setColor(Color.RED);
+            }
+        }
+    }
+
+
+
+
     @Override
     public void resize(int width, int height) {
         camera.setToOrtho(false, width, height);
@@ -207,28 +256,44 @@ public class MainGameGraphicView implements Screen, InputProcessor {
         return false;
     }
 
-    @Override
 
+    @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         if (button == Input.Buttons.LEFT) {
-            Vector3 click = new Vector3(screenX, screenY, 0);
-            camera.unproject(click);
-            controller.getNpcController().checkIfClickedOnNpc(click.x, click.y);
-            controller.getStoreController().checkIfClickedOnStores(click.x, click.y);
-            controller.getStoreController().checkIfClickedOnBins(click.x, click.y);
-            controller.checkIfClickedOnMachine(click.x, click.y);
-            controller.getToolController().UseTool(click.x, click.y);
-            controller.checkIfClickedOnPlayer(click.x, click.y);
-            try {
-                System.out.println(player.getBackPack().getSelectedItem().getDisplayName());
-            }catch (NullPointerException e){
-                System.out.println("you have not selected item");
+            Vector3 worldClick = new Vector3(screenX, screenY, 0);
+            camera.unproject(worldClick);
+            float clickX = worldClick.x;
+            float clickY = worldClick.y;
+            if (isPlacingBuilding && chosenBuildingType != null) {
+                FarmLand targetLand = player.getFarm().findFarmLandAt(clickX, clickY);
+                if (targetLand != null) {
+                    if (targetLand.getSprite().getColor().equals(Color.GREEN)) {
+                        player.setGold(player.getGold() - chosenBuildingType.getPrice());
+                        player.setWood(player.getWood() - chosenBuildingType.getWoodNumber());
+                        player.setStone(player.getStone() - chosenBuildingType.getStoneNumber());
+                        AnimalBuilding newBuilding = new AnimalBuilding(targetLand.getLocation(), chosenBuildingType);
+                        player.addFarmBuilding(newBuilding);
+                        for (FarmLand land : player.getFarm().getFarmLands()) {
+                            land.setColor(Color.WHITE);
+                        }
+                        isPlacingBuilding = false;
+                        chosenBuildingType = null;
+                    } else {
+                        System.out.println("Cannot build here - invalid location.");
+                    }
+                }
+                return true;
             }
-//
-
+            controller.getNpcController().checkIfClickedOnNpc(clickX, clickY);
+            controller.getStoreController().checkIfClickedOnStores(clickX, clickY);
+            controller.getStoreController().checkIfClickedOnBins(clickX, clickY);
+            controller.checkIfClickedOnMachine(clickX, clickY);
+            controller.getToolController().UseTool(clickX, clickY);
+            controller.checkIfClickedOnPlayer(clickX, clickY);
         }
         return true;
     }
+
 
     public void showTemporaryAction(String message, Texture texture) {
         com.badlogic.gdx.scenes.scene2d.ui.Dialog actionDialog =

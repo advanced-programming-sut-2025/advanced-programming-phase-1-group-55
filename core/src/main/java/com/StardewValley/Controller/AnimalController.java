@@ -14,12 +14,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class AnimalController {
-//    public boolean locationsAreNear(Location location1, Location location2) {
-//        int dx = Math.abs(location1.getX() - location2.getX());
-//        int dy = Math.abs(location1.getY() - location2.getY());
-//
-//        return (dx <= 1 && dy <= 1) ;
-//    }
+
     public Result buildAnimalBuilding(String input) {
         String buildingName = AnimalCommands.BUILD_ANIMAL_HOUSE.getMatcher(input).group("name").trim();
         int x = Integer.parseInt(AnimalCommands.BUILD_ANIMAL_HOUSE.getMatcher(input).group("x").trim());
@@ -64,7 +59,7 @@ public class AnimalController {
         user.increaseGold(-1 * price);
         user.getBackPack().removeAmountFromInventory(ItemType.WOOD, wood);
         user.getBackPack().removeAmountFromInventory(ItemType.STONE, stone);
-        farm.buildAnimalBuilding(new AnimalBuilding(targetTile, farmBuilding));
+        farm.buildAnimalBuilding(new AnimalBuildingOld(targetTile, farmBuilding));
         System.out.println("DEBUG: animalBuildings.size()=" + farm.getAnimalBuildings().size());
         return new Result(true, "Animal Building built successfully");
     }
@@ -84,8 +79,8 @@ public class AnimalController {
         if(!user.validAnimalName(name)){
             return new Result(false, "invalid Animal Name");
         }
-        AnimalBuilding animalBuilding = farm.getBuildingForAnimal(animalType);
-        if (animalBuilding == null) {
+        AnimalBuildingOld animalBuildingOld = farm.getBuildingForAnimal(animalType);
+        if (animalBuildingOld == null) {
             return new Result(false, "you dint have a place for this animal");
         }
         int price = animalType.getPrice();
@@ -93,7 +88,7 @@ public class AnimalController {
             return new Result(false, "you are poor");
         }
         user.increaseGold(-1 * price);
-        animalBuilding.putAnimalInBuilding(new Animal(name, animalType));
+        animalBuildingOld.putAnimalInBuilding(new Animal(name, animalType));
         return new Result(true, "Animal buy successfully");
     }
     public Result pet(String input) {
@@ -152,9 +147,9 @@ public class AnimalController {
             if (!farm.isInBounds(x, y)) {
                 return new Result(false, "invalid location");
             }
-            AnimalBuilding animalBuilding = user.getFarm().getAnimalBuilding(animal);
+            AnimalBuildingOld animalBuildingOld = user.getFarm().getAnimalBuilding(animal);
             Tile tile = farm.getTile(x, y);
-            if (!animalBuilding.getTiles().contains(tile)) {
+            if (!animalBuildingOld.getTiles().contains(tile)) {
                 return new Result(false, "This location is not suitable for this animal. ");
             }
             animal.goIn();
@@ -254,8 +249,8 @@ public class AnimalController {
         }
         int price = animal.getPrice();
         Farm farm = user.getFarm();
-        AnimalBuilding animalBuilding = user.getFarm().getAnimalBuilding(animal);
-        animalBuilding.sellAnimal(animal);
+        AnimalBuildingOld animalBuildingOld = user.getFarm().getAnimalBuilding(animal);
+        animalBuildingOld.sellAnimal(animal);
         user.increaseGold(price);
         return new Result(true, "The animal has been sold");
 
