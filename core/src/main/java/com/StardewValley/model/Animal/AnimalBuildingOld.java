@@ -80,28 +80,7 @@ public class AnimalBuildingOld extends Item {
 //        return false;
         return true;
     }
-//    public void putAnimalInBuilding(Animal animal, ArrayList<Tile> tiles, ArrayList<Animal> animals) {
-//        animals.add(animal); // اضافه کردن حیوان به لیست حیوانات
-//
-//        ArrayList<Tile> copy = new ArrayList<>(tiles);
-//
-//        // حذف کاشی‌هایی که قبلاً اشغال شده‌اند
-//        copy.removeIf(tile -> tile.getItemInThisTile() != null);
-//
-//        // بررسی اینکه کاشی آزاد وجود دارد یا نه
-//        if (!copy.isEmpty()) {
-//            Collections.shuffle(copy); // برای تصادفی بودن مکان حیوان
-//
-//            for (Tile tile : copy) {
-//                if (tile.isEmpty() && tile.isWalkable()) {
-//                    tile.setItemInThisTile(animal); // قرار دادن حیوان روی کاشی
-//                    tile.setEmpty(false);
-//                    animal.setTile(tile); // ثبت مکان حیوان در خودش
-//                    break;
-//                }
-//            }
-//        }
-//    }
+
 public void putAnimalInBuilding(Animal animal)
 {
     animals.add(animal);

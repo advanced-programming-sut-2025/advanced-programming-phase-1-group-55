@@ -57,7 +57,7 @@ public class AnimalMenuView implements Screen {
 
         menuTable.add(buildBarnButton).row();
         menuTable.add(buildCoopButton).row();
-        menuTable.add(buyAnimalButton).row(); // 🔽 دکمه خرید حیوان
+        menuTable.add(buyAnimalButton).row();
         menuTable.add(backButton).row();
         menuTable.add(errorLabel).row();
         rootTable.add(menuTable).center();
@@ -79,7 +79,6 @@ public class AnimalMenuView implements Screen {
         buyAnimalButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                // اینجا رفتن به منوی خرید حیوانات
                 App.gameApp.setScreen(new BuyAnimalMenuView(
                     new BuyAnimalMenuController(user), user));
             }

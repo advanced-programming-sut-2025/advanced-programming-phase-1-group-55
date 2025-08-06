@@ -43,6 +43,8 @@ public class AnimalMenuController {
         user.getBackPack().removeAmountFromInventory(selectedItem, 1);
         App.currentGameGraphicView.startBuildingMode(buildingType);
         App.gameApp.setScreen(App.currentGameGraphicView);
+//        user.addFarmBuilding(buildingType);
+        user.setFarmHadPlaceForAnimals(true);
 
     }
 }

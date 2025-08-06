@@ -48,6 +48,8 @@ public class User {
     private ArrayList<CookingItem> refrigerator = new ArrayList<>();
     private ArrayList<ArtisanMachine> artisanMachines = new ArrayList<>();
     private ArrayList<AnimalBuilding> farmBuildings = new ArrayList<>();
+    private Boolean farmHadPlaceForAnimals = false;
+    private ArrayList<Animal> myAnimals = new ArrayList<>();
 
 
     private BackPack backPack = new BackPack();
@@ -647,6 +649,17 @@ public class User {
         farmBuildings.add(building);
     }
 
+    public Boolean getFarmHadPlaceForAnimals() {
+        return farmHadPlaceForAnimals;
+    }
+
+    public void setFarmHadPlaceForAnimals(Boolean farmHadPlaceForAnimals) {
+        this.farmHadPlaceForAnimals = farmHadPlaceForAnimals;
+    }
+
+    public ArrayList<Animal> getMyAnimals() {
+        return myAnimals;
+    }
 
     public ArtisanMachine getArtisan(ArtisanMachineType type) {
         for (ArtisanMachine good : artisanMachines) {
