@@ -11,6 +11,7 @@ import com.StardewValley.model.FarmingProdocts.Tree;
 import com.StardewValley.model.Item.CollisionRect;
 import com.StardewValley.model.Rock;
 import com.StardewValley.model.User;
+import com.google.gson.annotations.Expose;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -21,22 +22,23 @@ public class Farm implements Serializable {
 
     private House house;
     private Lake lake;
+    @Expose
     private GreenHouse greenHouse;
+    @Expose
+
     private CollisionRect collisionRect;
-    private int numberOfRocksInTheQuery=0;
+    private int numberOfRocksInTheQuery = 0;
     private ArrayList<AnimalBuilding> animalBuildings = new ArrayList<>();
     private ArrayList<Fence> doors = new ArrayList<>();
 
     private ArrayList<FarmLand> farmLands = new ArrayList<>();
-    public ArrayList<FarmLand> getFarmLands() { return farmLands; }
-
 
 
     private Quarry quarry;
     private Map<Location, Rock> rocks = new HashMap<>();
     private Map<Location, Tree> trees = new HashMap<>();
     private Map<Location, ForagingCrops> crobs = new HashMap<>();
-    private Map<Location, ForagingSeed> seeds=new HashMap<>();
+    private Map<Location, ForagingSeed> seeds = new HashMap<>();
 
     public Farm(House house, Lake lake, GreenHouse greenHouse, Quarry quarry, CollisionRect collisionRect) {
         this.house = house;
@@ -46,9 +48,14 @@ public class Farm implements Serializable {
         this.collisionRect = collisionRect;
 
     }
-   public void increaseRocks(){
+
+    public ArrayList<FarmLand> getFarmLands() {
+        return farmLands;
+    }
+
+    public void increaseRocks() {
         numberOfRocksInTheQuery++;
-   }
+    }
 
     public House getHouse() {
         return house;
@@ -115,88 +122,77 @@ public class Farm implements Serializable {
     }
 
 
-    public boolean isInBounds(int x, int y)
-    {
+    public boolean isInBounds(int x, int y) {
         return x >= 0 && x < 20 && y >= 0 && y < 20;
     }
-    public Tile getTile(int x, int y)
-    {
+
+    public Tile getTile(int x, int y) {
         if (!isInBounds(x, y)) return null;
 //        if (isInBounds(x, y))
 //        {
-            return App.currentGameModel.getMap().tiles[x][y];
+        return App.currentGameModel.getMap().tiles[x][y];
 //        }
 //        return null;
     }
+
     private boolean isTileGoodForAnimalBuilding(Tile tile) {
         return (tile.getType() == TileType.grass && tile.getItemInThisTile() == null);
     }
-    public boolean isGoodForAnimalBuilding(Tile tile, int width, int height)
-    {
-        for (int y = 0; y <= height; y++)
-        {
-            for (int x = 0; x <= width; x++)
-            {
-                if (!isTileGoodForAnimalBuilding(tile))
-                {
+
+    public boolean isGoodForAnimalBuilding(Tile tile, int width, int height) {
+        for (int y = 0; y <= height; y++) {
+            for (int x = 0; x <= width; x++) {
+                if (!isTileGoodForAnimalBuilding(tile)) {
                     return false;
                 }
             }
         }
         return true;
     }
-    public void buildAnimalBuilding(AnimalBuilding building)
-    {
+
+    public void buildAnimalBuilding(AnimalBuilding building) {
         animalBuildings.add(building);
-        for (Tile tile : building.getTiles())
-        {
+        for (Tile tile : building.getTiles()) {
 
             tile.setType(TileType.ANIMAL_BUILDING);
         }
     }
-    public AnimalBuilding getBuildingForAnimal(FarmAnimalType animalType)
-    {
-        for (AnimalBuilding animalBuilding : animalBuildings)
-        {
-            if (animalType.getBuildings().contains(animalBuilding.getFarmBuildingType()))
-            {
-                if (animalBuilding.hasCapacity())
-                {
+
+    public AnimalBuilding getBuildingForAnimal(FarmAnimalType animalType) {
+        for (AnimalBuilding animalBuilding : animalBuildings) {
+            if (animalType.getBuildings().contains(animalBuilding.getFarmBuildingType())) {
+                if (animalBuilding.hasCapacity()) {
                     return animalBuilding;
                 }
             }
         }
         return null;
     }
-    public ArrayList<AnimalBuilding> getAnimalBuildings()
-    {
+
+    public ArrayList<AnimalBuilding> getAnimalBuildings() {
         return animalBuildings;
     }
-    public AnimalBuilding getAnimalBuilding(Animal animal)
-    {
-        for (AnimalBuilding animalBuilding : animalBuildings)
-        {
-            if (animalBuilding.getAnimals().contains(animal))
-            {
+
+    public AnimalBuilding getAnimalBuilding(Animal animal) {
+        for (AnimalBuilding animalBuilding : animalBuildings) {
+            if (animalBuilding.getAnimals().contains(animal)) {
                 return animalBuilding;
             }
         }
         return null;
     }
-    public ArrayList<Location> getNeighbors(Location p)
-    {
+
+    public ArrayList<Location> getNeighbors(Location p) {
         ArrayList<Location> neighbors = new ArrayList<>();
 
         int[] dx = {-1, 0, 1, 0};
         int[] dy = {0, 1, 0, -1};
 
-        for (int dir = 0; dir < 4; dir++)
-        {
+        for (int dir = 0; dir < 4; dir++) {
             int newX = p.getX() + dx[dir];
             int newY = p.getY() + dy[dir];
 
-            if (isInBounds(newX, newY))
-            {
+            if (isInBounds(newX, newY)) {
                 neighbors.add(new Location(newX, newY));
             }
         }
@@ -212,7 +208,8 @@ public class Farm implements Serializable {
     public void setNumberOfRocksInTheQuery(int numberOfRocksInTheQuery) {
         this.numberOfRocksInTheQuery = numberOfRocksInTheQuery;
     }
-    public void draw(){
+
+    public void draw() {
         lake.getSprite().setPosition(lake.getCollisionRect().getX(), lake.getCollisionRect().getY());
         quarry.getSprite().setPosition(quarry.getCollisionRect().getX(), quarry.getCollisionRect().getY());
         house.getSprite().setPosition(house.getCollisionRect().getX(), house.getCollisionRect().getY());

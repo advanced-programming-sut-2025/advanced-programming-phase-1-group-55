@@ -2,18 +2,54 @@
   "currentUser": {
     "username": "arshia",
     "password": "f723cc1d314e07f0ee5c7c0130f4c3f7b9393587cb3eec762ea4caeeb8087236",
-    "energy": 9395.0
+    "energy": 9579.0
   },
   "playersInGame": [
     {
       "username": "arshia",
       "password": "f723cc1d314e07f0ee5c7c0130f4c3f7b9393587cb3eec762ea4caeeb8087236",
-      "energy": 9395.0
+      "energy": 9579.0
     },
     {
       "username": "a",
       "password": "f723cc1d314e07f0ee5c7c0130f4c3f7b9393587cb3eec762ea4caeeb8087236",
       "energy": 10000.0
     }
-  ]
+  ],
+  "map": {
+    "farm1": {
+      "greenHouse": {},
+      "collisionRect": {}
+    },
+    "farm2": {
+      "greenHouse": {},
+      "collisionRect": {}
+    },
+    "village": {},
+    "artisanMachines": []
+  },
+  "allFriendships": [
+    {
+      "user1": {
+        "username": "arshia",
+        "password": "f723cc1d314e07f0ee5c7c0130f4c3f7b9393587cb3eec762ea4caeeb8087236",
+        "energy": 9579.0
+      },
+      "user2": {
+        "username": "a",
+        "password": "f723cc1d314e07f0ee5c7c0130f4c3f7b9393587cb3eec762ea4caeeb8087236",
+        "energy": 10000.0
+      },
+      "areMarried": false,
+      "todayHugged": false,
+      "todayTraded": false,
+      "todayGotFlower": false,
+      "todayTalked": false,
+      "todayGotGift": false,
+      "hasReceivedFlower": false,
+      "hasMarriage": false,
+      "conversation": []
+    }
+  ],
+  "AllTrades": {}
 }

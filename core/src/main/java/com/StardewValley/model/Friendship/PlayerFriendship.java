@@ -2,29 +2,57 @@ package com.StardewValley.model.Friendship;
 
 import com.StardewValley.model.App;
 import com.StardewValley.model.User;
+import com.google.gson.annotations.Expose;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
 public class PlayerFriendship extends FriendShip implements Serializable {
+    @Expose
     private User user1;
-    private boolean areMarried=false;
-    private MarriageRequest marriageRequest=null;
+
+    @Expose
     private User user2;
-    private boolean todayHugged=false;
-    private boolean todayTraded=false;
-    private boolean todayGotFlower=false;
-    private  boolean todayTalked=false;
-    private boolean todayGotGift=false;
-    private boolean hasReceivedFlower=false;
-    private boolean hasMarriage=false;
-    private ArrayList<Message> conversation=new ArrayList<>();
-    private ArrayList<Gift> gifts=new ArrayList<>();
+
+    @Expose
+    private boolean areMarried;
+
+    @Expose
+    private MarriageRequest marriageRequest;
+
+    @Expose
+    private boolean todayHugged;
+
+    @Expose
+    private boolean todayTraded;
+
+    @Expose
+    private boolean todayGotFlower;
+
+    @Expose
+    private boolean todayTalked;
+
+    @Expose
+    private boolean todayGotGift;
+
+    @Expose
+    private boolean hasReceivedFlower;
+
+    @Expose
+    private boolean hasMarriage;
+
+    @Expose
+    private ArrayList<Message> conversation;
+
+    @Expose
+    private ArrayList<Gift> gifts;
+
 
     public PlayerFriendship(User user1, User user2) {
         this.user1 = user1;
         this.user2 = user2;
     }
+
     public User getUser1() {
         return user1;
     }
@@ -96,22 +124,23 @@ public class PlayerFriendship extends FriendShip implements Serializable {
     public void setConversation(ArrayList<Message> conversation) {
         this.conversation = conversation;
     }
-    public void increaseXp(int amount){
-        xp+=amount;
-        if(level==0){
-            if(xp>=100){
+
+    public void increaseXp(int amount) {
+        xp += amount;
+        if (level == 0) {
+            if (xp >= 100) {
                 level++;
             }
-        } else if (level==1) {
-            if(xp>=300){
+        } else if (level == 1) {
+            if (xp >= 300) {
                 level++;
             }
-        } else if (level==2) {
-            if(xp>=600&&hasReceivedFlower){
+        } else if (level == 2) {
+            if (xp >= 600 && hasReceivedFlower) {
                 level++;
             }
-        } else if (level==3) {
-            if(xp>=1000&&hasMarriage){
+        } else if (level == 3) {
+            if (xp >= 1000 && hasMarriage) {
                 level++;
             }
         }
@@ -151,12 +180,12 @@ public class PlayerFriendship extends FriendShip implements Serializable {
 
     @Override
     public String toString() {
-        String username=user1.getUsername().equals(App.getCurrentGameModel().getCurrentUser().getUsername())?user2.getUsername():user1.getUsername();
+        String username = user1.getUsername().equals(App.getCurrentGameModel().getCurrentUser().getUsername()) ? user2.getUsername() : user1.getUsername();
         return
             "You: " + App.currentGameModel.currentUser.getUsername() +
-            "\nYour friend: " + username +
-            "\nFriendship level: " + level +
-            "\nxp: " + xp +
-            "\nareMarried: " + areMarried+"\n\n";
+                "\nYour friend: " + username +
+                "\nFriendship level: " + level +
+                "\nxp: " + xp +
+                "\nareMarried: " + areMarried + "\n\n";
     }
 }

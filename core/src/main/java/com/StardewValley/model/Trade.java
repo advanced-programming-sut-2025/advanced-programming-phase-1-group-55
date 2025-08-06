@@ -1,24 +1,50 @@
 package com.StardewValley.model;
+
 import com.StardewValley.model.*;
 import com.StardewValley.model.Item.Item;
+import com.google.gson.annotations.Expose;
 
 import java.io.Serializable;
 
 
 public class Trade implements Serializable {
 
+    @Expose
     private User Sender;
+
+    @Expose
     private User Reciver;
-    private com.StardewValley.model.Item.Item Item;
-    private String type;//todo
+
+    @Expose
+    private Item Item;
+
+    @Expose
+    private String type;
+
+    @Expose
     private int amount;
+
+    @Expose
     private int price;
+
+    @Expose
     private Item TargetItem;
+
+    @Expose
     private int TargetAmount;
+
+    @Expose
     private int id;
-    private boolean Printed = false;
-    private boolean Accepted = false;
-    private boolean answered = false;
+
+    @Expose
+    private boolean Printed;
+
+    @Expose
+    private boolean Accepted;
+
+    @Expose
+    private boolean answered;
+
 
     public boolean isAnswered() {
         return answered;
@@ -132,7 +158,7 @@ public class Trade implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Trade info {").append(" id : ").append(getId()).append(" sender : ").append(getSender().getUsername()).append(" reciver : ").append(getReciver().getUsername()).append("\nitem : ").append(getItem().getItemType().getDisplayName()).append(" amount :").append(getAmount()).append(" type : ").append(getType());
-        if (price == 0 ) {
+        if (price == 0) {
             sb.append("\ntarget item : ").append(getTargetItem().getItemType().getDisplayName()).append("target amount : ").append(getTargetAmount());
         } else {
             sb.append(" price : ").append(getPrice());

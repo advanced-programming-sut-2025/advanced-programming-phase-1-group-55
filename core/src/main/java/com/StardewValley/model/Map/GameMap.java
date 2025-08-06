@@ -8,6 +8,7 @@ import com.StardewValley.model.NPC.Npc;
 import com.StardewValley.model.Store.ShippingBin;
 import com.StardewValley.model.Store.Store;
 import com.StardewValley.model.User;
+import com.google.gson.annotations.Expose;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -21,78 +22,89 @@ import static com.StardewValley.model.App.currentGameModel;
 public class GameMap implements Serializable {
     public Tile[][] tiles = new Tile[41][160];
 
-    private Farm farm1;//baray nafar aval
+    @Expose
+    private Farm farm1;
+    @Expose
     private Farm farm2;
+    @Expose
     private Farm farm3;
+    @Expose
     private Farm farm4;
-    private NpcVillage village=new NpcVillage();
-    private ArrayList<ArtisanMachine> artisanMachines=new ArrayList<>();
-    private static final int WORLD_WIDTH = (int)(1920*4);
-    private static final int WORLD_HEIGHT = (int)(1080*4);
-    public  ArrayList<Fence> fences = new ArrayList<>();
+
+    @Expose
+    private NpcVillage village = new NpcVillage();
+
+    @Expose
+    private ArrayList<ArtisanMachine> artisanMachines = new ArrayList<>();
+
+
+    public ArrayList<Fence> fences = new ArrayList<>();
+    private static final int WORLD_WIDTH = (int) (1920 * 4);
+    private static final int WORLD_HEIGHT = (int) (1080 * 4);
 
 
     public GameMap(Farm farm1, Farm farm2, Farm farm3, Farm farm4, NpcVillage village) {
 
 
     }
+
     //todo in constructor bade inke map choose zade shod ,bardaashte beshe
     public GameMap() {
 
     }
 
-    public  boolean  canMove(CollisionRect collisionRect) {
+    public boolean canMove(CollisionRect collisionRect) {
         for (Fence fence : fences) {
             if (fence.getCollisionRect().collidesWith(collisionRect)) {
                 return false;
             }
         }
-        for (Store store:village.getStores().values()){
+        for (Store store : village.getStores().values()) {
             if (store.getCollisionRect().collidesWith(collisionRect)) {
                 return false;
             }
         }
-        for (Npc npc:village.getNpss().values()){
+        for (Npc npc : village.getNpss().values()) {
             if (npc.getType().getHouse().getCollisionRect().collidesWith(collisionRect)) {
                 return false;
             }
         }
-        for (ShippingBin bin:village.getShippingBins()){
+        for (ShippingBin bin : village.getShippingBins()) {
             if (bin.getCollisionRect().collidesWith(collisionRect)) {
                 return false;
             }
         }
-        for (ArtisanMachine artisanMachine:artisanMachines){
+        for (ArtisanMachine artisanMachine : artisanMachines) {
             if (artisanMachine.getCollisionRect().collidesWith(collisionRect)) {
                 return false;
             }
         }
         //todo ino bade inke vorood player be mazrae digaran mamnoo shod bardaar
-        if (farm1.getLake().getCollisionRect().collidesWith(collisionRect)||
-            farm1.getHouse().getCollisionRect().collidesWith(collisionRect)||
-            farm2.getLake().getCollisionRect().collidesWith(collisionRect)||
+        if (farm1.getLake().getCollisionRect().collidesWith(collisionRect) ||
+            farm1.getHouse().getCollisionRect().collidesWith(collisionRect) ||
+            farm2.getLake().getCollisionRect().collidesWith(collisionRect) ||
             farm2.getHouse().getCollisionRect().collidesWith(collisionRect)) {
             return false;
         }
-        if (App.currentGameModel.playersInGame.size()>2){
-            if (farm3.getLake().getCollisionRect().collidesWith(collisionRect)||
-                farm3.getHouse().getCollisionRect().collidesWith(collisionRect)){
+        if (App.currentGameModel.playersInGame.size() > 2) {
+            if (farm3.getLake().getCollisionRect().collidesWith(collisionRect) ||
+                farm3.getHouse().getCollisionRect().collidesWith(collisionRect)) {
                 return false;
             }
-            if (App.getCurrentGameModel().playersInGame.size()>3){
-                if (farm4.getLake().getCollisionRect().collidesWith(collisionRect)||
-                    farm4.getHouse().getCollisionRect().collidesWith(collisionRect)){
+            if (App.getCurrentGameModel().playersInGame.size() > 3) {
+                if (farm4.getLake().getCollisionRect().collidesWith(collisionRect) ||
+                    farm4.getHouse().getCollisionRect().collidesWith(collisionRect)) {
                     return false;
                 }
             }
         }
-        for (User user:App.currentGameModel.playersInGame){
-            if (user.getCollisionRect().collidesWith(collisionRect)&&!user.getUsername().equals(currentGameModel.currentUser.getUsername())){
+        for (User user : App.currentGameModel.playersInGame) {
+            if (user.getCollisionRect().collidesWith(collisionRect) && !user.getUsername().equals(currentGameModel.currentUser.getUsername())) {
                 return false;
             }
         }
-        if (collisionRect.collidesWith(currentGameModel.currentUser.getFarm().getGreenHouse().getCollisionRect())&&
-        !currentGameModel.currentUser.getFarm().getGreenHouse().getRepaired()){
+        if (collisionRect.collidesWith(currentGameModel.currentUser.getFarm().getGreenHouse().getCollisionRect()) &&
+            !currentGameModel.currentUser.getFarm().getGreenHouse().getRepaired()) {
             return false;
         }
         return true;
@@ -100,15 +112,17 @@ public class GameMap implements Serializable {
 
     public void BuildMap() {
         MapBuilder mapBuilder1 = new MapBuilder();
-        mapBuilder1.BuildFences(WORLD_WIDTH, WORLD_HEIGHT,this);
+        mapBuilder1.BuildFences(WORLD_WIDTH, WORLD_HEIGHT, this);
 
 
     }
-    public void BuildFarm(String map2, String map3, String map4){
+
+    public void BuildFarm(String map2, String map3, String map4) {
         MapBuilder mapBuilder1 = new MapBuilder();
-        mapBuilder1.BuildFarms(map2,map3,map4,this,WORLD_WIDTH,WORLD_HEIGHT);
+        mapBuilder1.BuildFarms(map2, map3, map4, this, WORLD_WIDTH, WORLD_HEIGHT);
     }
-    public void DrawMap(){
+
+    public void DrawMap() {
         MapBuilder mapBuilder1 = new MapBuilder();
         mapBuilder1.drawFences(this);
         mapBuilder1.drawStores(this);
