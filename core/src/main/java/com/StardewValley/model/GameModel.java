@@ -12,14 +12,26 @@ import com.StardewValley.model.NPC.Dialog;
 
 import static com.StardewValley.model.GameTime.*;
 
+import com.google.gson.annotations.Expose;
+
+import java.util.*;
 
 import java.util.List;
 
 public class GameModel {
+    @Expose
     public User currentUser;
+
+    @Expose
     public ArrayList<User> playersInGame = new ArrayList<>();
+
+//    @Expose
     private GameMap map;
+
+//    @Expose
     private ArrayList<PlayerFriendship> allFriendships = new ArrayList<>();
+
+//    @Expose
     private HashMap<Integer, Trade> AllTrades = new HashMap<>();
     private int numberOfAllGifts = 0;
     private final List<Dialog> allDialogs = new ArrayList<>(Arrays.asList(Dialog.values()));
@@ -53,19 +65,6 @@ public class GameModel {
         this.turnCounter = turnCounter;
     }
 
-    public void nextTurn() {
-
-        currentUser = playersInGame.get((++turnCounter) % playersInGame.size());
-        if (currentUser.isFainted()) {
-            nextTurn();
-        }
-        System.out.println("player " + turnCounter % playersInGame.size() + " : " + currentUser.getUsername());
-
-        if ((turnCounter) % playersInGame.size() == 0) {
-            increaseHour(1);
-        }
-
-    }
 
     public User getCurrentUser() {
         return currentUser;
@@ -91,55 +90,6 @@ public class GameModel {
         this.map = map;
     }
 
-
-    public Tile getTileFromDirection(String direction) {
-        User user = App.currentGameModel.currentUser;
-        int currentX = user.getLocation().getX();
-        int currentY = user.getLocation().getY();
-
-        int dx = 0;
-        int dy = 0;
-
-        direction = direction.toLowerCase();
-
-        switch (direction) {
-            case "up":
-                dy = 1;
-                break;
-            case "down":
-                dy = -1;
-                break;
-            case "left":
-                dx = -1;
-                break;
-            case "right":
-                dx = 1;
-                break;
-            case "up-left":
-                dx = -1;
-                dy = 1;
-                break;
-            case "up-right":
-                dx = 1;
-                dy = 1;
-                break;
-            case "down-left":
-                dx = -1;
-                dy = -1;
-                break;
-            case "down-right":
-                dx = 1;
-                dy = -1;
-                break;
-            default:
-                return null;
-        }
-
-        int newX = currentX + dx;
-        int newY = currentY + dy;
-
-        return App.currentGameModel.getMap().tiles[newX][newY];
-    }
 
     public ArrayList<PlayerFriendship> getAllFriendships() {
         return allFriendships;

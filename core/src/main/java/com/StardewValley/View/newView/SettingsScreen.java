@@ -1,6 +1,7 @@
 package com.StardewValley.View.newView;
 
 
+import com.StardewValley.model.SaveLoadUtil;
 import com.StardewValley.model.User;
 import com.StardewValley.model.App;
 import com.badlogic.gdx.Gdx;
@@ -64,7 +65,8 @@ public class SettingsScreen implements Screen {
         saveButton.addListener(new ClickListener() {
             @Override
             public void clicked(com.badlogic.gdx.scenes.scene2d.InputEvent event, float x, float y) {
-                System.out.println("Game Saved!");
+                SaveLoadUtil.saveGame(App.getCurrentGameModel(), "saves/game_save.json");
+
             }
         });
 
