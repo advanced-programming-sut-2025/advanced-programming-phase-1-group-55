@@ -91,20 +91,29 @@ public class TimeController {
         clockArrow.setOrigin(clockArrow.getWidth() / 2, 0);
     }
 
+    private boolean hasThunderPlayed = false;
+    private float flashDuration = 0f;
+
     public void update(float delta) {
         if (getCurrentWeather() == WeatherType.Storm) {
-            lightningTimer -= delta;
-            if (lightningTimer <= 0) {
+            if (!hasThunderPlayed) {
                 lightningFlash = true;
-                lightningTimer = MathUtils.random(0.1f, 2f);
+                flashDuration = 0.3f;
                 thunderSound.play();
-            } else {
-                lightningFlash = false;
+                hasThunderPlayed = true;
             }
         } else {
-            lightningFlash = false;
+            hasThunderPlayed = false;
+        }
+
+        if (flashDuration > 0) {
+            flashDuration -= delta;
+            if (flashDuration <= 0) {
+                lightningFlash = false;
+            }
         }
     }
+
 
     public void render(SpriteBatch batch, OrthographicCamera camera) {
 
@@ -206,3 +215,4 @@ public class TimeController {
         thunderSound.dispose();
     }
 }
+
