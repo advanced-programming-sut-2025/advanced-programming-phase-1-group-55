@@ -4,8 +4,10 @@ import com.StardewValley.enums.AssetManager;
 import com.StardewValley.model.Item.CollisionRect;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
-public class House extends Place {
-    private Sprite sprite;
+import java.io.Serializable;
+
+public class House extends Place implements Serializable {
+    private transient Sprite sprite;
 
     public House(CollisionRect collisionRect) {
         super(collisionRect);

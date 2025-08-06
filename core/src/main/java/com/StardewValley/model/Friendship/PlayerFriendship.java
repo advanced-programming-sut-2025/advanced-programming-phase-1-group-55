@@ -3,9 +3,10 @@ package com.StardewValley.model.Friendship;
 import com.StardewValley.model.App;
 import com.StardewValley.model.User;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class PlayerFriendship extends FriendShip {
+public class PlayerFriendship extends FriendShip implements Serializable {
     private User user1;
     private boolean areMarried=false;
     private MarriageRequest marriageRequest=null;

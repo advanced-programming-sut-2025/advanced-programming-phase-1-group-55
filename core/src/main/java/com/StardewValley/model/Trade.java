@@ -2,8 +2,10 @@ package com.StardewValley.model;
 import com.StardewValley.model.*;
 import com.StardewValley.model.Item.Item;
 
+import java.io.Serializable;
 
-public class Trade {
+
+public class Trade implements Serializable {
 
     private User Sender;
     private User Reciver;

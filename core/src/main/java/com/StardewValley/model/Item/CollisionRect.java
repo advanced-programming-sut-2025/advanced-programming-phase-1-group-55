@@ -3,7 +3,9 @@ package com.StardewValley.model.Item;
 
 import com.badlogic.gdx.math.Rectangle;
 
-public class CollisionRect {
+import java.io.Serializable;
+
+public class CollisionRect implements Serializable {
     float x, y;
     float width, height;
     public CollisionRect(float x, float y, float width, float height){

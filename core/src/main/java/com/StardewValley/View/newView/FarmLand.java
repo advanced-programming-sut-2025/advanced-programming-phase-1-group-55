@@ -9,14 +9,17 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.StardewValley.model.App;
 
-public class FarmLand {
+import java.io.Serializable;
+
+public class FarmLand implements Serializable {
+    private static final long serialVersionUID = 1L;
     private CollisionRect collisionRect;
     private boolean isPlowed;
     private boolean isFertilized;
     private boolean isWatered;
     private boolean isPlanted;
     private ItemType crop;
-    private Sprite sprite;
+    private transient Sprite sprite;
     private Location location;
 
     public FarmLand(CollisionRect rect, Texture texture) {
@@ -30,12 +33,29 @@ public class FarmLand {
         this.location = new Location((int) rect.getX(), (int) rect.getY());
     }
 
-    public CollisionRect getCollisionRect() { return collisionRect; }
-    public boolean isPlowed() { return isPlowed; }
-    public void setPlowed(boolean plowed) { this.isPlowed = plowed; }
-    public Sprite getSprite() { return sprite; }
-    public Location getLocation() { return location; }
-    public void setColor(Color color) { sprite.setColor(color); }
+    public CollisionRect getCollisionRect() {
+        return collisionRect;
+    }
+
+    public boolean isPlowed() {
+        return isPlowed;
+    }
+
+    public void setPlowed(boolean plowed) {
+        this.isPlowed = plowed;
+    }
+
+    public Sprite getSprite() {
+        return sprite;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setColor(Color color) {
+        sprite.setColor(color);
+    }
 
     public boolean isWatered() {
         return isWatered;

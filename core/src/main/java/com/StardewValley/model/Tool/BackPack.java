@@ -8,10 +8,14 @@ import com.StardewValley.model.Item.ItemType;
 import com.StardewValley.model.Result;
 
 
+import java.io.Serializable;
 import java.util.*;
 
-public class BackPack {
-    private  transient Tools currentTool=new Hoe();
+public class BackPack implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+
+    private transient Tools currentTool = new Hoe();
     private ItemType selectedItem;
     private transient Map<String, Tools> availableTools = new HashMap<>() {{
         put("Hoe", new Hoe());
@@ -19,11 +23,12 @@ public class BackPack {
         put("Axe", new Axe());
         put("WateringCan", new WateringCan());
         put("Scythe", new Scythe());
-        put("FishingPole",new FishingPole(FishingPoleType.TRAINING_ROD));
+        put("FishingPole", new FishingPole(FishingPoleType.TRAINING_ROD));
     }};
-    private transient Trashcan trashcan=new Trashcan();
-    private Map<String,Item> inventory = new HashMap<>();
+    private transient Trashcan trashcan = new Trashcan();
+    private Map<String, Item> inventory = new HashMap<>();
     private int level = 1;
+
     public Map<String, Tools> getAvailableTools() {
         return availableTools;
     }
@@ -44,50 +49,52 @@ public class BackPack {
         this.level = level;
     }
 
-    public String showCurrentTool(){
+    public String showCurrentTool() {
         return currentTool.getName();
     }
-    public String showAvailableTools(){
-        StringBuilder message=new StringBuilder();
-        for(Tools tools:availableTools.values()){
+
+    public String showAvailableTools() {
+        StringBuilder message = new StringBuilder();
+        for (Tools tools : availableTools.values()) {
             message.append(tools.getName()).append("\n");
         }
-        return  message.toString();
+        return message.toString();
     }
 
     public int getSize() {
-        return level==1?12:level==2?24:10000000;
+        return level == 1 ? 12 : level == 2 ? 24 : 10000000;
     }
 
-    public void addToInventory(Item item){
+    public void addToInventory(Item item) {
         if (inventory.size() < getSize()) {
-            inventory.put(item.getItemType().name(),item);
-            if(item.getNumber()==0){
+            inventory.put(item.getItemType().name(), item);
+            if (item.getNumber() == 0) {
                 item.setNumber(1);
             }
         }
     }
+
     public int getInventorySize() {
         return inventory.size();
     }
-    public Map<String,Item> getInventory()
-    {
+
+    public Map<String, Item> getInventory() {
         return inventory;
     }
 
-    public void setInventory(Map<String,Item> inventory) {
+    public void setInventory(Map<String, Item> inventory) {
         this.inventory = inventory;
     }
+
     private ArrayList<CraftingItemType> craftingRecipes = new ArrayList<>();
     private ArrayList<CookingItemType> cookingRecipes = new ArrayList<>(
-            Arrays.asList(CookingItemType.FRIED_EGG, CookingItemType.BAKED_FISH, CookingItemType.SALAD)
+        Arrays.asList(CookingItemType.FRIED_EGG, CookingItemType.BAKED_FISH, CookingItemType.SALAD)
     );
 
 
     public ArrayList<CraftingItemType> getCraftingRecipes() {
         return craftingRecipes;
     }
-
 
 
     public ArrayList<CookingItemType> getCookingRecipes() {
@@ -116,7 +123,7 @@ public class BackPack {
             itemx.addNumber(quantity);
         } else {
             item.setNumber(quantity);
-            inventory.put(item.getItemType().getDisplayName(),item);
+            inventory.put(item.getItemType().getDisplayName(), item);
         }
     }
 
@@ -152,7 +159,6 @@ public class BackPack {
             }
         }
     }
-
 
 
     public void removeItemFromInventory(Item item) {

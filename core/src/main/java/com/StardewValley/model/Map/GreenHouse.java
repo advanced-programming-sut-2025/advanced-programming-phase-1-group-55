@@ -5,14 +5,16 @@ import com.StardewValley.model.Item.CollisionRect;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
-public class GreenHouse extends Place {
+import java.io.Serializable;
+
+public class GreenHouse extends Place implements Serializable {
     private Boolean isRepaired = false;
     private final int woodForGreenHouse = 500;
     private final int goldForGreenHouse = 1000;
     private int waterSupply;
-    private Sprite sprite;
-    private Sprite sprite_kharab = new Sprite(AssetManager.GreenHouse1.getTexture());
-    private Sprite sprite_salem = new Sprite(AssetManager.GreenHouse.getTexture());
+    private transient Sprite sprite;
+    private transient Sprite sprite_kharab = new Sprite(AssetManager.GreenHouse1.getTexture());
+    private transient Sprite sprite_salem = new Sprite(AssetManager.GreenHouse.getTexture());
 
     public GreenHouse(CollisionRect collisionRect) {
         super(collisionRect);

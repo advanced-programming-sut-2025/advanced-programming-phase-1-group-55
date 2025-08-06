@@ -6,8 +6,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
-public class Quarry extends Place {
-    private Sprite sprite;
+import java.io.Serializable;
+
+public class Quarry extends Place implements Serializable {
+    private transient Sprite sprite;
+
     public Quarry(CollisionRect collisionRect) {
         super(collisionRect);
         sprite = AssetManager.Quarry.getSprite();

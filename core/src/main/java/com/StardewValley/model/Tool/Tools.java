@@ -3,13 +3,15 @@ package com.StardewValley.model.Tool;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
+import java.io.Serializable;
 import java.nio.channels.spi.SelectorProvider;
 
-public abstract class Tools {
+public abstract class Tools implements Serializable {
     protected int level = 0;
 
     protected String name;
-    public   abstract Sprite getSprite();
+
+    public abstract Sprite getSprite();
 
     public int getLevel() {
         return level;
