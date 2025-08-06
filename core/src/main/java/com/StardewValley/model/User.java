@@ -236,7 +236,7 @@ public class User {
 
     public void increaseEnergy(int amount) {
         this.energy += amount;
-        this.energy = Math.min(100, energy);
+        this.energy = Math.min(10000, energy);
     }
 
     public int getWood() {

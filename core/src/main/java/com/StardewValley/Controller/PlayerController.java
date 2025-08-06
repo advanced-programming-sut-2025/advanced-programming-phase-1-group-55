@@ -16,10 +16,11 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
-import java.awt.*;
+import static com.StardewValley.model.App.*;
+import static com.StardewValley.model.User.*;
 
-import static com.StardewValley.model.App.gameApp;
-import static com.StardewValley.model.App.getCurrentGameModel;
+import java.awt.*;
+import java.security.Key;
 
 public class PlayerController {
     private int speed = 10;
@@ -128,6 +129,9 @@ public class PlayerController {
             );
 
             drawOtherPlayers();
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.E)){
+            mainUser.increaseEnergy(10);
         }
 
         stage.act(Gdx.graphics.getDeltaTime());
