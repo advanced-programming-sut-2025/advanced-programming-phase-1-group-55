@@ -4,18 +4,22 @@ package com.StardewValley.View.newView;
 import com.StardewValley.Controller.LoginMenuController;
 import com.StardewValley.Controller.ProfileMenuController;
 import com.StardewValley.Controller.RegisterController;
+import com.StardewValley.enums.Avatar;
 import com.StardewValley.model.App;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 
@@ -25,7 +29,7 @@ public class ProfileMenuScreen implements Screen {
 
     private ProfileMenuController controller;
     private RegisterController controller2;
-
+    private FileHandle selectedAvatar;
 
     @Override
     public void show() {
@@ -74,6 +78,40 @@ public class ProfileMenuScreen implements Screen {
         Label infoLabel = new Label("", skin);
         table.add(infoBtn).colspan(2).pad(10).row();
         table.add(infoLabel).colspan(2).pad(5).row();
+
+        Label avatarLabel = new Label("Choose Your Avatar", skin);
+        table.add(avatarLabel).colspan(2).padTop(20).row();
+
+        Image previewImage = new Image();
+        table.add(previewImage).left().padBottom(10).row();
+        Table avatarTable = new Table();
+        for (Avatar avatar : Avatar.values()) {
+            Texture texture = new Texture(Gdx.files.internal(avatar.getPath()));
+            ImageButton.ImageButtonStyle style = new ImageButton.ImageButtonStyle();
+            style.imageUp = new TextureRegionDrawable(new TextureRegion(texture));
+
+            ImageButton avatarBtn = new ImageButton(style);
+            avatarBtn.addListener(new ClickListener() {
+                @Override
+                public void clicked(InputEvent event, float x, float y) {
+                    selectedAvatar = Gdx.files.internal(avatar.getPath());
+                    previewImage.setDrawable(new TextureRegionDrawable(new TextureRegion(texture)));
+                    App.mainUser.setAvatarPath(avatar.getPath());
+                }
+            });
+            avatarTable.add(avatarBtn).size(64).pad(10);
+        }
+
+        ScrollPane scrollPane = new ScrollPane(avatarTable, skin);
+        scrollPane.setScrollingDisabled(false, true);
+        scrollPane.setFadeScrollBars(false);
+        table.add(scrollPane).colspan(2).height(100).width(Gdx.graphics.getWidth() * 0.8f).padBottom(20).row();
+
+
+
+
+
+
 
         TextButton backBtn = new TextButton("Back to Main Menu", skin);
         table.add(backBtn).colspan(2).pad(20).row();

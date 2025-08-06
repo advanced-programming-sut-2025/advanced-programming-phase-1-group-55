@@ -59,24 +59,24 @@ public class weather {
 
     }
 
-    public static StringBuilder RandomThor() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("\nRandom thor because of storm weather");
-        for (int i = 0; i < 3; i++) {
-
-            SecureRandom random = new SecureRandom();
-            int x = random.nextInt(160);
-            int y = random.nextInt(40);
-            MainGameController controller = new MainGameController();
-            Result result = controller.cheatThor(Integer.toString(x), Integer.toString(y));
-            if (result.IsSuccess()) {
-
-                sb.append("\nx: ").append(x).append(" y: ").append(y).append("\n");
-            }
-        }
-        return sb;
-
-    }
+//    public static StringBuilder RandomThor() {
+//        StringBuilder sb = new StringBuilder();
+//        sb.append("\nRandom thor because of storm weather");
+//        for (int i = 0; i < 3; i++) {
+//
+//            SecureRandom random = new SecureRandom();
+//            int x = random.nextInt(160);
+//            int y = random.nextInt(40);
+//            MainGameController controller = new MainGameController();
+//            Result result = controller.cheatThor(Integer.toString(x), Integer.toString(y));
+//            if (result.IsSuccess()) {
+//
+//                sb.append("\nx: ").append(x).append(" y: ").append(y).append("\n");
+//            }
+//        }
+//        return sb;
+//
+//    }
 
     ;
 

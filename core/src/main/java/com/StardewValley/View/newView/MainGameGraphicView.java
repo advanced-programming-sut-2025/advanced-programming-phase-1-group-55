@@ -1,6 +1,7 @@
 package com.StardewValley.View.newView;
 
 import com.StardewValley.Controller.MainGameController;
+import com.StardewValley.Controller.TimeController;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Artisan.ArtisanMachineType;
 import com.StardewValley.model.Friendship.NpcFriendship;
@@ -43,6 +44,8 @@ public class MainGameGraphicView implements Screen, InputProcessor {
     private ArtisanMachineType chosenArtisanType;
     private Sprite chosenArtisanSprite;
     private GameMap map = new GameMap();
+    private TimeController timeController;
+    private TextureRegion backgroundRegion;
 
 
     public MainGameGraphicView(MainGameController controller, GameMap map) {
@@ -75,7 +78,7 @@ public class MainGameGraphicView implements Screen, InputProcessor {
 //        Gdx.input.setInputProcessor(stage);
 
         updateBackgroundTexture();
-
+        timeController = new TimeController();
 
         ProgressBar.ProgressBarStyle progressBarStyle = new ProgressBar.ProgressBarStyle();
 
@@ -114,6 +117,7 @@ public class MainGameGraphicView implements Screen, InputProcessor {
         if (bgTexture != newTexture) {
             bgTexture = newTexture;
             bgTexture.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
+            backgroundRegion = new TextureRegion(bgTexture);
         }
     }
 
@@ -140,8 +144,9 @@ public class MainGameGraphicView implements Screen, InputProcessor {
             chosenArtisanSprite.draw(App.gameApp.getBatch());
         }
 
-        controller.updateGame(delta);
 
+        controller.updateGame(delta);
+        timeController.render(App.gameApp.getBatch(), camera);
         App.gameApp.getBatch().end();
 
         energyBar.setValue((float) player.getEnergy());
@@ -154,20 +159,17 @@ public class MainGameGraphicView implements Screen, InputProcessor {
         float camX = camera.position.x - camera.viewportWidth / 2;
         float camY = camera.position.y - camera.viewportHeight / 2;
 
-        TextureRegion backgroundRegion = new TextureRegion(bgTexture);
-
         int texWidth = bgTexture.getWidth();
         int texHeight = bgTexture.getHeight();
 
         int offsetX = ((int) camX) % texWidth;
         if (offsetX < 0) offsetX += texWidth;
 
-        int offsetY = 0;
-
-        backgroundRegion.setRegion(offsetX, offsetY, (int) camera.viewportWidth, (int) camera.viewportHeight);
+        backgroundRegion.setRegion(offsetX, 0, (int) camera.viewportWidth, (int) camera.viewportHeight);
 
         App.gameApp.getBatch().draw(backgroundRegion, camX, camY, camera.viewportWidth, camera.viewportHeight);
     }
+
 
     public GameMap getMap() {
         return map;
@@ -199,6 +201,9 @@ public class MainGameGraphicView implements Screen, InputProcessor {
     @Override
     public void dispose() {
         stage.dispose();
+        if (timeController != null) {
+            timeController.dispose();
+        }
     }
 
     public MainGameController getController() {

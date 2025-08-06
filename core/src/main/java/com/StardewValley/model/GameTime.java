@@ -26,11 +26,12 @@ public class GameTime {
     private static DayOfTheWeeks day = saturday;
     private static Seasons currentSeason = fall;
     private static int DayofMonth = 1;
-    private static MainTime mainTime = MainTime.Night;
+    private static MainTime mainTime = MainTime.Day;
 
     public static void setHour(int hour) {
         GameTime.hour = hour;
     }
+
     public static void friendshipWorks() {
         for (User user : currentGameModel.playersInGame) {
             for (PlayerFriendship friendship : user.getFriendsPlayer().values()) {
@@ -42,10 +43,12 @@ public class GameTime {
             }
         }
     }
+
     public static void roozbad() {
         GameTime.hour = 9;
         weather.setCurrentWeather(weather.getTomorrowWeather());
         weather.RandomWeatherForTommorow();
+        mainTime = MainTime.Day;
         if (weather.getCurrentWeather().equals(WeatherType.Rain)) {
             setEnergyLoser(1.5);
         } else if (weather.getCurrentWeather().equals(WeatherType.Snow)) {
@@ -53,17 +56,17 @@ public class GameTime {
         }
 
         if (weather.getCurrentWeather().equals(WeatherType.Storm)) {
-            System.out.println(RandomThor());
-            System.out.println("Current Weather is " + weather.getCurrentWeather());
+//            System.out.println(RandomThor());
+//            System.out.println("Current Weather is " + weather.getCurrentWeather());
 
         }
-        for (Item plant : currentGameModel.getAllPlants().values()) {
-            plant.increaseStage(1);
-            if (plant.getStage() == 5) {
-                currentGameModel.getMap().tiles[plant.getLocation().getY()][plant.getLocation().getX()].setMohtaviat("?");
-                currentGameModel.getAllPlants().remove(plant.getItemType().getDisplayName());
-            }
-        }
+//        for (Item plant : currentGameModel.getAllPlants().values()) {
+//            plant.increaseStage(1);
+//            if (plant.getStage() == 5) {
+//                currentGameModel.getMap().tiles[plant.getLocation().getY()][plant.getLocation().getX()].setMohtaviat("?");
+//                currentGameModel.getAllPlants().remove(plant.getItemType().getDisplayName());
+//            }
+//        }
         for (User player : currentGameModel.playersInGame) {
             //in moheme paak nakonid faghat baraaye saadegi tahvil comment kardim!!!!!!!!!!!!!!
 //            if (!player.isFainted()) {
@@ -85,7 +88,7 @@ public class GameTime {
         for (User user : currentGameModel.playersInGame) {
             user.increaseGold(user.getDailyMoney());
             user.setDailyMoney(0);
-           // FarmBuilder.placeRandomForaggings(user.getFarm(), currentGameModel.getMap(),2,2,1,false);
+            // FarmBuilder.placeRandomForaggings(user.getFarm(), currentGameModel.getMap(),2,2,1,false);
         }
         for (Store store : currentGameModel.getMap().getVillage().getStores().values()) {
             for (Product product : store.getProductsOfStore().values()) {
@@ -99,9 +102,9 @@ public class GameTime {
                 friendship.setTodayMet(false);
                 friendship.setTodayHadGift(false);
             }
-            if(user.isSad()){
+            if (user.isSad()) {
                 user.increaseTimeToBeSad();
-                if (user.getTimePassedBeingSad()>=7){
+                if (user.getTimePassedBeingSad() >= 7) {
                     user.setTimePassedBeingSad(0);
                     user.setSad(false);
                 }
@@ -139,7 +142,6 @@ public class GameTime {
     }
 
     //todo age zaman roo ziyad ezafe kone momkene bug bede
-    //todo mitooni ye tabe bezani be esm rooz bad va karayy ke dar rooz bad bayad bokoni ro too on bezani
     public static void increaseHour(int hour) {
         GameTime.hour += hour;
         if (GameTime.hour >= 22) {
