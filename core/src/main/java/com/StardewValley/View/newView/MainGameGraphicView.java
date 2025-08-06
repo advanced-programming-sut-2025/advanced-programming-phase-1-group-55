@@ -1,6 +1,7 @@
 package com.StardewValley.View.newView;
 
 import com.StardewValley.Controller.MainGameController;
+import com.StardewValley.Controller.TimeController;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Artisan.ArtisanMachineType;
 import com.StardewValley.model.Friendship.NpcFriendship;
@@ -43,6 +44,8 @@ public class MainGameGraphicView implements Screen, InputProcessor {
     private ArtisanMachineType chosenArtisanType;
     private Sprite chosenArtisanSprite;
     private GameMap map = new GameMap();
+    private TimeController timeController;
+
 
 
     public MainGameGraphicView(MainGameController controller, GameMap map) {
@@ -75,7 +78,7 @@ public class MainGameGraphicView implements Screen, InputProcessor {
 //        Gdx.input.setInputProcessor(stage);
 
         updateBackgroundTexture();
-
+        timeController = new TimeController();
 
         ProgressBar.ProgressBarStyle progressBarStyle = new ProgressBar.ProgressBarStyle();
 
@@ -141,7 +144,7 @@ public class MainGameGraphicView implements Screen, InputProcessor {
         }
 
         controller.updateGame(delta);
-
+        timeController.render(App.gameApp.getBatch(), new GameTime(), camera);
         App.gameApp.getBatch().end();
 
         energyBar.setValue((float) player.getEnergy());
@@ -199,6 +202,9 @@ public class MainGameGraphicView implements Screen, InputProcessor {
     @Override
     public void dispose() {
         stage.dispose();
+        if (timeController != null) {
+            timeController.dispose();
+        }
     }
 
     public MainGameController getController() {
