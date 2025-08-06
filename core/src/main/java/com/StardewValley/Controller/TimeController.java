@@ -165,16 +165,16 @@ public class TimeController {
         clockArrow.draw(batch);
 
         switch (GameTime.getSeason().getName()) {
-            case "Spring":
+            case "spring":
                 Spring.draw(batch);
                 break;
-            case "Summer":
+            case "summer":
                 Summer.draw(batch);
                 break;
-            case "Fall":
+            case "fall":
                 Fall.draw(batch);
                 break;
-            case "Winter":
+            case "winter":
                 Winter.draw(batch);
                 break;
         }
