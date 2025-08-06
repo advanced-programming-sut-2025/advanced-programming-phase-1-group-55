@@ -52,10 +52,10 @@ public class User {
     private BackPack backPack = new BackPack();
     private User wife = null;
     private HashMap<String, NpcFriendship> friendsNpc = new HashMap<>();
-    private int gold = 10000;
+    private int gold = 40000;
     private HashMap<User, PlayerFriendship> friendsPlayer = new HashMap<>();
     private int dailyMoney = 0;
-    private int wood;
+    private int wood = 40000;
     private double energy = 100;
     private boolean stayLoggedIn = false;
     private int mostAchievedMoney = 0;

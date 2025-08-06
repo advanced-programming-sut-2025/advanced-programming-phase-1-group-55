@@ -205,7 +205,9 @@ public class TimeController {
         day.draw(batch, dayOfWeek + ". ",
                 clockX + 27 * scale, clockY + 45 * scale + hour.getLineHeight());
 
-        User currentPlayer = App.mainUser;
+        User currentPlayer = App.currentGameModel.getCurrentUser();
+
+
         gold.draw(batch, String.valueOf(currentPlayer.getGold()),
                 clockX + 17 * scale, clockY + 3 * scale + gold.getLineHeight());
 
