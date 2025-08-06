@@ -36,7 +36,7 @@ public class FishingController {
             if (view.getFishRect().collidesWith(view.getSimpleRect())){
                 view.getProgressBar().setValue(view.getProgressBar().getValue()+2);
             }else {
-                view.getProgressBar().setValue(view.getProgressBar().getValue()-1);
+                view.getProgressBar().setValue(view.getProgressBar().getValue()-6);
             }
             if (view.getProgressBar().getValue()<=0){
                 // todo lose
