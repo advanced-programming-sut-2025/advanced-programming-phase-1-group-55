@@ -12,11 +12,12 @@ import com.StardewValley.model.Item.CollisionRect;
 import com.StardewValley.model.Rock;
 import com.StardewValley.model.User;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Farm {
+public class Farm implements Serializable {
 
     private House house;
     private Lake lake;

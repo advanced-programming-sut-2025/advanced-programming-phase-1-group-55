@@ -21,12 +21,13 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
+import java.io.Serializable;
 import java.util.*;
 
 import static com.StardewValley.model.App.currentGameModel;
 import static com.StardewValley.enums.AssetManager.*;
 
-public class User {
+public class User implements Serializable {
     private String username;
     private String password;
     private String nickName;

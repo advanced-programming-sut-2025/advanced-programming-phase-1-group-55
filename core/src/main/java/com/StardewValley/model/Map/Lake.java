@@ -4,8 +4,10 @@ import com.StardewValley.enums.AssetManager;
 import com.StardewValley.model.Item.CollisionRect;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
-public class Lake extends Place {
-    private Sprite sprite;
+import java.io.Serializable;
+
+public class Lake extends Place implements Serializable {
+    private transient Sprite sprite;
     public Lake(CollisionRect collisionRect) {
         super(collisionRect);
         sprite = AssetManager.Lake.getSprite();

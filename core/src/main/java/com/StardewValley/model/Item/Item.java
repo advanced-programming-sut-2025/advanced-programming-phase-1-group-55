@@ -3,7 +3,12 @@ package com.StardewValley.model.Item;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Map.Location;
 
-public class Item {
+import java.io.Serializable;
+
+public class Item implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+
     protected ItemType itemType;
     protected int number = 0;
     protected int price;
@@ -56,9 +61,9 @@ public class Item {
     }
 
     public int getPrice() {
-        if (price==0){
-            int x= App.rand.nextInt(100);
-            price=x*25;
+        if (price == 0) {
+            int x = App.rand.nextInt(100);
+            price = x * 25;
         }
         return price;
     }
@@ -71,6 +76,7 @@ public class Item {
         itemType = itemtype;
 //        this.number = number;
     }
+
     public Item(ItemType itemtype, int number) {
         itemType = itemtype;
         this.number = number;

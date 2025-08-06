@@ -4,9 +4,10 @@ import com.StardewValley.enums.CookingItemType;
 import com.StardewValley.enums.CraftingItemType;
 import com.StardewValley.enums.SkillType;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class Skill {
+public class Skill implements Serializable {
     private final SkillType type;
     private int level;
     private int points;

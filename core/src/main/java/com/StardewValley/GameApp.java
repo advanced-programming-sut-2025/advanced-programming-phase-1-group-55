@@ -12,7 +12,7 @@ import static com.StardewValley.model.App.readfile;
  * {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms.
  */
 public class GameApp extends Game {
-    private SpriteBatch batch;
+    private transient SpriteBatch batch;
 
 
     @Override

@@ -3,11 +3,13 @@ package com.StardewValley.model.Tool;
 import com.StardewValley.enums.AssetManager;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
+import java.io.Serializable;
+
 import static java.lang.Math.max;
 import static com.StardewValley.model.App.*;
 import static com.StardewValley.model.weather.getEnergyLoser;
 
-public class Trashcan extends Tools{
+public class Trashcan extends Tools implements Serializable {
 
     @Override
     public Sprite getSprite() {

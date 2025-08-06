@@ -9,6 +9,7 @@ import com.StardewValley.model.Store.ShippingBin;
 import com.StardewValley.model.Store.Store;
 import com.StardewValley.model.User;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,7 +18,7 @@ import static java.lang.Math.max;
 import static java.lang.Math.min;
 import static com.StardewValley.model.App.currentGameModel;
 
-public class GameMap {
+public class GameMap implements Serializable {
     public Tile[][] tiles = new Tile[41][160];
 
     private Farm farm1;//baray nafar aval

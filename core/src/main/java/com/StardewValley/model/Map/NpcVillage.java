@@ -5,11 +5,12 @@ import com.StardewValley.model.NPC.Npc;
 import com.StardewValley.model.NPC.NpcType;
 import com.StardewValley.model.Store.*;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class NpcVillage {
+public class NpcVillage implements Serializable {
     private final Map<String, Store> stores=new HashMap<>(){{
         put("BlackSmith",new BlackSmithStore());
         put("MarnieRanch",new MarineRanchStore());

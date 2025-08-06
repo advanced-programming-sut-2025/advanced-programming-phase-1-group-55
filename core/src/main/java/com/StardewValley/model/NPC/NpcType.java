@@ -106,7 +106,7 @@ public enum NpcType {
     private  String job;
     private Animation<TextureRegion> animation;
     private final NpcHouse house;
-    private final Sprite sprite;
+    private transient final Sprite sprite;
     private int firstQuestIndex;
     NpcType( Map<String,Item> favorites, Map<Integer,Quest> quest,String names,String nameToFindAnimation,NpcHouse house,Sprite sprite,int firstQuestIndex) {
         this.favorites = favorites;

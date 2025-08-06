@@ -5,15 +5,18 @@ import com.StardewValley.model.NPC.Quest;
 import com.StardewValley.model.NPC.QuestStatus;
 import com.StardewValley.model.User;
 
+import java.io.Serializable;
+
 import static java.lang.Math.min;
 
-public class NpcFriendship extends FriendShip {
+public class NpcFriendship extends FriendShip implements Serializable {
     private User user;
     private Npc npc;
-    private int dayToBeFriend=0;
-    private boolean todayMet=false;
-    private boolean todayHadGift=false;
-    private QuestStatus[] questStatus=new QuestStatus[]{QuestStatus.Unlocked,QuestStatus.Locked,QuestStatus.Locked};
+    private int dayToBeFriend = 0;
+    private boolean todayMet = false;
+    private boolean todayHadGift = false;
+    private QuestStatus[] questStatus = new QuestStatus[]{QuestStatus.Unlocked, QuestStatus.Locked, QuestStatus.Locked};
+
     public User getUser() {
         return user;
     }
@@ -64,34 +67,36 @@ public class NpcFriendship extends FriendShip {
         return sb.toString();
     }
 
-    public void increaseDayOfBeingFriend(){
+    public void increaseDayOfBeingFriend() {
         dayToBeFriend++;
     }
-    public void checkQuest(){
-        if (level>=1){
-            for (Quest quest1:npc.getType().getQuests().values()){
-                if (quest1.getLevel()==2&&!quest1.isHasAlreadyFinished()){
-                    user.getQuest().put(quest1.getId(),quest1);
+
+    public void checkQuest() {
+        if (level >= 1) {
+            for (Quest quest1 : npc.getType().getQuests().values()) {
+                if (quest1.getLevel() == 2 && !quest1.isHasAlreadyFinished()) {
+                    user.getQuest().put(quest1.getId(), quest1);
                 }
             }
         }
     }
-    public  void  increaseXp(int amount){
-        xp=min(amount+xp,799);
-        if (xp>=200){
-            level=1;
-            if (!(questStatus[1].equals(QuestStatus.Completed)||questStatus[1].equals(QuestStatus.InProgress))){
-                questStatus[1]=QuestStatus.Unlocked;
+
+    public void increaseXp(int amount) {
+        xp = min(amount + xp, 799);
+        if (xp >= 200) {
+            level = 1;
+            if (!(questStatus[1].equals(QuestStatus.Completed) || questStatus[1].equals(QuestStatus.InProgress))) {
+                questStatus[1] = QuestStatus.Unlocked;
             }
         }
-        if (xp>=400){
-            level=2;
-            if (!(questStatus[2].equals(QuestStatus.Completed)||questStatus[2].equals(QuestStatus.InProgress))){
-                questStatus[2]=QuestStatus.Unlocked;
+        if (xp >= 400) {
+            level = 2;
+            if (!(questStatus[2].equals(QuestStatus.Completed) || questStatus[2].equals(QuestStatus.InProgress))) {
+                questStatus[2] = QuestStatus.Unlocked;
             }
         }
-        if (xp>=600){
-            level=3;
+        if (xp >= 600) {
+            level = 3;
         }
         checkQuest();
     }

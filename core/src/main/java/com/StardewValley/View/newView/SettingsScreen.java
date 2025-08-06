@@ -1,6 +1,7 @@
 package com.StardewValley.View.newView;
 
 
+import com.StardewValley.Controller.SerializationChecker;
 import com.StardewValley.model.User;
 import com.StardewValley.model.App;
 import com.badlogic.gdx.Gdx;
@@ -12,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
+import java.nio.file.Path;
 import java.util.List;
 
 public class SettingsScreen implements Screen {
@@ -64,7 +66,19 @@ public class SettingsScreen implements Screen {
         saveButton.addListener(new ClickListener() {
             @Override
             public void clicked(com.badlogic.gdx.scenes.scene2d.InputEvent event, float x, float y) {
-                System.out.println("Game Saved!");
+                try {
+                    SerializationChecker.checkClass(App.getCurrentGameModel());
+                    Path savePath = java.nio.file.Paths.get("saves", "game_save.dat");
+
+                    java.nio.file.Files.createDirectories(savePath.getParent());
+
+                    App.getCurrentGameModel().saveToFile(savePath);
+
+                    System.out.println("Game Saved Successfully!");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    System.out.println("Error saving game!");
+                }
             }
         });
 

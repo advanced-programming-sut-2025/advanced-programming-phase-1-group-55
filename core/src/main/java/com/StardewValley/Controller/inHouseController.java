@@ -94,31 +94,31 @@ public class inHouseController {
         user.getBackPack().addItemToInventory(item, count);
         return new Result(true, itemName + " has been cheated");
     }
-    public Result PlaceItem(String itemName, String direction) {
-        User user = App.currentGameModel.currentUser;
-        ItemType type = ItemType.getItemType(itemName);
-        if (type == null) {
-            return new Result(false, "No item found");
-        }
-        Item item = user.getBackPack().getItemInInventory(type);
-        if (item == null) {
-            return new Result(false, "you dont have dis item now!");
-        }
-        Tile tile = App.currentGameModel.getTileFromDirection(direction);
-        if (tile == null) {
-            return new Result(false, "this tile does not exist");
-        }
-        if (tile.getItemInThisTile()!=null) {
-            return new Result(false, "this tile has something ");
-        }
-        user.getBackPack().removeAmountFromInventory(item.getItemType(),1);
-        Item placedItem=new Item(item.getItemType());
-        placedItem.setNumber(1);
-        tile.setItemInThisTile(placedItem);
-        tile.setMohtaviat("I");
-        return new Result(true, itemName + " has been placed");
-
-    }
+//    public Result PlaceItem(String itemName, String direction) {
+//        User user = App.currentGameModel.currentUser;
+//        ItemType type = ItemType.getItemType(itemName);
+//        if (type == null) {
+//            return new Result(false, "No item found");
+//        }
+//        Item item = user.getBackPack().getItemInInventory(type);
+//        if (item == null) {
+//            return new Result(false, "you dont have dis item now!");
+//        }
+//        Tile tile = App.currentGameModel.getTileFromDirection(direction);
+//        if (tile == null) {
+//            return new Result(false, "this tile does not exist");
+//        }
+//        if (tile.getItemInThisTile()!=null) {
+//            return new Result(false, "this tile has something ");
+//        }
+//        user.getBackPack().removeAmountFromInventory(item.getItemType(),1);
+//        Item placedItem=new Item(item.getItemType());
+//        placedItem.setNumber(1);
+//        tile.setItemInThisTile(placedItem);
+//        tile.setMohtaviat("I");
+//        return new Result(true, itemName + " has been placed");
+//
+//    }
 
     public Result PutInRefrigerator(String itemName) {
         User user = App.currentGameModel.currentUser;

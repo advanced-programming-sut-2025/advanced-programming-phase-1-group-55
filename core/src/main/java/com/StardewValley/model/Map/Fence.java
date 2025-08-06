@@ -2,7 +2,9 @@ package com.StardewValley.model.Map;
 
 import com.StardewValley.model.Item.CollisionRect;
 
-public class Fence {
+import java.io.Serializable;
+
+public class Fence implements Serializable {
     FenceType fenceType;
     CollisionRect collisionRect;
 
