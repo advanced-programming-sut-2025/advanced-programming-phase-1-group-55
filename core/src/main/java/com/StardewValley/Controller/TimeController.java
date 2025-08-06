@@ -1,6 +1,7 @@
 package com.StardewValley.Controller;
 
 
+import com.StardewValley.enums.WeatherType;
 import com.StardewValley.model.App;
 import com.StardewValley.model.GameTime;
 import com.StardewValley.model.User;
@@ -8,13 +9,22 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Matrix4;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.math.MathUtils;
+
 
 import static com.StardewValley.model.weather.*;
 import static com.StardewValley.model.GameTime.*;
@@ -36,6 +46,11 @@ public class TimeController {
     private Sprite Storm;
     private int scale;
 
+
+    private float lightningTimer = 0;
+    private boolean lightningFlash = false;
+    private Sound thunderSound;
+
     public TimeController() {
         scale = 4;
         hour = new BitmapFont();
@@ -48,7 +63,7 @@ public class TimeController {
         gold.setColor(Color.BLACK);
         gold.getData().setScale(2f);
         TextureAtlas textureAtlas = new TextureAtlas(Gdx.files.internal("clockSprite/clockAtlas.atlas"));
-
+        thunderSound = Gdx.audio.newSound(Gdx.files.internal("thunder.mp3"));
         rawClock = textureAtlas.createSprite("Raw-Clock");
         clockArrow = textureAtlas.createSprite("Arrow");
 
@@ -76,6 +91,21 @@ public class TimeController {
         clockArrow.setOrigin(clockArrow.getWidth() / 2, 0);
     }
 
+    public void update(float delta) {
+        if (getCurrentWeather() == WeatherType.Storm) {
+            lightningTimer -= delta;
+            if (lightningTimer <= 0) {
+                lightningFlash = true;
+                lightningTimer = MathUtils.random(0.1f, 2f);
+                thunderSound.play();
+            } else {
+                lightningFlash = false;
+            }
+        } else {
+            lightningFlash = false;
+        }
+    }
+
     public void render(SpriteBatch batch, OrthographicCamera camera) {
 
         Matrix4 originalMatrix = batch.getProjectionMatrix();
@@ -86,7 +116,19 @@ public class TimeController {
 
         float clockX = Gdx.graphics.getWidth() - rawClock.getWidth() - 20;
         float clockY = Gdx.graphics.getHeight() - rawClock.getHeight() - 20;
-
+        if (lightningFlash) {
+            ShapeRenderer shapeRenderer = new ShapeRenderer();
+            shapeRenderer.setProjectionMatrix(camera.combined);
+            Gdx.gl.glEnable(GL20.GL_BLEND);
+            shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+            shapeRenderer.setColor(1, 1, 1, 0.8f);
+            shapeRenderer.rect(camera.position.x - camera.viewportWidth / 2,
+                    camera.position.y - camera.viewportHeight / 2,
+                    camera.viewportWidth, camera.viewportHeight);
+            shapeRenderer.end();
+            Gdx.gl.glDisable(GL20.GL_BLEND);
+            shapeRenderer.dispose();
+        }
         rawClock.setPosition(clockX, clockY);
         clockArrow.setPosition(clockX + 88 - clockArrow.getWidth() / 2, clockY + 156);
 
@@ -145,13 +187,13 @@ public class TimeController {
 
 
         hour.draw(batch, GameTime.getHour() + " o'clock",
-            clockX + 27 * scale, clockY + 23 * scale + hour.getLineHeight());
+                clockX + 27 * scale, clockY + 23 * scale + hour.getLineHeight());
         day.draw(batch, dayOfWeek + ". ",
-            clockX + 27 * scale, clockY + 45 * scale + hour.getLineHeight());
+                clockX + 27 * scale, clockY + 45 * scale + hour.getLineHeight());
 
         User currentPlayer = App.mainUser;
         gold.draw(batch, String.valueOf(currentPlayer.getGold()),
-            clockX + 17 * scale, clockY + 3 * scale + gold.getLineHeight());
+                clockX + 17 * scale, clockY + 3 * scale + gold.getLineHeight());
 
 
         batch.setProjectionMatrix(originalMatrix);
@@ -161,5 +203,6 @@ public class TimeController {
         if (hour != null) hour.dispose();
         if (day != null) day.dispose();
         if (gold != null) gold.dispose();
+        thunderSound.dispose();
     }
 }
