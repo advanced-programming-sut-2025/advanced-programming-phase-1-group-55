@@ -205,7 +205,7 @@ public class User {
         this.fainted = fainted;
     }
 
-    public void decreaseEnergy(int amount) {
+    public void decreaseEnergy(double amount) {
 
         this.energy = Math.max(0, this.energy - amount);
         if (this.energy <= 0) {

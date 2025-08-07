@@ -60,7 +60,7 @@ public class GameTime {
 
             if (player.isFainted()) {
                 player.setFainted(false);
-                player.setEnergy(150);
+                player.setEnergy(10000);
             }
         }
         day = day.nextDay();

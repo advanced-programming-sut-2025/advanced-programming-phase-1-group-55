@@ -2,10 +2,12 @@ package com.StardewValley.Controller;
 
 import com.StardewValley.enums.Direction;
 import com.StardewValley.model.App;
+import com.StardewValley.model.GameTime;
 import com.StardewValley.model.Item.CollisionRect;
 import com.StardewValley.model.Map.GameMap;
 import com.StardewValley.model.Map.GreenHouse;
 import com.StardewValley.model.User;
+import com.StardewValley.model.weather;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -211,7 +213,7 @@ public class PlayerController {
         }
 
         if (moved) {
-            player.decreaseEnergy(1);
+            player.decreaseEnergy(weather.getEnergyLoser());
         }
         if (Gdx.input.isKeyPressed(Input.Keys.E)) {
             player.increaseEnergy(10);
