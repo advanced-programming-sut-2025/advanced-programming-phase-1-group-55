@@ -1,7 +1,7 @@
 package com.StardewValley.Controller;
 
-import com.StardewValley.View.newView.PauseMenuView;
-import com.StardewValley.View.newView.ToolsMenuView;
+import com.StardewValley.View.PauseMenuView;
+import com.StardewValley.View.ToolsMenuView;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Tool.Tools;
 

@@ -1,7 +1,7 @@
 package com.StardewValley.Controller;
 
-import com.StardewValley.View.newView.SellItemView;
-import com.StardewValley.View.newView.ShippingBinMenuView;
+import com.StardewValley.View.SellItemView;
+import com.StardewValley.View.ShippingBinMenuView;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Map.GameMap;
 import com.StardewValley.model.User;

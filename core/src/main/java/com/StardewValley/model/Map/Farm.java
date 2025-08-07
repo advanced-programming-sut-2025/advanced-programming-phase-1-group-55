@@ -1,8 +1,6 @@
 package com.StardewValley.model.Map;
 
-import com.StardewValley.View.newView.FarmLand;
-import com.StardewValley.model.Animal.Animal;
-import com.StardewValley.model.Animal.FarmAnimalType;
+import com.StardewValley.View.FarmLand;
 import com.StardewValley.model.App;
 import com.StardewValley.model.FarmingProdocts.ForagingCrops;
 import com.StardewValley.model.FarmingProdocts.ForagingSeed;

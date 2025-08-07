@@ -1,23 +1,19 @@
 package com.StardewValley.Controller;
 
-import com.StardewValley.View.newView.FishingGameScreen;
+import com.StardewValley.View.FishingGameScreen;
 import com.StardewValley.enums.AssetManager;
 import com.StardewValley.model.Animal.Fishing.FishType;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.Item.ItemType;
-import com.StardewValley.model.Map.Lake;
-import com.StardewValley.model.Map.Location;
 import com.StardewValley.model.Tool.FishingPole;
 import com.StardewValley.model.Tool.Tools;
 import com.StardewValley.model.Tool.WateringCan;
 import com.StardewValley.model.User;
-import com.StardewValley.View.newView.FarmLand;
+import com.StardewValley.View.FarmLand;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Timer;
 
 public class ToolController {

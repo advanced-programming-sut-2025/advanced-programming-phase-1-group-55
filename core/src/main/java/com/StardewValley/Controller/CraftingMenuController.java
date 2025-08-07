@@ -1,5 +1,6 @@
 package com.StardewValley.Controller;
 
+import com.StardewValley.View.CraftingMenuView;
 import com.StardewValley.enums.CraftingItemType;
 import com.StardewValley.model.App;
 import com.StardewValley.model.CraftingItems.CraftingItem;
@@ -11,9 +12,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CraftingMenuController {
-    private com.StardewValley.View.newView.CraftingMenuView view;
+    private CraftingMenuView view;
 
-    public void setView(com.StardewValley.View.newView.CraftingMenuView view) {
+    public void setView(CraftingMenuView view) {
         this.view = view;
     }
 

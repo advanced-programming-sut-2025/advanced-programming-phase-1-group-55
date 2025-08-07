@@ -1,14 +1,11 @@
 package com.StardewValley.Controller;
 
-import com.StardewValley.View.newView.CheatItemFinalView;
+import com.StardewValley.View.CheatItemFinalView;
 import com.StardewValley.enums.CookingItemType;
-import com.StardewValley.enums.CraftingItemType;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.Item.ItemType;
 import com.StardewValley.model.User;
-
-import java.util.Vector;
 
 public class CheatItemFinalMenuController {
     private CheatItemFinalView view;

@@ -1,7 +1,7 @@
 package com.StardewValley.Controller;
 
-import com.StardewValley.View.newView.EndFishingScreen;
-import com.StardewValley.View.newView.FishingGameScreen;
+import com.StardewValley.View.EndFishingScreen;
+import com.StardewValley.View.FishingGameScreen;
 import com.StardewValley.model.Animal.Fishing.Fish;
 import com.StardewValley.model.Animal.Fishing.FishMovementPattern;
 import com.StardewValley.model.Animal.Fishing.FishMovementType;

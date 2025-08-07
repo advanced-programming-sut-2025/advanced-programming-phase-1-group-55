@@ -1,9 +1,7 @@
 package com.StardewValley.Controller;
 
-import com.StardewValley.View.newView.AnimalMenuView;
-import com.StardewValley.model.Animal.AnimalBuilding;
+import com.StardewValley.View.AnimalMenuView;
 import com.StardewValley.model.App;
-import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.Item.ItemType;
 import com.StardewValley.model.User;
 import com.StardewValley.model.Animal.FarmBuildingType;

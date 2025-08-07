@@ -1,7 +1,7 @@
 package com.StardewValley.Controller;
 
-import com.StardewValley.View.newView.PurchaseProductMenuView;
-import com.StardewValley.View.newView.StoreMenuView;
+import com.StardewValley.View.PurchaseProductMenuView;
+import com.StardewValley.View.StoreMenuView;
 import com.StardewValley.enums.Seasons;
 import com.StardewValley.model.App;
 import com.StardewValley.model.GameTime;

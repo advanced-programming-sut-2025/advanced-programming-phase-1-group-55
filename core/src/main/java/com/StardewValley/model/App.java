@@ -1,7 +1,7 @@
 package com.StardewValley.model;
 
 import com.StardewValley.GameApp;
-import com.StardewValley.View.newView.MainGameGraphicView;
+import com.StardewValley.View.MainGameGraphicView;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.google.gson.Gson;

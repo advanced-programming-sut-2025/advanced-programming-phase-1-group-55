@@ -1,6 +1,6 @@
 package com.StardewValley.Controller;
 
-import com.StardewValley.View.newView.GiftItemMenuView;
+import com.StardewValley.View.GiftItemMenuView;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.Map.GameMap;

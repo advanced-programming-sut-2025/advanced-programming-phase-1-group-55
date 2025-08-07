@@ -1,6 +1,6 @@
 package com.StardewValley;
 
-import com.StardewValley.View.newView.FirstMenu;
+import com.StardewValley.View.FirstMenu;
 import com.StardewValley.model.App;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -19,7 +19,6 @@ public class GameApp extends Game {
     public void create() {
         batch = new SpriteBatch();
         App.gameApp = this;
-//        Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
         readfile();
         setScreen(new FirstMenu());
     }

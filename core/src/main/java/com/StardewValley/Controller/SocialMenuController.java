@@ -1,13 +1,11 @@
 package com.StardewValley.Controller;
 
-import com.StardewValley.View.newView.PauseMenuView;
-import com.StardewValley.View.newView.SocialMenuView;
+import com.StardewValley.View.PauseMenuView;
+import com.StardewValley.View.SocialMenuView;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Friendship.Gift;
 import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.User;
-
-import javax.swing.text.View;
 
 import static com.StardewValley.model.App.currentGameModel;
 

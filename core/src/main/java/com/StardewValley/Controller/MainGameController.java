@@ -1,20 +1,15 @@
 package com.StardewValley.Controller;
 
 
-import com.StardewValley.View.newView.*;
+import com.StardewValley.View.*;
 //import com.StardewValley.View.MainGameGraphicView;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Artisan.ArtisanMachine;
 import com.StardewValley.model.Item.CollisionRect;
-import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.Map.*;
-import com.StardewValley.enums.WeatherType;
 import com.StardewValley.model.NPC.Npc;
 import com.StardewValley.model.Store.ShippingBin;
 import com.StardewValley.model.Store.Store;
-import com.StardewValley.model.Tool.Tools;
-import com.StardewValley.model.Tool.Trashcan;
-import com.StardewValley.model.Tool.WateringCan;
 import com.StardewValley.model.Result;
 
 

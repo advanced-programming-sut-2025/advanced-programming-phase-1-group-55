@@ -90,15 +90,11 @@ public class User {
         this.securityQuestion = securityQuestion;
         this.answerOfSecurityQuestion = answerOfSecurityQuestion;
         this.gold = 10000;
-
         sprite = new Sprite(new Texture(Gdx.files.internal("walk/Alex_01.png")));
         this.refrigerator = new ArrayList<>();
         this.backPack = new BackPack();
-
         this.avatarPath = avatarPath;
-
     }
-
 
     public String getAvatarPath() {
         return avatarPath;
@@ -201,24 +197,6 @@ public class User {
         this.farm = farm;
     }
 
-    public GameModel getPlayedGame() {
-        return playedGameModel;
-    }
-
-    public void setPlayedGame(GameModel playedGameModel) {
-        this.playedGameModel = playedGameModel;
-    }
-
-
-    public Location getPlayerTommorowLocation() {
-        return playerTommorowLocation;
-    }
-
-    public void setPlayerTommorowLocation(Location playerTommorowLocation) {
-        this.playerTommorowLocation = playerTommorowLocation;
-    }
-
-
     public boolean isFainted() {
         return fainted;
     }
@@ -307,19 +285,7 @@ public class User {
 
     private ArrayList<Trade> userTrades;
 
-    public User(String username, String password, String nickName, String email, String gender, int numberOfSecurityQuestion, String securityQuestion) {
-        this.username = username;
-        this.password = password;
-        this.nickName = nickName;
-        this.gender = gender;
-        this.email = email;
-        this.numberOfSecurityQuestion = numberOfSecurityQuestion;
-        this.securityQuestion = securityQuestion;
-        this.gold = 10000;
-        sprite = new Sprite(new Texture(Gdx.files.internal("sprites/Mariner.png")));
-        this.refrigerator = new ArrayList<>();
-        this.backPack = new BackPack();
-    }
+
 
     public String getAnswerOfSecurityQuestion() {
         return answerOfSecurityQuestion;
@@ -468,50 +434,8 @@ public class User {
         Math.max(0, wood);
 
     }
-
-
     public Map<Integer, Gift> getReceivedGifts() {
         return receivedGifts;
-    }
-
-    public void setReceivedGifts(Map<Integer, Gift> receivedGifts) {
-        this.receivedGifts = receivedGifts;
-    }
-
-    public void setFarmingSkill(Skill farmingSkill) {
-        this.farmingSkill = farmingSkill;
-    }
-
-    public void setMiningSkill(Skill miningSkill) {
-        this.miningSkill = miningSkill;
-    }
-
-    public void setForagingSkill(Skill foragingSkill) {
-        this.foragingSkill = foragingSkill;
-    }
-
-    public void setFishingSkill(Skill fishingSkill) {
-        this.fishingSkill = fishingSkill;
-    }
-
-    public void setRefrigerator(ArrayList<CookingItem> refrigerator) {
-        this.refrigerator = refrigerator;
-    }
-
-    public ArrayList<Trade> getUserTrades() {
-        return userTrades;
-    }
-
-    public void setUserTrades(ArrayList<Trade> userTrades) {
-        this.userTrades = userTrades;
-    }
-
-    public Map<User, List<Gift>> getSentGifts() {
-        return sentGifts;
-    }
-
-    public void setSentGifts(Map<User, List<Gift>> sentGifts) {
-        this.sentGifts = sentGifts;
     }
 
     public Skill getFarmingSkill() {
@@ -591,12 +515,4 @@ public class User {
         }
         return null;
     }
-
-
-    //todo ino bade zadan menu haa tavasot arshia hazf kn
-    public User() {
-
-    }
-
-
 }

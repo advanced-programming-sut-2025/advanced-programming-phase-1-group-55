@@ -1,6 +1,6 @@
 package com.StardewValley.Controller;
 
-import com.StardewValley.View.newView.ChooseArtisanMenuView;
+import com.StardewValley.View.ChooseArtisanMenuView;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Map.GameMap;
 import com.StardewValley.model.User;

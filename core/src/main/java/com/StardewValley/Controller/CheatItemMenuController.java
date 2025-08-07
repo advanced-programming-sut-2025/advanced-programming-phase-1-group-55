@@ -1,7 +1,7 @@
 package com.StardewValley.Controller;
 
-import com.StardewValley.View.newView.CheatItemMenuView;
-import com.StardewValley.View.newView.CheatItemFinalView;
+import com.StardewValley.View.CheatItemMenuView;
+import com.StardewValley.View.CheatItemFinalView;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.User;

@@ -1,4 +1,5 @@
 package com.StardewValley.Controller;
+import com.StardewValley.View.CookingMenuView;
 import com.StardewValley.enums.CookingItemType;
 import com.StardewValley.model.App;
 import com.StardewValley.model.CookingItems.CookingItem;
@@ -8,15 +9,12 @@ import com.StardewValley.model.Tool.BackPack;
 import com.StardewValley.model.Item.ItemType;
 import java.util.HashMap;
 import java.util.Map;
-import com.StardewValley.enums.CookingItemType;
-
-
 
 
 public class CookingMenuController {
-    private com.StardewValley.View.newView.CookingMenuView view;
+    private CookingMenuView view;
 
-    public void setView(com.StardewValley.View.newView.CookingMenuView view) {
+    public void setView(CookingMenuView view) {
         this.view = view;
     }
 
