@@ -7,7 +7,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import com.StardewValley.enums.Menu;
 
 import java.io.FileReader;
 import java.lang.reflect.Type;
@@ -16,7 +15,6 @@ import java.util.*;
 public class App {
     public static User mainUser;
     public static Scanner scanner = new Scanner(System.in);
-    public static Menu currentMenu = Menu.Register;
     public static HashMap<String, User> AllUsers = new HashMap<>();
     public static GameModel currentGameModel;
     public static Random rand = new Random();
@@ -47,9 +45,7 @@ public class App {
         App.scanner = scanner;
     }
 
-    public static void setCurrentMenu(Menu currentMenu) {
-        App.currentMenu = currentMenu;
-    }
+
 
     public static HashMap<String, User> getAllUsers() {
         return AllUsers;
@@ -91,9 +87,6 @@ public class App {
         App.questionsList = questionsList;
     }
 
-    public static Menu getCurrentMenu() {
-        return currentMenu;
-    }
 
     public static void readfile() {
 
@@ -118,7 +111,6 @@ public class App {
             for (User user : AllUsers.values()) {
                 if (user.isStayLoggedIn()) {
                     mainUser = user;
-                    currentMenu = Menu.MainMenu;
                     break;
                 }
             }

@@ -32,6 +32,9 @@
     },
     "refrigerator": [],
     "artisanMachines": [],
+    "farmBuildings": [],
+    "farmHadPlaceForAnimals": false,
+    "myAnimals": [],
     "avatarPath": "avatars/vibrent_20.png",
     "backPack": {
       "inventory": {},
@@ -100,6 +103,9 @@
     },
     "refrigerator": [],
     "artisanMachines": [],
+    "farmBuildings": [],
+    "farmHadPlaceForAnimals": false,
+    "myAnimals": [],
     "avatarPath": "avatars/vibrent_20.png",
     "backPack": {
       "inventory": {},
@@ -168,6 +174,9 @@
     },
     "refrigerator": [],
     "artisanMachines": [],
+    "farmBuildings": [],
+    "farmHadPlaceForAnimals": false,
+    "myAnimals": [],
     "avatarPath": "avatars/vibrent_20.png",
     "backPack": {
       "inventory": {},
@@ -236,6 +245,9 @@
     },
     "refrigerator": [],
     "artisanMachines": [],
+    "farmBuildings": [],
+    "farmHadPlaceForAnimals": false,
+    "myAnimals": [],
     "avatarPath": "avatars/vibrent_20.png",
     "backPack": {
       "inventory": {},
@@ -249,6 +261,77 @@
     },
     "friendsNpc": {},
     "gold": 40000,
+    "friendsPlayer": {},
+    "dailyMoney": 0,
+    "wood": 40000,
+    "energy": 100.0,
+    "stayLoggedIn": false,
+    "mostAchievedMoney": 0,
+    "matchPlayed": 0,
+    "location": {
+      "y": 0,
+      "x": 0
+    },
+    "direction": "DOWN",
+    "fainted": false,
+    "mainLocation": "House",
+    "trades": {},
+    "stone": 0,
+    "receivedGifts": {},
+    "sentGifts": {},
+    "hasGiftToday": false,
+    "hasMessageToday": false,
+    "quest": {}
+  },
+  {
+    "username": "shayan2",
+    "password": "c5dea1202ddef49a5bc8d86664e83cb80cdfb0964e69907418a2103a2f19dda7",
+    "nickName": "asfgddds",
+    "gender": "male",
+    "email": "shayan@gmail.com",
+    "isSad": false,
+    "timePassedBeingSad": 0,
+    "numberOfSecurityQuestion": 0,
+    "securityQuestion": "What was the name of your first-grade teacher?",
+    "answerOfSecurityQuestion": "asdf",
+    "farmingSkill": {
+      "type": "Farming",
+      "level": 0,
+      "points": 0
+    },
+    "miningSkill": {
+      "type": "Mining",
+      "level": 0,
+      "points": 0
+    },
+    "foragingSkill": {
+      "type": "Foraging",
+      "level": 0,
+      "points": 0
+    },
+    "fishingSkill": {
+      "type": "Fishing",
+      "level": 0,
+      "points": 0
+    },
+    "refrigerator": [],
+    "artisanMachines": [],
+    "farmBuildings": [],
+    "farmHadPlaceForAnimals": false,
+    "myAnimals": [],
+    "avatarPath": "avatars/vibrent_26.png",
+    "backPack": {
+      "inventory": {},
+      "level": 1,
+      "craftingRecipes": [],
+      "cookingRecipes": [
+        "FRIED_EGG",
+        "BAKED_FISH",
+        "SALAD"
+      ]
+    },
+    "friendsNpc": {},
+    "gold": 10000,
     "friendsPlayer": {},
     "dailyMoney": 0,
     "wood": 40000,

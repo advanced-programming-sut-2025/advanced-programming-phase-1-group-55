@@ -2,16 +2,13 @@ package com.StardewValley.Controller;
 
 import com.StardewValley.enums.Avatar;
 import com.google.gson.GsonBuilder;
-import com.StardewValley.enums.Menu;
 import com.StardewValley.model.Result;
 import com.StardewValley.model.User;
 
 import java.security.MessageDigest;
 import java.security.SecureRandom;
 
-import java.util.Map;
 import java.util.Scanner;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.google.gson.Gson;
@@ -68,7 +65,7 @@ public class RegisterController {
         mainUser = user;
         saveUserToJson(user);
         readfile();
-        currentMenu = Menu.MainMenu;
+
         return new Result(true, "Registered Successfully");
 
     }

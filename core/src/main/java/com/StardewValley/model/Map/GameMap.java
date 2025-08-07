@@ -1,6 +1,5 @@
 package com.StardewValley.model.Map;
 
-import com.StardewValley.enums.AnsiColor;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Artisan.ArtisanMachine;
 import com.StardewValley.model.Item.CollisionRect;
@@ -191,50 +190,6 @@ public class GameMap {
     public void setVillage(NpcVillage village) {
         this.village = village;
     }
-
-    public AnsiColor colorOfTile(String item) {
-        AnsiColor color = AnsiColor.RESET;
-        color = switch (item) {
-            case "W" -> AnsiColor.BG_BLUE;
-            case "^" -> AnsiColor.BG_BRIGHT_BLACK;
-            case "h" -> AnsiColor.BG_BRIGHT_PURPLE;
-            case "g" -> AnsiColor.BG_OLIVE_GREEN;
-            case "#" -> AnsiColor.BG_ORANGE;
-            case "=" -> AnsiColor.BG_RED;
-            case "T" -> AnsiColor.BG_BROWN;
-            case "0" -> AnsiColor.BG_BRIGHT_WHITE;
-            case "&" -> AnsiColor.BRIGHT_GREEN;
-            case "*" -> AnsiColor.GREEN;
-            case "Z" -> AnsiColor.BROWN;
-            case "@" -> AnsiColor.BG_BRIGHT_YELLOW;
-            default -> color;
-        };
-        return color;
-    }
-
-    public String printMap(Location start, int sizex, int sizey) {
-        StringBuilder map = new StringBuilder();
-        for (int i = max(start.getY(), 0); i < min(sizey + max(start.getY(), 0), 41); i++) {
-            for (int j = max(start.getX(), 0); j < min(sizex + max(start.getX(), 0), 160); j++) {
-                Tile t = tiles[i][j];
-                if (j == currentGameModel.currentUser.getLocation().getX() && i == currentGameModel.currentUser.getLocation().getY()) {
-                    map.append(AnsiColor.RED).append("P").append(AnsiColor.RESET);
-                    continue;
-
-                }
-                if (t != null) {
-                    AnsiColor color = colorOfTile(t.getMohtaviat());
-                    map.append(color).append(t.getMohtaviat()).append(AnsiColor.RESET);
-                } else {
-                    map.append(AnsiColor.PINK).append(".").append(AnsiColor.RESET);
-                }
-
-            }
-            map.append("\n");
-        }
-        return map.toString();
-    }
-
 
     public ArrayList<Fence> getFences() {
         return fences;

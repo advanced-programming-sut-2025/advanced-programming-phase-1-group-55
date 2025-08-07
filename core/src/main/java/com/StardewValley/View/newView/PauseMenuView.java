@@ -1,7 +1,6 @@
 package com.StardewValley.View.newView;
 
 import com.StardewValley.Controller.PauseMenuController;
-import com.StardewValley.View.oldView.ExitMenu;
 import com.StardewValley.model.App;
 import com.StardewValley.model.User;
 import com.badlogic.gdx.Gdx;
