@@ -162,6 +162,7 @@ public class MainGameGraphicView implements Screen, InputProcessor {
 
         player.getFarm().draw();
         for (FarmLand land : player.getFarm().getFarmLands()) {
+            land.updateTexture();
             land.draw();
         }
         map.DrawMap();

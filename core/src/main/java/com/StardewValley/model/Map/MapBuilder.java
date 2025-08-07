@@ -10,6 +10,7 @@ import com.StardewValley.model.Item.CollisionRect;
 import com.StardewValley.model.NPC.Npc;
 import com.StardewValley.model.Store.ShippingBin;
 import com.StardewValley.model.Store.Store;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
 import java.util.ArrayList;
@@ -442,6 +443,8 @@ public class MapBuilder {
                 }
             }
         }
+
+
 
         farm1.getFarmLands().addAll(lands);
         map.setFarm1(farm1);
