@@ -5,6 +5,7 @@ import com.StardewValley.View.newView.FarmLand;
 import com.StardewValley.enums.AssetManager;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Artisan.ArtisanMachine;
+import com.StardewValley.model.GameTime;
 import com.StardewValley.model.Item.CollisionRect;
 import com.StardewValley.model.NPC.Npc;
 import com.StardewValley.model.Store.ShippingBin;
@@ -434,7 +435,9 @@ public class MapBuilder {
                     !greenHouse1.getCollisionRect().collidesWith(landRect) &&
                     !quarry1.getCollisionRect().collidesWith(landRect)) {
 
-                    FarmLand land = new FarmLand(landRect, AssetManager.NIGHT_BACKGROUND.getTexture());
+//                    FarmLand land = new FarmLand(landRect, AssetManager.NIGHT_BACKGROUND.getTexture());
+                    FarmLand land = new FarmLand(landRect, GameTime.getCurrentBackgroundTexture());
+
                     lands.add(land);
                 }
             }
