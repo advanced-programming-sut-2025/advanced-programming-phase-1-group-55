@@ -164,6 +164,9 @@ public class MainGameController {
             AnimalMenuView animalMenuView = new AnimalMenuView(animalMenuController, currentPlayer);
             App.gameApp.setScreen(animalMenuView);
         }
+        else if (Gdx.input.isKeyJustPressed(Input.Keys.V)) {
+            App.gameApp.setScreen(new AnimalBuildingMenuView());
+        }
 
 
     }
