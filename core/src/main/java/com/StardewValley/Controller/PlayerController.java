@@ -239,7 +239,7 @@ public class PlayerController {
         this.stage = stage;
     }
 
-    //todo chon size player ro bozorg kardam shayad bug bokhore
+
     private boolean tryMove(int dx, int dy) {
         player.getLocation().add(dx, dy);
         player.getCollisionRect().updateCollisionRect(

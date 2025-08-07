@@ -8,7 +8,7 @@ public class Trade {
     private User Sender;
     private User Reciver;
     private com.StardewValley.model.Item.Item Item;
-    private String type;//todo
+    private String type;
     private int amount;
     private int price;
     private Item TargetItem;

@@ -70,12 +70,9 @@ public class NpcMenuController {
                         backPack.addItemToInventory(new Item(quest.getReward().getItem()),quest.getReward().getAmount()*zarib);
                     }
                     backPack.removeAmountFromInventory(quest.getWant().getItem(),quest.getWant().getAmount());
-                    //todo remove comment after arshia finished menus
+
                     player.getFriendsNpc().get(npc.getType().getDisplayName()).getQuestStatus()[i]= QuestStatus.Completed;
                     player.getQuest().remove(npc.getType().getFirstQuestIndex()+i);
-//                    for(User user:App.currentGame.playersInGame){
-//                        user.getQuest().remove(quest.getId());
-//                    }
                     quest.setHasAlreadyFinished(true);
                     App.gameApp.setScreen(new ReceiveQuestRewardView(player,quest,view,map));
                 }

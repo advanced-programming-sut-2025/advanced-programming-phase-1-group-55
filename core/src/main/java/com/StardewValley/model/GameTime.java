@@ -125,7 +125,7 @@ public class GameTime {
         DayofMonth = dayofMonth;
     }
 
-    //todo age zaman roo ziyad ezafe kone momkene bug bede
+
     public static void increaseHour(int hour) {
         GameTime.hour += hour;
         if (GameTime.hour >= 22) {

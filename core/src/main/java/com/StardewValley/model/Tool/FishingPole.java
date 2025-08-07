@@ -52,7 +52,6 @@ public class FishingPole extends Tools {
     @Override
     public int energyCost() {
         int energy = type.getEnergyPerUse();
-        // TODO  AGAR FISHING MAX BOOD ENERGY--;
        return  (int) ((energy) * getEnergyLoser());
     }
 
@@ -82,6 +81,6 @@ public class FishingPole extends Tools {
     public void useTool() {
         currentGameModel.currentUser.decreaseEnergy((int) (energyCost() * getEnergyLoser()));
     }
-    //todo current user bezar
+
 
 }
