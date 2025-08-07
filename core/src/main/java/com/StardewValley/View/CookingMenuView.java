@@ -1,11 +1,12 @@
 package com.StardewValley.View;
 
+import com.StardewValley.Common.model.CookingItems.CookingItem;
 import com.StardewValley.Controller.CookingMenuController;
-import com.StardewValley.enums.CookingItemType;
-import com.StardewValley.model.App;
-import com.StardewValley.model.User;
-import com.StardewValley.model.Item.Item;
-import com.StardewValley.model.Item.ItemType;
+import com.StardewValley.Common.enums.CookingItemType;
+import com.StardewValley.Common.model.App;
+import com.StardewValley.Common.model.User;
+import com.StardewValley.Common.model.Item.Item;
+import com.StardewValley.Common.model.Item.ItemType;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
@@ -153,11 +154,11 @@ public class CookingMenuView implements Screen {
         Table content = new Table();
         content.pad(10);
         content.add(new Label("Fridge Contents:", skin)).left().row();
-        java.util.ArrayList<com.StardewValley.model.CookingItems.CookingItem> fridgeItems = user.getRefrigerator();
+        java.util.ArrayList<CookingItem> fridgeItems = user.getRefrigerator();
         if (fridgeItems == null || fridgeItems.isEmpty()) {
             content.add(new Label(" (Empty)", skin)).left().row();
         } else {
-            for (com.StardewValley.model.CookingItems.CookingItem ci : fridgeItems) {
+            for (CookingItem ci : fridgeItems) {
                 String name = ci.getItemType().getDisplayName();
                 int quantity = ci.getNumber();
                 content.add(new Label(name + " x" + quantity, skin)).left().row();

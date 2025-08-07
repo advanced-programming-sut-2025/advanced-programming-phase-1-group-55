@@ -1,15 +1,16 @@
 package com.StardewValley.Controller;
 
-import com.StardewValley.model.Friendship.PlayerFriendship;
-import com.StardewValley.model.Item.Item;
-import com.StardewValley.model.Result;
-import com.StardewValley.model.Trade;
-import com.StardewValley.model.User;
+import com.StardewValley.Common.model.Friendship.PlayerFriendship;
+import com.StardewValley.Common.model.Item.Item;
+import com.StardewValley.Common.model.Result;
+import com.StardewValley.Common.model.Trade;
+import com.StardewValley.Common.model.User;
 
 import java.util.ArrayList;
 
-import static com.StardewValley.model.App.*;
-import static com.StardewValley.model.Item.ItemType.*;
+import static com.StardewValley.Common.model.App.AllUsers;
+import static com.StardewValley.Common.model.App.currentGameModel;
+import static com.StardewValley.Common.model.Item.ItemType.getItemType;
 
 public class TradeController {
     public Result TradeMenu() {

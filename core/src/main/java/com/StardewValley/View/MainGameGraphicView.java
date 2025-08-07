@@ -1,15 +1,15 @@
 package com.StardewValley.View;
 
 import com.StardewValley.Controller.MainGameController;
-import com.StardewValley.model.Animal.AnimalBuilding;
-import com.StardewValley.model.Animal.FarmBuildingType;
+import com.StardewValley.Common.model.Animal.AnimalBuilding;
+import com.StardewValley.Common.model.Animal.FarmBuildingType;
 import com.StardewValley.Controller.TimeController;
-import com.StardewValley.model.App;
-import com.StardewValley.model.Artisan.ArtisanMachineType;
-import com.StardewValley.model.GameTime;
-import com.StardewValley.model.MainTime;
-import com.StardewValley.model.Map.GameMap;
-import com.StardewValley.model.User;
+import com.StardewValley.Common.model.App;
+import com.StardewValley.Common.model.Artisan.ArtisanMachineType;
+import com.StardewValley.Common.model.GameTime;
+import com.StardewValley.Common.model.MainTime;
+import com.StardewValley.Common.model.Map.GameMap;
+import com.StardewValley.Common.model.User;
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -26,7 +26,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
-import static com.StardewValley.enums.AssetManager.*;
+import static com.StardewValley.Common.enums.AssetManager.DAY_BACKGROUND;
+import static com.StardewValley.Common.enums.AssetManager.NIGHT_BACKGROUND;
 
 public class MainGameGraphicView implements Screen, InputProcessor {
     private final MainGameController controller;

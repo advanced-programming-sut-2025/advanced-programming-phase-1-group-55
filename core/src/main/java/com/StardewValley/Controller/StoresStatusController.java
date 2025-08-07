@@ -2,11 +2,11 @@ package com.StardewValley.Controller;
 
 import com.StardewValley.View.ShippingBinMenuView;
 import com.StardewValley.View.StoreMenuView;
-import com.StardewValley.model.App;
-import com.StardewValley.model.Map.GameMap;
-import com.StardewValley.model.Store.ShippingBin;
-import com.StardewValley.model.Store.Store;
-import com.StardewValley.model.User;
+import com.StardewValley.Common.model.App;
+import com.StardewValley.Common.model.Map.GameMap;
+import com.StardewValley.Common.model.Store.ShippingBin;
+import com.StardewValley.Common.model.Store.Store;
+import com.StardewValley.Common.model.User;
 
 public class StoresStatusController {
     private User player;

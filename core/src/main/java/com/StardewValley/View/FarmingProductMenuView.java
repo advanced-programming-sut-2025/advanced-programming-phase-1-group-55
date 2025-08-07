@@ -1,9 +1,9 @@
 package com.StardewValley.View;
-import com.StardewValley.model.App;
-import com.StardewValley.model.FarmingProdocts.AllCrops;
-import com.StardewValley.model.FarmingProdocts.AllForagingCrops;
-import com.StardewValley.model.FarmingProdocts.AllForagingTrees;
-import com.StardewValley.model.FarmingProdocts.AllTrees;
+import com.StardewValley.Common.model.App;
+import com.StardewValley.Common.model.FarmingProdocts.AllCrops;
+import com.StardewValley.Common.model.FarmingProdocts.AllForagingCrops;
+import com.StardewValley.Common.model.FarmingProdocts.AllForagingTrees;
+import com.StardewValley.Common.model.FarmingProdocts.AllTrees;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;

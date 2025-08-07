@@ -1,13 +1,12 @@
 package com.StardewValley.Controller;
 
-import com.StardewValley.enums.Direction;
-import com.StardewValley.model.App;
-import com.StardewValley.model.GameTime;
-import com.StardewValley.model.Item.CollisionRect;
-import com.StardewValley.model.Map.GameMap;
-import com.StardewValley.model.Map.GreenHouse;
-import com.StardewValley.model.User;
-import com.StardewValley.model.weather;
+import com.StardewValley.Common.enums.Direction;
+import com.StardewValley.Common.model.App;
+import com.StardewValley.Common.model.Item.CollisionRect;
+import com.StardewValley.Common.model.Map.GameMap;
+import com.StardewValley.Common.model.Map.GreenHouse;
+import com.StardewValley.Common.model.User;
+import com.StardewValley.Common.model.weather;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -19,11 +18,8 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
-import static com.StardewValley.model.App.*;
-import static com.StardewValley.model.User.*;
-
-import java.awt.*;
-import java.security.Key;
+import static com.StardewValley.Common.model.App.gameApp;
+import static com.StardewValley.Common.model.App.getCurrentGameModel;
 
 public class PlayerController {
     private int speed = 10;
@@ -100,7 +96,7 @@ public class PlayerController {
             if (faintSprite != null) {
                 faintSprite.setPosition(player.getLocation().getX(), player.getLocation().getY());
                 faintSprite.setScale(scale);
-                faintSprite.draw(App.gameApp.getBatch());
+                faintSprite.draw(gameApp.getBatch());
             }
 
             drawOtherPlayers();
@@ -123,7 +119,7 @@ public class PlayerController {
                 currentFrame = currentAnimation.getKeyFrame(0);
             }
 
-            App.gameApp.getBatch().draw(
+            gameApp.getBatch().draw(
                 currentFrame,
                 player.getLocation().getX(),
                 player.getLocation().getY(),

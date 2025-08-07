@@ -1,13 +1,14 @@
 package com.StardewValley.Controller;
 
+import com.StardewValley.Common.model.Store.Product;
+import com.StardewValley.Common.model.Store.Store;
 import com.StardewValley.View.PurchaseProductMenuView;
 import com.StardewValley.View.StoreMenuView;
-import com.StardewValley.enums.Seasons;
-import com.StardewValley.model.App;
-import com.StardewValley.model.GameTime;
-import com.StardewValley.model.Map.GameMap;
-import com.StardewValley.model.Store.*;
-import com.StardewValley.model.User;
+import com.StardewValley.Common.enums.Seasons;
+import com.StardewValley.Common.model.App;
+import com.StardewValley.Common.model.GameTime;
+import com.StardewValley.Common.model.Map.GameMap;
+import com.StardewValley.Common.model.User;
 
 public class StoreMenuController {
     private Store store;

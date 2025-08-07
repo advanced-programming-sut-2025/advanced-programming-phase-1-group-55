@@ -1,13 +1,12 @@
 package com.StardewValley.View;
 
-import com.StardewValley.model.FarmingProdocts.Crop;
-import com.StardewValley.model.Item.CollisionRect;
-import com.StardewValley.model.Item.ItemType;
-import com.StardewValley.model.Map.Location;
+import com.StardewValley.Common.model.Item.CollisionRect;
+import com.StardewValley.Common.model.Item.ItemType;
+import com.StardewValley.Common.model.Map.Location;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.StardewValley.model.App;
+import com.StardewValley.Common.model.App;
 
 public class FarmLand {
     private CollisionRect collisionRect;

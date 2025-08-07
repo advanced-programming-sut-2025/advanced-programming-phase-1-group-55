@@ -2,12 +2,12 @@ package com.StardewValley.Controller;
 
 import com.StardewValley.View.PauseMenuView;
 import com.StardewValley.View.SocialMenuView;
-import com.StardewValley.model.App;
-import com.StardewValley.model.Friendship.Gift;
-import com.StardewValley.model.Item.Item;
-import com.StardewValley.model.User;
+import com.StardewValley.Common.model.App;
+import com.StardewValley.Common.model.Friendship.Gift;
+import com.StardewValley.Common.model.Item.Item;
+import com.StardewValley.Common.model.User;
 
-import static com.StardewValley.model.App.currentGameModel;
+import static com.StardewValley.Common.model.App.currentGameModel;
 
 public class SocialMenuController {
     private SocialMenuView view;

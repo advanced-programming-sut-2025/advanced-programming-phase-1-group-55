@@ -1,13 +1,10 @@
 package com.StardewValley.View;
 
 import com.StardewValley.Controller.CheatItemMenuController;
-import com.StardewValley.Controller.ShippingBinMenuController;
-import com.StardewValley.enums.AssetManager;
-import com.StardewValley.model.App;
-import com.StardewValley.model.Item.Item;
-import com.StardewValley.model.Item.ItemType;
-import com.StardewValley.model.Map.GameMap;
-import com.StardewValley.model.User;
+import com.StardewValley.Common.enums.AssetManager;
+import com.StardewValley.Common.model.App;
+import com.StardewValley.Common.model.Item.Item;
+import com.StardewValley.Common.model.Item.ItemType;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
@@ -18,9 +15,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class CheatItemMenuView implements Screen {
     private CheatItemMenuController controller;

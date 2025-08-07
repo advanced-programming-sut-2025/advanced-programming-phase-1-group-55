@@ -1,8 +1,8 @@
 package com.StardewValley.View;
 
 import com.StardewValley.Controller.LoginMenuController;
-import com.StardewValley.model.App;
-import com.StardewValley.model.Result;
+import com.StardewValley.Common.model.App;
+import com.StardewValley.Common.model.Result;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;

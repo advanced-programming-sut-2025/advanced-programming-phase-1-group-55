@@ -1,13 +1,13 @@
 package com.StardewValley.Controller;
 
 import com.StardewValley.View.CraftingMenuView;
-import com.StardewValley.enums.CraftingItemType;
-import com.StardewValley.model.App;
-import com.StardewValley.model.CraftingItems.CraftingItem;
-import com.StardewValley.model.CraftingItems.CraftingItemCreator;
-import com.StardewValley.model.Item.ItemType;
-import com.StardewValley.model.User;
-import com.StardewValley.model.Tool.BackPack;
+import com.StardewValley.Common.enums.CraftingItemType;
+import com.StardewValley.Common.model.App;
+import com.StardewValley.Common.model.CraftingItems.CraftingItem;
+import com.StardewValley.Common.model.CraftingItems.CraftingItemCreator;
+import com.StardewValley.Common.model.Item.ItemType;
+import com.StardewValley.Common.model.User;
+import com.StardewValley.Common.model.Tool.BackPack;
 import java.util.HashMap;
 import java.util.Map;
 

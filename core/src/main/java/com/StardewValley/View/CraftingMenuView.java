@@ -1,9 +1,9 @@
 package com.StardewValley.View;
 
 import com.StardewValley.Controller.CraftingMenuController;
-import com.StardewValley.enums.CraftingItemType;
-import com.StardewValley.model.App;
-import com.StardewValley.model.User;
+import com.StardewValley.Common.enums.CraftingItemType;
+import com.StardewValley.Common.model.App;
+import com.StardewValley.Common.model.User;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.files.FileHandle;
@@ -16,7 +16,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 
 import java.util.HashSet;

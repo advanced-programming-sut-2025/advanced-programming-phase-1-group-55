@@ -1,8 +1,8 @@
 package com.StardewValley.Controller;
 
-import com.StardewValley.model.Result;
+import com.StardewValley.Common.model.Result;
 
-import static com.StardewValley.model.App.*;
+import static com.StardewValley.Common.model.App.mainUser;
 
 public class ProfileMenuController extends RegisterController {
     public Result changeUsername(String Username) {

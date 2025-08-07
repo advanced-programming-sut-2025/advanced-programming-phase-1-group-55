@@ -1,11 +1,9 @@
 package com.StardewValley.Controller;
 
-import com.StardewValley.model.Animal.*;
-import com.StardewValley.model.Item.Item;
-import com.StardewValley.model.Item.ItemType;
-import com.StardewValley.model.User;
-
-import java.util.List;
+import com.StardewValley.Common.model.Animal.Animal;
+import com.StardewValley.Common.model.Animal.FarmAnimalType;
+import com.StardewValley.Common.model.Item.ItemType;
+import com.StardewValley.Common.model.User;
 
 public class BuyAnimalMenuController {
 

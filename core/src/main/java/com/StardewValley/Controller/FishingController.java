@@ -2,11 +2,11 @@ package com.StardewValley.Controller;
 
 import com.StardewValley.View.EndFishingScreen;
 import com.StardewValley.View.FishingGameScreen;
-import com.StardewValley.model.Animal.Fishing.Fish;
-import com.StardewValley.model.Animal.Fishing.FishMovementPattern;
-import com.StardewValley.model.Animal.Fishing.FishMovementType;
-import com.StardewValley.model.App;
-import com.StardewValley.model.Item.Item;
+import com.StardewValley.Common.model.Animal.Fishing.Fish;
+import com.StardewValley.Common.model.Animal.Fishing.FishMovementPattern;
+import com.StardewValley.Common.model.Animal.Fishing.FishMovementType;
+import com.StardewValley.Common.model.App;
+import com.StardewValley.Common.model.Item.Item;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 

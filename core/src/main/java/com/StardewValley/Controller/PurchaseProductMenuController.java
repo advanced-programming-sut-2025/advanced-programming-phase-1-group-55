@@ -1,13 +1,13 @@
 package com.StardewValley.Controller;
 
+import com.StardewValley.Common.model.Tool.*;
 import com.StardewValley.View.PurchaseProductMenuView;
-import com.StardewValley.model.App;
-import com.StardewValley.model.Item.ItemType;
-import com.StardewValley.model.Map.GameMap;
-import com.StardewValley.model.Store.Product;
-import com.StardewValley.model.Store.Store;
-import com.StardewValley.model.Tool.*;
-import com.StardewValley.model.User;
+import com.StardewValley.Common.model.App;
+import com.StardewValley.Common.model.Item.ItemType;
+import com.StardewValley.Common.model.Map.GameMap;
+import com.StardewValley.Common.model.Store.Product;
+import com.StardewValley.Common.model.Store.Store;
+import com.StardewValley.Common.model.User;
 
 public class PurchaseProductMenuController {
     private PurchaseProductMenuView view;

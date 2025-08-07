@@ -1,16 +1,16 @@
 package com.StardewValley.View;
 
 import com.StardewValley.Controller.NpcMenuController;
-import com.StardewValley.enums.AssetManager;
-import com.StardewValley.model.App;
-import com.StardewValley.model.Friendship.NpcFriendship;
-import com.StardewValley.model.Item.Item;
-import com.StardewValley.model.Map.GameMap;
-import com.StardewValley.model.NPC.Npc;
+import com.StardewValley.Common.enums.AssetManager;
+import com.StardewValley.Common.model.App;
+import com.StardewValley.Common.model.Friendship.NpcFriendship;
+import com.StardewValley.Common.model.Item.Item;
+import com.StardewValley.Common.model.Map.GameMap;
+import com.StardewValley.Common.model.NPC.Npc;
 
-import com.StardewValley.model.NPC.Quest;
-import com.StardewValley.model.NPC.QuestStatus;
-import com.StardewValley.model.User;
+import com.StardewValley.Common.model.NPC.Quest;
+import com.StardewValley.Common.model.NPC.QuestStatus;
+import com.StardewValley.Common.model.User;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;

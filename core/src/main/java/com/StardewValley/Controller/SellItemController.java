@@ -2,10 +2,10 @@ package com.StardewValley.Controller;
 
 import com.StardewValley.View.PauseMenuView;
 import com.StardewValley.View.SellItemView;
-import com.StardewValley.model.App;
-import com.StardewValley.model.Item.Item;
-import com.StardewValley.model.Map.GameMap;
-import com.StardewValley.model.User;
+import com.StardewValley.Common.model.App;
+import com.StardewValley.Common.model.Item.Item;
+import com.StardewValley.Common.model.Map.GameMap;
+import com.StardewValley.Common.model.User;
 
 public class SellItemController {
     private SellItemView view;

@@ -3,8 +3,8 @@ package com.StardewValley.View;
 
 import com.StardewValley.Controller.ProfileMenuController;
 import com.StardewValley.Controller.RegisterController;
-import com.StardewValley.enums.Avatar;
-import com.StardewValley.model.App;
+import com.StardewValley.Common.enums.Avatar;
+import com.StardewValley.Common.model.App;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.files.FileHandle;

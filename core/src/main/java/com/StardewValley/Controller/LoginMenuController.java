@@ -1,9 +1,8 @@
 package com.StardewValley.Controller;
 
-import com.StardewValley.model.Result;
+import com.StardewValley.Common.model.Result;
 
-
-import static com.StardewValley.model.App.*;
+import static com.StardewValley.Common.model.App.*;
 
 public class LoginMenuController extends RegisterController {
     public Result login(String username, String password, String stayLoggedIn) {

@@ -1,33 +1,25 @@
 package com.StardewValley.Controller;
 
 
-import com.StardewValley.enums.WeatherType;
-import com.StardewValley.model.App;
-import com.StardewValley.model.GameTime;
-import com.StardewValley.model.User;
+import com.StardewValley.Common.enums.WeatherType;
+import com.StardewValley.Common.model.App;
+import com.StardewValley.Common.model.GameTime;
+import com.StardewValley.Common.model.User;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Matrix4;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.math.MathUtils;
 
-
-import static com.StardewValley.model.weather.*;
-import static com.StardewValley.model.GameTime.*;
+import static com.StardewValley.Common.model.GameTime.getDay;
+import static com.StardewValley.Common.model.weather.getCurrentWeather;
 
 public class TimeController {
     private BitmapFont hour;

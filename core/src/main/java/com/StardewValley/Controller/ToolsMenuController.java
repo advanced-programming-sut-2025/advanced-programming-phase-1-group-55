@@ -2,8 +2,8 @@ package com.StardewValley.Controller;
 
 import com.StardewValley.View.PauseMenuView;
 import com.StardewValley.View.ToolsMenuView;
-import com.StardewValley.model.App;
-import com.StardewValley.model.Tool.Tools;
+import com.StardewValley.Common.model.App;
+import com.StardewValley.Common.model.Tool.Tools;
 
 public class ToolsMenuController {
    private ToolsMenuView view;

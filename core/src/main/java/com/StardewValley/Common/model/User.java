@@ -1,0 +1,519 @@
+package com.StardewValley.Common.model;
+
+
+
+import com.StardewValley.Common.enums.Direction;
+import com.StardewValley.Common.enums.SkillType;
+import com.StardewValley.Common.model.Animal.Animal;
+import com.StardewValley.Common.model.Animal.AnimalBuilding;
+import com.StardewValley.Common.model.Artisan.ArtisanMachine;
+import com.StardewValley.Common.model.Artisan.ArtisanMachineType;
+import com.StardewValley.Common.model.CookingItems.CookingItem;
+import com.StardewValley.Common.model.Friendship.Gift;
+import com.StardewValley.Common.model.Friendship.NpcFriendship;
+import com.StardewValley.Common.model.Friendship.PlayerFriendship;
+import com.StardewValley.Common.model.Item.CollisionRect;
+import com.StardewValley.Common.model.Item.ItemType;
+import com.StardewValley.Common.model.Map.Farm;
+import com.StardewValley.Common.model.Map.GreenHouse;
+import com.StardewValley.Common.model.Map.Location;
+
+import com.StardewValley.Common.model.NPC.Quest;
+import com.StardewValley.Common.model.Tool.BackPack;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+
+import java.util.*;
+
+import static com.StardewValley.Common.enums.AssetManager.PLAYER;
+
+public class User {
+    private String username;
+    private String password;
+    private String nickName;
+    private CollisionRect collisionRect;
+    private transient Sprite sprite = new Sprite(PLAYER.getTexture());
+    private String gender;
+    private String email;
+    private boolean isSad = false;
+    private int timePassedBeingSad = 0;
+    private int numberOfSecurityQuestion;
+    private String securityQuestion;
+    private String answerOfSecurityQuestion;
+    private Skill farmingSkill = new Skill(SkillType.Farming);
+    private Skill miningSkill = new Skill(SkillType.Mining);
+    private Skill foragingSkill = new Skill(SkillType.Foraging);
+    private Skill fishingSkill = new Skill(SkillType.Fishing);
+    private ArrayList<CookingItem> refrigerator = new ArrayList<>();
+    private ArrayList<ArtisanMachine> artisanMachines = new ArrayList<>();
+    private ArrayList<AnimalBuilding> farmBuildings = new ArrayList<>();
+    private Boolean farmHadPlaceForAnimals = false;
+    private ArrayList<Animal> myAnimals = new ArrayList<>();
+
+    private String avatarPath;
+
+
+    private BackPack backPack = new BackPack();
+    private User wife = null;
+    private HashMap<String, NpcFriendship> friendsNpc = new HashMap<>();
+    private int gold = 40000;
+    private HashMap<User, PlayerFriendship> friendsPlayer = new HashMap<>();
+    private int dailyMoney = 0;
+    private int wood = 40000;
+    private double energy = 100;
+    private boolean stayLoggedIn = false;
+    private int mostAchievedMoney = 0;
+    private int matchPlayed = 0;
+    private Location location = new Location(0, 0);
+    private Direction direction = Direction.DOWN;
+    private boolean fainted = false;
+    private Location playerTommorowLocation;
+    private GameModel playedGameModel;
+    private Farm farm;
+    private HashMap<Integer, Trade> trades = new HashMap<>();
+    private CookingItem cookingItem;
+    private int stone;
+    private Map<Integer, Gift> receivedGifts = new HashMap<>();
+    private Map<User, List<Gift>> sentGifts = new HashMap<>();
+    private boolean hasGiftToday = false;
+    private boolean hasMessageToday = false;
+    private Map<Integer, Quest> quest = new HashMap<>();
+    private GreenHouse greenHouse;
+
+
+    public User(String username, String password, String nickName, String email, String gender, String securityQuestion, String answerOfSecurityQuestion, String avatarPath) {
+        this.username = username;
+        this.password = password;
+        this.nickName = nickName;
+        this.gender = gender;
+        this.email = email;
+        this.securityQuestion = securityQuestion;
+        this.answerOfSecurityQuestion = answerOfSecurityQuestion;
+        this.gold = 10000;
+        sprite = new Sprite(new Texture(Gdx.files.internal("walk/Alex_01.png")));
+        this.refrigerator = new ArrayList<>();
+        this.backPack = new BackPack();
+        this.avatarPath = avatarPath;
+    }
+
+    public String getAvatarPath() {
+        return avatarPath;
+    }
+
+    public void setAvatarPath(String avatarPath) {
+        this.avatarPath = avatarPath;
+    }
+
+    public Direction getDirection() {
+        return direction;
+    }
+
+    public void setDirection(Direction direction) {
+        this.direction = direction;
+    }
+
+    public CollisionRect getCollisionRect() {
+        return collisionRect;
+    }
+
+    public void setCollisionRect(CollisionRect collisionRect) {
+        this.collisionRect = collisionRect;
+    }
+
+    public Sprite getSprite() {
+        return this.sprite;
+    }
+
+    public void setSprite(Sprite sprite) {
+        this.sprite = sprite;
+    }
+
+    public GameModel getPlayedGameModel() {
+        return playedGameModel;
+    }
+
+    public void setPlayedGameModel(GameModel playedGameModel) {
+        this.playedGameModel = playedGameModel;
+    }
+
+    public ArrayList<ArtisanMachine> getArtisanMachines() {
+        return artisanMachines;
+    }
+
+    public void setArtisanMachines(ArrayList<ArtisanMachine> artisanMachines) {
+        this.artisanMachines = artisanMachines;
+    }
+
+    public GreenHouse getGreenHouse() {
+        return greenHouse;
+    }
+
+    public void setGreenHouse(GreenHouse greenHouse) {
+        this.greenHouse = greenHouse;
+    }
+
+    public int getStone() {
+        return stone;
+    }
+
+    public void setStone(int stone) {
+        this.stone = stone;
+    }
+
+
+    public boolean isSad() {
+        return isSad;
+    }
+
+    public void increaseTimeToBeSad() {
+        timePassedBeingSad++;
+    }
+
+    public void setSad(boolean sad) {
+        isSad = sad;
+    }
+
+    public int getTimePassedBeingSad() {
+        return timePassedBeingSad;
+    }
+
+    public void setTimePassedBeingSad(int timePassedBeingSad) {
+        this.timePassedBeingSad = timePassedBeingSad;
+    }
+
+    public HashMap<Integer, Trade> getTrades() {
+        return trades;
+    }
+
+    public void setTrades(HashMap<Integer, Trade> trades) {
+        this.trades = trades;
+    }
+
+    public Farm getFarm() {
+        return farm;
+    }
+
+    public void setFarm(Farm farm) {
+        this.farm = farm;
+    }
+
+    public boolean isFainted() {
+        return fainted;
+    }
+
+    public void setFainted(boolean fainted) {
+        this.fainted = fainted;
+    }
+
+    public void decreaseEnergy(double amount) {
+
+        this.energy = Math.max(0, this.energy - amount);
+        if (this.energy <= 0) {
+            this.energy = 0;
+            setFainted(true);
+        }
+    }
+
+    public void increaseEnergy(int amount) {
+        this.energy += amount;
+        this.energy = Math.min(10000, energy);
+    }
+
+    public int getWood() {
+        return wood;
+    }
+
+    public void setWood(int wood) {
+        this.wood = wood;
+    }
+
+    public int getMostAchievedMoney() {
+        return mostAchievedMoney;
+    }
+
+    public void setMostAchievedMoney(int mostAchievedMoney) {
+        this.mostAchievedMoney = mostAchievedMoney;
+    }
+
+    public int getMatchPlayed() {
+        return matchPlayed;
+    }
+
+    public void setMatchPlayed(int matchPlayed) {
+        this.matchPlayed = matchPlayed;
+    }
+
+    public boolean isStayLoggedIn() {
+        return stayLoggedIn;
+    }
+
+    public void setStayLoggedIn(boolean stayLoggedIn) {
+        this.stayLoggedIn = stayLoggedIn;
+    }
+
+    public int getNumberOfSecurityQuestion() {
+        return numberOfSecurityQuestion;
+    }
+
+    public void setNumberOfSecurityQuestion(int numberOfSecurityQuestion) {
+        this.numberOfSecurityQuestion = numberOfSecurityQuestion;
+    }
+
+    public String getSecurityQuestion() {
+        return securityQuestion;
+    }
+
+    public void setSecurityQuestion(String securityQuestion) {
+        this.securityQuestion = securityQuestion;
+    }
+
+    public boolean isHasGiftToday() {
+        return hasGiftToday;
+    }
+
+    public void setHasGiftToday(boolean hasGiftToday) {
+        this.hasGiftToday = hasGiftToday;
+    }
+
+    public boolean isHasMessageToday() {
+        return hasMessageToday;
+    }
+
+    public void setHasMessageToday(boolean hasMessageToday) {
+        this.hasMessageToday = hasMessageToday;
+    }
+
+    private ArrayList<Trade> userTrades;
+
+
+
+    public String getAnswerOfSecurityQuestion() {
+        return answerOfSecurityQuestion;
+    }
+
+    public void setAnswerOfSecurityQuestion(String answerOfSecurityQuestion) {
+        this.answerOfSecurityQuestion = answerOfSecurityQuestion;
+    }
+
+    public double getEnergy() {
+        int zarib = 1;
+        if (isSad) {
+            zarib = 2;
+        }
+        return (this.energy) / zarib;
+    }
+
+    public void setEnergy(double energy) {
+        this.energy = energy;
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public BackPack getBackPack() {
+        return backPack;
+    }
+
+    public void setBackPack(BackPack backPack) {
+        this.backPack = backPack;
+    }
+
+    public User getWife() {
+        return wife;
+    }
+
+    public void setWife(User wife) {
+        this.wife = wife;
+    }
+
+    public HashMap<String, NpcFriendship> getFriendsNpc() {
+        return friendsNpc;
+    }
+
+    public void setFriendsNpc(HashMap<String, NpcFriendship> friendsNpc) {
+        this.friendsNpc = friendsNpc;
+    }
+
+    public HashMap<User, PlayerFriendship> getFriendsPlayer() {
+        return friendsPlayer;
+    }
+
+    public void setFriendsPlayer(HashMap<User, PlayerFriendship> friendsPlayer) {
+        this.friendsPlayer = friendsPlayer;
+    }
+
+    public int getGold() {
+        return gold;
+    }
+
+    public void setGold(int gold) {
+        this.gold = gold;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+
+    public CookingItem getCookingItem() {
+        return cookingItem;
+    }
+
+    public void setCookingItem(CookingItem cookingItem) {
+        this.cookingItem = cookingItem;
+    }
+
+    public int getDailyMoney() {
+        return dailyMoney;
+    }
+
+    public void setDailyMoney(int dailyMoney) {
+        this.dailyMoney = dailyMoney;
+    }
+
+    public void increaseDailyMoney(int amount) {
+        dailyMoney += amount;
+    }
+
+    public void increaseGold(int amount) {
+        this.gold += amount;
+    }
+
+    public void increaseWood(int amount) {
+        this.wood += amount;
+    }
+
+    public void decreaseGold(int amount) {
+        this.gold -= amount;
+        Math.max(0, gold);
+    }
+
+    public void decreaseWood(int amount) {
+        this.wood -= amount;
+        Math.max(0, wood);
+
+    }
+    public Map<Integer, Gift> getReceivedGifts() {
+        return receivedGifts;
+    }
+
+    public Skill getFarmingSkill() {
+        return farmingSkill;
+    }
+
+    public Skill getMiningSkill() {
+        return miningSkill;
+    }
+
+    public Skill getForagingSkill() {
+        return foragingSkill;
+    }
+
+    public Skill getFishingSkill() {
+        return fishingSkill;
+    }
+
+    public ArrayList<CookingItem> getRefrigerator() {
+        if (refrigerator == null) {
+            refrigerator = new ArrayList<>();
+        }
+        return refrigerator;
+    }
+
+    public CookingItem getFromRefrigerator(ItemType itemType) {
+        for (CookingItem refrigeratorItem : refrigerator) {
+            if (refrigeratorItem.getItemType().equals(itemType)) {
+                return refrigeratorItem;
+            }
+        }
+        return null;
+    }
+
+    public Map<Integer, Quest> getQuest() {
+        return quest;
+    }
+
+    public void setQuest(Map<Integer, Quest> quest) {
+        this.quest = quest;
+    }
+
+    public boolean isNear(Location otherLocation) {
+
+        Location location = this.location;
+        int dx = Math.abs(location.getX() - otherLocation.getX());
+        int dy = Math.abs(location.getY() - otherLocation.getY());
+
+        return (dx <= 1 && dy <= 1) && !(dx == 0 && dy == 0);
+    }
+
+
+    public ArrayList<AnimalBuilding> getFarmBuildings() {
+        return farmBuildings;
+    }
+    public void addFarmBuilding(AnimalBuilding building) {
+        farmBuildings.add(building);
+    }
+
+    public Boolean getFarmHadPlaceForAnimals() {
+        return farmHadPlaceForAnimals;
+    }
+
+    public void setFarmHadPlaceForAnimals(Boolean farmHadPlaceForAnimals) {
+        this.farmHadPlaceForAnimals = farmHadPlaceForAnimals;
+    }
+
+    public ArrayList<Animal> getMyAnimals() {
+        return myAnimals;
+    }
+
+    public ArtisanMachine getArtisan(ArtisanMachineType type) {
+        for (ArtisanMachine good : artisanMachines) {
+            if (good.getArtisanType() == type) {
+                return good;
+            }
+        }
+        return null;
+    }
+}

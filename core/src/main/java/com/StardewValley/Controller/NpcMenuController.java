@@ -3,15 +3,15 @@ package com.StardewValley.Controller;
 import com.StardewValley.View.GiftItemMenuView;
 import com.StardewValley.View.NpcMenuView;
 import com.StardewValley.View.ReceiveQuestRewardView;
-import com.StardewValley.model.App;
-import com.StardewValley.model.Item.Item;
-import com.StardewValley.model.Item.ItemType;
-import com.StardewValley.model.Map.GameMap;
-import com.StardewValley.model.NPC.Npc;
-import com.StardewValley.model.NPC.Quest;
-import com.StardewValley.model.NPC.QuestStatus;
-import com.StardewValley.model.Tool.BackPack;
-import com.StardewValley.model.User;
+import com.StardewValley.Common.model.App;
+import com.StardewValley.Common.model.Item.Item;
+import com.StardewValley.Common.model.Item.ItemType;
+import com.StardewValley.Common.model.Map.GameMap;
+import com.StardewValley.Common.model.NPC.Npc;
+import com.StardewValley.Common.model.NPC.Quest;
+import com.StardewValley.Common.model.NPC.QuestStatus;
+import com.StardewValley.Common.model.Tool.BackPack;
+import com.StardewValley.Common.model.User;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 
 public class NpcMenuController {

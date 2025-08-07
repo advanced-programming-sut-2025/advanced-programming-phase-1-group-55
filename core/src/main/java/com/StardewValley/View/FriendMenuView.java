@@ -1,13 +1,13 @@
 package com.StardewValley.View;
 
 import com.StardewValley.Controller.FriendMenuController;
-import com.StardewValley.enums.AssetManager;
-import com.StardewValley.model.App;
-import com.StardewValley.model.Friendship.Answer;
-import com.StardewValley.model.Friendship.Gift;
-import com.StardewValley.model.Friendship.Message;
-import com.StardewValley.model.Friendship.PlayerFriendship;
-import com.StardewValley.model.User;
+import com.StardewValley.Common.enums.AssetManager;
+import com.StardewValley.Common.model.App;
+import com.StardewValley.Common.model.Friendship.Answer;
+import com.StardewValley.Common.model.Friendship.Gift;
+import com.StardewValley.Common.model.Friendship.Message;
+import com.StardewValley.Common.model.Friendship.PlayerFriendship;
+import com.StardewValley.Common.model.User;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;

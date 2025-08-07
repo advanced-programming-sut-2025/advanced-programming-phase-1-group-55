@@ -1,6 +1,6 @@
 package com.StardewValley.View;
 
-import com.StardewValley.model.App;
+import com.StardewValley.Common.model.App;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;

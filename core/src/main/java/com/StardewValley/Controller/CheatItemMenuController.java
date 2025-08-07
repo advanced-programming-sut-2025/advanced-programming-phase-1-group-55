@@ -2,9 +2,9 @@ package com.StardewValley.Controller;
 
 import com.StardewValley.View.CheatItemMenuView;
 import com.StardewValley.View.CheatItemFinalView;
-import com.StardewValley.model.App;
-import com.StardewValley.model.Item.Item;
-import com.StardewValley.model.User;
+import com.StardewValley.Common.model.App;
+import com.StardewValley.Common.model.Item.Item;
+import com.StardewValley.Common.model.User;
 
 public class CheatItemMenuController {
     private CheatItemMenuView view;

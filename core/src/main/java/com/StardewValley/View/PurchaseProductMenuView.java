@@ -1,11 +1,11 @@
 package com.StardewValley.View;
 
 import com.StardewValley.Controller.PurchaseProductMenuController;
-import com.StardewValley.enums.AssetManager;
-import com.StardewValley.model.App;
-import com.StardewValley.model.Map.GameMap;
-import com.StardewValley.model.Store.Product;
-import com.StardewValley.model.User;
+import com.StardewValley.Common.enums.AssetManager;
+import com.StardewValley.Common.model.App;
+import com.StardewValley.Common.model.Map.GameMap;
+import com.StardewValley.Common.model.Store.Product;
+import com.StardewValley.Common.model.User;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;

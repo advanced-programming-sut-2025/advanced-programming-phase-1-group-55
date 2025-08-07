@@ -1,9 +1,9 @@
 package com.StardewValley.View;
 
 import com.StardewValley.Controller.CheatItemFinalMenuController;
-import com.StardewValley.enums.AssetManager;
-import com.StardewValley.model.App;
-import com.StardewValley.model.Item.Item;
+import com.StardewValley.Common.enums.AssetManager;
+import com.StardewValley.Common.model.App;
+import com.StardewValley.Common.model.Item.Item;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;

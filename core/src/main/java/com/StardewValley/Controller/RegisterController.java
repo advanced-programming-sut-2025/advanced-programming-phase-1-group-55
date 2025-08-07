@@ -1,9 +1,10 @@
 package com.StardewValley.Controller;
 
-import com.StardewValley.enums.Avatar;
+import com.StardewValley.Common.enums.Avatar;
 import com.google.gson.GsonBuilder;
-import com.StardewValley.model.Result;
-import com.StardewValley.model.User;
+import com.StardewValley.Common.model.Result;
+import com.StardewValley.Common.model.User;
+import static com.StardewValley.Common.model.App.*;
 
 import java.security.MessageDigest;
 import java.security.SecureRandom;
@@ -16,8 +17,6 @@ import com.google.gson.reflect.TypeToken;
 
 import java.io.*;
 import java.util.*;
-
-import static com.StardewValley.model.App.*;
 
 public class RegisterController {
 

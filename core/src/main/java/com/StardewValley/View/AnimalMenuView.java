@@ -2,8 +2,8 @@ package com.StardewValley.View;
 
 import com.StardewValley.Controller.AnimalMenuController;
 import com.StardewValley.Controller.BuyAnimalMenuController;
-import com.StardewValley.model.App;
-import com.StardewValley.model.User;
+import com.StardewValley.Common.model.App;
+import com.StardewValley.Common.model.User;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;

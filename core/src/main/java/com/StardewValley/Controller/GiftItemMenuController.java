@@ -1,11 +1,11 @@
 package com.StardewValley.Controller;
 
 import com.StardewValley.View.GiftItemMenuView;
-import com.StardewValley.model.App;
-import com.StardewValley.model.Item.Item;
-import com.StardewValley.model.Map.GameMap;
-import com.StardewValley.model.NPC.Npc;
-import com.StardewValley.model.User;
+import com.StardewValley.Common.model.App;
+import com.StardewValley.Common.model.Item.Item;
+import com.StardewValley.Common.model.Map.GameMap;
+import com.StardewValley.Common.model.NPC.Npc;
+import com.StardewValley.Common.model.User;
 
 public class GiftItemMenuController {
     private GiftItemMenuView view;

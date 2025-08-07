@@ -1,12 +1,12 @@
 package com.StardewValley.Controller;
 
 import com.StardewValley.View.ArtisanMachineMenuView;
-import com.StardewValley.model.App;
-import com.StardewValley.model.Artisan.ArtisanMachine;
-import com.StardewValley.model.Artisan.ArtisanStatus;
-import com.StardewValley.model.Item.Item;
-import com.StardewValley.model.Map.GameMap;
-import com.StardewValley.model.User;
+import com.StardewValley.Common.model.App;
+import com.StardewValley.Common.model.Artisan.ArtisanMachine;
+import com.StardewValley.Common.model.Artisan.ArtisanStatus;
+import com.StardewValley.Common.model.Item.Item;
+import com.StardewValley.Common.model.Map.GameMap;
+import com.StardewValley.Common.model.User;
 
 public class ArtisanMachineMenuController {
     private ArtisanMachineMenuView view;

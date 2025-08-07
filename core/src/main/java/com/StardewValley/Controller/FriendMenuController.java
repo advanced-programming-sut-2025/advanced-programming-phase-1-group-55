@@ -1,18 +1,18 @@
 package com.StardewValley.Controller;
 
+import com.StardewValley.Common.model.Friendship.*;
 import com.StardewValley.View.FriendMenuView;
-import com.StardewValley.enums.AssetManager;
-import com.StardewValley.model.App;
-import com.StardewValley.model.Friendship.*;
-import com.StardewValley.model.Item.Item;
-import com.StardewValley.model.Item.ItemType;
-import com.StardewValley.model.User;
+import com.StardewValley.Common.enums.AssetManager;
+import com.StardewValley.Common.model.App;
+import com.StardewValley.Common.model.Item.Item;
+import com.StardewValley.Common.model.Item.ItemType;
+import com.StardewValley.Common.model.User;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
-import static com.StardewValley.model.App.currentGameModel;
+import static com.StardewValley.Common.model.App.currentGameModel;
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.*;
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.run;
 

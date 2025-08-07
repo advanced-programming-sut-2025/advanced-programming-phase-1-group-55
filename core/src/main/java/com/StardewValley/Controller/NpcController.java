@@ -1,10 +1,15 @@
 package com.StardewValley.Controller;
 
+import com.StardewValley.Common.model.App;
+import com.StardewValley.Common.model.MainTime;
+import com.StardewValley.Common.model.NPC.Dialog;
+import com.StardewValley.Common.model.NPC.DialogBox;
+import com.StardewValley.Common.model.NPC.DialogStatus;
+import com.StardewValley.Common.model.NPC.Npc;
+import com.StardewValley.Common.model.User;
 import com.StardewValley.View.NpcMenuView;
-import com.StardewValley.enums.WeatherType;
-import com.StardewValley.model.*;
-import com.StardewValley.model.Map.GameMap;
-import com.StardewValley.model.NPC.*;
+import com.StardewValley.Common.enums.WeatherType;
+import com.StardewValley.Common.model.Map.GameMap;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;

@@ -1,29 +1,28 @@
 package com.StardewValley.Controller;
 
 
+import com.StardewValley.Common.model.Map.Fence;
+import com.StardewValley.Common.model.Map.FenceType;
 import com.StardewValley.View.*;
 //import com.StardewValley.View.MainGameGraphicView;
-import com.StardewValley.model.App;
-import com.StardewValley.model.Artisan.ArtisanMachine;
-import com.StardewValley.model.Item.CollisionRect;
-import com.StardewValley.model.Map.*;
-import com.StardewValley.model.NPC.Npc;
-import com.StardewValley.model.Store.ShippingBin;
-import com.StardewValley.model.Store.Store;
-import com.StardewValley.model.Result;
+import com.StardewValley.Common.model.App;
+import com.StardewValley.Common.model.Artisan.ArtisanMachine;
+import com.StardewValley.Common.model.Item.CollisionRect;
+import com.StardewValley.Common.model.NPC.Npc;
+import com.StardewValley.Common.model.Store.ShippingBin;
+import com.StardewValley.Common.model.Store.Store;
+import com.StardewValley.Common.model.Result;
 
 
-import com.StardewValley.model.User;
+import com.StardewValley.Common.model.User;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
-import static com.StardewValley.model.weather.*;
-
-
-import static com.StardewValley.model.App.*;
-import static com.StardewValley.model.GameTime.*;
+import static com.StardewValley.Common.model.App.*;
+import static com.StardewValley.Common.model.GameTime.*;
+import static com.StardewValley.Common.model.weather.getCurrentWeather;
 
 public class MainGameController {
     private MainGameGraphicView view;
@@ -146,15 +145,15 @@ public class MainGameController {
         } else if (Gdx.input.isKeyJustPressed(Input.Keys.C)) {
             CookingMenuController cookingController = new CookingMenuController();
             CookingMenuView cookingView = new CookingMenuView(cookingController, currentPlayer);
-            App.gameApp.setScreen(cookingView);
+            gameApp.setScreen(cookingView);
         }
         else if (Gdx.input.isKeyJustPressed(Input.Keys.I)) {
-            App.gameApp.setScreen(new FarmingProductMenuView());
+            gameApp.setScreen(new FarmingProductMenuView());
         }
         else if (Gdx.input.isKeyJustPressed(Input.Keys.M)) {
             AnimalMenuController animalMenuController = new AnimalMenuController(currentPlayer);
             AnimalMenuView animalMenuView = new AnimalMenuView(animalMenuController, currentPlayer);
-            App.gameApp.setScreen(animalMenuView);
+            gameApp.setScreen(animalMenuView);
         }
 
 
@@ -166,16 +165,16 @@ public class MainGameController {
         for (User user : getCurrentGameModel().playersInGame) {
             if (user.getUsername().equals(currentPlayer.getUsername())) {
                 if (i == lastIndex) {
-                    currentPlayer = App.getCurrentGameModel().playersInGame.getFirst();
+                    currentPlayer = getCurrentGameModel().playersInGame.getFirst();
                 } else {
-                    currentPlayer = App.getCurrentGameModel().playersInGame.get(i + 1);
+                    currentPlayer = getCurrentGameModel().playersInGame.get(i + 1);
                 }
                 view.setPlayer(currentPlayer);
                 playerController.setPlayer(currentPlayer);
                 toolController.setPlayer(currentPlayer);
                 npcController.setPlayer(currentPlayer);
                 storeController.setPlayer(currentPlayer);
-                App.getCurrentGameModel().setCurrentUser(currentPlayer);
+                getCurrentGameModel().setCurrentUser(currentPlayer);
                 return;
             }
             i++;

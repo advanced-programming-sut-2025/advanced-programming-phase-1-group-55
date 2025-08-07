@@ -1,8 +1,8 @@
 package com.StardewValley.View;
 
 import com.StardewValley.Controller.RegisterController;
-import com.StardewValley.model.App;
-import com.StardewValley.model.User;
+import com.StardewValley.Common.model.App;
+import com.StardewValley.Common.model.User;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
@@ -13,7 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
-import static com.StardewValley.model.App.AllUsers;
+import static com.StardewValley.Common.model.App.AllUsers;
 
 public class ForgetPasswordScreen extends ScreenAdapter {
     private Stage stage;

@@ -1,12 +1,11 @@
 package com.StardewValley;
 
 import com.StardewValley.View.FirstMenu;
-import com.StardewValley.model.App;
+import com.StardewValley.Common.model.App;
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import static com.StardewValley.model.App.readfile;
+import static com.StardewValley.Common.model.App.readfile;
 
 /**
  * {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms.

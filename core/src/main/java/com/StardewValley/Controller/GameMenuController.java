@@ -1,17 +1,18 @@
 package com.StardewValley.Controller;
 
-import com.StardewValley.model.App;
-import com.StardewValley.model.Friendship.NpcFriendship;
-import com.StardewValley.model.Friendship.PlayerFriendship;
-import com.StardewValley.model.GameModel;
-import com.StardewValley.model.Item.CollisionRect;
-import com.StardewValley.model.Item.Item;
-import com.StardewValley.model.Item.ItemType;
-import com.StardewValley.model.Map.*;
-import com.StardewValley.model.NPC.Npc;
-import com.StardewValley.model.NPC.Quest;
-import com.StardewValley.model.Result;
-import com.StardewValley.model.User;
+import com.StardewValley.Common.model.App;
+import com.StardewValley.Common.model.Friendship.NpcFriendship;
+import com.StardewValley.Common.model.Friendship.PlayerFriendship;
+import com.StardewValley.Common.model.GameModel;
+import com.StardewValley.Common.model.Item.CollisionRect;
+import com.StardewValley.Common.model.Item.Item;
+import com.StardewValley.Common.model.Item.ItemType;
+import com.StardewValley.Common.model.Map.GameMap;
+import com.StardewValley.Common.model.Map.Location;
+import com.StardewValley.Common.model.NPC.Npc;
+import com.StardewValley.Common.model.NPC.Quest;
+import com.StardewValley.Common.model.Result;
+import com.StardewValley.Common.model.User;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -21,7 +22,7 @@ import java.util.HashMap;
 import java.util.Set;
 import java.util.HashSet;
 
-import static com.StardewValley.model.App.*;
+import static com.StardewValley.Common.model.App.*;
 
 
 public class GameMenuController {

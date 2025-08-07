@@ -1,10 +1,10 @@
 package com.StardewValley.Controller;
 
 import com.StardewValley.View.AnimalMenuView;
-import com.StardewValley.model.App;
-import com.StardewValley.model.Item.ItemType;
-import com.StardewValley.model.User;
-import com.StardewValley.model.Animal.FarmBuildingType;
+import com.StardewValley.Common.model.App;
+import com.StardewValley.Common.model.Item.ItemType;
+import com.StardewValley.Common.model.User;
+import com.StardewValley.Common.model.Animal.FarmBuildingType;
 
 public class AnimalMenuController {
     private AnimalMenuView view;

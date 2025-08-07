@@ -1,12 +1,12 @@
 package com.StardewValley.Controller;
 import com.StardewValley.View.CookingMenuView;
-import com.StardewValley.enums.CookingItemType;
-import com.StardewValley.model.App;
-import com.StardewValley.model.CookingItems.CookingItem;
-import com.StardewValley.model.Item.Item;
-import com.StardewValley.model.User;
-import com.StardewValley.model.Tool.BackPack;
-import com.StardewValley.model.Item.ItemType;
+import com.StardewValley.Common.enums.CookingItemType;
+import com.StardewValley.Common.model.App;
+import com.StardewValley.Common.model.CookingItems.CookingItem;
+import com.StardewValley.Common.model.Item.Item;
+import com.StardewValley.Common.model.User;
+import com.StardewValley.Common.model.Tool.BackPack;
+import com.StardewValley.Common.model.Item.ItemType;
 import java.util.HashMap;
 import java.util.Map;
 

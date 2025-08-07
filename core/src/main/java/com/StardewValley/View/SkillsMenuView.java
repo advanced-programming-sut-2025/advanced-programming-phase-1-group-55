@@ -1,9 +1,9 @@
 package com.StardewValley.View;
-import com.StardewValley.enums.AssetManager;
-import com.StardewValley.enums.SkillType;
-import com.StardewValley.model.App;
-import com.StardewValley.model.Skill;
-import com.StardewValley.model.User;
+import com.StardewValley.Common.enums.AssetManager;
+import com.StardewValley.Common.enums.SkillType;
+import com.StardewValley.Common.model.App;
+import com.StardewValley.Common.model.Skill;
+import com.StardewValley.Common.model.User;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Pixmap;

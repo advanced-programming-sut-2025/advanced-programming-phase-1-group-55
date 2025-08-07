@@ -1,11 +1,11 @@
 package com.StardewValley.View;
 
 import com.StardewValley.Controller.FishingController;
-import com.StardewValley.enums.AssetManager;
-import com.StardewValley.model.Animal.Fishing.FishType;
-import com.StardewValley.model.App;
-import com.StardewValley.model.Item.CollisionRect;
-import com.StardewValley.model.Item.ItemType;
+import com.StardewValley.Common.enums.AssetManager;
+import com.StardewValley.Common.model.Animal.Fishing.FishType;
+import com.StardewValley.Common.model.App;
+import com.StardewValley.Common.model.Item.CollisionRect;
+import com.StardewValley.Common.model.Item.ItemType;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
@@ -16,7 +16,6 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -25,8 +24,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.ScreenUtils;
-
-import java.awt.*;
 
 public class FishingGameScreen implements Screen {
     private FishType fishType;

@@ -1,15 +1,15 @@
 package com.StardewValley.Controller;
 
 import com.StardewValley.View.FishingGameScreen;
-import com.StardewValley.enums.AssetManager;
-import com.StardewValley.model.Animal.Fishing.FishType;
-import com.StardewValley.model.App;
-import com.StardewValley.model.Item.Item;
-import com.StardewValley.model.Item.ItemType;
-import com.StardewValley.model.Tool.FishingPole;
-import com.StardewValley.model.Tool.Tools;
-import com.StardewValley.model.Tool.WateringCan;
-import com.StardewValley.model.User;
+import com.StardewValley.Common.enums.AssetManager;
+import com.StardewValley.Common.model.Animal.Fishing.FishType;
+import com.StardewValley.Common.model.App;
+import com.StardewValley.Common.model.Item.Item;
+import com.StardewValley.Common.model.Item.ItemType;
+import com.StardewValley.Common.model.Tool.FishingPole;
+import com.StardewValley.Common.model.Tool.Tools;
+import com.StardewValley.Common.model.Tool.WateringCan;
+import com.StardewValley.Common.model.User;
 import com.StardewValley.View.FarmLand;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;

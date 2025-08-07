@@ -1,7 +1,7 @@
 package com.StardewValley.Controller;
 
 import com.StardewValley.View.*;
-import com.StardewValley.model.App;
+import com.StardewValley.Common.model.App;
 
 public class PauseMenuController {
     private PauseMenuView view;

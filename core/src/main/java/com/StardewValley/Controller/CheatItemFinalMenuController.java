@@ -1,11 +1,12 @@
 package com.StardewValley.Controller;
 
+import com.StardewValley.Common.enums.CraftingItemType;
 import com.StardewValley.View.CheatItemFinalView;
-import com.StardewValley.enums.CookingItemType;
-import com.StardewValley.model.App;
-import com.StardewValley.model.Item.Item;
-import com.StardewValley.model.Item.ItemType;
-import com.StardewValley.model.User;
+import com.StardewValley.Common.enums.CookingItemType;
+import com.StardewValley.Common.model.App;
+import com.StardewValley.Common.model.Item.Item;
+import com.StardewValley.Common.model.Item.ItemType;
+import com.StardewValley.Common.model.User;
 
 public class CheatItemFinalMenuController {
     private CheatItemFinalView view;
@@ -37,16 +38,16 @@ public class CheatItemFinalMenuController {
                     } catch (IllegalArgumentException e) {
                     }
                     try {
-                        com.StardewValley.enums.CraftingItemType craftingEnum =
-                            com.StardewValley.enums.CraftingItemType.valueOf(baseName);
+                        CraftingItemType craftingEnum =
+                            CraftingItemType.valueOf(baseName);
                         if (!user.getBackPack().getCraftingRecipes().contains(craftingEnum)) {
                             user.getBackPack().getCraftingRecipes().add(craftingEnum);
                         }
                     } catch (IllegalArgumentException e) {
                     }
                 } else {
-                    for (com.StardewValley.enums.CraftingItemType ct :
-                        com.StardewValley.enums.CraftingItemType.values()) {
+                    for (CraftingItemType ct :
+                        CraftingItemType.values()) {
                         if (ct.getProductName().equals(addedType)) {
                             if (!user.getBackPack().getCraftingRecipes().contains(ct)) {
                                 user.getBackPack().getCraftingRecipes().add(ct);
