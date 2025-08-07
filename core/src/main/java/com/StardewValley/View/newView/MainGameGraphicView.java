@@ -3,6 +3,7 @@ package com.StardewValley.View.newView;
 import com.StardewValley.Controller.MainGameController;
 import com.StardewValley.model.Animal.AnimalBuilding;
 import com.StardewValley.model.Animal.FarmBuildingType;
+import com.StardewValley.Controller.TimeController;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Artisan.ArtisanMachineType;
 import com.StardewValley.model.Friendship.NpcFriendship;
@@ -20,6 +21,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector3;
@@ -41,20 +43,41 @@ public class MainGameGraphicView implements Screen, InputProcessor {
     private ProgressBar energyBar;
     private Table tableTop;
     private Stage stage;
-    private User player=App.mainUser;
-    private boolean isChoosingPlace=false;
+    private User player = App.mainUser;
+    private boolean isChoosingPlace = false;
     private ArtisanMachineType chosenArtisanType;
     private Sprite chosenArtisanSprite;
-    private GameMap map=new GameMap();
+    private GameMap map = new GameMap();
+    private TimeController timeController;
+    private TextureRegion backgroundRegion;
+
+
+    private String errorMessage = null;
+    private float errorTimer = 0f;
+
+    public void showError(String message, float duration) {
+        errorMessage = message;
+        errorTimer = duration;
+    }
+
+    public void update(float delta) {
+        if (errorTimer > 0) {
+            errorTimer -= delta;
+            if (errorTimer <= 0) {
+                errorMessage = null;
+            }
+        }
+    }
+//    private GameMap map = new GameMap();
     private boolean isPlacingBuilding = false;
     private FarmBuildingType chosenBuildingType;
 
 
-    public MainGameGraphicView(MainGameController controller,GameMap map) {
+    public MainGameGraphicView(MainGameController controller, GameMap map) {
         this.controller = controller;
         this.map = map;
         controller.setView(this);
-        App.currentGameGraphicView=this;
+        App.currentGameGraphicView = this;
         controller.getPlayerController().setGameMap(map);
 
     }
@@ -65,17 +88,22 @@ public class MainGameGraphicView implements Screen, InputProcessor {
         camera.update();
     }
 
+    public void setUpStage() {
+        stage = new Stage(new ScreenViewport());
+        Gdx.input.setInputProcessor(stage);
+    }
+
     @Override
     public void show() {
 
         setupCamera();
 
-
-        stage = new Stage(new ScreenViewport());
-        Gdx.input.setInputProcessor(stage);
+        setUpStage();
+//        stage = new Stage(new ScreenViewport());
+//        Gdx.input.setInputProcessor(stage);
 
         updateBackgroundTexture();
-
+        timeController = new TimeController();
 
         ProgressBar.ProgressBarStyle progressBarStyle = new ProgressBar.ProgressBarStyle();
 
@@ -114,6 +142,7 @@ public class MainGameGraphicView implements Screen, InputProcessor {
         if (bgTexture != newTexture) {
             bgTexture = newTexture;
             bgTexture.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
+            backgroundRegion = new TextureRegion(bgTexture);
         }
     }
 
@@ -144,8 +173,20 @@ public class MainGameGraphicView implements Screen, InputProcessor {
             building.getSprite().draw(App.gameApp.getBatch());
         }
 
-        controller.updateGame(delta);
 
+        controller.updateGame(delta);
+        timeController.update(delta);
+        timeController.render(App.gameApp.getBatch(), camera);
+        update(delta);
+        if (errorMessage != null) {
+            BitmapFont font = new BitmapFont();
+            font.setColor(Color.RED);
+            font.getData().setScale(2f);
+
+            font.draw(App.gameApp.getBatch(), errorMessage,
+                Gdx.graphics.getWidth() / 2f - 100,
+                Gdx.graphics.getHeight() - 50);
+        }
         App.gameApp.getBatch().end();
 
         energyBar.setValue((float) player.getEnergy());
@@ -158,20 +199,17 @@ public class MainGameGraphicView implements Screen, InputProcessor {
         float camX = camera.position.x - camera.viewportWidth / 2;
         float camY = camera.position.y - camera.viewportHeight / 2;
 
-        TextureRegion backgroundRegion = new TextureRegion(bgTexture);
-
         int texWidth = bgTexture.getWidth();
         int texHeight = bgTexture.getHeight();
 
         int offsetX = ((int) camX) % texWidth;
         if (offsetX < 0) offsetX += texWidth;
 
-        int offsetY = 0;
-
-        backgroundRegion.setRegion(offsetX, offsetY, (int) camera.viewportWidth, (int) camera.viewportHeight);
+        backgroundRegion.setRegion(offsetX, 0, (int) camera.viewportWidth, (int) camera.viewportHeight);
 
         App.gameApp.getBatch().draw(backgroundRegion, camX, camY, camera.viewportWidth, camera.viewportHeight);
     }
+
 
     public GameMap getMap() {
         return map;
@@ -230,13 +268,24 @@ public class MainGameGraphicView implements Screen, InputProcessor {
         stage.getViewport().update(width, height, true);
     }
 
-    @Override public void pause() {}
-    @Override public void resume() {}
-    @Override public void hide() {}
+    @Override
+    public void pause() {
+    }
+
+    @Override
+    public void resume() {
+    }
+
+    @Override
+    public void hide() {
+    }
 
     @Override
     public void dispose() {
         stage.dispose();
+        if (timeController != null) {
+            timeController.dispose();
+        }
     }
 
     public MainGameController getController() {
@@ -262,6 +311,14 @@ public class MainGameGraphicView implements Screen, InputProcessor {
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         if (button == Input.Buttons.LEFT) {
+            Vector3 click = new Vector3(screenX, screenY, 0);
+            camera.unproject(click);
+            controller.getNpcController().checkIfClickedOnNpc(click.x, click.y);
+            controller.getStoreController().checkIfClickedOnStores(click.x, click.y);
+            controller.getStoreController().checkIfClickedOnBins(click.x, click.y);
+            controller.checkIfClickedOnMachine(click.x, click.y);
+            controller.getToolController().UseTool(click.x, click.y);
+            controller.checkIfClickedOnPlayer(click.x, click.y);
             Vector3 worldClick = new Vector3(screenX, screenY, 0);
             camera.unproject(worldClick);
             float clickX = worldClick.x;
@@ -330,7 +387,6 @@ public class MainGameGraphicView implements Screen, InputProcessor {
     }
 
 
-
     @Override
     public boolean touchUp(int i, int i1, int i2, int i3) {
         return false;
@@ -352,8 +408,8 @@ public class MainGameGraphicView implements Screen, InputProcessor {
         Vector3 worldCoordinates = new Vector3(screenX, screenY, 0);
         camera.unproject(worldCoordinates);
 
-        if (isChoosingPlace){
-            controller.choosingPlace( worldCoordinates.x, worldCoordinates.y);
+        if (isChoosingPlace) {
+            controller.choosingPlace(worldCoordinates.x, worldCoordinates.y);
         }
         return false;
     }

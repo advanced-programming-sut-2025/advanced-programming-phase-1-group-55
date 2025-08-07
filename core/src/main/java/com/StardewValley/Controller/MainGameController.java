@@ -38,18 +38,20 @@ public class MainGameController {
     private ToolController toolController;
     private NpcController npcController;
     private StoresStatusController storeController;
-    private User currentPlayer;
+    private User currentPlayer = App.getMainUser();
 
     public void setView(MainGameGraphicView view) {
+
         this.view = view;
+        view.setUpStage();
         currentPlayer = view.getPlayer();
-        playerController = new PlayerController(currentPlayer);
-        view.show();
+        playerController = new PlayerController(currentPlayer,this);
         playerController.setStage(view.getStage());
         toolController = new ToolController(currentPlayer);
         npcController = new NpcController(currentPlayer, view.getMap());
         storeController = new StoresStatusController(currentPlayer, view.getMap());
         currentPlayer.setGold(40000);
+        currentPlayer.setWood(40000);
     }
 
     public void checkIfClickedOnMachine(float dx, float dy) {
@@ -235,6 +237,7 @@ public class MainGameController {
             npcController.update();
             // drawOtherPlayers();
 
+
         }
     }
 
@@ -302,23 +305,23 @@ public class MainGameController {
         return new Result(true, "cheat Day " + Day + " confirmed");
     }
 
-    public Result cheatThor(String X, String Y) {
-        int x, y;
-
-        try {
-            x = Integer.parseInt(X);
-            y = Integer.parseInt(Y);
-        } catch (Exception e) {
-            return new Result(false, "invalid cheat Thor");
-        }
-        if (currentGameModel.getMap().tiles[y][x].getMohtaviat().equals("T")) {
-            currentGameModel.getMap().tiles[y][x].setMohtaviat("Z");
-            currentGameModel.getMap().tiles[y][x].setItemInThisTile(new Item(COAL));
-
-        }
-        return new Result(true, "cheat Thor " + x + " " + y + " confirmed");
-
-    }
+//    public Result cheatThor(String X, String Y) {
+//        int x, y;
+//
+//        try {
+//            x = Integer.parseInt(X);
+//            y = Integer.parseInt(Y);
+//        } catch (Exception e) {
+//            return new Result(false, "invalid cheat Thor");
+//        }
+//        if (currentGameModel.getMap().tiles[y][x].getMohtaviat().equals("T")) {
+//            currentGameModel.getMap().tiles[y][x].setMohtaviat("Z");
+//            currentGameModel.getMap().tiles[y][x].setItemInThisTile(new Item(COAL));
+//
+//        }
+//        return new Result(true, "cheat Thor " + x + " " + y + " confirmed");
+//
+//    }
 
     public Result season() {
         return new Result(true, String.valueOf(getSeason()));
@@ -358,7 +361,7 @@ public class MainGameController {
             setTomorrowWeather(WeatherType.Rain);
         } else if (type.equals("Storm")) {
             setTomorrowWeather(WeatherType.Storm);
-            System.out.println(RandomThor());
+//            System.out.println(RandomThor());
         } else if (type.equals("Snow")) {
             setTomorrowWeather(WeatherType.Snow);
         } else {

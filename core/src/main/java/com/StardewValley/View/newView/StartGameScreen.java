@@ -12,6 +12,7 @@ import com.StardewValley.model.User;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
@@ -36,6 +37,11 @@ public class StartGameScreen implements Screen {
     public void show() {
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
+
+        Texture bgTexture = new Texture(Gdx.files.internal("backgrounds/5.png"));
+        Image image = new Image(bgTexture);
+        image.setFillParent(true);
+        stage.addActor(image);
 
         Table table = new Table();
         table.setFillParent(true);
@@ -75,7 +81,9 @@ public class StartGameScreen implements Screen {
         table.add(resultLabel).colspan(3).pad(10).row();
 
         TextButton startButton = new TextButton("Start Game", skin);
+        TextButton backButton = new TextButton("back", skin);
         table.add(startButton).colspan(3).padTop(20).row();
+        table.add(backButton).colspan(3).padTop(20).row();
 
         playerCountBox.addListener(new ChangeListener() {
             @Override
@@ -108,8 +116,12 @@ public class StartGameScreen implements Screen {
 
             }
         });
-        ;
-        ;
+        backButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                App.getGameApp().setScreen(new MainMenuScreen());
+            }
+        });
     }
 
     private void updateFieldsVisibility() {

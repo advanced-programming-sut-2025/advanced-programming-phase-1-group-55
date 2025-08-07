@@ -1,5 +1,6 @@
 package com.StardewValley.Controller;
 
+import com.StardewValley.enums.Avatar;
 import com.google.gson.GsonBuilder;
 import com.StardewValley.enums.Menu;
 import com.StardewValley.model.Result;
@@ -24,6 +25,12 @@ import static com.StardewValley.model.App.*;
 public class RegisterController {
 
     Scanner scanner = new Scanner(System.in);
+
+    public String getRandomAvatar() {
+        SecureRandom secureRandom = new SecureRandom();
+        int random = secureRandom.nextInt(27);
+        return Avatar.fromId(random).getPath();
+    }
 
     public Result Register(String username, String password, String passwordConfirmation, String nickname, String email, String gender, String question, String answer) {
         if (!isUniqueUsername(username)) {
@@ -57,7 +64,7 @@ public class RegisterController {
         }
 
 
-        User user = new User(username, convertToSHA(password), nickname, email, gender, question, answer);
+        User user = new User(username, convertToSHA(password), nickname, email, gender, question, answer, getRandomAvatar());
         mainUser = user;
         saveUserToJson(user);
         readfile();
@@ -181,22 +188,22 @@ public class RegisterController {
     }
 
 
-    public  boolean isValidUsername(String username) {
+    public boolean isValidUsername(String username) {
         Pattern pattern = Pattern.compile("[a-zA-Z0-9]+");
         return pattern.matcher(username).matches();
     }
 
-    public  boolean isValidPassword(String password) {
+    public boolean isValidPassword(String password) {
         Pattern pattern = Pattern.compile("[a-zA-Z0-9?><,\"';:/|\\]\\[}{+=)(*&@^%$#!]+");
         return pattern.matcher(password).matches();
     }
 
-    public  boolean isValidEmail(String email) {
+    public boolean isValidEmail(String email) {
         Pattern pattern = Pattern.compile("^(?!.*\\.\\.)([a-zA-Z0-9][a-zA-Z0-9._-]{0,62}[a-zA-Z0-9])@([a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9])\\.([a-zA-Z]{2,})$");
         return pattern.matcher(email).matches();
     }
 
-    public  boolean isStrongPassword(String password) {
+    public boolean isStrongPassword(String password) {
         String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[?><,\"';:/|\\\\\\[\\]{}+=)(*&@^%$#!])[A-Za-z\\d?><,\"';:/|\\\\\\[\\]{}+=)(*&@^%$#!]{8,}$";
         return Pattern.matches(regex, password);
     }

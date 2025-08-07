@@ -4,6 +4,8 @@ import com.StardewValley.enums.AnimalCommands;
 import com.StardewValley.enums.WeatherType;
 import com.StardewValley.model.*;
 import com.StardewValley.model.Animal.*;
+import com.StardewValley.model.Animal.Fishing.Fish;
+import com.StardewValley.model.Animal.Fishing.FishType;
 import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.Item.ItemType;
 import com.StardewValley.model.Map.*;

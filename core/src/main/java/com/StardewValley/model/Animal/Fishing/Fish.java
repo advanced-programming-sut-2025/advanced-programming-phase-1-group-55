@@ -1,4 +1,4 @@
-package com.StardewValley.model.Animal;
+package com.StardewValley.model.Animal.Fishing;
 
 import com.StardewValley.enums.WeatherType;
 import com.StardewValley.model.App;

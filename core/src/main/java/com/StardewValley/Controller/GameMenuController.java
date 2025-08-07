@@ -18,6 +18,8 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Set;
+import java.util.HashSet;
 
 import static com.StardewValley.model.App.*;
 
@@ -102,7 +104,17 @@ public class GameMenuController {
             return new Result(false, "Username not found (player3)");
         }
 
-
+        Set<String> uniqueUsernames = new HashSet<>();
+        uniqueUsernames.add(mainUser.getUsername());
+        if (!uniqueUsernames.add(Username1)) {
+            return new Result(false, "Duplicate username: " + Username1);
+        }
+        if (Username2 != null && !uniqueUsernames.add(Username2)) {
+            return new Result(false, "Duplicate username: " + Username2);
+        }
+        if (Username3 != null && !uniqueUsernames.add(Username3)) {
+            return new Result(false, "Duplicate username: " + Username3);
+        }
         GameMap map = new GameMap();
         currentGameModel = new GameModel(mainUser, map);
         currentGameModel.playersInGame.add(player0);
@@ -147,10 +159,6 @@ public class GameMenuController {
     }
 
     public Result deleteGame() {
-        return null;
-    }
-
-    public Result nextTurn() {
         return null;
     }
 

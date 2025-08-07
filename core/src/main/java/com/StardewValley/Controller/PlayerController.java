@@ -4,6 +4,7 @@ import com.StardewValley.enums.Direction;
 import com.StardewValley.model.App;
 import com.StardewValley.model.Item.CollisionRect;
 import com.StardewValley.model.Map.GameMap;
+import com.StardewValley.model.Map.GreenHouse;
 import com.StardewValley.model.User;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -16,10 +17,11 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
-import java.awt.*;
+import static com.StardewValley.model.App.*;
+import static com.StardewValley.model.User.*;
 
-import static com.StardewValley.model.App.gameApp;
-import static com.StardewValley.model.App.getCurrentGameModel;
+import java.awt.*;
+import java.security.Key;
 
 public class PlayerController {
     private int speed = 10;
@@ -29,15 +31,16 @@ public class PlayerController {
     private Stage stage;
     private Animation<TextureRegion> walkUp, walkDown, walkLeft, walkRight;
     private Animation<TextureRegion> currentAnimation;
-    private GameMenuController gameMenuController;
-
+    private MainGameController MainGameController;
+    private boolean isFainting = false;
+    private boolean faintSequenceFinished = false;
     private float stateTime = 0f;
     private Direction direction = Direction.DOWN;
 
-    public PlayerController(User player) {
+    public PlayerController(User player, MainGameController controller) {
         this.player = player;
         initializeAnimations();
-        gameMenuController = new GameMenuController();
+        MainGameController = controller;
 
 
         // Set initial collision rectangle based on frame size
@@ -84,39 +87,83 @@ public class PlayerController {
         walkRight = new Animation<>(0.1f, right);
     }
 
-
     public void update() {
-        handlePlayerInput();
+        if (player.isFainted()) {
+            if (!isFainting) {
+                startFaintSequence();
+            }
 
-//        player.getPlayerSprite().draw(App.gameApp.getBatch());
 
-        boolean isMoving =
-            Gdx.input.isKeyPressed(Input.Keys.W) ||
-                Gdx.input.isKeyPressed(Input.Keys.A) ||
-                Gdx.input.isKeyPressed(Input.Keys.S) ||
-                Gdx.input.isKeyPressed(Input.Keys.D);
+            Sprite faintSprite = player.getSprite();
+            if (faintSprite != null) {
+                faintSprite.setPosition(player.getLocation().getX(), player.getLocation().getY());
+                faintSprite.setScale(scale);
+                faintSprite.draw(App.gameApp.getBatch());
+            }
 
-        TextureRegion currentFrame;
-        if (isMoving) {
-            stateTime += Gdx.graphics.getDeltaTime();
-            currentFrame = currentAnimation.getKeyFrame(stateTime, true);
+            drawOtherPlayers();
+
         } else {
-            stateTime = 0f;
-            currentFrame = currentAnimation.getKeyFrame(0);
+            handlePlayerInput();
+
+            boolean isMoving =
+                Gdx.input.isKeyPressed(Input.Keys.W) ||
+                    Gdx.input.isKeyPressed(Input.Keys.A) ||
+                    Gdx.input.isKeyPressed(Input.Keys.S) ||
+                    Gdx.input.isKeyPressed(Input.Keys.D);
+
+            TextureRegion currentFrame;
+            if (isMoving) {
+                stateTime += Gdx.graphics.getDeltaTime();
+                currentFrame = currentAnimation.getKeyFrame(stateTime, true);
+            } else {
+                stateTime = 0f;
+                currentFrame = currentAnimation.getKeyFrame(0);
+            }
+
+            App.gameApp.getBatch().draw(
+                currentFrame,
+                player.getLocation().getX(),
+                player.getLocation().getY(),
+                currentFrame.getRegionWidth() * scale,
+                currentFrame.getRegionHeight() * scale
+            );
+
+            drawOtherPlayers();
         }
 
-        App.gameApp.getBatch().draw(
-            currentFrame,
-            player.getLocation().getX(),
-            player.getLocation().getY(),
-            currentFrame.getRegionWidth() * scale,
-            currentFrame.getRegionHeight() * scale
-        );
-        drawOtherPlayers();
-//        stage.act(Gdx.graphics.getDeltaTime());
+
+        stage.act(Gdx.graphics.getDeltaTime());
 //        stage.draw();
+    }
 
 
+    private void startFaintSequence() {
+        isFainting = true;
+        faintSequenceFinished = false;
+
+        player.setSprite(new Sprite(new Texture("walk/Alex_52.png")));
+
+        Image redOverlay = new Image(new Texture("backgrounds/red-background.png"));
+        redOverlay.setFillParent(true);
+        redOverlay.getColor().a = 0;
+
+        redOverlay.addAction(Actions.sequence(
+            Actions.repeat(3, Actions.sequence(
+                Actions.fadeIn(0.3f),
+                Actions.fadeOut(0.3f)
+            )),
+            Actions.run(() -> {
+                MainGameController.nextTurn();
+                faintSequenceFinished = true;
+                isFainting = false;
+
+
+                redOverlay.remove();
+            })
+        ));
+
+        stage.addActor(redOverlay);
     }
 
     public void drawOtherPlayers() {
@@ -140,58 +187,53 @@ public class PlayerController {
 
     public void handlePlayerInput() {
         boolean moved = false;
-        if (!player.isFainted()) {
 
-            if (Gdx.input.isKeyPressed(Input.Keys.W)) {
-                direction = Direction.UP;
-                currentAnimation = walkUp;
-                moved |= tryMove(0, speed);
-            }
-            if (Gdx.input.isKeyPressed(Input.Keys.S)) {
-                direction = Direction.DOWN;
-                currentAnimation = walkDown;
-                moved |= tryMove(0, -speed);
-            }
-            if (Gdx.input.isKeyPressed(Input.Keys.A)) {
-                direction = Direction.LEFT;
-                currentAnimation = walkLeft;
-                moved |= tryMove(-speed, 0);
-            }
-            if (Gdx.input.isKeyPressed(Input.Keys.D)) {
-                direction = Direction.RIGHT;
-                currentAnimation = walkRight;
-                moved |= tryMove(speed, 0);
-            }
 
-            if (moved) {
-                player.decreaseEnergy(1);
+        if (Gdx.input.isKeyPressed(Input.Keys.W)) {
+            direction = Direction.UP;
+            currentAnimation = walkUp;
+            moved |= tryMove(0, speed);
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.S)) {
+            direction = Direction.DOWN;
+            currentAnimation = walkDown;
+            moved |= tryMove(0, -speed);
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.A)) {
+            direction = Direction.LEFT;
+            currentAnimation = walkLeft;
+            moved |= tryMove(-speed, 0);
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.D)) {
+            direction = Direction.RIGHT;
+            currentAnimation = walkRight;
+            moved |= tryMove(speed, 0);
+        }
+
+        if (moved) {
+            player.decreaseEnergy(1);
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.E)) {
+            player.increaseEnergy(10);
+        }
+        if (player.getCollisionRect().isNear(player.getFarm().getGreenHouse().getCollisionRect())) {
+            if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_0)) {
+                GreenHouse greenhouse = player.getFarm().getGreenHouse();
+
+
+                if (player.getGold() > greenhouse.getGoldForGreenHouse() && player.getWood() > greenhouse.getWoodForGreenHouse() && !greenhouse.getRepaired()) {
+                    greenhouse.setRepaired(true);
+                    player.decreaseWood(greenhouse.getWoodForGreenHouse());
+                    player.decreaseGold(greenhouse.getGoldForGreenHouse());
+                    greenhouse.setSprite(greenhouse.getSprite_salem());
+                } else {
+                    MainGameController.getView().showError("you dont have enough material", 2f);
+                }
+
             }
-        } else {
-            handleFaint();
         }
     }
 
-    private void handleFaint() {
-        player.setSprite(new Sprite(new Texture("walk/Alex_52.png")));
-
-        Image redOverlay = new Image(new Texture("backgrounds/red-background.png"));
-        redOverlay.setFillParent(true);
-        redOverlay.getColor().a = 0;
-
-
-        redOverlay.addAction(Actions.sequence(
-            Actions.repeat(3, Actions.sequence(
-                Actions.fadeIn(0.3f),
-                Actions.fadeOut(0.3f)
-            )),
-            Actions.run(() -> {
-
-               gameMenuController.nextTurn();
-            })
-        ));
-
-        stage.addActor(redOverlay);
-    }
 
     public void setStage(Stage stage) {
         this.stage = stage;

@@ -27,5 +27,7 @@ public enum DayOfTheWeeks {
         return getDayByValue((this.valueOfDay + 1) % 7);
     }
 
-
+    public String getName() {
+        return name;
+    }
 }
