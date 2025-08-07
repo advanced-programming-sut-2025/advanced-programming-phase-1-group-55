@@ -15,7 +15,7 @@ public class Animal extends Item {
     private boolean isIn = true;
     private boolean isPet = false;
 //    private final ArrayList<Item> products;
-private final List<Item> products;
+//    private final List<Item> products;
     private Tile tile = null;
     private boolean hasProduct = false;
     private boolean secondProduct = false;
@@ -31,8 +31,13 @@ private final List<Item> products;
         this.isIn = true;
         this.isPet = false;
 //        this.products = (ArrayList<Item>) animalType.getProduct();
-        this.products = new ArrayList<>(animalType.getProduct());
+//        this.products = new ArrayList<>(animalType.getProduct());
     }
+    public Animal(FarmAnimalType type) {
+        this.animalType = type;
+        this.name = type.name();
+    }
+
 
     public String getName() {
         return name;
@@ -83,9 +88,9 @@ private final List<Item> products;
 //    }
 
 
-    public List<Item> getProducts() {
-        return products;
-    }
+//    public List<Item> getProducts() {
+//        return products;
+//    }
 
     public Tile getTile() {
         return tile;
@@ -184,16 +189,16 @@ private final List<Item> products;
     {
         isIn = true;
     }
-    public Item getProduct()
-    {
-        Item product = products.get(0);
-        if (secondProduct && products.size() > 1)
-        {
-            product = products.get(1);
-        }
-
-        return product;
-    }
+//    public Item getProduct()
+//    {
+//        Item product = products.get(0);
+//        if (secondProduct && products.size() > 1)
+//        {
+//            product = products.get(1);
+//        }
+//
+//        return product;
+//    }
     public void calculateProductPrice(Item product)
     {
         quality = getQuality();

@@ -6,6 +6,8 @@ import com.StardewValley.enums.Direction;
 import com.StardewValley.enums.SkillType;
 import com.StardewValley.model.Animal.Animal;
 import com.StardewValley.model.Animal.AnimalBuilding;
+import com.StardewValley.model.Animal.AnimalBuildingOld;
+import com.StardewValley.model.Animal.FarmAnimalType;
 import com.StardewValley.model.Artisan.ArtisanMachine;
 import com.StardewValley.model.Artisan.ArtisanMachineType;
 import com.StardewValley.model.CookingItems.CookingItem;
@@ -45,6 +47,9 @@ public class User {
     private Skill fishingSkill = new Skill(SkillType.Fishing);
     private ArrayList<CookingItem> refrigerator = new ArrayList<>();
     private ArrayList<ArtisanMachine> artisanMachines = new ArrayList<>();
+    private ArrayList<AnimalBuilding> farmBuildings = new ArrayList<>();
+    private Boolean farmHadPlaceForAnimals = false;
+    private ArrayList<Animal> myAnimals = new ArrayList<>();
 
     private String avatarPath;
 
@@ -584,8 +589,8 @@ public class User {
 
     public ArrayList<Animal> getAnimals() {
         ArrayList<Animal> animals = new ArrayList<>();
-        for (AnimalBuilding animalBuilding : farm.getAnimalBuildings()) {
-            for (Animal animal : animalBuilding.getAnimals()) {
+        for (AnimalBuildingOld animalBuildingOld : farm.getAnimalBuildings()) {
+            for (Animal animal : animalBuildingOld.getAnimals()) {
                 animals.add(animal);
             }
         }
@@ -634,6 +639,23 @@ public class User {
         return false;
     }
 
+    public boolean addAnimalToBuilding(FarmAnimalType type) {
+        for (AnimalBuilding building : farmBuildings) {
+            if (type.getBuildings().contains(building.getFarmBuildingType())) {
+                if (building.getAnimals().size() < building.getCapacity()) {
+                    building.getAnimals().add(new Animal(type));
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+
+
+
+
+
     public boolean isNear(Location otherLocation) {
 
         Location location = this.location;
@@ -641,6 +663,26 @@ public class User {
         int dy = Math.abs(location.getY() - otherLocation.getY());
 
         return (dx <= 1 && dy <= 1) && !(dx == 0 && dy == 0);
+    }
+
+
+    public ArrayList<AnimalBuilding> getFarmBuildings() {
+        return farmBuildings;
+    }
+    public void addFarmBuilding(AnimalBuilding building) {
+        farmBuildings.add(building);
+    }
+
+    public Boolean getFarmHadPlaceForAnimals() {
+        return farmHadPlaceForAnimals;
+    }
+
+    public void setFarmHadPlaceForAnimals(Boolean farmHadPlaceForAnimals) {
+        this.farmHadPlaceForAnimals = farmHadPlaceForAnimals;
+    }
+
+    public ArrayList<Animal> getMyAnimals() {
+        return myAnimals;
     }
 
     public ArtisanMachine getArtisan(ArtisanMachineType type) {

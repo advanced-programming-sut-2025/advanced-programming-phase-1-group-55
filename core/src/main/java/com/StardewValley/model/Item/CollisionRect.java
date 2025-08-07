@@ -42,6 +42,14 @@ public class CollisionRect {
     public boolean isInside(float x, float y){
         return x>this.getX()&&x<this.getX()+this.width&&y>this.getY()&&y<this.getY()+this.height;
     }
+
+    public boolean overlaps(float x, float y, float width, float height) {
+        return this.x < x + width &&
+            this.x + this.width > x &&
+            this.y < y + height &&
+            this.y + this.height > y;
+    }
+
     public float getX() {
         return x;
     }

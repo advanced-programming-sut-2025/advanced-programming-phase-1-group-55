@@ -84,6 +84,8 @@ public enum FarmBuildingType {
     public int getDailyLimit() {
         return dailyLimit;
     }
+
+
     public static FarmBuildingType getFarmBuildingType(String name) {
         for (FarmBuildingType farmBuildingType : FarmBuildingType.values()) {
             if (farmBuildingType.getName().equalsIgnoreCase(name)) {

@@ -193,12 +193,11 @@ public class MainGameView implements AppMenu {
 
             System.out.println(animalController.showProducts());
 
-        } else if ((matcher = AnimalCommands.COLLECT_PRODUCES.getMatcher(input)) != null) {
-
-
-            System.out.println(animalController.collectProducts(input));
-
-        } else if ((matcher = AnimalCommands.SELL_ANIMAL.getMatcher(input)) != null) {
+        }
+//        else if ((matcher = AnimalCommands.COLLECT_PRODUCES.getMatcher(input)) != null) {
+//            System.out.println(animalController.collectProducts(input));
+//        }
+        else if ((matcher = AnimalCommands.SELL_ANIMAL.getMatcher(input)) != null) {
 
 
             System.out.println(animalController.sellAnimal(input));

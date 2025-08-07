@@ -159,6 +159,13 @@ public class MainGameController {
         else if (Gdx.input.isKeyJustPressed(Input.Keys.I)) {
             App.gameApp.setScreen(new FarmingProductMenuView());
         }
+        else if (Gdx.input.isKeyJustPressed(Input.Keys.M)) {
+            AnimalMenuController animalMenuController = new AnimalMenuController(currentPlayer);
+            AnimalMenuView animalMenuView = new AnimalMenuView(animalMenuController, currentPlayer);
+            App.gameApp.setScreen(animalMenuView);
+        }
+
+
     }
 
     public void nextTurn() {

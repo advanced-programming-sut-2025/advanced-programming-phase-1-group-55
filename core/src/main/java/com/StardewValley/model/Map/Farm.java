@@ -2,7 +2,7 @@ package com.StardewValley.model.Map;
 
 import com.StardewValley.View.newView.FarmLand;
 import com.StardewValley.model.Animal.Animal;
-import com.StardewValley.model.Animal.AnimalBuilding;
+import com.StardewValley.model.Animal.AnimalBuildingOld;
 import com.StardewValley.model.Animal.FarmAnimalType;
 import com.StardewValley.model.App;
 import com.StardewValley.model.FarmingProdocts.ForagingCrops;
@@ -10,7 +10,6 @@ import com.StardewValley.model.FarmingProdocts.ForagingSeed;
 import com.StardewValley.model.FarmingProdocts.Tree;
 import com.StardewValley.model.Item.CollisionRect;
 import com.StardewValley.model.Rock;
-import com.StardewValley.model.User;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,7 +22,7 @@ public class Farm {
     private GreenHouse greenHouse;
     private CollisionRect collisionRect;
     private int numberOfRocksInTheQuery=0;
-    private ArrayList<AnimalBuilding> animalBuildings = new ArrayList<>();
+    private ArrayList<AnimalBuildingOld> animalBuildingOlds = new ArrayList<>();
     private ArrayList<Fence> doors = new ArrayList<>();
 
     private ArrayList<FarmLand> farmLands = new ArrayList<>();
@@ -144,40 +143,40 @@ public class Farm {
         }
         return true;
     }
-    public void buildAnimalBuilding(AnimalBuilding building)
+    public void buildAnimalBuilding(AnimalBuildingOld building)
     {
-        animalBuildings.add(building);
+        animalBuildingOlds.add(building);
         for (Tile tile : building.getTiles())
         {
 
             tile.setType(TileType.ANIMAL_BUILDING);
         }
     }
-    public AnimalBuilding getBuildingForAnimal(FarmAnimalType animalType)
+    public AnimalBuildingOld getBuildingForAnimal(FarmAnimalType animalType)
     {
-        for (AnimalBuilding animalBuilding : animalBuildings)
+        for (AnimalBuildingOld animalBuildingOld : animalBuildingOlds)
         {
-            if (animalType.getBuildings().contains(animalBuilding.getFarmBuildingType()))
+            if (animalType.getBuildings().contains(animalBuildingOld.getFarmBuildingType()))
             {
-                if (animalBuilding.hasCapacity())
+                if (animalBuildingOld.hasCapacity())
                 {
-                    return animalBuilding;
+                    return animalBuildingOld;
                 }
             }
         }
         return null;
     }
-    public ArrayList<AnimalBuilding> getAnimalBuildings()
+    public ArrayList<AnimalBuildingOld> getAnimalBuildings()
     {
-        return animalBuildings;
+        return animalBuildingOlds;
     }
-    public AnimalBuilding getAnimalBuilding(Animal animal)
+    public AnimalBuildingOld getAnimalBuilding(Animal animal)
     {
-        for (AnimalBuilding animalBuilding : animalBuildings)
+        for (AnimalBuildingOld animalBuildingOld : animalBuildingOlds)
         {
-            if (animalBuilding.getAnimals().contains(animal))
+            if (animalBuildingOld.getAnimals().contains(animal))
             {
-                return animalBuilding;
+                return animalBuildingOld;
             }
         }
         return null;
@@ -230,9 +229,19 @@ public class Farm {
         this.collisionRect = collisionRect;
     }
 
-    public void setAnimalBuildings(ArrayList<AnimalBuilding> animalBuildings) {
-        this.animalBuildings = animalBuildings;
+    public void setAnimalBuildings(ArrayList<AnimalBuildingOld> animalBuildingOlds) {
+        this.animalBuildingOlds = animalBuildingOlds;
     }
+
+    public FarmLand findFarmLandAt(float x, float y) {
+        for (FarmLand land : farmLands) {
+            if (land.getCollisionRect().isInside(x, y)) {
+                return land;
+            }
+        }
+        return null;
+    }
+
 
 
     public ArrayList<Fence> getDoors() {

@@ -1,6 +1,7 @@
 package com.StardewValley.model;
 
 
+import com.StardewValley.enums.AssetManager;
 import com.StardewValley.enums.DayOfTheWeeks;
 import com.StardewValley.enums.Seasons;
 
@@ -17,6 +18,7 @@ import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.Map.FarmBuilder;
 import com.StardewValley.model.Store.Product;
 import com.StardewValley.model.Store.Store;
+import com.badlogic.gdx.graphics.Texture;
 
 import static com.StardewValley.model.App.*;
 
@@ -162,6 +164,13 @@ public class GameTime {
         }
 
 
+    }
+    public static Texture getCurrentBackgroundTexture() {
+        if (hour > 17) {
+            return AssetManager.NIGHT_BACKGROUND.getTexture();
+        } else {
+            return AssetManager.DAY_BACKGROUND.getTexture();
+        }
     }
 
     public static MainTime getMainTime() {
