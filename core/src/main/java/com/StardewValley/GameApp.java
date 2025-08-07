@@ -1,6 +1,6 @@
 package com.StardewValley;
 
-import com.StardewValley.View.FirstMenu;
+import com.StardewValley.Client.View.FirstMenu;
 import com.StardewValley.Common.model.App;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;

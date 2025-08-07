@@ -1,6 +1,6 @@
 package com.StardewValley.Common.model.NPC;
 
-import com.StardewValley.Controller.NpcController;
+import com.StardewValley.Server.Controller.NpcController;
 import com.StardewValley.Common.enums.AssetManager;
 import com.StardewValley.Common.model.GameTime;
 import com.StardewValley.Common.model.Item.CollisionRect;

@@ -1,6 +1,6 @@
 package com.StardewValley.Common.model.Map;
 
-import com.StardewValley.View.FarmLand;
+import com.StardewValley.Client.View.FarmLand;
 import com.StardewValley.Common.model.App;
 import com.StardewValley.Common.model.FarmingProdocts.ForagingCrops;
 import com.StardewValley.Common.model.FarmingProdocts.ForagingSeed;

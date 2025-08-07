@@ -1,6 +1,7 @@
 package com.StardewValley.Common.model;
 
 
+import java.io.Serializable;
 import java.util.*;
 
 
@@ -11,7 +12,7 @@ import com.StardewValley.Common.model.NPC.Dialog;
 
 import java.util.List;
 
-public class GameModel {
+public class GameModel implements Serializable {
     public User currentUser;
     public ArrayList<User> playersInGame = new ArrayList<>();
     private GameMap map;

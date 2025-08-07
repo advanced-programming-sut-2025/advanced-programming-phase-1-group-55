@@ -1,7 +1,7 @@
 package com.StardewValley.Common.model;
 
 
-
+import com.StardewValley.Common.DTO.UserDTO;
 import com.StardewValley.Common.enums.Direction;
 import com.StardewValley.Common.enums.SkillType;
 import com.StardewValley.Common.model.Animal.Animal;
@@ -24,11 +24,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
+import java.io.Serializable;
 import java.util.*;
 
 import static com.StardewValley.Common.enums.AssetManager.PLAYER;
 
-public class User {
+public class User implements Serializable {
     private String username;
     private String password;
     private String nickName;
@@ -81,6 +82,8 @@ public class User {
     private Map<Integer, Quest> quest = new HashMap<>();
     private GreenHouse greenHouse;
 
+    private int id;
+
 
     public User(String username, String password, String nickName, String email, String gender, String securityQuestion, String answerOfSecurityQuestion, String avatarPath) {
         this.username = username;
@@ -96,6 +99,16 @@ public class User {
         this.backPack = new BackPack();
         this.avatarPath = avatarPath;
     }
+
+    public UserDTO toDTO() {
+        return new UserDTO(
+            this.getId(),
+            this.getNickName(),
+            this.getLocation().getX(),
+            this.getLocation().getY()
+        );
+    }
+
 
     public String getAvatarPath() {
         return avatarPath;
@@ -287,7 +300,6 @@ public class User {
     private ArrayList<Trade> userTrades;
 
 
-
     public String getAnswerOfSecurityQuestion() {
         return answerOfSecurityQuestion;
     }
@@ -435,6 +447,7 @@ public class User {
         Math.max(0, wood);
 
     }
+
     public Map<Integer, Gift> getReceivedGifts() {
         return receivedGifts;
     }
@@ -488,10 +501,18 @@ public class User {
         return (dx <= 1 && dy <= 1) && !(dx == 0 && dy == 0);
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public ArrayList<AnimalBuilding> getFarmBuildings() {
         return farmBuildings;
     }
+
     public void addFarmBuilding(AnimalBuilding building) {
         farmBuildings.add(building);
     }

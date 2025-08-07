@@ -1,7 +1,7 @@
 package com.StardewValley.Common.model.Map;
 
 
-import com.StardewValley.View.FarmLand;
+import com.StardewValley.Client.View.FarmLand;
 import com.StardewValley.Common.enums.AssetManager;
 import com.StardewValley.Common.model.App;
 import com.StardewValley.Common.model.Artisan.ArtisanMachine;
