@@ -1,8 +1,5 @@
 package com.StardewValley.model.Item;
 
-import com.StardewValley.enums.Seasons;
-import com.StardewValley.model.App;
-import com.StardewValley.model.Map.Tile;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 
@@ -90,7 +87,6 @@ public enum ItemType {
 
     FIBER("fiber", new Texture(Gdx.files.internal("Crafting/Fiber.png"))),
     BARN("barn"),
-//    BARN("barn", new Texture(Gdx.files.internal("Building/Barn.png"))),  chera eror mide
     BIG_BARN("big barn"),
     DELUXE_BARN("deluxe barn"),
     COOP("coop"),
@@ -122,7 +118,6 @@ public enum ItemType {
     FARMER_LUNCH("farmer's lunch"),
     SURVIVAL_BURGER("survival burger", new Texture(Gdx.files.internal("Recipe/Survival_Burger.png"))),
     DISH_O_THE_SEA("dish O' the Sea", new Texture(Gdx.files.internal("Recipe/Dish_O%27_The_Sea.png"))),
-//    SEAFORM_PUDDING("seaform pudding", new Texture(Gdx.files.internal("Recipe/Seaform_Pudding.png"))),
     MINER_TREAT("miner's treat"),
     PANCAKES("pancakes", new Texture(Gdx.files.internal("Recipe/Pancakes.png"))),
     HASH_BROWNS("hash browns"),
@@ -153,7 +148,6 @@ public enum ItemType {
     DANDELION("dandelion", new Texture(Gdx.files.internal("Crafting/Dandelion.png"))),
     MILK("milk", new Texture(Gdx.files.internal("Animal_product/Milk.png"))),
     PUMPKIN("pumpkin", new Texture(Gdx.files.internal("Crops/Pumpkin.png"))),
-    //    WHEAT_FLOWER("wheat flower"),
     TOMATO("tomato", new Texture(Gdx.files.internal("Crops/Tomato.png"))),
     CHEESE("cheese", new Texture(Gdx.files.internal("Farming/Cheese.png"))),
     CORN("corn", new Texture(Gdx.files.internal("Farming/Corn.png"))),
@@ -415,7 +409,6 @@ public enum ItemType {
         this.DisplayName = DisplayName;
         this.texture = texture;
     }
-    //todo after completing all of the items texture , remove this
     ItemType(String DisplayName) {
         this.DisplayName = DisplayName;
         texture=null;

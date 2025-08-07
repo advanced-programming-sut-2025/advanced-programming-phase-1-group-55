@@ -2,7 +2,6 @@ package com.StardewValley.model.Map;
 
 import com.StardewValley.View.newView.FarmLand;
 import com.StardewValley.model.Animal.Animal;
-import com.StardewValley.model.Animal.AnimalBuildingOld;
 import com.StardewValley.model.Animal.FarmAnimalType;
 import com.StardewValley.model.App;
 import com.StardewValley.model.FarmingProdocts.ForagingCrops;
@@ -22,7 +21,6 @@ public class Farm {
     private GreenHouse greenHouse;
     private CollisionRect collisionRect;
     private int numberOfRocksInTheQuery=0;
-    private ArrayList<AnimalBuildingOld> animalBuildingOlds = new ArrayList<>();
     private ArrayList<Fence> doors = new ArrayList<>();
 
     private ArrayList<FarmLand> farmLands = new ArrayList<>();
@@ -96,13 +94,6 @@ public class Farm {
         this.trees = trees;
     }
 
-    public Map<Location, ForagingCrops> getCrobs() {
-        return crobs;
-    }
-
-    public void setCrobs(Map<Location, ForagingCrops> crobs) {
-        this.crobs = crobs;
-    }
 
     public Map<Location, ForagingSeed> getSeeds() {
         return seeds;
@@ -112,104 +103,6 @@ public class Farm {
         this.seeds = seeds;
     }
 
-
-    public boolean isInBounds(int x, int y)
-    {
-        return x >= 0 && x < 20 && y >= 0 && y < 20;
-    }
-    public Tile getTile(int x, int y)
-    {
-        if (!isInBounds(x, y)) return null;
-//        if (isInBounds(x, y))
-//        {
-            return App.currentGameModel.getMap().tiles[x][y];
-//        }
-//        return null;
-    }
-    private boolean isTileGoodForAnimalBuilding(Tile tile) {
-        return (tile.getType() == TileType.grass && tile.getItemInThisTile() == null);
-    }
-    public boolean isGoodForAnimalBuilding(Tile tile, int width, int height)
-    {
-        for (int y = 0; y <= height; y++)
-        {
-            for (int x = 0; x <= width; x++)
-            {
-                if (!isTileGoodForAnimalBuilding(tile))
-                {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-    public void buildAnimalBuilding(AnimalBuildingOld building)
-    {
-        animalBuildingOlds.add(building);
-        for (Tile tile : building.getTiles())
-        {
-
-            tile.setType(TileType.ANIMAL_BUILDING);
-        }
-    }
-    public AnimalBuildingOld getBuildingForAnimal(FarmAnimalType animalType)
-    {
-        for (AnimalBuildingOld animalBuildingOld : animalBuildingOlds)
-        {
-            if (animalType.getBuildings().contains(animalBuildingOld.getFarmBuildingType()))
-            {
-                if (animalBuildingOld.hasCapacity())
-                {
-                    return animalBuildingOld;
-                }
-            }
-        }
-        return null;
-    }
-    public ArrayList<AnimalBuildingOld> getAnimalBuildings()
-    {
-        return animalBuildingOlds;
-    }
-    public AnimalBuildingOld getAnimalBuilding(Animal animal)
-    {
-        for (AnimalBuildingOld animalBuildingOld : animalBuildingOlds)
-        {
-            if (animalBuildingOld.getAnimals().contains(animal))
-            {
-                return animalBuildingOld;
-            }
-        }
-        return null;
-    }
-    public ArrayList<Location> getNeighbors(Location p)
-    {
-        ArrayList<Location> neighbors = new ArrayList<>();
-
-        int[] dx = {-1, 0, 1, 0};
-        int[] dy = {0, 1, 0, -1};
-
-        for (int dir = 0; dir < 4; dir++)
-        {
-            int newX = p.getX() + dx[dir];
-            int newY = p.getY() + dy[dir];
-
-            if (isInBounds(newX, newY))
-            {
-                neighbors.add(new Location(newX, newY));
-            }
-        }
-
-        return neighbors;
-    }
-
-
-    public int getNumberOfRocksInTheQuery() {
-        return numberOfRocksInTheQuery;
-    }
-
-    public void setNumberOfRocksInTheQuery(int numberOfRocksInTheQuery) {
-        this.numberOfRocksInTheQuery = numberOfRocksInTheQuery;
-    }
     public void draw(){
         lake.getSprite().setPosition(lake.getCollisionRect().getX(), lake.getCollisionRect().getY());
         quarry.getSprite().setPosition(quarry.getCollisionRect().getX(), quarry.getCollisionRect().getY());
@@ -228,11 +121,6 @@ public class Farm {
     public void setCollisionRect(CollisionRect collisionRect) {
         this.collisionRect = collisionRect;
     }
-
-    public void setAnimalBuildings(ArrayList<AnimalBuildingOld> animalBuildingOlds) {
-        this.animalBuildingOlds = animalBuildingOlds;
-    }
-
     public FarmLand findFarmLandAt(float x, float y) {
         for (FarmLand land : farmLands) {
             if (land.getCollisionRect().isInside(x, y)) {

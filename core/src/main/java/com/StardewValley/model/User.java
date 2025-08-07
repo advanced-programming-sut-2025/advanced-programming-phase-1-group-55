@@ -6,7 +6,6 @@ import com.StardewValley.enums.Direction;
 import com.StardewValley.enums.SkillType;
 import com.StardewValley.model.Animal.Animal;
 import com.StardewValley.model.Animal.AnimalBuilding;
-import com.StardewValley.model.Animal.AnimalBuildingOld;
 import com.StardewValley.model.Animal.FarmAnimalType;
 import com.StardewValley.model.Artisan.ArtisanMachine;
 import com.StardewValley.model.Artisan.ArtisanMachineType;
@@ -71,7 +70,6 @@ public class User {
     private Location playerTommorowLocation;
     private GameModel playedGameModel;
     private Farm farm;
-    private MainLocation mainLocation = MainLocation.House;
     private HashMap<Integer, Trade> trades = new HashMap<>();
     private CookingItem cookingItem;
     private int stone;
@@ -441,15 +439,6 @@ public class User {
         this.cookingItem = cookingItem;
     }
 
-    public MainLocation getMainLocation() {
-        mainLocation = MainLocation.findLocation(location);
-        return mainLocation;
-    }
-
-    public void setMainLocation(MainLocation mainLocation) {
-        this.mainLocation = mainLocation;
-    }
-
     public int getDailyMoney() {
         return dailyMoney;
     }
@@ -558,27 +547,6 @@ public class User {
         return null;
     }
 
-    public int howManyInRefrigerator(ItemType itemType) {
-        for (CookingItem refrigeratorItem : refrigerator) {
-            if (refrigeratorItem.getItemType().equals(itemType)) {
-                return refrigeratorItem.getNumber();
-            }
-        }
-        return 0;
-    }
-
-    public void removeFromRefrigerator(ItemType itemType, int number) {
-        for (CookingItem refrigeratorItem : refrigerator) {
-            if (refrigeratorItem.getItemType().equals(itemType)) {
-                refrigeratorItem.addNumber(-1 * number);
-                if (refrigeratorItem.getNumber() <= 0) {
-                    refrigerator.remove(refrigeratorItem);
-                }
-                break;
-            }
-        }
-    }
-
     public Map<Integer, Quest> getQuest() {
         return quest;
     }
@@ -586,75 +554,6 @@ public class User {
     public void setQuest(Map<Integer, Quest> quest) {
         this.quest = quest;
     }
-
-    public ArrayList<Animal> getAnimals() {
-        ArrayList<Animal> animals = new ArrayList<>();
-        for (AnimalBuildingOld animalBuildingOld : farm.getAnimalBuildings()) {
-            for (Animal animal : animalBuildingOld.getAnimals()) {
-                animals.add(animal);
-            }
-        }
-        return animals;
-    }
-
-    public Animal findAnimal(String name) {
-        for (Animal animal : getAnimals()) {
-            if (animal.getName().equalsIgnoreCase(name)) {
-                return animal;
-            }
-        }
-        return null;
-    }
-
-    public boolean validAnimalName(String name) {
-        for (Animal animal : getAnimals()) {
-            if (animal.getName().equalsIgnoreCase(name)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public boolean isNearAnimal(Animal animal) {
-        for (Animal anim : getAnimals()) {
-            if (anim.getName().equalsIgnoreCase(animal.getName())) {
-                Tile tile = anim.getTile();
-
-                if (tile == null) {
-                    return false;
-                }
-
-                Location p = tile.getLocation();
-                ArrayList<Location> neighbors = currentGameModel.currentUser.getFarm().getNeighbors(
-                    currentGameModel.currentUser.getLocation());
-
-                for (Location neighbor : neighbors) {
-                    if (neighbor.equals(p)) {
-                        return true;
-                    }
-                }
-            }
-        }
-
-        return false;
-    }
-
-    public boolean addAnimalToBuilding(FarmAnimalType type) {
-        for (AnimalBuilding building : farmBuildings) {
-            if (type.getBuildings().contains(building.getFarmBuildingType())) {
-                if (building.getAnimals().size() < building.getCapacity()) {
-                    building.getAnimals().add(new Animal(type));
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-
-
-
-
 
     public boolean isNear(Location otherLocation) {
 

@@ -7,7 +7,6 @@ import java.util.*;
 import com.StardewValley.model.Friendship.PlayerFriendship;
 import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.Map.GameMap;
-import com.StardewValley.model.Map.Tile;
 import com.StardewValley.model.NPC.Dialog;
 
 import static com.StardewValley.model.GameTime.*;
@@ -89,56 +88,6 @@ public class GameModel {
 
     public void setMap(GameMap map) {
         this.map = map;
-    }
-
-
-    public Tile getTileFromDirection(String direction) {
-        User user = App.currentGameModel.currentUser;
-        int currentX = user.getLocation().getX();
-        int currentY = user.getLocation().getY();
-
-        int dx = 0;
-        int dy = 0;
-
-        direction = direction.toLowerCase();
-
-        switch (direction) {
-            case "up":
-                dy = 1;
-                break;
-            case "down":
-                dy = -1;
-                break;
-            case "left":
-                dx = -1;
-                break;
-            case "right":
-                dx = 1;
-                break;
-            case "up-left":
-                dx = -1;
-                dy = 1;
-                break;
-            case "up-right":
-                dx = 1;
-                dy = 1;
-                break;
-            case "down-left":
-                dx = -1;
-                dy = -1;
-                break;
-            case "down-right":
-                dx = 1;
-                dy = -1;
-                break;
-            default:
-                return null;
-        }
-
-        int newX = currentX + dx;
-        int newY = currentY + dy;
-
-        return App.currentGameModel.getMap().tiles[newX][newY];
     }
 
     public ArrayList<PlayerFriendship> getAllFriendships() {

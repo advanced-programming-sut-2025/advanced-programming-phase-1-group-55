@@ -1,10 +1,8 @@
 package com.StardewValley.model.Animal;
 
 import com.StardewValley.model.Item.Item;
-import com.StardewValley.model.Map.Tile;
 
-import java.util.ArrayList;
-import java.util.List;
+
 import java.util.Random;
 
 public class Animal extends Item {
@@ -14,9 +12,6 @@ public class Animal extends Item {
     private boolean isFed = false;
     private boolean isIn = true;
     private boolean isPet = false;
-//    private final ArrayList<Item> products;
-//    private final List<Item> products;
-    private Tile tile = null;
     private boolean hasProduct = false;
     private boolean secondProduct = false;
     private double quality = 0;
@@ -30,8 +25,6 @@ public class Animal extends Item {
         this.isFed = false;
         this.isIn = true;
         this.isPet = false;
-//        this.products = (ArrayList<Item>) animalType.getProduct();
-//        this.products = new ArrayList<>(animalType.getProduct());
     }
     public Animal(FarmAnimalType type) {
         this.animalType = type;
@@ -81,23 +74,6 @@ public class Animal extends Item {
 
     public void setPet(boolean pet) {
         isPet = pet;
-    }
-
-//    public ArrayList<Item> getProducts() {
-//        return products;
-//    }
-
-
-//    public List<Item> getProducts() {
-//        return products;
-//    }
-
-    public Tile getTile() {
-        return tile;
-    }
-
-    public void setTile(Tile tile) {
-        this.tile = tile;
     }
 
     public boolean isHasProduct() {
@@ -189,16 +165,6 @@ public class Animal extends Item {
     {
         isIn = true;
     }
-//    public Item getProduct()
-//    {
-//        Item product = products.get(0);
-//        if (secondProduct && products.size() > 1)
-//        {
-//            product = products.get(1);
-//        }
-//
-//        return product;
-//    }
     public void calculateProductPrice(Item product)
     {
         quality = getQuality();

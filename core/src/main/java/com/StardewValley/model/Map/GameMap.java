@@ -17,9 +17,8 @@ import static java.lang.Math.min;
 import static com.StardewValley.model.App.currentGameModel;
 
 public class GameMap {
-    public Tile[][] tiles = new Tile[41][160];
 
-    private Farm farm1;//baray nafar aval
+    private Farm farm1;
     private Farm farm2;
     private Farm farm3;
     private Farm farm4;
@@ -28,17 +27,6 @@ public class GameMap {
     private static final int WORLD_WIDTH = (int)(1920*4);
     private static final int WORLD_HEIGHT = (int)(1080*4);
     public  ArrayList<Fence> fences = new ArrayList<>();
-
-
-    public GameMap(Farm farm1, Farm farm2, Farm farm3, Farm farm4, NpcVillage village) {
-
-
-    }
-    //todo in constructor bade inke map choose zade shod ,bardaashte beshe
-    public GameMap() {
-
-    }
-
     public  boolean  canMove(CollisionRect collisionRect) {
         for (Fence fence : fences) {
             if (fence.getCollisionRect().collidesWith(collisionRect)) {
@@ -65,25 +53,10 @@ public class GameMap {
                 return false;
             }
         }
-        //todo ino bade inke vorood player be mazrae digaran mamnoo shod bardaar
-        if (farm1.getLake().getCollisionRect().collidesWith(collisionRect)||
-            farm1.getHouse().getCollisionRect().collidesWith(collisionRect)||
-            farm2.getLake().getCollisionRect().collidesWith(collisionRect)||
-            farm2.getHouse().getCollisionRect().collidesWith(collisionRect)) {
-            return false;
-        }
-        if (App.currentGameModel.playersInGame.size()>2){
-            if (farm3.getLake().getCollisionRect().collidesWith(collisionRect)||
-                farm3.getHouse().getCollisionRect().collidesWith(collisionRect)){
-                return false;
-            }
-            if (App.getCurrentGameModel().playersInGame.size()>3){
-                if (farm4.getLake().getCollisionRect().collidesWith(collisionRect)||
-                    farm4.getHouse().getCollisionRect().collidesWith(collisionRect)){
-                    return false;
-                }
-            }
-        }
+       if(currentGameModel.getCurrentUser().getFarm().getLake().getCollisionRect().collidesWith(collisionRect)||
+           currentGameModel.getCurrentUser().getFarm().getHouse().getCollisionRect().collidesWith(collisionRect)){
+           return false;
+       }
         for (User user:App.currentGameModel.playersInGame){
             if (user.getCollisionRect().collidesWith(collisionRect)&&!user.getUsername().equals(currentGameModel.currentUser.getUsername())){
                 return false;
@@ -116,13 +89,6 @@ public class GameMap {
         mapBuilder1.drawFarms(this);
     }
 
-    public Tile[][] getTiles() {
-        return tiles;
-    }
-
-    public void setTiles(Tile[][] tiles) {
-        this.tiles = tiles;
-    }
 
     public int getWORLD_WIDTH() {
         return WORLD_WIDTH;
@@ -164,7 +130,7 @@ public class GameMap {
         this.farm4 = farm4;
     }
 
-    private Map<Location, Tile> pointsOfTheMap = new HashMap<>();
+
     private Map<Location, Character> MiniMap = new HashMap<>();
 
     public Map<Location, Character> getMiniMap() {
@@ -173,14 +139,6 @@ public class GameMap {
 
     public void setMiniMap(Map<Location, Character> miniMap) {
         MiniMap = miniMap;
-    }
-
-    public Map<Location, Tile> getPointsOfTheMap() {
-        return pointsOfTheMap;
-    }
-
-    public void setPointsOfTheMap(Map<Location, Tile> pointsOfTheMap) {
-        this.pointsOfTheMap = pointsOfTheMap;
     }
 
     public NpcVillage getVillage() {

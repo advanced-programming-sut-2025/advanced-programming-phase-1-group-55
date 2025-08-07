@@ -18,15 +18,12 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.Timer;
 
 import java.util.ArrayList;
-
-import static com.badlogic.gdx.scenes.scene2d.actions.Actions.*;
 
 public class FriendMenuView implements Screen {
     private Stage stage;
@@ -258,11 +255,11 @@ public class FriendMenuView implements Screen {
         ArrayList<Message> messages = you.getFriendsPlayer().get(friend).getConversation();
 
         for (Message message : messages) {
-            Label msgLabel = new Label(message.getText(), skin);
+            Label msgLabel = new Label(message.text(), skin);
             msgLabel.setWrap(true);
             msgLabel.setAlignment(Align.left);
 
-            if (message.getSender().equals(you)) {
+            if (message.sender().equals(you)) {
                 msgLabel.setColor(Color.BLUE);
                 msgLabel.setAlignment(Align.left);
                 msgLabel.setWrap(true);
