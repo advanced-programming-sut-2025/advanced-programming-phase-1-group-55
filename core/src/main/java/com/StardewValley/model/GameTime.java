@@ -55,24 +55,8 @@ public class GameTime {
             setEnergyLoser(2);
         }
 
-        if (weather.getCurrentWeather().equals(WeatherType.Storm)) {
-//            System.out.println(RandomThor());
-//            System.out.println("Current Weather is " + weather.getCurrentWeather());
 
-        }
-//        for (Item plant : currentGameModel.getAllPlants().values()) {
-//            plant.increaseStage(1);
-//            if (plant.getStage() == 5) {
-//                currentGameModel.getMap().tiles[plant.getLocation().getY()][plant.getLocation().getX()].setMohtaviat("?");
-//                currentGameModel.getAllPlants().remove(plant.getItemType().getDisplayName());
-//            }
-//        }
         for (User player : currentGameModel.playersInGame) {
-            //in moheme paak nakonid faghat baraaye saadegi tahvil comment kardim!!!!!!!!!!!!!!
-//            if (!player.isFainted()) {
-//
-//                player.setLocation(new Location(player.getFarm().getLocation().getY() + 1, player.getFarm().getLocation().getX() + 1));
-//            }
 
             if (player.isFainted()) {
                 player.setFainted(false);

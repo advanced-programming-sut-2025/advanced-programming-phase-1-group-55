@@ -1,6 +1,5 @@
 package com.StardewValley.model.NPC;
 
-import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.Item.ItemType;
 
 public class ReadyItem {

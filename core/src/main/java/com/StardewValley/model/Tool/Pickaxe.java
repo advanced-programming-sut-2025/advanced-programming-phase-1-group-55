@@ -10,7 +10,7 @@ import static com.StardewValley.model.App.currentGameModel;
 import static com.StardewValley.model.weather.getEnergyLoser;
 
 public class Pickaxe extends Tools {
-    boolean usedSuccessfully = false;
+
 
     public int getPriceToLevelUp() {
         if (level == 1) {

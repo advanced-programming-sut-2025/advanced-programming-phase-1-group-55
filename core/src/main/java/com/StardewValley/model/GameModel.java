@@ -28,42 +28,11 @@ public class GameModel {
         this.map = map;
     }
 
-    private HashMap<String, Item> AllPlants = new HashMap<>();
-
-    public HashMap<String, Item> getAllPlants() {
-        return AllPlants;
-    }
-
-    public void setAllPlants(HashMap<String, Item> allPlants) {
-        AllPlants = allPlants;
-    }
-
     private int turnCounter = 0;
 
-    public int getTurnCounter() {
-        return turnCounter;
-    }
 
     public void increaseNumberOfGifts() {
         numberOfAllGifts++;
-    }
-
-    public void setTurnCounter(int turnCounter) {
-        this.turnCounter = turnCounter;
-    }
-
-    public void nextTurn() {
-
-        currentUser = playersInGame.get((++turnCounter) % playersInGame.size());
-        if (currentUser.isFainted()) {
-            nextTurn();
-        }
-        System.out.println("player " + turnCounter % playersInGame.size() + " : " + currentUser.getUsername());
-
-        if ((turnCounter) % playersInGame.size() == 0) {
-            increaseHour(1);
-        }
-
     }
 
     public User getCurrentUser() {
@@ -94,13 +63,7 @@ public class GameModel {
         return allFriendships;
     }
 
-    public void setAllFriendships(ArrayList<PlayerFriendship> allFriendships) {
-        this.allFriendships = allFriendships;
-    }
 
-    public HashMap<Integer, Trade> getAllTrades() {
-        return AllTrades;
-    }
 
     public void setAllTrades(HashMap<Integer, Trade> allTrades) {
         AllTrades = allTrades;
@@ -112,13 +75,5 @@ public class GameModel {
 
     public int getNumberOfAllGifts() {
         return numberOfAllGifts;
-    }
-
-    public void setNumberOfAllGifts(int numberOfAllGifts) {
-        this.numberOfAllGifts = numberOfAllGifts;
-    }
-
-    public List<Dialog> getAllDialogs() {
-        return allDialogs;
     }
 }

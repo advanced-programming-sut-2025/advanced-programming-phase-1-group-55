@@ -1,6 +1,6 @@
 package com.StardewValley.model;
 
-//import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
+
 
 import com.StardewValley.enums.Direction;
 import com.StardewValley.enums.SkillType;
@@ -64,7 +64,7 @@ public class User {
     private boolean stayLoggedIn = false;
     private int mostAchievedMoney = 0;
     private int matchPlayed = 0;
-    private Location location = new Location(0, 0);//todo ino bayad bokonm location aval farmesh
+    private Location location = new Location(0, 0);
     private Direction direction = Direction.DOWN;
     private boolean fainted = false;
     private Location playerTommorowLocation;
@@ -91,7 +91,6 @@ public class User {
         this.answerOfSecurityQuestion = answerOfSecurityQuestion;
         this.gold = 10000;
 
-//        sprite = new Sprite(new Texture(Gdx.files.internal("sprites/Mariner.png")));
         sprite = new Sprite(new Texture(Gdx.files.internal("walk/Alex_01.png")));
         this.refrigerator = new ArrayList<>();
         this.backPack = new BackPack();

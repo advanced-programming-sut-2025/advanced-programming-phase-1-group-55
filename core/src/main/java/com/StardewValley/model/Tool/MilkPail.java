@@ -10,7 +10,6 @@ import static com.StardewValley.model.App.*;
 import static com.StardewValley.model.weather.getEnergyLoser;
 
 public class MilkPail extends  Tools{
-    private final String names="MilkPair";
     public int getPriceToLevelUp(){
         if(level==1){
             return 2000;

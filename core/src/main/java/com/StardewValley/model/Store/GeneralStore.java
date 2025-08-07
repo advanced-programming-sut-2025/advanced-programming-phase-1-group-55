@@ -20,7 +20,7 @@ public class GeneralStore extends Store {
             put("deluxe pack", new Product(new Item(ItemType.DELUXE_PACK),
                     1, 10000, 0, 1, Seasons.special));
 
-            // Spring
+
             put("parsnip seeds", new Product(new Item(ItemType.PARSNIP_SEEDS),
                     5, 20, 0, 5, Seasons.spring));
             put("bean starter", new Product(new Item(ItemType.BEAN_STARTER),
@@ -40,7 +40,7 @@ public class GeneralStore extends Store {
             put("rice shoot", new Product(new Item(ItemType.RICE_SHOOT),
                     5, 40, 0, 5, Seasons.spring));
 
-            // Summer
+
             put("melon seeds", new Product(new Item(ItemType.MELON_SEEDS),
                     5, 80, 0, 5, Seasons.summer));
             put("tomato seeds", new Product(new Item(ItemType.TOMATO_SEEDS),
@@ -66,7 +66,7 @@ public class GeneralStore extends Store {
             put("red cabbage seeds", new Product(new Item(ItemType.RED_CABBAGE_SEEDS),
                     5, 100, 0, 5, Seasons.summer));
 
-            // Fall
+
             put("eggplant seeds", new Product(new Item(ItemType.EGGPLANT_SEEDS),
                     5, 20, 0, 5, Seasons.fall));
 
@@ -131,9 +131,6 @@ public class GeneralStore extends Store {
             AssetManager.GENERAL_STORE.getTexture().getWidth(), AssetManager.GENERAL_STORE.getTexture().getHeight()));
     }
 
-    @Override
-    public void Purchase(Product product, int amount) {
 
-    }
 }
 

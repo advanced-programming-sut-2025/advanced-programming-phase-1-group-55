@@ -44,8 +44,5 @@ public class BlackSmithStore extends Store {
                 AssetManager.BLACKSMITH_STORE.getTexture().getWidth()
                 ,AssetManager.BLACKSMITH_STORE.getTexture().getHeight()));
     }
-    @Override
-    public void Purchase(Product product, int amount) {
 
-    }
 }

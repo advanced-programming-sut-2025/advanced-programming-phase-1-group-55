@@ -33,10 +33,7 @@ public class CarpenterShop extends Store{
 
     }
 
-    @Override
-    public void Purchase(Product product, int amount) {
 
-    }
 }
 
 

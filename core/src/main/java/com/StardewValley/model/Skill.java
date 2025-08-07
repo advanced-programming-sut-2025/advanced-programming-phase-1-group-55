@@ -11,7 +11,6 @@ public class Skill {
     private int level;
     private int points;
     private final static int maxLevel = 4;
-//    private List<Ability> abilities;
 
 
     public Skill(SkillType type) {

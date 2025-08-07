@@ -44,32 +44,11 @@ public class BackPack {
         this.level = level;
     }
 
-    public String showCurrentTool(){
-        return currentTool.getName();
-    }
-    public String showAvailableTools(){
-        StringBuilder message=new StringBuilder();
-        for(Tools tools:availableTools.values()){
-            message.append(tools.getName()).append("\n");
-        }
-        return  message.toString();
-    }
 
     public int getSize() {
         return level==1?12:level==2?24:10000000;
     }
 
-    public void addToInventory(Item item){
-        if (inventory.size() < getSize()) {
-            inventory.put(item.getItemType().name(),item);
-            if(item.getNumber()==0){
-                item.setNumber(1);
-            }
-        }
-    }
-    public int getInventorySize() {
-        return inventory.size();
-    }
     public Map<String,Item> getInventory()
     {
         return inventory;
@@ -129,15 +108,6 @@ public class BackPack {
         return false;
     }
 
-    public int howManyInInventory(ItemType itemType) {
-        for (Item item : inventory.values()) {
-            if (item.getItemType().equals(itemType)) {
-                return item.getNumber();
-            }
-        }
-        return 0;
-    }
-
     public void removeAmountFromInventory(ItemType itemType, int quantity) {
         for (Item item : inventory.values()) {
             if (item.getItemType().equals(itemType)) {
@@ -149,17 +119,6 @@ public class BackPack {
                     }
                 }
                 break;
-            }
-        }
-    }
-
-
-
-    public void removeItemFromInventory(Item item) {
-        if (this.inventory.containsKey(item.getItemType().getDisplayName())) {
-            item.addNumber(-1);
-            if (item.getNumber() <= 0) {
-                this.inventory.remove(item.getItemType().getDisplayName());
             }
         }
     }
@@ -180,15 +139,5 @@ public class BackPack {
         this.selectedItem = selectedItem;
     }
 
-    public void setAvailableTools(Map<String, Tools> availableTools) {
-        this.availableTools = availableTools;
-    }
 
-    public void setCraftingRecipes(ArrayList<CraftingItemType> craftingRecipes) {
-        this.craftingRecipes = craftingRecipes;
-    }
-
-    public void setCookingRecipes(ArrayList<CookingItemType> cookingRecipes) {
-        this.cookingRecipes = cookingRecipes;
-    }
 }

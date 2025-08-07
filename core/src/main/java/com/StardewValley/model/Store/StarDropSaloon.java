@@ -47,8 +47,5 @@ public class StarDropSaloon extends Store{
             AssetManager.STAR_DROP_STORE.getTexture().getWidth(), AssetManager.STAR_DROP_STORE.getTexture().getHeight()));
     }
 
-    @Override
-    public void Purchase(Product product, int amount) {
 
-    }
 }

@@ -53,9 +53,4 @@ public class MarineRanchStore extends Store{
             AssetManager.GENERAL_STORE.getTexture().getWidth(), AssetManager.GENERAL_STORE.getTexture().getHeight()));
     }
 
-
-    @Override
-    public void Purchase(Product product, int amount) {
-
-    }
 }

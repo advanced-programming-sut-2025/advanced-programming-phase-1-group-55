@@ -60,23 +60,10 @@ public class Npc {
     public void setFriends(Map<User,FriendShip> friends) {
         this.friends = friends;
     }
-    public  void receiveGift(){
 
-    }
 
     public DialogBox getDialogBox() {
         return dialogBox;
     }
 
-    public void setDialogBox(DialogBox dialogBox) {
-        this.dialogBox = dialogBox;
-    }
-
-    public void setStateTime(float stateTime) {
-        this.stateTime = stateTime;
-    }
-
-    public  void  sendGift(){
-
-    }
 }

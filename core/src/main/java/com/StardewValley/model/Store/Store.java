@@ -45,7 +45,6 @@ public abstract class Store {
         this.productsOfStore = productsOfStore;
     }
 
-    public abstract void Purchase(Product product,int amount);
 
     public String getDisplayName() {
         return DisplayName;

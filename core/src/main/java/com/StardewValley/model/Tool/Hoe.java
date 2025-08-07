@@ -11,7 +11,6 @@ import static java.lang.Math.max;
 import static com.StardewValley.model.App.*;
 
 public class Hoe extends Tools {
-    private final String names = "Hoe";
 
     public int getPriceToLevelUp() {
         if (level == 1) {

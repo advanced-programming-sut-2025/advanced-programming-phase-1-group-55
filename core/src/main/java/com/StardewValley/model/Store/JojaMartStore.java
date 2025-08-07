@@ -133,9 +133,6 @@ public class JojaMartStore extends Store{
             AssetManager.JOJA_MART_STORE.getTexture().getWidth(), AssetManager.JOJA_MART_STORE.getTexture().getHeight()));
     }
 
-    @Override
-    public void Purchase(Product product,int amount) {
 
-    }
 }
 

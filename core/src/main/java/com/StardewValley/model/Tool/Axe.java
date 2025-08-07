@@ -10,7 +10,6 @@ import static com.StardewValley.model.App.*;
 import static com.StardewValley.model.weather.getEnergyLoser;
 
 public class Axe extends Tools {
-    boolean usedSuccessfully = false;
 
     public int getPriceToLevelUp() {
         if (level == 1) {

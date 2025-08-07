@@ -31,8 +31,5 @@ public class FishingStore extends Store{
         }}, "FishShop", AssetManager.FISHING_STORE.getTexture(), new CollisionRect(-394, -756
             ,AssetManager.FISHING_STORE.getTexture().getWidth(), AssetManager.FISHING_STORE.getTexture().getHeight()));
     }
-    @Override
-    public void Purchase(Product product, int amount) {
 
-    }
 }
