@@ -1,5 +1,6 @@
 package com.StardewValley.View.newView;
 
+import com.StardewValley.model.Animal.Animal;
 import com.StardewValley.model.Animal.AnimalBuilding;
 import com.StardewValley.model.App;
 import com.badlogic.gdx.Gdx;
@@ -11,6 +12,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+
+import java.util.ArrayList;
 
 public class AnimalBuildingMenuView implements Screen {
 //    private final AnimalBuilding building;
@@ -26,15 +29,52 @@ public class AnimalBuildingMenuView implements Screen {
     }
 
     private void setupUI() {
-        Texture bgTexture = new Texture(Gdx.files.internal("background/vintage-textured-paper-background-vector.jpg"));
-        Image bgImage = new Image(bgTexture);
-        bgImage.setFillParent(true);
-        stage.addActor(bgImage);
         Table rootTable = new Table();
         rootTable.setFillParent(true);
         stage.addActor(rootTable);
+
         Table menuTable = new Table();
-        menuTable.defaults().width(400).height(80).pad(20);
+        menuTable.defaults().width(500).pad(10);
+
+        Label title = new Label("My Animals", skin);
+        menuTable.add(title).center().padBottom(20).row();
+
+        if (App.mainUser == null || App.mainUser.getMyAnimals() == null || App.mainUser.getMyAnimals().isEmpty()) {
+            Label noAnimals = new Label("You have no animals yet.", skin);
+            menuTable.add(noAnimals).center().row();
+        } else {
+            for (Animal animal : App.mainUser.getMyAnimals()) {
+                Table animalRow = new Table();
+
+                final Label animalInfo = new Label(animal.getInfo(), skin);
+                animalInfo.setWrap(true);
+                animalInfo.setWidth(400);
+
+                TextButton petButton = new TextButton("Pet", skin);
+                petButton.addListener(new ClickListener() {
+                    @Override
+                    public void clicked(InputEvent event, float x, float y) {
+                        animal.pet();
+                        animalInfo.setText(animal.getInfo());
+                    }
+                });
+
+                TextButton feedButton = new TextButton("Feed", skin);
+                feedButton.addListener(new ClickListener() {
+                    @Override
+                    public void clicked(InputEvent event, float x, float y) {
+                        animal.feed();
+                        animalInfo.setText(animal.getInfo());
+                    }
+                });
+
+                animalRow.add(animalInfo).left().padRight(10).width(350f);
+                animalRow.add(petButton).right().width(70f).padRight(5);
+                animalRow.add(feedButton).right().width(70f);
+                menuTable.add(animalRow).left().row();
+            }
+        }
+
         TextButton backButton = new TextButton("Back", skin);
         backButton.addListener(new ClickListener() {
             @Override
@@ -42,10 +82,18 @@ public class AnimalBuildingMenuView implements Screen {
                 App.getGameApp().setScreen(App.currentGameGraphicView);
             }
         });
-        menuTable.add(backButton).row();
 
-        rootTable.add(menuTable).center().top().padTop(100);
+        menuTable.add(backButton).center().padTop(30).row();
+
+        ScrollPane scrollPane = new ScrollPane(menuTable, skin);
+        scrollPane.setFadeScrollBars(false);
+        rootTable.add(scrollPane).expand().fill().pad(20);
     }
+
+
+
+
+
 
     @Override
     public void show() {}
