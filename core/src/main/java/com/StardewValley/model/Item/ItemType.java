@@ -134,7 +134,7 @@ public enum ItemType {
     LevelUpFriendship("level up friendship"),
     ANIMAL_BUILDING("animal building"),
 
-    CHICKEN("Chicken"),
+    CHICKEN("Chicken", new Texture(Gdx.files.internal("Animals/White_Chicken.png"))),
     DUCK("Duck" , new Texture(Gdx.files.internal("Animals/Duck.png"))),
     RABBIT("Rabbit", new Texture(Gdx.files.internal("Animals/Rabbit.png"))),
     DINOSAUR("Dinosaur", new Texture(Gdx.files.internal("Animals/Dinosaur.png"))),
