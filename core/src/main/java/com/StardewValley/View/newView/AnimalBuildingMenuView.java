@@ -68,9 +68,19 @@ public class AnimalBuildingMenuView implements Screen {
                     }
                 });
 
+                TextButton shepherdButton = new TextButton("Shepherd", skin);
+                shepherdButton.addListener(new ClickListener() {
+                    @Override
+                    public void clicked(InputEvent event, float x, float y) {
+                        animal.goOut();
+                        animalInfo.setText(animal.getInfo());
+                    }
+                });
+//                animalRow.defaults().padRight(20);
                 animalRow.add(animalInfo).left().padRight(10).width(350f);
-                animalRow.add(petButton).right().width(70f).padRight(5);
-                animalRow.add(feedButton).right().width(70f);
+                animalRow.add(petButton).right().width(90f).padRight(30);
+                animalRow.add(feedButton).right().width(90f).padRight(30);
+                animalRow.add(shepherdButton).right().width(90f);
                 menuTable.add(animalRow).left().row();
             }
         }

@@ -237,6 +237,11 @@ public class Animal extends Item {
         output.append("--------------------------------");
         return output.toString();
     }
+    public void resetDailyStatus() {
+        this.isFed = false;
+        this.isPet = false;
+    }
+
 
 
 
