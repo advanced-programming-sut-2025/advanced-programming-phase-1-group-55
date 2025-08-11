@@ -1,7 +1,9 @@
 package com.StardewValley.model.Animal;
 
+import com.StardewValley.enums.AssetManager;
 import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.Map.Tile;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +22,11 @@ public class Animal extends Item {
     private boolean hasProduct = false;
     private boolean secondProduct = false;
     private double quality = 0;
+    private Sprite sprite;
+    private float worldX, worldY;
+    public float getWorldX() { return worldX; }
+    public float getWorldY() { return worldY; }
+
 
     public Animal(String name, FarmAnimalType animalType)
     {
@@ -30,6 +37,8 @@ public class Animal extends Item {
         this.isFed = false;
         this.isIn = true;
         this.isPet = false;
+        this.sprite = AssetManager.valueOf(animalType.name()).getSprite();
+        this.sprite.setOriginCenter();
 //        this.products = (ArrayList<Item>) animalType.getProduct();
 //        this.products = new ArrayList<>(animalType.getProduct());
     }
@@ -38,6 +47,12 @@ public class Animal extends Item {
         this.name = type.name();
     }
 
+    public Sprite getSprite() { return sprite; }
+
+    public void setWorldPosition(float x, float y) {
+        this.worldX = x;
+        this.worldY = y;
+    }
 
     public String getName() {
         return name;
@@ -241,6 +256,13 @@ public class Animal extends Item {
         this.isFed = false;
         this.isPet = false;
     }
+
+
+
+
+
+
+
 
 
 

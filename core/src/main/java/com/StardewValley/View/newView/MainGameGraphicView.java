@@ -1,6 +1,7 @@
 package com.StardewValley.View.newView;
 
 import com.StardewValley.Controller.MainGameController;
+import com.StardewValley.model.Animal.Animal;
 import com.StardewValley.model.Animal.AnimalBuilding;
 import com.StardewValley.model.Animal.FarmBuildingType;
 import com.StardewValley.Controller.TimeController;
@@ -174,6 +175,14 @@ public class MainGameGraphicView implements Screen, InputProcessor {
             building.getSprite().draw(App.gameApp.getBatch());
         }
 
+        for (Animal animal : player.getMyAnimals()) {
+            if (!animal.isIn()) {
+                Sprite s = animal.getSprite();
+                s.setPosition(animal.getWorldX(), animal.getWorldY());
+                s.draw(App.gameApp.getBatch());
+            }
+        }
+
 
         controller.updateGame(delta);
         timeController.update(delta);
@@ -262,6 +271,58 @@ public class MainGameGraphicView implements Screen, InputProcessor {
 
 
 
+
+    public void placeAnimalNearBuilding(Animal animal, AnimalBuilding building) {
+        if (animal == null || building == null) return;
+        if (!building.getAnimals().contains(animal)) {
+            building.getAnimals().add(animal);
+        }
+        float tileW = 64f, tileH = 64f;
+        try {
+            var lands = player.getFarm().getFarmLands();
+            if (lands != null && !lands.isEmpty() && lands.get(0).getCollisionRect() != null) {
+                var r = lands.get(0).getCollisionRect();
+                tileW = r.getWidth();
+                tileH = r.getHeight();
+            }
+        } catch (Exception ignored) {}
+        Sprite s = animal.getSprite();
+        s.setSize(tileW * 2f, tileH * 2f);
+        s.setOriginCenter();
+        float bx = building.getLocation().getX();
+        float by = building.getLocation().getY();
+        float bW = building.getSprite().getWidth();
+
+        int outCount = 0;
+        for (Animal a : building.getAnimals()) {
+            if (a != animal && !a.isIn()) outCount++;
+        }
+
+        float gapX = tileW * 0.25f;
+        float gapY = tileH * 0.25f;
+        float marginY = tileH * 0.5f;
+
+        int columns = Math.max(1, (int)Math.floor((bW + gapX) / (s.getWidth() + gapX)));
+        int row = outCount / columns;
+        int col = outCount % columns;
+
+        float totalGridWidth = columns * s.getWidth() + (columns - 1) * gapX;
+        float left = bx + (bW - totalGridWidth) * 0.5f;
+
+        float spawnX = left + col * (s.getWidth() + gapX);
+        float spawnY = by - marginY - (row + 1) * (s.getHeight() + gapY);
+
+        animal.setWorldPosition(spawnX, spawnY);
+        animal.setIn(false);
+    }
+
+
+
+
+
+
+
+
     @Override
     public void resize(int width, int height) {
         camera.setToOrtho(false, width, height);
@@ -331,8 +392,8 @@ public class MainGameGraphicView implements Screen, InputProcessor {
                         player.setGold(player.getGold() - chosenBuildingType.getPrice());
                         player.setWood(player.getWood() - chosenBuildingType.getWoodNumber());
                         player.setStone(player.getStone() - chosenBuildingType.getStoneNumber());
-                        AnimalBuilding newBuilding = new AnimalBuilding(targetLand.getLocation(), chosenBuildingType);
-                        player.addFarmBuilding(newBuilding);
+                        AnimalBuilding building = new AnimalBuilding(targetLand.getLocation(), chosenBuildingType);
+                        player.addFarmBuilding(building);
                         for (FarmLand land : player.getFarm().getFarmLands()) {
                             land.setColor(Color.WHITE);
                         }
