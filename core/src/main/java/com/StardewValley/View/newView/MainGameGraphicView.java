@@ -270,6 +270,20 @@ public class MainGameGraphicView implements Screen, InputProcessor {
 
 
 
+    private AnimalBuilding findBuildingAt(float x, float y) {
+        for (AnimalBuilding b : player.getFarmBuildings()) {
+            var rect = b.getCollisionRect();
+            float rx = rect.getX(), ry = rect.getY(), rw = rect.getWidth(), rh = rect.getHeight();
+            if (x >= rx && x <= rx + rw && y >= ry && y <= ry + rh) {
+                return b;
+            }
+        }
+        return null;
+    }
+
+
+
+
 
 
     public void placeAnimalNearBuilding(Animal animal, AnimalBuilding building) {
@@ -375,12 +389,12 @@ public class MainGameGraphicView implements Screen, InputProcessor {
         if (button == Input.Buttons.LEFT) {
             Vector3 click = new Vector3(screenX, screenY, 0);
             camera.unproject(click);
-            controller.getNpcController().checkIfClickedOnNpc(click.x, click.y);
-            controller.getStoreController().checkIfClickedOnStores(click.x, click.y);
-            controller.getStoreController().checkIfClickedOnBins(click.x, click.y);
-            controller.checkIfClickedOnMachine(click.x, click.y);
-            controller.getToolController().UseTool(click.x, click.y);
-            controller.checkIfClickedOnPlayer(click.x, click.y);
+//            controller.getNpcController().checkIfClickedOnNpc(click.x, click.y);
+//            controller.getStoreController().checkIfClickedOnStores(click.x, click.y);
+//            controller.getStoreController().checkIfClickedOnBins(click.x, click.y);
+//            controller.checkIfClickedOnMachine(click.x, click.y);
+//            controller.getToolController().UseTool(click.x, click.y);
+//            controller.checkIfClickedOnPlayer(click.x, click.y);
             Vector3 worldClick = new Vector3(screenX, screenY, 0);
             camera.unproject(worldClick);
             float clickX = worldClick.x;
@@ -403,6 +417,9 @@ public class MainGameGraphicView implements Screen, InputProcessor {
                         System.out.println("Cannot build here - invalid location.");
                     }
                 }
+                return true;
+            }
+            if (controller.getAnimalMenuController().checkIfClickedOnAnimalBuilding(clickX, clickY)) {
                 return true;
             }
             controller.getNpcController().checkIfClickedOnNpc(clickX, clickY);

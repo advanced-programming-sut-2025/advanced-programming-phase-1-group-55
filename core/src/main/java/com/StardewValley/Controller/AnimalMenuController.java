@@ -1,12 +1,15 @@
 package com.StardewValley.Controller;
 
+import com.StardewValley.View.newView.AnimalBuildingMenuView;
 import com.StardewValley.View.newView.AnimalMenuView;
 import com.StardewValley.model.Animal.AnimalBuilding;
 import com.StardewValley.model.App;
+import com.StardewValley.model.Item.CollisionRect;
 import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.Item.ItemType;
 import com.StardewValley.model.User;
 import com.StardewValley.model.Animal.FarmBuildingType;
+import com.badlogic.gdx.math.Rectangle;
 
 public class AnimalMenuController {
     private AnimalMenuView view;
@@ -47,4 +50,24 @@ public class AnimalMenuController {
         user.setFarmHadPlaceForAnimals(true);
 
     }
+
+    public boolean checkIfClickedOnAnimalBuilding(float x, float y) {
+        if (user == null || user.getFarmBuildings() == null) return false;
+
+        for (AnimalBuilding b : user.getFarmBuildings()) {
+            Rectangle bounds = b.getSprite().getBoundingRectangle();
+            if (bounds.contains(x, y)) {
+                App.getGameApp().setScreen(new AnimalBuildingMenuView());
+                return true;
+            }
+
+            // if (b.getCollisionRect() != null && b.getCollisionRect().isInside(x, y)) {
+            //     App.getGameApp().setScreen(new AnimalBuildingMenuView(b));
+            //     return true;
+            // }
+        }
+        return false;
+    }
+
+
 }
