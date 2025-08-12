@@ -79,7 +79,7 @@ public class MainMenuScreen implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
 
-                App.getGameApp().setScreen(new StartGameScreen());
+                App.getGameApp().setScreen(new LobbyView());
             }
         });
 

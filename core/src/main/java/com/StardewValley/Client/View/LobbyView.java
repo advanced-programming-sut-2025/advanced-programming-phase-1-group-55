@@ -115,7 +115,7 @@ public class LobbyView implements Screen {
 
                         ClientController.getInstance().createLobby(name, isPrivate, password, visible);
                         App.gameApp.getScreen().dispose();
-                        App.getGameApp().setScreen(new inLobbyView());
+                        App.getGameApp().setScreen(new InLobbyView());
                         dialog.hide();
                     }
                 });
@@ -187,8 +187,8 @@ public class LobbyView implements Screen {
                                 boolean accepted = (Boolean) object;
                                 if (accepted) {
                                     ClientController.getInstance().joinLobby(lobby.getCode());
-                                    Main.getInstance().getScreen().dispose();
-                                    Main.getInstance().setScreen(new InLobbyView());
+                                    App.gameApp.getScreen().dispose();
+                                    App.gameApp.setScreen(new InLobbyView());
                                 }
                             }
                         };
@@ -226,8 +226,8 @@ public class LobbyView implements Screen {
                         boolean accepted = (Boolean) object;
                         if (accepted) {
                             ClientController.getInstance().joinLobby(lobby.getCode());
-                            Main.getInstance().getScreen().dispose();
-                            Main.getInstance().setScreen(new InLobbyView());
+                            App.gameApp.getScreen().dispose();
+                            App.gameApp.setScreen(new InLobbyView());
                         }
 
                     }
