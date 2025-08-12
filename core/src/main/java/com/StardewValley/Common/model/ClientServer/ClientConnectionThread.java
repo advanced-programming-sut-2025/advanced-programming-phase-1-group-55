@@ -1,13 +1,14 @@
 package com.StardewValley.Common.model.ClientServer;
 
-import com.Graphic.Controller.Menu.LoginController;
-import com.Graphic.Controller.Menu.RegisterController;
+import com.StardewValley.Server.Controller.RegisterController;
+import com.StardewValley.Server.Controller.LoginMenuController;
 import com.Graphic.Main;
 import com.Graphic.model.*;
 import com.Graphic.model.Enum.Commands.CommandType;
 import com.Graphic.model.Game;
 import com.Graphic.model.Items;
 import com.Graphic.model.User;
+import com.StardewValley.Server.Controller.RegisterController;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
@@ -26,7 +27,7 @@ public class ClientConnectionThread extends Thread {
     //private DataOutputStream out;
     private ServerHandler server;
     private ClientConnectionController controller;
-    private LoginController LoginController;
+    private LoginMenuController LoginController;
     private RegisterController registerController;
     private Connection connection;
     private final BlockingQueue<Message> messageQueue = new LinkedBlockingQueue<>();
@@ -39,7 +40,7 @@ public class ClientConnectionThread extends Thread {
 //        out = new DataOutputStream(clientSocket.getOutputStream());
         this.controller = ClientConnectionController.getInstance();
         this.connection = connection;
-        LoginController = new LoginController();
+        LoginController = new LoginMenuController();
         registerController = new RegisterController();
     }
 
@@ -47,7 +48,7 @@ public class ClientConnectionThread extends Thread {
     @Override
     public void run() {
         System.out.println("Client connected");
-        connection.addListener(new Listener(){
+        connection.addListener(new Listener() {
             public void received(Connection connection, Object object) {
                 if (object instanceof Message) {
                     try {
@@ -69,7 +70,7 @@ public class ClientConnectionThread extends Thread {
     public synchronized void handleMessage(Message message) throws IOException {
         switch (message.getCommandType()) {
             case FARM -> {
-                controller.createFarm(message , game);
+                controller.createFarm(message, game);
             }
             case LOGIN -> {
                 sendMessage(LoginController.LoginRes(message));
@@ -81,13 +82,13 @@ public class ClientConnectionThread extends Thread {
                 sendMessage(RegisterController.generateRandomPass());
             }
             case NEW_GAME -> {
-                Game result = controller.newGame(message , connection);
+                Game result = controller.newGame(message, connection);
                 if (result != null) {
                     game = result;
                 }
             }
             case JOIN_GAME -> {
-                Game result = controller.joinGame(message , connection);
+                Game result = controller.joinGame(message, connection);
                 if (result != null) {
                     game = result;
                 }
@@ -96,35 +97,36 @@ public class ClientConnectionThread extends Thread {
                 controller.moveInFarm(message, game);
             }
             case ENTER_THE_MARKET -> {
-                controller.answerEnterTheMarket(message , game);
+                controller.answerEnterTheMarket(message, game);
             }
             case MOVE_IN_MARKET -> {
                 controller.moveInMarket(message, game);
             }
             case BUY -> {
-                sendMessage(controller.Buy(message , game));
+                sendMessage(controller.Buy(message, game));
             }
-            case BUY_BACKPACK -> {}
+            case BUY_BACKPACK -> {
+            }
             case PLACE_CRAFT_SHIPPING_BIN -> {
-                controller.placeCraftOrShippingBin(message , game);
+                controller.placeCraftOrShippingBin(message, game);
             }
             case BUY_BARN_CAGE -> {
-                ArrayList<Message> messages = controller.BuyBarnCage(message , game);
+                ArrayList<Message> messages = controller.BuyBarnCage(message, game);
                 for (Message message1 : messages) {
                     sendMessage(message1);
                 }
             }
             case BUY_ANIMAL -> {
-                controller.buyAnimal(message , game);
+                controller.buyAnimal(message, game);
             }
             case SELL_ANIMAL -> {
-                controller.sellAnimal(message , game);
+                controller.sellAnimal(message, game);
             }
             case FEED_HAY -> {
-                sendMessage(controller.AnswerFeedHay(message , game));
+                sendMessage(controller.AnswerFeedHay(message, game));
             }
             case SHEPHERD_ANIMAL -> {
-                controller.answerShepherding(message , game);
+                controller.answerShepherding(message, game);
             }
             case PET -> {
                 controller.Pet(message);
@@ -132,24 +134,23 @@ public class ClientConnectionThread extends Thread {
             case COLLECT_PRODUCT -> {
                 sendMessage(controller.collectProduct(message));
             }
-            case CHANGE_ABILITY_LEVEL ->  {
+            case CHANGE_ABILITY_LEVEL -> {
                 int xp = Main.getClient().getPlayer().getFishingAbility();
                 Main.getClient().getPlayer().increaseFishingAbility((int) (xp * 1.4));
             }
             case CHANGE_INVENTORY -> {
-                sendMessage(controller.changeInventory(message , game));
+                sendMessage(controller.changeInventory(message, game));
             }
             case CHANGE_FRIDGE -> {
                 Items items = message.getFromBody("Item");
                 int amount = message.getFromBody("amount");
                 if (Main.getClient().getPlayer().getFarm().getHome().getFridge().items.containsKey(items)) {
-                    Main.getClient().getPlayer().getFarm().getHome().getFridge().items.compute(items,(k,v) -> v + amount);
+                    Main.getClient().getPlayer().getFarm().getHome().getFridge().items.compute(items, (k, v) -> v + amount);
                     if (Main.getClient().getPlayer().getFarm().getHome().getFridge().items.get(items) == 0) {
                         Main.getClient().getPlayer().getFarm().getHome().getFridge().items.remove(items);
                     }
-                }
-                else {
-                    Main.getClient().getPlayer().getFarm().getHome().getFridge().items.put(items,amount);
+                } else {
+                    Main.getClient().getPlayer().getFarm().getHome().getFridge().items.put(items, amount);
                 }
             }
             case TALK_TO_FRIEND -> {
@@ -161,13 +162,13 @@ public class ClientConnectionThread extends Thread {
                 game.getGameState().conversations.get(key).add(messageHandling);
 
                 // send to both players to update local conversations
-                HashMap<String , Object> body = new HashMap<>();
+                HashMap<String, Object> body = new HashMap<>();
                 body.put("conversations", game.getGameState().conversations);
                 ClientConnectionController.getInstance().sendToOnePerson(new Message(CommandType.UPDATE_CONVERSATIONS, body), game, messageHandling.getSender());
                 ClientConnectionController.getInstance().sendToOnePerson(new Message(CommandType.UPDATE_CONVERSATIONS, body), game, messageHandling.getReceiver());
 
                 // add xp
-                for (HumanCommunications f: game.getGameState().friendships) {
+                for (HumanCommunications f : game.getGameState().friendships) {
                     if (f.isBetween(messageHandling.getSender(), messageHandling.getReceiver())) {
                         f.addXP(10);
                     }
@@ -178,9 +179,10 @@ public class ClientConnectionThread extends Thread {
             }
             case EXIT_MARKET -> {
                 System.out.println("Exit");
-                controller.ExitTheMarket(message , game);
+                controller.ExitTheMarket(message, game);
             }
-            case LOADED_GAME -> {}
+            case LOADED_GAME -> {
+            }
 
             case SET_TIME -> {
                 controller.passedOfTime(
@@ -202,7 +204,7 @@ public class ClientConnectionThread extends Thread {
                 );
             }
             case FriendshipsInquiry -> {
-                HashMap<String , Object> body = new HashMap<>();
+                HashMap<String, Object> body = new HashMap<>();
                 body.put("friendships", game.getGameState().friendships);
                 sendMessage(new Message(CommandType.FriendshipsInqResponse, body));
             }
