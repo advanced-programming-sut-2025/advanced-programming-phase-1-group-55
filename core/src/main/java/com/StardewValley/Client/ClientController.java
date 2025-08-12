@@ -107,8 +107,13 @@ public class ClientController {
     }
 
     public boolean createLobby(String name, boolean isPrivate, String password, boolean isVisible) {
+        if (connection == null) {
+            throw new IllegalStateException("No active server connection");
+        }
+
         if (!isPrivate) password = "";
-        String finalPassword = (isPrivate ? password : "");
+        String finalPassword = isPrivate ? password : "";
+
         ConnectionMessage request = new ConnectionMessage(new HashMap<>() {{
             put("command", "create_lobby");
             put("name", name);
@@ -119,14 +124,19 @@ public class ClientController {
 
         ConnectionMessage response = connection.sendAndWaitForResponse(request, TIMEOUT);
 
-        if (response.getFromBody("response").equals("ok")) {
+        if (response == null) {
+            System.err.println("No response from server for create_lobby.");
+            return false;
+        }
+
+        if ("ok".equals(response.getFromBody("response"))) {
             data.lobbyCode = response.getFromBody("code");
             refreshLobbies();
-
             return true;
         }
         return false;
     }
+
 
     public String joinLobby(String code) {
         ConnectionMessage request = new ConnectionMessage(new HashMap<>() {{

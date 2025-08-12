@@ -112,11 +112,22 @@ public class LobbyView implements Screen {
                         String password = passwordField.getText().trim();
                         boolean visible = visibleCheckBox.isChecked();
                         boolean isPrivate = privateCheckBox.isChecked();
+                        try {
 
-                        ClientController.getInstance().createLobby(name, isPrivate, password, visible);
-                        App.gameApp.getScreen().dispose();
-                        App.getGameApp().setScreen(new InLobbyView());
-                        dialog.hide();
+                            ClientController.getInstance().createLobby(name, isPrivate, password, visible);
+                        } catch (Exception e) {
+                            System.out.println("bugggggggggggggggg");
+                            return;
+
+                        }
+                        try {
+
+                            App.gameApp.getScreen().dispose();
+                            App.getGameApp().setScreen(new InLobbyView());
+                            dialog.hide();
+                        } catch (Exception e) {
+                            System.out.println("bugggg2222222");
+                        }
                     }
                 });
 

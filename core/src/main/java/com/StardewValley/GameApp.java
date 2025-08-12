@@ -20,8 +20,11 @@ public class GameApp extends Game {
     public static GameApp getInstance() {
         if (App.gameApp == null) {
             try {
-                String selfIp = "localhost1";
-                int selfPort = 8081;
+                Scanner scanner = new Scanner(System.in);
+                System.out.println("IP : ");
+                String selfIp = scanner.nextLine();
+                System.out.println("PORT : ");
+                int selfPort = scanner.nextInt();
                 String serverIp = "localhost";
                 int serverPort = 8080;
                 ClientController.getInstance().initConnection(selfIp, selfPort, serverIp, serverPort);
@@ -36,6 +39,19 @@ public class GameApp extends Game {
 
     @Override
     public void create() {
+        try {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("IP : ");
+            String selfIp = scanner.nextLine();
+            System.out.println("PORT : ");
+            int selfPort = scanner.nextInt();
+            String serverIp = "localhost";
+            int serverPort = 8080;
+            ClientController.getInstance().initConnection(selfIp, selfPort, serverIp, serverPort);
+        } catch (Exception e) {
+            System.err.println("Could not start the server");
+            e.printStackTrace();
+        }
         batch = new SpriteBatch();
         App.gameApp = this;
         readfile();
