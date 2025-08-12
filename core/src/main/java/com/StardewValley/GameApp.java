@@ -17,28 +17,8 @@ import static com.StardewValley.Common.model.App.readfile;
 public class GameApp extends Game {
     private SpriteBatch batch;
 
-    public static GameApp getInstance() {
-        if (App.gameApp == null) {
-            try {
-                Scanner scanner = new Scanner(System.in);
-                System.out.println("IP : ");
-                String selfIp = scanner.nextLine();
-                System.out.println("PORT : ");
-                int selfPort = scanner.nextInt();
-                String serverIp = "localhost";
-                int serverPort = 8080;
-                ClientController.getInstance().initConnection(selfIp, selfPort, serverIp, serverPort);
-            } catch (Exception e) {
-                System.err.println("Could not start the server");
-                e.printStackTrace();
-            }
+    public void handleConnection() {
 
-        }
-        return App.getGameApp();
-    }
-
-    @Override
-    public void create() {
         try {
             Scanner scanner = new Scanner(System.in);
             System.out.println("IP : ");
@@ -52,6 +32,13 @@ public class GameApp extends Game {
             System.err.println("Could not start the server");
             e.printStackTrace();
         }
+
+
+    }
+
+    @Override
+    public void create() {
+
         batch = new SpriteBatch();
         App.gameApp = this;
         readfile();

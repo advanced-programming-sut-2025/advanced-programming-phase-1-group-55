@@ -14,7 +14,10 @@ public class Lwjgl3Launcher {
     }
 
     private static Lwjgl3Application createApplication() {
-        return new Lwjgl3Application(new GameApp(), getDefaultConfiguration());
+        GameApp gameApp = new GameApp();
+        gameApp.handleConnection();
+
+        return new Lwjgl3Application(gameApp, getDefaultConfiguration());
     }
 
     private static Lwjgl3ApplicationConfiguration getDefaultConfiguration() {
@@ -24,7 +27,6 @@ public class Lwjgl3Launcher {
         configuration.useVsync(true);
 
         configuration.setForegroundFPS(Lwjgl3ApplicationConfiguration.getDisplayMode().refreshRate + 1);
-
 
 
         configuration.setWindowedMode(1920, 1080);
