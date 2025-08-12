@@ -207,7 +207,7 @@ public class ClientConnectionController {
         ArrayList<ClientConnection> connections = new ArrayList<>();
         ArrayList<String> avatarPaths = new ArrayList<>();
         for (String member : lobby.getMembers()) {
-            User user = UserDAO.getUserByUsername(member);
+            User user = App.getAllUsers().get(member);
             avatarPaths.add(user.getAvatarPath());
         }
         for (String member : lobby.getMembers()) {
@@ -276,12 +276,12 @@ public class ClientConnectionController {
         }
     }
 
-    public void removeLastUser() {
-        UserDAO.removeLastInsertedUser();
-    }
+//    public void removeLastUser() {
+//        UserDAO.removeLastInsertedUser();
+//    }
 
     public void getLastUser() {
-        User user = UserDAO.getLastUser();
+        User user = App.getCurrentGameModel().getPlayersInGame().get(1);
         ConnectionMessage response;
         if (user == null) {
             response = new ConnectionMessage(new HashMap<>() {{
