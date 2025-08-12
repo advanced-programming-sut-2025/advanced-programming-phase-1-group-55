@@ -1,9 +1,13 @@
 package com.StardewValley;
 
+import com.StardewValley.Client.ClientController;
 import com.StardewValley.Client.View.FirstMenu;
 import com.StardewValley.Common.model.App;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.sun.tools.javac.Main;
+
+import java.util.Scanner;
 
 import static com.StardewValley.Common.model.App.readfile;
 
@@ -13,6 +17,27 @@ import static com.StardewValley.Common.model.App.readfile;
 public class GameApp extends Game {
     private SpriteBatch batch;
 
+    public static GameApp getInstance() {
+        if (App.gameApp == null) {
+            try {
+                Scanner sc = new Scanner(System.in);
+                System.out.print("Enter Ip: ");
+                String selfIp = "localhost1";
+                System.out.print("Enter Port: ");
+                int selfPort = 8081;
+                System.out.print("Enter Server IP: ");
+                String serverIp = "localhost";
+                System.out.print("Enter Server Port: ");
+                int serverPort = 8080;
+                ClientController.getInstance().initConnection(selfIp, selfPort, serverIp, serverPort);
+            } catch (Exception e) {
+                System.err.println("Could not start the server");
+                e.printStackTrace();
+            }
+
+        }
+        return App.getGameApp();
+    }
 
     @Override
     public void create() {

@@ -1,7 +1,7 @@
 package com.StardewValley.Common.model;
 
 
-import com.StardewValley.Common.DTO.UserDTO;
+import com.StardewValley.Common.Lobby;
 import com.StardewValley.Common.enums.Direction;
 import com.StardewValley.Common.enums.SkillType;
 import com.StardewValley.Common.model.Animal.Animal;
@@ -81,7 +81,7 @@ public class User implements Serializable {
     private boolean hasMessageToday = false;
     private Map<Integer, Quest> quest = new HashMap<>();
     private GreenHouse greenHouse;
-
+    private transient Lobby lobby = null;
     private int id;
 
 
@@ -100,15 +100,14 @@ public class User implements Serializable {
         this.avatarPath = avatarPath;
     }
 
-    public UserDTO toDTO() {
-        return new UserDTO(
-            this.getId(),
-            this.getNickName(),
-            this.getLocation().getX(),
-            this.getLocation().getY()
-        );
+
+    public Lobby getLobby() {
+        return lobby;
     }
 
+    public void setLobby(Lobby lobby) {
+        this.lobby = lobby;
+    }
 
     public String getAvatarPath() {
         return avatarPath;
