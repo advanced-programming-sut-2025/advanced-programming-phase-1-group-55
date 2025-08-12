@@ -4,7 +4,8 @@ import com.StardewValley.Common.ConnectionMessage;
 import com.StardewValley.Common.GameDetails;
 import com.StardewValley.Common.Lobby;
 import com.StardewValley.Common.PlayerDetails;
-import com.StardewValley.Models.User;
+import com.StardewValley.Common.model.App;
+import com.StardewValley.Common.model.User;
 
 import java.io.File;
 import java.nio.file.Files;
@@ -25,12 +26,12 @@ public class ClientConnectionController {
 
     public void addUser(ConnectionMessage message) {
         User user = ConnectionMessage.userFromJson(message.getFromBody("user"));
-        UserDAO.insertUser(user);
+//        UserDAO.insertUser(user);
     }
 
     public void getUser(ConnectionMessage message) {
         String username = message.getFromBody("username");
-        User user = UserDAO.getUserByUsername(username);
+        User user = App.getAllUsers().get(username);
         ConnectionMessage response;
         if (user == null) {
             response = new ConnectionMessage(new HashMap<>() {{
@@ -205,7 +206,7 @@ public class ClientConnectionController {
         System.out.println(lobby.getMembers());
         ArrayList<ClientConnection> connections = new ArrayList<>();
         ArrayList<String> avatarPaths = new ArrayList<>();
-        for(String member : lobby.getMembers()) {
+        for (String member : lobby.getMembers()) {
             User user = UserDAO.getUserByUsername(member);
             avatarPaths.add(user.getAvatarPath());
         }
@@ -243,7 +244,7 @@ public class ClientConnectionController {
         newSelf.username = connection.getUsername();
         String username = newSelf.username;
         GameDetails game = connection.getGame();
-        if(game.isRunning()){
+        if (game.isRunning()) {
             game.putPlayerByUsername(username, newSelf);
         }
     }
@@ -267,8 +268,8 @@ public class ClientConnectionController {
             put("count", count);
         }}, ConnectionMessage.Type.inform);
 
-        for(ClientConnection conn : connection.getGame().getConnections()) {
-            if(conn == connection) {
+        for (ClientConnection conn : connection.getGame().getConnections()) {
+            if (conn == connection) {
                 continue;
             }
             conn.sendMessage(inform);
@@ -301,8 +302,8 @@ public class ClientConnectionController {
         File source = new File(sourcePath);
         String targetDirPath = "received_musics/" + connection.getUsername();
         File targetDir = new File(targetDirPath);
-        if(!targetDir.exists()) targetDir.mkdirs();
-        if(!source.exists()){
+        if (!targetDir.exists()) targetDir.mkdirs();
+        if (!source.exists()) {
             System.err.println("Error: File (" + name + ") does not exist");
             return;
         }
@@ -321,7 +322,7 @@ public class ClientConnectionController {
     public void sendMusicList(ConnectionMessage message) {
         HashMap<String, ArrayList<String>> result = new HashMap<>();
         File folder = new File("received_musics");
-        if(folder.exists() && folder.isDirectory()) {
+        if (folder.exists() && folder.isDirectory()) {
             File[] dirs = folder.listFiles(File::isDirectory);
             if (dirs != null) {
                 for (File dir : dirs) {
@@ -339,18 +340,18 @@ public class ClientConnectionController {
                 }
             }
         }
-        ConnectionMessage response = new ConnectionMessage(new HashMap<>(){{
+        ConnectionMessage response = new ConnectionMessage(new HashMap<>() {{
             put("response", "ok");
             put("music_list", result);
-        }},  ConnectionMessage.Type.response);
+        }}, ConnectionMessage.Type.response);
         connection.sendMessage(response);
     }
 
-    public void sendMusic(ConnectionMessage message){
+    public void sendMusic(ConnectionMessage message) {
         String name = message.getFromBody("filename");
-        String username =  message.getFromBody("username");
-        File file =  new File("received_musics/" + username +  "/" + name);
-        if(!file.exists() || !file.isFile()) {
+        String username = message.getFromBody("username");
+        File file = new File("received_musics/" + username + "/" + name);
+        if (!file.exists() || !file.isFile()) {
             ConnectionMessage response = new ConnectionMessage(new HashMap<>() {{
                 put("response", "not_found");
             }}, ConnectionMessage.Type.response);
@@ -362,9 +363,9 @@ public class ClientConnectionController {
         }}, ConnectionMessage.Type.response);
         connection.sendMessage(response);
 
-        try{
+        try {
             connection.sendFile(file);
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
