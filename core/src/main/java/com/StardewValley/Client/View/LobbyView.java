@@ -135,7 +135,7 @@ public class LobbyView implements Screen {
 
         Table leftPanel = new Table(skin);
         leftPanel.pad(10);
-        leftPanel.add(new Label("Visible Lobbies", skin, "title")).left().row();
+        leftPanel.add(new Label("Visible Lobbies", skin)).left().row();
 
         ScrollPane visibleScroll = new ScrollPane(visibleLobbyTable, skin);
         visibleScroll.setFadeScrollBars(false);
@@ -144,7 +144,7 @@ public class LobbyView implements Screen {
 
         Table rightPanel = new Table(skin);
         rightPanel.pad(10);
-        rightPanel.add(new Label("Search Lobby by Code", skin, "title")).left().row();
+        rightPanel.add(new Label("Search Lobby by Code", skin)).left().row();
         rightPanel.add(searchField).fillX().padTop(5).row();
         rightPanel.add(searchButton).padTop(5).row();
         rightPanel.add(searchResultLabel).padTop(5).row();
@@ -155,7 +155,7 @@ public class LobbyView implements Screen {
 
         Table bottomPanel = new Table(skin);
         bottomPanel.pad(10);
-        bottomPanel.add(new Label("Online Users", skin, "title")).left().row();
+        bottomPanel.add(new Label("Online Users", skin)).left().row();
         ScrollPane userScroll = new ScrollPane(onlineUsersTable, skin);
         userScroll.setFadeScrollBars(false);
         bottomPanel.add(userScroll).expandX().fillX();
