@@ -94,7 +94,18 @@ public class ClientController {
         }}, ConnectionMessage.Type.command);
 
         ConnectionMessage response = connection.sendAndWaitForResponse(request, TIMEOUT);
+
+        if (response == null) {
+            System.err.println("No response from server for send_lobbies.");
+            return;
+        }
+
         ArrayList<String> lobbiesJson = response.getFromBody("lobbies");
+        if (lobbiesJson == null) {
+            System.err.println("Invalid response: missing 'lobbies' field");
+            return;
+        }
+
         data.lobbies.clear();
         for (String json : lobbiesJson) {
             data.lobbies.add(ConnectionMessage.lobbyFromJson(json));
@@ -105,6 +116,7 @@ public class ClientController {
             }
         }
     }
+
 
     public boolean createLobby(String name, boolean isPrivate, String password, boolean isVisible) {
         if (connection == null) {
@@ -172,19 +184,25 @@ public class ClientController {
     }
 
     public String startGame(int mapId) {
-//        refreshLobbies();
+        if (connection == null) {
+            return "failed: no active connection";
+        }
         ConnectionMessage request = new ConnectionMessage(new HashMap<>() {{
             put("command", "start_game");
             put("map_id", mapId);
         }}, ConnectionMessage.Type.command);
 
         ConnectionMessage response = connection.sendAndWaitForResponse(request, TIMEOUT);
-        if (response.getFromBody("response").equals("ok")) {
+        if (response == null) {
+            return "failed: no response from server";
+        }
+        if ("ok".equals(response.getFromBody("response"))) {
             return "game started successfully";
         } else {
             return response.getFromBody("error");
         }
     }
+
 
     public boolean setReaction(String text) {
         if (!Reaction.isValid(text)) {

@@ -10,12 +10,12 @@ import com.StardewValley.GameApp;
 public class Lwjgl3Launcher {
     public static void main(String[] args) {
         if (StartupHelper.startNewJvmIfRequired()) return; // This handles macOS support and helps on Windows.
-        createApplication();
+        createApplication(Integer.parseInt(args[0]));
     }
 
-    private static Lwjgl3Application createApplication() {
+    private static Lwjgl3Application createApplication(int port) {
         GameApp gameApp = new GameApp();
-        gameApp.handleConnection();
+        gameApp.handleConnection(port);
 
         return new Lwjgl3Application(gameApp, getDefaultConfiguration());
     }

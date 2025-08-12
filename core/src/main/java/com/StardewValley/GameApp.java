@@ -17,14 +17,12 @@ import static com.StardewValley.Common.model.App.readfile;
 public class GameApp extends Game {
     private SpriteBatch batch;
 
-    public void handleConnection() {
+    public void handleConnection(int port) {
 
         try {
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("IP : ");
-            String selfIp = scanner.nextLine();
-            System.out.println("PORT : ");
-            int selfPort = scanner.nextInt();
+
+            String selfIp = "localhost";
+            int selfPort = port;
             String serverIp = "localhost";
             int serverPort = 8080;
             ClientController.getInstance().initConnection(selfIp, selfPort, serverIp, serverPort);

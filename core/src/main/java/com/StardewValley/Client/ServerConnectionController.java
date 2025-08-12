@@ -50,24 +50,24 @@ public class ServerConnectionController {
     }
 
     public void gameStarted(ConnectionMessage message) {
-        System.out.println(1);
-        GameDetails game = ConnectionMessage.gameDetailsFromJson(message.getFromBody("game_details"));
-        System.out.println((String) message.getFromBody("game_details"));
+        System.out.println("start game ");
+//        GameDetails game = ConnectionMessage.gameDetailsFromJson(message.getFromBody("game_details"));
+//        System.out.println((String) message.getFromBody("game_details"));
         ArrayList<String> usernames = message.getFromBody("usernames");
-        ArrayList<String> avatarPaths = message.getFromBody("avatar_paths");
-        System.out.println(2);
-        int mapId = message.getIntFromBody("map_id");
-        Chat chat = new Chat(usernames);
-        game.setChat(chat);
-        data.selfDetails = new PlayerDetails(App.mainUser.getUsername());
-        data.gameDetails = game;
-        data.isInGame = true;
-        User[] users = new User[usernames.size()];
-        for (int i = 0; i < usernames.size(); i++) {
-            users[i] = new User(usernames.get(i), "", "", "", "", "", "", "");//todo null mide
-//            TODO: set avatars
-//            users[i].setAvatarTexture(new Texture());
-        }
+//        ArrayList<String> avatarPaths = message.getFromBody("avatar_paths");
+        System.out.println("etmam dastan");
+//        int mapId = message.getIntFromBody("map_id");
+//        Chat chat = new Chat(usernames);
+//        game.setChat(chat);
+//        data.selfDetails = new PlayerDetails(App.mainUser.getUsername());
+//        data.gameDetails = game;
+//        data.isInGame = true;
+//        User[] users = new User[usernames.size()];
+//        for (int i = 0; i < usernames.size(); i++) {
+//            users[i] = new User(usernames.get(i), "", "", "", "", "", "", "");//todo null mide
+////            TODO: set avatars
+////            users[i].setAvatarTexture(new Texture());
+//        }
         controller.newGame(usernames.get(0), usernames.get(1), usernames.get(2), "Map1", "Map1", "Map1");
 
         ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();

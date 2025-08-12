@@ -4,6 +4,7 @@
 //import com.StardewValley.Common.model.User;
 //import com.google.gson.Gson;
 //import com.google.gson.reflect.TypeToken;
+//
 //import java.lang.reflect.Type;
 //
 //import java.sql.*;
@@ -16,6 +17,7 @@
 //    public static Connection getConnection() throws SQLException {
 //        return DriverManager.getConnection(DB_URL);
 //    }
+//
 //    public static void initializeDatabase() {
 //        try (Connection conn = getConnection(); Statement stmt = conn.createStatement()) {
 //            String sql = """
@@ -49,9 +51,9 @@
 //            pstmt.setString(3, user.getNickName());
 //            pstmt.setString(4, user.getEmail());
 //            pstmt.setString(5, user.getGender());
-//            pstmt.setString(6, user.getQuestion() == null ? null : user.getQuestion().name());
-//            pstmt.setString(7, user.getAnswer());
-//            pstmt.setString(8, gson.toJson(user.getGamesMoney()));
+//            pstmt.setString(6, user.getSecurityQuestion());
+//            pstmt.setString(7, user.getAnswerOfSecurityQuestion());
+//            pstmt.setString(8, gson.toJson(user.getGold()));
 //            pstmt.setString(9, user.getAvatarPath());
 //
 //            pstmt.executeUpdate();
@@ -61,6 +63,7 @@
 //            e.printStackTrace();
 //        }
 //    }
+//
 //    public static User getUserByUsername(String username) {
 //        String sql = "SELECT * FROM users WHERE username = ?";
 //
@@ -70,7 +73,8 @@
 //            pstmt.setString(1, username);
 //            ResultSet rs = pstmt.executeQuery();
 //
-//            Type type = new TypeToken<ArrayList<Integer>>(){}.getType();
+//            Type type = new TypeToken<ArrayList<Integer>>() {
+//            }.getType();
 //            if (rs.next()) {
 //                User user = new User(
 //                    rs.getString("username"),
@@ -85,7 +89,7 @@
 //
 //                String questionName = rs.getString("question");
 //                if (questionName != null) {
-//                    user.setQuestion(Question.getQuestionByName(questionName));
+//                    user.setSecurityQuestion(Question.getQuestionByName(questionName));
 //                }
 //
 //                return user;
@@ -133,7 +137,8 @@
 //             PreparedStatement pstmt = conn.prepareStatement(sql);
 //             ResultSet rs = pstmt.executeQuery()) {
 //
-//            Type type = new TypeToken<ArrayList<Integer>>(){}.getType();
+//            Type type = new TypeToken<ArrayList<Integer>>() {
+//            }.getType();
 //
 //            if (rs.next()) {
 //                User user = new User(
