@@ -1,21 +1,9 @@
 package com.StardewValley.Common.model.ClientServer;
 
-import com.Graphic.Controller.MainGame.InputGameController;
-import com.Graphic.Main;
-import com.Graphic.View.GameMenus.MarketMenu;
-import com.Graphic.model.*;
-import com.Graphic.model.Animall.Animal;
-import com.Graphic.model.Animall.BarnOrCage;
-import com.Graphic.model.Enum.Commands.CommandType;
-import com.Graphic.model.Enum.ItemType.BarnORCageType;
-import com.Graphic.model.Enum.ItemType.MarketType;
-import com.Graphic.model.MapThings.GameObject;
-import com.Graphic.model.MapThings.Tile;
-import com.Graphic.model.Places.MarketItem;
-import com.Graphic.model.Places.ShippingBin;
-import com.Graphic.model.Plants.BasicRock;
-import com.Graphic.model.Plants.Wood;
-import com.Graphic.model.Weather.DateHour;
+
+import com.StardewValley.Common.enums.CommandType;
+import com.StardewValley.Common.model.User;
+import com.badlogic.gdx.Game;
 import com.esotericsoftware.kryonet.Connection;
 
 import java.awt.*;
@@ -24,11 +12,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.Graphic.Controller.MainGame.GameControllerLogic.*;
-import static com.Graphic.model.Enum.Commands.CommandType.REDUCE_BARN_CAGE;
-import static com.Graphic.model.Enum.Commands.CommandType.*;
-import static com.Graphic.model.HelpersClass.TextureManager.TEXTURE_SIZE;
-import static com.Graphic.model.Weather.DateHour.getDayDifferent;
+import static com.StardewValley.Common.enums.CommandType.*;
+
 
 public class ClientConnectionController {
 

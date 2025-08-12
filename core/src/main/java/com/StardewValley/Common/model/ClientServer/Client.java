@@ -1,8 +1,6 @@
-package com.Graphic.model.ClientServer;
+package com.StardewValley.Common.model.ClientServer;
 
-import com.StardewValley.Common.model.ClientServer.ClientWork;
-import com.StardewValley.Common.model.ClientServer.GameState;
-import com.StardewValley.Common.model.ClientServer.Network;
+
 import com.StardewValley.GameApp;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
@@ -18,7 +16,7 @@ public class Client extends Game {
     public static void main(String[] args) {
 
         try {
-            ClientWork clientWork = new ClientWork("127.0.0.1", Network.TCP_PORT , Network.UDP_PORT);
+            ClientWork clientWork = new ClientWork("127.0.0.1", Network.TCP_PORT, Network.UDP_PORT);
             Thread.sleep(1000);
             Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
             config.setTitle("StardewValley");
@@ -27,9 +25,7 @@ public class Client extends Game {
             config.setForegroundFPS(Lwjgl3ApplicationConfiguration.getDisplayMode().refreshRate + 1);
             new Lwjgl3Application(new GameApp(clientWork, args[0], args[1]), config);
 
-        }
-
-        catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

@@ -1,6 +1,8 @@
 package com.StardewValley.Common.model.ClientServer;
 
-import com.Graphic.model.Enum.Commands.CommandType;
+
+
+import com.StardewValley.Common.enums.CommandType;
 
 import java.util.HashMap;
 
