@@ -20,14 +20,9 @@ public class GameApp extends Game {
     public static GameApp getInstance() {
         if (App.gameApp == null) {
             try {
-                Scanner sc = new Scanner(System.in);
-                System.out.print("Enter Ip: ");
                 String selfIp = "localhost1";
-                System.out.print("Enter Port: ");
                 int selfPort = 8081;
-                System.out.print("Enter Server IP: ");
                 String serverIp = "localhost";
-                System.out.print("Enter Server Port: ");
                 int serverPort = 8080;
                 ClientController.getInstance().initConnection(selfIp, selfPort, serverIp, serverPort);
             } catch (Exception e) {

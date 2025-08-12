@@ -106,7 +106,7 @@ public class ClientConnection extends Connection {
                 return true;
             }
             if(message.getFromBody("command").equals("remove_last_user")) {
-                controller.removeLastUser();
+//                controller.removeLastUser();
                 return true;
             }
             if(message.getFromBody("command").equals("get_last_user")) {

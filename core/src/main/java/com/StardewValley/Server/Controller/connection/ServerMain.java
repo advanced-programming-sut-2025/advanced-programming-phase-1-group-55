@@ -50,12 +50,9 @@ public class ServerMain {
 
     public static void main(String[] args) {
 //        initPhi();
-        UserDAO.initializeDatabase();
+//        UserDAO.initializeDatabase();
         try {
-            Scanner sc = new Scanner(System.in);
-            System.out.print("Enter IP Address: ");
             ip = "localhost";
-            System.out.print("Enter Port: ");
             port = 8080;
             serverSocket = new ServerSocket(port);
         } catch (Exception e) {
