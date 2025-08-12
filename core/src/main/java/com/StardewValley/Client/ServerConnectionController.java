@@ -133,7 +133,7 @@ public class ServerConnectionController {
         String name = message.getFromBody("filename");
         String sourcePath = "temp_receives/" + name;
         File source = new File(sourcePath);
-        String targetDirPath = "received_musics/" + App.getInstance().getCurrentUser().getUsername();
+        String targetDirPath = "received_musics/" + "  music sasi mankan";
         File targetDir = new File(targetDirPath);
         if (!targetDir.exists()) targetDir.mkdirs();
         if (!source.exists()) {

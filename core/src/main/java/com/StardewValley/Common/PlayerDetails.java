@@ -1,7 +1,8 @@
 package com.StardewValley.Common;
 
-import com.StardewValley.Models.App;
-import com.StardewValley.Models.Player;
+
+import com.StardewValley.Common.model.App;
+import com.StardewValley.Common.model.User;
 
 public class PlayerDetails {
     public String username;
@@ -24,12 +25,13 @@ public class PlayerDetails {
         gold = 0;
     }
 
-    public PlayerDetails() {}
+    public PlayerDetails() {
+    }
 
     public void updateInfo() {
-        Player player = App.getInstance().getCurrentGame().getCurrentPlayer();
-        posX = player.getPosition().x;
-        posY = player.getPosition().y;
-        canSleep = (player.isInHouse() || player.isFainted());
+        User player = App.currentGameModel.currentUser;
+        posX = player.getLocation().getX();
+        posY = player.getLocation().getY();
+        canSleep = (player.isFainted());
     }
 }
