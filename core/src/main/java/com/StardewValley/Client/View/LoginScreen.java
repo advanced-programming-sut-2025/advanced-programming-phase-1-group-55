@@ -1,5 +1,6 @@
 package com.StardewValley.Client.View;
 
+import com.StardewValley.Client.ClientController;
 import com.StardewValley.Server.Controller.LoginMenuController;
 import com.StardewValley.Common.model.App;
 import com.StardewValley.Common.model.Result;
@@ -61,6 +62,7 @@ public class LoginScreen extends ScreenAdapter {
                 Result result = controller.login(username, password, stay);
                 resultLabel.setText(result.Message());
                 if (result.IsSuccess()){
+                    ClientController.getInstance().informLogin(username);
                     App.getGameApp().setScreen(new MainMenuScreen());
                 }
             }

@@ -1,4 +1,4 @@
-package com.StardewValley.Server.Controller.connection;
+package com.StardewValley.Server.connection;
 
 import com.StardewValley.Common.Connection;
 import com.StardewValley.Common.ConnectionMessage;

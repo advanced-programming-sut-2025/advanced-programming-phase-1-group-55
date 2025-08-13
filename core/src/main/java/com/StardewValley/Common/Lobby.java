@@ -1,7 +1,7 @@
 package com.StardewValley.Common;
 
-import com.StardewValley.Server.Controller.connection.ClientConnection;
-import com.StardewValley.Server.Controller.connection.ServerMain;
+import com.StardewValley.Server.connection.ClientConnection;
+import com.StardewValley.Server.connection.ServerMain;
 
 import java.util.ArrayList;
 import java.util.Random;

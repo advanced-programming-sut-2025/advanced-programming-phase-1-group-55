@@ -1,4 +1,4 @@
-package com.StardewValley.Server.Controller.connection;
+package com.StardewValley.Server.connection;
 
 import com.StardewValley.Common.ConnectionMessage;
 import com.StardewValley.Common.GameDetails;
@@ -55,6 +55,7 @@ public class ServerMain {
             ip = "localhost";
             port = 8080;
             serverSocket = new ServerSocket(port);
+            System.out.println("Listening on port " + port);
         } catch (Exception e) {
             System.err.println("Could not start the server");
             e.printStackTrace();

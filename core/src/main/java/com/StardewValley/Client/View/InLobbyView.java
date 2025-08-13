@@ -55,8 +55,7 @@ public class InLobbyView implements Screen {
         startGameButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                int selectedMapId = mapSelectBox.getSelected();
-                ClientController.getInstance().startGame(selectedMapId);
+                ClientController.getInstance().startGame();
             }
         });
 
@@ -74,20 +73,18 @@ public class InLobbyView implements Screen {
             }
         });
 
-        // Buttons + Map Select table
+
         Table buttonTable = new Table();
-        buttonTable.add(new Label("Select Map:", skin)).padBottom(5).row();
-        buttonTable.add(mapSelectBox).padBottom(15).row();
         buttonTable.add(startGameButton).pad(10).row();
         buttonTable.add(leaveButton).pad(10);
         buttonTable.add(refreshLobbiesButton).pad(10);
 
-        // Member list
+
         memberTable = new Table(skin);
         memberTable.defaults().pad(5);
         updateMemberList();
 
-        // Layout
+
         rootTable.add(new Label(currentLobby.getName() + "(" + currentLobby.getCode() + ")", skin)).padBottom(5).row();
         rootTable.add(new Label("Lobby Members:", skin)).left().top().padBottom(10).row();
         rootTable.add(memberTable).left().top().expandY().row();
@@ -96,9 +93,15 @@ public class InLobbyView implements Screen {
 
     private void updateMemberList() {
         memberTable.clear();
+        System.out.println("qaqaaaq");
         Lobby currentLobby = ClientData.getInstance().getLobby(ClientData.getInstance().lobbyCode);
         if (currentLobby != null) {
+            if (currentLobby.getMembers()==null || currentLobby.getMembers().isEmpty()) {
+                System.out.println("no members in lobby");
+                return;
+            }
             for (String member : currentLobby.getMembers()) {
+                System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaa");
                 Label label = new Label(member, skin);
                 label.setAlignment(Align.left);
                 memberTable.add(label).left().row();

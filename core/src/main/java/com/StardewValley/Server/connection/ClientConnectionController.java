@@ -1,4 +1,4 @@
-package com.StardewValley.Server.Controller.connection;
+package com.StardewValley.Server.connection;
 
 import com.StardewValley.Common.ConnectionMessage;
 import com.StardewValley.Common.GameDetails;
@@ -25,8 +25,8 @@ public class ClientConnectionController {
     }
 
     public void addUser(ConnectionMessage message) {
-        User user = ConnectionMessage.userFromJson(message.getFromBody("user"));
-//        UserDAO.insertUser(user);
+//        User user = ConnectionMessage.userFromJson(message.getFromBody("user"));
+//       UserDAO.insertUser(user);
     }
 
     public void getUser(ConnectionMessage message) {
@@ -49,6 +49,8 @@ public class ClientConnectionController {
 
     public void informLogin(ConnectionMessage message) {
         String username = message.getFromBody("username");
+        System.out.println(username);
+        System.out.println("12345678");
         connection.setUsername(username);
     }
 
@@ -169,7 +171,6 @@ public class ClientConnectionController {
     }
 
     public void startGame(ConnectionMessage message) {
-        int mapId = message.getIntFromBody("map_id");
         String error = "";
         String code = connection.getLobbyCode();
         Lobby lobby = ServerMain.getLobbyByCode(connection.getLobbyCode());
@@ -205,20 +206,20 @@ public class ClientConnectionController {
 
         System.out.println(lobby.getMembers());
         ArrayList<ClientConnection> connections = new ArrayList<>();
-        ArrayList<String> avatarPaths = new ArrayList<>();
-        for (String member : lobby.getMembers()) {
-            User user = App.getAllUsers().get(member);
-            avatarPaths.add(user.getAvatarPath());
-        }
+//        ArrayList<String> avatarPaths = new ArrayList<>();
+//        for (String member : lobby.getMembers()) {
+//            User user = App.getAllUsers().get(member);
+//            avatarPaths.add(user.getAvatarPath());
+//        }
         for (String member : lobby.getMembers()) {
             ClientConnection connection = ServerMain.getConnectionByUsername(member);
             connections.add(connection);
             ConnectionMessage information = new ConnectionMessage(new HashMap<>() {{
                 put("information", "start_game");
-                put("game_details", json);
+//                put("game_details", json);
                 put("usernames", lobby.getMembers());
-                put("avatar_paths", avatarPaths);
-                put("map_id", mapId);
+//                put("avatar_paths", avatarPaths);
+//                put("map_id", mapId);
             }}, ConnectionMessage.Type.inform);
 
             connection.sendMessage(information);

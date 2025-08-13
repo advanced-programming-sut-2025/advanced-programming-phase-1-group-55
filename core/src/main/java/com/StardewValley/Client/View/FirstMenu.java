@@ -1,5 +1,6 @@
 package com.StardewValley.Client.View;
 
+import com.StardewValley.Client.ClientController;
 import com.StardewValley.Common.model.App;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -66,6 +67,7 @@ public class FirstMenu extends ScreenAdapter {
             public boolean keyDown(int keycode) {
                 if (keycode == Input.Keys.G) {
                     App.mainUser = App.getAllUsers().get("arshia");
+                    ClientController.getInstance().informLogin("arshia");
                     App.getGameApp().setScreen(new MainMenuScreen());
                 }
                 return true;

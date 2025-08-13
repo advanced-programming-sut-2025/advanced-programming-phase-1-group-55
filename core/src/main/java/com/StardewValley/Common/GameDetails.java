@@ -1,6 +1,6 @@
 package com.StardewValley.Common;
 
-import com.StardewValley.Server.Controller.connection.ClientConnection;
+import com.StardewValley.Server.connection.ClientConnection;
 
 import java.util.ArrayList;
 import java.util.HashMap;

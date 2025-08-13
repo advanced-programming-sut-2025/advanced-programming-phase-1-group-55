@@ -12,6 +12,7 @@ import java.io.File;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Optional;
 
 import static com.StardewValley.Common.Connection.TIMEOUT;
 
@@ -183,23 +184,30 @@ public class ClientController {
         }
     }
 
-    public String startGame(int mapId) {
+    public void startGame() {
         if (connection == null) {
-            return "failed: no active connection";
+            System.out.println( "failed: no active connection");
+            return;
         }
-        ConnectionMessage request = new ConnectionMessage(new HashMap<>() {{
+        ConnectionMessage request=null;
+       try{ request= new ConnectionMessage(new HashMap<>() {{
             put("command", "start_game");
-            put("map_id", mapId);
-        }}, ConnectionMessage.Type.command);
+        }}, ConnectionMessage.Type.command);}
+       catch (Exception e) {
+           System.out.println("dsdsdsdsdsdsdsd");
+           System.out.println( "s");
+           return ;
+       }
 
         ConnectionMessage response = connection.sendAndWaitForResponse(request, TIMEOUT);
         if (response == null) {
-            return "failed: no response from server";
+            System.out.println( "failed: no response from server");
+            return ;
         }
         if ("ok".equals(response.getFromBody("response"))) {
-            return "game started successfully";
+            System.out.println( "game started successfully");
         } else {
-            return response.getFromBody("error");
+            System.out.println(Optional.ofNullable(response.getFromBody("error")));
         }
     }
 
