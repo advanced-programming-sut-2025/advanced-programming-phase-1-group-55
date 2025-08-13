@@ -201,14 +201,14 @@ public enum AssetManager {
     SHEEP("Animals/Sheep.png"),
     PIG("Animals/Pig.png"),
 
-    COW_SHEET("Animals/White Cow.png"),
-    CHICKEN_SHEET("Animals/White Chicken.png"),
-    SHEEP_SHEET("Animals/ShearedSheep.png"),
-    PIG_SHEET("Animals/BabyPig.png"),
-    RABBIT_SHEET("Animals/BabyRabbit.png"),
-    GOAT_SHEET("Animals/BabyGoat.png"),
-    DUCK_SHEET("Animals/Duck.png"),
-    DINOSAUR_SHEET("Animals/Dinosaur.png"),
+    COW_SHEET("Animals/White Cow.png"), // 4 5
+    CHICKEN_SHEET("Animals/White Chicken.png"),//4 7
+    SHEEP_SHEET("Animals/ShearedSheep.png"),// 4 5
+    PIG_SHEET("Animals/BabyPig.png"),// 4 5
+    RABBIT_SHEET("sprites/Rabbit.png"),//4 7
+    GOAT_SHEET("sprites/Goat.png"),// 4 5
+    DUCK_SHEET("sprites/Duck.png"),//4 14
+    DINOSAUR_SHEET("sprites/Dinosaur.png"),//4 7
 
 
 

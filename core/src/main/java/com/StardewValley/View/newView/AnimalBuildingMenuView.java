@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
@@ -56,6 +57,7 @@ public class AnimalBuildingMenuView implements Screen {
                     public void clicked(InputEvent event, float x, float y) {
                         animal.pet();
                         animalInfo.setText(animal.getInfo());
+                        showTemporaryPopup("Petting...", animal);
                     }
                 });
 
@@ -65,6 +67,7 @@ public class AnimalBuildingMenuView implements Screen {
                     public void clicked(InputEvent event, float x, float y) {
                         animal.feed();
                         animalInfo.setText(animal.getInfo());
+                        showTemporaryPopup("Feeding...", animal);
                     }
                 });
 
@@ -73,7 +76,7 @@ public class AnimalBuildingMenuView implements Screen {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         animal.goOut();
-
+                        showTemporaryPopup("The animal goes outside", animal);
                         AnimalBuilding home = findHomeBuildingFor(animal);
                         if (home != null && App.currentGameGraphicView instanceof MainGameGraphicView view) {
                             view.placeAnimalNearBuilding(animal, home);
@@ -145,6 +148,41 @@ public class AnimalBuildingMenuView implements Screen {
         System.out.println("[Shepherd] Falling back to first building.");
         return buildings.get(0);
     }
+
+    private void showTemporaryPopup(String message, Animal animal) {
+        final Dialog dialog = new Dialog("", skin);
+
+        Table contentTable = new Table();
+        contentTable.defaults().pad(10);
+
+        if (animal != null && animal.getAnimalType().getType().getTexture() != null) {
+            Image animalImage = new Image(animal.getAnimalType().getType().getTexture());
+            animalImage.setScaling(Scaling.fit);
+            animalImage.setSize(64, 64);
+            contentTable.add(animalImage).size(64).padRight(15);
+        }
+
+        Label label = new Label(message, skin);
+        contentTable.add(label).center();
+
+        dialog.getContentTable().add(contentTable).center();
+        dialog.setModal(false);
+        dialog.setMovable(false);
+        dialog.show(stage);
+        dialog.setPosition(
+            stage.getWidth() / 2f - dialog.getWidth() / 2f,
+            stage.getHeight() / 2f - dialog.getHeight() / 2f
+        );
+
+        com.badlogic.gdx.utils.Timer.schedule(new com.badlogic.gdx.utils.Timer.Task() {
+            @Override
+            public void run() {
+                dialog.remove();
+            }
+        }, 2f);
+    }
+
+
 
 
 
