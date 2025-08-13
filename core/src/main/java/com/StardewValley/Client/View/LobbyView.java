@@ -197,9 +197,7 @@ public class LobbyView implements Screen {
                             protected void result(Object object) {
                                 boolean accepted = (Boolean) object;
                                 if (accepted) {
-                                    ClientController.getInstance().joinLobby(lobby.getCode());
-                                    App.gameApp.getScreen().dispose();
-                                    App.gameApp.setScreen(new InLobbyView());
+                                    ClientController.getInstance().joinLobby(lobby.getCode(),codeField.getText().trim());
                                 }
                             }
                         };
@@ -236,9 +234,8 @@ public class LobbyView implements Screen {
                     protected void result(Object object) {
                         boolean accepted = (Boolean) object;
                         if (accepted) {
-                            ClientController.getInstance().joinLobby(lobby.getCode());
-                            App.gameApp.getScreen().dispose();
-                            App.gameApp.setScreen(new InLobbyView());
+                            ClientController.getInstance().joinLobby(lobby.getCode(),codeField.getText().trim());
+
                         }
 
                     }

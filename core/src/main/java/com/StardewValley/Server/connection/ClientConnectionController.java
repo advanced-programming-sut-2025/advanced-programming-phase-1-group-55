@@ -102,6 +102,7 @@ public class ClientConnectionController {
 
     public void joinLobby(ConnectionMessage message) {
         String code = message.getFromBody("code");
+        String password=message.getFromBody("password");
         String username = connection.getUsername();
         String error = "";
         Lobby lobby = ServerMain.getLobbyByCode(code);
@@ -111,6 +112,8 @@ public class ClientConnectionController {
             error = "lobby not found";
         } else if (lobby.getMembers().size() >= 4) {
             error = "lobby is already full";
+        } else if (lobby.isPrivate()&&!lobby.getPassword().equals(password)) {
+            error = "passwords do not match";
         }
 
         ConnectionMessage response;
@@ -250,11 +253,6 @@ public class ClientConnectionController {
         }
     }
 
-    public void sendChatMessage(ConnectionMessage message) {
-        String text = message.getFromBody("text");
-        String sender = message.getFromBody("sender");
-        String receiver = message.getFromBody("receiver");
-    }
 
     public void storeItemBought(ConnectionMessage message) {
         String store = message.getFromBody("store");

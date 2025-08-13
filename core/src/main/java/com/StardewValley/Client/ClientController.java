@@ -1,5 +1,6 @@
 package com.StardewValley.Client;
 
+import com.StardewValley.Client.View.InLobbyView;
 import com.StardewValley.Client.View.LobbyView;
 import com.StardewValley.Common.model.App;
 import com.StardewValley.Common.ConnectionMessage;
@@ -152,16 +153,19 @@ public class ClientController {
     }
 
 
-    public String joinLobby(String code) {
+    public String joinLobby(String code,String password) {
         ConnectionMessage request = new ConnectionMessage(new HashMap<>() {{
             put("command", "join_lobby");
             put("code", code);
+            put("password", password);
         }}, ConnectionMessage.Type.command);
 
         ConnectionMessage response = connection.sendAndWaitForResponse(request, TIMEOUT);
         if (response.getFromBody("response").equals("ok")) {
             data.lobbyCode = code;
             refreshLobbies();
+            App.gameApp.getScreen().dispose();
+            App.gameApp.setScreen(new InLobbyView());
             return "joined successfully";
         } else {
             return response.getFromBody("error");
