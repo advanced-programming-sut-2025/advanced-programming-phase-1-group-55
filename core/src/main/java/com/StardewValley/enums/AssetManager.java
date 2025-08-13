@@ -192,6 +192,25 @@ public enum AssetManager {
     COOP("Buildings/Coop.png"),
 
 
+    CHICKEN("Animals/White_Chicken.png"),
+    DUCK("Animals/Duck.png"),
+    RABBIT("Animals/Rabbit.png"),
+    DINOSAUR("Animals/Dinosaur.png"),
+    COW("Animals/Brown_Cow.png"),
+    GOAT("Animals/Goat.png"),
+    SHEEP("Animals/Sheep.png"),
+    PIG("Animals/Pig.png"),
+
+    COW_SHEET("Animals/White Cow.png"),
+    CHICKEN_SHEET("Animals/White Chicken.png"),
+    SHEEP_SHEET("Animals/ShearedSheep.png"),
+    PIG_SHEET("Animals/BabyPig.png"),
+    RABBIT_SHEET("Animals/BabyRabbit.png"),
+    GOAT_SHEET("Animals/BabyGoat.png"),
+    DUCK_SHEET("Animals/Duck.png"),
+    DINOSAUR_SHEET("Animals/Dinosaur.png"),
+
+
 
     ;
 

@@ -1,7 +1,14 @@
 package com.StardewValley.model.Animal;
 
+import com.StardewValley.enums.AssetManager;
 import com.StardewValley.model.Item.Item;
 import com.StardewValley.model.Map.Tile;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.utils.Array;
+import com.StardewValley.model.Animal.AnimalSheets;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +27,20 @@ public class Animal extends Item {
     private boolean hasProduct = false;
     private boolean secondProduct = false;
     private double quality = 0;
+    private Sprite sprite;
+    private float worldX, worldY;
+    public float getWorldX() { return worldX; }
+    public float getWorldY() { return worldY; }
+    private boolean moving = false;
+    private float targetX, targetY;
+    private float speed = 200f;
+    private static final float MAX_STEP = 10f;
+    private Animation<TextureRegion> moveAnim;
+    private TextureRegion idleFrame;
+    private float animTime = 0f;
+
+
+
 
     public Animal(String name, FarmAnimalType animalType)
     {
@@ -30,14 +51,26 @@ public class Animal extends Item {
         this.isFed = false;
         this.isIn = true;
         this.isPet = false;
+        this.sprite = AssetManager.valueOf(animalType.name()).getSprite();
+        this.sprite.setOriginCenter();
+        initAnimationFromType();
 //        this.products = (ArrayList<Item>) animalType.getProduct();
 //        this.products = new ArrayList<>(animalType.getProduct());
     }
     public Animal(FarmAnimalType type) {
         this.animalType = type;
         this.name = type.name();
+        this.sprite = AssetManager.valueOf(type.name()).getSprite();
+        this.sprite.setOriginCenter();
+        initAnimationFromType();
     }
 
+    public Sprite getSprite() { return sprite; }
+
+    public void setWorldPosition(float x, float y) {
+        this.worldX = x;
+        this.worldY = y;
+    }
 
     public String getName() {
         return name;
@@ -241,9 +274,82 @@ public class Animal extends Item {
         this.isFed = false;
         this.isPet = false;
     }
+    public void setTarget(float x, float y) {
+        this.targetX = x;
+        this.targetY = y;
+        this.moving = true;
+    }
+
+    public void update(float delta) {
+        if (!moving) return;
+        float dx = targetX - worldX;
+        float dy = targetY - worldY;
+        float dist2 = dx*dx + dy*dy;
+        if (dist2 < 1f) {
+            worldX = targetX;
+            worldY = targetY;
+            moving = false;
+            return;
+        }
+        float dist = (float) Math.sqrt(dist2);
+        float step = speed * delta;
+
+        if (step > MAX_STEP) step = MAX_STEP;
+
+        if (step >= dist) {
+            worldX = targetX;
+            worldY = targetY;
+            moving = false;
+        } else {
+            worldX += dx / dist * step;
+            worldY += dy / dist * step;
+        }
+    }
+
+    private void setupAnimationFromSheet(com.badlogic.gdx.graphics.Texture sheet, int cols, int rows, float frameDurationSec) {
+        int frameW = sheet.getWidth() / cols;
+        int frameH = sheet.getHeight() / rows;
+
+        TextureRegion[][] grid = TextureRegion.split(sheet, frameW, frameH);
+        Array<TextureRegion> frames = new Array<>(cols * rows);
+        for (int r = 0; r < rows; r++) {
+            for (int c = 0; c < cols; c++) {
+                frames.add(grid[r][c]);
+            }
+        }
+        moveAnim = new Animation<>(frameDurationSec, frames, Animation.PlayMode.LOOP);
+        idleFrame = frames.get(0);
+    }
 
 
+    public TextureRegion getCurrentFrame(float delta) {
+        if (moving && moveAnim != null) {
+            animTime += delta;
+             System.out.println("animTime=" + animTime);
+            return moveAnim.getKeyFrame(animTime);
+        }
+        animTime = 0f;
+        return (moveAnim != null) ? idleFrame : sprite;
 
+
+    }
+
+
+    private void initAnimationFromType() {
+        var spec = AnimalSheets.forType(animalType);
+        if (spec != null) {
+            setupAnimationFromSheet(spec.texture, spec.cols, spec.rows, spec.frameDuration);
+
+            if (sprite != null && idleFrame != null) {
+                float w = sprite.getWidth(), h = sprite.getHeight();
+                float ox = sprite.getOriginX(), oy = sprite.getOriginY();
+
+                sprite.setRegion(idleFrame);
+                sprite.setSize(w, h);
+                sprite.setOrigin(ox, oy);
+            }
+        }
+    }
 
 
 }

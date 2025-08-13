@@ -1,6 +1,7 @@
 package com.StardewValley.View.newView;
 
 import com.StardewValley.Controller.MainGameController;
+import com.StardewValley.model.Animal.Animal;
 import com.StardewValley.model.Animal.AnimalBuilding;
 import com.StardewValley.model.Animal.FarmBuildingType;
 import com.StardewValley.Controller.TimeController;
@@ -31,6 +32,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+
 
 import static com.StardewValley.enums.AssetManager.*;
 
@@ -174,6 +177,20 @@ public class MainGameGraphicView implements Screen, InputProcessor {
             building.getSprite().draw(App.gameApp.getBatch());
         }
 
+        for (Animal a : player.getMyAnimals()) {
+            a.update(delta);
+        }
+
+        for (Animal animal : player.getMyAnimals()) {
+            if (!animal.isIn()) {
+                TextureRegion frame = animal.getCurrentFrame(delta);
+                Sprite s = animal.getSprite();
+                s.setRegion(frame);
+                s.setPosition(animal.getWorldX(), animal.getWorldY());
+                s.draw(App.gameApp.getBatch());
+            }
+        }
+
 
         controller.updateGame(delta);
         timeController.update(delta);
@@ -261,6 +278,72 @@ public class MainGameGraphicView implements Screen, InputProcessor {
 
 
 
+    private AnimalBuilding findBuildingAt(float x, float y) {
+        for (AnimalBuilding b : player.getFarmBuildings()) {
+            var rect = b.getCollisionRect();
+            float rx = rect.getX(), ry = rect.getY(), rw = rect.getWidth(), rh = rect.getHeight();
+            if (x >= rx && x <= rx + rw && y >= ry && y <= ry + rh) {
+                return b;
+            }
+        }
+        return null;
+    }
+
+
+
+
+
+
+    public void placeAnimalNearBuilding(Animal animal, AnimalBuilding building) {
+        if (animal == null || building == null) return;
+        if (!building.getAnimals().contains(animal)) {
+            building.getAnimals().add(animal);
+        }
+        float tileW = 64f, tileH = 64f;
+        try {
+            var lands = player.getFarm().getFarmLands();
+            if (lands != null && !lands.isEmpty() && lands.get(0).getCollisionRect() != null) {
+                var r = lands.get(0).getCollisionRect();
+                tileW = r.getWidth();
+                tileH = r.getHeight();
+            }
+        } catch (Exception ignored) {}
+        Sprite s = animal.getSprite();
+        s.setSize(tileW * 2f, tileH * 2f);
+        s.setOriginCenter();
+        float bx = building.getLocation().getX();
+        float by = building.getLocation().getY();
+        float bW = building.getSprite().getWidth();
+
+        int outCount = 0;
+        for (Animal a : building.getAnimals()) {
+            if (a != animal && !a.isIn()) outCount++;
+        }
+
+        float gapX = tileW * 0.25f;
+        float gapY = tileH * 0.25f;
+        float marginY = tileH * 0.5f;
+
+        int columns = Math.max(1, (int)Math.floor((bW + gapX) / (s.getWidth() + gapX)));
+        int row = outCount / columns;
+        int col = outCount % columns;
+
+        float totalGridWidth = columns * s.getWidth() + (columns - 1) * gapX;
+        float left = bx + (bW - totalGridWidth) * 0.5f;
+
+        float spawnX = left + col * (s.getWidth() + gapX);
+        float spawnY = by - marginY - (row + 1) * (s.getHeight() + gapY);
+
+        animal.setWorldPosition(spawnX, spawnY);
+        animal.setIn(false);
+    }
+
+
+
+
+
+
+
 
     @Override
     public void resize(int width, int height) {
@@ -314,12 +397,12 @@ public class MainGameGraphicView implements Screen, InputProcessor {
         if (button == Input.Buttons.LEFT) {
             Vector3 click = new Vector3(screenX, screenY, 0);
             camera.unproject(click);
-            controller.getNpcController().checkIfClickedOnNpc(click.x, click.y);
-            controller.getStoreController().checkIfClickedOnStores(click.x, click.y);
-            controller.getStoreController().checkIfClickedOnBins(click.x, click.y);
-            controller.checkIfClickedOnMachine(click.x, click.y);
-            controller.getToolController().UseTool(click.x, click.y);
-            controller.checkIfClickedOnPlayer(click.x, click.y);
+//            controller.getNpcController().checkIfClickedOnNpc(click.x, click.y);
+//            controller.getStoreController().checkIfClickedOnStores(click.x, click.y);
+//            controller.getStoreController().checkIfClickedOnBins(click.x, click.y);
+//            controller.checkIfClickedOnMachine(click.x, click.y);
+//            controller.getToolController().UseTool(click.x, click.y);
+//            controller.checkIfClickedOnPlayer(click.x, click.y);
             Vector3 worldClick = new Vector3(screenX, screenY, 0);
             camera.unproject(worldClick);
             float clickX = worldClick.x;
@@ -331,8 +414,8 @@ public class MainGameGraphicView implements Screen, InputProcessor {
                         player.setGold(player.getGold() - chosenBuildingType.getPrice());
                         player.setWood(player.getWood() - chosenBuildingType.getWoodNumber());
                         player.setStone(player.getStone() - chosenBuildingType.getStoneNumber());
-                        AnimalBuilding newBuilding = new AnimalBuilding(targetLand.getLocation(), chosenBuildingType);
-                        player.addFarmBuilding(newBuilding);
+                        AnimalBuilding building = new AnimalBuilding(targetLand.getLocation(), chosenBuildingType);
+                        player.addFarmBuilding(building);
                         for (FarmLand land : player.getFarm().getFarmLands()) {
                             land.setColor(Color.WHITE);
                         }
@@ -342,6 +425,12 @@ public class MainGameGraphicView implements Screen, InputProcessor {
                         System.out.println("Cannot build here - invalid location.");
                     }
                 }
+                return true;
+            }
+            if (controller.getAnimalMenuController().checkIfClickedOnAnimalBuilding(clickX, clickY)) {
+                return true;
+            }
+            if (controller.getAnimalController().checkIfClickedOnAnimal(clickX, clickY)) {
                 return true;
             }
             controller.getNpcController().checkIfClickedOnNpc(clickX, clickY);

@@ -1,6 +1,7 @@
 package com.StardewValley.model.Animal;
 
 import com.StardewValley.enums.AssetManager;
+import com.StardewValley.model.App;
 import com.StardewValley.model.Item.CollisionRect;
 import com.StardewValley.model.Map.Location;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -43,6 +44,26 @@ public class AnimalBuilding {
     public ArrayList<Animal> getAnimals() {
         return animals;
     }
+
+//    public AnimalBuilding findHomeBuildingFor(Animal animal) {
+//        for (AnimalBuilding b : App.mainUser.getFarmBuildings()) {
+//            if (b.getAnimals().contains(animal)) return b;
+//        }
+//
+//
+//        var allowed = animal.getAnimalType().getBuildings();
+//
+//        AnimalBuilding fallback = null;
+//        for (AnimalBuilding b : App.mainUser.getFarmBuildings()) {
+//            if (allowed.contains(b.getFarmBuildingType())) {
+//                if (b.getAnimals().size() < b.getCapacity()) return b;
+//                if (fallback == null) fallback = b;
+//            }
+//        }
+//        return fallback;
+//    }
+
+
 
     public FarmBuildingType getFarmBuildingType() { return farmBuildingType; }
     public Location getLocation() { return location; }

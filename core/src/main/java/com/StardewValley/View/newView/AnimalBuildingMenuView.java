@@ -73,9 +73,20 @@ public class AnimalBuildingMenuView implements Screen {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         animal.goOut();
+
+                        AnimalBuilding home = findHomeBuildingFor(animal);
+                        if (home != null && App.currentGameGraphicView instanceof MainGameGraphicView view) {
+                            view.placeAnimalNearBuilding(animal, home);
+                        } else if (App.currentGameGraphicView instanceof MainGameGraphicView view) {
+                            view.showError("No suitable building found.", 1.2f);
+                        }
+
                         animalInfo.setText(animal.getInfo());
                     }
                 });
+
+
+
 //                animalRow.defaults().padRight(20);
                 animalRow.add(animalInfo).left().padRight(10).width(350f);
                 animalRow.add(petButton).right().width(90f).padRight(30);
@@ -99,6 +110,42 @@ public class AnimalBuildingMenuView implements Screen {
         scrollPane.setFadeScrollBars(false);
         rootTable.add(scrollPane).expand().fill().pad(20);
     }
+
+    private AnimalBuilding findHomeBuildingFor(Animal animal) {
+        if (animal == null || App.mainUser == null || App.mainUser.getFarmBuildings() == null) {
+            return null;
+        }
+        var buildings = App.mainUser.getFarmBuildings();
+        if (buildings.isEmpty()) {
+            System.out.println("[Shepherd] No buildings for player.");
+            return null;
+        }
+        for (AnimalBuilding building : buildings) {
+            if (building.getAnimals() != null && building.getAnimals().contains(animal)) {
+                return building;
+            }
+        }
+        var allowed = animal.getAnimalType().getBuildings();
+        AnimalBuilding fallback = null;
+        for (AnimalBuilding building : buildings) {
+            if (allowed.contains(building.getFarmBuildingType())) {
+                if (building.getAnimals().size() < building.getCapacity()) {
+                    return building;
+                }
+                if (fallback == null) fallback = building;
+            }
+        }
+        if (fallback != null) return fallback;
+        String need = animal.getAnimalType().getAnimalType().name();
+        for (AnimalBuilding b : buildings) {
+            if (b.getFarmBuildingType().name().contains(need)) {
+                return b;
+            }
+        }
+        System.out.println("[Shepherd] Falling back to first building.");
+        return buildings.get(0);
+    }
+
 
 
 
