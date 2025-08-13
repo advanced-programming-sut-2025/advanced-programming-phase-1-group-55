@@ -139,11 +139,21 @@ public class GameMenuController {
         setFriendships(map);
         setDefaultGameItems(map);
         for (User user : App.getCurrentGameModel().playersInGame) {
-            user.setSprite(new Sprite(new Texture(Gdx.files.internal("walk/Alex_01.png"))));
-            user.setCollisionRect(new CollisionRect(user.getFarm().getCollisionRect().getX() + 150,
-                user.getFarm().getCollisionRect().getY() + 150, user.getSprite().getWidth(), user.getSprite().getHeight()));
-            user.setLocation(new Location((int) (user.getFarm().getCollisionRect().getY() + 150), (int) (user.getFarm().getCollisionRect().getX() + 150)));
+            Gdx.app.postRunnable(() -> {
+                user.setSprite(new Sprite(new Texture(Gdx.files.internal("walk/Alex_01.png"))));
+                user.setCollisionRect(new CollisionRect(
+                    user.getFarm().getCollisionRect().getX() + 150,
+                    user.getFarm().getCollisionRect().getY() + 150,
+                    user.getSprite().getWidth(),
+                    user.getSprite().getHeight()
+                ));
+                user.setLocation(new Location(
+                    (int) (user.getFarm().getCollisionRect().getY() + 150),
+                    (int) (user.getFarm().getCollisionRect().getX() + 150)
+                ));
+            });
         }
+
 
         return new Result(true, "Game has been created successfully!");
     }

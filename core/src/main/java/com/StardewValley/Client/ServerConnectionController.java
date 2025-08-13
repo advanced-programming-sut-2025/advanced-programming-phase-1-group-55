@@ -71,7 +71,7 @@ public class ServerConnectionController {
 ////            TODO: set avatars
 ////            users[i].setAvatarTexture(new Texture());
 //        }
-        Result result = controller.newGame("arshia2", null, null, "Map1", "Map1", "Map1");
+        Result result = controller.newGame("a", null, null, "Map1", "Map1", "Map1");
         if (result.IsSuccess()) {
             App.getGameApp().setScreen(new MainGameGraphicView(new MainGameController(), App.currentGameModel.getMap()));
         } else {
