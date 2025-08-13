@@ -56,6 +56,7 @@ public class AnimalBuildingMenuView implements Screen {
                     public void clicked(InputEvent event, float x, float y) {
                         animal.pet();
                         animalInfo.setText(animal.getInfo());
+                        showTemporaryPopup("Petting...");
                     }
                 });
 
@@ -65,6 +66,7 @@ public class AnimalBuildingMenuView implements Screen {
                     public void clicked(InputEvent event, float x, float y) {
                         animal.feed();
                         animalInfo.setText(animal.getInfo());
+                        showTemporaryPopup("Feeding...");
                     }
                 });
 
@@ -145,6 +147,27 @@ public class AnimalBuildingMenuView implements Screen {
         System.out.println("[Shepherd] Falling back to first building.");
         return buildings.get(0);
     }
+
+    private void showTemporaryPopup(String message) {
+        final Dialog dialog = new Dialog("", skin);
+        dialog.text(message);
+        dialog.setModal(false);
+        dialog.setMovable(false);
+        dialog.show(stage);
+
+        dialog.setPosition(
+            stage.getWidth() / 2f - dialog.getWidth() / 2f,
+            stage.getHeight() / 2f - dialog.getHeight() / 2f
+        );
+
+        com.badlogic.gdx.utils.Timer.schedule(new com.badlogic.gdx.utils.Timer.Task() {
+            @Override
+            public void run() {
+                dialog.remove();
+            }
+        }, 2f);
+    }
+
 
 
 
