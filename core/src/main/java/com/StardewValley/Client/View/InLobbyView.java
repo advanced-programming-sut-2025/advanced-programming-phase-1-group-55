@@ -93,7 +93,6 @@ public class InLobbyView implements Screen {
 
     private void updateMemberList() {
         memberTable.clear();
-        System.out.println("qaqaaaq");
         Lobby currentLobby = ClientData.getInstance().getLobby(ClientData.getInstance().lobbyCode);
         if (currentLobby != null) {
             if (currentLobby.getMembers()==null || currentLobby.getMembers().isEmpty()) {
@@ -101,7 +100,6 @@ public class InLobbyView implements Screen {
                 return;
             }
             for (String member : currentLobby.getMembers()) {
-                System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaa");
                 Label label = new Label(member, skin);
                 label.setAlignment(Align.left);
                 memberTable.add(label).left().row();
@@ -145,7 +143,7 @@ public class InLobbyView implements Screen {
 
     @Override
     public void hide() {
-        dispose();
+
     }
 
     @Override

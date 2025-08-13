@@ -116,7 +116,7 @@ public class LobbyView implements Screen {
 
                             ClientController.getInstance().createLobby(name, isPrivate, password, visible);
                         } catch (Exception e) {
-                            System.out.println("bugggggggggggggggg");
+
                             return;
 
                         }
@@ -126,7 +126,7 @@ public class LobbyView implements Screen {
                             App.getGameApp().setScreen(new InLobbyView());
                             dialog.hide();
                         } catch (Exception e) {
-                            System.out.println("bugggg2222222");
+
                         }
                     }
                 });

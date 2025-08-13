@@ -1,5 +1,6 @@
 package com.StardewValley.Server.Controller;
 
+import com.StardewValley.Client.ClientController;
 import com.StardewValley.Common.enums.Avatar;
 import com.google.gson.GsonBuilder;
 import com.StardewValley.Common.model.Result;
@@ -64,6 +65,7 @@ public class RegisterController {
         mainUser = user;
         saveUserToJson(user);
         readfile();
+        ClientController.getInstance().informLogin(username);
 
         return new Result(true, "Registered Successfully");
 

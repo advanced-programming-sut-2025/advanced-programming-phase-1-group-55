@@ -1,5 +1,6 @@
 package com.StardewValley.Client;
 
+import com.StardewValley.Client.View.LobbyView;
 import com.StardewValley.Common.model.App;
 import com.StardewValley.Common.ConnectionMessage;
 import com.StardewValley.Common.Lobby;
@@ -178,6 +179,7 @@ public class ClientController {
         if (response.getFromBody("response").equals("ok")) {
             data.lobbyCode = "";
             refreshLobbies();
+            App.gameApp.setScreen(new LobbyView());
             return "leaved successfully";
         } else {
             return response.getFromBody("error");
