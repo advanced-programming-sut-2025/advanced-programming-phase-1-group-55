@@ -71,7 +71,15 @@ public class ServerConnectionController {
 ////            TODO: set avatars
 ////            users[i].setAvatarTexture(new Texture());
 //        }
-        Result result = controller.newGame("a", null, null, "Map1", "Map1", "Map1");
+        String otherUsername="";
+        for (String x : usernames) {
+            if (App.mainUser.getUsername().equals(x)) {
+                continue;
+            } else {
+                otherUsername = x;
+            }
+        }
+        Result result = controller.newGame(otherUsername, null, null, "Map1", "Map1", "Map1");
         if (result.IsSuccess()) {
             Gdx.app.postRunnable(() -> {
                 App.getGameApp().setScreen(

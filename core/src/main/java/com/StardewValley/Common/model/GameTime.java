@@ -21,7 +21,6 @@ import com.badlogic.gdx.graphics.Texture;
 import static com.StardewValley.Common.model.App.*;
 
 public class GameTime {
-
     private static int hour = 9;
     private static DayOfTheWeeks day = saturday;
     private static Seasons currentSeason = fall;
@@ -147,6 +146,7 @@ public class GameTime {
 
 
     }
+
     public static Texture getCurrentBackgroundTexture() {
         if (hour > 17) {
             return AssetManager.NIGHT_BACKGROUND.getTexture();
