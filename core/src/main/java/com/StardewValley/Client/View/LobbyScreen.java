@@ -6,6 +6,7 @@ import com.StardewValley.Common.Lobby;
 import com.StardewValley.Common.model.App;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
@@ -30,6 +31,10 @@ public class LobbyScreen implements Screen {
         stage = new Stage();
         Gdx.input.setInputProcessor(stage);
 
+        Texture bg = new Texture("backgrounds/7.png");
+        Image image = new Image(bg);
+        image.setFillParent(true);
+        stage.addActor(image);
         skin = App.skin;
         publicLobbiesTable = new Table(skin);
         foundLobbyTable = new Table(skin);
