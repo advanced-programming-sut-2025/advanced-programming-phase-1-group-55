@@ -171,6 +171,7 @@ public class ClientConnectionController {
     }
 
     public void startGame(ConnectionMessage message) {
+//        int mapId = message.getIntFromBody("map_id");
         String error = "";
         String code = connection.getLobbyCode();
         Lobby lobby = ServerMain.getLobbyByCode(connection.getLobbyCode());
@@ -206,9 +207,9 @@ public class ClientConnectionController {
 
         System.out.println(lobby.getMembers());
         ArrayList<ClientConnection> connections = new ArrayList<>();
-//        ArrayList<String> avatarPaths = new ArrayList<>();
-//        for (String member : lobby.getMembers()) {
-//            User user = App.getAllUsers().get(member);
+        ArrayList<String> avatarPaths = new ArrayList<>();
+//        for(String member : lobby.getMembers()) {
+//            User user = UserDAO.getUserByUsername(member);
 //            avatarPaths.add(user.getAvatarPath());
 //        }
         for (String member : lobby.getMembers()) {
@@ -216,9 +217,9 @@ public class ClientConnectionController {
             connections.add(connection);
             ConnectionMessage information = new ConnectionMessage(new HashMap<>() {{
                 put("information", "start_game");
-//                put("game_details", json);
+                put("game_details", json);
                 put("usernames", lobby.getMembers());
-//                put("avatar_paths", avatarPaths);
+                put("avatar_paths", avatarPaths);
 //                put("map_id", mapId);
             }}, ConnectionMessage.Type.inform);
 

@@ -82,7 +82,6 @@ public class GameMenuController {
     }
 
 
-
     public Result newGame(String Username1, String Username2, String Username3,
                           String Map1, String Map2, String Map3) {
 
@@ -90,8 +89,11 @@ public class GameMenuController {
             return new Result(false, "Username is empty. At least one user must be added.");
         }
 
-
+        if (mainUser == null) {
+            return new Result(false, "mainuser null");
+        }
         User player0 = mainUser;
+
         player0.setId(0);
         User player1 = AllUsers.get(Username1);
         player1.setId(1);

@@ -70,6 +70,11 @@ public class FirstMenu extends ScreenAdapter {
                     ClientController.getInstance().informLogin("arshia");
                     App.getGameApp().setScreen(new MainMenuScreen());
                 }
+                if (keycode == Input.Keys.Y) {
+                    App.mainUser = App.getAllUsers().get("arshia2");
+                    ClientController.getInstance().informLogin("arshia2");
+                    App.getGameApp().setScreen(new MainMenuScreen());
+                }
                 return true;
             }
         });

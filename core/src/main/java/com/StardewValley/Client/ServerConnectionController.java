@@ -1,10 +1,13 @@
 package com.StardewValley.Client;
 
+import com.StardewValley.Client.View.MainGameGraphicView;
 import com.StardewValley.Common.*;
 import com.StardewValley.Common.model.App;
 
+import com.StardewValley.Common.model.Result;
 import com.StardewValley.Common.model.User;
 import com.StardewValley.Server.Controller.GameMenuController;
+import com.StardewValley.Server.Controller.MainGameController;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 
@@ -51,24 +54,29 @@ public class ServerConnectionController {
 
     public void gameStarted(ConnectionMessage message) {
         System.out.println("start game ");
-//        GameDetails game = ConnectionMessage.gameDetailsFromJson(message.getFromBody("game_details"));
-//        System.out.println((String) message.getFromBody("game_details"));
+        GameDetails game = ConnectionMessage.gameDetailsFromJson(message.getFromBody("game_details"));
+        System.out.println((String) message.getFromBody("game_details"));
         ArrayList<String> usernames = message.getFromBody("usernames");
 //        ArrayList<String> avatarPaths = message.getFromBody("avatar_paths");
         System.out.println("etmam dastan");
 //        int mapId = message.getIntFromBody("map_id");
-//        Chat chat = new Chat(usernames);
-//        game.setChat(chat);
-//        data.selfDetails = new PlayerDetails(App.mainUser.getUsername());
-//        data.gameDetails = game;
-//        data.isInGame = true;
-//        User[] users = new User[usernames.size()];
+        Chat chat = new Chat(usernames);
+        game.setChat(chat);
+        data.selfDetails = new PlayerDetails(App.mainUser.getUsername());
+        data.gameDetails = game;
+        data.isInGame = true;
+        User[] users = new User[usernames.size()];
 //        for (int i = 0; i < usernames.size(); i++) {
 //            users[i] = new User(usernames.get(i), "", "", "", "", "", "", "");//todo null mide
 ////            TODO: set avatars
 ////            users[i].setAvatarTexture(new Texture());
 //        }
-        controller.newGame(usernames.get(0), usernames.get(1), usernames.get(2), "Map1", "Map1", "Map1");
+        Result result = controller.newGame("arshia2", null, null, "Map1", "Map1", "Map1");
+        if (result.IsSuccess()) {
+            App.getGameApp().setScreen(new MainGameGraphicView(new MainGameController(), App.currentGameModel.getMap()));
+        } else {
+            System.err.println(result.Message());
+        }
 
         ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
         scheduler.scheduleAtFixedRate(() -> {
