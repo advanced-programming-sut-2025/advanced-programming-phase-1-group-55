@@ -353,6 +353,7 @@ public class MapBuilder {
             ,AssetManager.GreenHouse.getTexture().getWidth(),AssetManager.GreenHouse.getTexture().getHeight()));
         Farm farm4=new Farm(house4,lake4,greenHouse4,quarry4,collisionRect4);
         App.getCurrentGameModel().playersInGame.get(3).setFarm(farm4);
+        addFarmLands(farm4, house4, lake4, greenHouse4, quarry4);
         map.setFarm4(farm4);
     }
 
@@ -380,6 +381,7 @@ public class MapBuilder {
             ,AssetManager.GreenHouse.getTexture().getWidth(),AssetManager.GreenHouse.getTexture().getHeight()));
         Farm farm3=new Farm(house3,lake3,greenHouse3,quarry3,collisionRect3);
         App.getCurrentGameModel().playersInGame.get(2).setFarm(farm3);
+        addFarmLands(farm3, house3, lake3, greenHouse3, quarry3);
         map.setFarm3(farm3);
     }
 
@@ -407,6 +409,7 @@ public class MapBuilder {
             ,AssetManager.GreenHouse.getTexture().getWidth(),AssetManager.GreenHouse.getTexture().getHeight()));
         Farm farm2=new Farm(house2,lake2,greenHouse2,quarry2,collisionRect2);
         App.getCurrentGameModel().playersInGame.get(1).setFarm(farm2);
+        addFarmLands(farm2, house2, lake2, greenHouse2, quarry2);
         map.setFarm2(farm2);
     }
 
@@ -521,5 +524,30 @@ public class MapBuilder {
             }
         }
     }
+
+    private void addFarmLands(Farm farm, House house, Lake lake, GreenHouse greenHouse, Quarry quarry) {
+        ArrayList<FarmLand> lands = new ArrayList<>();
+        float tileW = 16f;
+        float tileH = 16f;
+        float startX = farm.getCollisionRect().getX();
+        float startY = farm.getCollisionRect().getY();
+        float endX   = startX + farm.getCollisionRect().getWidth();
+        float endY   = startY + farm.getCollisionRect().getHeight();
+        for (float x = startX; x < endX; x += tileW) {
+            for (float y = startY; y < endY; y += tileH) {
+                CollisionRect landRect = new CollisionRect(x, y, tileW, tileH);
+                if (!house.getCollisionRect().collidesWith(landRect) &&
+                    !lake.getCollisionRect().collidesWith(landRect) &&
+                    !greenHouse.getCollisionRect().collidesWith(landRect) &&
+                    !quarry.getCollisionRect().collidesWith(landRect)) {
+                    Texture bg = GameTime.getCurrentBackgroundTexture();
+                    FarmLand land = new FarmLand(landRect, bg);
+                    lands.add(land);
+                }
+            }
+        }
+        farm.getFarmLands().addAll(lands);
+    }
+
 
 }
