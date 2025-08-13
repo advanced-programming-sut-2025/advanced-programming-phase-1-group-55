@@ -1,5 +1,6 @@
 package com.StardewValley.Common;
 
+import com.StardewValley.Common.model.Friendship.Message;
 import com.StardewValley.Common.model.User;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -16,6 +17,22 @@ public class ConnectionMessage {
         gsonBuilder.setPrettyPrinting();
         gson = gsonBuilder.create();
     }
+    public static synchronized String messageToJson(Message message) {
+        return gson.toJson(message);
+    }
+
+    public static synchronized Message messageFromJson(String json) {
+        return gson.fromJson(json, Message.class);
+    }
+
+    public static synchronized String messagesToJson(ArrayList<Message> messages) {
+        return gson.toJson(messages);
+    }
+
+    public static synchronized ArrayList<Message> messagesFromJson(String json) {
+        return gson.fromJson(json, new com.google.gson.reflect.TypeToken<ArrayList<Message>>(){}.getType());
+    }
+
 
     public String toJson() {
         return gson.toJson(this);

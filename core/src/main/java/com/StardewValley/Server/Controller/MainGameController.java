@@ -1,6 +1,7 @@
 package com.StardewValley.Server.Controller;
 
 
+import com.StardewValley.Client.ClientData;
 import com.StardewValley.Client.View.*;
 import com.StardewValley.Common.model.Map.Fence;
 import com.StardewValley.Common.model.Map.FenceType;
@@ -157,7 +158,7 @@ public class MainGameController {
             AnimalMenuView animalMenuView = new AnimalMenuView(animalMenuController, currentPlayer);
             gameApp.setScreen(animalMenuView);
         } else if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_4)) {
-            gameApp.setScreen(new ChatMenuView(new ArrayList<>()));
+            gameApp.setScreen(new ChatMenuView(ClientData.getInstance().gameDetails.getPublicGameChat()));
         }
 
 

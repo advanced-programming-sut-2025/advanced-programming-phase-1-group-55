@@ -50,6 +50,23 @@ public class GameDetails {
             }
         }
     }
+    public void addPublicMessage(Message message) {
+        publicGameChat.add(message);
+        String json = ConnectionMessage.messageToJson(message);
+        ConnectionMessage update = new ConnectionMessage(new HashMap<>() {{
+            put("update", "new_chat_message");
+            put("json", json);
+            put("game_code", gameId);
+        }}, ConnectionMessage.Type.update);
+        if (connections != null) {
+            for (ClientConnection connection : connections) {
+                if (connection.isAlive()) {
+                    connection.sendMessage(update);
+                }
+            }
+        }
+    }
+
 
     public PlayerDetails getPlayerByUsername(String username) {
         return players.get(username);

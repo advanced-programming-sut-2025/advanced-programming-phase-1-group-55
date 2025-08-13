@@ -2,9 +2,11 @@ package com.StardewValley.Client;
 
 import com.StardewValley.Common.Connection;
 import com.StardewValley.Common.ConnectionMessage;
+import com.StardewValley.Common.model.Friendship.Message;
 
 import java.io.IOException;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class ServerConnection extends Connection {
@@ -68,12 +70,30 @@ public class ServerConnection extends Connection {
                 return true;
             }
         }
-        if(message.getType().equals(ConnectionMessage.Type.update)) {
-            if(message.getFromBody("update").equals("update_game")) {
+        if (message.getType().equals(ConnectionMessage.Type.update)) {
+            String updateType = message.getFromBody("update");
+
+            if (updateType.equals("update_game")) {
                 controller.updateGame(message);
                 return true;
             }
+
+            if (updateType.equals("new_chat_message")) {
+                String jsonString = (String) message.getFromBody("json");
+                Message chatMsg = ConnectionMessage.messageFromJson(jsonString);
+                ClientData.getInstance().gameDetails.getPublicGameChat().add(chatMsg);
+                return true;
+            }
+
+            if (updateType.equals("update_chat")) {
+                String jsonString = (String) message.getFromBody("json");
+                ArrayList<Message> allMessages = ConnectionMessage.messagesFromJson(jsonString);
+                ClientData.getInstance().gameDetails.setPublicGameChat(allMessages);
+
+                return true;
+            }
         }
+
         return false;
 
     }

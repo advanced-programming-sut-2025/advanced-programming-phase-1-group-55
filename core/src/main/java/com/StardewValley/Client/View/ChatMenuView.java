@@ -1,5 +1,6 @@
 package com.StardewValley.Client.View;
 
+import com.StardewValley.Client.ClientData;
 import com.StardewValley.Common.enums.AssetManager;
 import com.StardewValley.Common.model.App;
 import com.StardewValley.Common.model.Friendship.Message;
@@ -56,7 +57,6 @@ public class ChatMenuView implements Screen {
         rootTable.add(titleLabel).colspan(5).center().padBottom(30);
         rootTable.row();
 
-        // بخش پیام‌ها
         messageTable = new Table(skin);
         messageTable.top().left();
 
@@ -73,6 +73,7 @@ public class ChatMenuView implements Screen {
         inputTable.add(sendButton).width(100);
 
         rootTable.add(inputTable).pad(10).center().row();
+        rootTable.add(backButton).width(100);
 
 
         for (Message msg : messages) {
@@ -125,6 +126,16 @@ public class ChatMenuView implements Screen {
     @Override
     public void render(float v) {
         ScreenUtils.clear(0, 0, 0, 1);
+        if (sendButton.isChecked()){
+            sendButton.setChecked(false);
+//            ClientData.getInstance().gameDetails.addPublicMessage(new Message(textField.getText(),App.getMainUser()));
+//            addMessageToUI(new Message(textField.getText(),App.getMainUser()));
+            addMessage(new Message(textField.getText(),App.mainUser));
+            ClientData.getInstance().gameDetails.getPublicGameChat().add(new Message(textField.getText(),App.mainUser));
+        }if (backButton.isChecked()){
+            backButton.setChecked(false);
+            App.gameApp.setScreen(App.currentGameGraphicView);
+        }
         stage.act(v);
         stage.draw();
     }
