@@ -73,7 +73,14 @@ public class ServerConnectionController {
 //        }
         Result result = controller.newGame("a", null, null, "Map1", "Map1", "Map1");
         if (result.IsSuccess()) {
-            App.getGameApp().setScreen(new MainGameGraphicView(new MainGameController(), App.currentGameModel.getMap()));
+            Gdx.app.postRunnable(() -> {
+                App.getGameApp().setScreen(
+                    new MainGameGraphicView(
+                        new MainGameController(),
+                        App.currentGameModel.getMap()
+                    )
+                );
+            });
         } else {
             System.err.println(result.Message());
         }
