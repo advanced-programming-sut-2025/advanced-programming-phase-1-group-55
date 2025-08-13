@@ -20,7 +20,6 @@ public class InLobbyView implements Screen {
 
     private TextButton leaveButton;
     private TextButton startGameButton;
-    private SelectBox<Integer> mapSelectBox;
     private Table memberTable;
     private Table rootTable;
     private Stage stage;
@@ -41,17 +40,14 @@ public class InLobbyView implements Screen {
         rootTable.pad(20);
         stage.addActor(rootTable);
 
-        // Buttons
+
         startGameButton = new TextButton("Start Game", skin);
         leaveButton = new TextButton("Leave Lobby", skin);
         refreshLobbiesButton = new TextButton("Refresh", skin);
 
-        // Map ID selector
-        mapSelectBox = new SelectBox<>(skin);
-        mapSelectBox.setItems(1, 2, 3, 4);
-        mapSelectBox.setSelected(1); // Default map ID
 
-        // Add click listeners
+
+
         startGameButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {

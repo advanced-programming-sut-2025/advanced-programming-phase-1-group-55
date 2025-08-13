@@ -14,7 +14,7 @@ public class GameDetails {
     private transient ArrayList<ClientConnection> connections;
     private int gameId;
     private boolean isRunning;
-    private  ArrayList<Message> publicGameChat;
+    private  transient ArrayList<Message> publicGameChat;
 
     public GameDetails(ArrayList<String> usernames, String adminUsername) {
         players = new HashMap<>();

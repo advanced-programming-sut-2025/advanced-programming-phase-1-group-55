@@ -57,18 +57,9 @@ public class ServerConnectionController {
         GameDetails game = ConnectionMessage.gameDetailsFromJson(message.getFromBody("game_details"));
         System.out.println((String) message.getFromBody("game_details"));
         ArrayList<String> usernames = message.getFromBody("usernames");
-//        ArrayList<String> avatarPaths = message.getFromBody("avatar_paths");
-        System.out.println("etmam dastan");
-//        int mapId = message.getIntFromBody("map_id");
         data.selfDetails = new PlayerDetails(App.mainUser.getUsername());
         data.gameDetails = game;
         data.isInGame = true;
-        User[] users = new User[usernames.size()];
-//        for (int i = 0; i < usernames.size(); i++) {
-//            users[i] = new User(usernames.get(i), "", "", "", "", "", "", "");//todo null mide
-////            TODO: set avatars
-////            users[i].setAvatarTexture(new Texture());
-//        }
         String otherUsername="";
         for (String x : usernames) {
             if (App.mainUser.getUsername().equals(x)) {
