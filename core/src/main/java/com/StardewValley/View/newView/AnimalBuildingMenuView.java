@@ -76,7 +76,7 @@ public class AnimalBuildingMenuView implements Screen {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         animal.goOut();
-
+                        showTemporaryPopup("The animal goes outside", animal);
                         AnimalBuilding home = findHomeBuildingFor(animal);
                         if (home != null && App.currentGameGraphicView instanceof MainGameGraphicView view) {
                             view.placeAnimalNearBuilding(animal, home);
