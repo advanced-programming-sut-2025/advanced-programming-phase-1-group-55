@@ -1,10 +1,12 @@
 package com.StardewValley.Server.connection;
 
+import com.StardewValley.Client.ClientData;
 import com.StardewValley.Common.ConnectionMessage;
 import com.StardewValley.Common.GameDetails;
 import com.StardewValley.Common.Lobby;
 import com.StardewValley.Common.PlayerDetails;
 import com.StardewValley.Common.model.App;
+import com.StardewValley.Common.model.Friendship.Message;
 import com.StardewValley.Common.model.User;
 
 import java.io.File;
@@ -17,6 +19,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+
+
 public class ClientConnectionController {
     private ClientConnection connection;
 
@@ -27,6 +31,28 @@ public class ClientConnectionController {
     public void addUser(ConnectionMessage message) {
 //        User user = ConnectionMessage.userFromJson(message.getFromBody("user"));
 //       UserDAO.insertUser(user);
+    }
+    public void addPublicMessage(Message message) {
+        if (ClientData.getInstance().gameDetails.getPublicGameChat() == null) {
+            ClientData.getInstance().gameDetails.setPublicGameChat( new ArrayList<>());
+        }
+        ClientData.getInstance().gameDetails.getPublicGameChat().add(message);
+        sendUpdatedChatToAll();
+    }
+
+    private void sendUpdatedChatToAll() {
+        String json = ConnectionMessage.gameDetailsToJson(ClientData.getInstance().gameDetails);
+        ConnectionMessage update = new ConnectionMessage(new HashMap<>() {{
+            put("update", "update_chat");
+            put("json", json);
+            put("game_code", ClientData.getInstance().gameDetails.getGameId());
+        }}, ConnectionMessage.Type.update);
+
+        for (ClientConnection connection : ServerMain.getConnections()) {
+            if (connection.isAlive()) {
+                connection.sendMessage(update);
+            }
+        }
     }
 
     public void getUser(ConnectionMessage message) {

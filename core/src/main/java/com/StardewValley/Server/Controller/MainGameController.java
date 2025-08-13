@@ -20,6 +20,8 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
+import java.util.ArrayList;
+
 import static com.StardewValley.Common.model.App.*;
 import static com.StardewValley.Common.model.GameTime.*;
 import static com.StardewValley.Common.model.weather.getCurrentWeather;
@@ -154,6 +156,8 @@ public class MainGameController {
             AnimalMenuController animalMenuController = new AnimalMenuController(currentPlayer);
             AnimalMenuView animalMenuView = new AnimalMenuView(animalMenuController, currentPlayer);
             gameApp.setScreen(animalMenuView);
+        } else if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_4)) {
+            gameApp.setScreen(new ChatMenuView(new ArrayList<>()));
         }
 
 

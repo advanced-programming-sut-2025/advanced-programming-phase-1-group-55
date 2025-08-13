@@ -14,7 +14,7 @@ public class GameDetails {
     private transient ArrayList<ClientConnection> connections;
     private int gameId;
     private boolean isRunning;
-    private  transient ArrayList<Message> publicGameChat;
+    private  transient ArrayList<Message> publicGameChat=new ArrayList<>();
 
     public GameDetails(ArrayList<String> usernames, String adminUsername) {
         players = new HashMap<>();
@@ -95,4 +95,11 @@ public class GameDetails {
         isRunning = running;
     }
 
+    public ArrayList<Message> getPublicGameChat() {
+        return publicGameChat;
+    }
+
+    public void setPublicGameChat(ArrayList<Message> publicGameChat) {
+        this.publicGameChat = publicGameChat;
+    }
 }

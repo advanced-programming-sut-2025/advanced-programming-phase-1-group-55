@@ -125,6 +125,8 @@ public class ClientConnection extends Connection {
             if(message.getFromBody("update").equals("update_self")) {
                 controller.updateSelf(message);
                 return true;
+            }if (message.getFromBody("update").equals("update_public_chat")) {
+                return true;
             }
         }
         return false;
