@@ -20,10 +20,10 @@ public final class AnimalSheets {
             case COW:      return new SheetSpec(AssetManager.COW_SHEET.getTexture(),       4, 5, 0.12f);
             case GOAT:     return new SheetSpec(AssetManager.GOAT_SHEET.getTexture(),      4, 5, 0.12f);
             case PIG:      return new SheetSpec(AssetManager.PIG_SHEET.getTexture(),       4, 5, 0.12f);
-            case CHICKEN:  return new SheetSpec(AssetManager.CHICKEN_SHEET.getTexture(),   4, 5, 0.10f);
-            case DUCK:     return new SheetSpec(AssetManager.DUCK_SHEET.getTexture(),      4, 5, 0.10f);
-            case RABBIT:   return new SheetSpec(AssetManager.RABBIT_SHEET.getTexture(),    4, 5, 0.10f);
-            case DINOSAUR: return new SheetSpec(AssetManager.DINOSAUR_SHEET.getTexture(),  4, 5, 0.10f);
+            case CHICKEN:  return new SheetSpec(AssetManager.CHICKEN_SHEET.getTexture(),   4, 7, 0.10f);
+            case DUCK:     return new SheetSpec(AssetManager.DUCK_SHEET.getTexture(),      4, 14, 0.10f);
+            case RABBIT:   return new SheetSpec(AssetManager.RABBIT_SHEET.getTexture(),    4, 7, 0.10f);
+            case DINOSAUR: return new SheetSpec(AssetManager.DINOSAUR_SHEET.getTexture(),  4, 7, 0.10f);
             default:       return null;
         }
     }
