@@ -36,20 +36,26 @@ public class ServerConnection extends Connection {
     @Override
     protected synchronized boolean handleMessage(ConnectionMessage message) {
         System.out.println(message.getBody());
+        String command = (String) message.getFromBody("command");
         if (message.getType().equals(ConnectionMessage.Type.command)) {
-            if (message.getFromBody("command").equals("status")) {
+            if (command.equals("status")) {
                 sendMessage(controller.status());
                 return true;
             }
-            if(message.getFromBody("command").equals("file_meta")) {
+            if (command.equals("file_meta")) {
                 super.startFileReceiving(message);
                 return true;
             }
-            if(message.getFromBody("command").equals("file_complete")) {
+            if (command.equals("file_complete")) {
                 super.endFileReceiving();
                 controller.saveMusicFile(message);
                 return true;
             }
+            if (command.equals("player_request")) {
+                controller.handlePlayerRequest(message);
+                return true;
+            }
+
         } else if (message.getType().equals(ConnectionMessage.Type.inform)) {
             if (message.getFromBody("information").equals("lobby_termination")) {
                 controller.lobbyTerminated(message);
@@ -68,8 +74,8 @@ public class ServerConnection extends Connection {
                 return true;
             }
         }
-        if(message.getType().equals(ConnectionMessage.Type.update)) {
-            if(message.getFromBody("update").equals("update_game")) {
+        if (message.getType().equals(ConnectionMessage.Type.update)) {
+            if (message.getFromBody("update").equals("update_game")) {
                 controller.updateGame(message);
                 return true;
             }
