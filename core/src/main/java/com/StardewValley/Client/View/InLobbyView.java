@@ -121,7 +121,7 @@ public class InLobbyView implements Screen {
         updateMemberList();
         if (ClientData.getInstance().lobbyCode.isEmpty()) {
             App.gameApp.getScreen().dispose();
-            App.gameApp.setScreen(new LobbyView());
+            App.gameApp.setScreen(new LobbyScreen());
         }
         if (isGameStarted) {
             App.gameApp.setScreen(new MainGameGraphicView(new MainGameController(), App.currentGameModel.getMap()));
