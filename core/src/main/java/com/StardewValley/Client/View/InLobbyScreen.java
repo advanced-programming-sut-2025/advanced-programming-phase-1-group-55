@@ -1,6 +1,5 @@
 package com.StardewValley.Client.View;
 
-
 import com.StardewValley.Client.ClientController;
 import com.StardewValley.Client.ClientData;
 import com.StardewValley.Common.Lobby;
@@ -8,6 +7,7 @@ import com.StardewValley.Common.model.App;
 import com.StardewValley.Server.Controller.MainGameController;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
@@ -16,114 +16,112 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
-public class InLobbyView implements Screen {
+public class InLobbyScreen implements Screen {
 
-    private TextButton leaveButton;
-    private TextButton startGameButton;
-    private SelectBox<Integer> mapSelectBox;
-    private Table memberTable;
-    private Table rootTable;
     private Stage stage;
     private Skin skin;
-    private TextButton refreshLobbiesButton;
-    private static boolean isGameStarted = false;
+    private Table rootTable;
+    private Table membersTable;
+    private TextButton btnLeave;
+    private TextButton btnStart;
+    private TextButton btnRefresh;
+    private SelectBox<Integer> mapSelector;
+    private static boolean gameStarted = false;
+    private Texture background;
 
     @Override
     public void show() {
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
-        Lobby currentLobby = ClientData.getInstance().getLobby(ClientData.getInstance().lobbyCode);
-
         skin = App.skin;
+        background = new Texture("backgrounds/8.png");
+
+        Lobby currentLobby = ClientData.getInstance().getLobby(ClientData.getInstance().lobbyCode);
 
         rootTable = new Table();
         rootTable.setFillParent(true);
-        rootTable.pad(20);
+        rootTable.pad(15);
         stage.addActor(rootTable);
 
-        // Buttons
-        startGameButton = new TextButton("Start Game", skin);
-        leaveButton = new TextButton("Leave Lobby", skin);
-        refreshLobbiesButton = new TextButton("Refresh", skin);
+        btnStart = new TextButton("Start Game", skin);
+        btnLeave = new TextButton("Leave Lobby", skin);
+        btnRefresh = new TextButton("Refresh", skin);
 
-        // Map ID selector
-        mapSelectBox = new SelectBox<>(skin);
-        mapSelectBox.setItems(1, 2, 3, 4);
-        mapSelectBox.setSelected(1); // Default map ID
+        mapSelector = new SelectBox<>(skin);
+        mapSelector.setItems(1, 2, 3, 4);
+        mapSelector.setSelected(1);
 
-        // Add click listeners
-        startGameButton.addListener(new ClickListener() {
+        btnStart.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 ClientController.getInstance().startGame();
             }
         });
 
-        leaveButton.addListener(new ClickListener() {
+        btnLeave.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 ClientController.getInstance().leaveLobby();
             }
         });
 
-        refreshLobbiesButton.addListener(new ClickListener() {
+        btnRefresh.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 ClientController.getInstance().refreshLobbies();
             }
         });
 
-
         Table buttonTable = new Table();
-        buttonTable.add(startGameButton).pad(10).row();
-        buttonTable.add(leaveButton).pad(10);
-        buttonTable.add(refreshLobbiesButton).pad(10);
+        buttonTable.add(btnStart).pad(8).row();
+        buttonTable.add(btnLeave).pad(8).row();
+        buttonTable.add(btnRefresh).pad(8);
 
+        membersTable = new Table(skin);
+        membersTable.defaults().pad(4);
+        refreshMembers();
 
-        memberTable = new Table(skin);
-        memberTable.defaults().pad(5);
-        updateMemberList();
-
-
-        rootTable.add(new Label(currentLobby.getName() + "(" + currentLobby.getCode() + ")", skin)).padBottom(5).row();
-        rootTable.add(new Label("Lobby Members:", skin)).left().top().padBottom(10).row();
-        rootTable.add(memberTable).left().top().expandY().row();
+        rootTable.add(new Label(currentLobby.getName() + " (" + currentLobby.getCode() + ")", skin)).padBottom(5).row();
+        rootTable.add(new Label("Lobby Members:", skin)).left().top().padBottom(8).row();
+        rootTable.add(membersTable).left().top().expandY().row();
         rootTable.add(buttonTable).bottom().right();
     }
 
-    private void updateMemberList() {
-        memberTable.clear();
-        Lobby currentLobby = ClientData.getInstance().getLobby(ClientData.getInstance().lobbyCode);
-        if (currentLobby != null) {
-            if (currentLobby.getMembers()==null || currentLobby.getMembers().isEmpty()) {
-                System.out.println("no members in lobby");
-                return;
-            }
-            for (String member : currentLobby.getMembers()) {
+    private void refreshMembers() {
+        membersTable.clear();
+        Lobby lobby = ClientData.getInstance().getLobby(ClientData.getInstance().lobbyCode);
+        if (lobby != null && lobby.getMembers() != null && !lobby.getMembers().isEmpty()) {
+            for (String member : lobby.getMembers()) {
                 Label label = new Label(member, skin);
                 label.setAlignment(Align.left);
-                memberTable.add(label).left().row();
+                membersTable.add(label).left().row();
             }
         } else {
-            memberTable.add(new Label("No lobby data found.", skin)).left().row();
+            membersTable.add(new Label("No members in lobby", skin)).left().row();
         }
     }
 
-    public static void setInGame(boolean inGame) {
-        isGameStarted = inGame;
+    public static void setGameStarted(boolean started) {
+        gameStarted = started;
     }
 
     @Override
     public void render(float delta) {
         ScreenUtils.clear(0, 0, 0, 1);
+        stage.getBatch().begin();
+        stage.getBatch().draw(background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        stage.getBatch().end();
+
         stage.act(delta);
         stage.draw();
-        updateMemberList();
+        refreshMembers();
+
         if (ClientData.getInstance().lobbyCode.isEmpty()) {
             App.gameApp.getScreen().dispose();
             App.gameApp.setScreen(new LobbyScreen());
         }
-        if (isGameStarted) {
+
+        if (gameStarted) {
             App.gameApp.setScreen(new MainGameGraphicView(new MainGameController(), App.currentGameModel.getMap()));
         }
     }
@@ -134,20 +132,17 @@ public class InLobbyView implements Screen {
     }
 
     @Override
-    public void pause() {
-    }
+    public void pause() {}
 
     @Override
-    public void resume() {
-    }
+    public void resume() {}
 
     @Override
-    public void hide() {
-
-    }
+    public void hide() {}
 
     @Override
     public void dispose() {
-       stage.dispose();
+        stage.dispose();
+        background.dispose();
     }
 }

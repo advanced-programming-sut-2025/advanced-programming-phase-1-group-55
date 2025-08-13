@@ -140,7 +140,7 @@ public class LobbyScreen implements Screen {
         TextButton joinBtn = new TextButton("Join", skin);
         joinBtn.addListener(e -> {
             ClientController.getInstance().joinLobby(lobby.getCode());
-            App.gameApp.setScreen(new InLobbyView());
+            App.gameApp.setScreen(new InLobbyScreen ());
             return true;
         });
         foundLobbyTable.add(joinBtn).pad(3);
@@ -178,7 +178,7 @@ public class LobbyScreen implements Screen {
                     passwordField.getText().trim(),
                     visibleCheckBox.isChecked()
                 );
-                App.gameApp.setScreen(new InLobbyView());
+                App.gameApp.setScreen(new InLobbyScreen ());
             }
         });
 
@@ -205,7 +205,7 @@ public class LobbyScreen implements Screen {
             TextButton joinBtn = new TextButton("Join", skin);
             joinBtn.addListener(e -> {
                 ClientController.getInstance().joinLobby(lobby.getCode());
-                App.gameApp.setScreen(new InLobbyView());
+                App.gameApp.setScreen(new InLobbyScreen ());
                 return true;
             });
 
