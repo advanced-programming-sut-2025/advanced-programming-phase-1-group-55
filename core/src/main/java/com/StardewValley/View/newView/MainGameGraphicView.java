@@ -175,6 +175,10 @@ public class MainGameGraphicView implements Screen, InputProcessor {
             building.getSprite().draw(App.gameApp.getBatch());
         }
 
+        for (Animal a : player.getMyAnimals()) {
+            a.update(delta);
+        }
+
         for (Animal animal : player.getMyAnimals()) {
             if (!animal.isIn()) {
                 Sprite s = animal.getSprite();
@@ -420,6 +424,9 @@ public class MainGameGraphicView implements Screen, InputProcessor {
                 return true;
             }
             if (controller.getAnimalMenuController().checkIfClickedOnAnimalBuilding(clickX, clickY)) {
+                return true;
+            }
+            if (controller.getAnimalController().checkIfClickedOnAnimal(clickX, clickY)) {
                 return true;
             }
             controller.getNpcController().checkIfClickedOnNpc(clickX, clickY);

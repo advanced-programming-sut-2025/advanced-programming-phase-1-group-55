@@ -39,6 +39,7 @@ public class MainGameController {
     private NpcController npcController;
     private AnimalMenuController animalMenuController;
     private StoresStatusController storeController;
+    private AnimalMovingController animalController;
     private User currentPlayer = App.getMainUser();
 
     public void setView(MainGameGraphicView view) {
@@ -51,6 +52,7 @@ public class MainGameController {
         toolController = new ToolController(currentPlayer);
         npcController = new NpcController(currentPlayer, view.getMap());
         animalMenuController = new AnimalMenuController(currentPlayer);
+        animalController = new AnimalMovingController(currentPlayer);
         storeController = new StoresStatusController(currentPlayer, view.getMap());
         currentPlayer.setGold(40000);
         currentPlayer.setWood(40000);
@@ -188,6 +190,9 @@ public class MainGameController {
                 toolController.setPlayer(currentPlayer);
                 npcController.setPlayer(currentPlayer);
                 storeController.setPlayer(currentPlayer);
+                if (animalController != null) {
+                    animalController.setPlayer(currentPlayer);
+                }
                 App.getCurrentGameModel().setCurrentUser(currentPlayer);
                 return;
             }
@@ -539,4 +544,8 @@ public class MainGameController {
     public AnimalMenuController getAnimalMenuController() {
         return animalMenuController;
     }
+    public AnimalMovingController getAnimalController() {
+        return animalController;
+    }
+
 }

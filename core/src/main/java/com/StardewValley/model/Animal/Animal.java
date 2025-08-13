@@ -26,6 +26,11 @@ public class Animal extends Item {
     private float worldX, worldY;
     public float getWorldX() { return worldX; }
     public float getWorldY() { return worldY; }
+    private boolean moving = false;
+    private float targetX, targetY;
+    private float speed = 200f;
+    private static final float MAX_STEP = 10f;
+
 
 
     public Animal(String name, FarmAnimalType animalType)
@@ -255,6 +260,37 @@ public class Animal extends Item {
     public void resetDailyStatus() {
         this.isFed = false;
         this.isPet = false;
+    }
+    public void setTarget(float x, float y) {
+        this.targetX = x;
+        this.targetY = y;
+        this.moving = true;
+    }
+
+    public void update(float delta) {
+        if (!moving) return;
+        float dx = targetX - worldX;
+        float dy = targetY - worldY;
+        float dist2 = dx*dx + dy*dy;
+        if (dist2 < 1f) {
+            worldX = targetX;
+            worldY = targetY;
+            moving = false;
+            return;
+        }
+        float dist = (float) Math.sqrt(dist2);
+        float step = speed * delta;
+
+        if (step > MAX_STEP) step = MAX_STEP;
+
+        if (step >= dist) {
+            worldX = targetX;
+            worldY = targetY;
+            moving = false;
+        } else {
+            worldX += dx / dist * step;
+            worldY += dy / dist * step;
+        }
     }
 
 
