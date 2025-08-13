@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.StardewValley.Common.model.App.mainUser;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 import static com.StardewValley.Common.model.App.currentGameModel;
@@ -22,48 +23,65 @@ public class GameMap {
     private Farm farm2;
     private Farm farm3;
     private Farm farm4;
-    private NpcVillage village=new NpcVillage();
-    private ArrayList<ArtisanMachine> artisanMachines=new ArrayList<>();
-    private static final int WORLD_WIDTH = (int)(1920*4);
-    private static final int WORLD_HEIGHT = (int)(1080*4);
-    public  ArrayList<Fence> fences = new ArrayList<>();
-    public  boolean  canMove(CollisionRect collisionRect) {
+    private NpcVillage village = new NpcVillage();
+    private ArrayList<ArtisanMachine> artisanMachines = new ArrayList<>();
+    private static final int WORLD_WIDTH = (int) (1920 * 4);
+    private static final int WORLD_HEIGHT = (int) (1080 * 4);
+    public ArrayList<Fence> fences = new ArrayList<>();
+
+    public boolean canMove(CollisionRect collisionRect) {
         for (Fence fence : fences) {
             if (fence.getCollisionRect().collidesWith(collisionRect)) {
+                System.err.println("1");
                 return false;
             }
         }
-        for (Store store:village.getStores().values()){
+        for (Store store : village.getStores().values()) {
             if (store.getCollisionRect().collidesWith(collisionRect)) {
+                System.err.println("2");
+
                 return false;
             }
         }
-        for (Npc npc:village.getNpss().values()){
+        for (Npc npc : village.getNpss().values()) {
             if (npc.getType().getHouse().getCollisionRect().collidesWith(collisionRect)) {
+                System.err.println("3");
+
                 return false;
             }
         }
-        for (ShippingBin bin:village.getShippingBins()){
+        for (ShippingBin bin : village.getShippingBins()) {
             if (bin.getCollisionRect().collidesWith(collisionRect)) {
+                System.err.println("4");
+
                 return false;
             }
         }
-        for (ArtisanMachine artisanMachine:artisanMachines){
+        for (ArtisanMachine artisanMachine : artisanMachines) {
             if (artisanMachine.getCollisionRect().collidesWith(collisionRect)) {
+                System.err.println("5");
+
                 return false;
             }
         }
-       if(currentGameModel.getCurrentUser().getFarm().getLake().getCollisionRect().collidesWith(collisionRect)||
-           currentGameModel.getCurrentUser().getFarm().getHouse().getCollisionRect().collidesWith(collisionRect)){
-           return false;
-       }
-        for (User user:App.currentGameModel.playersInGame){
-            if (user.getCollisionRect().collidesWith(collisionRect)&&!user.getUsername().equals(currentGameModel.currentUser.getUsername())){
-                return false;
-            }
+        if (currentGameModel.getCurrentUser().getFarm().getLake().getCollisionRect().collidesWith(collisionRect) ||
+            currentGameModel.getCurrentUser().getFarm().getHouse().getCollisionRect().collidesWith(collisionRect)) {
+            System.err.println("6");
+
+            return false;
         }
-        if (collisionRect.collidesWith(currentGameModel.currentUser.getFarm().getGreenHouse().getCollisionRect())&&
-        !currentGameModel.currentUser.getFarm().getGreenHouse().getRepaired()){
+//        for (User user:App.currentGameModel.playersInGame){
+//            if (user.getCollisionRect().collidesWith(collisionRect)&&!user.getUsername().equals(mainUser.getUsername())){
+//                System.err.println("7");
+//                System.err.println(mainUser.getUsername());
+//
+//                return false;
+//            }
+//        }
+        if (collisionRect.collidesWith(currentGameModel.currentUser.getFarm().getGreenHouse().getCollisionRect()) &&
+            !currentGameModel.currentUser.getFarm().getGreenHouse().getRepaired()) {
+            System.err.println("8");
+
             return false;
         }
         return true;
@@ -71,15 +89,17 @@ public class GameMap {
 
     public void BuildMap() {
         MapBuilder mapBuilder1 = new MapBuilder();
-        mapBuilder1.BuildFences(WORLD_WIDTH, WORLD_HEIGHT,this);
+        mapBuilder1.BuildFences(WORLD_WIDTH, WORLD_HEIGHT, this);
 
 
     }
-    public void BuildFarm(String map2, String map3, String map4){
+
+    public void BuildFarm(String map2, String map3, String map4) {
         MapBuilder mapBuilder1 = new MapBuilder();
-        mapBuilder1.BuildFarms(map2,map3,map4,this,WORLD_WIDTH,WORLD_HEIGHT);
+        mapBuilder1.BuildFarms(map2, map3, map4, this, WORLD_WIDTH, WORLD_HEIGHT);
     }
-    public void DrawMap(){
+
+    public void DrawMap() {
         MapBuilder mapBuilder1 = new MapBuilder();
         mapBuilder1.drawFences(this);
         mapBuilder1.drawStores(this);
