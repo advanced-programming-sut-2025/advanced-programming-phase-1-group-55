@@ -315,7 +315,12 @@ public class MapBuilder {
             -AssetManager.GreenHouse.getTexture().getWidth()-20,35- WORLD_HEIGHT /2
             ,AssetManager.GreenHouse.getTexture().getWidth(),AssetManager.GreenHouse.getTexture().getHeight()));
         Farm farm2=new Farm(house2,lake2,greenHouse2,quarry2,collisionRect2);
+        if (!App.getMainUser().getUsername().equals("arshia")){
+            App.getCurrentGameModel().playersInGame.getFirst().setFarm(farm2);
+
+        }
         App.getCurrentGameModel().playersInGame.get(1).setFarm(farm2);
+
         map.setFarm2(farm2);
     }
 
