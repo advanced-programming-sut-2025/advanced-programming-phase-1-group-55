@@ -19,6 +19,8 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
+import java.util.HashMap;
+
 import static com.StardewValley.Common.model.App.gameApp;
 import static com.StardewValley.Common.model.App.getCurrentGameModel;
 
@@ -165,22 +167,21 @@ public class PlayerController {
         stage.addActor(redOverlay);
     }
 
+    private HashMap<String, Sprite> otherPlayerSprites = new HashMap<>();
+
     public void drawOtherPlayers() {
-//        for (User user : getCurrentGameModel().playersInGame) {
-//            if (user.getUsername().equals(player.getUsername())) {
-//                continue;
-//            }
-//            user.getSprite().setPosition(user.getCollisionRect().getX(), user.getCollisionRect().getY());
-//            user.getSprite().setScale(2f);
-//            user.getSprite().draw(gameApp.getBatch());
-//        }
         for (PlayerDetails pd : ClientData.getInstance().gameDetails.getPlayers().values()) {
             if (pd.username.equals(player.getUsername())) continue;
 
-            Sprite otherSprite = new Sprite(new Texture("walk/Alex_01.png"));
-            otherSprite.setPosition(pd.posX, pd.posY);
-            otherSprite.setScale(2f);
-            otherSprite.draw(gameApp.getBatch());
+            Sprite sprite = otherPlayerSprites.get(pd.username);
+            if (sprite == null) {
+                sprite = new Sprite(new Texture("walk/Alex_01.png"));
+                sprite.setScale(2f);
+                otherPlayerSprites.put(pd.username, sprite);
+            }
+
+            sprite.setPosition(pd.posX, pd.posY);
+            sprite.draw(gameApp.getBatch());
         }
     }
 
