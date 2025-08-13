@@ -60,8 +60,6 @@ public class ServerConnectionController {
 //        ArrayList<String> avatarPaths = message.getFromBody("avatar_paths");
         System.out.println("etmam dastan");
 //        int mapId = message.getIntFromBody("map_id");
-        Chat chat = new Chat(usernames);
-        game.setChat(chat);
         data.selfDetails = new PlayerDetails(App.mainUser.getUsername());
         data.gameDetails = game;
         data.isInGame = true;
@@ -120,22 +118,16 @@ public class ServerConnectionController {
             Reaction oldReaction = oldGame.getPlayerByUsername(member).reaction;
             if (oldReaction == null) {
                 oldReaction = new Reaction("");
-                System.out.println("brrrr");
             }
             Reaction newReaction = newGame.getPlayerByUsername(member).reaction;
             if (newReaction == null) {
                 newReaction = new Reaction("");
-                System.out.println("brrrr");
             }
             if (!oldReaction.text.equals(newReaction.text) && !newReaction.text.isEmpty()) {
                 newReaction.time = System.currentTimeMillis();
             }
         }
         data.gameDetails = newGame;
-
-        ArrayList<ChatMessage> newMessages = ConnectionMessage.newMessagesFromJson(message.getFromBody("new_messages"));
-        data.gameDetails.setChat(oldGame.getChat());
-        data.gameDetails.getChat().updateNewMessages(newMessages);
     }
 
     public void updateStoreItems(ConnectionMessage message) {

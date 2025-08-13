@@ -171,7 +171,6 @@ public class ClientConnectionController {
     }
 
     public void startGame(ConnectionMessage message) {
-//        int mapId = message.getIntFromBody("map_id");
         String error = "";
         String code = connection.getLobbyCode();
         Lobby lobby = ServerMain.getLobbyByCode(connection.getLobbyCode());
@@ -179,8 +178,8 @@ public class ClientConnectionController {
             error = "you are not in a lobby";
         } else if (!lobby.getAdminUsername().equals(connection.getUsername())) {
             error = "you are not the admin of the lobby";
-//        } else if (lobby.getMembers().size() < 1) {
-//            error = "there must be at least two members";
+       } else if (lobby.getMembers().size() <= 1) {
+           error = "there must be at least two members";
         }
 
         ConnectionMessage response;
@@ -255,7 +254,6 @@ public class ClientConnectionController {
         String text = message.getFromBody("text");
         String sender = message.getFromBody("sender");
         String receiver = message.getFromBody("receiver");
-        connection.getGame().getChat().registerNewMessage(text, sender, receiver);
     }
 
     public void storeItemBought(ConnectionMessage message) {

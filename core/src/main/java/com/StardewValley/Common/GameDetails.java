@@ -1,5 +1,6 @@
 package com.StardewValley.Common;
 
+import com.StardewValley.Common.model.Friendship.Message;
 import com.StardewValley.Server.connection.ClientConnection;
 
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ public class GameDetails {
     private transient ArrayList<ClientConnection> connections;
     private int gameId;
     private boolean isRunning;
-    private transient Chat chat;
+    private  ArrayList<Message> publicGameChat;
 
     public GameDetails(ArrayList<String> usernames, String adminUsername) {
         players = new HashMap<>();
@@ -23,7 +24,6 @@ public class GameDetails {
         this.adminUsername = adminUsername;
         this.gameId = availableId++;
         this.isRunning = true;
-        this.chat = new Chat(usernames);
     }
 
     public GameDetails(ArrayList<String> usernames, String adminUsername, int gameId) {
@@ -39,12 +39,10 @@ public class GameDetails {
 
     public void sendGameDetails() {
         String json = ConnectionMessage.gameDetailsToJson(this);
-        String chatJson = ConnectionMessage.newMessagesToJson(new ArrayList<>(chat.getNewMessages()));
         ConnectionMessage update = new ConnectionMessage(new HashMap<>() {{
             put("update", "update_game");
             put("json", json);
             put("game_code", gameId);
-            put("new_messages", chatJson);
         }}, ConnectionMessage.Type.update);
         for(ClientConnection connection : connections) {
             if(connection.isAlive()) {
@@ -97,11 +95,4 @@ public class GameDetails {
         isRunning = running;
     }
 
-    public Chat getChat() {
-        return chat;
-    }
-
-    public void setChat(Chat chat) {
-        this.chat = chat;
-    }
 }

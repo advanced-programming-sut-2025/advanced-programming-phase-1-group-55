@@ -154,24 +154,6 @@ public class ServerMain {
 
     }
 
-    public static void terminateAll() {
-        exitFlag = true;
-        for (ClientConnection connection : connections) {
-            connection.end();
-        }
-        connections.clear();
-
-    }
-
-    public static ClientConnection getConnectionByIpPort(String ip, int port) {
-        for (ClientConnection connection : connections) {
-            if (connection.getOtherSideIP().equals(ip) && connection.getOtherSidePort() == port) {
-                return connection;
-            }
-        }
-        return null;
-    }
-
     public static ClientConnection getConnectionByUsername(String username) {
         for (ClientConnection connection : connections) {
             if (connection.getUsername().equals(username)) {
