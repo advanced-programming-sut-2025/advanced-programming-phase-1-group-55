@@ -148,6 +148,6 @@ public class InLobbyView implements Screen {
 
     @Override
     public void dispose() {
-        stage.dispose();
+       stage.dispose();
     }
 }

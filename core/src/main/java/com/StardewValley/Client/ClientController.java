@@ -196,8 +196,7 @@ public class ClientController {
             put("command", "start_game");
         }}, ConnectionMessage.Type.command);}
        catch (Exception e) {
-           System.out.println("dsdsdsdsdsdsdsd");
-           System.out.println( "s");
+
            return ;
        }
 
