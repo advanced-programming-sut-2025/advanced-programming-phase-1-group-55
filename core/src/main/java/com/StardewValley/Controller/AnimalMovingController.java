@@ -5,7 +5,6 @@ import com.StardewValley.model.Animal.Animal;
 
 public class AnimalMovingController {
     private User player;
-    private static final float MAX_TILES_PER_CLICK = 5f;
 
     public AnimalMovingController(User player) {
         this.player = player;
@@ -43,9 +42,15 @@ public class AnimalMovingController {
             if (!hit) continue;
 
 
-            // shoaa tasadofi
+
             java.util.concurrent.ThreadLocalRandom rng = java.util.concurrent.ThreadLocalRandom.current();
-            float radius = (float) (rng.nextDouble() * (MAX_TILES_PER_CLICK * tile));
+            // shoaa tasadofi
+//            float radius = (float) (rng.nextDouble() * (MAX_TILES_PER_CLICK * tile));
+
+
+            //kollan 10 ta khone bre baraye namayesh vazeh tar
+            final float TILES_PER_CLICK = 10f;
+            float radius = TILES_PER_CLICK * tile;
             float theta   = (float) (rng.nextDouble() * Math.PI * 2.0);
 
 
