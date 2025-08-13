@@ -1,5 +1,7 @@
 package com.StardewValley.Server.Controller;
 
+import com.StardewValley.Client.ClientData;
+import com.StardewValley.Common.PlayerDetails;
 import com.StardewValley.Common.enums.Direction;
 import com.StardewValley.Common.model.Item.CollisionRect;
 import com.StardewValley.Common.model.Map.GameMap;
@@ -164,13 +166,21 @@ public class PlayerController {
     }
 
     public void drawOtherPlayers() {
-        for (User user : getCurrentGameModel().playersInGame) {
-            if (user.getUsername().equals(player.getUsername())) {
-                continue;
-            }
-            user.getSprite().setPosition(user.getCollisionRect().getX(), user.getCollisionRect().getY());
-            user.getSprite().setScale(2f);
-            user.getSprite().draw(gameApp.getBatch());
+//        for (User user : getCurrentGameModel().playersInGame) {
+//            if (user.getUsername().equals(player.getUsername())) {
+//                continue;
+//            }
+//            user.getSprite().setPosition(user.getCollisionRect().getX(), user.getCollisionRect().getY());
+//            user.getSprite().setScale(2f);
+//            user.getSprite().draw(gameApp.getBatch());
+//        }
+        for (PlayerDetails pd : ClientData.getInstance().gameDetails.getPlayers().values()) {
+            if (pd.username.equals(player.getUsername())) continue;
+
+            Sprite otherSprite = new Sprite(new Texture("walk/Alex_01.png"));
+            otherSprite.setPosition(pd.posX, pd.posY);
+            otherSprite.setScale(2f);
+            otherSprite.draw(gameApp.getBatch());
         }
     }
 
