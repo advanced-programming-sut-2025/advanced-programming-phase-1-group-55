@@ -38,6 +38,9 @@ public class Trade {
         this.id = id;
     }
 
+
+
+
     public User getSender() {
         return Sender;
     }
@@ -130,7 +133,7 @@ public class Trade {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Trade info {").append(" id : ").append(getId()).append(" sender : ").append(getSender().getUsername()).append(" reciver : ").append(getReciver().getUsername()).append("\nitem : ").append(getItem().getItemType().getDisplayName()).append(" amount :").append(getAmount()).append(" type : ").append(getType());
-        if (price == 0 ) {
+        if (price == 0) {
             sb.append("\ntarget item : ").append(getTargetItem().getItemType().getDisplayName()).append("target amount : ").append(getTargetAmount());
         } else {
             sb.append(" price : ").append(getPrice());

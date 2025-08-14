@@ -47,6 +47,9 @@ public class ServerConnectionController {
 
         return message;
     }
+    public void handlePlayerRequest(ConnectionMessage message) {
+        connection.sendMessage(message);
+    }
 
     public void lobbyTerminated(ConnectionMessage message) {
         data.lobbyCode = "";

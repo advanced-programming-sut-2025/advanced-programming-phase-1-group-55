@@ -54,61 +54,67 @@ public class ClientConnection extends Connection {
 
     @Override
     protected synchronized boolean handleMessage(ConnectionMessage message) {
+
+        String command = message.getFromBody("command");
         if (message.getType().equals(ConnectionMessage.Type.command)) {
-            if(message.getFromBody("command").equals("file_meta")) {
+            if (command.equals("file_meta")) {
                 super.startFileReceiving(message);
                 return true;
             }
-            if(message.getFromBody("command").equals("file_complete")) {
+            if (command.equals("file_complete")) {
                 super.endFileReceiving();
                 controller.saveMusicFile(message);
                 return true;
             }
-            if(message.getFromBody("command").equals("send_music_list")) {
+            if (command.equals("send_music_list")) {
                 controller.sendMusicList(message);
                 return true;
             }
-            if(message.getFromBody("command").equals("send_music")) {
+            if (command.equals("send_music")) {
                 controller.sendMusic(message);
                 return true;
             }
-            if (message.getFromBody("command").equals("add_user")) {
+            if (command.equals("add_user")) {
                 controller.addUser(message);
                 return true;
             }
-            if (message.getFromBody("command").equals("get_user")) {
+            if (command.equals("get_user")) {
                 controller.getUser(message);
                 return true;
             }
-            if (message.getFromBody("command").equals("send_lobbies")) {
+            if (command.equals("send_lobbies")) {
                 controller.sendLobbies(message);
                 return true;
             }
-            if (message.getFromBody("command").equals("create_lobby")) {
+            if (command.equals("create_lobby")) {
                 controller.createLobby(message);
                 return true;
             }
-            if (message.getFromBody("command").equals("join_lobby")) {
+            if (command.equals("join_lobby")) {
                 controller.joinLobby(message);
                 return true;
             }
-            if (message.getFromBody("command").equals("leave_lobby")) {
+            if (command.equals("leave_lobby")) {
                 controller.leaveLobby(message);
                 return true;
             }
-            if (message.getFromBody("command").equals("start_game")) {
+            if (command.equals("start_game")) {
                 controller.startGame(message);
                 return true;
             }
-            if(message.getFromBody("command").equals("store_item_bought")) {
+            if (command.equals("send_chat_message")) {
+                controller.sendChatMessage(message);
+                return true;
+            }
+            if (command.equals("store_item_bought")) {
                 controller.storeItemBought(message);
                 return true;
             }
-            if(message.getFromBody("command").equals("remove_last_user")) {
+            if (command.equals("remove_last_user")) {
 //                controller.removeLastUser();
                 return true;
             }
-            if(message.getFromBody("command").equals("get_last_user")) {
+            if (command.equals("get_last_user")) {
                 controller.getLastUser();
                 return true;
             }
@@ -128,8 +134,8 @@ public class ClientConnection extends Connection {
                 return true;
             }
         }
-        if(message.getType().equals(ConnectionMessage.Type.update)) {
-            if(message.getFromBody("update").equals("update_self")) {
+        if (message.getType().equals(ConnectionMessage.Type.update)) {
+            if (message.getFromBody("update").equals("update_self")) {
                 controller.updateSelf(message);
                 return true;
             }

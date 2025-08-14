@@ -255,14 +255,16 @@ public class PlayerController {
             player.getLocation().getY()
         );
 
-//        if (gameMap != null && !gameMap.canMove(player.getCollisionRect())) {
-//            player.getLocation().add(-dx, -dy);
-//            player.getCollisionRect().updateCollisionRect(
-//                player.getLocation().getX(),
-//                player.getLocation().getY()
-//            );
-//            return false;
-//        }
+
+        if (!gameMap.canMove(player.getCollisionRect())) {
+
+            player.getLocation().add(-dx, -dy);
+            player.getCollisionRect().updateCollisionRect(
+                player.getLocation().getX(),
+                player.getLocation().getY()
+            );
+            return false;
+        }
         return true;
     }
 
