@@ -4,9 +4,11 @@ import com.StardewValley.Client.View.MainGameGraphicView;
 import com.StardewValley.Common.*;
 import com.StardewValley.Common.model.App;
 
+import com.StardewValley.Common.model.LeaderboardUpdate;
 import com.StardewValley.Common.model.Result;
 import com.StardewValley.Common.model.User;
 import com.StardewValley.Server.Controller.GameMenuController;
+import com.StardewValley.Server.Controller.ServerLeaderboardController;
 import com.StardewValley.Server.Controller.MainGameController;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
@@ -152,6 +154,7 @@ public class ServerConnectionController {
         this.sourceOfMusic = sourceOfMusic;
     }
 
+
     public void saveMusicFile(ConnectionMessage message) {
         String name = message.getFromBody("filename");
         String sourcePath = "temp_receives/" + name;
@@ -186,4 +189,13 @@ public class ServerConnectionController {
             e.printStackTrace();
         }
     }
+
+    public void updateLeaderboard(LeaderboardUpdate update) {
+        com.StardewValley.Client.ClientLeaderboardController.getInstance().onLeaderboardUpdate(update);
+    }
+
+
+
+
+
 }

@@ -2,6 +2,8 @@ package com.StardewValley.Client;
 
 import com.StardewValley.Common.Connection;
 import com.StardewValley.Common.ConnectionMessage;
+import com.StardewValley.Common.model.LeaderboardUpdate;
+import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.net.Socket;
@@ -67,6 +69,14 @@ public class ServerConnection extends Connection {
                 controller.updateStoreItems(message);
                 return true;
             }
+            if (message.getFromBody("information").equals("leaderboard_update")) {
+                String json = message.getFromBody("leaderboard");
+                LeaderboardUpdate update = new Gson().fromJson(json, LeaderboardUpdate.class);
+                controller.updateLeaderboard(update);
+                return true;
+            }
+
+
         }
         if(message.getType().equals(ConnectionMessage.Type.update)) {
             if(message.getFromBody("update").equals("update_game")) {
@@ -74,6 +84,7 @@ public class ServerConnection extends Connection {
                 return true;
             }
         }
+
         return false;
 
     }

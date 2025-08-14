@@ -142,77 +142,6 @@
     "id": 0
   },
   {
-    "username": "b",
-    "password": "f723cc1d314e07f0ee5c7c0130f4c3f7b9393587cb3eec762ea4caeeb8087236",
-    "nickName": "arshix",
-    "gender": "male",
-    "email": "arshia@gmail.com",
-    "isSad": false,
-    "timePassedBeingSad": 0,
-    "numberOfSecurityQuestion": 0,
-    "securityQuestion": "What was the name of your first-grade teacher?",
-    "answerOfSecurityQuestion": "soltani",
-    "farmingSkill": {
-      "type": "Farming",
-      "level": 0,
-      "points": 0
-    },
-    "miningSkill": {
-      "type": "Mining",
-      "level": 0,
-      "points": 0
-    },
-    "foragingSkill": {
-      "type": "Foraging",
-      "level": 0,
-      "points": 0
-    },
-    "fishingSkill": {
-      "type": "Fishing",
-      "level": 0,
-      "points": 0
-    },
-    "refrigerator": [],
-    "artisanMachines": [],
-    "farmBuildings": [],
-    "farmHadPlaceForAnimals": false,
-    "myAnimals": [],
-    "avatarPath": "avatars/vibrent_20.png",
-    "backPack": {
-      "inventory": {},
-      "level": 1,
-      "craftingRecipes": [],
-      "cookingRecipes": [
-        "FRIED_EGG",
-        "BAKED_FISH",
-        "SALAD"
-      ]
-    },
-    "friendsNpc": {},
-    "gold": 40000,
-    "friendsPlayer": {},
-    "dailyMoney": 0,
-    "wood": 40000,
-    "energy": 100.0,
-    "stayLoggedIn": false,
-    "mostAchievedMoney": 0,
-    "matchPlayed": 0,
-    "location": {
-      "y": 0,
-      "x": 0
-    },
-    "direction": "DOWN",
-    "fainted": false,
-    "trades": {},
-    "stone": 0,
-    "receivedGifts": {},
-    "sentGifts": {},
-    "hasGiftToday": false,
-    "hasMessageToday": false,
-    "quest": {},
-    "id": 0
-  },
-  {
     "username": "c",
     "password": "f723cc1d314e07f0ee5c7c0130f4c3f7b9393587cb3eec762ea4caeeb8087236",
     "nickName": "arshix",
@@ -616,6 +545,77 @@
     },
     "friendsNpc": {},
     "gold": 10000,
+    "friendsPlayer": {},
+    "dailyMoney": 0,
+    "wood": 40000,
+    "energy": 100.0,
+    "stayLoggedIn": false,
+    "mostAchievedMoney": 0,
+    "matchPlayed": 0,
+    "location": {
+      "y": 0,
+      "x": 0
+    },
+    "direction": "DOWN",
+    "fainted": false,
+    "trades": {},
+    "stone": 0,
+    "receivedGifts": {},
+    "sentGifts": {},
+    "hasGiftToday": false,
+    "hasMessageToday": false,
+    "quest": {},
+    "id": 0
+  },
+  {
+    "username": "b",
+    "password": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+    "nickName": "arshix",
+    "gender": "male",
+    "email": "arshia@gmail.com",
+    "isSad": false,
+    "timePassedBeingSad": 0,
+    "numberOfSecurityQuestion": 0,
+    "securityQuestion": "What was the name of your first-grade teacher?",
+    "answerOfSecurityQuestion": "soltani",
+    "farmingSkill": {
+      "type": "Farming",
+      "level": 0,
+      "points": 0
+    },
+    "miningSkill": {
+      "type": "Mining",
+      "level": 0,
+      "points": 0
+    },
+    "foragingSkill": {
+      "type": "Foraging",
+      "level": 0,
+      "points": 0
+    },
+    "fishingSkill": {
+      "type": "Fishing",
+      "level": 0,
+      "points": 0
+    },
+    "refrigerator": [],
+    "artisanMachines": [],
+    "farmBuildings": [],
+    "farmHadPlaceForAnimals": false,
+    "myAnimals": [],
+    "avatarPath": "avatars/vibrent_20.png",
+    "backPack": {
+      "inventory": {},
+      "level": 1,
+      "craftingRecipes": [],
+      "cookingRecipes": [
+        "FRIED_EGG",
+        "BAKED_FISH",
+        "SALAD"
+      ]
+    },
+    "friendsNpc": {},
+    "gold": 40000,
     "friendsPlayer": {},
     "dailyMoney": 0,
     "wood": 40000,

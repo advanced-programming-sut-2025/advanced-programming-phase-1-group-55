@@ -1,9 +1,12 @@
 package com.StardewValley.Common;
 
+import com.StardewValley.Common.enums.ScoreCriteria;
+import com.StardewValley.Common.model.LeaderboardUpdate;
 import com.StardewValley.Server.connection.ClientConnection;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class GameDetails {
     private static int availableId = 0;
@@ -104,4 +107,12 @@ public class GameDetails {
     public void setChat(Chat chat) {
         this.chat = chat;
     }
+
+    public Map<String, PlayerDetails> getPlayersMap() {
+        return players;
+    }
+
+
+
+
 }

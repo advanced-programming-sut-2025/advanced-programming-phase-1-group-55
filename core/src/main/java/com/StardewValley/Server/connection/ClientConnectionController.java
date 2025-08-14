@@ -4,8 +4,13 @@ import com.StardewValley.Common.ConnectionMessage;
 import com.StardewValley.Common.GameDetails;
 import com.StardewValley.Common.Lobby;
 import com.StardewValley.Common.PlayerDetails;
+import com.StardewValley.Common.enums.ScoreCriteria;
 import com.StardewValley.Common.model.App;
+import com.StardewValley.Common.model.LeaderboardEntry;
+import com.StardewValley.Common.model.LeaderboardUpdate;
 import com.StardewValley.Common.model.User;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.io.File;
 import java.nio.file.Files;
@@ -13,9 +18,12 @@ import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+
+
 
 public class ClientConnectionController {
     private ClientConnection connection;
@@ -248,6 +256,14 @@ public class ClientConnectionController {
         GameDetails game = connection.getGame();
         if (game.isRunning()) {
             game.putPlayerByUsername(username, newSelf);
+
+            //baraye update scoreboard har jayo ke pol, quest complete, skill level  avaz mishe in tabe ro seda bezanin
+            updatePlayerStats(username, newSelf.gold, newSelf.questCount, newSelf.skillSum);
+
+
+
+
+
         }
     }
 
@@ -371,6 +387,76 @@ public class ClientConnectionController {
             e.printStackTrace();
         }
     }
+
+    private static final Gson LB_GSON = new GsonBuilder().create();
+
+    public void broadcastLeaderboard(LeaderboardUpdate update) {
+        String payload = LB_GSON.toJson(update);
+
+        ConnectionMessage inform = new ConnectionMessage(new HashMap<>() {{
+            put("information", "leaderboard_update");
+            put("leaderboard", payload);
+        }}, ConnectionMessage.Type.inform);
+
+        for (ClientConnection conn : connection.getGame().getConnections()) {
+            conn.sendMessage(inform);
+        }
+    }
+
+    private LeaderboardUpdate buildLeaderboardSnapshot(ScoreCriteria criteria) {
+        var game = connection.getGame();
+        // فرض: game.getPlayersMap() یا game.getPlayers() وجود دارد.
+        // اگر ندارید، یک getter خیلی کوچک داخل GameDetails اضافه کنید.
+        var players = game.getPlayersMap(); // Map<String, PlayerDetails>
+
+        List<LeaderboardEntry> entries = new ArrayList<>();
+        for (var e : players.entrySet()) {
+            String username = e.getKey();
+            PlayerDetails pd = e.getValue();
+
+            long score = switch (criteria) {
+                case WEALTH -> pd.gold;                 // فیلد/گتر متناظر در PlayerDetails
+                case QUESTS_COMPLETED -> pd.questCount;  // نام فیلد را با واقعی عوض کن
+                case TOTAL_SKILL_LEVEL -> pd.skillSum; // نام فیلد را با واقعی عوض کن
+            };
+
+            entries.add(new LeaderboardEntry(username, username, score));
+        }
+
+        // sort desc by score, then name
+        entries.sort((a,b) -> {
+            int cmp = Long.compare(b.getScore(), a.getScore());
+            return (cmp != 0) ? cmp : a.getPlayerName().compareToIgnoreCase(b.getPlayerName());
+        });
+
+        // سقف منطقی
+        if (entries.size() > 100) entries = entries.subList(0, 100);
+
+        return new LeaderboardUpdate(ScoreCriteria.WEALTH, entries, System.currentTimeMillis());
+    }
+
+    public void updatePlayerStats(String username, long wealth, int questsCompleted, int totalSkillLevel) {
+        GameDetails game = connection.getGame();
+        if (!game.isRunning()) return;
+
+        PlayerDetails player = game.getPlayerByUsername(username);
+        if (player == null) return;
+
+        player.gold = wealth;
+        player.questCount = questsCompleted;
+        player.skillSum = totalSkillLevel;
+
+        game.putPlayerByUsername(username, player);
+
+        LeaderboardUpdate snap = buildLeaderboardSnapshot(ScoreCriteria.WEALTH);
+        broadcastLeaderboard(snap);
+    }
+
+
+
+
+
+
 }
 
 

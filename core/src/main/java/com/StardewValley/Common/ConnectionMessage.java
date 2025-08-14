@@ -109,5 +109,6 @@ public class ConnectionMessage {
         response,
         inform,
         update,
+//        leaderboard_update,
     }
 }

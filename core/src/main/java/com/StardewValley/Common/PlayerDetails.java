@@ -12,7 +12,7 @@ public class PlayerDetails {
     public Reaction reaction;
     public int questCount;
     public int skillSum;
-    public int gold;
+    public long gold;
 
     public PlayerDetails(String username) {
         this.username = username;
