@@ -6,6 +6,7 @@ import com.StardewValley.Common.model.App;
 import com.StardewValley.Common.ConnectionMessage;
 import com.StardewValley.Common.Lobby;
 import com.StardewValley.Common.Reaction;
+import com.StardewValley.Common.model.Friendship.Message;
 import com.StardewValley.Common.model.User;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
@@ -49,29 +50,6 @@ public class ClientController {
         } else {
             throw new IllegalStateException("Tracker connection thread is already running or not set");
         }
-    }
-
-    public void addUserToDB(User user) {
-        ConnectionMessage message = new ConnectionMessage(new HashMap<>() {{
-            put("command", "add_user");
-            put("user", ConnectionMessage.userToJson(user));
-        }}, ConnectionMessage.Type.command);
-
-        connection.sendMessage(message);
-    }
-
-    public User getUserFromDB(String username) {
-        ConnectionMessage request = new ConnectionMessage(new HashMap<>() {{
-            put("command", "get_user");
-            put("username", username);
-        }}, ConnectionMessage.Type.command);
-
-        ConnectionMessage response = connection.sendAndWaitForResponse(request, TIMEOUT);
-
-        if (response.getFromBody("response").equals("not_found")) {
-            return null;
-        }
-        return ConnectionMessage.userFromJson(response.getFromBody("user"));
     }
 
     public void informLogin(String username) {
@@ -188,6 +166,16 @@ public class ClientController {
         } else {
             return response.getFromBody("error");
         }
+    }
+    public void updateChat(Message message) {
+        ClientData.getInstance().gameDetails.getPublicGameChat().add(message);
+        ConnectionMessage connectionMessage = new ConnectionMessage(new HashMap<>() {{
+            put("command", "update_public_chat");
+            put("text", message.getText());
+            put("sender", message.getSender());
+        }}, ConnectionMessage.Type.command);
+
+        connection.sendMessage(connectionMessage);
     }
 
     public void startGame() {

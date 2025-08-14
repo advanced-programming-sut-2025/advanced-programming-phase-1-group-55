@@ -255,11 +255,11 @@ public class FriendMenuView implements Screen {
         ArrayList<Message> messages = you.getFriendsPlayer().get(friend).getConversation();
 
         for (Message message : messages) {
-            Label msgLabel = new Label(message.text(), skin);
+            Label msgLabel = new Label(message.getText(), skin);
             msgLabel.setWrap(true);
             msgLabel.setAlignment(Align.left);
 
-            if (message.sender().equals(you)) {
+            if (message.getSender().equals(you.getUsername())) {
                 msgLabel.setColor(Color.BLUE);
                 msgLabel.setAlignment(Align.left);
                 msgLabel.setWrap(true);

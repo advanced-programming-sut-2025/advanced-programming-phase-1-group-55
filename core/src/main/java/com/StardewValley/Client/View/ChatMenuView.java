@@ -1,5 +1,6 @@
 package com.StardewValley.Client.View;
 
+import com.StardewValley.Client.ClientController;
 import com.StardewValley.Client.ClientData;
 import com.StardewValley.Common.enums.AssetManager;
 import com.StardewValley.Common.model.App;
@@ -90,16 +91,16 @@ public class ChatMenuView implements Screen {
     }
 
     private void addMessageToUI(Message message) {
-        Label msgLabel = new Label(message.text(), skin);
+        Label msgLabel = new Label(message.getText(), skin);
         msgLabel.setWrap(true);
 
-        if (message.sender().equals(App.mainUser)) {
+        if (message.getSender().equals(App.mainUser.getUsername())) {
             msgLabel.setColor(Color.BLUE);
             msgLabel.setAlignment(Align.left);
             messageTable.add(msgLabel).left().pad(10).width(400).row();
         } else {
             msgLabel.setColor(Color.WHITE);
-            if (message.text().contains("@"+App.mainUser.getUsername())) {
+            if (message.getText().contains("@"+App.mainUser.getUsername())) {
                 msgLabel.setColor(Color.YELLOW);
             }
             msgLabel.setAlignment(Align.right);
@@ -128,10 +129,8 @@ public class ChatMenuView implements Screen {
         ScreenUtils.clear(0, 0, 0, 1);
         if (sendButton.isChecked()){
             sendButton.setChecked(false);
-//            ClientData.getInstance().gameDetails.addPublicMessage(new Message(textField.getText(),App.getMainUser()));
-//            addMessageToUI(new Message(textField.getText(),App.getMainUser()));
-            addMessage(new Message(textField.getText(),App.mainUser));
-            ClientData.getInstance().gameDetails.getPublicGameChat().add(new Message(textField.getText(),App.mainUser));
+            ClientController.getInstance().updateChat(new Message(textField.getText(), App.mainUser.getUsername()));
+            addMessageToUI(new Message(textField.getText(),App.getMainUser().getUsername()));
         }if (backButton.isChecked()){
             backButton.setChecked(false);
             App.gameApp.setScreen(App.currentGameGraphicView);

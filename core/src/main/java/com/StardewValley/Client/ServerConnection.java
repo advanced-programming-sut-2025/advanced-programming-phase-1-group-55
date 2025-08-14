@@ -37,7 +37,6 @@ public class ServerConnection extends Connection {
 
     @Override
     protected synchronized boolean handleMessage(ConnectionMessage message) {
-        System.out.println(message.getBody());
         if (message.getType().equals(ConnectionMessage.Type.command)) {
             if (message.getFromBody("command").equals("status")) {
                 sendMessage(controller.status());
@@ -78,16 +77,9 @@ public class ServerConnection extends Connection {
                 return true;
             }
 
-            if (updateType.equals("new_chat_message")) {
-                String jsonString = (String) message.getFromBody("json");
-                Message chatMsg = ConnectionMessage.messageFromJson(jsonString);
-                ClientData.getInstance().gameDetails.getPublicGameChat().add(chatMsg);
-                return true;
-            }
-
             if (updateType.equals("update_chat")) {
-                String jsonString = (String) message.getFromBody("json");
-                ArrayList<Message> allMessages = ConnectionMessage.messagesFromJson(jsonString);
+                String jsonString =message.getFromBody("json");
+                ArrayList<Message> allMessages = ConnectionMessage.messageListFromJson(jsonString);
                 ClientData.getInstance().gameDetails.setPublicGameChat(allMessages);
 
                 return true;

@@ -110,4 +110,13 @@ public class ConnectionMessage {
         inform,
         update,
     }
+    public static synchronized String messageListToJson(ArrayList<Message> messages) {
+        return gson.toJson(messages);
+    }
+
+    public static synchronized ArrayList<Message> messageListFromJson(String json) {
+        return gson.fromJson(json, new com.google.gson.reflect.TypeToken<ArrayList<Message>>(){}.getType());
+    }
+
+
 }

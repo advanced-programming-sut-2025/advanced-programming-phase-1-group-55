@@ -32,20 +32,20 @@ public class ClientConnectionController {
 //        User user = ConnectionMessage.userFromJson(message.getFromBody("user"));
 //       UserDAO.insertUser(user);
     }
-    public void addPublicMessage(Message message) {
-        if (ClientData.getInstance().gameDetails.getPublicGameChat() == null) {
-            ClientData.getInstance().gameDetails.setPublicGameChat( new ArrayList<>());
-        }
-        ClientData.getInstance().gameDetails.getPublicGameChat().add(message);
-        sendUpdatedChatToAll();
+    public void updatePublicChat(ConnectionMessage message) {
+        Message messageToUpdate = new Message(message.getFromBody("text"), message.getFromBody("sender"));
+        messageToUpdate.setText(messageToUpdate.getSender() + ": " + messageToUpdate.getText());
+        connection.getGame().getPublicGameChat().add(messageToUpdate);
+
+        sendUpdatedChatToAll(messageToUpdate);
     }
 
-    private void sendUpdatedChatToAll() {
-        String json = ConnectionMessage.gameDetailsToJson(ClientData.getInstance().gameDetails);
+
+    private void sendUpdatedChatToAll(Message message) {
+        String json = ConnectionMessage.messageToJson(message);
         ConnectionMessage update = new ConnectionMessage(new HashMap<>() {{
             put("update", "update_chat");
             put("json", json);
-            put("game_code", ClientData.getInstance().gameDetails.getGameId());
         }}, ConnectionMessage.Type.update);
 
         for (ClientConnection connection : ServerMain.getConnections()) {
@@ -264,7 +264,7 @@ public class ClientConnectionController {
             } else {
                 scheduler.shutdown();
             }
-        }, 5, 1, TimeUnit.SECONDS);
+        }, 2000,4 , TimeUnit.MILLISECONDS);
 //        TODO: do other stuff for game
     }
 
