@@ -143,7 +143,7 @@ public class LobbyScreen implements Screen {
             @Override
             public void changed(ChangeEvent changeEvent, Actor actor) {
 
-                ClientController.getInstance().joinLobby(lobby.getCode());
+                ClientController.getInstance().joinLobby(lobby.getCode(),);
                 App.gameApp.setScreen(new InLobbyScreen());
             }
         });

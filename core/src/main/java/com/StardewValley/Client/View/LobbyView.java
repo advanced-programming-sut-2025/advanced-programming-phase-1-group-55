@@ -123,7 +123,7 @@ public class LobbyView implements Screen {
                         try {
 
                             App.gameApp.getScreen().dispose();
-                            App.getGameApp().setScreen(new InLobbyView());
+                            App.getGameApp().setScreen(new InLobbyScreen());
                             dialog.hide();
                         } catch (Exception e) {
 

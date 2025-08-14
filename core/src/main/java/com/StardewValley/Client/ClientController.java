@@ -1,6 +1,6 @@
 package com.StardewValley.Client;
 
-import com.StardewValley.Client.View.InLobbyView;
+import com.StardewValley.Client.View.InLobbyScreen;
 import com.StardewValley.Client.View.LobbyView;
 import com.StardewValley.Client.View.LobbyScreen;
 import com.StardewValley.Common.model.App;
@@ -144,7 +144,7 @@ public class ClientController {
             data.lobbyCode = code;
             refreshLobbies();
             App.gameApp.getScreen().dispose();
-            App.gameApp.setScreen(new InLobbyView());
+            App.gameApp.setScreen(new InLobbyScreen());
             return "joined successfully";
         } else {
             return response.getFromBody("error");

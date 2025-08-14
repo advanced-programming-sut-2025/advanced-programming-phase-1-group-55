@@ -102,10 +102,7 @@ public class ClientConnection extends Connection {
                 controller.startGame(message);
                 return true;
             }
-            if (command.equals("send_chat_message")) {
-                controller.sendChatMessage(message);
-                return true;
-            }
+
             if (command.equals("store_item_bought")) {
                 controller.storeItemBought(message);
                 return true;
