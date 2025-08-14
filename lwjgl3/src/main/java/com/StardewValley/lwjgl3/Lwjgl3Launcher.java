@@ -4,14 +4,24 @@ import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 import com.StardewValley.GameApp;
 
+import java.util.Scanner;
+
 /**
  * Launches the desktop (LWJGL3) application.
  */
 public class Lwjgl3Launcher {
     public static void main(String[] args) {
-        if (StartupHelper.startNewJvmIfRequired()) return; // This handles macOS support and helps on Windows.
-        createApplication(Integer.parseInt(args[0]));
+        var config = new Lwjgl3ApplicationConfiguration();
+        config.setTitle("Stardew Valley");
+        config.setWindowedMode(1280, 720);
+        config.useVsync(true);
+        config.setForegroundFPS(60);
+
+        new Lwjgl3Application(new GameApp(), config);
+
     }
+
+
 
     private static Lwjgl3Application createApplication(int port) {
         GameApp gameApp = new GameApp();
