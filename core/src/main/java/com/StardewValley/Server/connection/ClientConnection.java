@@ -1,12 +1,8 @@
 package com.StardewValley.Server.connection;
 
-import com.StardewValley.Client.ClientData;
-import com.StardewValley.Client.View.ChatMenuView;
 import com.StardewValley.Common.Connection;
 import com.StardewValley.Common.ConnectionMessage;
 import com.StardewValley.Common.GameDetails;
-import com.StardewValley.Common.model.App;
-import com.StardewValley.Common.model.Friendship.Message;
 
 import java.io.IOException;
 import java.net.Socket;

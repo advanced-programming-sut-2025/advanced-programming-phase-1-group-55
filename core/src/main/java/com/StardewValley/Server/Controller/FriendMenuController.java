@@ -1,5 +1,6 @@
 package com.StardewValley.Server.Controller;
 
+import com.StardewValley.Common.model.Chat.Message;
 import com.StardewValley.Common.model.Friendship.*;
 import com.StardewValley.Client.View.FriendMenuView;
 import com.StardewValley.Common.enums.AssetManager;

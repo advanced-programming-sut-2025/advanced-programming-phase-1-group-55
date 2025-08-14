@@ -1,6 +1,4 @@
-package com.StardewValley.Common.model.Friendship;
-
-import com.StardewValley.Common.model.User;
+package com.StardewValley.Common.model.Chat;
 
 public class Message {
     private String sender;

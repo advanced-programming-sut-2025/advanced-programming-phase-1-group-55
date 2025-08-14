@@ -3,7 +3,7 @@ package com.StardewValley.Client.View;
 import com.StardewValley.Client.ClientController;
 import com.StardewValley.Common.enums.AssetManager;
 import com.StardewValley.Common.model.App;
-import com.StardewValley.Common.model.Friendship.Message;
+import com.StardewValley.Common.model.Chat.Message;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;

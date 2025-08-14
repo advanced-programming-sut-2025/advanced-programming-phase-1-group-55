@@ -1,18 +1,14 @@
 package com.StardewValley.Server.connection;
 
-import com.StardewValley.Client.ClientData;
 import com.StardewValley.Common.ConnectionMessage;
 import com.StardewValley.Common.GameDetails;
 import com.StardewValley.Common.Lobby;
 import com.StardewValley.Common.PlayerDetails;
 import com.StardewValley.Common.model.App;
-import com.StardewValley.Common.model.Friendship.Message;
+import com.StardewValley.Common.model.Chat.Message;
 import com.StardewValley.Common.model.User;
 
 import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.Executors;

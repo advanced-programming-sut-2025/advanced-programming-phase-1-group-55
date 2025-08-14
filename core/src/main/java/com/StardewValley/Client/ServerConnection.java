@@ -2,11 +2,10 @@ package com.StardewValley.Client;
 
 import com.StardewValley.Common.Connection;
 import com.StardewValley.Common.ConnectionMessage;
-import com.StardewValley.Common.model.Friendship.Message;
+import com.StardewValley.Common.model.Chat.Message;
 
 import java.io.IOException;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class ServerConnection extends Connection {

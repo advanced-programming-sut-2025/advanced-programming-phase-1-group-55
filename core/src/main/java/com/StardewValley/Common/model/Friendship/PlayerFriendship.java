@@ -1,6 +1,7 @@
 package com.StardewValley.Common.model.Friendship;
 
 import com.StardewValley.Common.model.App;
+import com.StardewValley.Common.model.Chat.Message;
 import com.StardewValley.Common.model.User;
 
 import java.util.ArrayList;

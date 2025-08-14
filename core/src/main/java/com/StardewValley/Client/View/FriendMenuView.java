@@ -5,7 +5,7 @@ import com.StardewValley.Common.enums.AssetManager;
 import com.StardewValley.Common.model.App;
 import com.StardewValley.Common.model.Friendship.Answer;
 import com.StardewValley.Common.model.Friendship.Gift;
-import com.StardewValley.Common.model.Friendship.Message;
+import com.StardewValley.Common.model.Chat.Message;
 import com.StardewValley.Common.model.Friendship.PlayerFriendship;
 import com.StardewValley.Common.model.User;
 import com.badlogic.gdx.Gdx;
