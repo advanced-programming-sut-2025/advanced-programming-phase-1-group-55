@@ -61,17 +61,8 @@ public class ClientConnection extends Connection {
                 super.startFileReceiving(message);
                 return true;
             }
-            if (command.equals("file_complete")) {
-                super.endFileReceiving();
-                controller.saveMusicFile(message);
-                return true;
-            }
             if (command.equals("send_music_list")) {
                 controller.sendMusicList(message);
-                return true;
-            }
-            if (command.equals("send_music")) {
-                controller.sendMusic(message);
                 return true;
             }
             if (command.equals("add_user")) {
@@ -103,14 +94,6 @@ public class ClientConnection extends Connection {
                 return true;
             }
 
-            if (command.equals("store_item_bought")) {
-                controller.storeItemBought(message);
-                return true;
-            }
-            if (command.equals("remove_last_user")) {
-//                controller.removeLastUser();
-                return true;
-            }
             if (command.equals("get_last_user")) {
                 controller.getLastUser();
                 return true;

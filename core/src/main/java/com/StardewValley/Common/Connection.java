@@ -157,16 +157,8 @@ public abstract class Connection extends Thread {
         }
     }
 
-    public String getOtherSideIP() {
-        return otherSideIP;
-    }
-
     public void setOtherSideIP(String otherSideIP) {
         this.otherSideIP = otherSideIP;
-    }
-
-    public int getOtherSidePort() {
-        return otherSidePort;
     }
 
     public void setOtherSidePort(int otherSidePort) {

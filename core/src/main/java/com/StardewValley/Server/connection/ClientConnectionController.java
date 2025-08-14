@@ -50,11 +50,6 @@ public class ClientConnectionController {
 
         for (ClientConnection connection : ServerMain.getConnections()) {
             if (connection.isAlive()) {
-                System.out.println("check conection");
-                System.out.println(connection.getUsername());
-                System.out.println(message.getSender());
-                System.out.println(message.getText());
-                System.out.println("message baalaa");
                 connection.sendMessage(update);
             }
         }
@@ -241,10 +236,6 @@ public class ClientConnectionController {
         System.out.println(lobby.getMembers());
         ArrayList<ClientConnection> connections = new ArrayList<>();
         ArrayList<String> avatarPaths = new ArrayList<>();
-//        for(String member : lobby.getMembers()) {
-//            User user = UserDAO.getUserByUsername(member);
-//            avatarPaths.add(user.getAvatarPath());
-//        }
         for (String member : lobby.getMembers()) {
             ClientConnection connection = ServerMain.getConnectionByUsername(member);
             connections.add(connection);
@@ -253,7 +244,6 @@ public class ClientConnectionController {
                 put("game_details", json);
                 put("usernames", lobby.getMembers());
                 put("avatar_paths", avatarPaths);
-//                put("map_id", mapId);
             }}, ConnectionMessage.Type.inform);
 
             connection.sendMessage(information);
@@ -270,7 +260,6 @@ public class ClientConnectionController {
                 scheduler.shutdown();
             }
         }, 2000,4 , TimeUnit.MILLISECONDS);
-//        TODO: do other stuff for game
     }
 
     public void updateSelf(ConnectionMessage message) {
@@ -283,31 +272,6 @@ public class ClientConnectionController {
             game.putPlayerByUsername(username, newSelf);
         }
     }
-
-
-    public void storeItemBought(ConnectionMessage message) {
-        String store = message.getFromBody("store");
-        String item = message.getFromBody("item");
-        int count = message.getIntFromBody("count");
-
-        ConnectionMessage inform = new ConnectionMessage(new HashMap<>() {{
-            put("information", "store_item_bought");
-            put("store", store);
-            put("item", item);
-            put("count", count);
-        }}, ConnectionMessage.Type.inform);
-
-        for (ClientConnection conn : connection.getGame().getConnections()) {
-            if (conn == connection) {
-                continue;
-            }
-            conn.sendMessage(inform);
-        }
-    }
-
-//    public void removeLastUser() {
-//        UserDAO.removeLastInsertedUser();
-//    }
 
     public void getLastUser() {
         User user = App.getCurrentGameModel().getPlayersInGame().get(1);
@@ -323,29 +287,6 @@ public class ClientConnectionController {
             }}, ConnectionMessage.Type.response);
         }
         connection.sendMessage(response);
-    }
-
-    public void saveMusicFile(ConnectionMessage message) {
-        String name = message.getFromBody("filename");
-        String sourcePath = "temp_receives/" + name;
-        File source = new File(sourcePath);
-        String targetDirPath = "received_musics/" + connection.getUsername();
-        File targetDir = new File(targetDirPath);
-        if (!targetDir.exists()) targetDir.mkdirs();
-        if (!source.exists()) {
-            System.err.println("Error: File (" + name + ") does not exist");
-            return;
-        }
-
-        try {
-            Path sourceFile = source.toPath();
-            Path targetFile = targetDir.toPath().resolve(source.getName());
-
-            Files.move(sourceFile, targetFile, StandardCopyOption.REPLACE_EXISTING);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
     }
 
     public void sendMusicList(ConnectionMessage message) {
@@ -374,29 +315,6 @@ public class ClientConnectionController {
             put("music_list", result);
         }}, ConnectionMessage.Type.response);
         connection.sendMessage(response);
-    }
-
-    public void sendMusic(ConnectionMessage message) {
-        String name = message.getFromBody("filename");
-        String username = message.getFromBody("username");
-        File file = new File("received_musics/" + username + "/" + name);
-        if (!file.exists() || !file.isFile()) {
-            ConnectionMessage response = new ConnectionMessage(new HashMap<>() {{
-                put("response", "not_found");
-            }}, ConnectionMessage.Type.response);
-            connection.sendMessage(response);
-            return;
-        }
-        ConnectionMessage response = new ConnectionMessage(new HashMap<>() {{
-            put("response", "ok");
-        }}, ConnectionMessage.Type.response);
-        connection.sendMessage(response);
-
-        try {
-            connection.sendFile(file);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 }
 

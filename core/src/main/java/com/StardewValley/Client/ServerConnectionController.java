@@ -109,68 +109,6 @@ public class ServerConnectionController {
         GameDetails oldGame = data.gameDetails;
         GameDetails newGame = ConnectionMessage.gameDetailsFromJson(message.getFromBody("json"));
         newGame.setPublicGameChat(oldGame.getPublicGameChat());
-        for (String member : oldGame.getPlayers().keySet()) {
-            Reaction oldReaction = oldGame.getPlayerByUsername(member).reaction;
-            if (oldReaction == null) {
-                oldReaction = new Reaction("");
-            }
-            Reaction newReaction = newGame.getPlayerByUsername(member).reaction;
-            if (newReaction == null) {
-                newReaction = new Reaction("");
-            }
-            if (!oldReaction.text.equals(newReaction.text) && !newReaction.text.isEmpty()) {
-                newReaction.time = System.currentTimeMillis();
-            }
-        }
         data.gameDetails = newGame;
-    }
-
-    public void updateStoreItems(ConnectionMessage message) {
-        String store = message.getFromBody("store");
-        String item = message.getFromBody("item");
-        int count = message.getIntFromBody("count");
-
-//        TODO: reduce the quantity of the item from the store
-    }
-
-    private String sourceOfMusic = "";
-
-    public void setSourceOfMusic(String sourceOfMusic) {
-        this.sourceOfMusic = sourceOfMusic;
-    }
-
-    public void saveMusicFile(ConnectionMessage message) {
-        String name = message.getFromBody("filename");
-        String sourcePath = "temp_receives/" + name;
-        File source = new File(sourcePath);
-        String targetDirPath = "received_musics/" + "  music sasi mankan";
-        File targetDir = new File(targetDirPath);
-        if (!targetDir.exists()) targetDir.mkdirs();
-        if (!source.exists()) {
-            System.err.println("Error: File (" + name + ") does not exist");
-            return;
-        }
-
-        try {
-            Path sourceFile = source.toPath();
-            Path targetFile = targetDir.toPath().resolve(sourceOfMusic + "~" + source.getName());
-
-            Files.move(sourceFile, targetFile, StandardCopyOption.REPLACE_EXISTING);
-            File file = targetFile.toFile();
-
-            if (data.currentMusic != null && data.currentMusic.isPlaying()) {
-                data.currentMusic.pause();
-            }
-
-            try {
-                FileHandle handle = Gdx.files.absolute(file.getAbsolutePath());
-                data.currentMusic = Gdx.audio.newMusic(handle);
-                data.currentMusic.play();
-            } catch (Exception e) {
-                System.err.println("Error playing music: " + e.getMessage());
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 }

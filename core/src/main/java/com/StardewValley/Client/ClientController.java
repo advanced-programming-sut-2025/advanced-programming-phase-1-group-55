@@ -1,18 +1,12 @@
 package com.StardewValley.Client;
 
 import com.StardewValley.Client.View.InLobbyScreen;
-import com.StardewValley.Client.View.LobbyView;
 import com.StardewValley.Client.View.LobbyScreen;
 import com.StardewValley.Common.model.App;
 import com.StardewValley.Common.ConnectionMessage;
 import com.StardewValley.Common.Lobby;
-import com.StardewValley.Common.Reaction;
 import com.StardewValley.Common.model.Friendship.Message;
-import com.StardewValley.Common.model.User;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.files.FileHandle;
 
-import java.io.File;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -57,14 +51,6 @@ public class ClientController {
         ConnectionMessage message = new ConnectionMessage(new HashMap<>() {{
             put("information", "inform_login");
             put("username", username);
-        }}, ConnectionMessage.Type.inform);
-
-        connection.sendMessage(message);
-    }
-
-    public void informLogout() {
-        ConnectionMessage message = new ConnectionMessage(new HashMap<>() {{
-            put("information", "inform_logout");
         }}, ConnectionMessage.Type.inform);
 
         connection.sendMessage(message);
@@ -201,33 +187,6 @@ public class ClientController {
             System.out.println( "game started successfully");
         } else {
             System.out.println(Optional.ofNullable(response.getFromBody("error")));
-        }
-    }
-
-    public void playMusic(String username, String filename) {
-        File file = new File("temp_receives/" + username + "~" + filename);
-        if (file.exists() && file.isFile()) {
-            if (data.currentMusic != null && data.currentMusic.isPlaying()) {
-                data.currentMusic.pause();
-            }
-
-            try {
-                FileHandle handle = Gdx.files.absolute(file.getAbsolutePath());
-                data.currentMusic = Gdx.audio.newMusic(handle);
-                data.currentMusic.play();
-            } catch (Exception e) {
-                System.err.println("Error playing music: " + e.getMessage());
-            }
-        }
-        ConnectionMessage request = new ConnectionMessage(new HashMap<>() {{
-            put("command", "send_music");
-            put("username", username);
-            put("filename", filename);
-        }}, ConnectionMessage.Type.command);
-
-        ConnectionMessage response = connection.sendAndWaitForResponse(request, TIMEOUT);
-        if (response.getFromBody("response").equals("ok")) {
-            connection.getController().setSourceOfMusic(username);
         }
     }
 }

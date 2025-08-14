@@ -46,9 +46,6 @@ public class ConnectionMessage {
         return gson.toJson(user);
     }
 
-    public static synchronized User userFromJson(String json) {
-        return gson.fromJson(json, User.class);
-    }
 
     public static synchronized String lobbyToJson(Lobby lobby) {
         return gson.toJson(lobby);
@@ -77,7 +74,7 @@ public class ConnectionMessage {
     private Type type;
     private HashMap<String, Object> body;
 
-    public ConnectionMessage() {}
+
 
     public ConnectionMessage(HashMap<String, Object> body, Type type) {
         this.body = body;
@@ -109,13 +106,6 @@ public class ConnectionMessage {
         response,
         inform,
         update,
-    }
-    public static synchronized String messageListToJson(ArrayList<Message> messages) {
-        return gson.toJson(messages);
-    }
-
-    public static synchronized ArrayList<Message> messageListFromJson(String json) {
-        return gson.fromJson(json, new com.google.gson.reflect.TypeToken<ArrayList<Message>>(){}.getType());
     }
 
 

@@ -29,9 +29,8 @@ public class ClientData {
     public boolean isInGame = false;
     public GameDetails gameDetails = new GameDetails();
     public PlayerDetails selfDetails;
-    public HashMap<String, ArrayList<String>> musicList = new HashMap<>();
     public Music currentMusic = null;
-//    send selfDetails to server, receive gameDetails from server
+
 
     public Lobby getLobby(String lobbyCode) {
         for (Lobby lobby : lobbies) {
@@ -50,26 +49,6 @@ public class ClientData {
         }
         return null;
     }
-
-    public void sendPrivateMessage(String targetUsername, String text) {
-        HashMap<String, Object> body = new HashMap<>();
-        body.put("command", "player_request");
-        body.put("target", targetUsername);
-        body.put("from", selfDetails.username);
-        body.put("message", text);
-
-        ConnectionMessage msg = new ConnectionMessage(body, ConnectionMessage.Type.command);
-        connection.sendMessage(msg);
-    }
-
-    public void handleIncomingPlayerMessage(ConnectionMessage message) {
-        String from = message.getFromBody("from");
-        String text = message.getFromBody("message");
-        System.out.println("پیام از " + from + ": " + text);
-
-    }
-
-
     public void updateAndSendSelf() {
         selfDetails.updateInfo();
         String json = ConnectionMessage.playerDetailsToJson(selfDetails);

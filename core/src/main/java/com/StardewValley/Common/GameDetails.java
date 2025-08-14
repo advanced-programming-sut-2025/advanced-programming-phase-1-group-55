@@ -26,15 +26,6 @@ public class GameDetails {
         this.isRunning = true;
     }
 
-    public GameDetails(ArrayList<String> usernames, String adminUsername, int gameId) {
-        players = new HashMap<>();
-        for (String username : usernames) {
-            players.put(username, new PlayerDetails(username));
-        }
-        this.adminUsername = adminUsername;
-        this.gameId = gameId;
-    }
-
     public GameDetails() {}
 
     public void sendGameDetails() {
@@ -51,7 +42,6 @@ public class GameDetails {
         }
     }
 
-
     public PlayerDetails getPlayerByUsername(String username) {
         return players.get(username);
     }
@@ -60,24 +50,12 @@ public class GameDetails {
         players.put(username, player);
     }
 
-    public int playerCount() {
-        return players.size();
-    }
-
     public HashMap<String, PlayerDetails> getPlayers() {
         return players;
     }
 
     public int getGameId() {
         return gameId;
-    }
-
-    public void setGameId(int gameId) {
-        this.gameId = gameId;
-    }
-
-    public String getAdminUsername() {
-        return adminUsername;
     }
 
     public ArrayList<ClientConnection> getConnections() {
