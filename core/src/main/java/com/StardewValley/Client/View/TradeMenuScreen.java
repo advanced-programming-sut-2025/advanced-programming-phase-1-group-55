@@ -41,6 +41,9 @@ public class TradeMenuScreen extends ScreenAdapter {
         Label playerLabel = new Label("Select a player:", skin);
         Array<String> playerNames = new Array<>();
         for (User u : allPlayers) {
+            if (u.getUsername().equals(App.mainUser.getUsername())) {
+                continue;
+            }
             if (u != null && u.getUsername() != null) {
                 playerNames.add(u.getUsername());
             }
@@ -87,7 +90,8 @@ public class TradeMenuScreen extends ScreenAdapter {
         sendButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, com.badlogic.gdx.scenes.scene2d.Actor actor) {
-                if (playerBox.getSelected() == null || itemBox.getSelected() == null || targetItemBox.getSelected() == null) return;
+                if (playerBox.getSelected() == null || itemBox.getSelected() == null || targetItemBox.getSelected() == null)
+                    return;
 
                 User receiver = allPlayers.get(playerBox.getSelectedIndex());
                 Item myItem = inventory.get(itemBox.getSelectedIndex());
@@ -109,7 +113,7 @@ public class TradeMenuScreen extends ScreenAdapter {
 
                 sendTradeRequestToReceiver(trade);
 
-                ((com.badlogic.gdx.Game)Gdx.app.getApplicationListener()).setScreen(App.currentGameGraphicView);
+                ((com.badlogic.gdx.Game) Gdx.app.getApplicationListener()).setScreen(App.currentGameGraphicView);
                 dispose();
             }
         });
