@@ -55,8 +55,8 @@ public class ClientConnectionController {
         }}, ConnectionMessage.Type.inform);
 
         for (ClientConnection connection : ServerMain.getConnections()) {
-            System.err.println("username:: "+connection.getUsername());
-            if (connection.isAlive()&&connection.getUsername().equals(trade.getReciver().getUsername())) {
+            System.err.println("username:: " + connection.getUsername());
+            if (connection.isAlive()) {
                 connection.sendMessage(notifyReceiver);
             }
         }

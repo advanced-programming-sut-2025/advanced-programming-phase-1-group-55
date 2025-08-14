@@ -72,7 +72,6 @@ public class User implements Serializable {
     private Location playerTommorowLocation;
     private GameModel playedGameModel;
     private Farm farm;
-    private HashMap<Integer, Trade> trades = new HashMap<>();
     private CookingItem cookingItem;
     private int stone;
     private Map<Integer, Gift> receivedGifts = new HashMap<>();
@@ -194,13 +193,7 @@ public class User implements Serializable {
         this.timePassedBeingSad = timePassedBeingSad;
     }
 
-    public HashMap<Integer, Trade> getTrades() {
-        return trades;
-    }
 
-    public void setTrades(HashMap<Integer, Trade> trades) {
-        this.trades = trades;
-    }
 
     public Farm getFarm() {
         return farm;

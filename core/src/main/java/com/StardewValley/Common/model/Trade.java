@@ -5,8 +5,8 @@ import com.StardewValley.Common.model.Item.Item;
 
 public class Trade {
 
-    private User Sender;
-    private User Reciver;
+    private String Sender;
+    private String Reciver;
     private Item Item;
     private String type;
     private int amount;
@@ -26,7 +26,7 @@ public class Trade {
         this.answered = answered;
     }
 
-    public Trade(User sender, User reciver, Item item, String type, int amount, int price, Item targetItem, int targetAmount, int id) {
+    public Trade(String sender, String reciver, Item item, String type, int amount, int price, Item targetItem, int targetAmount, int id) {
         Sender = sender;
         Reciver = reciver;
         Item = item;

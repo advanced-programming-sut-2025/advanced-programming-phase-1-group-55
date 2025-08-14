@@ -101,8 +101,8 @@ public class TradeMenuScreen extends ScreenAdapter {
                 int targetAmount = Integer.parseInt(targetAmountField.getText());
 
                 Trade trade = new Trade(
-                    currentUser,
-                    receiver,
+                    currentUser.getUsername(),
+                    receiver.getUsername(),
                     myItem,
                     "item_for_item",
                     amount,

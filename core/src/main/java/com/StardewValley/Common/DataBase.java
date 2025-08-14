@@ -46,23 +46,24 @@ public class DataBase {
             System.out.println("Database not connected!");
             return;
         }
-        try {
-            String sql = "INSERT INTO user (username, password, nickname, email, gender, securityQuestion, securityAnswer, avatarPath, gold) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            PreparedStatement pstmt = connection.prepareStatement(sql);
-            pstmt.setString(1, user.getUsername());
-            pstmt.setString(2, user.getPassword());
-            pstmt.setString(3, user.getNickName());
-            pstmt.setString(4, user.getEmail());
-            pstmt.setString(5, user.getGender());
-            pstmt.setString(6, user.getSecurityQuestion());
-            pstmt.setString(7, user.getAnswerOfSecurityQuestion());
-            pstmt.setString(8, user.getAvatarPath());
-            pstmt.setInt(9, user.getGold());
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            String sql = "INSERT INTO user (username, password, nickname, email, gender, securityQuestion, securityAnswer, avatarPath, gold) " +
+//                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+//            PreparedStatement pstmt = connection.prepareStatement(sql);
+//            pstmt.setString(1, user.getUsername());
+//            pstmt.setString(2, user.getPassword());
+//            pstmt.setString(3, user.getNickName());
+//            pstmt.setString(4, user.getEmail());
+//            pstmt.setString(5, user.getGender());
+//            pstmt.setString(6, user.getSecurityQuestion());
+//            pstmt.setString(7, user.getAnswerOfSecurityQuestion());
+//            pstmt.setString(8, user.getAvatarPath());
+//            pstmt.setInt(9, user.getGold());
+//            pstmt.executeUpdate();
+//        }
+//        catch (SQLException e) {
+//            e.printStackTrace();
+//        }
     }
 
 
