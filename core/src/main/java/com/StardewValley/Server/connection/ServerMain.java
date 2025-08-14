@@ -1,6 +1,7 @@
 package com.StardewValley.Server.connection;
 
 import com.StardewValley.Common.ConnectionMessage;
+import com.StardewValley.Common.DataBase;
 import com.StardewValley.Common.GameDetails;
 import com.StardewValley.Common.Lobby;
 
@@ -27,30 +28,7 @@ public class ServerMain {
     private static ArrayList<Lobby> lobbies = new ArrayList<>();
     private static ArrayList<GameDetails> games = new ArrayList<>();
 
-    private static void initPhi() {
-        try {
-            ProcessBuilder pb = new ProcessBuilder(
-                "ollama", "run", "phi", "Hello from Java"
-            );
-            pb.redirectErrorStream(true);
-            Process process = pb.start();
-
-            try (BufferedReader reader = new BufferedReader(
-                new InputStreamReader(process.getInputStream()))) {
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    System.out.println(line);
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-
     public static void main(String[] args) {
-//        initPhi();
-//        UserDAO.initializeDatabase();
         try {
             ip = "localhost";
             port = 8080;
@@ -224,4 +202,49 @@ public class ServerMain {
         }
         return null;
     }
+
+    public static String getIp() {
+        return ip;
+    }
+
+    public static void setIp(String ip) {
+        ServerMain.ip = ip;
+    }
+
+    public static int getPort() {
+        return port;
+    }
+
+    public static void setPort(int port) {
+        ServerMain.port = port;
+    }
+
+    public static ServerSocket getServerSocket() {
+        return serverSocket;
+    }
+
+    public static void setServerSocket(ServerSocket serverSocket) {
+        ServerMain.serverSocket = serverSocket;
+    }
+
+    public static boolean isExitFlag() {
+        return exitFlag;
+    }
+
+    public static void setExitFlag(boolean exitFlag) {
+        ServerMain.exitFlag = exitFlag;
+    }
+
+    public static void setConnections(ArrayList<ClientConnection> connections) {
+        ServerMain.connections = connections;
+    }
+
+    public static void setLobbies(ArrayList<Lobby> lobbies) {
+        ServerMain.lobbies = lobbies;
+    }
+
+    public static void setGames(ArrayList<GameDetails> games) {
+        ServerMain.games = games;
+    }
+
 }

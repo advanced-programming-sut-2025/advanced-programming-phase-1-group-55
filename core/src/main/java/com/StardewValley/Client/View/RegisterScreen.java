@@ -94,6 +94,7 @@ public class RegisterScreen extends ScreenAdapter {
                 Result result = controller.Register(username, password, confirm, nickname, email, gender, selectedQuestion, answer);
                 messageLabel.setText(result.Message());
                 if (result.IsSuccess()) {
+
                     App.getGameApp().setScreen(new MainMenuScreen());
                 }
             }

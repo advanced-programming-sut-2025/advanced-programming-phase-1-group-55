@@ -1,6 +1,7 @@
 package com.StardewValley.Server.Controller;
 
 import com.StardewValley.Client.ClientController;
+import com.StardewValley.Common.DataBase;
 import com.StardewValley.Common.enums.Avatar;
 import com.google.gson.GsonBuilder;
 import com.StardewValley.Common.model.Result;
@@ -25,7 +26,7 @@ public class RegisterController {
 
     public String getRandomAvatar() {
         SecureRandom secureRandom = new SecureRandom();
-        int random = secureRandom.nextInt(27);
+        int random = secureRandom.nextInt(26)+1;
         return Avatar.fromId(random).getPath();
     }
 
@@ -56,7 +57,6 @@ public class RegisterController {
         } else if (!isValidPassword(password)) {
             return new Result(false, "Password is not valid");
         } else if (!isStrongPassword(password)) {
-
             return new Result(false, "Password is not strong");
         }
 
@@ -64,6 +64,8 @@ public class RegisterController {
         User user = new User(username, convertToSHA(password), nickname, email, gender, question, answer, getRandomAvatar());
         mainUser = user;
         saveUserToJson(user);
+        user.setAvatarPath("avatars/vibrent_1.png");
+        DataBase.insertUser(user);
         readfile();
         ClientController.getInstance().informLogin(username);
 

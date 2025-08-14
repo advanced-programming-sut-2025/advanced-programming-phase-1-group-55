@@ -1,7 +1,9 @@
 package com.StardewValley.Common.model;
 
+import com.StardewValley.Common.DataBase;
 import com.StardewValley.GameApp;
 import com.StardewValley.Client.View.MainGameGraphicView;
+import com.StardewValley.Server.connection.ServerMain;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.google.gson.Gson;
@@ -104,6 +106,9 @@ public class App {
                         user.setGold(1000000000);
                     }
                     AllUsers.put(user.getUsername(), user);
+                    if (!DataBase.getAllUsers().contains(user)) {
+                        DataBase.insertUser(user);
+                    }
                 }
 
 

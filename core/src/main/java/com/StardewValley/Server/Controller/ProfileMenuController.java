@@ -1,5 +1,6 @@
 package com.StardewValley.Server.Controller;
 
+import com.StardewValley.Common.DataBase;
 import com.StardewValley.Common.model.Result;
 
 import static com.StardewValley.Common.model.App.mainUser;
@@ -9,7 +10,9 @@ public class ProfileMenuController extends RegisterController {
         if (Username.equals(mainUser.getUsername())) {
             return new Result(false, "enter new username !");
         }
+       DataBase.deleteUser(mainUser.getUsername());
         mainUser.setUsername(Username);
+       DataBase.insertUser(mainUser);
         return new Result(true, "username changed !");
     }
 
@@ -18,7 +21,9 @@ public class ProfileMenuController extends RegisterController {
             return new Result(false, "enter new nickname !");
         }
         mainUser.setNickName(nickname);
+       DataBase.updateUser(mainUser);
         return new Result(true, "nickname changed !");
+
 
     }
 
@@ -30,6 +35,7 @@ public class ProfileMenuController extends RegisterController {
             return new Result(false, "email is not valid !");
         }
         mainUser.setEmail(email);
+       DataBase.updateUser(mainUser);
         return new Result(true, "email changed !");
 
     }

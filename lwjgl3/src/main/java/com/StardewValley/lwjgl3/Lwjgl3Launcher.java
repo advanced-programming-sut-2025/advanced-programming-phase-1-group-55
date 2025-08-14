@@ -1,5 +1,6 @@
 package com.StardewValley.lwjgl3;
 
+import com.StardewValley.Common.DataBase;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 import com.StardewValley.GameApp;
@@ -15,6 +16,7 @@ public class Lwjgl3Launcher {
 
     private static Lwjgl3Application createApplication(int port) {
         GameApp gameApp = new GameApp();
+        DataBase.connect();
         gameApp.handleConnection(port);
 
         return new Lwjgl3Application(gameApp, getDefaultConfiguration());
