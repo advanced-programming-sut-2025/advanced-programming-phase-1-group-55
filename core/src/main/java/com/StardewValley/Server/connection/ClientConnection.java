@@ -133,13 +133,6 @@ public class ClientConnection extends Connection {
                 controller.updateSelf(message);
                 return true;
             }
-            if (message.getFromBody("update").equals("update_chat")) {
-                Message messageFromJson = ConnectionMessage.messageFromJson(message.getFromBody("json"));
-                ClientData.getInstance().gameDetails.getPublicGameChat().add(messageFromJson);
-                    return true;
-            }
-
-
         }
         return false;
     }

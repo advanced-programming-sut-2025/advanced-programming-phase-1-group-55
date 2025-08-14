@@ -105,6 +105,7 @@ public class ServerConnectionController {
     public void updateGame(ConnectionMessage message) {
         GameDetails oldGame = data.gameDetails;
         GameDetails newGame = ConnectionMessage.gameDetailsFromJson(message.getFromBody("json"));
+        newGame.setPublicGameChat(oldGame.getPublicGameChat());
         for (String member : oldGame.getPlayers().keySet()) {
             Reaction oldReaction = oldGame.getPlayerByUsername(member).reaction;
             if (oldReaction == null) {

@@ -168,7 +168,6 @@ public class ClientController {
         }
     }
     public void updateChat(Message message) {
-        ClientData.getInstance().gameDetails.getPublicGameChat().add(message);
         ConnectionMessage connectionMessage = new ConnectionMessage(new HashMap<>() {{
             put("command", "update_public_chat");
             put("text", message.getText());

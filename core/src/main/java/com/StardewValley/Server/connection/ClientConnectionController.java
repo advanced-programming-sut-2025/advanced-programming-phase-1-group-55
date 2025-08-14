@@ -50,6 +50,11 @@ public class ClientConnectionController {
 
         for (ClientConnection connection : ServerMain.getConnections()) {
             if (connection.isAlive()) {
+                System.out.println("check conection");
+                System.out.println(connection.getUsername());
+                System.out.println(message.getSender());
+                System.out.println(message.getText());
+                System.out.println("message baalaa");
                 connection.sendMessage(update);
             }
         }

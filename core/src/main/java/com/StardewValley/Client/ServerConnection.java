@@ -79,8 +79,22 @@ public class ServerConnection extends Connection {
 
             if (updateType.equals("update_chat")) {
                 String jsonString =message.getFromBody("json");
-                ArrayList<Message> allMessages = ConnectionMessage.messageListFromJson(jsonString);
-                ClientData.getInstance().gameDetails.setPublicGameChat(allMessages);
+                Message message1 = ConnectionMessage.messageFromJson(jsonString);
+                System.out.println("deserialaize");
+                System.out.println(message1.getText());
+                System.out.println(message1.getSender());
+                System.out.println(ClientData.getInstance().selfDetails.username);
+                System.out.println("khikhii");
+                for (Message message2:ClientData.getInstance().gameDetails.getPublicGameChat()) {
+                    System.out.println(message2.getText());
+                }
+                System.out.println("natije:");
+                ClientData.getInstance().gameDetails.getPublicGameChat().add(message1);
+                for (Message message2:ClientData.getInstance().gameDetails.getPublicGameChat()) {
+                    System.out.println(message2.getText());
+                }
+                System.out.println("message jadid shod aslan?");
+                System.out.println("==========================================");
 
                 return true;
             }
