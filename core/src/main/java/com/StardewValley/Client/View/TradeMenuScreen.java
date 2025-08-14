@@ -1,5 +1,6 @@
 package com.StardewValley.Client.View;
 
+import com.StardewValley.Client.ClientController;
 import com.StardewValley.Common.model.App;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
@@ -111,7 +112,8 @@ public class TradeMenuScreen extends ScreenAdapter {
                     generateTradeId()
                 );
 
-                sendTradeRequestToReceiver(trade);
+                ClientController.getInstance().sendTradeRequest(trade);
+
 
                 ((com.badlogic.gdx.Game) Gdx.app.getApplicationListener()).setScreen(App.currentGameGraphicView);
                 dispose();
@@ -151,7 +153,5 @@ public class TradeMenuScreen extends ScreenAdapter {
         return (int) (System.currentTimeMillis() % Integer.MAX_VALUE);
     }
 
-    private void sendTradeRequestToReceiver(Trade trade) {
-        System.out.println("Trade sent: " + trade);
-    }
+
 }

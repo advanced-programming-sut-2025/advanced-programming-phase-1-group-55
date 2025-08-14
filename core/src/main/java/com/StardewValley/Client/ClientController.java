@@ -6,6 +6,7 @@ import com.StardewValley.Common.model.App;
 import com.StardewValley.Common.ConnectionMessage;
 import com.StardewValley.Common.Lobby;
 import com.StardewValley.Common.model.Friendship.Message;
+import com.StardewValley.Common.model.Trade;
 
 import java.net.Socket;
 import java.util.ArrayList;
@@ -163,6 +164,23 @@ public class ClientController {
 
         connection.sendMessage(connectionMessage);
     }
+
+
+    public void sendTradeRequest(Trade trade) {
+        ConnectionMessage connectionMessage = new ConnectionMessage(new HashMap<>() {{
+            put("command", "send_trade_request");
+            put("trade", ConnectionMessage.tradeToJson(trade));
+        }}, ConnectionMessage.Type.command);
+
+        connection.sendMessage(connectionMessage);
+    }
+
+
+
+
+
+
+
 
     public void startGame() {
         if (connection == null) {

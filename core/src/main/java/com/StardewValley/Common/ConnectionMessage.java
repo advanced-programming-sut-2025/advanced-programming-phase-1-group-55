@@ -1,6 +1,7 @@
 package com.StardewValley.Common;
 
 import com.StardewValley.Common.model.Friendship.Message;
+import com.StardewValley.Common.model.Trade;
 import com.StardewValley.Common.model.User;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -17,6 +18,17 @@ public class ConnectionMessage {
         gsonBuilder.setPrettyPrinting();
         gson = gsonBuilder.create();
     }
+
+
+    public static synchronized String tradeToJson(Trade trade) {
+        return gson.toJson(trade);
+    }
+
+    public static synchronized Trade tradeFromJson(String json) {
+        return gson.fromJson(json, Trade.class);
+    }
+
+
     public static synchronized String messageToJson(Message message) {
         return gson.toJson(message);
     }
@@ -30,7 +42,8 @@ public class ConnectionMessage {
     }
 
     public static synchronized ArrayList<Message> messagesFromJson(String json) {
-        return gson.fromJson(json, new com.google.gson.reflect.TypeToken<ArrayList<Message>>(){}.getType());
+        return gson.fromJson(json, new com.google.gson.reflect.TypeToken<ArrayList<Message>>() {
+        }.getType());
     }
 
 
@@ -73,7 +86,6 @@ public class ConnectionMessage {
 
     private Type type;
     private HashMap<String, Object> body;
-
 
 
     public ConnectionMessage(HashMap<String, Object> body, Type type) {
