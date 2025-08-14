@@ -10,7 +10,7 @@ import java.util.List;
 public class DataBase {
     private static Connection connection;
 
-    // اتصال به دیتابیس
+
     public static void connect() {
         try {
             connection = DriverManager.getConnection("jdbc:sqlite:user_datas.db");
@@ -22,7 +22,7 @@ public class DataBase {
         }
     }
 
-    // ساخت جدول در صورت عدم وجود
+
     private static void  createTableIfNeeded() throws SQLException {
         String sql = "CREATE TABLE IF NOT EXISTS user (" +
             "id INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -40,7 +40,7 @@ public class DataBase {
         stmt.execute(sql);
     }
 
-    // درج کاربر جدید
+
     public static void insertUser(User user) {
         if (connection == null) {
             System.out.println("Database not connected!");
@@ -65,7 +65,7 @@ public class DataBase {
         }
     }
 
-    // گرفتن همه کاربران
+
     public static List<User> getAllUsers() {
         List<User> users = new ArrayList<>();
         if (connection == null) return users;
@@ -94,7 +94,7 @@ public class DataBase {
         return users;
     }
 
-    // به‌روزرسانی کاربر
+
     public static void updateUser(User user) {
         if (connection == null) return;
         try {
@@ -117,7 +117,7 @@ public class DataBase {
         }
     }
 
-    // حذف کاربر
+
     public static void deleteUser(String username) {
         if (connection == null) return;
         try {
@@ -133,7 +133,6 @@ public class DataBase {
         }
     }
 
-    // قطع اتصال
     public static  void disconnect() {
         try {
             if (connection != null) connection.close();

@@ -1063,5 +1063,147 @@
     "hasMessageToday": false,
     "quest": {},
     "id": 0
+  },
+  {
+    "username": "saghar",
+    "password": "b0f9f1141e9abe4d3c038de1d9632a6af828217ad4f2ec27bc49f775207fed27",
+    "nickName": "sdfg",
+    "gender": "male",
+    "email": "asd@gmail.com",
+    "isSad": false,
+    "timePassedBeingSad": 0,
+    "numberOfSecurityQuestion": 0,
+    "securityQuestion": "What was the name of your first-grade teacher?",
+    "answerOfSecurityQuestion": "asdfg",
+    "farmingSkill": {
+      "type": "Farming",
+      "level": 0,
+      "points": 0
+    },
+    "miningSkill": {
+      "type": "Mining",
+      "level": 0,
+      "points": 0
+    },
+    "foragingSkill": {
+      "type": "Foraging",
+      "level": 0,
+      "points": 0
+    },
+    "fishingSkill": {
+      "type": "Fishing",
+      "level": 0,
+      "points": 0
+    },
+    "refrigerator": [],
+    "artisanMachines": [],
+    "farmBuildings": [],
+    "farmHadPlaceForAnimals": false,
+    "myAnimals": [],
+    "avatarPath": "avatars/vibrent_13.png",
+    "backPack": {
+      "inventory": {},
+      "level": 1,
+      "craftingRecipes": [],
+      "cookingRecipes": [
+        "FRIED_EGG",
+        "BAKED_FISH",
+        "SALAD"
+      ]
+    },
+    "friendsNpc": {},
+    "gold": 10000,
+    "friendsPlayer": {},
+    "dailyMoney": 0,
+    "wood": 40000,
+    "energy": 100.0,
+    "stayLoggedIn": false,
+    "mostAchievedMoney": 0,
+    "matchPlayed": 0,
+    "location": {
+      "y": 0,
+      "x": 0
+    },
+    "direction": "DOWN",
+    "fainted": false,
+    "trades": {},
+    "stone": 0,
+    "receivedGifts": {},
+    "sentGifts": {},
+    "hasGiftToday": false,
+    "hasMessageToday": false,
+    "quest": {},
+    "id": 0
+  },
+  {
+    "username": "shayn12",
+    "password": "b0f9f1141e9abe4d3c038de1d9632a6af828217ad4f2ec27bc49f775207fed27",
+    "nickName": "sh",
+    "gender": "male",
+    "email": "shayan24@gmail.com",
+    "isSad": false,
+    "timePassedBeingSad": 0,
+    "numberOfSecurityQuestion": 0,
+    "securityQuestion": "What was the name of your first-grade teacher?",
+    "answerOfSecurityQuestion": "sdfgh",
+    "farmingSkill": {
+      "type": "Farming",
+      "level": 0,
+      "points": 0
+    },
+    "miningSkill": {
+      "type": "Mining",
+      "level": 0,
+      "points": 0
+    },
+    "foragingSkill": {
+      "type": "Foraging",
+      "level": 0,
+      "points": 0
+    },
+    "fishingSkill": {
+      "type": "Fishing",
+      "level": 0,
+      "points": 0
+    },
+    "refrigerator": [],
+    "artisanMachines": [],
+    "farmBuildings": [],
+    "farmHadPlaceForAnimals": false,
+    "myAnimals": [],
+    "avatarPath": "avatars/vibrent_4.png",
+    "backPack": {
+      "inventory": {},
+      "level": 1,
+      "craftingRecipes": [],
+      "cookingRecipes": [
+        "FRIED_EGG",
+        "BAKED_FISH",
+        "SALAD"
+      ]
+    },
+    "friendsNpc": {},
+    "gold": 10000,
+    "friendsPlayer": {},
+    "dailyMoney": 0,
+    "wood": 40000,
+    "energy": 100.0,
+    "stayLoggedIn": false,
+    "mostAchievedMoney": 0,
+    "matchPlayed": 0,
+    "location": {
+      "y": 0,
+      "x": 0
+    },
+    "direction": "DOWN",
+    "fainted": false,
+    "trades": {},
+    "stone": 0,
+    "receivedGifts": {},
+    "sentGifts": {},
+    "hasGiftToday": false,
+    "hasMessageToday": false,
+    "quest": {},
+    "id": 0
   }
 ]
