@@ -21,12 +21,17 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
@@ -259,88 +264,6 @@ public class MainGameGraphicView implements Screen, InputProcessor {
     }
 
 
-    private Table emojiPopup;
-    private boolean popupVisible = false;
-    private EmojiType selectedEmoji = null;
-
-    private void createEmojiPopup() {
-        emojiPopup = new Table();
-        emojiPopup.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("Flooring/Flooring_54.png"))));
-        emojiPopup.setSize(250, Gdx.graphics.getHeight());
-        emojiPopup.setPosition(Gdx.graphics.getWidth(), 0);
-        emojiPopup.setVisible(false);
-
-
-        TextButton backBtn = new TextButton("Back", App.skin);
-        TextButton selectBtn = new TextButton("Select", App.skin);
-        TextButton changeBtn = new TextButton("Change", App.skin);
-
-        backBtn.addListener(e -> {
-            if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) toggleEmojiPopup();
-            return true;
-        });
-
-        selectBtn.addListener(e -> {
-            if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT) && selectedEmoji != null) {
-                System.out.println("Selected emoji: " + selectedEmoji.getId());
-            }
-            return true;
-        });
-
-        changeBtn.addListener(e -> {
-            if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
-                System.out.println("Change button clicked");
-            }
-            return true;
-        });
-
-        Table buttonRow = new Table();
-        buttonRow.add(backBtn).pad(5);
-        buttonRow.add(selectBtn).pad(5);
-        buttonRow.add(changeBtn).pad(5);
-
-        emojiPopup.add(buttonRow).colspan(3).row();
-
-
-        Table emojiTable = new Table();
-        int counter = 0;
-        for (EmojiType emoji : ClientData.getInstance().selfDetails.defaultEmojis) {
-            Texture emojiTex = new Texture(emoji.getPath());
-            ImageButton imgBtn = new ImageButton(new TextureRegionDrawable(new TextureRegion(emojiTex)));
-
-            imgBtn.addListener(e -> {
-                if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
-                    selectedEmoji = emoji;
-                    System.out.println("Clicked on emoji: " + emoji.getId());
-                }
-                return true;
-            });
-
-            emojiTable.add(imgBtn).size(48, 48).pad(5);
-            counter++;
-            if (counter % 4 == 0) emojiTable.row();
-        }
-
-        emojiPopup.add(emojiTable).expand().pad(10).row();
-
-        stage.addActor(emojiPopup);
-    }
-
-    private void toggleEmojiPopup() {
-        if (!popupVisible) {
-            emojiPopup.setVisible(true);
-            emojiPopup.addAction(Actions.moveTo(Gdx.graphics.getWidth() - emojiPopup.getWidth(), 0, 0.3f));
-        } else {
-            emojiPopup.addAction(Actions.sequence(
-                Actions.moveTo(Gdx.graphics.getWidth(), 0, 0.3f),
-                Actions.visible(false)
-            ));
-        }
-        popupVisible = !popupVisible;
-    }
-
-
-
     @Override
     public void resize(int width, int height) {
         camera.setToOrtho(false, width, height);
@@ -374,10 +297,6 @@ public class MainGameGraphicView implements Screen, InputProcessor {
 
     @Override
     public boolean keyDown(int i) {
-        if (i == Input.Keys.NUM_5) {
-            if (emojiPopup == null) createEmojiPopup();
-            toggleEmojiPopup();
-        }
         return false;
     }
 
