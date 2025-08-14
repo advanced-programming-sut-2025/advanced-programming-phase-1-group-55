@@ -101,7 +101,7 @@ public class FriendMenuController {
                     return;
                 }
                 PlayerFriendship friendship=you.getFriendsPlayer().get(friend);
-                friendship.getConversation().add(new Message(view.getMessageField().getText(),you));
+                friendship.getConversation().add(new Message(view.getMessageField().getText(),you.getUsername()));
                 view.getMessageField().setText("");
                 view.refreshChat();
                 friend.setHasMessageToday(true);

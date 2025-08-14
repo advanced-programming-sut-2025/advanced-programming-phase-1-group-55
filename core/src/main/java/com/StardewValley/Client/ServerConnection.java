@@ -37,7 +37,6 @@ public class ServerConnection extends Connection {
 
     @Override
     protected synchronized boolean handleMessage(ConnectionMessage message) {
-        System.out.println(message.getBody());
         if (message.getType().equals(ConnectionMessage.Type.command)) {
             if (message.getFromBody("command").equals("status")) {
                 sendMessage(controller.status());
@@ -78,17 +77,24 @@ public class ServerConnection extends Connection {
                 return true;
             }
 
-            if (updateType.equals("new_chat_message")) {
-                String jsonString = (String) message.getFromBody("json");
-                Message chatMsg = ConnectionMessage.messageFromJson(jsonString);
-                ClientData.getInstance().gameDetails.getPublicGameChat().add(chatMsg);
-                return true;
-            }
-
             if (updateType.equals("update_chat")) {
-                String jsonString = (String) message.getFromBody("json");
-                ArrayList<Message> allMessages = ConnectionMessage.messagesFromJson(jsonString);
-                ClientData.getInstance().gameDetails.setPublicGameChat(allMessages);
+                String jsonString =message.getFromBody("json");
+                Message message1 = ConnectionMessage.messageFromJson(jsonString);
+                System.out.println("deserialaize");
+                System.out.println(message1.getText());
+                System.out.println(message1.getSender());
+                System.out.println(ClientData.getInstance().selfDetails.username);
+                System.out.println("khikhii");
+                for (Message message2:ClientData.getInstance().gameDetails.getPublicGameChat()) {
+                    System.out.println(message2.getText());
+                }
+                System.out.println("natije:");
+                ClientData.getInstance().gameDetails.getPublicGameChat().add(message1);
+                for (Message message2:ClientData.getInstance().gameDetails.getPublicGameChat()) {
+                    System.out.println(message2.getText());
+                }
+                System.out.println("message jadid shod aslan?");
+                System.out.println("==========================================");
 
                 return true;
             }

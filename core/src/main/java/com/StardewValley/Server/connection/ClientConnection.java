@@ -1,8 +1,12 @@
 package com.StardewValley.Server.connection;
 
+import com.StardewValley.Client.ClientData;
+import com.StardewValley.Client.View.ChatMenuView;
 import com.StardewValley.Common.Connection;
 import com.StardewValley.Common.ConnectionMessage;
 import com.StardewValley.Common.GameDetails;
+import com.StardewValley.Common.model.App;
+import com.StardewValley.Common.model.Friendship.Message;
 
 import java.io.IOException;
 import java.net.Socket;
@@ -50,7 +54,6 @@ public class ClientConnection extends Connection {
 
     @Override
     protected synchronized boolean handleMessage(ConnectionMessage message) {
-        System.out.println(message.getBody());
         if (message.getType().equals(ConnectionMessage.Type.command)) {
             if(message.getFromBody("command").equals("file_meta")) {
                 super.startFileReceiving(message);
@@ -109,6 +112,10 @@ public class ClientConnection extends Connection {
                 controller.getLastUser();
                 return true;
             }
+            if(message.getFromBody("command").equals("update_public_chat")) {
+                controller.updatePublicChat(message);
+                return true;
+            }
 
         }
         if (message.getType().equals(ConnectionMessage.Type.inform)) {
@@ -124,8 +131,6 @@ public class ClientConnection extends Connection {
         if(message.getType().equals(ConnectionMessage.Type.update)) {
             if(message.getFromBody("update").equals("update_self")) {
                 controller.updateSelf(message);
-                return true;
-            }if (message.getFromBody("update").equals("update_public_chat")) {
                 return true;
             }
         }
