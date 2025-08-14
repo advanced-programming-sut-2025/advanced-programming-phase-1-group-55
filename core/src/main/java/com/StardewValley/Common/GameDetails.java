@@ -1,6 +1,7 @@
 package com.StardewValley.Common;
 
 import com.StardewValley.Common.model.Friendship.Message;
+import com.StardewValley.Common.model.Trade;
 import com.StardewValley.Server.connection.ClientConnection;
 
 import java.util.ArrayList;
@@ -14,7 +15,8 @@ public class GameDetails {
     private transient ArrayList<ClientConnection> connections;
     private int gameId;
     private boolean isRunning;
-    private  transient ArrayList<Message> publicGameChat=new ArrayList<>();
+    private transient ArrayList<Message> publicGameChat = new ArrayList<>();
+    private transient ArrayList<Trade> trades = new ArrayList<>();
 
     public GameDetails(ArrayList<String> usernames, String adminUsername) {
         players = new HashMap<>();
@@ -26,7 +28,8 @@ public class GameDetails {
         this.isRunning = true;
     }
 
-    public GameDetails() {}
+    public GameDetails() {
+    }
 
     public void sendGameDetails() {
         String json = ConnectionMessage.gameDetailsToJson(this);
@@ -35,11 +38,19 @@ public class GameDetails {
             put("json", json);
             put("game_code", gameId);
         }}, ConnectionMessage.Type.update);
-        for(ClientConnection connection : connections) {
-            if(connection.isAlive()) {
+        for (ClientConnection connection : connections) {
+            if (connection.isAlive()) {
                 connection.sendMessage(update);
             }
         }
+    }
+
+    public ArrayList<Trade> getTrades() {
+        return trades;
+    }
+
+    public void setTrades(ArrayList<Trade> trades) {
+        this.trades = trades;
     }
 
     public PlayerDetails getPlayerByUsername(String username) {

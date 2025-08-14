@@ -3,6 +3,7 @@ package com.StardewValley.Client;
 import com.StardewValley.Common.Connection;
 import com.StardewValley.Common.ConnectionMessage;
 import com.StardewValley.Common.model.Friendship.Message;
+import com.StardewValley.Common.model.Trade;
 
 import java.io.IOException;
 import java.net.Socket;
@@ -54,16 +55,29 @@ public class ServerConnection extends Connection {
 
 
         } else if (message.getType().equals(ConnectionMessage.Type.inform)) {
-            if (message.getFromBody("information").equals("lobby_termination")) {
+            String info = message.getFromBody("information");
+
+            if (info.equals("lobby_termination")) {
                 controller.lobbyTerminated(message);
                 return true;
             }
-            if (message.getFromBody("information").equals("start_game")) {
+            if (info.equals("start_game")) {
                 controller.gameStarted(message);
                 return true;
             }
-            if (message.getFromBody("information").equals("online_users")) {
+            if (info.equals("online_users")) {
                 controller.updateOnlineUsers(message);
+                return true;
+            }
+            if (info.equals("online_users")) {
+                controller.updateOnlineUsers(message);
+                return true;
+            }
+            if (info.equals("receive_trade_request")) {
+                String jsonString = message.getFromBody("trade");
+                Trade trade = ConnectionMessage.tradeFromJson(jsonString);
+                ClientData.getInstance().gameDetails.getTrades().add(trade);
+
                 return true;
             }
         }
