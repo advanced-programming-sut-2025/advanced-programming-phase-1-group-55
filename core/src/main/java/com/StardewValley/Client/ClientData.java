@@ -22,7 +22,7 @@ public class ClientData {
         return instance;
     }
 
-    public ServerConnection connection ;
+    public ServerConnection connection;
     public ArrayList<Lobby> lobbies = new ArrayList<>();
     public String lobbyCode;
     public ArrayList<String> onlineUsers = new ArrayList<>();
@@ -50,6 +50,25 @@ public class ClientData {
         }
         return null;
     }
+
+    public void sendPrivateMessage(String targetUsername, String text) {
+        HashMap<String, Object> body = new HashMap<>();
+        body.put("command", "player_request");
+        body.put("target", targetUsername);
+        body.put("from", selfDetails.username);
+        body.put("message", text);
+
+        ConnectionMessage msg = new ConnectionMessage(body, ConnectionMessage.Type.command);
+        connection.sendMessage(msg);
+    }
+
+    public void handleIncomingPlayerMessage(ConnectionMessage message) {
+        String from = message.getFromBody("from");
+        String text = message.getFromBody("message");
+        System.out.println("پیام از " + from + ": " + text);
+
+    }
+
 
     public void updateAndSendSelf() {
         selfDetails.updateInfo();

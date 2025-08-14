@@ -213,6 +213,7 @@ public class ClientController {
     }
 
 
+
     public boolean setReaction(String text) {
         if (!Reaction.isValid(text)) {
             return false;

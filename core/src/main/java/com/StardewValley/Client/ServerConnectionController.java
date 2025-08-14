@@ -69,11 +69,7 @@ public class ServerConnectionController {
         data.gameDetails = game;
         data.isInGame = true;
         User[] users = new User[usernames.size()];
-//        for (int i = 0; i < usernames.size(); i++) {
-//            users[i] = new User(usernames.get(i), "", "", "", "", "", "", "");//todo null mide
-////            TODO: set avatars
-////            users[i].setAvatarTexture(new Texture());
-//        }
+
         String otherUsername="";
         for (String x : usernames) {
             if (App.mainUser.getUsername().equals(x)) {

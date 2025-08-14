@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 public class LobbyScreen implements Screen {
@@ -138,10 +139,13 @@ public class LobbyScreen implements Screen {
         foundLobbyTable.add(new Label("Private: " + (lobby.isPrivate() ? "Yes" : "No"), skin)).pad(3).row();
 
         TextButton joinBtn = new TextButton("Join", skin);
-        joinBtn.addListener(e -> {
-            ClientController.getInstance().joinLobby(lobby.getCode());
-            App.gameApp.setScreen(new InLobbyScreen ());
-            return true;
+        joinBtn.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent changeEvent, Actor actor) {
+
+                ClientController.getInstance().joinLobby(lobby.getCode());
+                App.gameApp.setScreen(new InLobbyScreen());
+            }
         });
         foundLobbyTable.add(joinBtn).pad(3);
     }
@@ -178,7 +182,7 @@ public class LobbyScreen implements Screen {
                     passwordField.getText().trim(),
                     visibleCheckBox.isChecked()
                 );
-                App.gameApp.setScreen(new InLobbyScreen ());
+                App.gameApp.setScreen(new InLobbyScreen());
             }
         });
 
@@ -203,10 +207,13 @@ public class LobbyScreen implements Screen {
 
             Table row = new Table(skin);
             TextButton joinBtn = new TextButton("Join", skin);
-            joinBtn.addListener(e -> {
-                ClientController.getInstance().joinLobby(lobby.getCode());
-                App.gameApp.setScreen(new InLobbyScreen ());
-                return true;
+            joinBtn.addListener(new ChangeListener() {
+                @Override
+                public void changed(ChangeEvent changeEvent, Actor actor) {
+
+                    ClientController.getInstance().joinLobby(lobby.getCode());
+                    App.gameApp.setScreen(new InLobbyScreen());
+                }
             });
 
             row.add(joinBtn).pad(2);

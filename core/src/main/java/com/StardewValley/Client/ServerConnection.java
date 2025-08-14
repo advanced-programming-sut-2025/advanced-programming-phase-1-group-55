@@ -56,6 +56,7 @@ public class ServerConnection extends Connection {
                 return true;
             }
 
+
         } else if (message.getType().equals(ConnectionMessage.Type.inform)) {
             if (message.getFromBody("information").equals("lobby_termination")) {
                 controller.lobbyTerminated(message);

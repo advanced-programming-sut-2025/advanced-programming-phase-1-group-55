@@ -2,6 +2,7 @@ package com.StardewValley.Server.Controller;
 
 
 import com.StardewValley.Client.View.*;
+import com.StardewValley.Common.model.GameModel;
 import com.StardewValley.Common.model.Map.Fence;
 import com.StardewValley.Common.model.Map.FenceType;
 //import com.StardewValley.View.MainGameGraphicView;
@@ -20,6 +21,8 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
+import java.util.ArrayList;
+
 import static com.StardewValley.Common.model.App.*;
 import static com.StardewValley.Common.model.GameTime.*;
 import static com.StardewValley.Common.model.weather.getCurrentWeather;
@@ -37,7 +40,7 @@ public class MainGameController {
         this.view = view;
         view.setUpStage();
         currentPlayer = view.getPlayer();
-        playerController = new PlayerController(currentPlayer,this);
+        playerController = new PlayerController(currentPlayer, this);
         playerController.setStage(view.getStage());
         toolController = new ToolController(currentPlayer);
         npcController = new NpcController(currentPlayer, view.getMap());
@@ -146,14 +149,16 @@ public class MainGameController {
             CookingMenuController cookingController = new CookingMenuController();
             CookingMenuView cookingView = new CookingMenuView(cookingController, currentPlayer);
             gameApp.setScreen(cookingView);
-        }
-        else if (Gdx.input.isKeyJustPressed(Input.Keys.I)) {
+        } else if (Gdx.input.isKeyJustPressed(Input.Keys.I)) {
             gameApp.setScreen(new FarmingProductMenuView());
-        }
-        else if (Gdx.input.isKeyJustPressed(Input.Keys.M)) {
+        } else if (Gdx.input.isKeyJustPressed(Input.Keys.M)) {
             AnimalMenuController animalMenuController = new AnimalMenuController(currentPlayer);
             AnimalMenuView animalMenuView = new AnimalMenuView(animalMenuController, currentPlayer);
             gameApp.setScreen(animalMenuView);
+        } else if (Gdx.input.isKeyJustPressed(Input.Keys.T)) {
+            User player = App.getCurrentGameModel().getCurrentUser();
+            GameModel gameModel = App.getCurrentGameModel();
+            gameApp.setScreen(new TradeMenuScreen(player, gameModel.playersInGame, new ArrayList<>(player.getBackPack().getInventory().values())));
         }
 
 
@@ -231,6 +236,7 @@ public class MainGameController {
 
         }
     }
+
     public Result time() {
 
         return new Result(true, String.valueOf(getHour()));
