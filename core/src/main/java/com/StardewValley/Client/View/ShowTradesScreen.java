@@ -2,7 +2,9 @@ package com.StardewValley.Client.View;
 
 import com.StardewValley.Client.ClientController;
 import com.StardewValley.Common.model.App;
+import com.StardewValley.Common.model.Item.ItemType;
 import com.StardewValley.Common.model.Trade;
+import com.StardewValley.Common.model.User;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
@@ -98,6 +100,10 @@ public class ShowTradesScreen implements Screen {
                 acceptButton.addListener(new ChangeListener() {
                     @Override
                     public void changed(ChangeEvent event, com.badlogic.gdx.scenes.scene2d.Actor actor) {
+
+//                        App.mainUser.getBackPack().removeAmountFromInventory(ItemType.getItemType(t.getTargetItem()), -1 * t.getTargetAmount());
+                        App.getCurrentGameModel().getCurrentUser().getBackPack().removeAmountFromInventory(ItemType.getItemType(t.getItem()), t.getAmount());
+
                         acceptTrade(t);
                     }
                 });
@@ -119,9 +125,6 @@ public class ShowTradesScreen implements Screen {
     }
 
 
-
-
-
     private void acceptTrade(Trade trade) {
         trade.setAccepted(true);
         ClientController.getInstance().sendTradeAcceptance(trade);
@@ -141,9 +144,25 @@ public class ShowTradesScreen implements Screen {
         stage.draw();
     }
 
-    @Override public void resize(int width, int height) { stage.getViewport().update(width, height, true); }
-    @Override public void pause() {}
-    @Override public void resume() {}
-    @Override public void hide() {}
-    @Override public void dispose() { stage.dispose(); }
+    @Override
+    public void resize(int width, int height) {
+        stage.getViewport().update(width, height, true);
+    }
+
+    @Override
+    public void pause() {
+    }
+
+    @Override
+    public void resume() {
+    }
+
+    @Override
+    public void hide() {
+    }
+
+    @Override
+    public void dispose() {
+        stage.dispose();
+    }
 }

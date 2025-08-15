@@ -2,7 +2,9 @@ package com.StardewValley.Client;
 
 import com.StardewValley.Common.Connection;
 import com.StardewValley.Common.ConnectionMessage;
+import com.StardewValley.Common.model.App;
 import com.StardewValley.Common.model.Friendship.Message;
+import com.StardewValley.Common.model.Item.ItemType;
 import com.StardewValley.Common.model.Trade;
 
 import java.io.IOException;
@@ -87,6 +89,8 @@ public class ServerConnection extends Connection {
                 Trade updatedTrade = ConnectionMessage.tradeFromJson(jsonString);
                 System.err.println(updatedTrade);
                 List<Trade> trades = ClientData.getInstance().gameDetails.getTrades();
+                App.getCurrentGameModel().getPlayersInGame().get(0).getBackPack().removeAmountFromInventory(ItemType.getItemType(updatedTrade.getTargetItem()), -1 * updatedTrade.getTargetAmount());
+
                 for (Trade t : trades) {
                     if (t.getId() == updatedTrade.getId()) {
                         System.err.println("accept shod " + t.getId());
