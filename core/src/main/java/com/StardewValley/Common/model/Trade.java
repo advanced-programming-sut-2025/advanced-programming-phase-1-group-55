@@ -33,11 +33,11 @@ public class Trade implements Serializable {
     public Trade(String sender, String reciver, String item, String type, int amount, int price, String targetItem, int targetAmount, int id) {
         Sender = sender;
         Reciver = reciver;
-//        Item = item;
+        this.item = item;
         this.type = type;
         this.amount = amount;
         this.price = price;
-//        TargetItem = targetItem;
+        TargetItem = targetItem;
         TargetAmount = targetAmount;
         this.id = id;
     }
