@@ -71,11 +71,20 @@ public class InLobbyScreen implements Screen {
                 ClientController.getInstance().refreshLobbies();
             }
         });
+        TextButton btnLoadGame = new TextButton("Load Game", skin);
+        btnLoadGame.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                ClientController.getInstance().requestGameLoad();
+            }
+        });
+
 
         Table buttonTable = new Table();
         buttonTable.add(btnStart).pad(8).row();
         buttonTable.add(btnLeave).pad(8).row();
         buttonTable.add(btnRefresh).pad(8);
+        buttonTable.add(btnLoadGame).pad(8).row();
 
         membersTable = new Table(skin);
         membersTable.defaults().pad(4);
@@ -132,13 +141,16 @@ public class InLobbyScreen implements Screen {
     }
 
     @Override
-    public void pause() {}
+    public void pause() {
+    }
 
     @Override
-    public void resume() {}
+    public void resume() {
+    }
 
     @Override
-    public void hide() {}
+    public void hide() {
+    }
 
     @Override
     public void dispose() {

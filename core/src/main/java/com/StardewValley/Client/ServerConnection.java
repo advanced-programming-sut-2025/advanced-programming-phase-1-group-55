@@ -70,6 +70,9 @@ public class ServerConnection extends Connection {
             if (info.equals("start_game")) {
                 controller.gameStarted(message);
                 return true;
+            } if (info.equals("game_loaded")) {
+                controller.gameStarted_load(message);
+                return true;
             }
             if (info.equals("online_users")) {
                 controller.updateOnlineUsers(message);

@@ -62,9 +62,9 @@ public class ServerConnectionController {
         System.out.println((String) message.getFromBody("game_details"));
         ArrayList<String> usernames = message.getFromBody("usernames");
         data.selfDetails = new PlayerDetails(App.mainUser.getUsername());
-        data.selfDetails.skills=4;
-        data.selfDetails.gold=40000;
-        data.selfDetails.quests=0;
+        data.selfDetails.skills = 4;
+        data.selfDetails.gold = 40000;
+        data.selfDetails.quests = 0;
         data.gameDetails = game;
         data.isInGame = true;
         String otherUsername = "";
@@ -75,7 +75,52 @@ public class ServerConnectionController {
                 otherUsername = x;
             }
         }
-        Result result = controller.newGame(otherUsername, null, null, "Map1", "Map1", "Map1");
+        Result result = controller.newGame(otherUsername, null, null, "Map1", "Map1", "Map1",game);
+        if (result.IsSuccess()) {
+            Gdx.app.postRunnable(() -> {
+                App.getGameApp().setScreen(
+                    new MainGameGraphicView(
+                        new MainGameController(),
+                        App.currentGameModel.getMap()
+                    )
+                );
+            });
+        } else {
+            System.err.println(result.Message());
+        }
+
+        ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+        scheduler.scheduleAtFixedRate(() -> {
+            if (data.isInGame) {
+                data.updateAndSendSelf();
+            } else {
+                scheduler.shutdown();
+            }
+        }, 3, 1, TimeUnit.SECONDS);
+
+    }
+
+    public void gameStarted_load(ConnectionMessage message) {
+        System.out.println("load game121212 ");
+
+        GameDetails game = ConnectionMessage.gameDetailsFromJson(message.getFromBody("game_details"));
+
+        System.out.println((String) message.getFromBody("game_details"));
+        data.selfDetails = new PlayerDetails(App.mainUser.getUsername());
+        data.selfDetails.skills = 4;
+        data.selfDetails.gold = 40000;
+        data.selfDetails.quests = 0;
+        data.gameDetails = game;
+        data.isInGame = true;
+        String otherUsername = "";
+        for (String x : game.getPlayers().keySet()) {
+            if (App.mainUser.getUsername().equals(x)) {
+                continue;
+            } else {
+                otherUsername = x;
+            }
+        }
+        Result result = controller.newGame(otherUsername, null, null, "Map1", "Map1", "Map1",game);
         if (result.IsSuccess()) {
             Gdx.app.postRunnable(() -> {
                 App.getGameApp().setScreen(

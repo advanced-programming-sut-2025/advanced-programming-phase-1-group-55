@@ -81,6 +81,10 @@ public class ClientConnection extends Connection {
                 controller.startGame(message);
                 return true;
             }
+            if (command.equals("load_game")) {
+                controller.handleLoadGameRequest();
+                return true;
+            }
 
             if (command.equals("get_last_user")) {
                 controller.getLastUser();

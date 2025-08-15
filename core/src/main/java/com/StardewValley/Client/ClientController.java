@@ -221,6 +221,35 @@ public class ClientController {
             e.printStackTrace();
         }
     }
+    public void requestGameLoad() {
+        if (connection == null) return;
+
+        ConnectionMessage loadRequest = new ConnectionMessage(new HashMap<>() {{
+            put("command", "load_game");
+        }}, ConnectionMessage.Type.command);
+
+        try {
+
+            ConnectionMessage response = connection.sendAndWaitForResponse(loadRequest, TIMEOUT);
+
+            if (response != null) {
+                String result = response.getFromBody("response");
+                if ("ok".equals(result)) {
+                    System.out.println("Game loaded successfully.");
+
+                } else {
+                    String error = response.getFromBody("error");
+                    System.err.println("Failed to load game: " + error);
+                }
+            } else {
+                System.err.println("No response from server for load_game request.");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
     public void startGame() {

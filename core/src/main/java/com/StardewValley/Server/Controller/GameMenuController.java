@@ -1,5 +1,6 @@
 package com.StardewValley.Server.Controller;
 
+import com.StardewValley.Common.GameDetails;
 import com.StardewValley.Common.model.App;
 import com.StardewValley.Common.model.Friendship.NpcFriendship;
 import com.StardewValley.Common.model.Friendship.PlayerFriendship;
@@ -83,7 +84,7 @@ public class GameMenuController {
 
 
     public Result newGame(String Username1, String Username2, String Username3,
-                          String Map1, String Map2, String Map3) {
+                          String Map1, String Map2, String Map3, GameDetails game) {
 
         if (Username1 == null || Username1.isEmpty()) {
             return new Result(false, "Username is empty. At least one user must be added.");
@@ -93,9 +94,12 @@ public class GameMenuController {
             return new Result(false, "mainuser null");
         }
         User player0 = mainUser;
+        player0.setGold(game.getPlayerByUsername(player0.getUsername()).getGold());
 
         player0.setId(0);
         User player1 = AllUsers.get(Username1);
+        player1.setGold(game.getPlayerByUsername(player1.getUsername()).getGold());
+
         player1.setId(1);
 
         User player2 = Username2 != null ? AllUsers.get(Username2) : null;

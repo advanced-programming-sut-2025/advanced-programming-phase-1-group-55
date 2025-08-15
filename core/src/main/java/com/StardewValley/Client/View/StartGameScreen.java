@@ -103,12 +103,12 @@ public class StartGameScreen implements Screen {
                 String m3 = playerCountBox.getSelected() >= 3 ? map3Box.getSelected() : null;
 
 
-                Result result = controller.newGame(u1, u2, u3, m1, m2, m3);
-                if (result.IsSuccess()) {
-                    App.getGameApp().setScreen(new MainGameGraphicView(new MainGameController(), App.currentGameModel.getMap()));
-                } else {
-                    resultLabel.setText(result.Message());
-                }
+//                Result result = controller.newGame(u1, u2, u3, m1, m2, m3);
+//                if (result.IsSuccess()) {
+//                    App.getGameApp().setScreen(new MainGameGraphicView(new MainGameController(), App.currentGameModel.getMap()));
+//                } else {
+//                    resultLabel.setText(result.Message());
+//                }
 
 
             }

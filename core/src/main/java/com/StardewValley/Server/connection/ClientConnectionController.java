@@ -358,6 +358,51 @@ public class ClientConnectionController {
         }, 2000, 4, TimeUnit.MILLISECONDS);
     }
 
+    public void handleLoadGameRequest() {
+        try {
+            Path savePath = Path.of("saved_games", "game.json");
+            if (!Files.exists(savePath)) {
+                System.err.println("No saved game found.");
+                ConnectionMessage notifyClients = new ConnectionMessage(new HashMap<>() {{
+                    put("information", "load_failed");
+                    put("reason", "No saved game found");
+                }}, ConnectionMessage.Type.inform);
+                connection.sendMessage(notifyClients);
+                return;
+            }
+
+            String json = Files.readString(savePath);
+            GameDetails loadedGame = ConnectionMessage.gameDetailsFromJson(json);
+            connection.setGame(loadedGame);
+
+            for (String member : loadedGame.getPlayers().keySet()) {
+                ClientConnection conn = ServerMain.getConnectionByUsername(member);
+                if (conn != null) {
+                    conn.setGame(loadedGame);
+                    conn.setInGame(true);
+                }
+            }
+
+            System.out.println("Game " + loadedGame.getGameId() + " loaded successfully.");
+
+            ConnectionMessage notifyClients = new ConnectionMessage(new HashMap<>() {{
+                put("information", "game_loaded");
+                put("gameId", loadedGame.getGameId());
+                put("game_details", json);
+            }}, ConnectionMessage.Type.inform);
+
+            for (ClientConnection conn : ServerMain.getConnections()) {
+                if (conn.isAlive()) {
+                    conn.sendMessage(notifyClients);
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
     public void updateSelf(ConnectionMessage message) {
         String json = message.getFromBody("json");
         PlayerDetails newSelf = ConnectionMessage.playerDetailsFromJson(json);
