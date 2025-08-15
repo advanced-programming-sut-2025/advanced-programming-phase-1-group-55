@@ -31,24 +31,27 @@ public class LeaderBoardController {
 
                 App.lastSortBy=selectedSort;
 
-                applySort(view.getPlayerDetails(), selectedSort);
+
 
                 App.gameApp.setScreen(new LeaderboardScreen(
-                    view.getPlayerDetails()
+                    applySort(view.getPlayerDetails(), selectedSort)
                 ));
             }
         }
     }
     private ArrayList<PlayerDetails> applySort(ArrayList<PlayerDetails> userList, SortBy sortType) {
         Comparator<PlayerDetails> comparator;
+
         if (sortType == SortBy.gold) {
-            comparator = Comparator.comparing(p -> p.gold);
+            comparator = Comparator.comparingInt(PlayerDetails::getGold).reversed();
         } else if (sortType == SortBy.skill) {
-            comparator = Comparator.comparingInt(p -> -p.skills);
+            comparator = Comparator.comparingInt(PlayerDetails::getSkills).reversed();
         } else {
-            comparator = Comparator.comparingInt(p -> p.quests);
+            comparator = Comparator.comparingInt(PlayerDetails::getQuests).reversed();
         }
+
         userList.sort(comparator);
         return userList;
     }
+
 }

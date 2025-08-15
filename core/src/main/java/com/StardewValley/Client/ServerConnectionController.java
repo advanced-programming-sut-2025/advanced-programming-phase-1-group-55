@@ -61,6 +61,9 @@ public class ServerConnectionController {
         System.out.println((String) message.getFromBody("game_details"));
         ArrayList<String> usernames = message.getFromBody("usernames");
         data.selfDetails = new PlayerDetails(App.mainUser.getUsername());
+        data.selfDetails.skills=4;
+        data.selfDetails.gold=40000;
+        data.selfDetails.quests=0;
         data.gameDetails = game;
         data.isInGame = true;
         String otherUsername="";
