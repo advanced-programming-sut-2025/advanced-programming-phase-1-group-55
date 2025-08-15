@@ -16,7 +16,7 @@ public class Lwjgl3Launcher {
 
     private static Lwjgl3Application createApplication(int port) {
         GameApp gameApp = new GameApp();
-        DataBase.connect();
+//        DataBase.connect();
         gameApp.handleConnection(port);
 
         return new Lwjgl3Application(gameApp, getDefaultConfiguration());

@@ -2,16 +2,20 @@ package com.StardewValley.Common.model;
 
 import com.StardewValley.Common.model.Item.Item;
 
+import java.io.Serializable;
 
-public class Trade {
 
-    private User Sender;
-    private User Reciver;
-    private Item Item;
+public class Trade implements Serializable {
+
+    private String Sender;
+    private String Reciver;
+    //        private transient Item Item;
+    private String item;
     private String type;
     private int amount;
     private int price;
-    private Item TargetItem;
+    //    private Item TargetItem;
+    private String TargetItem;
     private int TargetAmount;
     private int id;
     private boolean Printed = false;
@@ -26,10 +30,10 @@ public class Trade {
         this.answered = answered;
     }
 
-    public Trade(User sender, User reciver, Item item, String type, int amount, int price, Item targetItem, int targetAmount, int id) {
+    public Trade(String sender, String reciver, String item, String type, int amount, int price, String targetItem, int targetAmount, int id) {
         Sender = sender;
         Reciver = reciver;
-        Item = item;
+        this.item = item;
         this.type = type;
         this.amount = amount;
         this.price = price;
@@ -38,32 +42,45 @@ public class Trade {
         this.id = id;
     }
 
+    public String getItem() {
+        return item;
+    }
 
+    public void setItem(String item) {
+        this.item = item;
+    }
 
+    public String getTargetItem() {
+        return TargetItem;
+    }
 
-    public User getSender() {
+    public void setTargetItem(String targetItem) {
+        TargetItem = targetItem;
+    }
+
+    public String getSender() {
         return Sender;
     }
 
-    public void setSender(User sender) {
+    public void setSender(String sender) {
         Sender = sender;
     }
 
-    public User getReciver() {
+    public String getReciver() {
         return Reciver;
     }
 
-    public void setReciver(User reciver) {
+    public void setReciver(String reciver) {
         Reciver = reciver;
     }
 
-    public Item getItem() {
-        return Item;
-    }
+//    public Item getItem() {
+//        return Item;
+//    }
 
-    public void setItem(Item item) {
-        Item = item;
-    }
+//    public void setItem(Item item) {
+//        Item = item;
+//    }
 
     public String getType() {
         return type;
@@ -89,13 +106,13 @@ public class Trade {
         this.price = price;
     }
 
-    public Item getTargetItem() {
-        return TargetItem;
-    }
-
-    public void setTargetItem(Item targetItem) {
-        TargetItem = targetItem;
-    }
+//    public Item getTargetItem() {
+//        return TargetItem;
+//    }
+//
+//    public void setTargetItem(Item targetItem) {
+//        TargetItem = targetItem;
+//    }
 
     public int getTargetAmount() {
         return TargetAmount;
@@ -132,13 +149,13 @@ public class Trade {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Trade info {").append(" id : ").append(getId()).append(" sender : ").append(getSender().getUsername()).append(" reciver : ").append(getReciver().getUsername()).append("\nitem : ").append(getItem().getItemType().getDisplayName()).append(" amount :").append(getAmount()).append(" type : ").append(getType());
-        if (price == 0) {
-            sb.append("\ntarget item : ").append(getTargetItem().getItemType().getDisplayName()).append("target amount : ").append(getTargetAmount());
-        } else {
-            sb.append(" price : ").append(getPrice());
-        }
-        sb.append(" accepted : ").append(isAccepted()).append(" }");
+        sb.append("Trade info {").append(" id : ").append(getId()).append(" sender : ").append(getSender()).append(" reciver : ").append(" amount :").append(getAmount()).append(" type : ").append(getType());
+//        if (price == 0) {
+//            sb.append("\ntarget item : ").append(getTargetItem().getItemType().getDisplayName()).append("target amount : ").append(getTargetAmount());
+//        } else {
+//            sb.append(" price : ").append(getPrice());
+//        }
+//        sb.append(" accepted : ").append(isAccepted()).append(" }");
         return sb.toString();
     }
 }

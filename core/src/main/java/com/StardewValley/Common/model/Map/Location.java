@@ -1,6 +1,8 @@
 package com.StardewValley.Common.model.Map;
 
-public class Location {
+import java.io.Serializable;
+
+public class Location implements Serializable {
     private int y;
     private int x;
 

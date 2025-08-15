@@ -158,6 +158,9 @@ public class MainGameController {
             gameApp.setScreen(animalMenuView);
         } else if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_4)) {
             gameApp.setScreen(new ChatMenuView(ClientData.getInstance().gameDetails.getPublicGameChat()));
+        } else if (Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT) && Gdx.input.isKeyJustPressed(Input.Keys.T)) {
+
+            gameApp.setScreen(new ShowTradesScreen(ClientData.getInstance().gameDetails.getTrades()));
         } else if (Gdx.input.isKeyJustPressed(Input.Keys.T)) {
             User player = App.getCurrentGameModel().getCurrentUser();
             GameModel gameModel = App.getCurrentGameModel();

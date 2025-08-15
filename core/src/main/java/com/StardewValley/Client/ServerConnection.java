@@ -5,9 +5,15 @@ import com.StardewValley.Common.ConnectionMessage;
 import com.StardewValley.Common.PlayerDetails;
 import com.StardewValley.Common.model.Chat.Emoji;
 import com.StardewValley.Common.model.Chat.Message;
+import com.StardewValley.Common.model.App;
+import com.StardewValley.Common.model.Friendship.Message;
+import com.StardewValley.Common.model.Item.ItemType;
+import com.StardewValley.Common.model.Trade;
 
 import java.io.IOException;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class ServerConnection extends Connection {
@@ -38,6 +44,7 @@ public class ServerConnection extends Connection {
 
     @Override
     protected synchronized boolean handleMessage(ConnectionMessage message) {
+
         String command = (String) message.getFromBody("command");
         if (message.getType().equals(ConnectionMessage.Type.command)) {
             if (command.equals("status")) {
@@ -55,17 +62,45 @@ public class ServerConnection extends Connection {
 
 
         } else if (message.getType().equals(ConnectionMessage.Type.inform)) {
-            if (message.getFromBody("information").equals("lobby_termination")) {
+            String info = message.getFromBody("information");
+
+            if (info.equals("lobby_termination")) {
                 controller.lobbyTerminated(message);
                 return true;
             }
-            if (message.getFromBody("information").equals("start_game")) {
+            if (info.equals("start_game")) {
                 controller.gameStarted(message);
                 return true;
             }
-            if (message.getFromBody("information").equals("online_users")) {
+            if (info.equals("online_users")) {
                 controller.updateOnlineUsers(message);
                 return true;
+            }
+            if (info.equals("online_users")) {
+                controller.updateOnlineUsers(message);
+                return true;
+            }
+            if (info.equals("receive_trade_request")) {
+                String jsonString = message.getFromBody("trade");
+                Trade trade = ConnectionMessage.tradeFromJson(jsonString);
+                ClientData.getInstance().gameDetails.getTrades().add(trade);
+
+                return true;
+            }
+            if (info.equals("trade_accepted")) {
+                String jsonString = message.getFromBody("trade");
+                Trade updatedTrade = ConnectionMessage.tradeFromJson(jsonString);
+                System.err.println(updatedTrade);
+                List<Trade> trades = ClientData.getInstance().gameDetails.getTrades();
+                App.getCurrentGameModel().getPlayersInGame().get(0).getBackPack().removeAmountFromInventory(ItemType.getItemType(updatedTrade.getTargetItem()), -1 * updatedTrade.getTargetAmount());
+
+                for (Trade t : trades) {
+                    if (t.getId() == updatedTrade.getId()) {
+                        System.err.println("accept shod " + t.getId());
+                        t.setAccepted(true);
+                        break;
+                    }
+                }
             }
         }
         if (message.getType().equals(ConnectionMessage.Type.update)) {
@@ -77,7 +112,7 @@ public class ServerConnection extends Connection {
             }
 
             if (updateType.equals("update_chat")) {
-                String jsonString =message.getFromBody("json");
+                String jsonString = message.getFromBody("json");
                 Message message1 = ConnectionMessage.messageFromJson(jsonString);
                 ClientData.getInstance().gameDetails.getPublicGameChat().add(message1);
 

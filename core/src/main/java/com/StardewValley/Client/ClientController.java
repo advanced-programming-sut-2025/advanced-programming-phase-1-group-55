@@ -6,10 +6,13 @@ import com.StardewValley.Common.model.App;
 import com.StardewValley.Common.ConnectionMessage;
 import com.StardewValley.Common.Lobby;
 import com.StardewValley.Common.model.Chat.Message;
+import com.StardewValley.Common.model.Friendship.Message;
+import com.StardewValley.Common.model.Trade;
 
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 import static com.StardewValley.Common.Connection.TIMEOUT;
@@ -29,6 +32,19 @@ public class ClientController {
 
     private ServerConnection connection = null;
     private ClientData data = ClientData.getInstance();
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public void initConnection(String ip, int port, String serverIp, int serverPort) {
         try {
@@ -173,6 +189,40 @@ public class ClientController {
         }}, ConnectionMessage.Type.command);
         connection.sendMessage(connectionMessage);
     }
+
+
+
+
+    public void sendTradeRequest(Trade trade) {
+        ConnectionMessage connectionMessage = new ConnectionMessage(new HashMap<>() {{
+            put("command", "send_trade_request");
+            put("trade", ConnectionMessage.tradeToJson(trade));
+        }}, ConnectionMessage.Type.command);
+
+        try {
+            connection.sendMessage(connectionMessage);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+    public void sendTradeAcceptance(Trade trade) {
+        ConnectionMessage connectionMessage = new ConnectionMessage(new HashMap<>() {{
+            put("command", "send_trade_acceptance");
+            put("trade", ConnectionMessage.tradeToJson(trade));
+        }}, ConnectionMessage.Type.command);
+
+        try {
+            connection.sendMessage(connectionMessage);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
 
     public void startGame() {
         if (connection == null) {

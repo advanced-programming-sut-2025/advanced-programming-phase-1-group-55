@@ -47,7 +47,7 @@ public class ServerMain {
             while (it.hasNext()) {
                 ClientConnection connection = it.next();
                 if (connection.refreshStatus()) {
-                    System.out.println(connection.getUsername() + " has refreshed");
+//                    System.out.println(connection.getUsername() + " has refreshed");
                     connection.setLastRefresh(System.currentTimeMillis());
                 } else if (System.currentTimeMillis() - connection.getLastRefresh() > 30 * 1000 || !connection.isAlive()) {
                     System.out.println("connection ended: " + connection.getUsername());
@@ -55,7 +55,7 @@ public class ServerMain {
                     continue;
                 }
                 if (!connection.getUsername().isEmpty()) {
-                    System.out.println(connection.getUsername() + ":::::");
+//                    System.out.println(connection.getUsername() + ":::::");
                 }
                 if (!connection.getUsername().isEmpty() && !connection.isInGame()) {
                     String info = connection.getUsername();

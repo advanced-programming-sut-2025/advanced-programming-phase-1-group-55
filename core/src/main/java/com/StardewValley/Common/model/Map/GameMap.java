@@ -32,41 +32,35 @@ public class GameMap {
     public boolean canMove(CollisionRect collisionRect) {
         for (Fence fence : fences) {
             if (fence.getCollisionRect().collidesWith(collisionRect)) {
-                System.err.println("1");
                 return false;
             }
         }
         for (Store store : village.getStores().values()) {
             if (store.getCollisionRect().collidesWith(collisionRect)) {
-                System.err.println("2");
 
                 return false;
             }
         }
         for (Npc npc : village.getNpss().values()) {
             if (npc.getType().getHouse().getCollisionRect().collidesWith(collisionRect)) {
-                System.err.println("3");
 
                 return false;
             }
         }
         for (ShippingBin bin : village.getShippingBins()) {
             if (bin.getCollisionRect().collidesWith(collisionRect)) {
-                System.err.println("4");
 
                 return false;
             }
         }
         for (ArtisanMachine artisanMachine : artisanMachines) {
             if (artisanMachine.getCollisionRect().collidesWith(collisionRect)) {
-                System.err.println("5");
 
                 return false;
             }
         }
         if (currentGameModel.getCurrentUser().getFarm().getLake().getCollisionRect().collidesWith(collisionRect) ||
             currentGameModel.getCurrentUser().getFarm().getHouse().getCollisionRect().collidesWith(collisionRect)) {
-            System.err.println("6");
 
             return false;
         }
@@ -80,7 +74,6 @@ public class GameMap {
 //        }
         if (collisionRect.collidesWith(currentGameModel.currentUser.getFarm().getGreenHouse().getCollisionRect()) &&
             !currentGameModel.currentUser.getFarm().getGreenHouse().getRepaired()) {
-            System.err.println("8");
 
             return false;
         }

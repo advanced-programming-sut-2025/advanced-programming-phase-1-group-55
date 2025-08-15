@@ -47,6 +47,7 @@ public class ServerConnectionController {
 
         return message;
     }
+
     public void handlePlayerRequest(ConnectionMessage message) {
         connection.sendMessage(message);
     }
@@ -66,7 +67,7 @@ public class ServerConnectionController {
         data.selfDetails.quests=0;
         data.gameDetails = game;
         data.isInGame = true;
-        String otherUsername="";
+        String otherUsername = "";
         for (String x : usernames) {
             if (App.mainUser.getUsername().equals(x)) {
                 continue;
@@ -112,6 +113,7 @@ public class ServerConnectionController {
         GameDetails oldGame = data.gameDetails;
         GameDetails newGame = ConnectionMessage.gameDetailsFromJson(message.getFromBody("json"));
         newGame.setPublicGameChat(oldGame.getPublicGameChat());
+        newGame.setTrades(oldGame.getTrades());
         data.gameDetails = newGame;
     }
 }

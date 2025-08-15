@@ -1,5 +1,7 @@
 package com.StardewValley.Server.connection;
 
+import com.StardewValley.Client.ClientData;
+import com.StardewValley.Client.ServerConnection;
 import com.StardewValley.Common.ConnectionMessage;
 import com.StardewValley.Common.GameDetails;
 import com.StardewValley.Common.Lobby;
@@ -7,6 +9,8 @@ import com.StardewValley.Common.PlayerDetails;
 import com.StardewValley.Common.model.App;
 import com.StardewValley.Common.model.Chat.Emoji;
 import com.StardewValley.Common.model.Chat.Message;
+import com.StardewValley.Common.model.Friendship.Message;
+import com.StardewValley.Common.model.Trade;
 import com.StardewValley.Common.model.User;
 
 import java.io.File;
@@ -15,7 +19,6 @@ import java.util.HashMap;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-
 
 
 public class ClientConnectionController {
@@ -41,12 +44,57 @@ public class ClientConnectionController {
         }
 
     }
+
     public void updatePublicChat(ConnectionMessage message) {
         Message messageToUpdate = new Message(message.getFromBody("text"), message.getFromBody("sender"));
         messageToUpdate.setText(messageToUpdate.getSender() + ": " + messageToUpdate.getText());
         connection.getGame().getPublicGameChat().add(messageToUpdate);
 
         sendUpdatedChatToAll(messageToUpdate);
+    }
+
+    public void handleTradeRequest(ConnectionMessage message) {
+        String tradeJson = message.getFromBody("trade");
+
+        Trade trade = ConnectionMessage.tradeFromJson(tradeJson);
+
+        connection.getGame().getTrades().add(trade);
+
+        ConnectionMessage notifyReceiver = new ConnectionMessage(new HashMap<>() {{
+            put("information", "receive_trade_request");
+            put("trade", tradeJson);
+        }}, ConnectionMessage.Type.inform);
+
+        for (ClientConnection connection : ServerMain.getConnections()) {
+            System.err.println("username:: " + connection.getUsername());
+            if (connection.isAlive()) {
+                connection.sendMessage(notifyReceiver);
+            }
+        }
+    }
+
+    public void handleTradeAcceptance(ConnectionMessage message) {
+        String tradeJson = message.getFromBody("trade");
+        Trade acceptedTrade = ConnectionMessage.tradeFromJson(tradeJson);
+
+        for (Trade t : connection.getGame().getTrades()) {
+            if (t.getId() == acceptedTrade.getId()) {
+                t.setAccepted(true);
+                break;
+            }
+        }
+
+        ConnectionMessage notifySenderAndReceiver = new ConnectionMessage(new HashMap<>() {{
+            put("information", "trade_accepted");
+            put("trade", tradeJson);
+        }}, ConnectionMessage.Type.inform);
+
+        for (ClientConnection connection : ServerMain.getConnections()) {
+            if (connection.isAlive()) {
+                connection.sendMessage(notifySenderAndReceiver);
+            }
+        }
+
     }
 
 
@@ -137,7 +185,7 @@ public class ClientConnectionController {
 
     public void joinLobby(ConnectionMessage message) {
         String code = message.getFromBody("code");
-        String password=message.getFromBody("password");
+        String password = message.getFromBody("password");
         String username = connection.getUsername();
         String error = "";
         Lobby lobby = ServerMain.getLobbyByCode(code);
@@ -147,7 +195,7 @@ public class ClientConnectionController {
             error = "lobby not found";
         } else if (lobby.getMembers().size() >= 4) {
             error = "lobby is already full";
-        } else if (lobby.isPrivate()&&!lobby.getPassword().equals(password)) {
+        } else if (lobby.isPrivate() && !lobby.getPassword().equals(password)) {
             error = "passwords do not match";
         }
 
@@ -216,8 +264,8 @@ public class ClientConnectionController {
             error = "you are not in a lobby";
         } else if (!lobby.getAdminUsername().equals(connection.getUsername())) {
             error = "you are not the admin of the lobby";
-       } else if (lobby.getMembers().size() <= 1) {
-           error = "there must be at least two members";
+        } else if (lobby.getMembers().size() <= 1) {
+            error = "there must be at least two members";
         }
 
         ConnectionMessage response;
@@ -268,7 +316,7 @@ public class ClientConnectionController {
             } else {
                 scheduler.shutdown();
             }
-        }, 2000,4 , TimeUnit.MILLISECONDS);
+        }, 2000, 4, TimeUnit.MILLISECONDS);
     }
 
     public void updateSelf(ConnectionMessage message) {

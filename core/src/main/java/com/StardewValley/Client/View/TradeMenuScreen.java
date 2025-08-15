@@ -1,5 +1,6 @@
 package com.StardewValley.Client.View;
 
+import com.StardewValley.Client.ClientController;
 import com.StardewValley.Common.model.App;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
@@ -23,7 +24,7 @@ public class TradeMenuScreen extends ScreenAdapter {
     private List<Item> inventory;
 
     public TradeMenuScreen(User currentUser, List<User> allPlayers, List<Item> inventory) {
-        this.currentUser = currentUser;
+        this.currentUser = App.mainUser;
         this.allPlayers = allPlayers;
         this.inventory = inventory;
     }
@@ -41,9 +42,7 @@ public class TradeMenuScreen extends ScreenAdapter {
         Label playerLabel = new Label("Select a player:", skin);
         Array<String> playerNames = new Array<>();
         for (User u : allPlayers) {
-            if (u.getUsername().equals(App.mainUser.getUsername())) {
-                continue;
-            }
+
             if (u != null && u.getUsername() != null) {
                 playerNames.add(u.getUsername());
             }
@@ -100,18 +99,19 @@ public class TradeMenuScreen extends ScreenAdapter {
                 int targetAmount = Integer.parseInt(targetAmountField.getText());
 
                 Trade trade = new Trade(
-                    currentUser,
-                    receiver,
-                    myItem,
+                    currentUser.getUsername(),
+                    receiver.getUsername(),
+                    myItem.toString(),
                     "item_for_item",
                     amount,
                     0,
-                    targetItem,
+                    targetItem.toString(),
                     targetAmount,
                     generateTradeId()
                 );
 
-                sendTradeRequestToReceiver(trade);
+                ClientController.getInstance().sendTradeRequest(trade);
+
 
                 ((com.badlogic.gdx.Game) Gdx.app.getApplicationListener()).setScreen(App.currentGameGraphicView);
                 dispose();
@@ -148,10 +148,9 @@ public class TradeMenuScreen extends ScreenAdapter {
     }
 
     private int generateTradeId() {
-        return (int) (System.currentTimeMillis() % Integer.MAX_VALUE);
+        int a = 1;
+        return (a++);
     }
 
-    private void sendTradeRequestToReceiver(Trade trade) {
-        System.out.println("Trade sent: " + trade);
-    }
+
 }

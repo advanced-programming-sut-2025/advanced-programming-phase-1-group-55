@@ -1,8 +1,15 @@
 package com.StardewValley.Common;
 
+import com.StardewValley.Common.model.Friendship.Message;
+import com.StardewValley.Common.model.Trade;
 import com.StardewValley.Common.model.Chat.Message;
 import com.StardewValley.Server.connection.ClientConnection;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -14,7 +21,8 @@ public class GameDetails {
     private transient ArrayList<ClientConnection> connections;
     private int gameId;
     private boolean isRunning;
-    private  transient ArrayList<Message> publicGameChat=new ArrayList<>();
+    private transient ArrayList<Message> publicGameChat = new ArrayList<>();
+    private transient ArrayList<Trade> trades = new ArrayList<>();
 
     public GameDetails(ArrayList<String> usernames, String adminUsername) {
         players = new HashMap<>();
@@ -26,7 +34,36 @@ public class GameDetails {
         this.isRunning = true;
     }
 
-    public GameDetails() {}
+    public GameDetails() {
+    }
+
+    private void initTransientFields() {
+        connections = new ArrayList<>();
+        publicGameChat = new ArrayList<>();
+        trades = new ArrayList<>();
+    }
+    // -------------------- SAVE / LOAD --------------------
+
+    public void saveToFile(String filePath) {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        try (FileWriter writer = new FileWriter(filePath)) {
+            gson.toJson(this, writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static GameDetails loadFromFile(String filePath) {
+        Gson gson = new Gson();
+        try (FileReader reader = new FileReader(filePath)) {
+            GameDetails game = gson.fromJson(reader, GameDetails.class);
+            game.initTransientFields();
+            return game;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     public void sendGameDetails() {
         String json = ConnectionMessage.gameDetailsToJson(this);
@@ -35,11 +72,26 @@ public class GameDetails {
             put("json", json);
             put("game_code", gameId);
         }}, ConnectionMessage.Type.update);
-        for(ClientConnection connection : connections) {
-            if(connection.isAlive()) {
+        for (ClientConnection connection : connections) {
+            if (connection.isAlive()) {
                 connection.sendMessage(update);
             }
         }
+    }
+
+    public Trade getTradeById(int id) {
+        for (Trade t : trades) {
+            if (t.getId() == id) return t;
+        }
+        return null;
+    }
+
+    public ArrayList<Trade> getTrades() {
+        return trades;
+    }
+
+    public void setTrades(ArrayList<Trade> trades) {
+        this.trades = trades;
     }
 
     public PlayerDetails getPlayerByUsername(String username) {

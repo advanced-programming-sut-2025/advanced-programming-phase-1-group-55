@@ -86,11 +86,18 @@ public class ClientConnection extends Connection {
                 controller.getLastUser();
                 return true;
             }
-            if(message.getFromBody("command").equals("update_public_chat")) {
+            if (message.getFromBody("command").equals("update_public_chat")) {
                 controller.updatePublicChat(message);
                 return true;
             } if(message.getFromBody("command").equals("update_emoji")) {
                 controller.updateEmoji(message);
+                return true;
+            }
+            if (command.equals("send_trade_request")) {
+                controller.handleTradeRequest(message);
+                return true;
+            } if (command.equals("send_trade_acceptance")) {
+                controller.handleTradeAcceptance(message);
                 return true;
             }
 
