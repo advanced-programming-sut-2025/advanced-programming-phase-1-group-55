@@ -172,7 +172,11 @@ public class ClientController {
             put("trade", ConnectionMessage.tradeToJson(trade));
         }}, ConnectionMessage.Type.command);
 
-        connection.sendMessage(connectionMessage);
+        try {
+            connection.sendMessage(connectionMessage);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 

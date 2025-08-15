@@ -106,9 +106,9 @@ public class App {
                         user.setGold(1000000000);
                     }
                     AllUsers.put(user.getUsername(), user);
-                    if (!DataBase.getAllUsers().contains(user)) {
-                        DataBase.insertUser(user);
-                    }
+//                    if (!DataBase.getAllUsers().contains(user)) {
+//                        DataBase.insertUser(user);
+//                    }
                 }
 
 

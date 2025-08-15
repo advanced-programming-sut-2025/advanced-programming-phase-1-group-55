@@ -4,16 +4,16 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 
 public enum ItemType {
-    SONAR_BOBBER("Sonar Bobber",new Texture(Gdx.files.internal("Tackle/Sonar_Bobber.png"))),
-    CHERRY_BOMB("Cherry Bomb",new Texture(Gdx.files.internal("Crafting/Cherry_Bomb.png"))),
+    SONAR_BOBBER("Sonar Bobber", new Texture(Gdx.files.internal("Tackle/Sonar_Bobber.png"))),
+    CHERRY_BOMB("Cherry Bomb", new Texture(Gdx.files.internal("Crafting/Cherry_Bomb.png"))),
     BOMB("Bomb", new Texture(Gdx.files.internal("Crafting/Bomb.png"))),
     MEGA_BOMB("Mega Bomb", new Texture(Gdx.files.internal("Crafting/Mega_Bomb.png"))),
     SPRINKLER("Sprinkler", new Texture(Gdx.files.internal("Crafting/Sprinkler.png"))),
     QUALITY_SPRINKLER("Quality Sprinkler", new Texture(Gdx.files.internal("Crafting/Quality_Sprinkler.png"))),
     IRIDIUM_SPRINKLER("Iridium Sprinkler", new Texture(Gdx.files.internal("Crafting/Iridium_Sprinkler.png"))),
     CHARCOAL_KILN("Charcoal Klin"),
-    FURNACE("Furnace",new Texture(Gdx.files.internal("Crafting/Furnace.png"))),
-    SCARECROW("Scarecrow",new Texture(Gdx.files.internal("Crafting/Scarecrow.png"))),
+    FURNACE("Furnace", new Texture(Gdx.files.internal("Crafting/Furnace.png"))),
+    SCARECROW("Scarecrow", new Texture(Gdx.files.internal("Crafting/Scarecrow.png"))),
     DELUXE_SCARECROW("Deluxe Scarecrow", new Texture(Gdx.files.internal("Crafting/Deluxe_Scarecrow.png"))),
     BEE_HOUSE("Bee House", new Texture(Gdx.files.internal("Crafting/Bee_House.png"))),
     CHEESE_PRESS("Cheese Press", new Texture(Gdx.files.internal("Crafting/Cheese_Press.png"))),
@@ -130,7 +130,7 @@ public enum ItemType {
     ANIMAL_BUILDING("animal building"),
 
     CHICKEN("Chicken"),
-    DUCK("Duck" , new Texture(Gdx.files.internal("Animals/Duck.png"))),
+    DUCK("Duck", new Texture(Gdx.files.internal("Animals/Duck.png"))),
     RABBIT("Rabbit", new Texture(Gdx.files.internal("Animals/Rabbit.png"))),
     DINOSAUR("Dinosaur", new Texture(Gdx.files.internal("Animals/Dinosaur.png"))),
     COW("Cow", new Texture(Gdx.files.internal("Animals/Brown_Cow.png"))),
@@ -272,7 +272,6 @@ public enum ItemType {
     IRIDIUM_ROD("iridium rod", new Texture(Gdx.files.internal("Tools/Fishing_Pole/Iridium_Rod.png"))),
 
 
-
     DUMMY("dummy"),
     DAFFODIL("daffodil", new Texture(Gdx.files.internal("Crafting/Daffodil.png"))),
     MOREL("morel", new Texture(Gdx.files.internal("Crafting/Morel.png"))),
@@ -332,7 +331,7 @@ public enum ItemType {
     MAYONNAISE("mayonnaise", new Texture(Gdx.files.internal("Artisan_good/Mayonnaise.png"))),
     DUCK_MAYONNAISE("duck mayonnaise", new Texture(Gdx.files.internal("Artisan_good/Duck_Mayonnaise.png"))),
     DINOSAUR_MAYONNAISE("dinosaur mayonnaise", new Texture(Gdx.files.internal("Artisan_good/Dinosaur_Mayonnaise.png"))),
-    TRUFFLE_OIL("truffle oil",new Texture(Gdx.files.internal("Artisan_good/Truffle_Oil.png"))),
+    TRUFFLE_OIL("truffle oil", new Texture(Gdx.files.internal("Artisan_good/Truffle_Oil.png"))),
     DRIED_MUSHROOM("dried mushroom"),
     DRIED_FRUIT("dried fruit", new Texture(Gdx.files.internal("Artisan_good/Dried_Fruit.png"))),
     RAISIN("raisin"),
@@ -373,8 +372,6 @@ public enum ItemType {
     ANCIENT_FRUIT("Ancient Fruit corp", new Texture(Gdx.files.internal("Crops/Ancient_Fruit.png"))),
 
 
-
-
     FERTILIZER("fertilizer", new Texture(Gdx.files.internal("Crafting/Basic_Fertilizer.png"))),
     HOPS_CROP("Hops Crop"),
     FARMING("farming skill icon", new Texture(Gdx.files.internal("Skill/Farming_Skill_Icon.png"))),
@@ -409,9 +406,10 @@ public enum ItemType {
         this.DisplayName = DisplayName;
         this.texture = texture;
     }
+
     ItemType(String DisplayName) {
         this.DisplayName = DisplayName;
-        texture=null;
+        texture = null;
     }
 
     public Texture getTexture() {

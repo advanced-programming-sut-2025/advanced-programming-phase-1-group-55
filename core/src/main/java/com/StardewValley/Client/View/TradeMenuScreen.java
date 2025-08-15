@@ -150,7 +150,8 @@ public class TradeMenuScreen extends ScreenAdapter {
     }
 
     private int generateTradeId() {
-        return (int) (System.currentTimeMillis() % Integer.MAX_VALUE);
+        int a = 1;
+        return (a++);
     }
 
 

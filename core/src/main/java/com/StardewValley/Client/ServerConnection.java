@@ -38,6 +38,13 @@ public class ServerConnection extends Connection {
 
     @Override
     protected synchronized boolean handleMessage(ConnectionMessage message) {
+        try {
+            Trade t = ClientData.getInstance().gameDetails.getTrades().get(0);
+            System.err.println(t);
+
+        } catch (Exception e) {
+            System.out.println("kir shodi?");
+        }
         String command = (String) message.getFromBody("command");
         if (message.getType().equals(ConnectionMessage.Type.command)) {
             if (command.equals("status")) {
@@ -76,6 +83,7 @@ public class ServerConnection extends Connection {
             if (info.equals("receive_trade_request")) {
                 String jsonString = message.getFromBody("trade");
                 Trade trade = ConnectionMessage.tradeFromJson(jsonString);
+                System.err.println("waw::: "+trade);
                 ClientData.getInstance().gameDetails.getTrades().add(trade);
 
                 return true;
@@ -90,7 +98,7 @@ public class ServerConnection extends Connection {
             }
 
             if (updateType.equals("update_chat")) {
-                String jsonString =message.getFromBody("json");
+                String jsonString = message.getFromBody("json");
                 Message message1 = ConnectionMessage.messageFromJson(jsonString);
                 ClientData.getInstance().gameDetails.getPublicGameChat().add(message1);
 
