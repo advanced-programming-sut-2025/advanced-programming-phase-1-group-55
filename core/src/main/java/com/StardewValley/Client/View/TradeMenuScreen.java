@@ -103,11 +103,11 @@ public class TradeMenuScreen extends ScreenAdapter {
                 Trade trade = new Trade(
                     currentUser.getUsername(),
                     receiver.getUsername(),
-                    myItem,
+                    myItem.getItemType().getDisplayName(),
                     "item_for_item",
                     amount,
                     0,
-                    targetItem,
+                    targetItem.getItemType().getDisplayName(),
                     targetAmount,
                     generateTradeId()
                 );

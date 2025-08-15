@@ -162,6 +162,10 @@ public class MainGameController {
             User player = App.getCurrentGameModel().getCurrentUser();
             GameModel gameModel = App.getCurrentGameModel();
             gameApp.setScreen(new TradeMenuScreen(player, gameModel.playersInGame, new ArrayList<>(player.getBackPack().getInventory().values())));
+        } else if (Gdx.input.isKeyJustPressed(Input.Keys.T) && Gdx.input.isKeyJustPressed(Input.Keys.SHIFT_LEFT)) {
+            User player = App.getCurrentGameModel().getCurrentUser();
+            GameModel gameModel = App.getCurrentGameModel();
+            gameApp.setScreen(new ShowTradesScreen(ClientData.getInstance().gameDetails.getTrades()));
         }
 
 

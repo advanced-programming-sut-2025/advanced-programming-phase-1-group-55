@@ -9,16 +9,18 @@ public class Trade implements Serializable {
 
     private String Sender;
     private String Reciver;
-    //    private transient Item Item;
+    //        private transient Item Item;
+    private String item;
     private String type;
     private int amount;
     private int price;
-//    private Item TargetItem;
+    //    private Item TargetItem;
+    private String TargetItem;
     private int TargetAmount;
     private int id;
-    private transient boolean Printed = false;
-    private transient boolean Accepted = false;
-    private transient boolean answered = false;
+    private boolean Printed = false;
+    private boolean Accepted = false;
+    private boolean answered = false;
 
     public boolean isAnswered() {
         return answered;
@@ -28,7 +30,7 @@ public class Trade implements Serializable {
         this.answered = answered;
     }
 
-    public Trade(String sender, String reciver, Item item, String type, int amount, int price, Item targetItem, int targetAmount, int id) {
+    public Trade(String sender, String reciver, String item, String type, int amount, int price, String targetItem, int targetAmount, int id) {
         Sender = sender;
         Reciver = reciver;
 //        Item = item;
@@ -40,6 +42,21 @@ public class Trade implements Serializable {
         this.id = id;
     }
 
+    public String getItem() {
+        return item;
+    }
+
+    public void setItem(String item) {
+        this.item = item;
+    }
+
+    public String getTargetItem() {
+        return TargetItem;
+    }
+
+    public void setTargetItem(String targetItem) {
+        TargetItem = targetItem;
+    }
 
     public String getSender() {
         return Sender;
