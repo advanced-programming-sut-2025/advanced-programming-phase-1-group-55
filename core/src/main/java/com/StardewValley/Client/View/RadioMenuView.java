@@ -162,4 +162,80 @@ public class RadioMenuView implements Screen {
     public String getSelectedMusicName() {
         return selectedMusicName;
     }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
+    public Label getErrorLabel() {
+        return ErrorLabel;
+    }
+
+    public Timer.Task getClearErrorTask() {
+        return clearErrorTask;
+    }
+
+    public void setClearErrorTask(Timer.Task clearErrorTask) {
+        this.clearErrorTask = clearErrorTask;
+    }
+
+    public HashMap<String, String> getMusicList() {
+        return musicList;
+    }
+
+    public void setMusicList(HashMap<String, String> musicList) {
+        this.musicList = musicList;
+    }
+
+    public void setMusicListUI(List<String> musicListUI) {
+        this.musicListUI = musicListUI;
+    }
+
+    public void setBackButton(TextButton backButton) {
+        this.backButton = backButton;
+    }
+
+    public void setChooseFileButton(TextButton chooseFileButton) {
+        this.chooseFileButton = chooseFileButton;
+    }
+
+    public void setPlayButton(TextButton playButton) {
+        this.playButton = playButton;
+    }
+
+    public void setStopButton(TextButton stopButton) {
+        this.stopButton = stopButton;
+    }
+
+    public void setConnectButton(TextButton connectButton) {
+        this.connectButton = connectButton;
+    }
+
+    public Skin getSkin() {
+        return skin;
+    }
+
+    public void setSkin(Skin skin) {
+        this.skin = skin;
+    }
+
+    public RadioMenuController getController() {
+        return controller;
+    }
+
+    public void setController(RadioMenuController controller) {
+        this.controller = controller;
+    }
+
+    public void setSelectedMusicName(String selectedMusicName) {
+        this.selectedMusicName = selectedMusicName;
+    }
+
+    public TextField getConnectTextField() {
+        return connectTextField;
+    }
+
+    public void setConnectTextField(TextField connectTextField) {
+        this.connectTextField = connectTextField;
+    }
 }

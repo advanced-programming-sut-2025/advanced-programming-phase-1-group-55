@@ -24,7 +24,8 @@ public class PlayerDetails {
     public transient HashMap<String,String> musics=new HashMap<>();
     public ArrayList<EmojiType> defaultEmojis=new ArrayList<>();
     public String currentMusicPath;
-    public transient Music currentMusic;
+    private float musicPosition;
+    public  Music currentMusic;
 
     public PlayerDetails(String username) {
         this.username = username;
@@ -38,6 +39,11 @@ public class PlayerDetails {
     }
 
     public void updateInfo() {
+        musicPosition=currentMusic.getPosition();
+        System.out.println(musicPosition);
+        System.out.println(currentMusicPath);
+        System.out.println(username);
+        System.out.println("=================================================");
         User player = App.currentGameModel.currentUser;
         posX = player.getLocation().getX();
         posY = player.getLocation().getY();
@@ -143,5 +149,13 @@ public class PlayerDetails {
 
     public void setCurrentMusic(Music currentMusic) {
         this.currentMusic = currentMusic;
+    }
+
+    public float getMusicPosition() {
+        return musicPosition;
+    }
+
+    public void setMusicPosition(float musicPosition) {
+        this.musicPosition = musicPosition;
     }
 }

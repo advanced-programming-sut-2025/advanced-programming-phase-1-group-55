@@ -38,9 +38,63 @@ public class RadioMenuController {
                 }
             }if (view.getConnectButton().isChecked()){
                 view.getConnectButton().setChecked(false);
+                handleConnectingToOtherPlayers();
             }
         }
     }
+    public void handleConnectingToOtherPlayers() {
+
+        if (view.getConnectTextField() == null) {
+            view.setErrorMessage("connection field is missing!");
+            return;
+        }
+
+        String otherUser = view.getConnectTextField().getText().trim();
+
+
+        if (otherUser.isEmpty() ||
+            ClientData.getInstance().gameDetails == null ||
+            ClientData.getInstance().gameDetails.getPlayers() == null ||
+            !ClientData.getInstance().gameDetails.getPlayers().containsKey(otherUser)) {
+            view.setErrorMessage("please enter a valid username");
+            return;
+        }
+
+
+        if (otherUser.equals(ClientData.getInstance().selfDetails.username)) {
+            view.setErrorMessage("you can't connect to yourself!");
+            return;
+        }
+
+
+        var targetPlayer = ClientData.getInstance().gameDetails.getPlayers().get(otherUser);
+        if (targetPlayer == null) {
+            view.setErrorMessage("target player data not found!");
+            return;
+        }
+
+        String musicPath = targetPlayer.currentMusicPath;
+        if (musicPath == null || musicPath.isEmpty()) {
+            view.setErrorMessage("target player is not playing any music!");
+            return;
+        }
+
+
+        Music music;
+        if (new java.io.File(musicPath).exists()) {
+            music = Gdx.audio.newMusic(Gdx.files.absolute(musicPath));
+        } else {
+            music = Gdx.audio.newMusic(Gdx.files.internal(musicPath));
+        }
+
+        music.setLooping(true);
+        float position = targetPlayer.getMusicPosition();
+        if (position > 0) {
+            music.setPosition(position);
+        }
+        music.play();
+    }
+
     public void handlePlayingMusic() {
         String selectedMusicName = view.getSelectedMusicName();
 
