@@ -25,6 +25,7 @@ public class RadioMenuView implements Screen {
     private Skin skin;
     private RadioMenuController controller;
     private String selectedMusicName;
+    private TextField connectTextField;
 
     public RadioMenuView() {
         skin = App.skin;
@@ -39,13 +40,10 @@ public class RadioMenuView implements Screen {
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
 
-
         musicList = ClientData.getInstance().selfDetails.musics;
-
 
         musicListUI = new List<>(skin);
         musicListUI.setItems(musicList.keySet().toArray(new String[0]));
-
 
         musicListUI.addListener(new ChangeListener() {
             @Override
@@ -57,13 +55,15 @@ public class RadioMenuView implements Screen {
 
         ScrollPane scrollPane = new ScrollPane(musicListUI, skin);
 
-
         backButton = new TextButton("Back", skin);
         chooseFileButton = new TextButton("Choose File", skin);
         playButton = new TextButton("Play", skin);
         stopButton = new TextButton("Stop", skin);
         connectButton = new TextButton("Connect to Other Player", skin);
 
+
+        connectTextField = new TextField("", skin);
+        connectTextField.setMessageText("Enter player name or ID");
 
         Table table = new Table();
         table.setFillParent(true);
@@ -77,8 +77,16 @@ public class RadioMenuView implements Screen {
         table.add(stopButton).expandX().pad(5);
         table.add(connectButton).expandX().pad(5);
         table.row();
-        table.add(ErrorLabel).colspan(5);
+
+
+        table.add().expandX();
+        table.add().expandX();
+        table.add().expandX();
+        table.add().expandX();
+        table.add(connectTextField).expandX().pad(5);
         table.row();
+
+        table.add(ErrorLabel).colspan(5);
     }
 
     @Override

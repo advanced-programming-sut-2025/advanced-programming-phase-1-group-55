@@ -120,4 +120,28 @@ public class PlayerDetails {
     public void setDefaultEmojis(ArrayList<EmojiType> defaultEmojis) {
         this.defaultEmojis = defaultEmojis;
     }
+
+    public HashMap<String, String> getMusics() {
+        return musics;
+    }
+
+    public void setMusics(HashMap<String, String> musics) {
+        this.musics = musics;
+    }
+
+    public String getCurrentMusicPath() {
+        return currentMusicPath;
+    }
+
+    public void setCurrentMusicPath(String currentMusicPath) {
+        this.currentMusicPath = currentMusicPath;
+    }
+
+    public Music getCurrentMusic() {
+        return currentMusic;
+    }
+
+    public void setCurrentMusic(Music currentMusic) {
+        this.currentMusic = currentMusic;
+    }
 }

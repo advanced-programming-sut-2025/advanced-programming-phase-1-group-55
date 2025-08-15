@@ -29,6 +29,13 @@ public class RadioMenuController {
             }
             if (view.getStopButton().isChecked()){
                 view.getStopButton().setChecked(false);
+                Music music = ClientData.getInstance().selfDetails.currentMusic;
+                if (music != null) {
+                    music.stop();
+                    music.dispose();
+                    ClientData.getInstance().selfDetails.setCurrentMusic(null);
+                    ClientData.getInstance().selfDetails.setCurrentMusicPath(null);
+                }
             }if (view.getConnectButton().isChecked()){
                 view.getConnectButton().setChecked(false);
             }
