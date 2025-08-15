@@ -170,8 +170,9 @@ public class MainGameController {
         } else if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_8)) {
             gameApp.setScreen(new LeaderboardScreen(new ArrayList<>(
                 ClientData.getInstance().gameDetails.getPlayers().values())));
+        } else if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_9)) {
+            gameApp.setScreen(new RadioMenuView());
         }
-
 
     }
 
