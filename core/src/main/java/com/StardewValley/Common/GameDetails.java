@@ -3,7 +3,12 @@ package com.StardewValley.Common;
 import com.StardewValley.Common.model.Friendship.Message;
 import com.StardewValley.Common.model.Trade;
 import com.StardewValley.Server.connection.ClientConnection;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -29,6 +34,34 @@ public class GameDetails {
     }
 
     public GameDetails() {
+    }
+
+    private void initTransientFields() {
+        connections = new ArrayList<>();
+        publicGameChat = new ArrayList<>();
+        trades = new ArrayList<>();
+    }
+    // -------------------- SAVE / LOAD --------------------
+
+    public void saveToFile(String filePath) {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        try (FileWriter writer = new FileWriter(filePath)) {
+            gson.toJson(this, writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static GameDetails loadFromFile(String filePath) {
+        Gson gson = new Gson();
+        try (FileReader reader = new FileReader(filePath)) {
+            GameDetails game = gson.fromJson(reader, GameDetails.class);
+            game.initTransientFields();
+            return game;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public void sendGameDetails() {

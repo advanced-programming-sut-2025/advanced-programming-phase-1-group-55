@@ -64,7 +64,9 @@ public class SettingsScreen implements Screen {
         saveButton.addListener(new ClickListener() {
             @Override
             public void clicked(com.badlogic.gdx.scenes.scene2d.InputEvent event, float x, float y) {
-                System.out.println("Game Saved!");
+                String savePath = "saves/game_" + ClickListener.getGameId() + ".json";
+                gameDetails.saveToFile(savePath);
+                System.out.println("Game saved to: " + savePath);
             }
         });
 
