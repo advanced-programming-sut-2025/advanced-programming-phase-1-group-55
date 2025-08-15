@@ -24,10 +24,6 @@ public class ClientConnectionController {
         this.connection = connection;
     }
 
-    public void addUser(ConnectionMessage message) {
-//        User user = ConnectionMessage.userFromJson(message.getFromBody("user"));
-//       UserDAO.insertUser(user);
-    }
     public void updatePublicChat(ConnectionMessage message) {
         Message messageToUpdate = new Message(message.getFromBody("text"), message.getFromBody("sender"));
         messageToUpdate.setText(messageToUpdate.getSender() + ": " + messageToUpdate.getText());
@@ -285,33 +281,6 @@ public class ClientConnectionController {
         connection.sendMessage(response);
     }
 
-    public void sendMusicList(ConnectionMessage message) {
-        HashMap<String, ArrayList<String>> result = new HashMap<>();
-        File folder = new File("received_musics");
-        if (folder.exists() && folder.isDirectory()) {
-            File[] dirs = folder.listFiles(File::isDirectory);
-            if (dirs != null) {
-                for (File dir : dirs) {
-                    String name = dir.getName();
-                    ArrayList<String> filenames = new ArrayList<>();
-                    File[] items = folder.listFiles();
-                    if (items != null) {
-                        for (File item : items) {
-                            if (item.isFile()) {
-                                filenames.add(item.getName());
-                            }
-                        }
-                    }
-                    result.put(name, filenames);
-                }
-            }
-        }
-        ConnectionMessage response = new ConnectionMessage(new HashMap<>() {{
-            put("response", "ok");
-            put("music_list", result);
-        }}, ConnectionMessage.Type.response);
-        connection.sendMessage(response);
-    }
 }
 
 

@@ -12,9 +12,6 @@ public class PlayerDetails {
     public String username;
     public int posX;
     public int posY;
-    public boolean canSleep;
-    public int questCount;
-    public int skillSum;
     public int gold;
     public Emoji emoji;
     public ArrayList<EmojiType> defaultEmojis=new ArrayList<>();
@@ -23,9 +20,6 @@ public class PlayerDetails {
         this.username = username;
         posX = 0;
         posY = 0;
-        canSleep = false;
-        questCount = 0;
-        skillSum = 0;
         gold = 0;
         emoji=new Emoji(EmojiType.Emoji0);
         for (int i=0;i<10;i++) {
@@ -37,7 +31,6 @@ public class PlayerDetails {
         User player = App.currentGameModel.currentUser;
         posX = player.getLocation().getX();
         posY = player.getLocation().getY();
-        canSleep = (player.isFainted());
     }
 
     public String getUsername() {
@@ -46,46 +39,6 @@ public class PlayerDetails {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public int getPosX() {
-        return posX;
-    }
-
-    public void setPosX(int posX) {
-        this.posX = posX;
-    }
-
-    public int getPosY() {
-        return posY;
-    }
-
-    public void setPosY(int posY) {
-        this.posY = posY;
-    }
-
-    public boolean isCanSleep() {
-        return canSleep;
-    }
-
-    public void setCanSleep(boolean canSleep) {
-        this.canSleep = canSleep;
-    }
-
-    public int getQuestCount() {
-        return questCount;
-    }
-
-    public void setQuestCount(int questCount) {
-        this.questCount = questCount;
-    }
-
-    public int getSkillSum() {
-        return skillSum;
-    }
-
-    public void setSkillSum(int skillSum) {
-        this.skillSum = skillSum;
     }
 
     public int getGold() {

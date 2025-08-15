@@ -25,15 +25,6 @@ public class ConnectionMessage {
         return gson.fromJson(json, Message.class);
     }
 
-    public static synchronized String messagesToJson(ArrayList<Message> messages) {
-        return gson.toJson(messages);
-    }
-
-    public static synchronized ArrayList<Message> messagesFromJson(String json) {
-        return gson.fromJson(json, new com.google.gson.reflect.TypeToken<ArrayList<Message>>(){}.getType());
-    }
-
-
     public String toJson() {
         return gson.toJson(this);
     }

@@ -186,22 +186,11 @@ public class ServerMain {
         games.add(game);
     }
 
-    public static void removeGame(GameDetails game) {
-        games.remove(game);
-    }
 
     public static ArrayList<GameDetails> getGames() {
         return games;
     }
 
-    public static GameDetails getGameById(int id) {
-        for (GameDetails game : games) {
-            if (game.getGameId() == id) {
-                return game;
-            }
-        }
-        return null;
-    }
 
     public static String getIp() {
         return ip;
@@ -211,37 +200,6 @@ public class ServerMain {
         ServerMain.ip = ip;
     }
 
-    public static int getPort() {
-        return port;
-    }
-
-    public static void setPort(int port) {
-        ServerMain.port = port;
-    }
-
-    public static ServerSocket getServerSocket() {
-        return serverSocket;
-    }
-
-    public static void setServerSocket(ServerSocket serverSocket) {
-        ServerMain.serverSocket = serverSocket;
-    }
-
-    public static boolean isExitFlag() {
-        return exitFlag;
-    }
-
-    public static void setExitFlag(boolean exitFlag) {
-        ServerMain.exitFlag = exitFlag;
-    }
-
-    public static void setConnections(ArrayList<ClientConnection> connections) {
-        ServerMain.connections = connections;
-    }
-
-    public static void setLobbies(ArrayList<Lobby> lobbies) {
-        ServerMain.lobbies = lobbies;
-    }
 
     public static void setGames(ArrayList<GameDetails> games) {
         ServerMain.games = games;
