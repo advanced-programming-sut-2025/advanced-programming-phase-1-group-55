@@ -21,12 +21,12 @@ import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.ScreenUtils;
 
-public class EmojiMenuView implements Screen {
+public class ChangeDefaultEmojiMenu implements Screen {
     private Stage stage=new Stage();
     private Skin skin=App.skin;
     private EmojiType selectedEmoji = null;
+    private EmojiType selectedEmojiToChange = null;
     private TextButton backBtn;
-    private TextButton sendBtn;
     private TextButton changeBtn;
     private EmojiController controller;
     private Drawable createColorDrawable(Color color) {
@@ -37,17 +37,16 @@ public class EmojiMenuView implements Screen {
         pixmap.dispose();
         return new TextureRegionDrawable(new TextureRegion(texture));
     }
-
-    public EmojiMenuView() {
+    public ChangeDefaultEmojiMenu(EmojiType selectedEmojiToChange) {
+        this.selectedEmojiToChange = selectedEmojiToChange;
         controller=new EmojiController();
-        controller.setEmojiMenuView(this);
+        controller.setChangeDefaultEmojiMenu(this);
     }
 
     @Override
     public void show() {
         backBtn = new TextButton("Back", skin);
         changeBtn = new TextButton("Change", skin);
-        sendBtn = new TextButton("Send", skin);
         Gdx.input.setInputProcessor(stage);
         stage.clear();
 
@@ -63,9 +62,9 @@ public class EmojiMenuView implements Screen {
 
 
         Table titleTable = new Table();
-        Label title = new Label("Your Emojis", skin);
+        Label title = new Label("Choose one of these emojis", skin);
         title.setFontScale(1.4f);
-        Texture gearTexture = new Texture(Gdx.files.internal("Emoji/Emojis099.png"));
+        Texture gearTexture = new Texture(Gdx.files.internal("Emoji/Emojis096.png"));
         Image gearImage = new Image(gearTexture);
         gearImage.setSize(85, 85);
         titleTable.add(title).padRight(10);
@@ -82,7 +81,7 @@ public class EmojiMenuView implements Screen {
         int i = 0;
         final Table[] selectedTable = {null};
 
-        for (EmojiType item : ClientData.getInstance().selfDetails.defaultEmojis) {
+        for (EmojiType item : EmojiType.values()) {
             final EmojiType currentItem = item;
             Texture itemTexture = new Texture(item.getPath());
             Image itemImage = new Image(itemTexture);
@@ -119,7 +118,6 @@ public class EmojiMenuView implements Screen {
 
         Table buttonTable = new Table();
         buttonTable.add(backBtn).pad(10).width(140).height(60);
-        buttonTable.add(sendBtn).pad(10).width(140).height(60);
         buttonTable.add(changeBtn).pad(10).width(140).height(60);
         mainTable.add(buttonTable).colspan(2).center().padBottom(20);
     }
@@ -134,32 +132,7 @@ public class EmojiMenuView implements Screen {
         ScreenUtils.clear(0, 0, 0, 1);
         stage.act(v);
         stage.draw();
-       controller.handleButton();
-    }
-
-    @Override
-    public void resize(int i, int i1) {
-
-    }
-
-    @Override
-    public void pause() {
-
-    }
-
-    @Override
-    public void resume() {
-
-    }
-
-    @Override
-    public void hide() {
-
-    }
-
-    @Override
-    public void dispose() {
-
+        controller.handleButton();
     }
 
     public Stage getStage() {
@@ -186,6 +159,14 @@ public class EmojiMenuView implements Screen {
         this.selectedEmoji = selectedEmoji;
     }
 
+    public EmojiType getSelectedEmojiToChange() {
+        return selectedEmojiToChange;
+    }
+
+    public void setSelectedEmojiToChange(EmojiType selectedEmojiToChange) {
+        this.selectedEmojiToChange = selectedEmojiToChange;
+    }
+
     public TextButton getBackBtn() {
         return backBtn;
     }
@@ -194,19 +175,36 @@ public class EmojiMenuView implements Screen {
         this.backBtn = backBtn;
     }
 
-    public TextButton getSendBtn() {
-        return sendBtn;
-    }
-
-    public void setSendBtn(TextButton sendBtn) {
-        this.sendBtn = sendBtn;
-    }
-
     public TextButton getChangeBtn() {
         return changeBtn;
     }
 
     public void setChangeBtn(TextButton changeBtn) {
         this.changeBtn = changeBtn;
+    }
+
+    @Override
+    public void resize(int i, int i1) {
+
+    }
+
+    @Override
+    public void pause() {
+
+    }
+
+    @Override
+    public void resume() {
+
+    }
+
+    @Override
+    public void hide() {
+
+    }
+
+    @Override
+    public void dispose() {
+
     }
 }
