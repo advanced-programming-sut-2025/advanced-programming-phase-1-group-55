@@ -38,7 +38,7 @@ public class AnimalMenuController {
             view.setErrorMessage("Not enough gold for " + buildingName + ".");
             return;
         }
-        // choob lazem baraye sakht ra darim ya na
+//         choob lazem baraye sakht ra darim ya na
 //        if (user.getWood() < buildingType.getWoodNumber() || user.getStone() < buildingType.getStoneNumber()) {
 //            view.setErrorMessage("Not enough materials to build " + buildingName + ".");
 //            return;

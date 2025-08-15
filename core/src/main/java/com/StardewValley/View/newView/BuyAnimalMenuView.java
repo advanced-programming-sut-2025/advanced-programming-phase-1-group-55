@@ -74,6 +74,7 @@ public class BuyAnimalMenuView implements Screen {
         root.row();
 
         root.add(messageLabel).colspan(2).pad(10);
+        root.row();
 
         TextButton backButton = new TextButton("Back", skin);
         backButton.addListener(new ClickListener() {
@@ -82,8 +83,12 @@ public class BuyAnimalMenuView implements Screen {
                 App.gameApp.setScreen(App.currentGameGraphicView);
             }
         });
-        root.add(backButton).colspan(2).pad(10);
+
+        Table backTable = new Table();
+        backTable.add(backButton).center();
+        root.add(backTable).expandX().center().colspan(2).pad(10);
     }
+
 
     @Override
     public void show() {}
