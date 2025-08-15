@@ -1,6 +1,7 @@
 package com.StardewValley.Common.model;
 
 import com.StardewValley.Common.DataBase;
+import com.StardewValley.Common.enums.SortBy;
 import com.StardewValley.GameApp;
 import com.StardewValley.Client.View.MainGameGraphicView;
 import com.StardewValley.Server.connection.ServerMain;
@@ -22,6 +23,7 @@ public class App {
     public static Random rand = new Random();
     public static GameApp gameApp;
     public static Skin skin;
+    public static SortBy lastSortBy;
     public static Map<String,User> playerInGame = new HashMap<>();
     public static MainGameGraphicView currentGameGraphicView ;
 

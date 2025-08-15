@@ -164,6 +164,9 @@ public class MainGameController {
             gameApp.setScreen(new TradeMenuScreen(player, gameModel.playersInGame, new ArrayList<>(player.getBackPack().getInventory().values())));
         } else if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_5)) {
             gameApp.setScreen(new EmojiMenuView());
+        } else if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_8)) {
+            gameApp.setScreen(new LeaderboardScreen(new ArrayList<>(
+                ClientData.getInstance().gameDetails.getPlayers().values())));
         }
 
 

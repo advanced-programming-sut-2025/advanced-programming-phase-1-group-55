@@ -13,6 +13,8 @@ public class PlayerDetails {
     public int posX;
     public int posY;
     public int gold;
+    public int skills;
+    public int quests;
     public Emoji emoji;
     public ArrayList<EmojiType> defaultEmojis=new ArrayList<>();
 
