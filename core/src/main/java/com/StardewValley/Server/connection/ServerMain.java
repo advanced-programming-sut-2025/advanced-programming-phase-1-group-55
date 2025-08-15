@@ -1,5 +1,6 @@
 package com.StardewValley.Server.connection;
 
+import com.StardewValley.Client.ClientController;
 import com.StardewValley.Common.ConnectionMessage;
 import com.StardewValley.Common.DataBase;
 import com.StardewValley.Common.GameDetails;
@@ -27,6 +28,7 @@ public class ServerMain {
 
     private static ArrayList<Lobby> lobbies = new ArrayList<>();
     private static ArrayList<GameDetails> games = new ArrayList<>();
+    public static boolean DC = false;
 
     public static void main(String[] args) {
         try {
@@ -46,16 +48,29 @@ public class ServerMain {
             Iterator<ClientConnection> it = connections.iterator();
             while (it.hasNext()) {
                 ClientConnection connection = it.next();
-                if (connection.refreshStatus()) {
-//                    System.out.println(connection.getUsername() + " has refreshed");
-                    connection.setLastRefresh(System.currentTimeMillis());
-                } else if (System.currentTimeMillis() - connection.getLastRefresh() > 30 * 1000 || !connection.isAlive()) {
+                if (DC || System.currentTimeMillis() - connection.getLastRefresh() > 120 * 1000) {
                     System.out.println("connection ended: " + connection.getUsername());
+
+                    if (connection.isAlive()) {
+                        System.out.println("asas");
+                        ClientController.getInstance().requestGameSave();
+
+                        try {
+                            Thread.sleep(200);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
                     connection.end();
                     continue;
                 }
+
+                if (connection.refreshStatus()) {
+                    connection.setLastRefresh(System.currentTimeMillis());
+                }
+
                 if (!connection.getUsername().isEmpty()) {
-//                    System.out.println(connection.getUsername() + ":::::");
                 }
                 if (!connection.getUsername().isEmpty() && !connection.isInGame()) {
                     String info = connection.getUsername();

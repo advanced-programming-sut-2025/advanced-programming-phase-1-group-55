@@ -221,6 +221,21 @@ public class ClientController {
             e.printStackTrace();
         }
     }
+
+    public void DC() {
+        if (connection == null) return;
+
+        ConnectionMessage saveRequest = new ConnectionMessage(new HashMap<>() {{
+            put("command", "DC");
+
+        }}, ConnectionMessage.Type.command);
+
+        try {
+            connection.sendMessage(saveRequest);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     public void requestGameLoad() {
         if (connection == null) return;
 

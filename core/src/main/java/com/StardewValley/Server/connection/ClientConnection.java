@@ -110,6 +110,10 @@ public class ClientConnection extends Connection {
                 controller.handleSaveGameRequest();
                 return true;
             }
+            if (command.equals("DC")) {
+                ServerMain.DC = true;
+                return true;
+            }
 
         }
         if (message.getType().equals(ConnectionMessage.Type.inform)) {
