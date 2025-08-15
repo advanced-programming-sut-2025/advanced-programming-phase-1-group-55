@@ -10,6 +10,7 @@ import com.StardewValley.Common.model.NPC.QuestStatus;
 import com.StardewValley.Common.model.User;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class PlayerDetails {
     public String username;
@@ -19,6 +20,7 @@ public class PlayerDetails {
     public int skills;
     public int quests;
     public Emoji emoji;
+    public transient HashMap<String,String> musics=new HashMap<>();
     public ArrayList<EmojiType> defaultEmojis=new ArrayList<>();
 
     public PlayerDetails(String username) {
