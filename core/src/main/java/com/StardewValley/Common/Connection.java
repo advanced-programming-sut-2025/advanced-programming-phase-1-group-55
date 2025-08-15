@@ -220,32 +220,7 @@ public abstract class Connection extends Thread {
         }
     }
 
-    public synchronized void sendFile(File file) throws IOException {
-        if (!file.exists() || !file.isFile()) {
-            throw new IOException("File does not exist: " + file.getAbsolutePath());
-        }
 
-        var metaBody = new HashMap<String, Object>();
-        metaBody.put("command", "file_meta");
-        metaBody.put("filename", file.getName());
-        metaBody.put("filesize", file.length());
-        sendMessage(new ConnectionMessage(metaBody, ConnectionMessage.Type.command));
-        System.out.println(1);
-        try (FileInputStream fis = new FileInputStream(file)) {
-            byte[] buffer = new byte[8192];
-            int read;
-            while ((read = fis.read(buffer)) != -1) {
-                sendFrame(2, buffer, 0, read);
-            }
-            System.out.println(2);
-        }
-
-        var completeBody = new HashMap<String, Object>();
-        completeBody.put("command", "file_complete");
-        completeBody.put("filename", file.getName());
-        sendMessage(new ConnectionMessage(completeBody, ConnectionMessage.Type.command));
-        System.out.println(3);
-    }
 
     public static class Frame {
         public final int type;

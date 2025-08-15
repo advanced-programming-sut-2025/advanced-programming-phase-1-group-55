@@ -21,42 +21,41 @@ public class PlayerDetails {
     public int skills;
     public int quests;
     public Emoji emoji;
-    public transient HashMap<String,String> musics=new HashMap<>();
-    public ArrayList<EmojiType> defaultEmojis=new ArrayList<>();
+    public transient HashMap<String, String> musics = new HashMap<>();
+    public ArrayList<EmojiType> defaultEmojis = new ArrayList<>();
     public String currentMusicPath;
     private float musicPosition;
-    public  transient Music currentMusic;
+    public transient Music currentMusic;
 
     public PlayerDetails(String username) {
         this.username = username;
         posX = 0;
         posY = 0;
         gold = 0;
-        emoji=new Emoji(EmojiType.Emoji0);
-        for (int i=0;i<10;i++) {
+        emoji = new Emoji(EmojiType.Emoji0);
+        for (int i = 0; i < 10; i++) {
             defaultEmojis.add(EmojiType.getFromId(i));
         }
     }
 
     public void updateInfo() {
-        //musicPosition=currentMusic.getPosition();
         User player = App.currentGameModel.currentUser;
         posX = player.getLocation().getX();
         posY = player.getLocation().getY();
-        gold=player.getGold();
-        skills=player.getFarmingSkill().getLevel()+
-            player.getFishingSkill().getLevel()+
-            player.getForagingSkill().getLevel()+
+        gold = player.getGold();
+        skills = player.getFarmingSkill().getLevel() +
+            player.getFishingSkill().getLevel() +
+            player.getForagingSkill().getLevel() +
             player.getMiningSkill().getLevel();
-        int xp=0;
-        for (NpcFriendship friendship:player.getFriendsNpc().values()){
-            for (int i=0;i<3;i++){
-                if (friendship.getQuestStatus()[i].equals(QuestStatus.Completed)){
+        int xp = 0;
+        for (NpcFriendship friendship : player.getFriendsNpc().values()) {
+            for (int i = 0; i < 3; i++) {
+                if (friendship.getQuestStatus()[i].equals(QuestStatus.Completed)) {
                     xp++;
                 }
             }
         }
-        quests=xp;
+        quests = xp;
     }
 
     public String getUsername() {
