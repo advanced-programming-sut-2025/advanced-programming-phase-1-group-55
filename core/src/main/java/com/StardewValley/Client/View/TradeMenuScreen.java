@@ -42,7 +42,7 @@ public class TradeMenuScreen extends ScreenAdapter {
         Label playerLabel = new Label("Select a player:", skin);
         Array<String> playerNames = new Array<>();
         for (User u : allPlayers) {
-            if (u.getUsername().equals(App.mainUser.getUsername())) {
+            if (u.getUsername().equals(currentUser)) {
                 continue;
             }
             if (u != null && u.getUsername() != null) {
