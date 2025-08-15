@@ -1,6 +1,7 @@
 package com.StardewValley.Server.Controller;
 
 
+import com.StardewValley.Client.ClientData;
 import com.StardewValley.Common.GameDetails;
 import com.StardewValley.Common.enums.WeatherType;
 import com.StardewValley.Common.model.App;
@@ -41,10 +42,9 @@ public class TimeController {
 
 
     private Sound thunderSound;
-    private GameDetails gameDetails;
+    private GameDetails gameDetails = ClientData.getInstance().gameDetails;
 
-    public TimeController(GameDetails game) {
-        this.gameDetails = game;
+    public TimeController() {
         scale = 4;
         hour = new BitmapFont();
         hour.setColor(Color.BLACK);
@@ -82,6 +82,11 @@ public class TimeController {
         Storm.setSize(Storm.getWidth() * scale, Storm.getHeight() * scale);
 
         clockArrow.setOrigin(clockArrow.getWidth() / 2, 0);
+        if (gameDetails.getPlayerByUsername(App.mainUser.getUsername()).gold != 0) {
+
+            App.getCurrentGameModel().getCurrentUser().setGold(gameDetails.getPlayerByUsername(App.mainUser.getUsername()).gold);
+        }
+
     }
 
     private boolean lightningFlash = false;
@@ -200,8 +205,7 @@ public class TimeController {
         day.draw(batch, dayOfWeek + ". ",
             clockX + 27 * scale, clockY + 45 * scale + hour.getLineHeight());
 
-        App.getCurrentGameModel().getCurrentUser().setGold(gameDetails.getPlayerByUsername(App.mainUser.getUsername()).gold);
-        gold.draw(batch, String.valueOf( App.getCurrentGameModel().getCurrentUser().getGold()),
+        gold.draw(batch, String.valueOf(App.getCurrentGameModel().getCurrentUser().getGold()),
             clockX + 17 * scale, clockY + 3 * scale + gold.getLineHeight());
 
 

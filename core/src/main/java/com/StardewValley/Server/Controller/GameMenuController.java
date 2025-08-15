@@ -127,6 +127,7 @@ public class GameMenuController {
         }
         GameMap map = new GameMap();
         currentGameModel = new GameModel(mainUser, map);
+
         currentGameModel.playersInGame.add(player0);
         currentGameModel.playersInGame.add(player1);
         player1.setGender("female");
@@ -138,6 +139,8 @@ public class GameMenuController {
             player3.setId(3);
             currentGameModel.playersInGame.add(player3);
         }
+
+        App.getCurrentGameModel().getCurrentUser().setGold(game.getPlayerByUsername(App.mainUser.getUsername()).gold);
         map.BuildFarm(Map1, Map2, Map3);
         map.BuildMap();
         setFriendships(map);

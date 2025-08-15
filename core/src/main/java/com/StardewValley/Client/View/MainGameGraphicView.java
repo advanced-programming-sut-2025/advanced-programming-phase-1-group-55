@@ -56,7 +56,6 @@ public class MainGameGraphicView implements Screen, InputProcessor {
     private GameMap map = new GameMap();
     private TimeController timeController;
     private TextureRegion backgroundRegion;
-    private GameDetails gameDetails;
 
 
     private String errorMessage = null;
@@ -81,13 +80,12 @@ public class MainGameGraphicView implements Screen, InputProcessor {
     private FarmBuildingType chosenBuildingType;
 
 
-    public MainGameGraphicView(GameDetails game, MainGameController controller, GameMap map) {
+    public MainGameGraphicView( MainGameController controller, GameMap map) {
         this.controller = controller;
         this.map = map;
         controller.setView(this);
         App.currentGameGraphicView = this;
         controller.getPlayerController().setGameMap(map);
-        this.gameDetails = game;
 
     }
 
@@ -112,7 +110,7 @@ public class MainGameGraphicView implements Screen, InputProcessor {
 //        Gdx.input.setInputProcessor(stage);
 
         updateBackgroundTexture();
-        timeController = new TimeController(gameDetails);
+        timeController = new TimeController();
 
         ProgressBar.ProgressBarStyle progressBarStyle = new ProgressBar.ProgressBarStyle();
 

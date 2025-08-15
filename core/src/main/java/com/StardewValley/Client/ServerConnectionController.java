@@ -79,7 +79,7 @@ public class ServerConnectionController {
         if (result.IsSuccess()) {
             Gdx.app.postRunnable(() -> {
                 App.getGameApp().setScreen(
-                    new MainGameGraphicView(game,
+                    new MainGameGraphicView(
                         new MainGameController(),
                         App.currentGameModel.getMap()
                     )
@@ -107,6 +107,7 @@ public class ServerConnectionController {
 
         System.out.println((String) message.getFromBody("game_details"));
         PlayerDetails self = game.getPlayers().get(App.mainUser.getUsername());
+
         data.selfDetails = new PlayerDetails(self.username);
         data.selfDetails.gold = self.gold;
         data.selfDetails.skills = self.skills;
@@ -125,7 +126,7 @@ public class ServerConnectionController {
         if (result.IsSuccess()) {
             Gdx.app.postRunnable(() -> {
                 App.getGameApp().setScreen(
-                    new MainGameGraphicView(game,
+                    new MainGameGraphicView(
                         new MainGameController(),
                         App.currentGameModel.getMap()
                     )

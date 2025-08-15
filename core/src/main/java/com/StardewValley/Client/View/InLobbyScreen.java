@@ -132,7 +132,7 @@ public class InLobbyScreen implements Screen {
         }
 
         if (gameStarted) {
-            App.gameApp.setScreen(new MainGameGraphicView(new GameDetails(),new MainGameController(), App.currentGameModel.getMap()));
+            App.gameApp.setScreen(new MainGameGraphicView(new MainGameController(), App.currentGameModel.getMap()));
         }
     }
 
