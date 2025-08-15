@@ -25,7 +25,7 @@ public class PlayerDetails {
     public ArrayList<EmojiType> defaultEmojis=new ArrayList<>();
     public String currentMusicPath;
     private float musicPosition;
-    public  Music currentMusic;
+    public  transient Music currentMusic;
 
     public PlayerDetails(String username) {
         this.username = username;
@@ -39,11 +39,7 @@ public class PlayerDetails {
     }
 
     public void updateInfo() {
-        musicPosition=currentMusic.getPosition();
-        System.out.println(musicPosition);
-        System.out.println(currentMusicPath);
-        System.out.println(username);
-        System.out.println("=================================================");
+        //musicPosition=currentMusic.getPosition();
         User player = App.currentGameModel.currentUser;
         posX = player.getLocation().getX();
         posY = player.getLocation().getY();

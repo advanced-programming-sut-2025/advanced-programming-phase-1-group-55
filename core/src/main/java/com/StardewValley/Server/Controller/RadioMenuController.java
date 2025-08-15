@@ -92,6 +92,8 @@ public class RadioMenuController {
         if (position > 0) {
             music.setPosition(position);
         }
+        ClientData.getInstance().selfDetails.setCurrentMusicPath(musicPath);
+        ClientData.getInstance().selfDetails.setCurrentMusic(music);
         music.play();
     }
 
