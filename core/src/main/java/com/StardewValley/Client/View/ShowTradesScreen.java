@@ -63,31 +63,32 @@ public class ShowTradesScreen implements Screen {
         tradesTable.clearChildren();
 
         if (trades.isEmpty()) {
-            tradesTable.add(new Label("No trades yet.", skin)).colspan(8).pad(10);
+            tradesTable.add(new Label("No trades yet.", skin)).colspan(9).pad(10).expandX().fillX();
             return;
         }
 
-        tradesTable.add(new Label("#", skin)).pad(5).width(30);
-        tradesTable.add(new Label("Sender", skin)).pad(5).width(100);
-        tradesTable.add(new Label("Receiver", skin)).pad(5).width(100);
-        tradesTable.add(new Label("Item", skin)).pad(5).width(120);
-        tradesTable.add(new Label("Qty", skin)).pad(5).width(50);
-        tradesTable.add(new Label("Target Item", skin)).pad(5).width(120);
-        tradesTable.add(new Label("Target Qty", skin)).pad(5).width(60);
-        tradesTable.add(new Label("Price", skin)).pad(5).width(60);
-        tradesTable.add(new Label("Action", skin)).pad(5).width(80);
+        // Header
+        tradesTable.add(new Label("#", skin)).pad(5).expandX().fillX();
+        tradesTable.add(new Label("Sender", skin)).pad(5).expandX().fillX();
+        tradesTable.add(new Label("Receiver", skin)).pad(5).expandX().fillX();
+        tradesTable.add(new Label("Item", skin)).pad(5).expandX().fillX();
+        tradesTable.add(new Label("Qty", skin)).pad(5).expandX().fillX();
+        tradesTable.add(new Label("Target Item", skin)).pad(5).expandX().fillX();
+        tradesTable.add(new Label("Target Qty", skin)).pad(5).expandX().fillX();
+        tradesTable.add(new Label("Price", skin)).pad(5).expandX().fillX();
+        tradesTable.add(new Label("Action", skin)).pad(5).expandX().fillX();
         tradesTable.row();
 
         int index = 1;
         for (Trade t : trades) {
-            tradesTable.add(new Label(String.valueOf(index), skin)).pad(5).width(30);
-            tradesTable.add(new Label(safeStr(t.getSender()), skin)).pad(5).width(100);
-            tradesTable.add(new Label(safeStr(t.getReciver()), skin)).pad(5).width(100);
-            tradesTable.add(new Label(safeStr(t.getItem()), skin)).pad(5).width(120);
-            tradesTable.add(new Label(String.valueOf(t.getAmount()), skin)).pad(5).width(50);
-            tradesTable.add(new Label(safeStr(t.getTargetItem()), skin)).pad(5).width(120);
-            tradesTable.add(new Label(String.valueOf(t.getTargetAmount()), skin)).pad(5).width(60);
-            tradesTable.add(new Label(String.valueOf(t.getPrice()), skin)).pad(5).width(60);
+            tradesTable.add(new Label(String.valueOf(index), skin)).pad(5).expandX().fillX();
+            tradesTable.add(new Label(safeStr(t.getSender()), skin)).pad(5).expandX().fillX();
+            tradesTable.add(new Label(safeStr(t.getReciver()), skin)).pad(5).expandX().fillX();
+            tradesTable.add(new Label(safeStr(t.getItem()), skin)).pad(5).expandX().fillX();
+            tradesTable.add(new Label(String.valueOf(t.getAmount()), skin)).pad(5).expandX().fillX();
+            tradesTable.add(new Label(safeStr(t.getTargetItem()), skin)).pad(5).expandX().fillX();
+            tradesTable.add(new Label(String.valueOf(t.getTargetAmount()), skin)).pad(5).expandX().fillX();
+            tradesTable.add(new Label(String.valueOf(t.getPrice()), skin)).pad(5).expandX().fillX();
 
             TextButton acceptButton = new TextButton("Accept", skin);
             acceptButton.addListener(new ChangeListener() {
@@ -96,16 +97,25 @@ public class ShowTradesScreen implements Screen {
                     acceptTrade(t);
                 }
             });
-            tradesTable.add(acceptButton).pad(5).width(80);
+            tradesTable.add(acceptButton).pad(5).expandX().fillX();
 
             tradesTable.row();
             index++;
         }
+
+        if (tradesTable.getParent() == null) {
+            ScrollPane scrollPane = new ScrollPane(tradesTable, skin);
+            scrollPane.setFillParent(true);
+            stage.addActor(scrollPane);
+        }
     }
+
+
+
 
     private void acceptTrade(Trade trade) {
         trade.setAccepted(true);
-//        ClientController.getInstance().sendTradeAcceptance(trade);
+        ClientController.getInstance().sendTradeAcceptance(trade);
         rebuildTradesTable();
     }
 
