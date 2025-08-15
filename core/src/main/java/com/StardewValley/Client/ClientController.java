@@ -33,18 +33,6 @@ public class ClientController {
     private ClientData data = ClientData.getInstance();
 
 
-
-
-
-
-
-
-
-
-
-
-
-
     public void initConnection(String ip, int port, String serverIp, int serverPort) {
         try {
             Socket socket = new Socket(serverIp, serverPort);
@@ -133,7 +121,7 @@ public class ClientController {
     }
 
 
-    public String joinLobby(String code,String password) {
+    public String joinLobby(String code, String password) {
         ConnectionMessage request = new ConnectionMessage(new HashMap<>() {{
             put("command", "join_lobby");
             put("code", code);
@@ -169,6 +157,7 @@ public class ClientController {
             return response.getFromBody("error");
         }
     }
+
     public void updateChat(Message message) {
         ConnectionMessage connectionMessage = new ConnectionMessage(new HashMap<>() {{
             put("command", "update_public_chat");
@@ -178,7 +167,8 @@ public class ClientController {
 
         connection.sendMessage(connectionMessage);
     }
-    public void updateEmoji(){
+
+    public void updateEmoji() {
         String json = ConnectionMessage.emojiToJson(ClientData.getInstance().selfDetails.emoji);
         ConnectionMessage connectionMessage = new ConnectionMessage(new HashMap<>() {{
             put("command", "update_emoji");
@@ -188,8 +178,6 @@ public class ClientController {
         }}, ConnectionMessage.Type.command);
         connection.sendMessage(connectionMessage);
     }
-
-
 
 
     public void sendTradeRequest(Trade trade) {
@@ -206,7 +194,6 @@ public class ClientController {
     }
 
 
-
     public void sendTradeAcceptance(Trade trade) {
         ConnectionMessage connectionMessage = new ConnectionMessage(new HashMap<>() {{
             put("command", "send_trade_acceptance");
@@ -220,30 +207,44 @@ public class ClientController {
         }
     }
 
+    public void requestGameSave() {
+        if (connection == null) return;
 
+        ConnectionMessage saveRequest = new ConnectionMessage(new HashMap<>() {{
+            put("command", "save_game");
+
+        }}, ConnectionMessage.Type.command);
+
+        try {
+            connection.sendMessage(saveRequest);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 
     public void startGame() {
         if (connection == null) {
-            System.out.println( "failed: no active connection");
+            System.out.println("failed: no active connection");
             return;
         }
-        ConnectionMessage request=null;
-       try{ request= new ConnectionMessage(new HashMap<>() {{
-            put("command", "start_game");
-        }}, ConnectionMessage.Type.command);}
-       catch (Exception e) {
-           System.out.println( "failed: " + e.getMessage());
-           return ;
-       }
+        ConnectionMessage request = null;
+        try {
+            request = new ConnectionMessage(new HashMap<>() {{
+                put("command", "start_game");
+            }}, ConnectionMessage.Type.command);
+        } catch (Exception e) {
+            System.out.println("failed: " + e.getMessage());
+            return;
+        }
 
         ConnectionMessage response = connection.sendAndWaitForResponse(request, TIMEOUT);
         if (response == null) {
-            System.out.println( "failed: no response from server");
-            return ;
+            System.out.println("failed: no response from server");
+            return;
         }
         if ("ok".equals(response.getFromBody("response"))) {
-            System.out.println( "game started successfully");
+            System.out.println("game started successfully");
         } else {
             System.out.println(Optional.ofNullable(response.getFromBody("error")));
         }

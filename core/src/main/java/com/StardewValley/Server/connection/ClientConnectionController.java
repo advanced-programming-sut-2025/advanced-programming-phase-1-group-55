@@ -14,6 +14,8 @@ import com.StardewValley.Common.model.Trade;
 import com.StardewValley.Common.model.User;
 
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.Executors;
@@ -27,11 +29,12 @@ public class ClientConnectionController {
     public ClientConnectionController(ClientConnection connection) {
         this.connection = connection;
     }
+
     public void updateEmoji(ConnectionMessage message) {
-        Emoji emoji=ConnectionMessage.emojiFromJson(message.getFromBody("json"));
-        PlayerDetails playerDetails=connection.getGame().getPlayers().get(message.getFromBody("sender"));
-        playerDetails.emoji=emoji;
-        String json=ConnectionMessage.emojiToJson(emoji);
+        Emoji emoji = ConnectionMessage.emojiFromJson(message.getFromBody("json"));
+        PlayerDetails playerDetails = connection.getGame().getPlayers().get(message.getFromBody("sender"));
+        playerDetails.emoji = emoji;
+        String json = ConnectionMessage.emojiToJson(emoji);
         ConnectionMessage update = new ConnectionMessage(new HashMap<>() {{
             put("update", "update_emoji");
             put("json", json);
@@ -95,6 +98,42 @@ public class ClientConnectionController {
             }
         }
 
+    }
+
+    public void handleSaveGameRequest() {
+
+
+        GameDetails gameToSave = connection.getGame();
+        if (gameToSave == null) {
+            System.err.println("game null ");
+            return;
+        }
+
+        try {
+            String json = ConnectionMessage.gameDetailsToJson(gameToSave);
+
+            Path savePath = Path.of("saved_games", "game.json");
+
+            Files.createDirectories(savePath.getParent());
+
+            Files.writeString(savePath, json);
+
+            System.out.println("Game " + gameToSave.getGameId() + " saved successfully.");
+
+            ConnectionMessage notifyClients = new ConnectionMessage(new HashMap<>() {{
+                put("information", "game_saved");
+                put("gameId", gameToSave.getGameId());
+            }}, ConnectionMessage.Type.inform);
+
+            for (ClientConnection conn : ServerMain.getConnections()) {
+                if (conn.isAlive()) {
+                    conn.sendMessage(notifyClients);
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 

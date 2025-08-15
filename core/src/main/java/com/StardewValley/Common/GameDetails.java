@@ -41,28 +41,7 @@ public class GameDetails {
         publicGameChat = new ArrayList<>();
         trades = new ArrayList<>();
     }
-    // -------------------- SAVE / LOAD --------------------
 
-    public void saveToFile(String filePath) {
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        try (FileWriter writer = new FileWriter(filePath)) {
-            gson.toJson(this, writer);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static GameDetails loadFromFile(String filePath) {
-        Gson gson = new Gson();
-        try (FileReader reader = new FileReader(filePath)) {
-            GameDetails game = gson.fromJson(reader, GameDetails.class);
-            game.initTransientFields();
-            return game;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
 
     public void sendGameDetails() {
         String json = ConnectionMessage.gameDetailsToJson(this);

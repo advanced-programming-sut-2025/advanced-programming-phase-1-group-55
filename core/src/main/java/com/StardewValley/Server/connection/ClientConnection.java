@@ -89,15 +89,21 @@ public class ClientConnection extends Connection {
             if (message.getFromBody("command").equals("update_public_chat")) {
                 controller.updatePublicChat(message);
                 return true;
-            } if(message.getFromBody("command").equals("update_emoji")) {
+            }
+            if (message.getFromBody("command").equals("update_emoji")) {
                 controller.updateEmoji(message);
                 return true;
             }
             if (command.equals("send_trade_request")) {
                 controller.handleTradeRequest(message);
                 return true;
-            } if (command.equals("send_trade_acceptance")) {
+            }
+            if (command.equals("send_trade_acceptance")) {
                 controller.handleTradeAcceptance(message);
+                return true;
+            }
+            if (command.equals("save_game")) {
+                controller.handleSaveGameRequest();
                 return true;
             }
 
