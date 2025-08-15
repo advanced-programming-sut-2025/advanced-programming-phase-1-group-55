@@ -1,6 +1,7 @@
 package com.StardewValley.Server.Controller;
 
 
+import com.StardewValley.Common.GameDetails;
 import com.StardewValley.Common.enums.WeatherType;
 import com.StardewValley.Common.model.App;
 import com.StardewValley.Common.model.GameTime;
@@ -40,8 +41,10 @@ public class TimeController {
 
 
     private Sound thunderSound;
+    private GameDetails gameDetails;
 
-    public TimeController() {
+    public TimeController(GameDetails game) {
+        this.gameDetails = game;
         scale = 4;
         hour = new BitmapFont();
         hour.setColor(Color.BLACK);
@@ -129,8 +132,8 @@ public class TimeController {
             shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
             shapeRenderer.setColor(1, 1, 1, 0.8f);
             shapeRenderer.rect(camera.position.x - camera.viewportWidth / 2,
-                    camera.position.y - camera.viewportHeight / 2,
-                    camera.viewportWidth, camera.viewportHeight);
+                camera.position.y - camera.viewportHeight / 2,
+                camera.viewportWidth, camera.viewportHeight);
             shapeRenderer.end();
             Gdx.gl.glDisable(GL20.GL_BLEND);
             shapeRenderer.dispose();
@@ -193,15 +196,13 @@ public class TimeController {
 
 
         hour.draw(batch, GameTime.getHour() + " o'clock",
-                clockX + 27 * scale, clockY + 23 * scale + hour.getLineHeight());
+            clockX + 27 * scale, clockY + 23 * scale + hour.getLineHeight());
         day.draw(batch, dayOfWeek + ". ",
-                clockX + 27 * scale, clockY + 45 * scale + hour.getLineHeight());
-
-        User currentPlayer = App.currentGameModel.getCurrentUser();
+            clockX + 27 * scale, clockY + 45 * scale + hour.getLineHeight());
 
 
-        gold.draw(batch, String.valueOf(currentPlayer.getGold()),
-                clockX + 17 * scale, clockY + 3 * scale + gold.getLineHeight());
+        gold.draw(batch, String.valueOf(gameDetails.getPlayerByUsername(App.mainUser.getUsername()).gold),
+            clockX + 17 * scale, clockY + 3 * scale + gold.getLineHeight());
 
 
         batch.setProjectionMatrix(originalMatrix);

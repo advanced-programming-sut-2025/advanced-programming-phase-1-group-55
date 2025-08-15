@@ -2,6 +2,7 @@ package com.StardewValley.Client.View;
 
 import com.StardewValley.Client.ClientController;
 import com.StardewValley.Client.ClientData;
+import com.StardewValley.Common.GameDetails;
 import com.StardewValley.Common.Lobby;
 import com.StardewValley.Common.model.App;
 import com.StardewValley.Server.Controller.MainGameController;
@@ -131,7 +132,7 @@ public class InLobbyScreen implements Screen {
         }
 
         if (gameStarted) {
-            App.gameApp.setScreen(new MainGameGraphicView(new MainGameController(), App.currentGameModel.getMap()));
+            App.gameApp.setScreen(new MainGameGraphicView(new GameDetails(),new MainGameController(), App.currentGameModel.getMap()));
         }
     }
 

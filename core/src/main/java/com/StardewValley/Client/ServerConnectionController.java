@@ -75,11 +75,11 @@ public class ServerConnectionController {
                 otherUsername = x;
             }
         }
-        Result result = controller.newGame(otherUsername, null, null, "Map1", "Map1", "Map1",game);
+        Result result = controller.newGame(otherUsername, null, null, "Map1", "Map1", "Map1", game);
         if (result.IsSuccess()) {
             Gdx.app.postRunnable(() -> {
                 App.getGameApp().setScreen(
-                    new MainGameGraphicView(
+                    new MainGameGraphicView(game,
                         new MainGameController(),
                         App.currentGameModel.getMap()
                     )
@@ -106,10 +106,11 @@ public class ServerConnectionController {
         GameDetails game = ConnectionMessage.gameDetailsFromJson(message.getFromBody("game_details"));
 
         System.out.println((String) message.getFromBody("game_details"));
-        data.selfDetails = new PlayerDetails(App.mainUser.getUsername());
-        data.selfDetails.skills = 4;
-        data.selfDetails.gold = 40000;
-        data.selfDetails.quests = 0;
+        PlayerDetails self = game.getPlayers().get(App.mainUser.getUsername());
+        data.selfDetails = new PlayerDetails(self.username);
+        data.selfDetails.gold = self.gold;
+        data.selfDetails.skills = self.skills;
+        data.selfDetails.quests = self.quests;
         data.gameDetails = game;
         data.isInGame = true;
         String otherUsername = "";
@@ -120,11 +121,11 @@ public class ServerConnectionController {
                 otherUsername = x;
             }
         }
-        Result result = controller.newGame(otherUsername, null, null, "Map1", "Map1", "Map1",game);
+        Result result = controller.newGame(otherUsername, null, null, "Map1", "Map1", "Map1", game);
         if (result.IsSuccess()) {
             Gdx.app.postRunnable(() -> {
                 App.getGameApp().setScreen(
-                    new MainGameGraphicView(
+                    new MainGameGraphicView(game,
                         new MainGameController(),
                         App.currentGameModel.getMap()
                     )
