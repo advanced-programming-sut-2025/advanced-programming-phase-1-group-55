@@ -29,7 +29,6 @@ public class ClientData {
     public boolean isInGame = false;
     public GameDetails gameDetails = new GameDetails();
     public PlayerDetails selfDetails;
-    public Music currentMusic = null;
 
 
     public Lobby getLobby(String lobbyCode) {

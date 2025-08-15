@@ -8,6 +8,7 @@ import com.StardewValley.Common.model.Friendship.NpcFriendship;
 import com.StardewValley.Common.model.NPC.Quest;
 import com.StardewValley.Common.model.NPC.QuestStatus;
 import com.StardewValley.Common.model.User;
+import com.badlogic.gdx.audio.Music;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,6 +23,8 @@ public class PlayerDetails {
     public Emoji emoji;
     public transient HashMap<String,String> musics=new HashMap<>();
     public ArrayList<EmojiType> defaultEmojis=new ArrayList<>();
+    public String currentMusicPath;
+    public transient Music currentMusic;
 
     public PlayerDetails(String username) {
         this.username = username;
