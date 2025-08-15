@@ -88,7 +88,7 @@ public class ServerConnection extends Connection {
                 Emoji emoji=ConnectionMessage.emojiFromJson(jsonString);
                 String sender = message.getFromBody("sender");
                 for (PlayerDetails playerDetails:ClientData.getInstance().gameDetails.getPlayers().values()){
-                    if (playerDetails.getUsername().equals(sender)&& !sender.equals(ClientData.getInstance().selfDetails.username)){
+                    if (playerDetails.getUsername().equals(sender)){
                         playerDetails.setEmoji(emoji);
                     }
                 }

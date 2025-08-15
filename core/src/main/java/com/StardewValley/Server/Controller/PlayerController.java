@@ -129,6 +129,12 @@ public class PlayerController {
                 currentFrame.getRegionWidth() * scale,
                 currentFrame.getRegionHeight() * scale
             );
+            if (ClientData.getInstance().selfDetails.emoji.getActive()){
+                Sprite emoji = new Sprite(new Texture(ClientData.getInstance().selfDetails.emoji.getType().getPath()));
+                emoji.setPosition(ClientData.getInstance().selfDetails.posX, ClientData.getInstance().selfDetails.posY+15);
+                emoji.setScale(0.5f);
+                emoji.draw(gameApp.getBatch());
+            }
 
             drawOtherPlayers();
         }
@@ -181,7 +187,8 @@ public class PlayerController {
             }
             if (pd.getEmoji().getActive()){
                 Sprite emoji = new Sprite(new Texture(pd.emoji.getType().getPath()));
-                emoji.setPosition(player.getLocation().getX(), player.getLocation().getY()+30);
+                emoji.setPosition(pd.posX, pd.posY+5);
+                emoji.setScale(0.5f);
                 emoji.draw(gameApp.getBatch());
             }
 
@@ -191,7 +198,6 @@ public class PlayerController {
     }
 
     public void centerPlayerOnCamera(OrthographicCamera camera) {
-//        Sprite sprite = player.getPlayerSprite();
         TextureRegion currentFrame = currentAnimation.getKeyFrame(0);
         float centerX = player.getLocation().getX() + (currentFrame.getRegionWidth() * scale) / 2f;
         float centerY = player.getLocation().getY() + (currentFrame.getRegionHeight() * scale) / 2f;
