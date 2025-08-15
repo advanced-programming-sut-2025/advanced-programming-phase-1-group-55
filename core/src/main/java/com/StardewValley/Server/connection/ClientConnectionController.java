@@ -62,6 +62,30 @@ public class ClientConnectionController {
         }
     }
 
+    public void handleTradeAcceptance(ConnectionMessage message) {
+        String tradeJson = message.getFromBody("trade");
+        Trade acceptedTrade = ConnectionMessage.tradeFromJson(tradeJson);
+
+        for (Trade t : connection.getGame().getTrades()) {
+            if (t.getId() == acceptedTrade.getId()) {
+                t.setAccepted(true);
+                break;
+            }
+        }
+
+        ConnectionMessage notifySenderAndReceiver = new ConnectionMessage(new HashMap<>() {{
+            put("information", "trade_accepted");
+            put("trade", tradeJson);
+        }}, ConnectionMessage.Type.inform);
+
+        for (ClientConnection connection : ServerMain.getConnections()) {
+            if (connection.isAlive()) {
+                connection.sendMessage(notifySenderAndReceiver);
+            }
+        }
+
+    }
+
 
     private void sendUpdatedChatToAll(Message message) {
         String json = ConnectionMessage.messageToJson(message);

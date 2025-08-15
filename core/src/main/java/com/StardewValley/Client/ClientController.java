@@ -11,6 +11,7 @@ import com.StardewValley.Common.model.Trade;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 import static com.StardewValley.Common.Connection.TIMEOUT;
@@ -30,6 +31,19 @@ public class ClientController {
 
     private ServerConnection connection = null;
     private ClientData data = ClientData.getInstance();
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public void initConnection(String ip, int port, String serverIp, int serverPort) {
         try {
@@ -166,6 +180,8 @@ public class ClientController {
     }
 
 
+
+
     public void sendTradeRequest(Trade trade) {
         ConnectionMessage connectionMessage = new ConnectionMessage(new HashMap<>() {{
             put("command", "send_trade_request");
@@ -181,7 +197,18 @@ public class ClientController {
 
 
 
+    public void sendTradeAcceptance(Trade trade) {
+        ConnectionMessage connectionMessage = new ConnectionMessage(new HashMap<>() {{
+            put("command", "send_trade_acceptance");
+            put("trade", ConnectionMessage.tradeToJson(trade));
+        }}, ConnectionMessage.Type.command);
 
+        try {
+            connection.sendMessage(connectionMessage);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 
 

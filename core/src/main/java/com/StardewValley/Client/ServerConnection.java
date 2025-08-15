@@ -8,6 +8,7 @@ import com.StardewValley.Common.model.Trade;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class ServerConnection extends Connection {
@@ -38,13 +39,7 @@ public class ServerConnection extends Connection {
 
     @Override
     protected synchronized boolean handleMessage(ConnectionMessage message) {
-        try {
-            Trade t = ClientData.getInstance().gameDetails.getTrades().get(0);
-            System.err.println(t);
 
-        } catch (Exception e) {
-            System.out.println("kir shodi?");
-        }
         String command = (String) message.getFromBody("command");
         if (message.getType().equals(ConnectionMessage.Type.command)) {
             if (command.equals("status")) {
@@ -83,10 +78,22 @@ public class ServerConnection extends Connection {
             if (info.equals("receive_trade_request")) {
                 String jsonString = message.getFromBody("trade");
                 Trade trade = ConnectionMessage.tradeFromJson(jsonString);
-                System.err.println("waw::: "+trade);
                 ClientData.getInstance().gameDetails.getTrades().add(trade);
 
                 return true;
+            }
+            if (info.equals("trade_accepted")) {
+                String jsonString = message.getFromBody("trade");
+                Trade updatedTrade = ConnectionMessage.tradeFromJson(jsonString);
+                System.err.println(updatedTrade);
+                List<Trade> trades = ClientData.getInstance().gameDetails.getTrades();
+                for (Trade t : trades) {
+                    if (t.getId() == updatedTrade.getId()) {
+                        System.err.println("accept shod " + t.getId());
+                        t.setAccepted(true);
+                        break;
+                    }
+                }
             }
         }
         if (message.getType().equals(ConnectionMessage.Type.update)) {

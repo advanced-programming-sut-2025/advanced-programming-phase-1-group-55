@@ -105,6 +105,9 @@ public class ClientConnection extends Connection {
             if (command.equals("send_trade_request")) {
                 controller.handleTradeRequest(message);
                 return true;
+            } if (command.equals("send_trade_acceptance")) {
+                controller.handleTradeAcceptance(message);
+                return true;
             }
 
         }

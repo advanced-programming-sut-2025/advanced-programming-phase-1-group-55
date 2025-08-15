@@ -45,6 +45,13 @@ public class GameDetails {
         }
     }
 
+    public Trade getTradeById(int id) {
+        for (Trade t : trades) {
+            if (t.getId() == id) return t;
+        }
+        return null;
+    }
+
     public ArrayList<Trade> getTrades() {
         return trades;
     }

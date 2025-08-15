@@ -63,11 +63,10 @@ public class ShowTradesScreen implements Screen {
         tradesTable.clearChildren();
 
         if (trades.isEmpty()) {
-            tradesTable.add(new Label("No trades yet.", skin)).colspan(9).pad(10).expandX().fillX();
+            tradesTable.add(new Label("No trades yet.", skin)).colspan(10).pad(10).expandX().fillX();
             return;
         }
 
-        // Header
         tradesTable.add(new Label("#", skin)).pad(5).expandX().fillX();
         tradesTable.add(new Label("Sender", skin)).pad(5).expandX().fillX();
         tradesTable.add(new Label("Receiver", skin)).pad(5).expandX().fillX();
@@ -76,6 +75,7 @@ public class ShowTradesScreen implements Screen {
         tradesTable.add(new Label("Target Item", skin)).pad(5).expandX().fillX();
         tradesTable.add(new Label("Target Qty", skin)).pad(5).expandX().fillX();
         tradesTable.add(new Label("Price", skin)).pad(5).expandX().fillX();
+        tradesTable.add(new Label("Accepted", skin)).pad(5).expandX().fillX();
         tradesTable.add(new Label("Action", skin)).pad(5).expandX().fillX();
         tradesTable.row();
 
@@ -90,14 +90,22 @@ public class ShowTradesScreen implements Screen {
             tradesTable.add(new Label(String.valueOf(t.getTargetAmount()), skin)).pad(5).expandX().fillX();
             tradesTable.add(new Label(String.valueOf(t.getPrice()), skin)).pad(5).expandX().fillX();
 
+            String acceptedStr = t.isAccepted() ? "Accepted" : "Pending";
+            tradesTable.add(new Label(acceptedStr, skin)).pad(5).expandX().fillX();
+
             TextButton acceptButton = new TextButton("Accept", skin);
-            acceptButton.addListener(new ChangeListener() {
-                @Override
-                public void changed(ChangeEvent event, com.badlogic.gdx.scenes.scene2d.Actor actor) {
-                    acceptTrade(t);
-                }
-            });
-            tradesTable.add(acceptButton).pad(5).expandX().fillX();
+            if (!t.isAccepted()) {
+                acceptButton.addListener(new ChangeListener() {
+                    @Override
+                    public void changed(ChangeEvent event, com.badlogic.gdx.scenes.scene2d.Actor actor) {
+                        acceptTrade(t);
+                    }
+                });
+                tradesTable.add(acceptButton).pad(5).expandX().fillX();
+            } else {
+                tradesTable.add(new Label("-", skin)).pad(5).expandX().fillX();
+            }
+
 
             tradesTable.row();
             index++;
@@ -109,6 +117,7 @@ public class ShowTradesScreen implements Screen {
             stage.addActor(scrollPane);
         }
     }
+
 
 
 

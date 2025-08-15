@@ -24,7 +24,7 @@ public class TradeMenuScreen extends ScreenAdapter {
     private List<Item> inventory;
 
     public TradeMenuScreen(User currentUser, List<User> allPlayers, List<Item> inventory) {
-        this.currentUser = currentUser;
+        this.currentUser = App.mainUser;
         this.allPlayers = allPlayers;
         this.inventory = inventory;
     }
@@ -42,9 +42,7 @@ public class TradeMenuScreen extends ScreenAdapter {
         Label playerLabel = new Label("Select a player:", skin);
         Array<String> playerNames = new Array<>();
         for (User u : allPlayers) {
-            if (u.getUsername().equals(currentUser)) {
-                continue;
-            }
+
             if (u != null && u.getUsername() != null) {
                 playerNames.add(u.getUsername());
             }
@@ -103,11 +101,11 @@ public class TradeMenuScreen extends ScreenAdapter {
                 Trade trade = new Trade(
                     currentUser.getUsername(),
                     receiver.getUsername(),
-                    myItem.getItemType().getDisplayName(),
+                    myItem.toString(),
                     "item_for_item",
                     amount,
                     0,
-                    targetItem.getItemType().getDisplayName(),
+                    targetItem.toString(),
                     targetAmount,
                     generateTradeId()
                 );
