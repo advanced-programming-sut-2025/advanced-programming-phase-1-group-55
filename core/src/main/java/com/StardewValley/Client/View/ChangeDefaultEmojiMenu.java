@@ -24,7 +24,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 public class ChangeDefaultEmojiMenu implements Screen {
     private Stage stage=new Stage();
     private Skin skin=App.skin;
-    private EmojiType selectedEmoji = null;
+    private EmojiType selectedEmoji = EmojiType.Emoji33;
     private EmojiType selectedEmojiToChange = null;
     private TextButton backBtn;
     private TextButton changeBtn;
@@ -51,7 +51,7 @@ public class ChangeDefaultEmojiMenu implements Screen {
         stage.clear();
 
 
-        Texture backgroundTexture = new Texture(Gdx.files.internal("background/vintage-textured-paper-background-vector.jpg"));
+        Texture backgroundTexture = new Texture(Gdx.files.internal("backgrounds/13.png"));
         Image backgroundImage = new Image(backgroundTexture);
         backgroundImage.setFillParent(true);
         stage.addActor(backgroundImage);
@@ -82,6 +82,9 @@ public class ChangeDefaultEmojiMenu implements Screen {
         final Table[] selectedTable = {null};
 
         for (EmojiType item : EmojiType.values()) {
+            if (ClientData.getInstance().selfDetails.defaultEmojis.contains(item)) {
+                continue;
+            }
             final EmojiType currentItem = item;
             Texture itemTexture = new Texture(item.getPath());
             Image itemImage = new Image(itemTexture);

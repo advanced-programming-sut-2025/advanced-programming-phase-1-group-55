@@ -1,8 +1,11 @@
 package com.StardewValley.Server.Controller;
 
+import com.StardewValley.Client.ClientData;
 import com.StardewValley.Client.View.ChangeDefaultEmojiMenu;
 import com.StardewValley.Client.View.EmojiMenuView;
+import com.StardewValley.Common.PlayerDetails;
 import com.StardewValley.Common.model.App;
+import com.StardewValley.Common.model.Chat.EmojiType;
 
 public class EmojiController {
     EmojiMenuView emojiMenuView;
@@ -26,15 +29,18 @@ public class EmojiController {
                 App.gameApp.setScreen(new EmojiMenuView());
             } else if (changeDefaultEmojiMenu.getChangeBtn().isChecked()) {
                 changeDefaultEmojiMenu.getChangeBtn().setChecked(false);
-                handleChangingEmoji();
+                handleChangingEmoji(changeDefaultEmojiMenu.getSelectedEmojiToChange(),changeDefaultEmojiMenu.getSelectedEmoji());
             }
         }
     }
     public void handleSendingEmoji(){
 
     }
-    public void handleChangingEmoji(){
-
+    public void handleChangingEmoji(EmojiType oldEmoji,EmojiType newEmoji){
+        PlayerDetails playerDetails = ClientData.getInstance().selfDetails;
+        playerDetails.defaultEmojis.remove(oldEmoji);
+        playerDetails.defaultEmojis.add(newEmoji);
+        changeDefaultEmojiMenu.show();
     }
     public EmojiMenuView getEmojiMenuView() {
         return emojiMenuView;

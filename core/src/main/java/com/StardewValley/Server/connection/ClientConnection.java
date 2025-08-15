@@ -57,14 +57,6 @@ public class ClientConnection extends Connection {
                 super.startFileReceiving(message);
                 return true;
             }
-            if (command.equals("send_music_list")) {
-                controller.sendMusicList(message);
-                return true;
-            }
-            if (command.equals("add_user")) {
-                controller.addUser(message);
-                return true;
-            }
             if (command.equals("get_user")) {
                 controller.getUser(message);
                 return true;

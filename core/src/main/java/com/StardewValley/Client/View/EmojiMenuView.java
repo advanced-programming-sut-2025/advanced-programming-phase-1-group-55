@@ -24,7 +24,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 public class EmojiMenuView implements Screen {
     private Stage stage=new Stage();
     private Skin skin=App.skin;
-    private EmojiType selectedEmoji = null;
+    private EmojiType selectedEmoji =ClientData.getInstance().selfDetails.defaultEmojis.getFirst();
     private TextButton backBtn;
     private TextButton sendBtn;
     private TextButton changeBtn;
