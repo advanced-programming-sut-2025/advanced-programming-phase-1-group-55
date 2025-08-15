@@ -6,7 +6,6 @@ import com.StardewValley.Common.PlayerDetails;
 import com.StardewValley.Common.model.Chat.Emoji;
 import com.StardewValley.Common.model.Chat.Message;
 import com.StardewValley.Common.model.App;
-import com.StardewValley.Common.model.Friendship.Message;
 import com.StardewValley.Common.model.Item.ItemType;
 import com.StardewValley.Common.model.Trade;
 

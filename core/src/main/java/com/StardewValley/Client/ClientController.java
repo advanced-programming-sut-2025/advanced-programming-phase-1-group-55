@@ -6,7 +6,6 @@ import com.StardewValley.Common.model.App;
 import com.StardewValley.Common.ConnectionMessage;
 import com.StardewValley.Common.Lobby;
 import com.StardewValley.Common.model.Chat.Message;
-import com.StardewValley.Common.model.Friendship.Message;
 import com.StardewValley.Common.model.Trade;
 
 import java.net.Socket;

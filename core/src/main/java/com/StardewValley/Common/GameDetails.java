@@ -1,6 +1,5 @@
 package com.StardewValley.Common;
 
-import com.StardewValley.Common.model.Friendship.Message;
 import com.StardewValley.Common.model.Trade;
 import com.StardewValley.Common.model.Chat.Message;
 import com.StardewValley.Server.connection.ClientConnection;
