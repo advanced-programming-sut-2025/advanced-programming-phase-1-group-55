@@ -1,11 +1,13 @@
 package com.StardewValley.Server.Controller;
 
+import com.StardewValley.Client.ClientController;
 import com.StardewValley.Client.ClientData;
 import com.StardewValley.Client.View.ChangeDefaultEmojiMenu;
 import com.StardewValley.Client.View.EmojiMenuView;
 import com.StardewValley.Common.PlayerDetails;
 import com.StardewValley.Common.model.App;
 import com.StardewValley.Common.model.Chat.EmojiType;
+import com.badlogic.gdx.utils.Timer;
 
 public class EmojiController {
     EmojiMenuView emojiMenuView;
@@ -17,7 +19,7 @@ public class EmojiController {
                 App.gameApp.setScreen(App.currentGameGraphicView);
             } else if (emojiMenuView.getSendBtn().isChecked()) {
                 emojiMenuView.getSendBtn().setChecked(false);
-                handleSendingEmoji();
+                handleSendingEmoji(emojiMenuView.getSelectedEmoji());
             } else if (emojiMenuView.getChangeBtn().isChecked()) {
                 emojiMenuView.getChangeBtn().setChecked(false);
                 App.gameApp.setScreen(new ChangeDefaultEmojiMenu(emojiMenuView.getSelectedEmoji()));
@@ -33,8 +35,18 @@ public class EmojiController {
             }
         }
     }
-    public void handleSendingEmoji(){
+    public void handleSendingEmoji(EmojiType emojiType) {
+        ClientData.getInstance().selfDetails.getEmoji().setActive(true);
+        ClientData.getInstance().selfDetails.getEmoji().setType(emojiType);
+        ClientController.getInstance().updateEmoji();
 
+        Timer.schedule(new Timer.Task() {
+            @Override
+            public void run() {
+               ClientData.getInstance().selfDetails.getEmoji().setActive(false);
+               ClientController.getInstance().updateEmoji();
+            }
+        }, 5);
     }
     public void handleChangingEmoji(EmojiType oldEmoji,EmojiType newEmoji){
         PlayerDetails playerDetails = ClientData.getInstance().selfDetails;

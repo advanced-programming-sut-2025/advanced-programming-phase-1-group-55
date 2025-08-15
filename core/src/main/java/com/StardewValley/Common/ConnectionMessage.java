@@ -1,5 +1,6 @@
 package com.StardewValley.Common;
 
+import com.StardewValley.Common.model.Chat.Emoji;
 import com.StardewValley.Common.model.Chat.Message;
 import com.StardewValley.Common.model.User;
 import com.google.gson.Gson;
@@ -44,6 +45,13 @@ public class ConnectionMessage {
 
     public static synchronized Lobby lobbyFromJson(String json) {
         return gson.fromJson(json, Lobby.class);
+    }
+    public static synchronized String emojiToJson(Emoji emoji) {
+        return gson.toJson(emoji);
+    }
+
+    public static synchronized Emoji emojiFromJson(String json) {
+        return gson.fromJson(json, Emoji.class);
     }
 
     public static synchronized String gameDetailsToJson(GameDetails gameDetails) {

@@ -179,6 +179,11 @@ public class PlayerController {
                 sprite.setScale(2f);
                 otherPlayerSprites.put(pd.username, sprite);
             }
+            if (pd.getEmoji().getActive()){
+                Sprite emoji = new Sprite(new Texture(pd.emoji.getType().getPath()));
+                emoji.setPosition(player.getLocation().getX(), player.getLocation().getY()+30);
+                emoji.draw(gameApp.getBatch());
+            }
 
             sprite.setPosition(pd.posX, pd.posY);
             sprite.draw(gameApp.getBatch());

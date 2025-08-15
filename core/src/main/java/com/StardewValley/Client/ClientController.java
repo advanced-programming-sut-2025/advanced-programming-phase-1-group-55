@@ -163,6 +163,16 @@ public class ClientController {
 
         connection.sendMessage(connectionMessage);
     }
+    public void updateEmoji(){
+        String json = ConnectionMessage.emojiToJson(ClientData.getInstance().selfDetails.emoji);
+        ConnectionMessage connectionMessage = new ConnectionMessage(new HashMap<>() {{
+            put("command", "update_emoji");
+            put("json", json);
+            put("sender", ClientData.getInstance().selfDetails.username);
+
+        }}, ConnectionMessage.Type.command);
+        connection.sendMessage(connectionMessage);
+    }
 
     public void startGame() {
         if (connection == null) {

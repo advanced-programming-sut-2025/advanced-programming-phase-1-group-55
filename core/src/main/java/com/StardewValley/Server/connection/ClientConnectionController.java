@@ -5,6 +5,7 @@ import com.StardewValley.Common.GameDetails;
 import com.StardewValley.Common.Lobby;
 import com.StardewValley.Common.PlayerDetails;
 import com.StardewValley.Common.model.App;
+import com.StardewValley.Common.model.Chat.Emoji;
 import com.StardewValley.Common.model.Chat.Message;
 import com.StardewValley.Common.model.User;
 
@@ -23,7 +24,23 @@ public class ClientConnectionController {
     public ClientConnectionController(ClientConnection connection) {
         this.connection = connection;
     }
+    public void updateEmoji(ConnectionMessage message) {
+        Emoji emoji=ConnectionMessage.emojiFromJson(message.getFromBody("json"));
+        PlayerDetails playerDetails=connection.getGame().getPlayers().get(message.getFromBody("sender"));
+        playerDetails.emoji=emoji;
+        String json=ConnectionMessage.emojiToJson(emoji);
+        ConnectionMessage update = new ConnectionMessage(new HashMap<>() {{
+            put("update", "update_emoji");
+            put("json", json);
+            put("sender", message.getFromBody("sender"));
+        }}, ConnectionMessage.Type.update);
+        for (ClientConnection connection : ServerMain.getConnections()) {
+            if (connection.isAlive()) {
+                connection.sendMessage(update);
+            }
+        }
 
+    }
     public void updatePublicChat(ConnectionMessage message) {
         Message messageToUpdate = new Message(message.getFromBody("text"), message.getFromBody("sender"));
         messageToUpdate.setText(messageToUpdate.getSender() + ": " + messageToUpdate.getText());

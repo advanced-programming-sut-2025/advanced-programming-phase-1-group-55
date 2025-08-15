@@ -89,6 +89,9 @@ public class ClientConnection extends Connection {
             if(message.getFromBody("command").equals("update_public_chat")) {
                 controller.updatePublicChat(message);
                 return true;
+            } if(message.getFromBody("command").equals("update_emoji")) {
+                controller.updateEmoji(message);
+                return true;
             }
 
         }

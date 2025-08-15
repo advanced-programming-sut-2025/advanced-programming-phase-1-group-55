@@ -2,6 +2,8 @@ package com.StardewValley.Client;
 
 import com.StardewValley.Common.Connection;
 import com.StardewValley.Common.ConnectionMessage;
+import com.StardewValley.Common.PlayerDetails;
+import com.StardewValley.Common.model.Chat.Emoji;
 import com.StardewValley.Common.model.Chat.Message;
 
 import java.io.IOException;
@@ -80,6 +82,16 @@ public class ServerConnection extends Connection {
                 ClientData.getInstance().gameDetails.getPublicGameChat().add(message1);
 
                 return true;
+            }
+            if (updateType.equals("update_emoji")) {
+                String jsonString =message.getFromBody("json");
+                Emoji emoji=ConnectionMessage.emojiFromJson(jsonString);
+                String sender = message.getFromBody("sender");
+                for (PlayerDetails playerDetails:ClientData.getInstance().gameDetails.getPlayers().values()){
+                    if (playerDetails.getUsername().equals(sender)&& !sender.equals(ClientData.getInstance().selfDetails.username)){
+                        playerDetails.setEmoji(emoji);
+                    }
+                }
             }
         }
 
